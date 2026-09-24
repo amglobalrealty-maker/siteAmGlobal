@@ -31,7 +31,7 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 | Linha de leitura | Limitada a 68 caracteres |
 | Filete | Traco champagne de 24px antes de cada rotulo |
 | Marcador | Triangulo aberto derivado do A, usado na indicacao de rolagem |
-| Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto |
+| Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto nem sobre foto. Ficou so na secao Global, bem aberta, lendo como grao do travertino |
 | Tom de voz | Frases curtas, sem superlativo, sem exclamacao |
 | Chamada | "Agende uma visita privada", exatamente como o manual aprovou |
 | Numeros | Tabulares, para alinhar em coluna |
@@ -130,9 +130,11 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   vez, no primeiro carregamento, e a abertura sobe por linhas.
 - **Slideshow da abertura.** Quatro fotos, uma por praca, trocando a cada 6,6
   segundos com fusao lenta e avanco continuo da imagem, que e o que da a
-  sensacao de video. Os marcadores embaixo dizem qual praca esta na tela, a
-  barra de tempo mostra quanto falta e o clique leva direto ao slide. O
-  slideshow para sozinho quando a aba perde o foco.
+  sensacao de video. O slideshow para sozinho quando a aba perde o foco.
+- **Filtro das pracas.** Numero em Jost e nome em Cormorant italico, sempre no
+  mesmo corpo, para nada saltar na troca. O que muda e a presenca: a praca no
+  ar clareia, o numero vira champagne e um filete champagne corre sob o nome
+  marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
 - **Indice lateral.** A numeracao da secao atual acende em champagne.
