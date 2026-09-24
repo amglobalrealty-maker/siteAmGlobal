@@ -49,31 +49,73 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
    site nao ficar sem marca. Assim que chegar o arquivo vetorial oficial, ele
    substitui esse trecho. Enquanto isso, nao use este site como referencia da
    marca em nenhuma peca impressa.
-2. **Fotografia.** O manual proibe banco de imagem em material de imovel, entao
-   nao coloquei nenhuma foto generica. As areas de imagem estao com a textura de
-   diagonais da propria marca e a legenda "Fotografia a incluir". Precisa da
-   foto de abertura em tela cheia e de uma foto vertical por imovel.
+2. **Fotografia.** As cinco fotos do site sao do Unsplash, de licenca livre, e
+   estao aqui a pedido da cliente so para o site nao ficar vazio. **O manual
+   proibe banco de imagem em material de imovel**, entao elas sao temporarias e
+   saem assim que chegar a fotografia propria. Enderecos na tabela abaixo.
+   Todas entram dessaturadas por CSS, para nao brigarem com onix e travertino.
 3. **Imoveis.** A secao Curadoria esta com a estrutura montada e tres espacos
    vazios. Nao inventei nome, bairro, metragem nem valor. Falta a lista real.
 4. **Contato.** WhatsApp, e-mail, endereco do escritorio e numero do CRECI estao
    como "A informar". O ano no rodape tambem precisa conferir.
 
+### Fotos provisorias em uso
+
+Todas servidas direto pelo Unsplash, sem arquivo no repositorio.
+Para trocar, substitua o `src` da tag `img` correspondente.
+
+| Onde | Identificador da foto no Unsplash |
+|---|---|
+| Abertura, tela cheia | `photo-1613490493576-7fde63acd811` |
+| Imovel 01 | `photo-1706808849780-7a04fbac83ef` |
+| Imovel 02 | `photo-1633354747567-e0682586f082` |
+| Imovel 03 | `photo-1745761320791-5ae142edee8c` |
+| Faixa da secao A AMGlobal | `photo-1660361339436-ddd4b85372da` |
+
+O endereco completo segue sempre o padrao
+`https://images.unsplash.com/<identificador>?auto=format&fit=crop&w=<largura>&q=70`.
+
 ## Estrutura da pagina
 
-1. Abertura, com a tagline e um unico chamado
-2. Curadoria, com os tres imoveis em destaque
-3. A AMGlobal, com curadoria, precisao e discricao
-4. Servicos: comprar, vender, investir e assessorar do exterior
-5. Global: Orlando, Dubai e Portugal
-6. Contato
-7. Rodape
+| Numero | Secao | O que faz |
+|---|---|---|
+| 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
+| 02 | Curadoria | Tres imoveis em grade escalonada, com numeral e chapa |
+| 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
+| 04 | Servicos | Lista sanfonada: comprar, vender, investir e assessorar do exterior |
+| 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
+| 06 | Contato | Fecho editorial e os canais |
+| — | Rodape | Faixa com as frases da marca e a assinatura |
+
+A numeracao nao e enfeite: ela aparece no indice lateral e acompanha onde a
+pessoa esta na pagina.
+
+## Movimento
+
+O manual pede movimento discreto, entao cada efeito tem uma razao.
+
+- **Cortina de entrada.** O simbolo se desenha uma vez, no primeiro
+  carregamento, e a abertura sobe por linhas.
+- **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
+  falta da pagina.
+- **Indice lateral.** A numeracao da secao atual acende em champagne.
+- **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
+- **Sanfona dos servicos.** Uma linha aberta por vez.
+- **Faixa do rodape.** As frases da marca correm devagar, em italico.
+- **Hora local.** Dado real, via fuso horario do navegador, atualizado a cada
+  30 segundos. Nao e numero inventado.
+
+Quem tiver "reduzir movimento" ligado no sistema nao ve nada disso: a pagina
+aparece inteira e parada.
 
 ## Detalhes tecnicos
 
 - Um arquivo so. CSS e JavaScript ficam dentro do `index.html`.
 - Fontes vem do Google Fonts, com pilha de reserva declarada.
-- O JavaScript faz duas coisas: dar fundo ao cabecalho depois da abertura e
-  abrir o menu no celular. Nada alem disso.
-- Acessibilidade: foco visivel em todo link e botao, menu com `aria-expanded`,
-  o menu fecha no Esc, e quem pede menos movimento no sistema nao ve animacao.
-- Responsivo a partir de 320px. O ponto de virada do menu e 860px.
+- Sem biblioteca, sem framework, sem dependencia externa alem das fontes.
+- O scroll usa `requestAnimationFrame`, e as revelacoes usam
+  `IntersectionObserver` com `unobserve` depois de disparar.
+- Acessibilidade: foco visivel em todo link e botao, sanfona com
+  `aria-expanded` e `aria-controls`, menu que fecha no Esc, indice com rotulo.
+- Responsivo a partir de 320px. O menu vira tela cheia abaixo de 900px e o
+  indice lateral some abaixo de 1100px.
