@@ -35,9 +35,14 @@
      - Ha quatro palavras que o manual proibe. A lista esta no README, para que
        a busca automatica por elas no HTML continue valendo alguma coisa.
 
+     O SIMBOLO
+     Nao foi redesenhado. Ele e o proprio vetor do manual, extraido do arquivo
+     e gravado em marca.svg, marca-onix.svg e favicon.svg. Traco unico fechado,
+     373 curvas, proporcao 1,1341. Nao mexa nesses arquivos a mao.
+
      AINDA PROVISORIO — detalhado no README.md
-     1. O monograma e uma aproximacao em SVG. O manual (02) proibe redesenhar o
-        simbolo: troque por o vetor oficial assim que ele chegar.
+     1. Falta a versao com assinatura horizontal do manual, se houver arquivo
+        separado. Aqui o simbolo aparece ao lado do nome em Jost.
      2. As fotos sao do Unsplash, licenca livre, e estao aqui a pedido da
         cliente so para o site nao ficar vazio. O manual proibe banco de imagem
         em material de imovel: elas saem assim que chegar a fotografia propria.
@@ -50,7 +55,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 96'%3E%3Crect width='120' height='96' fill='%230B0B0C'/%3E%3Cg fill='none' stroke='%23F5F2EC' stroke-width='9' stroke-linecap='butt' stroke-linejoin='miter'%3E%3Cpath d='M32 10 L10 86'/%3E%3Cpath d='M32 10 L54 86'/%3E%3Cpath d='M66 86 L66 10 L85 54 L104 10 L104 86'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <style>
   /* ============================================================== tokens == */
@@ -224,18 +229,18 @@
 
   .cortina.saiu { opacity: 0; visibility: hidden; }
 
-  .cortina svg { width: clamp(64px, 9vw, 96px); height: auto; }
-
-  .cortina path {
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: tracar 1.15s var(--curva) forwards;
+  /* o simbolo aparece por uma cortina que sobe, sem redesenhar nada */
+  .cortina img {
+    width: clamp(78px, 11vw, 124px);
+    height: auto;
+    clip-path: inset(100% 0 0 0);
+    animation: revelar 1.25s var(--curva) 0.15s forwards;
   }
 
-  .cortina path:nth-child(2) { animation-delay: 0.14s; }
-  .cortina path:nth-child(3) { animation-delay: 0.28s; }
-
-  @keyframes tracar { to { stroke-dashoffset: 0; } }
+  @keyframes revelar {
+    from { clip-path: inset(100% 0 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
 
   /* ============================================================== trilho === */
   /* barra fina de progresso da leitura, no topo absoluto */
@@ -273,8 +278,10 @@
     border-bottom-color: var(--linha-clara);
   }
 
-  .marca { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-  .marca svg { height: 34px; width: auto; }
+  .marca { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  /* 40px e o tamanho digital minimo do simbolo segundo o manual */
+  .marca img { height: 40px; width: auto; transition: height 0.6s var(--curva); }
+  .topo.encolhido .marca img { height: 32px; }
 
   .marca-nome {
     font-family: var(--sans);
@@ -386,23 +393,46 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 var(--margem) clamp(40px, 6vh, 64px);
+    /* o respiro de cima reserva a faixa do cabecalho fixo: sem isso o titulo
+       sobe por baixo do menu em tela baixa */
+    padding: clamp(132px, 19vh, 210px) var(--margem) clamp(36px, 5.5vh, 60px);
     overflow: hidden;
   }
 
-  .abertura-fundo {
+  /* --- slideshow da abertura --- */
+  .slides { position: absolute; inset: 0; background: var(--onix-alto); }
+
+  .slide {
     position: absolute;
-    inset: -8%;
-    background: var(--onix-alto);
-    animation: derivar 70s linear infinite alternate;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.8s var(--curva);
+    will-change: opacity;
   }
 
-  .abertura-fundo img {
+  .slide.ativa { opacity: 1; }
+
+  .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     /* a foto entra dessaturada para nao brigar com onix e travertino */
     filter: grayscale(0.34) contrast(1.06) brightness(0.72) saturate(0.7);
+    transform: scale(1.04);
+  }
+
+  /* o avanco lento da imagem e o que da a sensacao de video */
+  .slide.ativa img { animation: aproximar 9.5s ease-out forwards; }
+  .slide.ativa:nth-child(even) img { animation-name: afastar; }
+
+  @keyframes aproximar {
+    from { transform: scale(1.03) translate3d(0, 0, 0); }
+    to { transform: scale(1.15) translate3d(-1.6%, -1.1%, 0); }
+  }
+
+  @keyframes afastar {
+    from { transform: scale(1.15) translate3d(1.4%, 0.8%, 0); }
+    to { transform: scale(1.03) translate3d(0, 0, 0); }
   }
 
   /* veu: garante leitura do titulo sobre a foto, sem escurecer tudo por igual */
@@ -422,10 +452,55 @@
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 45%, #000 78%, transparent 100%);
   }
 
-  @keyframes derivar {
-    from { transform: translate3d(0, 0, 0) scale(1); }
-    to { transform: translate3d(-2.5%, -1.5%, 0) scale(1.06); }
+  /* marcadores do slideshow: dizem qual praca esta na tela e quanto falta */
+  .marcadores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px clamp(16px, 2.4vw, 34px);
   }
+
+  .marcador {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    min-width: 92px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--texto-fraco);
+    text-align: left;
+    transition: color 0.5s var(--curva);
+  }
+
+  .marcador:hover { color: var(--marfim); }
+  .marcador.ativo { color: var(--marfim); }
+
+  .marcador i {
+    position: relative;
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    background: rgba(245, 242, 236, 0.2);
+  }
+
+  .marcador i::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .marcador.ativo i::after { animation: encher 6.6s linear forwards; }
+
+  @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
   .abertura-conteudo { position: relative; max-width: 1080px; }
 
@@ -459,16 +534,6 @@
     margin-top: clamp(48px, 8vh, 96px);
     padding-top: 22px;
     border-top: 1px solid var(--linha-clara);
-  }
-
-  .abertura-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 34px;
-    font-size: 10.5px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--texto-fraco);
   }
 
   .rolar {
@@ -846,7 +911,7 @@
     padding: clamp(30px, 4vh, 44px) var(--margem);
   }
 
-  .rodape-fim svg { height: 28px; width: auto; }
+  .rodape-fim img { height: 40px; width: auto; opacity: 0.8; }
 
   .rodape-texto {
     font-size: 10.5px;
@@ -901,8 +966,9 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .abertura-fundo, .rolar .chevron, .faixa-trilho, .cortina path { animation: none; }
-    .cortina path { stroke-dashoffset: 0; }
+    .rolar .chevron, .faixa-trilho, .slide.ativa img, .marcador.ativo i::after { animation: none; }
+    .cortina img { animation: none; clip-path: none; }
+    .marcador.ativo i::after { transform: scaleX(1); }
     .linha > span { transform: none; }
     .sobe { opacity: 1; transform: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
@@ -914,11 +980,7 @@
 <!-- ================================================================ cortina -->
 <!-- O simbolo se desenha uma vez, no primeiro carregamento. Nada alem disso. -->
 <div class="cortina" id="cortina" aria-hidden="true">
-  <svg viewBox="0 0 120 96" fill="none" stroke="#F5F2EC" stroke-width="5" stroke-linecap="butt" stroke-linejoin="miter">
-    <path d="M32 10 L10 86"/>
-    <path d="M32 10 L54 86"/>
-    <path d="M66 86 L66 10 L85 54 L104 10 L104 86"/>
-  </svg>
+  <img src="marca.svg" alt="" width="200" height="176">
 </div>
 
 <div class="progresso" id="progresso" aria-hidden="true"></div>
@@ -926,12 +988,8 @@
 <!-- =============================================================== cabecalho -->
 <header class="topo" id="topo">
   <a class="marca" href="#abertura" aria-label="AMGlobal Realty, ir para o inicio">
-    <!-- SIMBOLO: aproximacao. Trocar pelo vetor oficial. Ver README. -->
-    <svg viewBox="0 0 120 96" role="img" aria-label="Monograma AMGlobal" fill="none" stroke="#F5F2EC" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter">
-      <path d="M32 10 L10 86"/>
-      <path d="M32 10 L54 86"/>
-      <path d="M66 86 L66 10 L85 54 L104 10 L104 86"/>
-    </svg>
+    <!-- SIMBOLO OFICIAL: vetor tirado do manual. Nao redesenhar. -->
+    <img src="marca.svg" alt="AMGlobal Realty" width="200" height="176">
     <span class="marca-nome">AMGlobal Realty</span>
   </a>
 
@@ -966,11 +1024,25 @@
 
 <!-- ================================================================ abertura -->
 <section class="abertura" id="abertura">
-  <!-- PROVISORIO: foto do Unsplash, licenca livre. Trocar pela fotografia
-       propria assim que houver. Creditos e enderecos no README. -->
-  <div class="abertura-fundo">
-    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=2000&amp;q=72"
-         alt="" fetchpriority="high" decoding="async">
+  <!-- PROVISORIO: fotos do Unsplash, licenca livre. Uma por praca em que a
+       AMGlobal atua. Trocar pela fotografia propria. Enderecos no README. -->
+  <div class="slides" id="slides" aria-hidden="true">
+    <div class="slide ativa">
+      <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" fetchpriority="high" decoding="async">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" loading="lazy" decoding="async">
+    </div>
   </div>
   <div class="abertura-veu"></div>
   <div class="abertura-textura diagonais"></div>
@@ -986,9 +1058,11 @@
   </div>
 
   <div class="abertura-rodape">
-    <div class="abertura-meta">
-      <span>Curadoria privada</span>
-      <span>Brasil, Estados Unidos, Emirados e Portugal</span>
+    <div class="marcadores" id="marcadores">
+      <button type="button" class="marcador ativo" data-slide="0"><i></i><span>Brasil</span></button>
+      <button type="button" class="marcador" data-slide="1"><i></i><span>Orlando</span></button>
+      <button type="button" class="marcador" data-slide="2"><i></i><span>Dubai</span></button>
+      <button type="button" class="marcador" data-slide="3"><i></i><span>Portugal</span></button>
     </div>
 
     <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
@@ -1266,11 +1340,7 @@
   </div>
 
   <div class="rodape-fim">
-    <svg viewBox="0 0 120 96" role="img" aria-label="AMGlobal Realty" fill="none" stroke="#F5F2EC" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter" opacity="0.75">
-      <path d="M32 10 L10 86"/>
-      <path d="M32 10 L54 86"/>
-      <path d="M66 86 L66 10 L85 54 L104 10 L104 86"/>
-    </svg>
+    <img src="marca.svg" alt="AMGlobal Realty" width="200" height="176">
     <span class="rodape-texto">Imóveis extraordinários. Visão global.</span>
     <span class="rodape-texto">CRECI a informar &middot; 2026</span>
   </div>
@@ -1395,7 +1465,58 @@
     botao.setAttribute('aria-expanded', jaAberto ? 'false' : 'true');
   });
 
-  /* 8. Hora local de cada praca. Dado real, atualizado a cada minuto. */
+  /* 8. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
+  var slides = document.getElementById('slides');
+  var marcadores = document.getElementById('marcadores');
+
+  if (slides && marcadores) {
+    var telas = slides.querySelectorAll('.slide');
+    var botoes = marcadores.querySelectorAll('.marcador');
+    var atual = 0;
+    var relogio = null;
+    var DURACAO = 6600;
+
+    function mostrar(i) {
+      atual = (i + telas.length) % telas.length;
+
+      Array.prototype.forEach.call(telas, function (t, k) {
+        t.classList.toggle('ativa', k === atual);
+      });
+
+      Array.prototype.forEach.call(botoes, function (b, k) {
+        // tira e recoloca a classe para a barra de tempo recomecar do zero
+        b.classList.remove('ativo');
+        if (k === atual) {
+          void b.offsetWidth;
+          b.classList.add('ativo');
+        }
+      });
+    }
+
+    function agendar() {
+      window.clearInterval(relogio);
+      relogio = window.setInterval(function () { mostrar(atual + 1); }, DURACAO);
+    }
+
+    marcadores.addEventListener('click', function (ev) {
+      var botao = ev.target.closest('.marcador');
+      if (!botao) return;
+      mostrar(parseInt(botao.getAttribute('data-slide'), 10));
+      if (!calmo) agendar();
+    });
+
+    // com movimento reduzido fica so a primeira imagem, parada
+    if (!calmo) {
+      agendar();
+      // pausa quando a aba sai de foco, para nao gastar bateria a toa
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) window.clearInterval(relogio);
+        else agendar();
+      });
+    }
+  }
+
+  /* 9. Hora local de cada praca. Dado real, atualizado a cada minuto. */
   var relogios = document.querySelectorAll('.relogio-hora');
 
   function marcarHoras() {

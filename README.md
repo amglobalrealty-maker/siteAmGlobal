@@ -44,12 +44,11 @@ oportunidade, imperdivel, corretor, luxuoso.
 Quatro pontos dependem de material que a cliente ainda precisa enviar.
 Todos estao marcados no `index.html` com um comentario `ATENCAO`.
 
-1. **Simbolo.** O manual proibe redesenhar o simbolo a mao. O SVG que esta no
-   cabecalho, no favicon e no rodape e uma aproximacao minha, feita so para o
-   site nao ficar sem marca. Assim que chegar o arquivo vetorial oficial, ele
-   substitui esse trecho. Enquanto isso, nao use este site como referencia da
-   marca em nenhuma peca impressa.
-2. **Fotografia.** As cinco fotos do site sao do Unsplash, de licenca livre, e
+1. **Assinatura horizontal.** O simbolo esta correto, extraido do manual (ver a
+   secao abaixo). Se o manual tiver um arquivo separado com a assinatura
+   horizontal fechada, ela deve substituir o par simbolo mais nome em Jost que
+   o cabecalho usa hoje.
+2. **Fotografia.** As oito fotos do site sao do Unsplash, de licenca livre, e
    estao aqui a pedido da cliente so para o site nao ficar vazio. **O manual
    proibe banco de imagem em material de imovel**, entao elas sao temporarias e
    saem assim que chegar a fotografia propria. Enderecos na tabela abaixo.
@@ -59,6 +58,36 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
 4. **Contato.** WhatsApp, e-mail, endereco do escritorio e numero do CRECI estao
    como "A informar". O ano no rodape tambem precisa conferir.
 
+## O simbolo
+
+**Nao foi redesenhado a mao.** O manual proibe isso, e com razao.
+
+O simbolo que esta no site e o proprio vetor do Manual de Identidade Visual
+v1.0. Ele foi extraido do arquivo: descomprimi os fluxos do PDF, que vem em
+ASCII85 sobre Flate, li os operadores de desenho da capa e converti a
+geometria para SVG sem tocar em nenhuma coordenada.
+
+| Dado | Valor |
+|---|---|
+| Caixa original | 200,10 x 176,44 pontos |
+| Proporcao | 1,1341 |
+| Tracado | um unico contorno fechado |
+| Curvas | 373 |
+| Preenchimento | regra par-impar |
+
+Tres arquivos saem dai:
+
+| Arquivo | Para que serve |
+|---|---|
+| `marca.svg` | simbolo em marfim, para usar sobre onix. Cabecalho, cortina de entrada e rodape |
+| `marca-onix.svg` | simbolo em onix, para quando precisar poe-lo sobre marfim ou travertino |
+| `favicon.svg` | marfim sobre onix, com a folga que o manual pede |
+
+No cabecalho ele aparece a 40px, que e o tamanho digital minimo previsto no
+manual, e encolhe para 32px quando a barra fica fixa.
+
+**Nao edite esses arquivos a mao.** Se o manual for atualizado, extraia de novo.
+
 ### Fotos provisorias em uso
 
 Todas servidas direto pelo Unsplash, sem arquivo no repositorio.
@@ -66,7 +95,10 @@ Para trocar, substitua o `src` da tag `img` correspondente.
 
 | Onde | Identificador da foto no Unsplash |
 |---|---|
-| Abertura, tela cheia | `photo-1613490493576-7fde63acd811` |
+| Abertura, slide 01, Brasil | `photo-1613490493576-7fde63acd811` |
+| Abertura, slide 02, Orlando | `photo-1719887805632-de5be825f72b` |
+| Abertura, slide 03, Dubai | `photo-1706164971302-e30c0640cc3b` |
+| Abertura, slide 04, Portugal | `photo-1685514823717-7e1ff6ee0563` |
 | Imovel 01 | `photo-1706808849780-7a04fbac83ef` |
 | Imovel 02 | `photo-1633354747567-e0682586f082` |
 | Imovel 03 | `photo-1745761320791-5ae142edee8c` |
@@ -94,8 +126,13 @@ pessoa esta na pagina.
 
 O manual pede movimento discreto, entao cada efeito tem uma razao.
 
-- **Cortina de entrada.** O simbolo se desenha uma vez, no primeiro
-  carregamento, e a abertura sobe por linhas.
+- **Cortina de entrada.** O simbolo e revelado por uma cortina que sobe, uma
+  vez, no primeiro carregamento, e a abertura sobe por linhas.
+- **Slideshow da abertura.** Quatro fotos, uma por praca, trocando a cada 6,6
+  segundos com fusao lenta e avanco continuo da imagem, que e o que da a
+  sensacao de video. Os marcadores embaixo dizem qual praca esta na tela, a
+  barra de tempo mostra quanto falta e o clique leva direto ao slide. O
+  slideshow para sozinho quando a aba perde o foco.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
 - **Indice lateral.** A numeracao da secao atual acende em champagne.
