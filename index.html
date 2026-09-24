@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMGlobal Realty — Imóveis extraordinários. Visão global.</title>
+<meta name="description" content="Consultoria imobiliária de alto padrão. Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.">
+
+<!-- ---------------------------------------------------------------------------
+     AMGLOBAL REALTY — PRIMEIRA VERSÃO DA HOME (setembro de 2026)
+
+     Construída a partir do Manual de Identidade Visual v1.0 e do Briefing v1.0.
+     Cada decisão abaixo tem origem num dos dois documentos; onde há dúvida, a
+     regra do manual venceu ("se um caso não estiver previsto aqui, a resposta é
+     sempre a opção mais silenciosa").
+
+     O QUE VEIO DO MANUAL
+     - Cores (seção 04): ônix #0B0B0C, marfim #F5F2EC, travertino #D8CFC0,
+       grafite #3A3A3C e champagne #B49A6E. A proporção pedida — ônix 42%,
+       marfim 28%, travertino 14%, grafite 10%, champagne 6% — guiou quais
+       seções são escuras e quais são claras.
+     - Champagne NUNCA em área grande nem em texto longo: aqui ele aparece só em
+       filetes, rótulos e no símbolo. Sobre marfim ele não atinge contraste AA
+       (2,6:1), então nenhum texto de leitura usa champagne sobre claro.
+     - Tipografia (seção 05): Cormorant Garamond nos títulos, Jost em texto,
+       rótulos e botões. Rótulo e botão em caixa-alta com tracking, só na Jost.
+       Alinhamento à esquerda, sem justificar. Números tabulares.
+     - Elementos (seção 06): filete champagne de 24 px antes dos rótulos,
+       triângulo aberto como marcador, padrão de diagonais a 26° como textura de
+       fundo — e nunca atrás de texto.
+     - Tom de voz (seção 07): frases curtas, sem superlativo, sem exclamação. Os
+       CTAs são os aprovados: "Agendar visita privada" e "Falar com um consultor".
+     - Home (seção 09): navegação mínima, um único chamado à ação por tela.
+
+     O QUE AINDA É PROVISÓRIO — ver README.md
+     1. O MONOGRAMA aqui é um desenho de aproximação em SVG. O manual (seção 02)
+        proíbe reconstruir o símbolo: assim que o arquivo vetorial oficial
+        chegar, ele substitui este trecho.
+     2. As FOTOS não existem ainda. O manual proíbe banco de imagem em material
+        de imóvel, então nenhum lugar usa foto genérica: as áreas de imagem estão
+        com a textura de diagonais da própria marca, marcadas como pendentes.
+     3. Os IMÓVEIS da curadoria estão como estrutura, sem dados inventados.
+     4. TELEFONE, e-mail e CRECI estão como espaço reservado.
+     --------------------------------------------------------------------------- -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Favicon: o símbolo em marfim sobre ônix, com o traço reforçado, como manda o
+     manual (seção 03: favicon usa a versão 0,7 x). Inline para não depender de arquivo. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 76 82'%3E%3Crect width='76' height='82' fill='%230B0B0C'/%3E%3Cg fill='none' stroke='%23F5F2EC' stroke-width='6' stroke-linecap='butt' stroke-linejoin='round'%3E%3Cpath d='M24 8 L6 62'/%3E%3Cpath d='M8 62 L38 62'/%3E%3Cpath d='M24 8 L44 76'/%3E%3Cpath d='M38 62 L52 8 L59 45 L66 8 L66 62'/%3E%3C/g%3E%3C/svg%3E">
+
+<style>
+  /* ---------------------------------------------------------------- tokens */
+  :root {
+    --onix: #0B0B0C;
+    --marfim: #F5F2EC;
+    --travertino: #D8CFC0;
+    --grafite: #3A3A3C;
+    --champagne: #B49A6E;
+
+    --serifada: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --geometrica: 'Jost', Arial, Helvetica, sans-serif;
+
+    /* respiro: o manual pede "muito respiro"; a escala cresce nas telas grandes */
+    --margem: clamp(24px, 7vw, 120px);
+    --secao: clamp(80px, 12vh, 160px);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--onix);
+    color: var(--marfim);
+    font-family: var(--geometrica);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  /* ------------------------------------------------- peças da identidade */
+
+  /* filete champagne de 24 px antes de rótulos e títulos (manual, seção 06) */
+  .filete {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--champagne);
+    margin-bottom: 20px;
+  }
+
+  /* rótulo: Jost Medium, caixa-alta, tracking entre +14% e +20% */
+  .rotulo {
+    display: block;
+    font-family: var(--geometrica);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--champagne);
+  }
+
+  /* sobre fundo claro o champagne não passa no contraste: rótulo vai em grafite */
+  .claro .rotulo { color: var(--grafite); }
+
+  h1, h2, h3 {
+    font-family: var(--serifada);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  h1 { font-size: clamp(38px, 6.4vw, 64px); }
+  h2 { font-size: clamp(30px, 4vw, 46px); }
+  h3 { font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; }
+
+  p { max-width: 68ch; } /* manual: 55 a 75 caracteres por linha */
+
+  .citacao {
+    font-family: var(--serifada);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 2.6vw, 28px);
+    line-height: 1.35;
+  }
+
+  /* botão: Jost Medium, caixa-alta, sublinhado fino (manual, seção 05) */
+  .botao {
+    display: inline-block;
+    font-family: var(--geometrica);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--marfim);
+    text-decoration: none;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--champagne);
+    transition: color 0.4s ease, border-color 0.4s ease;
+  }
+
+  .botao:hover { color: var(--champagne); }
+  .botao:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
+
+  .claro .botao { color: var(--onix); }
+  .claro .botao:hover { color: var(--grafite); }
+
+  /* textura de diagonais a 26°, tom sobre tom — nunca atrás de texto */
+  .diagonais {
+    background-image: repeating-linear-gradient(
+      64deg,
+      rgba(245, 242, 236, 0.045) 0 1px,
+      transparent 1px 14px
+    );
+  }
+
+  /* ------------------------------------------------------------- cabeçalho */
+  .topo {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px var(--margem);
+    background: rgba(11, 11, 12, 0);
+    transition: background 0.5s ease, padding 0.5s ease;
+  }
+
+  .topo.encolhido {
+    background: rgba(11, 11, 12, 0.92);
+    backdrop-filter: blur(6px);
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .marca svg { height: 40px; width: auto; }
+
+  .marca-nome {
+    font-family: var(--geometrica);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--marfim);
+    white-space: nowrap;
+  }
+
+  .menu { display: flex; align-items: center; gap: 34px; }
+
+  .menu a {
+    font-family: var(--geometrica);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--marfim);
+    text-decoration: none;
+    opacity: 0.82;
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+
+  .menu a:hover { opacity: 1; color: var(--champagne); }
+  .menu a:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
+
+  .menu-abrir { display: none; background: none; border: 0; color: var(--marfim); cursor: pointer; padding: 8px; }
+  .menu-abrir svg { display: block; }
+
+  /* ------------------------------------------------------------- abertura */
+  .abertura {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 var(--margem) clamp(56px, 9vh, 96px);
+    overflow: hidden;
+  }
+
+  /* onde entra a fotografia em tela cheia (manual, seção 09) */
+  .abertura-fundo {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 70% 10%, #17171a 0%, var(--onix) 62%);
+  }
+
+  .abertura-conteudo { position: relative; max-width: 900px; }
+
+  .abertura h1 { margin-bottom: 28px; }
+  .abertura h1 em { font-style: italic; }
+
+  .abertura .apoio {
+    color: rgba(245, 242, 236, 0.72);
+    font-size: 17px;
+    margin-bottom: 40px;
+    max-width: 52ch;
+  }
+
+  /* marcador: o triângulo aberto derivado do A (manual, seção 06) */
+  .rolar {
+    position: absolute;
+    right: var(--margem);
+    bottom: clamp(56px, 9vh, 96px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(245, 242, 236, 0.5);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .rolar svg { animation: descer 3.4s ease-in-out infinite; }
+
+  @keyframes descer {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(6px); opacity: 1; }
+  }
+
+  /* --------------------------------------------------------------- seções */
+  section { padding: var(--secao) var(--margem); }
+
+  .claro { background: var(--marfim); color: var(--onix); }
+  .claro p { color: var(--grafite); }
+  .pedra { background: var(--travertino); color: var(--onix); }
+  .pedra p { color: var(--grafite); }
+
+  .cabeca-secao { margin-bottom: clamp(44px, 6vh, 72px); max-width: 780px; }
+  .cabeca-secao .rotulo { margin-bottom: 18px; }
+  .cabeca-secao h2 { margin-bottom: 22px; }
+
+  /* ------------------------------------------------------------ curadoria */
+  .imoveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(24px, 3vw, 40px);
+  }
+
+  .imovel { display: block; text-decoration: none; color: inherit; }
+
+  /* área da fotografia: por enquanto a textura da marca, nunca banco de imagem */
+  .imovel-foto {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: #131316;
+    border: 1px solid rgba(245, 242, 236, 0.08);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .imovel-foto span {
+    position: absolute;
+    left: 20px;
+    bottom: 18px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.38);
+  }
+
+  .imovel-local {
+    font-family: var(--geometrica);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .imovel h3 { margin-bottom: 14px; }
+
+  .imovel-dados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-size: 13px;
+    color: rgba(245, 242, 236, 0.6);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------------------------------------------------------------- marca */
+  .tres {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(32px, 4vw, 64px);
+  }
+
+  .tres h3 { margin-bottom: 12px; }
+  .tres .rotulo { margin-bottom: 14px; }
+
+  .citacao-bloco {
+    margin-top: clamp(56px, 8vh, 96px);
+    padding-top: clamp(36px, 5vh, 56px);
+    border-top: 1px solid rgba(11, 11, 12, 0.12);
+    max-width: 760px;
+  }
+
+  /* -------------------------------------------------------------- serviços */
+  .servicos { display: grid; gap: 0; }
+
+  .servico {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: clamp(20px, 3vw, 48px);
+    align-items: start;
+    padding: clamp(28px, 4vh, 44px) 0;
+    border-top: 1px solid rgba(245, 242, 236, 0.1);
+  }
+
+  .servico:last-child { border-bottom: 1px solid rgba(245, 242, 236, 0.1); }
+
+  .servico-num {
+    font-family: var(--serifada);
+    font-size: 26px;
+    color: var(--champagne);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .servico p { color: rgba(245, 242, 236, 0.7); }
+
+  /* --------------------------------------------------------------- global */
+  .pracas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(24px, 3vw, 48px);
+    margin-top: clamp(40px, 6vh, 64px);
+  }
+
+  .praca { border-top: 1px solid rgba(11, 11, 12, 0.15); padding-top: 20px; }
+  .praca h3 { font-size: 26px; margin-bottom: 8px; }
+  .praca p { font-size: 15px; }
+
+  /* -------------------------------------------------------------- contato */
+  .contato { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+
+  .contato-linhas { display: grid; gap: 26px; }
+
+  .contato-linha .rotulo { margin-bottom: 8px; }
+
+  .contato-linha a, .contato-linha span {
+    color: var(--marfim);
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .contato-linha a:hover { border-color: var(--champagne); }
+
+  .pendente { color: rgba(245, 242, 236, 0.45) !important; font-size: 15px !important; }
+
+  /* --------------------------------------------------------------- rodapé */
+  footer {
+    padding: clamp(48px, 7vh, 72px) var(--margem);
+    border-top: 1px solid rgba(245, 242, 236, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+
+  footer svg { height: 34px; width: auto; }
+
+  .rodape-texto {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(245, 242, 236, 0.45);
+  }
+
+  /* ------------------------------------------------------- telas estreitas */
+  @media (max-width: 860px) {
+    .menu {
+      position: fixed;
+      inset: 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+      background: rgba(11, 11, 12, 0.98);
+      transform: translateY(-100%);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .menu.aberto { transform: translateY(0); }
+    .menu a { font-size: 15px; }
+    .menu-abrir { display: block; position: relative; z-index: 60; }
+    .servico { grid-template-columns: 56px minmax(0, 1fr); }
+    .servico p { grid-column: 2; }
+    .contato { grid-template-columns: 1fr; }
+    .rolar { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rolar svg { animation: none; }
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================================================================== topo -->
+<header class="topo" id="topo">
+  <a class="marca" href="#abertura" aria-label="AMGlobal Realty, ir para o início">
+    <!-- SÍMBOLO — desenho de aproximação; substituir pelo vetor oficial (ver README) -->
+    <svg viewBox="0 0 76 82" role="img" aria-label="Monograma AMGlobal">
+      <g fill="none" stroke="#F5F2EC" stroke-width="4.5" stroke-linecap="butt" stroke-linejoin="round">
+        <path d="M24 8 L6 62"/>
+        <path d="M8 62 L38 62"/>
+        <path d="M24 8 L44 76"/>
+        <path d="M38 62 L52 8 L59 45 L66 8 L66 62"/>
+      </g>
+    </svg>
+    <span class="marca-nome">AMGlobal Realty</span>
+  </a>
+
+  <button class="menu-abrir" id="menuAbrir" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+    <svg width="24" height="14" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M0 1h24M0 13h24"/>
+    </svg>
+  </button>
+
+  <nav class="menu" id="menu" aria-label="Navegação principal">
+    <a href="#curadoria">Curadoria</a>
+    <a href="#marca">A AMGlobal</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#global">Global</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<!-- ================================================================= abertura -->
+<!-- Um único chamado à ação por tela, como pede o manual (seção 09). -->
+<section class="abertura" id="abertura">
+  <div class="abertura-fundo diagonais"></div>
+  <div class="abertura-conteudo">
+    <span class="filete"></span>
+    <h1>Imóveis extraordinários.<br><em>Visão global.</em></h1>
+    <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
+    <a class="botao" href="#curadoria">Ver curadoria</a>
+  </div>
+
+  <div class="rolar" aria-hidden="true">
+    <!-- triângulo aberto, derivado do A -->
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M1 1 L8 11 L15 1"/>
+    </svg>
+    <span>Rolar</span>
+  </div>
+</section>
+
+<!-- ================================================================ curadoria -->
+<section id="curadoria">
+  <div class="cabeca-secao">
+    <span class="filete"></span>
+    <span class="rotulo">Curadoria</span>
+    <h2>Poucos imóveis. Nenhum comum.</h2>
+    <p>Cada residência no portfólio tem uma razão para estar aqui: arquitetura, endereço, história ou a combinação dos três. O que não sustenta uma dessas razões fica de fora.</p>
+  </div>
+
+  <!-- ATENCAO: ESTRUTURA, SEM DADOS INVENTADOS. Cada bloco recebe foto, nome, bairro,
+       área, suítes, vagas e valor quando o portfólio for cadastrado. A área da
+       imagem usa a textura da marca — o manual proíbe banco de imagem aqui. -->
+  <div class="imoveis">
+    <article class="imovel">
+      <div class="imovel-foto diagonais"><span>Fotografia a incluir</span></div>
+      <span class="imovel-local">Bairro · Cidade</span>
+      <h3>Residência em curadoria</h3>
+      <div class="imovel-dados"><span>Área</span><span>Suítes</span><span>Sob consulta</span></div>
+    </article>
+
+    <article class="imovel">
+      <div class="imovel-foto diagonais"><span>Fotografia a incluir</span></div>
+      <span class="imovel-local">Bairro · Cidade</span>
+      <h3>Residência em curadoria</h3>
+      <div class="imovel-dados"><span>Área</span><span>Suítes</span><span>Sob consulta</span></div>
+    </article>
+
+    <article class="imovel">
+      <div class="imovel-foto diagonais"><span>Fotografia a incluir</span></div>
+      <span class="imovel-local">Bairro · Cidade</span>
+      <h3>Residência em curadoria</h3>
+      <div class="imovel-dados"><span>Área</span><span>Suítes</span><span>Sob consulta</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ==================================================================== marca -->
+<section class="claro" id="marca">
+  <div class="cabeca-secao">
+    <span class="filete"></span>
+    <span class="rotulo">A AMGlobal</span>
+    <h2>Curadoria global</h2>
+    <p>Somos uma consultoria imobiliária de alto padrão. Escolher bem e enxergar longe resume o que fazemos: para quem compra, o lugar da vida; para quem investe, o ativo certo; para quem vende, o comprador certo.</p>
+  </div>
+
+  <div class="tres">
+    <div>
+      <span class="rotulo">Curadoria</span>
+      <h3>Poucos imóveis</h3>
+      <p>Qualidade sempre sobre volume. O valor está em filtrar melhor, não em mostrar tudo.</p>
+    </div>
+    <div>
+      <span class="rotulo">Precisão</span>
+      <h3>Informação exata</h3>
+      <p>Metragem, planta, documentação e valores sem ambiguidade. O que se diz, se comprova.</p>
+    </div>
+    <div>
+      <span class="rotulo">Discrição</span>
+      <h3>Privacidade</h3>
+      <p>A privacidade do cliente e do vendedor é parte do serviço, não um detalhe. Off-market quando for o caminho certo.</p>
+    </div>
+  </div>
+
+  <div class="citacao-bloco">
+    <p class="citacao">Selecionamos poucos imóveis por ano. Cada um tem uma razão para estar aqui.</p>
+  </div>
+</section>
+
+<!-- ================================================================= serviços -->
+<section id="servicos">
+  <div class="cabeca-secao">
+    <span class="filete"></span>
+    <span class="rotulo">Serviços</span>
+    <h2>Representação, do primeiro contato à escritura</h2>
+    <p>Um consultor conduz a jornada inteira. Sem transferências, sem repetir o que você já explicou.</p>
+  </div>
+
+  <div class="servicos">
+    <article class="servico">
+      <span class="servico-num">01</span>
+      <h3>Comprar</h3>
+      <p>Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta — com o racional de por que cada imóvel está nela e por que os outros ficaram de fora.</p>
+    </article>
+
+    <article class="servico">
+      <span class="servico-num">02</span>
+      <h3>Vender</h3>
+      <p>Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
+    </article>
+
+    <article class="servico">
+      <span class="servico-num">03</span>
+      <h3>Investir</h3>
+      <p>Contexto antes da decisão: localização, produto, liquidez e timing. Comparáveis e leitura de mercado que sustentam o preço.</p>
+    </article>
+
+    <article class="servico">
+      <span class="servico-num">04</span>
+      <h3>Assessorar do exterior</h3>
+      <p>Para quem compra à distância: documentação, câmbio, procuração e tributação, com um único ponto de contato e atendimento em mais de um idioma.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =================================================================== global -->
+<section class="pedra" id="global">
+  <div class="cabeca-secao">
+    <span class="filete"></span>
+    <span class="rotulo">Global</span>
+    <h2>Onde o mundo escolhe morar</h2>
+    <p>Parcerias em três frentes, para quem compra fora do país ou chega de fora para comprar aqui.</p>
+  </div>
+
+  <div class="pracas">
+    <div class="praca">
+      <h3>Orlando</h3>
+      <p>Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
+    </div>
+    <div class="praca">
+      <h3>Dubai</h3>
+      <p>Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
+    </div>
+    <div class="praca">
+      <h3>Portugal</h3>
+      <p>A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== contato -->
+<section id="contato">
+  <div class="contato">
+    <div class="cabeca-secao" style="margin-bottom:0">
+      <span class="filete"></span>
+      <span class="rotulo">Contato</span>
+      <h2>Comece por uma conversa</h2>
+      <p>Conte o que você procura, ou o que pretende vender. Respondemos com uma seleção objetiva, não com uma lista.</p>
+      <!-- CTA exatamente como o manual aprovou (secao 07) -->
+      <p style="margin-top:32px"><a class="botao" href="#contato">Agende uma visita privada</a></p>
+    </div>
+
+    <!-- ATENCAO: dados a preencher quando o cliente informar (ver README). -->
+    <div class="contato-linhas">
+      <div class="contato-linha">
+        <span class="rotulo">WhatsApp</span>
+        <span class="pendente">A informar</span>
+      </div>
+      <div class="contato-linha">
+        <span class="rotulo">E-mail</span>
+        <span class="pendente">A informar</span>
+      </div>
+      <div class="contato-linha">
+        <span class="rotulo">Escritório</span>
+        <span class="pendente">A informar</span>
+      </div>
+      <div class="contato-linha">
+        <span class="rotulo">Atendimento</span>
+        <span>Português, inglês e espanhol</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== rodapé -->
+<footer>
+  <svg viewBox="0 0 76 82" role="img" aria-label="AMGlobal Realty">
+    <g fill="none" stroke="#F5F2EC" stroke-width="4.5" stroke-linecap="butt" stroke-linejoin="round" opacity="0.8">
+      <path d="M24 8 L6 62"/>
+      <path d="M8 62 L38 62"/>
+      <path d="M24 8 L44 76"/>
+      <path d="M38 62 L52 8 L59 45 L66 8 L66 62"/>
+    </g>
+  </svg>
+  <span class="rodape-texto">AMGlobal Realty · Imóveis extraordinários. Visão global.</span>
+  <span class="rodape-texto">CRECI a informar · &copy; 2026</span>
+</footer>
+
+<script>
+  /* Duas coisas, só. O manual pede movimento discreto: nada além disto. */
+  (function () {
+    'use strict';
+
+    // 1) o cabeçalho ganha fundo depois que a abertura sai da tela
+    var topo = document.getElementById('topo');
+    function aoRolar() {
+      if (window.scrollY > 80) topo.classList.add('encolhido');
+      else topo.classList.remove('encolhido');
+    }
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    aoRolar();
+
+    // 2) menu no celular: abre, fecha ao escolher e fecha no Esc
+    var abrir = document.getElementById('menuAbrir');
+    var menu = document.getElementById('menu');
+    function fechar() {
+      menu.classList.remove('aberto');
+      abrir.setAttribute('aria-expanded', 'false');
+    }
+    abrir.addEventListener('click', function () {
+      var aberto = menu.classList.toggle('aberto');
+      abrir.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    });
+    menu.addEventListener('click', function (ev) {
+      if (ev.target.tagName === 'A') fechar();
+    });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') fechar();
+    });
+  })();
+</script>
+
+</body>
+</html>
