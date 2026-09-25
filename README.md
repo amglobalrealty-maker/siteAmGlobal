@@ -192,6 +192,22 @@ secao, e ela ecoa a diagonal da marca.
 Cada nota leva um numeral grande em champagne e um filete champagne acima. A
 foto avanca devagar enquanto a secao esta na tela.
 
+**A animacao da secao e a propria descida.** Quando a faixa chega na tela, um
+fio champagne desce em DEGRAU ligando as tres notas: de cada uma ele desce ate
+a altura da seguinte e so entao anda para o lado. Junto com ele, cada nota
+entra do lado em que mora, em sequencia: a primeira vem da esquerda, a do meio
+sobe, a terceira vem da direita.
+
+O fio e montado pelo script, e nao escrito no HTML, porque os pontos dependem
+de onde as notas cairam, e isso muda com a largura da tela. Ele e refeito
+quando a janela muda de tamanho. Duas coisas garantem o acabamento: o
+comprimento do traco e medido depois de pronto (`getTotalLength`), que e o que
+faz o fio se desenhar em vez de aparecer de uma vez; e a espessura nao
+acompanha o esticamento (`vector-effect`), entao ele fica com um pixel em
+qualquer tela.
+
+O fio mora entre o veu e o texto: passa por tras das palavras, nunca por cima.
+
 Abaixo de 900px nao ha largura para a diagonal: as notas se alinham a esquerda,
 uma embaixo da outra, e o veu passa a vir de cima para baixo.
 
