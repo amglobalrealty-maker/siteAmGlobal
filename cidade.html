@@ -450,10 +450,36 @@
     padding: clamp(44px, 7vh, 96px) var(--margem);
   }
 
-  .praca .cabeca { margin-bottom: 0; }
   .praca .rotulo { color: var(--champagne); }
-  .praca .cabeca-texto { color: rgba(245, 242, 236, 0.72); }
-  .praca .cabeca-texto p { color: inherit; }
+
+  /* Sobre a foto, a cabeca vira UMA coluna so. Na de duas, a frase de
+     abertura caia no canto superior direito, longe do titulo e sem nada em
+     volta: virava legenda solta. */
+  .praca .cabeca {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    margin-bottom: 0;
+    max-width: 60ch;
+  }
+
+  /* A frase se pendura no titulo, presa pelo filete champagne em pe: o mesmo
+     tracinho da marca, so que deitado na vertical. */
+  .praca .cabeca-texto {
+    margin-top: clamp(20px, 2.6vh, 30px);
+    padding: 3px 0 3px 22px;
+    border-left: 1px solid rgba(180, 154, 110, 0.55);
+    color: rgba(245, 242, 236, 0.8);
+  }
+
+  .praca .cabeca-texto p {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18px, 1.7vw, 23px);
+    line-height: 1.45;
+    max-width: 36ch;
+    color: inherit;
+  }
 
   /* a descida: cada nota num degrau, mais para baixo e mais para a direita */
   .notas-lista {

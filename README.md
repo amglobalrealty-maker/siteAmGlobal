@@ -191,6 +191,13 @@ secao, e ela ecoa a diagonal da marca.
 
 Cada nota leva um numeral grande em champagne e um filete champagne acima.
 
+**A cabeca da praca e de UMA coluna so**, diferente das outras secoes. Na de
+duas, a frase de abertura caia no canto superior direito da foto, longe do
+titulo e sem nada em volta: virava legenda solta. Agora ela se pendura no
+titulo, logo abaixo, em Cormorant italico e presa por um filete champagne EM
+PE - o mesmo tracinho da marca, so que deitado na vertical. O canto superior
+direito da foto fica livre, e a diagonal comeca limpa na primeira nota.
+
 **A secao tem duas animacoes, e nenhuma delas e um efeito posto por cima.**
 
 A primeira e a ABERTURA. A foto nao aparece: ela se abre do centro para os dois
