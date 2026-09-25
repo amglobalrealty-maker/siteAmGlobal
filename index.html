@@ -96,9 +96,7 @@
     line-height: 1.62;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* `clip` e nao `hidden`: `hidden` viraria container de rolagem e mataria o
-       `position: sticky` da abertura */
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   body.travado { overflow: hidden; }
@@ -347,87 +345,72 @@
   .menu-abrir[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
   .menu-abrir[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
 
-  /* =============================================================== trilho ==
-     A pagina roda em duas colunas. A da ESQUERDA e uma faixa de video que fica
-     PARADA, colada no topo, do comeco ao fim. A da DIREITA carrega todas as
-     secoes, que sobem passando ao lado dela.
-
-     A borda interna da faixa e cortada na diagonal, no mesmo espirito das
-     diagonais da marca, e leva um fio champagne acompanhando o corte.
-
-     Detalhe que costuma quebrar isto: `overflow-x: hidden` no body transforma
-     a pagina num container de rolagem e mata o `position: sticky`. Por isso
-     ali em cima esta `clip`, que corta do mesmo jeito sem criar container.
-     ------------------------------------------------------------------------ */
-  .trilho {
-    display: grid;
-    grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
-    align-items: start;
+  /* ============================================================= abertura == */
+  .abertura {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* O respiro de cima reserva a faixa do cabecalho fixo. E nada de cortar
+       aqui: quem esconde o transbordo e a camada das fotos, logo abaixo. Assim,
+       em tela baixa a secao cresce em vez de comer o titulo por cima. */
+    padding: clamp(124px, 17vh, 190px) var(--margem) clamp(32px, 5vh, 56px);
   }
 
-  /* A faixa de video FICA. Ela mora na camada de baixo, e por isso as secoes
-     passam por cima dela, e nao ao lado. */
-  .trilho-video {
-    position: sticky;
-    top: 0;
-    z-index: 0;
-    height: 100svh;
+  /* --- slideshow da abertura --- */
+  .slides {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
     background: var(--onix-alto);
   }
 
-  /* As secoes sao puxadas para a esquerda e sobem POR CIMA da faixa, cobrindo
-     parte dela. O fio champagne na borda marca onde uma coisa passa sobre a
-     outra; a sombra separa as duas camadas sem precisar de moldura. */
-  .trilho-secoes {
-    --margem: clamp(20px, 4vw, 76px);
-    position: relative;
-    z-index: 1;
-    min-width: 0;
-    margin-left: calc(-1 * clamp(22px, 5vw, 118px));
-    border-left: 1px solid rgba(180, 154, 110, 0.5);
-    box-shadow: -26px 0 60px rgba(11, 11, 12, 0.55);
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.8s var(--curva);
+    will-change: opacity;
   }
 
-  /* --- o video --- */
-  .fundo { position: absolute; inset: 0; background: var(--onix-alto); }
+  .slide.ativa { opacity: 1; }
 
-  .fundo video,
-  .fundo img {
+  .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* entra dessaturado para nao brigar com onix e travertino */
-    filter: grayscale(0.34) contrast(1.06) brightness(0.66) saturate(0.7);
+    /* a foto entra dessaturada para nao brigar com onix e travertino */
+    filter: grayscale(0.34) contrast(1.06) brightness(0.72) saturate(0.7);
+    transform: scale(1.04);
   }
 
-  /* a foto fica por baixo ate o video comecar a rodar, e some depois */
-  .fundo img {
-    position: absolute;
-    inset: 0;
-    transition: opacity 1.4s var(--curva);
+  /* o avanco lento da imagem e o que da a sensacao de video */
+  .slide.ativa img { animation: aproximar 9.5s ease-out forwards; }
+  .slide.ativa:nth-child(even) img { animation-name: afastar; }
+
+  @keyframes aproximar {
+    from { transform: scale(1.03) translate3d(0, 0, 0); }
+    to { transform: scale(1.15) translate3d(-1.6%, -1.1%, 0); }
   }
 
-  .fundo.rodando img { opacity: 0; }
+  @keyframes afastar {
+    from { transform: scale(1.15) translate3d(1.4%, 0.8%, 0); }
+    to { transform: scale(1.03) translate3d(0, 0, 0); }
+  }
 
-  .fundo video { position: relative; opacity: 0; transition: opacity 1.4s var(--curva); }
-  .fundo.rodando video { opacity: 1; }
-
-  /* veu de cima e de baixo da faixa: encaixa o video no onix da pagina em vez
-     de deixar um retangulo de video solto */
+  /* veu: garante leitura do titulo sobre a foto, sem escurecer tudo por igual */
   .abertura-veu {
     position: absolute;
-    z-index: 2;
     inset: 0;
-    pointer-events: none;
     background:
-      linear-gradient(to bottom, rgba(11, 11, 12, 0.8) 0%, transparent 22%, transparent 74%, rgba(11, 11, 12, 0.85) 100%),
-      linear-gradient(to right, rgba(11, 11, 12, 0.55) 0%, transparent 34%);
+      linear-gradient(to top, rgba(11, 11, 12, 0.97) 0%, rgba(11, 11, 12, 0.74) 34%, rgba(11, 11, 12, 0.34) 66%, rgba(11, 11, 12, 0.62) 100%),
+      radial-gradient(80% 65% at 74% 10%, rgba(180, 154, 110, 0.10) 0%, transparent 60%);
   }
 
-  /* As pracas, no pe da abertura: numero em Jost e nome em Cormorant italico.
-     Cada uma e um atalho para a pagina da cidade. Ao apontar, o nome clareia,
-     o numero vira champagne e o filete corre por baixo. */
+  /* Marcadores do slideshow. Cada praca tem numero em Jost e nome em Cormorant
+     italico, sempre no mesmo corpo, para nada saltar na troca. O que muda e o
+     peso da presenca: a ativa clareia e ganha o filete champagne correndo. */
   .marcadores {
     display: flex;
     flex-wrap: wrap;
@@ -478,7 +461,7 @@
     background: rgba(245, 242, 236, 0.16);
   }
 
-  /* filete champagne que corre ao apontar a praca */
+  /* filete champagne que corre enquanto o slide esta no ar */
   .marcador::after {
     content: '';
     position: absolute;
@@ -487,30 +470,18 @@
     background: var(--champagne);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.8s var(--curva);
   }
 
-  .marcador:hover::after,
-  .marcador:focus-visible::after { transform: scaleX(1); }
+  .marcador:hover .marcador-nome { color: rgba(245, 242, 236, 0.78); }
+  .marcador:hover .marcador-num { color: rgba(245, 242, 236, 0.55); }
 
-  .marcador:hover .marcador-nome,
-  .marcador:focus-visible .marcador-nome { color: var(--marfim); }
-
-  .marcador:hover .marcador-num,
-  .marcador:focus-visible .marcador-num { color: var(--champagne); }
+  .marcador.ativo .marcador-nome { color: var(--marfim); }
+  .marcador.ativo .marcador-num { color: var(--champagne); }
+  .marcador.ativo::after { animation: encher 6.6s linear forwards; }
 
   .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 8px; }
 
-  /* A abertura virou a primeira secao da coluna da direita: ela nao carrega
-     mais o video, so o texto, e ocupa uma tela de altura. */
-  .abertura {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: clamp(118px, 16vh, 180px) var(--margem) clamp(32px, 5vh, 56px);
-  }
+  @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
   .abertura-conteudo { position: relative; max-width: 1080px; }
 
@@ -567,10 +538,7 @@
   }
 
   /* =============================================================== secoes == */
-  /* Fundo opaco por padrao: e ele que impede a abertura, que ficou grudada
-     atras, de aparecer atraves das secoes. `.claro` e `.pedra`, logo abaixo,
-     tem especificidade maior e continuam trocando a cor sem problema. */
-  section { position: relative; padding: var(--secao) var(--margem); background: var(--onix); }
+  section { position: relative; padding: var(--secao) var(--margem); }
 
   .claro { background: var(--marfim); color: var(--onix); }
   .claro p { color: var(--grafite); }
@@ -1175,15 +1143,7 @@
   .pendente { color: rgba(245, 242, 236, 0.4); font-size: 14px; letter-spacing: 0.02em; }
 
   /* =============================================================== rodape == */
-  /* o rodape fica FORA do trilho: ele fecha a pagina em largura cheia, por
-     cima de tudo, e e onde a faixa de video termina */
-  footer {
-    position: relative;
-    z-index: 2;
-    border-top: 1px solid var(--linha-clara);
-    overflow: hidden;
-    background: var(--onix);
-  }
+  footer { border-top: 1px solid var(--linha-clara); overflow: hidden; }
 
   .faixa {
     display: flex;
@@ -1232,22 +1192,7 @@
   }
 
   /* ======================================================= telas estreitas == */
-  /* Abaixo de 1100px nao ha largura para as duas colunas: a faixa de video vira
-     um cartaz no alto, em largura cheia, e as secoes vem abaixo, na ordem
-     normal. Nada fica parado e nada passa por cima de nada. */
   @media (max-width: 1100px) {
-    .trilho { grid-template-columns: 1fr; }
-    .trilho-video { position: relative; height: clamp(320px, 56svh, 520px); }
-    .trilho-secoes {
-      --margem: clamp(22px, 6.5vw, 130px);
-      margin-left: 0;
-      border-left: 0;
-      box-shadow: none;
-    }
-    .abertura { min-height: 0; padding-top: clamp(52px, 8vh, 90px); }
-    .abertura-veu {
-      background: linear-gradient(to bottom, rgba(11, 11, 12, 0.72) 0%, transparent 34%, rgba(11, 11, 12, 0.6) 100%);
-    }
     .cabeca { grid-template-columns: 1fr; align-items: start; }
     .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
@@ -1325,9 +1270,10 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rolar .chevron, .faixa-trilho,
+    .rolar .chevron, .faixa-trilho, .slide.ativa img,
     .palco-foto.ativa, .palco-foto.ativa img { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
+    .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
     .sobe { opacity: 1; transform: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
@@ -1412,32 +1358,30 @@
 
 <main>
 
-<div class="trilho">
-
-<!-- ====================================================== a faixa de video -->
-<!-- PROVISORIO: video aereo sobre villas, do Pexels, licenca livre, servido
-     pelo proprio Pexels. A foto atras dele e do Unsplash e aparece enquanto o
-     video nao comeca. Os dois saem quando chegar material proprio; o video
-     final deve ser hospedado aqui, e nao puxado de fora. Ver README.
-
-     O endereco do video NAO esta no `src`: quem o coloca e o script, e so
-     quando vale a pena (tela larga, sem economia de dados e sem pedido de
-     menos movimento). Nas demais situacoes fica so a foto. -->
-<aside class="trilho-video" aria-hidden="true">
-  <div class="fundo" id="fundo">
-    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1400&amp;q=68"
-         alt="" fetchpriority="high" decoding="async">
-    <video id="videoFundo" muted loop playsinline preload="none"
-           data-video="https://videos.pexels.com/video-files/14502236/14502236-hd_1920_1080_25fps.mp4"
-           tabindex="-1"></video>
-  </div>
-  <div class="abertura-veu"></div>
-</aside>
-
-<div class="trilho-secoes">
-
 <!-- ================================================================ abertura -->
 <section class="abertura" id="abertura">
+  <!-- PROVISORIO: fotos do Unsplash, licenca livre. Uma por praca em que a
+       AMGlobal atua. Trocar pela fotografia propria. Enderecos no README. -->
+  <div class="slides" id="slides" aria-hidden="true">
+    <div class="slide ativa">
+      <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" fetchpriority="high" decoding="async">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+           alt="" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="abertura-veu"></div>
+
   <div class="abertura-conteudo">
     <span class="filete"></span>
     <h1>
@@ -1449,22 +1393,20 @@
   </div>
 
   <div class="abertura-rodape">
-    <!-- Sem slideshow para comandar, as pracas viraram o que sempre deveriam
-         ter sido: atalho para a pagina de cada uma. -->
-    <nav class="marcadores" aria-label="Praças">
-      <a class="marcador" href="cidade.html?c=sao-paulo">
+    <div class="marcadores" id="marcadores">
+      <button type="button" class="marcador ativo" data-slide="0">
         <span class="marcador-num">01</span><span class="marcador-nome">Brasil</span>
-      </a>
-      <a class="marcador" href="cidade.html?c=orlando">
+      </button>
+      <button type="button" class="marcador" data-slide="1">
         <span class="marcador-num">02</span><span class="marcador-nome">Orlando</span>
-      </a>
-      <a class="marcador" href="cidade.html?c=dubai">
+      </button>
+      <button type="button" class="marcador" data-slide="2">
         <span class="marcador-num">03</span><span class="marcador-nome">Dubai</span>
-      </a>
-      <a class="marcador" href="cidade.html?c=lisboa">
+      </button>
+      <button type="button" class="marcador" data-slide="3">
         <span class="marcador-num">04</span><span class="marcador-nome">Portugal</span>
-      </a>
-    </nav>
+      </button>
+    </div>
 
     <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
       <!-- triangulo aberto, vindo do A -->
@@ -1793,9 +1735,6 @@
     </div>
   </div>
 </section>
-
-</div><!-- fim da coluna das secoes -->
-</div><!-- fim do trilho -->
 
 </main>
 
@@ -2161,45 +2100,53 @@
     }
   }
 
-  /* 9. O video de fundo da abertura.
+  /* 9. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
+  var slides = document.getElementById('slides');
+  var marcadores = document.getElementById('marcadores');
 
-     Ele NAO vem no HTML. O endereco fica guardado num atributo e so vira `src`
-     quando vale a pena, porque o arquivo tem mais de vinte megabytes:
+  if (slides && marcadores) {
+    var telas = slides.querySelectorAll('.slide');
+    var botoes = marcadores.querySelectorAll('.marcador');
+    var atual = 0;
+    var relogio = null;
+    var DURACAO = 6600;
 
-       - tela estreita nao carrega (celular paga caro e ve pouco);
-       - quem pede menos movimento no sistema nao carrega;
-       - quem esta em economia de dados nao carrega.
+    function mostrar(i) {
+      atual = (i + telas.length) % telas.length;
 
-     Em qualquer um desses casos fica a fotografia, que ja esta na tela desde o
-     primeiro instante. A foto tambem e o que aparece enquanto o video baixa, e
-     so sai depois que ele comeca a rodar de verdade. Se o video falhar, ela
-     simplesmente fica: nao existe estado de tela preta. */
-  var fundo = document.getElementById('fundo');
-  var video = document.getElementById('videoFundo');
+      Array.prototype.forEach.call(telas, function (t, k) {
+        t.classList.toggle('ativa', k === atual);
+      });
 
-  if (fundo && video) {
-    var conexao = navigator.connection || null;
-    var economia = !!(conexao && (conexao.saveData || /2g/.test(conexao.effectiveType || '')));
-    var telaLarga = window.matchMedia('(min-width: 1101px)').matches;
+      Array.prototype.forEach.call(botoes, function (b, k) {
+        // tira e recoloca a classe para a barra de tempo recomecar do zero
+        b.classList.remove('ativo');
+        if (k === atual) {
+          void b.offsetWidth;
+          b.classList.add('ativo');
+        }
+      });
+    }
 
-    if (telaLarga && !calmo && !economia) {
-      // a faixa so vira video quando ha as duas colunas; abaixo disso fica foto
-      video.addEventListener('playing', function () { fundo.classList.add('rodando'); });
-      video.addEventListener('error', function () { fundo.classList.remove('rodando'); });
+    function agendar() {
+      window.clearInterval(relogio);
+      relogio = window.setInterval(function () { mostrar(atual + 1); }, DURACAO);
+    }
 
-      video.src = video.getAttribute('data-video');
-      video.load();
+    marcadores.addEventListener('click', function (ev) {
+      var botao = ev.target.closest('.marcador');
+      if (!botao) return;
+      mostrar(parseInt(botao.getAttribute('data-slide'), 10));
+      if (!calmo) agendar();
+    });
 
-      var tocar = video.play();
-      if (tocar && typeof tocar.catch === 'function') {
-        // navegador que recusa tocar sozinho: fica a foto, sem erro na tela
-        tocar.catch(function () { fundo.classList.remove('rodando'); });
-      }
-
-      // aba escondida nao precisa gastar processamento com video
+    // com movimento reduzido fica so a primeira imagem, parada
+    if (!calmo) {
+      agendar();
+      // pausa quando a aba sai de foco, para nao gastar bateria a toa
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) video.pause();
-        else if (video.src) video.play().catch(function () {});
+        if (document.hidden) window.clearInterval(relogio);
+        else agendar();
       });
     }
   }

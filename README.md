@@ -89,22 +89,6 @@ manual, e encolhe para 32px quando a barra fica fixa.
 
 **Nao edite esses arquivos a mao.** Se o manual for atualizado, extraia de novo.
 
-### O video provisorio
-
-O video da abertura e do Pexels, de licenca livre, e esta sendo **puxado do
-servidor do proprio Pexels**:
-
-```
-https://videos.pexels.com/video-files/14502236/14502236-hd_1920_1080_25fps.mp4
-```
-
-Serve para ver como fica, mas **nao e o que deve ir para o ar**. O video
-definitivo precisa ser da propria AMGlobal, hospedado aqui no projeto, e
-comprimido: o atual tem 22 MB, que e muito para uma abertura. O caminho normal
-e exportar em 1080p, cortar para dez ou quinze segundos e mirar em 4 MB.
-
-Quando trocar, mexa so no `data-video` da tag `video`, no `index.html`.
-
 ### Fotos provisorias em uso
 
 Todas servidas direto pelo Unsplash, sem arquivo no repositorio.
@@ -116,7 +100,10 @@ Para trocar, substitua o `src` da tag `img` correspondente.
 | Servicos, retrato de Vender | `photo-1778731660244-b6e8f905107d` |
 | Servicos, retrato de Investir | `photo-1786018120871-cb134b61ddd0` |
 | Servicos, retrato de Assessorar | `photo-1778731660451-323b78996230` |
-| Abertura, foto por tras do video | `photo-1613490493576-7fde63acd811` |
+| Abertura, slide 01, Brasil | `photo-1613490493576-7fde63acd811` |
+| Abertura, slide 02, Orlando | `photo-1719887805632-de5be825f72b` |
+| Abertura, slide 03, Dubai | `photo-1706164971302-e30c0640cc3b` |
+| Abertura, slide 04, Portugal | `photo-1685514823717-7e1ff6ee0563` |
 | Imovel 01 | `photo-1706808849780-7a04fbac83ef` |
 | Imovel 02 | `photo-1633354747567-e0682586f082` |
 | Imovel 03 | `photo-1745761320791-5ae142edee8c` |
@@ -222,7 +209,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Primeira secao da coluna da direita: tagline e um unico chamado, ao lado da faixa de video |
+| 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
@@ -280,37 +267,13 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 
 - **Cortina de entrada.** O simbolo e revelado por uma cortina que sobe, uma
   vez, no primeiro carregamento, e a abertura sobe por linhas.
-- **A pagina roda em duas colunas.** A da esquerda e uma faixa de video que
-  FICA PARADA, colada no topo, do comeco ao fim da pagina. A da direita carrega
-  todas as secoes, que sobem POR CIMA dela: a coluna das secoes e puxada para a
-  esquerda e cobre parte da faixa, com um fio champagne marcando a borda e uma
-  sombra separando as duas camadas. A faixa mora na camada 0 e as secoes na
-  camada 1.
-
-  Um detalhe que costuma quebrar isso: `overflow-x: hidden` no `body`
-  transforma a pagina num container de rolagem e mata o `position: sticky`. Por
-  isso o body usa `overflow-x: clip`, que corta do mesmo jeito sem criar
-  container. **Nao troque de volta para `hidden`.** O outro ponto e o
-  `align-items: start` no trilho: sem ele a faixa esticaria e nao teria por
-  onde deslizar.
-
-  Abaixo de 1100px nao ha largura para duas colunas: a faixa vira um cartaz no
-  alto, em largura cheia, e as secoes vem abaixo na ordem normal.
-
-- **O video da faixa.** Ele nao vem no HTML: o endereco fica guardado num
-  atributo e so vira `src` quando vale a pena, porque o arquivo passa de vinte
-  megabytes. Nao carrega abaixo de 1100px, nem para quem pede menos movimento
-  no sistema, nem para quem esta em economia de dados. Nesses casos fica a
-  fotografia, que ja esta na tela desde o primeiro instante.
-
-  A foto tambem e o que aparece enquanto o video baixa, e so some depois que
-  ele comeca a rodar de verdade. Se o video falhar ou o navegador recusar tocar
-  sozinho, ela simplesmente fica: **nao existe estado de tela preta.** Com a aba
-  escondida o video pausa.
-
-- **As pracas**, no pe da abertura, sao atalho para a pagina de cada cidade.
-  Numero em Jost, nome em Cormorant italico; ao apontar, o nome clareia, o
-  numero vira champagne e o filete corre por baixo.
+- **Slideshow da abertura.** Quatro fotos, uma por praca, trocando a cada 6,6
+  segundos com fusao lenta e avanco continuo da imagem, que e o que da a
+  sensacao de video. O slideshow para sozinho quando a aba perde o foco.
+- **Filtro das pracas.** Numero em Jost e nome em Cormorant italico, sempre no
+  mesmo corpo, para nada saltar na troca. O que muda e a presenca: a praca no
+  ar clareia, o numero vira champagne e um filete champagne corre sob o nome
+  marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
 - **A banda da curadoria.** Cada residencia e uma lamina estreita, em pe, com a
