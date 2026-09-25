@@ -177,18 +177,25 @@ e o que aparece na home.
 | Ficha do imovel | |
 |---|---|
 | Capa | A foto principal, o nome, o endereco e os numeros: area, suites, vagas e valor |
-| A residencia | O texto do imovel |
-| O dossie | A ficha tecnica PARADA de um lado enquanto as fotos correm do outro |
+| A residencia | O texto do imovel e o dossie em tres colunas |
+| O visor | As fotos, uma de cada vez, de borda a borda |
 | Visita | Agendar visita, solicitar dossie e as outras residencias da mesma cidade |
 
-**O dossie** e a parte que carrega a informacao. De um lado, uma coluna que
-fica parada enquanto a pessoa rola: ficha tecnica em pares (area construida,
-terreno, suites, vagas, ano, orientacao, condominio e IPTU), a lista de
-ambientes, o que fica ao redor com o tempo ate cada lugar, e a situacao da
-documentacao. Do outro, as fotos uma embaixo da outra, cada uma com numero e
-legenda dizendo o que mostra; as pares entram mais estreitas e recuadas, para
-a coluna nao virar uma fila. Abaixo de 1000px a ficha para de ser fixa e tudo
-vira uma coluna so.
+**O dossie** e a informacao, em tres colunas: a ficha tecnica em pares (area
+construida, terreno, suites, vagas, ano, orientacao, condominio e IPTU); a
+lista de ambientes; e o que fica ao redor com o tempo ate cada lugar, mais a
+situacao da documentacao. Abaixo de 1000px vira uma coluna so.
+
+**O visor** e onde as fotos ficam, e elas nao dividem espaco com mais nada:
+uma de cada vez, de borda a borda da pagina. Trocar VARRE a nova por cima da
+anterior, da direita para a esquerda, a mesma varredura da secao de servicos,
+e enquanto a foto esta no ar ela avanca devagar. No pe, o numero da foto em
+Cormorant, a legenda dizendo o que ela mostra, um traco por foto e as setas.
+
+Da para trocar de quatro jeitos: setas, tracos, setas do teclado (so quando o
+visor esta na tela) e arrastando com o dedo. Sao tres camadas fixas e so tres,
+e quem manda na visibilidade e a opacidade: mesmo que a animacao nao rode, a
+foto troca.
 
 ### Conteudo de demonstracao
 
