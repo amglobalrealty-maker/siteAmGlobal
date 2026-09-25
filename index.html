@@ -817,6 +817,17 @@
     white-space: nowrap;
   }
 
+  .leque-entrar {
+    margin-top: 4px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    white-space: nowrap;
+  }
+
   .leque-vazio {
     display: grid;
     place-content: center;
@@ -1431,7 +1442,7 @@
        nao muda a altura da secao: as laminas so ficam mais estreitas ou mais
        largas. -->
   <div class="leque sobe" id="leque">
-    <button type="button" class="leque-item aberto" data-pais="Brasil" data-cidade="São Paulo">
+    <button type="button" class="leque-item aberto" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
       <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">01</span>
       <span class="leque-vertical"><span>São Paulo</span></span>
@@ -1439,10 +1450,11 @@
         <span class="leque-nome">Casa Pátio</span>
         <span class="leque-lugar">Jardins &middot; São Paulo</span>
         <span class="leque-dados"><span>520 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Rio de Janeiro">
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
       <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">02</span>
       <span class="leque-vertical"><span>Rio de Janeiro</span></span>
@@ -1450,10 +1462,11 @@
         <span class="leque-nome">Cobertura Horizonte</span>
         <span class="leque-lugar">Leblon &middot; Rio de Janeiro</span>
         <span class="leque-dados"><span>410 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Florianópolis">
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
       <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">03</span>
       <span class="leque-vertical"><span>Florianópolis</span></span>
@@ -1461,10 +1474,11 @@
         <span class="leque-nome">Casa Costa Norte</span>
         <span class="leque-lugar">Jurerê &middot; Florianópolis</span>
         <span class="leque-dados"><span>680 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Orlando">
+    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
       <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">04</span>
       <span class="leque-vertical"><span>Orlando</span></span>
@@ -1472,10 +1486,11 @@
         <span class="leque-nome">Residência Lakeside</span>
         <span class="leque-lugar">Winter Park &middot; Orlando</span>
         <span class="leque-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Miami">
+    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
       <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">05</span>
       <span class="leque-vertical"><span>Miami</span></span>
@@ -1483,10 +1498,11 @@
         <span class="leque-nome">Villa Bayfront</span>
         <span class="leque-lugar">Coconut Grove &middot; Miami</span>
         <span class="leque-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Emirados" data-cidade="Dubai">
+    <button type="button" class="leque-item" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
       <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">06</span>
       <span class="leque-vertical"><span>Dubai</span></span>
@@ -1494,10 +1510,11 @@
         <span class="leque-nome">Residência Dunas</span>
         <span class="leque-lugar">Palm Jumeirah &middot; Dubai</span>
         <span class="leque-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Lisboa">
+    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
       <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">07</span>
       <span class="leque-vertical"><span>Lisboa</span></span>
@@ -1505,10 +1522,11 @@
         <span class="leque-nome">Palacete Restaurado</span>
         <span class="leque-lugar">Príncipe Real &middot; Lisboa</span>
         <span class="leque-dados"><span>430 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Cascais">
+    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
       <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">08</span>
       <span class="leque-vertical"><span>Cascais</span></span>
@@ -1516,6 +1534,7 @@
         <span class="leque-nome">Casa Atlântico</span>
         <span class="leque-lugar">Quinta da Marinha &middot; Cascais</span>
         <span class="leque-dados"><span>610 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
@@ -1919,13 +1938,25 @@
       });
     }
 
+    var apontando = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* Clicar numa lamina leva para a ficha do imovel. No toque, onde nao ha
+       ponteiro, o primeiro toque abre a lamina e o segundo entra: sem isso a
+       pessoa sairia da pagina sem nunca ter visto a foto grande. */
     leque.addEventListener('click', function (ev) {
       var item = ev.target.closest('.leque-item');
-      if (item) abrirLamina(item);
+      if (!item) return;
+
+      if (!apontando && !item.classList.contains('aberto')) {
+        abrirLamina(item);
+        return;
+      }
+
+      var slug = item.getAttribute('data-slug');
+      if (slug) window.location.href = 'imovel.html?c=' + encodeURIComponent(slug) + '&i=0';
     });
 
-    // no desktop basta apontar
-    if (window.matchMedia('(hover: hover)').matches) {
+    if (apontando) {
       Array.prototype.forEach.call(linhasDossie, function (item) {
         item.addEventListener('mouseenter', function () { abrirLamina(item); });
         item.addEventListener('focus', function () { abrirLamina(item); });

@@ -16,18 +16,14 @@
 
      E UM ARQUIVO SO para as oito cidades. A cidade vem no endereco, em `?c=`:
        cidade.html?c=sao-paulo, cidade.html?c=dubai, e assim por diante.
-     Os slugs validos estao em CIDADES, no script do fim da pagina. Endereco
-     sem `?c=` ou com cidade desconhecida cai num recado com link para a home.
+     Endereco sem `?c=` ou com cidade desconhecida cai num recado com link para
+     a home, e nao em pagina em branco.
 
-     Quem manda no conteudo e o objeto CIDADES: nome, pais, uma linha de
-     abertura, tres notas sobre a praca e as residencias. Para incluir uma
-     cidade nova basta acrescentar uma entrada la e um botao no painel de
-     filtro do index.html, com o mesmo slug em `data-slug`.
+     O CONTEUDO NAO MORA AQUI: esta em dados.js, que o imovel.html tambem
+     carrega. Mexer la muda as duas paginas. As instrucoes de como incluir
+     cidade e imovel estao no cabecalho daquele arquivo.
 
-     ATENCAO: TODO o conteudo daqui e DE DEMONSTRACAO. Nome de imovel, bairro,
-     area, suites e os textos das pracas foram inventados para a pagina ter
-     forma. As fotos sao do Unsplash, de licenca livre, e o manual proibe banco
-     de imagem em material de imovel: saem quando chegar a fotografia propria.
+     ATENCAO: todo o conteudo e DE DEMONSTRACAO. Ver o aviso no dados.js.
      --------------------------------------------------------------------------- -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,6 +64,8 @@
   }
 
   img { max-width: 100%; display: block; }
+  /* nenhum link pega o azul do navegador: a cor vem sempre do bloco em volta */
+  a { color: inherit; text-decoration: none; }
   ::selection { background: var(--champagne); color: var(--onix); }
   :focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
@@ -150,12 +148,14 @@
   .marca img { height: 40px; width: auto; transition: height 0.6s var(--curva); }
   .topo.encolhido .marca img { height: 32px; }
 
+  /* sem cor declarada, o nome herdava o azul de link do navegador */
   .marca-nome {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 11.5px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
+    color: var(--marfim);
     white-space: nowrap;
   }
 
@@ -346,6 +346,17 @@
   .leque-item.aberto .leque-ficha { opacity: 1; transform: none; }
 
   .leque-nome { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; white-space: nowrap; }
+
+  .leque-entrar {
+    margin-top: 4px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    white-space: nowrap;
+  }
   .leque-lugar { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); white-space: nowrap; }
 
   .leque-dados {
@@ -505,152 +516,14 @@
   <span class="rodape-texto">CRECI a informar &middot; 2026</span>
 </footer>
 
+<script src="dados.js"></script>
 <script>
 (function () {
   'use strict';
 
-  var U = 'https://images.unsplash.com/photo-';
-  var Q = '?auto=format&fit=crop&w=1500&q=68';
-  var QC = '?auto=format&fit=crop&w=1900&q=68';
-
-  /* ---------------------------------------------------------------------------
-     TODO O CONTEUDO ABAIXO E DE DEMONSTRACAO.
-
-     Nome de imovel, bairro, area, suites e as notas de cada praca foram
-     inventados para a pagina ter forma. Troque por dados reais mantendo o
-     formato: e daqui que a pagina inteira e montada.
-     --------------------------------------------------------------------------- */
-  var CIDADES = {
-    'sao-paulo': {
-      nome: 'São Paulo', pais: 'Brasil',
-      capa: U + '1512531123205-560f5974e686' + QC,
-      linha: 'O maior mercado de alto padrão do país, e o mais exigente. Aqui a diferença entre um bom endereço e o endereço certo se mede em quadras.',
-      notas: [
-        ['Endereço', 'Jardins, Itaim e Vila Nova Conceição concentram o que não se repete. A distância até o que importa vale mais que a metragem.'],
-        ['Arquitetura', 'Projetos assinados e retrofits bem feitos sustentam valor onde o prédio comum se desatualiza em uma década.'],
-        ['Liquidez', 'É a praça que responde mais rápido no país. Um ativo bem posicionado encontra comprador sem precisar de anúncio.']
-      ],
-      imoveis: [
-        ['Casa Pátio', 'Jardins', '520 m²', '4 suítes', U + '1706808849780-7a04fbac83ef' + Q],
-        ['Residência Vertical', 'Itaim Bibi', '340 m²', '3 suítes', U + '1580587771525-78b9dba3b914' + Q],
-        ['Casa Jardim Interno', 'Vila Nova Conceição', '610 m²', '5 suítes', U + '1628012209120-d9db7abf7eab' + Q]
-      ]
-    },
-
-    'rio-de-janeiro': {
-      nome: 'Rio de Janeiro', pais: 'Brasil',
-      capa: U + '1662673053425-924b45c185d0' + QC,
-      linha: 'Poucas cidades no mundo colocam mar e montanha na mesma janela. O que é raro aqui é raro em qualquer lugar.',
-      notas: [
-        ['Vista', 'A vista é o ativo. Ela não se constrói depois e não se corrige: ou o imóvel nasceu com ela, ou não tem.'],
-        ['Bairro', 'Leblon, Ipanema e Jardim Botânico têm lógicas próprias de preço. Comparar entre eles sem contexto leva a erro.'],
-        ['Documentação', 'Prédios antigos pedem leitura cuidadosa de escritura e condomínio. É onde a maioria dos problemas aparece.']
-      ],
-      imoveis: [
-        ['Cobertura Horizonte', 'Leblon', '410 m²', '3 suítes', U + '1633354747567-e0682586f082' + Q],
-        ['Apartamento Canal', 'Ipanema', '280 m²', '3 suítes', U + '1721815693498-cc28507c0ba2' + Q],
-        ['Casa da Encosta', 'Jardim Botânico', '540 m²', '4 suítes', U + '1717167398817-121e3c283dbb' + Q]
-      ]
-    },
-
-    'florianopolis': {
-      nome: 'Florianópolis', pais: 'Brasil',
-      capa: U + '1559090336-72f0d1015545' + QC,
-      linha: 'Uma praça que deixou de ser destino de veraneio e virou endereço de morar o ano inteiro.',
-      notas: [
-        ['Mar', 'Jurerê, Praia Brava e Campeche são mercados diferentes com o mesmo CEP. A escolha muda o perfil do investimento.'],
-        ['Construção', 'O clima cobra caro de obra malfeita. Vale olhar o construtor antes de olhar a planta.'],
-        ['Demanda', 'A migração de famílias do Sudeste sustenta a procura fora da temporada, o que era incomum aqui até pouco tempo.']
-      ],
-      imoveis: [
-        ['Casa Costa Norte', 'Jurerê', '680 m²', '5 suítes', U + '1745761320791-5ae142edee8c' + Q],
-        ['Residência Mirante', 'Praia Brava', '420 m²', '4 suítes', U + '1723110994499-df46435aa4b3' + Q],
-        ['Casa Dunas', 'Campeche', '390 m²', '3 suítes', U + '1580587771525-78b9dba3b914' + Q]
-      ]
-    },
-
-    'orlando': {
-      nome: 'Orlando', pais: 'Estados Unidos',
-      capa: U + '1546447208-9d7b923c0204' + QC,
-      linha: 'O principal destino de brasileiros nos Estados Unidos, e a porta de entrada mais simples para comprar fora do país.',
-      notas: [
-        ['Estrutura', 'A compra por estrangeiro é rotina aqui: cartório, seguro de título e financiamento local funcionam sem fricção.'],
-        ['Renda', 'Casas de temporada com gestão profissional formam um mercado maduro, com números públicos e comparáveis.'],
-        ['Tributação', 'A estrutura de titularidade decide quanto se paga depois. Ela se define antes da proposta, não depois.']
-      ],
-      imoveis: [
-        ['Residência Lakeside', 'Winter Park', '390 m²', '4 suítes', U + '1719887805632-de5be825f72b' + Q],
-        ['Casa do Lago', 'Windermere', '460 m²', '5 suítes', U + '1628012209120-d9db7abf7eab' + Q],
-        ['Villa Reserva', 'Lake Nona', '350 m²', '4 suítes', U + '1717167398817-121e3c283dbb' + Q]
-      ]
-    },
-
-    'miami': {
-      nome: 'Miami', pais: 'Estados Unidos',
-      capa: U + '1611323340350-bdcc0e6cfae5' + QC,
-      linha: 'A cidade onde a América Latina encontra o mercado americano. Preço em dólar, liquidez alta e concorrência internacional.',
-      notas: [
-        ['Água', 'Frente para a baía e acesso náutico criam uma faixa de preço própria, que não acompanha o resto da cidade.'],
-        ['Bairro', 'Coconut Grove, Coral Gables e Bal Harbour atraem perfis distintos. O mesmo orçamento compra coisas muito diferentes.'],
-        ['Concorrência', 'Bons ativos saem rápido e recebem mais de uma proposta. Chegar preparado é parte da estratégia.']
-      ],
-      imoveis: [
-        ['Villa Bayfront', 'Coconut Grove', '560 m²', '5 suítes', U + '1706164971302-e30c0640cc3b' + Q],
-        ['Residência Coral', 'Coral Gables', '480 m²', '4 suítes', U + '1721815693498-cc28507c0ba2' + Q],
-        ['Apartamento Oceano', 'Bal Harbour', '300 m²', '3 suítes', U + '1723110994499-df46435aa4b3' + Q]
-      ]
-    },
-
-    'dubai': {
-      nome: 'Dubai', pais: 'Emirados',
-      capa: U + '1598737652403-6e0ee5bf5cf2' + QC,
-      linha: 'Um mercado de expansão rápida, com estrutura feita para o comprador estrangeiro e sem imposto sobre a renda do aluguel.',
-      notas: [
-        ['Acesso', 'Estrangeiro compra em propriedade plena nas zonas designadas, com registro próprio e prazo curto.'],
-        ['Entrega', 'Boa parte do mercado é na planta. Escolher incorporadora é tão importante quanto escolher o endereço.'],
-        ['Residência', 'A compra acima de certos valores abre caminho para visto de residência, o que muda o cálculo da decisão.']
-      ],
-      imoveis: [
-        ['Residência Dunas', 'Palm Jumeirah', '740 m²', '6 suítes', U + '1670589953882-b94c9cb380f5' + Q],
-        ['Villa Marina', 'Dubai Marina', '430 m²', '4 suítes', U + '1717167398817-121e3c283dbb' + Q],
-        ['Casa Downtown', 'Downtown Dubai', '310 m²', '3 suítes', U + '1580587771525-78b9dba3b914' + Q]
-      ]
-    },
-
-    'lisboa': {
-      nome: 'Lisboa', pais: 'Portugal',
-      capa: U + '1613490493576-7fde63acd811' + QC,
-      linha: 'A porta de entrada na Europa, entre segunda residência e diversificação de patrimônio, com o idioma a favor.',
-      notas: [
-        ['Centro histórico', 'Palacetes e prédios reabilitados no Príncipe Real e na Lapa são um mercado pequeno e disputado.'],
-        ['Reabilitação', 'Obra em imóvel antigo tem regra própria e prazo longo. O orçamento realista nasce da vistoria, não do anúncio.'],
-        ['Fiscal', 'A estrutura de compra e o regime fiscal do comprador mudam o custo final. Definir isso antes evita retrabalho.']
-      ],
-      imoveis: [
-        ['Palacete Restaurado', 'Príncipe Real', '430 m²', '4 suítes', U + '1685514823717-7e1ff6ee0563' + Q],
-        ['Apartamento Tejo', 'Lapa', '260 m²', '3 suítes', U + '1628012209120-d9db7abf7eab' + Q],
-        ['Casa do Miradouro', 'Graça', '340 m²', '4 suítes', U + '1721815693498-cc28507c0ba2' + Q]
-      ]
-    },
-
-    'cascais': {
-      nome: 'Cascais', pais: 'Portugal',
-      capa: U + '1660361339436-ddd4b85372da' + QC,
-      linha: 'Mar, golfe e trinta minutos de Lisboa. A praça escolhida por quem se muda com a família inteira.',
-      notas: [
-        ['Vida', 'Escolas internacionais e clubes fazem parte da decisão tanto quanto a casa. É o que costuma definir o bairro.'],
-        ['Oferta', 'Quinta da Marinha e Guincho têm oferta limitada e pouca rotatividade. Esperar o imóvel certo é comum aqui.'],
-        ['Valor', 'A proximidade de Lisboa segura o preço mesmo fora da temporada, o que não acontece em praças só de verão.']
-      ],
-      imoveis: [
-        ['Casa Atlântico', 'Quinta da Marinha', '610 m²', '5 suítes', U + '1748063578185-3d68121b11ff' + Q],
-        ['Residência Guincho', 'Guincho', '480 m²', '4 suítes', U + '1723110994499-df46435aa4b3' + Q],
-        ['Villa do Pinhal', 'Birre', '400 m²', '4 suítes', U + '1717167398817-121e3c283dbb' + Q]
-      ]
-    }
-  };
-
-  var ORDEM = ['sao-paulo', 'rio-de-janeiro', 'florianopolis', 'orlando', 'miami', 'dubai', 'lisboa', 'cascais'];
+  var BASE = window.AMGLOBAL || { CIDADES: {}, ORDEM: [] };
+  var CIDADES = BASE.CIDADES;
+  var ORDEM = BASE.ORDEM;
 
   // --------------------------------------------------------------- utilidades
   function esc(t) {
@@ -665,17 +538,22 @@
   }
 
   // ------------------------------------------------------------------ montagem
-  function lamina(im, i) {
-    return '<button type="button" class="leque-item' + (i === 0 ? ' aberto' : '') + '">'
-      + '<img src="' + esc(im[4]) + '" alt="" loading="lazy" decoding="async">'
+  /* Cada lamina e um LINK para a pagina do imovel. No toque, o primeiro toque
+     abre a lamina e o segundo entra: por isso o clique numa lamina fechada nao
+     navega. No computador, onde apontar ja abre, o clique entra direto. */
+  function lamina(im, i, slug) {
+    return '<a class="leque-item' + (i === 0 ? ' aberto' : '') + '"'
+      + ' href="imovel.html?c=' + esc(slug) + '&amp;i=' + i + '">'
+      + '<img src="' + esc(im.fotos[0]) + '" alt="" loading="lazy" decoding="async">'
       + '<span class="leque-num">' + ('0' + (i + 1)) + '</span>'
-      + '<span class="leque-vertical"><span>' + esc(im[1]) + '</span></span>'
+      + '<span class="leque-vertical"><span>' + esc(im.bairro) + '</span></span>'
       + '<span class="leque-ficha">'
-      + '<span class="leque-nome">' + esc(im[0]) + '</span>'
-      + '<span class="leque-lugar">' + esc(im[1]) + '</span>'
-      + '<span class="leque-dados"><span>' + esc(im[2]) + '</span><span>' + esc(im[3]) + '</span><span>Sob consulta</span></span>'
+      + '<span class="leque-nome">' + esc(im.nome) + '</span>'
+      + '<span class="leque-lugar">' + esc(im.bairro) + '</span>'
+      + '<span class="leque-dados"><span>' + esc(im.area) + '</span><span>' + esc(im.suites) + '</span><span>Sob consulta</span></span>'
+      + '<span class="leque-entrar">Ver o imóvel</span>'
       + '</span>'
-      + '</button>';
+      + '</a>';
   }
 
   function nota(n, i) {
@@ -725,7 +603,7 @@
       +     '</div>'
       +     '<div class="cabeca-texto"><p>Cada residência está aqui por arquitetura, endereço, história ou a combinação dos três. Parte do portfólio não é publicada e só é apresentada em conversa.</p></div>'
       +   '</div>'
-      +   '<div class="leque" id="leque">' + c.imoveis.map(lamina).join('') + '</div>'
+      +   '<div class="leque" id="leque">' + c.imoveis.map(function (im, i) { return lamina(im, i, slug); }).join('') + '</div>'
       +   '<p class="conta">' + quantos + ' de ' + quantos + ' residências em ' + esc(c.nome) + '</p>'
       + '</section>'
 
@@ -791,9 +669,16 @@
         });
       }
 
+      var tocando = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
       leque.addEventListener('click', function (ev) {
         var l = ev.target.closest('.leque-item');
-        if (l) abrir(l);
+        if (!l) return;
+        // no toque, lamina fechada so abre; entrar exige o segundo toque
+        if (tocando && !l.classList.contains('aberto')) {
+          ev.preventDefault();
+          abrir(l);
+        }
       });
 
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {

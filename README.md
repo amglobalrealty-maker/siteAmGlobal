@@ -112,45 +112,63 @@ Para trocar, substitua o `src` da tag `img` correspondente.
 O endereco completo segue sempre o padrao
 `https://images.unsplash.com/<identificador>?auto=format&fit=crop&w=<largura>&q=70`.
 
-## As paginas de cidade
+## As paginas internas
 
-Clicar numa cidade no filtro do topo abre a pagina daquela praca.
+Sao **dois modelos** que atendem todas as cidades e todos os imoveis.
 
-**E um arquivo so para as oito cidades:** `cidade.html`. A cidade vem no
-endereco, em `?c=`:
+| Arquivo | Serve | Endereco |
+|---|---|---|
+| `cidade.html` | as oito cidades | `cidade.html?c=lisboa` |
+| `imovel.html` | as vinte e quatro residencias | `imovel.html?c=lisboa&i=0` |
 
-```
-cidade.html?c=sao-paulo
-cidade.html?c=dubai
-```
+Em `imovel.html`, o `i` e a posicao do imovel na lista daquela cidade,
+comecando em zero. Endereco incompleto, cidade desconhecida ou posicao que nao
+existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
-Endereco sem `?c=` ou com cidade desconhecida cai num recado com link para a
-curadoria completa, em vez de pagina em branco.
+### Como se chega nelas
 
-**Como a pagina e montada.** Quem manda no conteudo e o objeto `CIDADES`, no
-script do fim do arquivo. Cada cidade tem nome, pais, foto de capa, uma linha
-de abertura, tres notas sobre a praca e a lista de residencias. Toda a pagina
-sai dali: capa, banda de residencias, notas e o fecho com as outras pracas.
+- **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
+  continua so filtrando a home.
+- **Lamina da curadoria**, tanto na home quanto na pagina da cidade, abre a
+  ficha do imovel. No toque, o primeiro toque abre a lamina e o segundo entra,
+  senao a pessoa sairia da pagina sem nunca ter visto a foto grande.
+- **Voltar**, no topo da ficha, leva para a cidade daquele imovel, com o nome
+  dela escrito no link.
 
-**Para incluir uma cidade nova** bastam duas coisas: uma entrada em `CIDADES`
-com um slug novo, e um botao no painel de filtro do `index.html` com esse mesmo
-slug em `data-slug`. Cidade sem `data-slug` continua so filtrando a home, sem
-abrir pagina.
+### O conteudo mora num lugar so
 
-| Secao da pagina | O que traz |
+`dados.js` e a fonte unica: as duas paginas o carregam. Cada cidade tem nome,
+pais, foto de capa, linha de abertura, tres notas sobre a praca e a lista de
+residencias; cada residencia tem nome, bairro, area, suites, vagas, um texto e
+as fotos. **Mexer nesse arquivo muda as duas paginas**, sem tocar em script.
+
+Para incluir uma cidade: uma entrada em `CIDADES`, o apelido em `ORDEM` e um
+botao no filtro do `index.html` com o mesmo apelido em `data-slug`. Para
+incluir um imovel: um objeto na lista `imoveis` da cidade. O primeiro da lista
+e o que aparece na home.
+
+### O que cada pagina traz
+
+| Pagina de cidade | |
 |---|---|
-| Capa | Foto em tela quase cheia, nome da cidade em corpo grande, a linha de abertura e a contagem de residencias |
-| A selecao | A mesma banda de laminas da home, com as residencias daquela cidade |
-| A praca | Tres notas sobre o que pesa na decisao naquela cidade |
-| Fecho | Chamada para contato e o atalho para as outras pracas |
+| Capa | Foto quase em tela cheia, nome da cidade, linha de abertura e a contagem |
+| A selecao | A banda de laminas, com as residencias daquela cidade |
+| A praca | Tres notas sobre o que pesa na decisao ali |
+| Fecho | Contato e atalho para as outras pracas |
+
+| Ficha do imovel | |
+|---|---|
+| Capa | A foto principal, o nome, o endereco e a ficha com area, suites, vagas e valor |
+| A residencia | O texto e as fotos em alturas escalonadas |
+| Visita | Agendar visita, solicitar dossie e as outras residencias da mesma cidade |
 
 ### Conteudo de demonstracao
 
-**Tudo nas paginas de cidade e inventado**, a pedido da cliente, para o modelo
-ter forma: nome de imovel, bairro, area, suites e os textos das pracas. As
-fotos sao do Unsplash. Enquanto for assim, as paginas levam `noindex`, para
-nao aparecerem em buscador. **Tire essa linha do `<head>` quando o portfolio
-real entrar.**
+**Tudo nas paginas internas e inventado**, a pedido da cliente, para o modelo
+ter forma: nome de imovel, bairro, area, suites, vagas, os textos das
+residencias e as notas das pracas. As fotos sao do Unsplash. Enquanto for
+assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
+**Tire essa linha do `<head>` das duas quando o portfolio real entrar.**
 
 ## Estrutura da pagina
 
@@ -177,8 +195,8 @@ quantidade de residencias de cada um, e as cidades a direita.
 
 - Escolher o **pais** abre as cidades dele e ja filtra a curadoria. O painel
   fica aberto, para a pessoa poder afinar.
-- Escolher a **cidade** abre a pagina daquela praca (ver "As paginas de
-  cidade"). "Todas as cidades" continua so filtrando a home.
+- Escolher a **cidade** abre a pagina daquela praca (ver "As paginas
+  internas"). "Todas as cidades" continua so filtrando a home.
 - O texto do seletor sempre mostra onde a pessoa esta: "Todos os paises", o
   nome do pais ou o nome da cidade.
 - Abaixo do indice, uma linha diz quantas residencias aquele recorte tem.
