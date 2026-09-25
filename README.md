@@ -189,27 +189,35 @@ as tres notas descem em degrau: a primeira encosta a esquerda no alto, a
 segunda fica no meio, a terceira desce a direita. A descida e o desenho da
 secao, e ela ecoa a diagonal da marca.
 
-Cada nota leva um numeral grande em champagne e um filete champagne acima. A
-foto avanca devagar enquanto a secao esta na tela.
+Cada nota leva um numeral grande em champagne e um filete champagne acima.
 
-**A animacao da secao e a propria descida.** Quando a faixa chega na tela, um
-fio champagne desce em DEGRAU ligando as tres notas: de cada uma ele desce ate
-a altura da seguinte e so entao anda para o lado. Junto com ele, cada nota
-entra do lado em que mora, em sequencia: a primeira vem da esquerda, a do meio
-sobe, a terceira vem da direita.
+**A secao tem duas animacoes, e nenhuma delas e um efeito posto por cima.**
 
-O fio e montado pelo script, e nao escrito no HTML, porque os pontos dependem
-de onde as notas cairam, e isso muda com a largura da tela. Ele e refeito
-quando a janela muda de tamanho. Duas coisas garantem o acabamento: o
-comprimento do traco e medido depois de pronto (`getTotalLength`), que e o que
-faz o fio se desenhar em vez de aparecer de uma vez; e a espessura nao
-acompanha o esticamento (`vector-effect`), entao ele fica com um pixel em
-qualquer tela.
+A primeira e a ABERTURA. A foto nao aparece: ela se abre do centro para os dois
+lados, na mesma curva e no mesmo gesto da cortina que abre o site
+(`clip-path: inset(0 50% 0 50%)` virando `inset(0)`). As notas acendem em
+seguida, uma apos a outra, de cima para baixo.
 
-O fio mora entre o veu e o texto: passa por tras das palavras, nunca por cima.
+A segunda e a PROFUNDIDADE. Enquanto a pagina rola, a foto anda num sentido e
+as notas no outro, e cada nota num passo diferente: a de cima quase nao se
+mexe, a do meio se mexe o triplo, a de baixo bem mais. A diagonal deixa de ser
+uma arrumacao parada e passa a se ABRIR conforme a pessoa desce.
+
+A conta da profundidade e feita no quadro do navegador
+(`requestAnimationFrame`), e nunca direto no evento de rolagem: assim ela
+acontece uma vez por quadro e nao trava a pagina. A secao e ignorada quando
+esta fora da tela.
+
+Como e o script que escreve o `transform` das notas e da foto, a entrada delas
+no CSS e so de opacidade, e a escala da foto mora no proprio `transform` que o
+script reescreve: nada disputa a mesma propriedade.
 
 Abaixo de 900px nao ha largura para a diagonal: as notas se alinham a esquerda,
-uma embaixo da outra, e o veu passa a vir de cima para baixo.
+uma embaixo da outra, e o veu passa a vir de cima para baixo. Ali o passo da
+profundidade encolhe para 30%, senao a nota de baixo alcancaria a de cima, que
+agora esta logo acima dela.
+
+Com movimento reduzido no sistema, a faixa ja aparece pronta e aberta.
 
 | Ficha do imovel | |
 |---|---|

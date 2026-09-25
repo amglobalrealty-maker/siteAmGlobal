@@ -403,19 +403,29 @@
     background: var(--onix-alto);
   }
 
-  .praca-foto { position: absolute; inset: 0; margin: 0; }
+  /* A FAIXA ABRE DO CENTRO, como a cortina de entrada do site: a foto comeca
+     como uma fresta no meio e se abre para os dois lados ate a largura toda.
+     Antes de abrir fica o onix da faixa, entao a passagem e de escuro para
+     imagem, e nao de vazio para imagem. */
+  .praca-foto {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    clip-path: inset(0 50% 0 50%);
+    transition: clip-path 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+  }
 
+  .praca.viva .praca-foto { clip-path: inset(0 0 0 0); }
+
+  /* a escala fica aqui, no proprio elemento, porque o deslocamento de
+     profundidade e escrito pelo script no mesmo `transform` */
   .praca-foto img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: grayscale(0.32) contrast(1.05) brightness(0.46) saturate(0.7);
-    animation: aproximar 22s ease-out both;
-  }
-
-  @keyframes aproximar {
-    from { transform: scale(1.02); }
-    to { transform: scale(1.12); }
+    transform: scale(1.16);
+    will-change: transform;
   }
 
   /* o veu vem na diagonal, na mesma direcao da descida das notas */
@@ -429,32 +439,6 @@
       linear-gradient(to bottom, rgba(11, 11, 12, 0.6) 0%, transparent 26%);
     pointer-events: none;
   }
-
-  /* O fio em degrau que liga as tres notas. Fica entre o veu e o texto: passa
-     por tras das palavras, nunca por cima. O desenho e montado pelo script,
-     porque os pontos dependem de onde as notas cairam na tela. */
-  .praca-fio {
-    position: absolute;
-    z-index: 3;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: visible;
-  }
-
-  .praca-fio path {
-    fill: none;
-    stroke: var(--champagne);
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
-    opacity: 0.6;
-    stroke-dasharray: var(--comp, 3000);
-    stroke-dashoffset: var(--comp, 3000);
-    transition: stroke-dashoffset 2.6s var(--curva) 0.2s;
-  }
-
-  .praca.viva .praca-fio path { stroke-dashoffset: 0; }
 
   .praca-corpo {
     position: relative;
@@ -478,25 +462,23 @@
     height: 100%;
   }
 
-  /* Cada nota entra do lado em que ela mora: a primeira vem da esquerda, a do
-     meio sobe, a terceira vem da direita. Em sequencia, uma depois da outra,
-     acompanhando o fio que desce. */
+  /* As notas so acendem; quem as MOVE e o script, conforme a pagina rola.
+     Por isso a entrada e de opacidade apenas: se ela tambem usasse `transform`,
+     brigaria com o deslocamento de profundidade. */
   .nota {
     max-width: 42ch;
     padding-top: 18px;
     border-top: 1px solid rgba(180, 154, 110, 0.55);
     opacity: 0;
-    transform: translate(var(--de-x, 0), var(--de-y, 26px));
-    transition:
-      opacity 1.1s var(--curva) var(--atraso, 0s),
-      transform 1.3s var(--curva) var(--atraso, 0s);
+    transition: opacity 1.2s var(--curva) var(--atraso, 0s);
+    will-change: transform;
   }
 
-  .praca.viva .nota { opacity: 1; transform: none; }
+  .praca.viva .nota { opacity: 1; }
 
-  .nota:nth-child(1) { justify-self: start; align-self: start; --de-x: -44px; --atraso: 0.25s; }
-  .nota:nth-child(2) { justify-self: center; align-self: center; --de-x: 0; --de-y: 40px; --atraso: 0.75s; }
-  .nota:nth-child(3) { justify-self: end; align-self: end; --de-x: 44px; --atraso: 1.25s; }
+  .nota:nth-child(1) { justify-self: start; align-self: start; --atraso: 0.7s; }
+  .nota:nth-child(2) { justify-self: center; align-self: center; --atraso: 1s; }
+  .nota:nth-child(3) { justify-self: end; align-self: end; --atraso: 1.3s; }
 
   .nota-num {
     display: block;
@@ -599,9 +581,10 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .capa-foto img, .praca-foto img { animation: none; }
-    .nota { opacity: 1; transform: none; }
-    .praca-fio path { stroke-dashoffset: 0; }
+    .capa-foto img { animation: none; }
+    .nota { opacity: 1; transform: none !important; }
+    .praca-foto { clip-path: none; }
+    .praca-foto img { transform: scale(1.04) !important; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -740,7 +723,6 @@
       +     '<figure class="praca-foto">'
       +       '<img src="' + esc(c.retrato || c.capa) + '" alt="" loading="lazy" decoding="async">'
       +     '</figure>'
-      +     '<svg class="praca-fio" aria-hidden="true" focusable="false"><path d=""/></svg>'
       +     '<div class="praca-corpo">'
       +       '<div class="cabeca">'
       +         '<div>'
@@ -826,73 +808,77 @@
     }
   }
 
-  /* ---- a praca: o fio em degrau e a entrada das notas ----
+  /* ---- a praca: a faixa abre do centro e depois ganha profundidade ----
 
-     O fio e montado aqui, e nao no HTML, porque os pontos dependem de onde as
-     notas cairam: elas descem em diagonal e a posicao muda com a largura da
-     tela. De cada nota ele desce ate a altura da seguinte e so entao anda para
-     o lado, formando o degrau.
+     Sao duas coisas, e nenhuma e um efeito posto por cima do conteudo.
 
-     O comprimento do traco e medido depois de pronto: e ele que faz o fio se
-     DESENHAR em vez de aparecer de uma vez. */
+     1. A ABERTURA. A foto comeca como uma fresta no meio da faixa e se abre
+        para os dois lados ate a largura toda, no mesmo gesto da cortina de
+        entrada do site. As notas acendem em seguida, uma apos a outra.
+
+     2. A PROFUNDIDADE. Enquanto a pagina rola, a foto anda num sentido e as
+        notas no outro, e cada nota num passo diferente: a de cima quase nao
+        se mexe, a de baixo se mexe bem mais. A diagonal deixa de ser uma
+        arrumacao parada e passa a se abrir conforme a pessoa desce.
+
+     A conta e feita no quadro do navegador, e nunca direto no evento de
+     rolagem: assim ela acontece uma vez por quadro e nao trava a pagina. */
   var praca = document.querySelector('.praca');
 
   if (praca) {
-    var fio = praca.querySelector('.praca-fio path');
+    var fotoPraca = praca.querySelector('.praca-foto img');
     var notasNaTela = praca.querySelectorAll('.nota');
+    var PASSO = [14, 46, 86];
+    var pedidoPraca = false;
+    var calmoAqui = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function desenharFio() {
-      if (!fio || notasNaTela.length < 2) return;
+    function moverPraca() {
+      var r = praca.getBoundingClientRect();
+      var alturaTela = window.innerHeight || 800;
 
-      var caixa = praca.getBoundingClientRect();
-      if (!caixa.width || !caixa.height) return;
+      // fora da tela nao ha o que calcular
+      if (r.bottom < -80 || r.top > alturaTela + 80) return;
 
-      praca.querySelector('.praca-fio').setAttribute(
-        'viewBox', '0 0 ' + Math.round(caixa.width) + ' ' + Math.round(caixa.height)
-      );
+      /* -1 quando a faixa esta entrando por baixo, 0 no meio da tela,
+         +1 quando esta saindo por cima */
+      var meio = r.top + r.height / 2 - alturaTela / 2;
+      var curso = (alturaTela + r.height) / 2;
+      var p = Math.max(-1, Math.min(1, meio / curso));
 
-      var pontos = [];
-      Array.prototype.forEach.call(notasNaTela, function (n) {
-        var r = n.getBoundingClientRect();
-        pontos.push([Math.round(r.left - caixa.left), Math.round(r.top - caixa.top)]);
+      /* Em tela larga as notas moram em degraus soltos e cabe o passo inteiro.
+         Em tela estreita elas ficam empilhadas com pouco respiro entre uma e
+         outra, entao o passo encolhe para que a de baixo nunca alcance a de
+         cima. A largura e lida aqui porque ela muda quando se gira o aparelho. */
+      var folga = (window.innerWidth || 1200) > 900 ? 1 : 0.3;
+
+      if (fotoPraca) {
+        fotoPraca.style.transform = 'translate3d(0,' + (p * 46 * folga).toFixed(1) + 'px,0) scale(1.16)';
+      }
+
+      Array.prototype.forEach.call(notasNaTela, function (n, i) {
+        n.style.transform = 'translate3d(0,' + (p * -(PASSO[i] || 40) * folga).toFixed(1) + 'px,0)';
       });
-
-      // comeca um pouco acima da primeira e termina um pouco abaixo da ultima
-      var d = 'M' + pontos[0][0] + ',' + Math.max(0, pontos[0][1] - 46);
-
-      pontos.forEach(function (p, i) {
-        if (i === 0) { d += ' V' + p[1]; return; }
-        d += ' V' + p[1] + ' H' + p[0];
-      });
-
-      var fim = pontos[pontos.length - 1];
-      d += ' V' + Math.min(Math.round(caixa.height), fim[1] + 64);
-
-      fio.setAttribute('d', d);
-
-      try {
-        praca.style.setProperty('--comp', Math.ceil(fio.getTotalLength()));
-      } catch (erro) { /* sem medida: fica o valor padrao do CSS */ }
     }
 
-    desenharFio();
-    window.addEventListener('load', desenharFio);
-
-    var esperaFio = null;
-    window.addEventListener('resize', function () {
-      window.clearTimeout(esperaFio);
-      esperaFio = window.setTimeout(desenharFio, 180);
-    }, { passive: true });
-
-    var calmoAqui = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function aoRolarPraca() {
+      if (pedidoPraca) return;
+      pedidoPraca = true;
+      window.requestAnimationFrame(function () {
+        moverPraca();
+        pedidoPraca = false;
+      });
+    }
 
     if (calmoAqui || !('IntersectionObserver' in window)) {
       praca.classList.add('viva');
     } else {
+      window.addEventListener('scroll', aoRolarPraca, { passive: true });
+      window.addEventListener('resize', aoRolarPraca, { passive: true });
+      moverPraca();
+
       var olhoPraca = new IntersectionObserver(function (entradas) {
         entradas.forEach(function (e) {
           if (!e.isIntersecting) return;
-          desenharFio();
           praca.classList.add('viva');
           olhoPraca.disconnect();
         });
