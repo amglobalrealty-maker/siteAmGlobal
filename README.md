@@ -294,10 +294,22 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **As folhas.** Quatro frondes entram deslizando quando a secao chega na tela
-  e ficam POR CIMA das imagens, nos cantos da curadoria, da secao A AMGlobal,
-  dos servicos e da secao Global. Cada uma vem de uma direcao, com giro e
-  tamanho proprios.
+- **A folhagem.** Vinte e seis folhas formam uma faixa APOIADA na borda de cima
+  de cada bloco de imagem, caindo por cima dele, como mato debrucado sobre a
+  foto. Sao tres faixas: sobre a banda da curadoria, sobre a faixa de imagem da
+  secao A AMGlobal e sobre o palco dos servicos.
+
+  Cada folha e pendurada pelo caule, com a lamina caindo para baixo, e as das
+  pontas pendem mais para fora. Elas entram da esquerda para a direita, uma
+  logo depois da outra, quando o bloco chega na tela.
+
+  Cada bloco de imagem e embrulhado num elemento so para isso, porque os blocos
+  cortam o que transborda e as folhas precisam passar por cima da borda, para
+  dentro e para fora. **O embrulho e feito pelo script, nao esta no HTML.**
+
+  A desordem e proposital mas nao e sorteada: vem de uma conta com seno, entao
+  e sempre a mesma em qualquer carregamento e nenhuma folha fica igual a
+  vizinha. Em tela pequena a faixa fica mais rala, com metade das folhas.
 
   **O desenho e gerado pelo script, nao e arquivo.** A funcao monta a folha
   lamina por lamina: cada uma sai do caule, incha e afina na ponta, e os vaos
@@ -316,8 +328,9 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   balanco fica no SVG e nao na folha, senao brigaria com a transformacao de
   entrada.
 
-  Para mudar cor, tamanho, posicao, numero de laminas ou direcao de entrada,
-  mexa na lista `FOLHAS`, dentro do script.
+  Para mudar onde as faixas aparecem, quantas folhas cada uma tem ou o tamanho
+  base delas, mexa na lista `FOLHAGENS`, dentro do script. A cor esta na funcao
+  que desenha a folha, nos dois degrades.
 
   Sao decoracao pura: nao recebem clique, ficam fora da leitura de tela e
   nenhuma cobre texto. Com movimento reduzido, aparecem no lugar e nao

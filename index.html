@@ -212,45 +212,62 @@
      `aria-hidden` no HTML para nao entrarem na leitura de tela. Como o manual
      pede champagne em pouca area, ficam translucidas e so nos cantos.
      ------------------------------------------------------------------------ */
-  .folha {
+  /* o embrulho existe so para dar o ponto de apoio, e nao corta o que sai */
+  .com-folhagem { position: relative; }
+
+  /* a faixa mora na borda de CIMA do bloco de imagem, com altura zero: as
+     folhas penduram a partir dela, metade para fora e metade para dentro */
+  .folhagem {
     position: absolute;
     z-index: 6;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .folha {
+    position: absolute;
+    top: 0;
     display: block;
     opacity: 0;
     pointer-events: none;
-    /* a folha chega deitada, de lado e recuada; ao entrar, se endireita */
+    /* o caule fica no alto: a folha e pendurada por ele e cai sobre a imagem */
+    transform-origin: 50% 0;
+    /* ela chega mais deitada e mais acima; ao entrar, desce e se endireita */
     transform:
-      translate(var(--dx, 0), var(--dy, 0))
-      perspective(1100px)
-      rotateY(var(--ry-ini, 0deg))
-      rotateX(var(--rx-ini, 0deg))
-      rotate(var(--giro-ini, 0deg))
-      scale(0.88);
-    transition: opacity 1.6s var(--curva), transform 2.1s var(--curva);
+      translate(-50%, -46%)
+      perspective(900px)
+      rotateX(var(--rx-ini, 40deg))
+      rotateY(var(--ry-fim, 0deg))
+      rotate(var(--ang-ini, 180deg))
+      scale(0.9);
+    transition: opacity 1.5s var(--curva), transform 2s var(--curva);
     will-change: transform, opacity;
-    filter: drop-shadow(0 20px 34px rgba(11, 11, 12, 0.5));
+    filter: drop-shadow(0 16px 26px rgba(11, 11, 12, 0.55));
   }
 
   .folha.aberta {
-    opacity: var(--op, 0.5);
+    opacity: var(--op, 0.7);
     transform:
-      translate(0, 0)
-      perspective(1100px)
+      translate(-50%, var(--sobe, -28%))
+      perspective(900px)
+      rotateX(var(--rx-fim, 8deg))
       rotateY(var(--ry-fim, 0deg))
-      rotateX(var(--rx-fim, 0deg))
-      rotate(var(--giro-fim, 0deg))
+      rotate(var(--ang-fim, 180deg))
       scale(1);
   }
 
-  .folha svg { display: block; width: 100%; height: auto; transform-origin: 50% 90%; }
+  .folha svg { display: block; width: 100%; height: auto; transform-origin: 50% 8%; }
 
-  /* Um balanco de verdade, bem lento. Fica no SVG e nao na folha, senao ele
-     brigaria com a transformacao de entrada, que mora na folha. */
+  /* Um balanco de verdade, bem lento, girando a partir do caule. Fica no SVG e
+     nao na folha, senao brigaria com a transformacao de entrada, que mora la. */
   .folha.aberta svg { animation: balancar 13s ease-in-out infinite alternate; }
 
   @keyframes balancar {
-    from { transform: rotate(-1.8deg) scale(0.995); }
-    to { transform: rotate(2deg) scale(1.005); }
+    from { transform: rotate(-2.2deg); }
+    to { transform: rotate(2.4deg); }
   }
 
   /* =========================================================== revelacoes == */
@@ -1316,9 +1333,10 @@
   @media (max-width: 520px) {
     .abertura .apoio { font-size: 16px; }
     .marca-nome { display: none; }
-    /* em tela pequena as frondes competiriam com o conteudo: ficam menores e
-       mais apagadas, so como sombra de canto */
-    .folha { --op: 0.26; }
+    /* em tela pequena a folhagem competiria com o conteudo: fica mais rala e
+       so encosta na borda, sem avancar sobre a imagem */
+    .folha { --op: 0.4 !important; }
+    .folha:nth-child(even) { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1968,49 +1986,85 @@
     return '<svg viewBox="0 0 300 500" aria-hidden="true" focusable="false">' + partes.join('') + '</svg>';
   }
 
-  /* Cada folha tem lugar, tamanho, transparencia e um PAR de giros: de onde
-     ela entra e onde ela para. Os giros em X e Y sao o que da a perspectiva:
-     ela chega deitada e de lado, e se endireita ao entrar. */
-  var FOLHAS = [
-    { onde: 'curadoria', laminas: 9,
-      css: 'top:-11%;left:-9%;width:clamp(190px,25vw,420px);--op:0.62',
-      dx: '-36%', dy: '14%', giroIni: '-26deg', giroFim: '-9deg',
-      ryIni: '-52deg', ryFim: '-18deg', rxIni: '26deg', rxFim: '8deg' },
+  /* A FOLHAGEM.
 
-    { onde: 'manifesto', laminas: 8,
-      css: 'top:-8%;right:-8%;width:clamp(170px,21vw,360px);--op:0.5',
-      dx: '32%', dy: '-12%', giroIni: '28deg', giroFim: '11deg',
-      ryIni: '48deg', ryFim: '16deg', rxIni: '-22deg', rxFim: '-7deg' },
+     As folhas nao ficam soltas nos cantos: elas formam uma faixa apoiada na
+     borda de cima de cada bloco de imagem, caindo por cima dele, como mato
+     debrucado sobre a foto.
 
-    { onde: 'servicos', laminas: 10,
-      css: 'top:-10%;right:-10%;width:clamp(200px,26vw,440px);--op:0.55',
-      dx: '34%', dy: '16%', giroIni: '34deg', giroFim: '14deg',
-      ryIni: '56deg', ryFim: '20deg', rxIni: '24deg', rxFim: '9deg' },
+     Cada bloco de imagem e embrulhado num elemento so para isso, porque os
+     blocos cortam o que transborda e as folhas precisam passar POR CIMA da
+     borda, para dentro e para fora. O embrulho nao corta nada.
 
-    { onde: 'global', laminas: 8,
-      css: 'bottom:-12%;left:-8%;width:clamp(180px,22vw,370px);--op:0.46',
-      dx: '-30%', dy: '18%', giroIni: '-30deg', giroFim: '-12deg',
-      ryIni: '-46deg', ryFim: '-15deg', rxIni: '-20deg', rxFim: '-6deg' }
+     A desordem e proposital, mas nao e sorteada: vem de uma conta com seno,
+     entao e sempre a mesma em qualquer carregamento, e nenhuma folha fica
+     exatamente igual a vizinha. */
+  function ruido(i, semente) {
+    var x = Math.sin(i * 12.9898 + semente * 78.233) * 43758.5453;
+    return x - Math.floor(x);
+  }
+
+  var FOLHAGENS = [
+    { alvo: '#curadoria .leque',        quantas: 9, base: 'clamp(96px, 13vw, 210px)' },
+    { alvo: '#manifesto .faixa-imagem', quantas: 8, base: 'clamp(88px, 12vw, 190px)' },
+    { alvo: '#servicos .palco',         quantas: 9, base: 'clamp(96px, 13vw, 210px)' }
   ];
 
   var folhasNaTela = [];
+  var contaFolha = 0;
 
-  FOLHAS.forEach(function (f, n) {
-    var secao = document.getElementById(f.onde);
-    if (!secao) return;
+  FOLHAGENS.forEach(function (conf, nc) {
+    var bloco = document.querySelector(conf.alvo);
+    if (!bloco || !bloco.parentNode) return;
 
-    var folha = document.createElement('span');
-    folha.className = 'folha';
-    folha.setAttribute('aria-hidden', 'true');
-    folha.style.cssText = f.css
-      + ';--dx:' + f.dx + ';--dy:' + f.dy
-      + ';--giro-ini:' + f.giroIni + ';--giro-fim:' + f.giroFim
-      + ';--ry-ini:' + f.ryIni + ';--ry-fim:' + f.ryFim
-      + ';--rx-ini:' + f.rxIni + ';--rx-fim:' + f.rxFim;
-    folha.innerHTML = desenharFolha(f.laminas, n);
+    // embrulho: da o ponto de apoio sem cortar o que sai para fora
+    var embrulho = document.createElement('div');
+    embrulho.className = 'com-folhagem';
+    bloco.parentNode.insertBefore(embrulho, bloco);
+    embrulho.appendChild(bloco);
 
-    secao.appendChild(folha);
-    folhasNaTela.push(folha);
+    var faixa = document.createElement('div');
+    faixa.className = 'folhagem';
+    faixa.setAttribute('aria-hidden', 'true');
+
+    for (var i = 0; i < conf.quantas; i++) {
+      var r1 = ruido(i, nc + 1);
+      var r2 = ruido(i, nc + 7);
+      var r3 = ruido(i, nc + 13);
+
+      // espalha pela largura, com folga nas pontas e um empurrao de cada lado
+      var esquerda = ((i + 0.5) / conf.quantas) * 100 + (r1 - 0.5) * 9;
+
+      // as das pontas saem maiores, como cachos mais cheios
+      var beirada = Math.abs(esquerda - 50) / 50;
+      var tamanho = (0.72 + beirada * 0.5 + r2 * 0.34).toFixed(2);
+
+      // cai para o lado de fora: negativa a esquerda, positiva a direita
+      var pende = (esquerda - 50) * 0.5 + (r3 - 0.5) * 26;
+
+      var folha = document.createElement('span');
+      folha.className = 'folha';
+      folha.setAttribute('aria-hidden', 'true');
+      folha.style.cssText =
+        'left:' + esquerda.toFixed(1) + '%'
+        + ';width:calc(' + conf.base + ' * ' + tamanho + ')'
+        + ';z-index:' + (i % 3)
+        + ';--op:' + (0.62 + r2 * 0.26).toFixed(2)
+        + ';--ang-ini:' + (180 + pende * 1.5).toFixed(1) + 'deg'
+        + ';--ang-fim:' + (180 + pende).toFixed(1) + 'deg'
+        + ';--rx-ini:' + (44 + r1 * 24).toFixed(1) + 'deg'
+        + ';--rx-fim:' + (6 + r1 * 13).toFixed(1) + 'deg'
+        + ';--ry-fim:' + ((r3 - 0.5) * 30).toFixed(1) + 'deg'
+        + ';--sobe:' + (-26 - r2 * 16).toFixed(0) + '%'
+        // as da direita entram depois das da esquerda
+        + ';transition-delay:' + (i * 0.07).toFixed(2) + 's';
+      folha.innerHTML = desenharFolha(5 + Math.round(r1 * 3), contaFolha++);
+
+      faixa.appendChild(folha);
+      folhasNaTela.push(folha);
+    }
+
+    embrulho.appendChild(faixa);
   });
 
   if (calmo || !('IntersectionObserver' in window)) {
