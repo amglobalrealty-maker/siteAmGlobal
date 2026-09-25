@@ -254,6 +254,35 @@
 
   .sobe.visivel { opacity: 1; transform: none; }
 
+  /* ---- tres detalhes que acompanham a revelacao do bloco ---- */
+
+  /* o filete cresce de zero ate os 24px do manual */
+  .sobe .filete { width: 0; transition: width 1.1s var(--curva) 0.2s; }
+  .sobe.visivel .filete { width: 24px; }
+
+  /* o rotulo entra com as letras mais soltas e assenta no espacamento certo */
+  .sobe .rotulo { letter-spacing: 0.34em; opacity: 0.55; }
+  .sobe.visivel .rotulo {
+    letter-spacing: 0.2em;
+    opacity: 1;
+    transition: letter-spacing 1.3s var(--curva) 0.15s, opacity 1s var(--curva) 0.15s;
+  }
+
+  /* titulos de secao sobem linha a linha, como a abertura */
+  .linha-t { display: block; overflow: hidden; }
+
+  .linha-t > span {
+    display: block;
+    transform: translateY(104%);
+    transition: transform 1.2s var(--curva) var(--atraso, 0s);
+  }
+
+  .linha-t.visto > span { transform: none; }
+
+  /* blocos de imagem entram varridos, como o palco e a cortina */
+  .varre { clip-path: inset(0 100% 0 0); transition: clip-path 1.5s var(--curva); }
+  .varre.varrido { clip-path: inset(0 0 0 0); }
+
   /* ============================================================ cortina ====
      A cortina nao desbota: ela ABRE. Sao duas folhas de onix que correm para os
      lados, como um pano de teatro, deixando o site aparecer no meio.
@@ -1361,8 +1390,11 @@
     .palco-foto.ativa, .palco-foto.ativa img { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
-    .linha > span { transform: none; }
+    .linha > span, .linha-t > span { transform: none; }
     .sobe { opacity: 1; transform: none; }
+    .sobe .filete { width: 24px; }
+    .sobe .rotulo { letter-spacing: 0.2em; opacity: 1; }
+    .varre { clip-path: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -2003,6 +2035,65 @@
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
 
     linhasNaTela.forEach(function (l) { olhoLinha.observe(l); });
+  }
+
+  /* 4c. TITULOS LINHA A LINHA.
+
+     Cada titulo de secao e quebrado onde ja havia um <br> e cada linha vai
+     para dentro de uma janela que corta o transbordo. A linha comeca abaixo
+     dela e sobe ao entrar na tela, uma logo depois da outra. E o mesmo
+     movimento da abertura, agora no resto da pagina.
+
+     A quebra e feita aqui, e nao no HTML, para o texto continuar legivel e
+     editavel no arquivo: quem mexer no titulo nao precisa saber deste efeito. */
+  var titulos = document.querySelectorAll('main h2');
+
+  Array.prototype.forEach.call(titulos, function (titulo) {
+    var partes = titulo.innerHTML.split(/<br\s*\/?>/i);
+    if (partes.length < 2) return;
+
+    titulo.innerHTML = partes.map(function (linha, i) {
+      return '<span class="linha-t" style="--atraso:' + (i * 0.12).toFixed(2) + 's">'
+        + '<span>' + linha + '</span></span>';
+    }).join('');
+  });
+
+  var linhasDeTitulo = document.querySelectorAll('.linha-t');
+
+  /* 4d. BLOCOS DE IMAGEM VARRIDOS.
+     A banda da curadoria, a faixa da secao A AMGlobal e o palco dos servicos
+     entram varridos da esquerda para a direita, o mesmo gesto da cortina e da
+     troca de foto dos servicos. */
+  var varridos = [];
+
+  ['#curadoria .leque', '#manifesto .faixa-imagem', '#servicos .palco'].forEach(function (sel) {
+    var el = document.querySelector(sel);
+    if (el) { el.classList.add('varre'); varridos.push(el); }
+  });
+
+  if (calmo || !('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(linhasDeTitulo, function (l) { l.classList.add('visto'); });
+    varridos.forEach(function (v) { v.classList.add('varrido'); });
+  } else {
+    var olhoTitulo = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visto');
+        olhoTitulo.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -16% 0px', threshold: 0.2 });
+
+    Array.prototype.forEach.call(linhasDeTitulo, function (l) { olhoTitulo.observe(l); });
+
+    var olhoVarre = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('varrido');
+        olhoVarre.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+
+    varridos.forEach(function (v) { olhoVarre.observe(v); });
   }
 
   /* 5. Revelacao ao entrar na tela, escalonada dentro de cada grupo. */
