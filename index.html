@@ -919,14 +919,30 @@
     background: var(--onix-alto);
   }
 
+  /* Tres camadas fixas, nunca mais que isso: o fundo parado (1), a que esta
+     saindo (2) e a que entra varrendo por cima (3). Quem manda na visibilidade
+     e a opacidade; a varredura e enfeite. Assim, se a animacao nao rodar, a
+     imagem troca do mesmo jeito. */
   .palco-foto {
     position: absolute;
     inset: 0;
-    clip-path: inset(0 0 0 100%);
-    transition: clip-path 1.15s var(--curva);
+    z-index: 1;
+    opacity: 0;
   }
 
-  .palco-foto.ativa { clip-path: inset(0 0 0 0); }
+  /* a que sai fica visivel por baixo enquanto a nova passa por cima */
+  .palco-foto.saindo { z-index: 2; opacity: 1; }
+
+  .palco-foto.ativa {
+    z-index: 3;
+    opacity: 1;
+    animation: varrer 1.15s var(--curva) both;
+  }
+
+  @keyframes varrer {
+    from { clip-path: inset(0 0 0 100%); }
+    to { clip-path: inset(0 0 0 0); }
+  }
 
   .palco-foto img {
     width: 100%;
@@ -934,16 +950,22 @@
     object-fit: cover;
     filter: grayscale(0.26) contrast(1.05) brightness(0.62) saturate(0.76);
     transform: scale(1.04);
-    transition: transform 8s var(--curva);
   }
 
-  .palco-foto.ativa img { transform: scale(1.11); }
+  .palco-foto.ativa img { animation: crescer 9s ease-out both; }
 
-  /* veu da esquerda, para os nomes lerem sobre qualquer foto */
+  @keyframes crescer {
+    from { transform: scale(1.03); }
+    to { transform: scale(1.12); }
+  }
+
+  /* Veu da esquerda, para os nomes lerem sobre qualquer foto. Daqui para cima
+     os numeros sao altos de proposito: nenhuma foto pode alcancar o veu, a
+     moldura ou o texto, por mais trocas que aconteçam. */
   .palco::after {
     content: '';
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     inset: 0;
     background:
       linear-gradient(to right, rgba(11, 11, 12, 0.92) 0%, rgba(11, 11, 12, 0.6) 46%, rgba(11, 11, 12, 0.25) 100%),
@@ -954,7 +976,7 @@
   /* moldura champagne por dentro, sem fechar */
   .palco-moldura {
     position: absolute;
-    z-index: 3;
+    z-index: 6;
     inset: clamp(16px, 2vw, 30px);
     border-top: 1px solid rgba(180, 154, 110, 0.45);
     border-left: 1px solid rgba(180, 154, 110, 0.45);
@@ -963,7 +985,7 @@
 
   .palco-corpo {
     position: relative;
-    z-index: 4;
+    z-index: 7;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
     align-items: end;
@@ -1237,7 +1259,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rolar .chevron, .faixa-trilho, .slide.ativa img { animation: none; }
+    .rolar .chevron, .faixa-trilho, .slide.ativa img,
+    .palco-foto.ativa, .palco-foto.ativa img { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
@@ -1978,27 +2001,49 @@
 
   /* 8. Servicos: trocar de oficio varre a fotografia do palco.
 
-     A foto nova entra por cima, varrida da direita para a esquerda, em vez de
-     desbotar por cima da anterior. Por isso cada troca sobe o empilhamento: a
-     que entra tem de ficar acima de tudo que ja passou. */
+     Sao tres camadas fixas e so tres: o fundo parado, a que sai e a que entra.
+     A que entra reinicia a animacao da varredura (tira a classe, forca o
+     navegador a recalcular, devolve a classe), senao a segunda troca nao
+     animaria. A que sai continua visivel por baixo ate a varredura terminar,
+     para a nova passar por cima da anterior e nao por cima do vazio.
+
+     A versao anterior subia o empilhamento a cada troca e dependia de uma
+     transicao que podia ser interrompida no meio. Era o motivo de a imagem nao
+     trocar. Agora quem manda na visibilidade e a opacidade, e a varredura e so
+     enfeite: mesmo que a animacao nao rode, a foto troca. */
   var palco = document.getElementById('palco');
 
   if (palco) {
     var fotos = palco.querySelectorAll('.palco-foto');
     var titulos = palco.querySelectorAll('.palco-nome');
     var fichas = palco.querySelectorAll('.palco-ficha');
-    var camada = 1;
+    var oficioAtual = 0;
+    var limpeza = null;
 
     function trocarOficio(i) {
+      if (i === oficioAtual || !fotos[i]) return;
+
+      var saindo = fotos[oficioAtual];
+      var entrando = fotos[i];
+
+      Array.prototype.forEach.call(fotos, function (f) { f.classList.remove('saindo'); });
+
+      saindo.classList.remove('ativa');
+      saindo.classList.add('saindo');
+
+      entrando.classList.remove('ativa');
+      void entrando.offsetWidth; // reinicia a varredura
+      entrando.classList.add('ativa');
+
+      window.clearTimeout(limpeza);
+      limpeza = window.setTimeout(function () {
+        saindo.classList.remove('saindo');
+      }, 1300);
+
+      oficioAtual = i;
+
       Array.prototype.forEach.call(titulos, function (t, k) { t.classList.toggle('ativo', k === i); });
       Array.prototype.forEach.call(fichas, function (f, k) { f.classList.toggle('ativa', k === i); });
-
-      Array.prototype.forEach.call(fotos, function (foto, k) {
-        if (k !== i) { foto.classList.remove('ativa'); return; }
-        camada++;
-        foto.style.zIndex = String(camada);
-        foto.classList.add('ativa');
-      });
     }
 
     palco.addEventListener('click', function (ev) {

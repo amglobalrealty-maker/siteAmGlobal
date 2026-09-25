@@ -193,8 +193,13 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   furando a margem lateral, com os quatro oficios escritos por cima dela e a
   moldura champagne aberta por dentro. Trocar de oficio nao troca so o texto: a
   fotografia e VARRIDA da direita para a esquerda, em vez de desbotar. Enquanto
-  esta no ar, a imagem avanca devagar. Cada troca sobe o empilhamento, porque a
-  foto que entra precisa ficar acima de todas que ja passaram.
+  esta no ar, a imagem avanca devagar.
+
+  Sao tres camadas fixas e so tres: o fundo parado, a que sai e a que entra por
+  cima. Quem manda na visibilidade e a opacidade; a varredura e enfeite, entao
+  mesmo que a animacao nao rode a foto troca do mesmo jeito. A que entra
+  reinicia a animacao a cada troca, senao da segunda vez em diante ela nao
+  animaria.
 
   Em tela estreita o palco fica em pe, mais alto, com o veu vindo de baixo e o
   texto empilhado no pe.
