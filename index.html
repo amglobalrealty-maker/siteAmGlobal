@@ -904,91 +904,114 @@
   .pilar p { font-size: 16px; }
 
   /* ============================================================= servicos ==
-     Quatro oficios escritos em corpo grande, um embaixo do outro. Quem nao
-     esta em foco aparece so em CONTORNO champagne; o escolhido se preenche em
-     marfim e o texto dele entra ao lado. E tipografia fazendo o trabalho, sem
-     caixa, sem sanfona, sem sinal de mais.
+     Quatro linhas em fio fino, calmas. Ao apontar uma, as outras recuam e um
+     RETRATO segue o ponteiro, com atraso: e ele que da a temperatura da secao,
+     sem ocupar espaco nenhum na pagina. No toque, onde nao ha ponteiro, cada
+     linha mostra a sua miniatura.
      ------------------------------------------------------------------------ */
-  .oficios {
+  .oficios { border-top: 1px solid var(--linha-clara); }
+
+  .oficio-linha {
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: clamp(26px, 5vw, 92px);
-    align-items: start;
+    grid-template-columns: auto auto minmax(0, 1.02fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(14px, 2.6vw, 46px);
+    padding: clamp(20px, 3.2vh, 36px) 0;
+    border-bottom: 1px solid var(--linha-clara);
+    transition: opacity 0.6s var(--curva), padding-left 0.8s var(--curva);
   }
 
-  .oficios-nomes { display: grid; }
+  /* apontar uma recua as outras */
+  .oficios:hover .oficio-linha { opacity: 0.32; }
+  .oficios .oficio-linha:hover { opacity: 1; padding-left: clamp(8px, 1.2vw, 20px); }
 
-  .oficio {
-    display: flex;
-    align-items: baseline;
-    gap: clamp(12px, 1.6vw, 28px);
-    width: 100%;
-    padding: clamp(5px, 0.9vh, 11px) 0;
-    background: none;
-    border: 0;
-    text-align: left;
-    cursor: pointer;
+  /* o fio de baixo acende em champagne na linha apontada */
+  .oficio-linha::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.9s var(--curva);
   }
+
+  .oficios .oficio-linha:hover::after { transform: scaleX(1); }
 
   .oficio-num {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.18em;
-    color: rgba(245, 242, 236, 0.26);
+    color: rgba(245, 242, 236, 0.3);
     font-variant-numeric: tabular-nums;
     transition: color 0.6s var(--curva);
   }
 
-  .oficio.ativo .oficio-num { color: var(--champagne); }
+  .oficios .oficio-linha:hover .oficio-num { color: var(--champagne); }
+
+  /* miniatura: so onde nao ha ponteiro, no lugar do retrato flutuante */
+  .oficio-mini { display: none; }
 
   .oficio-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(36px, 6.4vw, 94px);
-    line-height: 1.02;
-    letter-spacing: -0.012em;
-    color: rgba(245, 242, 236, 0.24);
-    transition: color 0.7s var(--curva), -webkit-text-stroke-color 0.7s var(--curva);
+    font-size: clamp(27px, 3.5vw, 50px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    color: var(--marfim);
   }
 
-  .oficio.ativo .oficio-nome,
-  .oficio:hover .oficio-nome { color: var(--marfim); }
-
-  /* onde houver contorno de texto, o nome inativo vira so o contorno.
-     Onde nao houver, o degrade de opacidade acima ja resolve. */
-  @supports (-webkit-text-stroke: 1px #000) {
-    .oficio-nome {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(180, 154, 110, 0.55);
-    }
-
-    .oficio.ativo .oficio-nome,
-    .oficio:hover .oficio-nome {
-      color: var(--marfim);
-      -webkit-text-stroke-color: transparent;
-    }
+  .oficio-desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--texto-fraco);
+    max-width: 48ch;
   }
 
-  .oficios-textos { position: relative; padding-top: clamp(12px, 2.4vh, 30px); }
+  /* --- o retrato que segue o ponteiro --- */
+  .retrato {
+    position: fixed;
+    z-index: 60;
+    top: 0; left: 0;
+    width: clamp(196px, 16vw, 258px);
+    aspect-ratio: 3 / 4;
+    pointer-events: none;
+    will-change: transform;
+  }
 
-  .oficio-texto {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    gap: 16px;
-    align-content: start;
+  .retrato-int {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--onix-alto);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.7s var(--curva), visibility 0.7s;
+    transform: scale(0.94);
+    transition: opacity 0.55s var(--curva), transform 0.85s var(--curva);
   }
 
-  .oficio-texto.ativo { position: relative; opacity: 1; visibility: visible; }
+  .retrato.visivel .retrato-int { opacity: 1; transform: none; }
 
-  .oficio-texto p { color: var(--texto-fraco); }
+  .retrato img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2) contrast(1.04) brightness(0.86) saturate(0.85);
+  }
 
-  /* dentro da grade quem cuida do espaco e o gap */
-  .oficio-texto .filete { margin-bottom: 0; }
+  /* fio champagne no alto do retrato, como nas laminas */
+  .retrato-int::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: var(--champagne);
+  }
+
+  .retrato-int { position: relative; }
 
   /* =============================================================== global == */
   .pracas {
@@ -1156,10 +1179,17 @@
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
     .pilar p { grid-column: 2; }
-    /* uma coluna: os nomes e, embaixo, o texto do que estiver escolhido */
-    .oficios { grid-template-columns: 1fr; gap: 24px; }
-    .oficio-nome { font-size: clamp(32px, 9vw, 54px); }
-    .oficios-textos { padding-top: 0; }
+    /* sem ponteiro nao ha retrato flutuante: cada linha mostra a sua miniatura */
+    .oficio-linha { grid-template-columns: auto auto minmax(0, 1fr); }
+    .oficio-mini {
+      display: block;
+      width: 58px;
+      height: 74px;
+      object-fit: cover;
+      filter: grayscale(0.2) contrast(1.04) brightness(0.86) saturate(0.85);
+    }
+    .oficio-nome { font-size: clamp(26px, 7vw, 40px); }
+    .oficio-desc { grid-column: 3; max-width: 100%; }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
   }
@@ -1502,39 +1532,35 @@
     </div>
   </div>
 
+  <!-- PROVISORIO: fotos do Unsplash, licenca livre, uma por oficio. Elas nao
+       sao material de imovel, mas seguem sendo temporarias. Ver README. -->
   <div class="oficios sobe" id="oficios">
-    <div class="oficios-nomes">
-      <button type="button" class="oficio ativo" data-oficio="0">
-        <span class="oficio-num">01</span><span class="oficio-nome">Comprar</span>
-      </button>
-      <button type="button" class="oficio" data-oficio="1">
-        <span class="oficio-num">02</span><span class="oficio-nome">Vender</span>
-      </button>
-      <button type="button" class="oficio" data-oficio="2">
-        <span class="oficio-num">03</span><span class="oficio-nome">Investir</span>
-      </button>
-      <button type="button" class="oficio" data-oficio="3">
-        <span class="oficio-num">04</span><span class="oficio-nome">Assessorar do exterior</span>
-      </button>
+    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
+      <span class="oficio-num">01</span>
+      <img class="oficio-mini" src="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
+      <span class="oficio-nome">Comprar</span>
+      <p class="oficio-desc">Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta. Com o racional de por que cada imóvel está nela, e por que os outros ficaram de fora.</p>
     </div>
 
-    <div class="oficios-textos">
-      <div class="oficio-texto ativo" data-texto="0">
-        <span class="filete"></span>
-        <p>Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta. Com o racional de por que cada imóvel está nela, e por que os outros ficaram de fora.</p>
-      </div>
-      <div class="oficio-texto" data-texto="1">
-        <span class="filete"></span>
-        <p>Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
-      </div>
-      <div class="oficio-texto" data-texto="2">
-        <span class="filete"></span>
-        <p>Contexto antes da decisão: localização, produto, liquidez e momento. Comparáveis e leitura de mercado que sustentam o preço.</p>
-      </div>
-      <div class="oficio-texto" data-texto="3">
-        <span class="filete"></span>
-        <p>Para quem compra à distância: documentação, câmbio, procuração e tributação, com um único ponto de contato e atendimento em mais de um idioma.</p>
-      </div>
+    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1778731660244-b6e8f905107d?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
+      <span class="oficio-num">02</span>
+      <img class="oficio-mini" src="https://images.unsplash.com/photo-1778731660244-b6e8f905107d?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
+      <span class="oficio-nome">Vender</span>
+      <p class="oficio-desc">Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
+    </div>
+
+    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1786018120871-cb134b61ddd0?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
+      <span class="oficio-num">03</span>
+      <img class="oficio-mini" src="https://images.unsplash.com/photo-1786018120871-cb134b61ddd0?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
+      <span class="oficio-nome">Investir</span>
+      <p class="oficio-desc">Contexto antes da decisão: localização, produto, liquidez e momento. Comparáveis e leitura de mercado que sustentam o preço.</p>
+    </div>
+
+    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1778731660451-323b78996230?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
+      <span class="oficio-num">04</span>
+      <img class="oficio-mini" src="https://images.unsplash.com/photo-1778731660451-323b78996230?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
+      <span class="oficio-nome">Assessorar do exterior</span>
+      <p class="oficio-desc">Para quem compra à distância: documentação, câmbio, procuração e tributação, com um único ponto de contato e atendimento em mais de um idioma.</p>
     </div>
   </div>
 </section>
@@ -1900,34 +1926,63 @@
     aplicar();
   }
 
-  /* 8. Oficios: o nome apontado se preenche e traz o texto dele ao lado. */
+  /* 8. Servicos: um retrato segue o ponteiro sobre a linha apontada.
+
+     So entra onde existe ponteiro fino e o sistema nao pede menos movimento.
+     Em toque, a miniatura de cada linha ja mostra a imagem e nada disto roda. */
   var oficios = document.getElementById('oficios');
+  var ponteiroFino = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  if (oficios) {
-    var nomes = oficios.querySelectorAll('.oficio');
-    var textos = oficios.querySelectorAll('.oficio-texto');
+  if (oficios && ponteiroFino && !calmo) {
+    var retrato = document.createElement('div');
+    retrato.className = 'retrato';
+    retrato.setAttribute('aria-hidden', 'true');
+    retrato.innerHTML = '<div class="retrato-int"><img alt=""></div>';
+    document.body.appendChild(retrato);
 
-    function escolherOficio(i) {
-      Array.prototype.forEach.call(nomes, function (n, k) {
-        n.classList.toggle('ativo', k === i);
-      });
-      Array.prototype.forEach.call(textos, function (t, k) {
-        t.classList.toggle('ativo', k === i);
-      });
-    }
+    var retratoImg = retrato.querySelector('img');
+    var alvoX = 0, alvoY = 0, agoraX = 0, agoraY = 0;
+    var seguindo = false;
+    var quadro = null;
 
-    oficios.addEventListener('click', function (ev) {
-      var botao = ev.target.closest('.oficio');
-      if (botao) escolherOficio(parseInt(botao.getAttribute('data-oficio'), 10));
+    // guarda as fotos em memoria para a primeira troca nao piscar
+    Array.prototype.forEach.call(oficios.querySelectorAll('.oficio-linha'), function (linha) {
+      var foto = new Image();
+      foto.src = linha.getAttribute('data-foto');
     });
 
-    if (window.matchMedia('(hover: hover)').matches) {
-      Array.prototype.forEach.call(nomes, function (botao) {
-        var i = parseInt(botao.getAttribute('data-oficio'), 10);
-        botao.addEventListener('mouseenter', function () { escolherOficio(i); });
-        botao.addEventListener('focus', function () { escolherOficio(i); });
-      });
+    function andar() {
+      // o atraso e o efeito: o retrato persegue o ponteiro, nao gruda nele
+      agoraX += (alvoX - agoraX) * 0.13;
+      agoraY += (alvoY - agoraY) * 0.13;
+      retrato.style.transform = 'translate3d(' + Math.round(agoraX) + 'px,' + Math.round(agoraY) + 'px,0)';
+      if (seguindo) quadro = window.requestAnimationFrame(andar);
     }
+
+    function posicao(ev) {
+      var caixa = retrato.getBoundingClientRect();
+      alvoX = ev.clientX - caixa.width / 2;
+      alvoY = ev.clientY - caixa.height / 2;
+    }
+
+    Array.prototype.forEach.call(oficios.querySelectorAll('.oficio-linha'), function (linha) {
+      linha.addEventListener('mouseenter', function (ev) {
+        retratoImg.src = linha.getAttribute('data-foto');
+        posicao(ev);
+        // na primeira entrada ele nasce onde o ponteiro esta, sem vir voando
+        if (!seguindo) { agoraX = alvoX; agoraY = alvoY; }
+        retrato.classList.add('visivel');
+        if (!seguindo) { seguindo = true; andar(); }
+      });
+    });
+
+    oficios.addEventListener('mousemove', posicao);
+
+    oficios.addEventListener('mouseleave', function () {
+      retrato.classList.remove('visivel');
+      seguindo = false;
+      if (quadro) window.cancelAnimationFrame(quadro);
+    });
   }
 
   /* 9. Slideshow da abertura: troca sozinho e aceita clique no marcador. */

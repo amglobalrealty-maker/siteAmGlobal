@@ -96,6 +96,10 @@ Para trocar, substitua o `src` da tag `img` correspondente.
 
 | Onde | Identificador da foto no Unsplash |
 |---|---|
+| Servicos, retrato de Comprar | `photo-1776482128172-dd265ad0cb49` |
+| Servicos, retrato de Vender | `photo-1778731660244-b6e8f905107d` |
+| Servicos, retrato de Investir | `photo-1786018120871-cb134b61ddd0` |
+| Servicos, retrato de Assessorar | `photo-1778731660451-323b78996230` |
 | Abertura, slide 01, Brasil | `photo-1613490493576-7fde63acd811` |
 | Abertura, slide 02, Orlando | `photo-1719887805632-de5be825f72b` |
 | Abertura, slide 03, Dubai | `photo-1706164971302-e30c0640cc3b` |
@@ -115,7 +119,7 @@ O endereco completo segue sempre o padrao
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
-| 04 | Servicos | Os quatro oficios em corpo grande; quem nao esta em foco aparece so em contorno champagne |
+| 04 | Servicos | Quatro linhas calmas em fio fino; ao apontar uma, um retrato segue o ponteiro |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
@@ -185,13 +189,16 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **Os oficios.** Comprar, vender, investir e assessorar do exterior aparecem
-  em corpo grande, um embaixo do outro. Quem nao esta em foco fica so em
-  CONTORNO champagne, sem preenchimento; o escolhido se preenche em marfim e o
-  texto dele entra ao lado, com fusao. E tipografia fazendo o trabalho: sem
-  caixa, sem sanfona, sem sinal de mais. Em navegador que nao souber desenhar
-  contorno de texto, os nomes inativos ficam em marfim bem apagado, e a secao
-  continua legivel.
+- **O retrato dos servicos.** As quatro linhas ficam paradas, em fio fino, com
+  o nome e o texto lado a lado. Ao apontar uma, as outras recuam, o fio de
+  baixo acende em champagne e um RETRATO aparece seguindo o ponteiro, com
+  atraso: ele persegue o cursor em vez de grudar nele. E ele que da a
+  temperatura da secao sem ocupar espaco nenhum na pagina. As quatro fotos sao
+  carregadas na memoria antes, para a primeira troca nao piscar.
+
+  O retrato so existe onde ha ponteiro fino e o sistema nao pede menos
+  movimento. No toque ele nao e nem criado: la cada linha mostra a sua propria
+  miniatura, ao lado do numero.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.
 - **Hora local.** Dado real, via fuso horario do navegador, atualizado a cada
   30 segundos. Nao e numero inventado.
