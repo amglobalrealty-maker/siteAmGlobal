@@ -203,84 +203,47 @@
   /* triangulo aberto, o marcador tirado do A */
   .chevron { display: block; }
 
-  /* ================================================================ riscos ==
-     Linhas finas em champagne que se desenham sobre a borda de cima de cada
-     bloco de imagem, quando ele chega na tela.
+  /* ========================================================== linha caida ==
+     UMA linha so, em champagne, caida sobre a borda de cima de cada bloco de
+     imagem. A curva e a de um fio pendurado pelas duas pontas: ela cede no
+     meio e sobe nas beiradas.
 
-     Tudo aqui sai do manual: o filete champagne, a diagonal a 26 graus e o
-     triangulo aberto vindo do A. Nao ha desenho nenhum, so linhas de um pixel
-     que crescem: e por isso que o conjunto e leve e fica preciso em qualquer
-     largura de tela.
+     Ela se desenha de uma ponta a outra quando o bloco chega na tela. E so
+     isso: um fio de um pixel. O manual pede que o champagne apareca em pouca
+     area, e nao ha nada mais econômico que uma linha.
      ------------------------------------------------------------------------ */
 
-  /* o embrulho da o ponto de apoio e NAO corta, para os riscos cruzarem a
-     borda e aparecerem dos dois lados dela */
+  /* o embrulho da o ponto de apoio e NAO corta, para a linha poder nascer um
+     pouco acima da foto e cair sobre ela */
   .com-riscos { position: relative; }
 
-  .riscos {
-    --escala: 1;
+  .linha-caida {
     position: absolute;
     z-index: 6;
-    top: 0;
     left: 0;
     right: 0;
-    height: 0;
+    top: calc(-1 * var(--sobe, 26px));
+    height: var(--altura, 170px);
     pointer-events: none;
   }
 
-  .risco {
-    position: absolute;
-    background: var(--champagne);
-    opacity: 0;
-    transition: opacity 0.6s var(--curva);
+  /* `overflow: visible` porque a curva encosta nas bordas da caixa */
+  .linha-caida svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  .linha-caida path {
+    fill: none;
+    stroke: var(--champagne);
+    stroke-width: 1;
+    stroke-linecap: round;
+    /* sem isto a linha engrossaria ao esticar na largura da tela */
+    vector-effect: non-scaling-stroke;
+    opacity: 0.78;
+    stroke-dasharray: var(--comp, 2400);
+    stroke-dashoffset: var(--comp, 2400);
+    transition: stroke-dashoffset 2.6s var(--curva);
   }
 
-  .riscos.aberto .risco { opacity: 0.62; }
-
-  /* a regua, no fio da borda: cresce da esquerda para a direita */
-  .risco-regua {
-    top: 0;
-    left: 0;
-    height: 1px;
-    width: 0;
-    transition: width 1.8s var(--curva), opacity 0.6s var(--curva);
-  }
-
-  .riscos.aberto .risco-regua { width: 100%; }
-
-  /* quedas: descem da borda para dentro da imagem */
-  .risco-queda {
-    top: 0;
-    width: 1px;
-    height: 0;
-    transition: height 1.1s var(--curva) var(--atraso, 0.4s), opacity 0.6s var(--curva) var(--atraso, 0.4s);
-  }
-
-  .riscos.aberto .risco-queda { height: calc(var(--alt) * var(--escala)); }
-
-  /* diagonais a 26 graus, cruzando a borda; o giro e a partir do topo */
-  .risco-diagonal {
-    width: 1px;
-    height: 0;
-    transform-origin: 50% 0;
-    transform: rotate(26deg);
-    transition: height 1.2s var(--curva) var(--atraso, 0.6s), opacity 0.6s var(--curva) var(--atraso, 0.6s);
-  }
-
-  .riscos.aberto .risco-diagonal { height: calc(var(--alt) * var(--escala)); }
-
-  /* o triangulo aberto, no encontro da regua com a primeira queda */
-  .risco-marca {
-    position: absolute;
-    color: var(--champagne);
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.7);
-    transition: opacity 0.9s var(--curva) 1.1s, transform 1.1s var(--curva) 1.1s;
-  }
-
-  .riscos.aberto .risco-marca { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
-
-  .risco-marca svg { display: block; }
+  .linha-caida.aberta path { stroke-dashoffset: 0; }
 
   /* =========================================================== revelacoes == */
   .sobe {
@@ -1332,8 +1295,8 @@
     }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
-    /* no celular os riscos ficam menores, so encostando na borda */
-    .riscos { --escala: 0.6; }
+    /* no celular a linha cai menos, para nao cobrir metade da foto */
+    .linha-caida { --altura: clamp(56px, 16vw, 96px); }
   }
 
   /* telas largas mas baixas, como notebook: o titulo encolhe para a abertura
@@ -1903,65 +1866,45 @@
     if (ev.key === 'Escape') fecharMenu();
   });
 
-  /* 4b. OS RISCOS.
 
-     Linhas finas em champagne que se desenham sobre a borda de cima de cada
-     bloco de imagem: uma regua correndo no fio da borda, duas quedas descendo
-     para dentro da foto, tres diagonais a 26 graus cruzando a borda e o
-     triangulo aberto no encontro da regua com a primeira queda.
+  /* 4b. A LINHA CAIDA.
 
-     Tudo vem do manual, e nao ha desenho nenhum: sao divs de um pixel que
-     crescem. Por isso o conjunto e leve e fica preciso em qualquer largura.
+     Uma linha so, em champagne, sobre a borda de cima de cada bloco de imagem.
+     A curva e a de um fio presa pelas duas pontas: cede no meio e sobe nas
+     beiradas. Ela se desenha de uma ponta a outra quando o bloco chega na tela.
 
-     A faixa fica num embrulho em volta do bloco, e nao dentro dele: o bloco
-     corta o que transborda, e os riscos precisam cruzar a borda, aparecendo
-     dos dois lados dela. */
-  var RISCOS = [
+     A caixa da linha fica num embrulho em volta do bloco, e nao dentro dele: o
+     bloco corta o que transborda, e a linha precisa nascer um pouco ACIMA da
+     foto para depois cair sobre ela.
+
+     O desenho estica na largura da tela, mas a espessura nao acompanha, por
+     causa do `vector-effect` no CSS: a linha fica com um pixel em qualquer
+     largura. O comprimento do traco e medido depois de inserido, e e ele que
+     faz o risco se desenhar em vez de simplesmente aparecer. */
+  var LINHAS = [
     {
       alvo: '#curadoria .leque',
-      quedas: [
-        { x: '13%', alt: '132px' },
-        { x: '71%', alt: '74px', atraso: '0.62s' }
-      ],
-      diagonais: [
-        { x: '84%', y: '-46px', alt: '150px', atraso: '0.7s' },
-        { x: '89%', y: '-28px', alt: '104px', atraso: '0.82s' },
-        { x: '93.5%', y: '-60px', alt: '186px', atraso: '0.94s' }
-      ],
-      marca: '13%'
+      curva: 'M-30,22 C 240,200 690,186 1030,40',
+      altura: 'clamp(96px, 15vw, 200px)',
+      sobe: 'clamp(16px, 2.4vw, 38px)'
     },
     {
       alvo: '#manifesto .faixa-imagem',
-      quedas: [
-        { x: '9%', alt: '96px' },
-        { x: '63%', alt: '58px', atraso: '0.6s' }
-      ],
-      diagonais: [
-        { x: '77%', y: '-34px', alt: '116px', atraso: '0.68s' },
-        { x: '82%', y: '-52px', alt: '158px', atraso: '0.8s' }
-      ],
-      marca: '9%'
+      curva: 'M-30,44 C 300,198 720,208 1030,26',
+      altura: 'clamp(80px, 12vw, 160px)',
+      sobe: 'clamp(12px, 1.8vw, 28px)'
     },
     {
       alvo: '#servicos .palco',
-      quedas: [
-        { x: '17%', alt: '148px' },
-        { x: '78%', alt: '88px', atraso: '0.64s' }
-      ],
-      diagonais: [
-        { x: '30%', y: '-40px', alt: '128px', atraso: '0.72s' },
-        { x: '35%', y: '-22px', alt: '92px', atraso: '0.84s' },
-        { x: '39.5%', y: '-56px', alt: '170px', atraso: '0.96s' }
-      ],
-      marca: '17%'
+      curva: 'M-30,30 C 210,196 800,176 1030,48',
+      altura: 'clamp(96px, 15vw, 200px)',
+      sobe: 'clamp(16px, 2.4vw, 38px)'
     }
   ];
 
-  var TRIANGULO = '<svg width="15" height="10" viewBox="0 0 15 10" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1 1 L7.5 9 L14 1"/></svg>';
+  var linhasNaTela = [];
 
-  var riscosNaTela = [];
-
-  RISCOS.forEach(function (conf) {
+  LINHAS.forEach(function (conf) {
     var bloco = document.querySelector(conf.alvo);
     if (!bloco || !bloco.parentNode) return;
 
@@ -1970,41 +1913,38 @@
     bloco.parentNode.insertBefore(embrulho, bloco);
     embrulho.appendChild(bloco);
 
-    var faixa = document.createElement('div');
-    faixa.className = 'riscos';
-    faixa.setAttribute('aria-hidden', 'true');
+    var caixa = document.createElement('div');
+    caixa.className = 'linha-caida';
+    caixa.setAttribute('aria-hidden', 'true');
+    caixa.style.cssText = '--altura:' + conf.altura + ';--sobe:' + conf.sobe;
+    caixa.innerHTML =
+      '<svg viewBox="0 0 1000 220" preserveAspectRatio="none" focusable="false">'
+      + '<path d="' + conf.curva + '"/>'
+      + '</svg>';
 
-    var partes = ['<span class="risco risco-regua"></span>'];
+    embrulho.appendChild(caixa);
 
-    conf.quedas.forEach(function (q) {
-      partes.push('<span class="risco risco-queda" style="left:' + q.x
-        + ';--alt:' + q.alt + (q.atraso ? ';--atraso:' + q.atraso : '') + '"></span>');
-    });
+    // o tamanho do traco tem de ser o do caminho, senao ele nao se desenha
+    var caminho = caixa.querySelector('path');
+    try {
+      caixa.style.setProperty('--comp', Math.ceil(caminho.getTotalLength()));
+    } catch (erro) { /* navegador sem medida: fica o valor padrao do CSS */ }
 
-    conf.diagonais.forEach(function (d) {
-      partes.push('<span class="risco risco-diagonal" style="left:' + d.x
-        + ';top:' + d.y + ';--alt:' + d.alt + ';--atraso:' + d.atraso + '"></span>');
-    });
-
-    partes.push('<span class="risco-marca" style="left:' + conf.marca + '">' + TRIANGULO + '</span>');
-
-    faixa.innerHTML = partes.join('');
-    embrulho.appendChild(faixa);
-    riscosNaTela.push(faixa);
+    linhasNaTela.push(caixa);
   });
 
   if (calmo || !('IntersectionObserver' in window)) {
-    riscosNaTela.forEach(function (f) { f.classList.add('aberto'); });
+    linhasNaTela.forEach(function (l) { l.classList.add('aberta'); });
   } else {
-    var olhoRisco = new IntersectionObserver(function (entradas) {
+    var olhoLinha = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add('aberto');
-        olhoRisco.unobserve(e.target);
+        e.target.classList.add('aberta');
+        olhoLinha.unobserve(e.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
 
-    riscosNaTela.forEach(function (f) { olhoRisco.observe(f); });
+    linhasNaTela.forEach(function (l) { olhoLinha.observe(l); });
   }
 
   /* 5. Revelacao ao entrar na tela, escalonada dentro de cada grupo. */

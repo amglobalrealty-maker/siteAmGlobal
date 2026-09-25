@@ -44,7 +44,7 @@ oportunidade, imperdivel, corretor, luxuoso.
 Em algum momento pediram um elemento em rose. **O manual nao tem rose**: as
 cinco cores sao onix, marfim, travertino, grafite e champagne. O champagne
 `#B49A6E` e o mais proximo de um rose dourado e e a cor de acento prevista,
-entao e ele que aparece nos riscos. Se um rose de verdade for aprovado depois,
+entao e ele que aparece nas linhas. Se um rose de verdade for aprovado depois,
 ele precisa entrar no manual antes de entrar no site.
 
 ## O que ainda esta provisorio
@@ -291,31 +291,31 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **Os riscos.** Linhas finas em champagne que se desenham sobre a borda de
-  cima de cada bloco de imagem quando ele chega na tela. Sao tres conjuntos,
-  um sobre a banda da curadoria, um sobre a faixa de imagem da secao A AMGlobal
-  e um sobre o palco dos servicos.
+- **A linha caida.** UMA linha em champagne sobre a borda de cima de cada bloco
+  de imagem. A curva e a de um fio preso pelas duas pontas: cede no meio e sobe
+  nas beiradas. Ela se desenha de uma ponta a outra quando o bloco chega na
+  tela, em pouco mais de dois segundos e meio.
 
-  Cada conjunto tem quatro tipos de peca, e todas saem do manual:
+  Sao tres, uma sobre a banda da curadoria, uma sobre a faixa de imagem da
+  secao A AMGlobal e uma sobre o palco dos servicos, cada uma com a sua curva.
+  Todas nascem um pouco acima da foto e passam das duas bordas laterais, para
+  parecerem um fio que continua para fora da tela.
 
-  | Peca | O que faz |
-  |---|---|
-  | Regua | um fio no rasante da borda, que corre da esquerda para a direita |
-  | Quedas | dois fios verticais descendo da borda para dentro da foto |
-  | Diagonais | dois ou tres fios a 26 graus, cruzando a borda |
-  | Marca | o triangulo aberto vindo do A, no encontro da regua com a primeira queda |
+  Dois detalhes seguram a delicadeza:
 
-  Elas entram em sequencia: primeiro a regua, depois as quedas, depois as
-  diagonais e por fim o triangulo. **Nao ha desenho nenhum**: sao elementos de
-  um pixel que crescem. Por isso o conjunto e leve e fica preciso em qualquer
-  largura de tela.
+  1. O desenho estica na largura da tela, mas a espessura nao acompanha
+     (`vector-effect: non-scaling-stroke`). A linha fica com um pixel em
+     qualquer largura; sem isso, engrossaria numa tela grande.
+  2. O comprimento do traco e medido depois de inserido, com `getTotalLength`.
+     E ele que faz a linha se DESENHAR em vez de simplesmente aparecer.
 
-  A faixa fica num embrulho em volta do bloco, e nao dentro dele: o bloco corta
-  o que transborda, e os riscos precisam cruzar a borda para aparecerem dos
-  dois lados dela. Em tela pequena eles encolhem para 60%.
+  A caixa da linha fica num embrulho em volta do bloco, e nao dentro dele: o
+  bloco corta o que transborda, e a linha precisa nascer acima da foto para
+  depois cair sobre ela. Em tela pequena ela cai menos, para nao cobrir metade
+  da imagem.
 
-  Para mudar onde ficam, quantos sao, o comprimento ou a ordem de entrada,
-  mexa na lista `RISCOS`, dentro do script.
+  Para mudar a curva, a altura da queda ou onde as linhas aparecem, mexa na
+  lista `LINHAS`, dentro do script.
 - **O palco dos servicos.** A secao inteira e uma fotografia de borda a borda,
   furando a margem lateral, com os quatro oficios escritos por cima dela e a
   moldura champagne aberta por dentro. Trocar de oficio nao troca so o texto: a
