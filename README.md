@@ -115,7 +115,7 @@ O endereco completo segue sempre o padrao
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
-| 04 | Servicos | Lista sanfonada: comprar, vender, investir e assessorar do exterior |
+| 04 | Servicos | Os quatro oficios em corpo grande; quem nao esta em foco aparece so em contorno champagne |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
@@ -185,7 +185,13 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **Sanfona dos servicos.** Uma linha aberta por vez.
+- **Os oficios.** Comprar, vender, investir e assessorar do exterior aparecem
+  em corpo grande, um embaixo do outro. Quem nao esta em foco fica so em
+  CONTORNO champagne, sem preenchimento; o escolhido se preenche em marfim e o
+  texto dele entra ao lado, com fusao. E tipografia fazendo o trabalho: sem
+  caixa, sem sanfona, sem sinal de mais. Em navegador que nao souber desenhar
+  contorno de texto, os nomes inativos ficam em marfim bem apagado, e a secao
+  continua legivel.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.
 - **Hora local.** Dado real, via fuso horario do navegador, atualizado a cada
   30 segundos. Nao e numero inventado.
