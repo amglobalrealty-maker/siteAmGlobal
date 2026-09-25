@@ -148,8 +148,9 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 `dados.js` e a fonte unica: as duas paginas o carregam. **Mexer nesse arquivo
 muda as duas**, sem tocar em script.
 
-Cada cidade tem nome, pais, foto de capa, linha de abertura, tres notas sobre a
-praca e a lista de residencias. Cada residencia tem:
+Cada cidade tem nome, pais, foto de capa, **retrato** (a foto vertical da secao
+"A praca"), linha de abertura, tres notas sobre a praca e a lista de
+residencias. Sem `retrato`, a secao cai na foto de capa. Cada residencia tem:
 
 | Campo | O que e |
 |---|---|
@@ -179,7 +180,7 @@ e o que aparece na home.
 |---|---|
 | Capa | Foto quase em tela cheia, nome da cidade, linha de abertura e a contagem |
 | A selecao | A banda de laminas, com as residencias daquela cidade |
-| A praca | Tres notas sobre o que pesa na decisao ali |
+| A praca | Retrato da cidade de um lado, tres notas sobre o que pesa na decisao ali do outro |
 | Fecho | Contato e atalho para as outras pracas |
 
 | Ficha do imovel | |

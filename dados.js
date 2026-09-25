@@ -78,6 +78,7 @@
       'sao-paulo': {
         nome: 'São Paulo', pais: 'Brasil',
         capa: U + '1512531123205-560f5974e686' + C,
+        retrato: U + '1786018120871-cb134b61ddd0' + G,
         linha: 'O maior mercado de alto padrão do país, e o mais exigente. Aqui a diferença entre um bom endereço e o endereço certo se mede em quadras.',
         notas: [
           ['Endereço', 'Jardins, Itaim e Vila Nova Conceição concentram o que não se repete. A distância até o que importa vale mais que a metragem.'],
@@ -121,6 +122,7 @@
       'rio-de-janeiro': {
         nome: 'Rio de Janeiro', pais: 'Brasil',
         capa: U + '1662673053425-924b45c185d0' + C,
+        retrato: U + '1778731660451-323b78996230' + G,
         linha: 'Poucas cidades no mundo colocam mar e montanha na mesma janela. O que é raro aqui é raro em qualquer lugar.',
         notas: [
           ['Vista', 'A vista é o ativo. Ela não se constrói depois e não se corrige: ou o imóvel nasceu com ela, ou não tem.'],
@@ -164,6 +166,7 @@
       'florianopolis': {
         nome: 'Florianópolis', pais: 'Brasil',
         capa: U + '1559090336-72f0d1015545' + C,
+        retrato: U + '1748063578185-3d68121b11ff' + G,
         linha: 'Uma praça que deixou de ser destino de veraneio e virou endereço de morar o ano inteiro.',
         notas: [
           ['Mar', 'Jurerê, Praia Brava e Campeche são mercados diferentes com o mesmo CEP. A escolha muda o perfil do investimento.'],
@@ -207,6 +210,7 @@
       'orlando': {
         nome: 'Orlando', pais: 'Estados Unidos',
         capa: U + '1546447208-9d7b923c0204' + C,
+        retrato: U + '1776482128172-dd265ad0cb49' + G,
         linha: 'O principal destino de brasileiros nos Estados Unidos, e a porta de entrada mais simples para comprar fora do país.',
         notas: [
           ['Estrutura', 'A compra por estrangeiro é rotina aqui: cartório, seguro de título e financiamento local funcionam sem fricção.'],
@@ -250,6 +254,7 @@
       'miami': {
         nome: 'Miami', pais: 'Estados Unidos',
         capa: U + '1611323340350-bdcc0e6cfae5' + C,
+        retrato: U + '1778731660244-b6e8f905107d' + G,
         linha: 'A cidade onde a América Latina encontra o mercado americano. Preço em dólar, liquidez alta e concorrência internacional.',
         notas: [
           ['Água', 'Frente para a baía e acesso náutico criam uma faixa de preço própria, que não acompanha o resto da cidade.'],
@@ -293,6 +298,7 @@
       'dubai': {
         nome: 'Dubai', pais: 'Emirados',
         capa: U + '1598737652403-6e0ee5bf5cf2' + C,
+        retrato: U + '1670589953882-b94c9cb380f5' + G,
         linha: 'Um mercado de expansão rápida, com estrutura feita para o comprador estrangeiro e sem imposto sobre a renda do aluguel.',
         notas: [
           ['Acesso', 'Estrangeiro compra em propriedade plena nas zonas designadas, com registro próprio e prazo curto.'],
@@ -336,6 +342,7 @@
       'lisboa': {
         nome: 'Lisboa', pais: 'Portugal',
         capa: U + '1613490493576-7fde63acd811' + C,
+        retrato: U + '1685514823717-7e1ff6ee0563' + G,
         linha: 'A porta de entrada na Europa, entre segunda residência e diversificação de patrimônio, com o idioma a favor.',
         notas: [
           ['Centro histórico', 'Palacetes e prédios reabilitados no Príncipe Real e na Lapa são um mercado pequeno e disputado.'],
@@ -379,6 +386,7 @@
       'cascais': {
         nome: 'Cascais', pais: 'Portugal',
         capa: U + '1660361339436-ddd4b85372da' + C,
+        retrato: U + '1723110994499-df46435aa4b3' + G,
         linha: 'Mar, golfe e trinta minutos de Lisboa. A praça escolhida por quem se muda com a família inteira.',
         notas: [
           ['Vida', 'Escolas internacionais e clubes fazem parte da decisão tanto quanto a casa. É o que costuma definir o bairro.'],
