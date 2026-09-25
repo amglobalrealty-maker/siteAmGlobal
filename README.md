@@ -41,14 +41,11 @@ oportunidade, imperdivel, corretor, luxuoso.
 
 ### Sobre "rose"
 
-A cliente pediu as folhas em rose. **O manual nao tem rose**: as cinco cores
-sao onix, marfim, travertino, grafite e champagne. O champagne `#B49A6E` e o
-mais proximo de um rose dourado e e a cor de acento prevista, entao foi ele que
-entrou. Como o manual pede champagne em pouca area e nunca em bloco grande, as
-frondes ficam translucidas (entre 40% e 50%) e so nos cantos.
-
-Se um rose de verdade for aprovado depois, ele precisa entrar no manual antes
-de entrar no site, e basta trocar a cor na regra `.folha`.
+Em algum momento pediram um elemento em rose. **O manual nao tem rose**: as
+cinco cores sao onix, marfim, travertino, grafite e champagne. O champagne
+`#B49A6E` e o mais proximo de um rose dourado e e a cor de acento prevista,
+entao e ele que aparece nos riscos. Se um rose de verdade for aprovado depois,
+ele precisa entrar no manual antes de entrar no site.
 
 ## O que ainda esta provisorio
 
@@ -294,86 +291,31 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **A folhagem.** Setenta e cinco folhas formam faixas de mato debrucado sobre
-  as imagens: vinte e cinco sobre a banda da curadoria, vinte e cinco sobre a
-  faixa de imagem da secao A AMGlobal e vinte e cinco sobre o palco dos
-  servicos.
+- **Os riscos.** Linhas finas em champagne que se desenham sobre a borda de
+  cima de cada bloco de imagem quando ele chega na tela. Sao tres conjuntos,
+  um sobre a banda da curadoria, um sobre a faixa de imagem da secao A AMGlobal
+  e um sobre o palco dos servicos.
 
-  **Sao tres camadas por faixa, e e delas que vem a profundidade:**
+  Cada conjunto tem quatro tipos de peca, e todas saem do manual:
 
-  | Camada | Quantas | Tamanho | Quanto sobe acima da borda | Tom |
-  |---|---|---|---|---|
-  | Fundo | 11 | menores | 40% a 52% | mais claro e apagado |
-  | Meio | 8 | medias | 32% a 42% | intermediario |
-  | Frente | 6 | maiores | 24% a 32% | mais forte, com sombra |
+  | Peca | O que faz |
+  |---|---|
+  | Regua | um fio no rasante da borda, que corre da esquerda para a direita |
+  | Quedas | dois fios verticais descendo da borda para dentro da foto |
+  | Diagonais | dois ou tres fios a 26 graus, cruzando a borda |
+  | Marca | o triangulo aberto vindo do A, no encontro da regua com a primeira queda |
 
-  Cada camada comeca deslocada da anterior, para uma tapar o vao da outra, e
-  todas vao de -6% a 106% da largura: as pontas precisam passar da borda, senao
-  sobra vazio nos cantos e a faixa deixa de parecer continua.
+  Elas entram em sequencia: primeiro a regua, depois as quedas, depois as
+  diagonais e por fim o triangulo. **Nao ha desenho nenhum**: sao elementos de
+  um pixel que crescem. Por isso o conjunto e leve e fica preciso em qualquer
+  largura de tela.
 
-  **A folhagem NAO fica dentro da foto.** Ela se apoia na borda e passa dos
-  dois lados: um pedaco sobre o fundo da secao, o resto caindo sobre a imagem.
-  Por isso a faixa mora num embrulho em volta do bloco, e nao dentro dele: o
-  bloco corta o que transborda e decepava a folhagem numa linha reta.
+  A faixa fica num embrulho em volta do bloco, e nao dentro dele: o bloco corta
+  o que transborda, e os riscos precisam cruzar a borda para aparecerem dos
+  dois lados dela. Em tela pequena eles encolhem para 60%.
 
-  O embrulho tem um respiro no alto, e e nele que cabe o pedaco que sobe. Na
-  tela mais larga a folha sobe no maximo 144px e a folga e de 168px a 200px,
-  entao ela nunca alcanca o texto da secao.
-
-  **Os angulos abrem de -68 a 64 graus**, e nove das vinte e cinco passam de 40
-  graus. A posicao puxa o sentido (as da esquerda pendem para a esquerda), mas
-  o sorteio manda mais que ela: sem isso todas caem retas e enfileiradas, que
-  nao e como mato se comporta.
-
-  Cada folha e pendurada pelo caule, com a lamina caindo para baixo, e as das
-  pontas pendem mais para fora. Elas entram da esquerda para a direita, uma
-  logo depois da outra, quando o bloco chega na tela.
-
-  **A folha ja e DESENHADA pendurada**, espelhada na vertical pelo proprio SVG.
-  Nao tente resolver isso girando 180 graus no CSS: o giro acontece em torno do
-  topo do elemento e joga a caixa inteira para cima da borda. Foi o que
-  aconteceu em duas tentativas, e o resultado foi a folhagem aparecer sobre o
-  texto e, depois do corte entrar, sumir por completo.
-
-  **A faixa entra DENTRO do proprio bloco de imagem.** Como o bloco corta o que
-  transborda, as folhas so podem cair para dentro da foto: nao ha como
-  escaparem para cima do texto. Uma tentativa anterior punha a faixa num
-  embrulho em volta do bloco, e as folhas acabavam ancoradas na secao inteira,
-  parando em cima do texto e longe da imagem.
-
-  A desordem e proposital mas nao e sorteada: vem de uma conta com seno, entao
-  e sempre a mesma em qualquer carregamento e nenhuma folha fica igual a
-  vizinha. Abaixo de 900px a folhagem some: naquela largura a banda da
-  curadoria rola de lado e a faixa andaria junto com ela.
-
-  **O desenho e gerado pelo script, nao e arquivo.** A funcao monta a folha
-  lamina por lamina: cada uma sai do caule, incha e afina na ponta, e os vaos
-  entre elas fazem o recorte de costela-de-adao. As do meio saem mais longas e
-  o angulo fecha em direcao a ponta.
-
-  **O volume nao vem de sombra chapada.** Vem de tres coisas somadas:
-
-  1. Dois degrades diferentes, um para o lado iluminado e outro para o lado
-     virado, entao um lado da folha parece mais claro que o outro.
-  2. Uma nervura clara dentro de cada lamina.
-  3. A folha inteira girada em perspectiva pelo CSS: ela chega deitada e de
-     lado, com `rotateX` e `rotateY` fortes, e se endireita ao entrar.
-
-  Depois de entrar, cada folha balanca devagar, num ciclo de treze segundos. O
-  balanco fica no SVG e nao na folha, senao brigaria com a transformacao de
-  entrada.
-
-  Os degrades sao declarados UMA VEZ, num SVG escondido no fim da pagina, e as
-  setenta e cinco folhas apontam para eles. Antes cada folha carregava os
-  proprios, o que daria mais de cem definicoes repetidas de graca.
-
-  Para mudar onde as faixas aparecem e o tamanho base das folhas, mexa em
-  `FOLHAGENS`. Para mudar densidade, profundidade ou tom das camadas, mexa em
-  `CAMADAS`. As cores ficam em `TONS`, tres tons de champagne, um por camada.
-
-  Sao decoracao pura: nao recebem clique, ficam fora da leitura de tela e
-  nenhuma cobre texto. Com movimento reduzido, aparecem no lugar e nao
-  balancam.
+  Para mudar onde ficam, quantos sao, o comprimento ou a ordem de entrada,
+  mexa na lista `RISCOS`, dentro do script.
 - **O palco dos servicos.** A secao inteira e uma fotografia de borda a borda,
   furando a margem lateral, com os quatro oficios escritos por cima dela e a
   moldura champagne aberta por dentro. Trocar de oficio nao troca so o texto: a

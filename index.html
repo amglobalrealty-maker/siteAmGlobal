@@ -203,30 +203,22 @@
   /* triangulo aberto, o marcador tirado do A */
   .chevron { display: block; }
 
-  /* ================================================================ folhas ==
-     Frondes em champagne que entram deslizando quando a secao chega na tela e
-     ficam POR CIMA das imagens. O desenho vem do script; aqui so o lugar, a
-     transparencia e o movimento.
+  /* ================================================================ riscos ==
+     Linhas finas em champagne que se desenham sobre a borda de cima de cada
+     bloco de imagem, quando ele chega na tela.
 
-     Sao decoracao pura: `pointer-events: none` para nao roubar clique, e
-     `aria-hidden` no HTML para nao entrarem na leitura de tela. Como o manual
-     pede champagne em pouca area, ficam translucidas e so nos cantos.
+     Tudo aqui sai do manual: o filete champagne, a diagonal a 26 graus e o
+     triangulo aberto vindo do A. Nao ha desenho nenhum, so linhas de um pixel
+     que crescem: e por isso que o conjunto e leve e fica preciso em qualquer
+     largura de tela.
      ------------------------------------------------------------------------ */
-  /* O embrulho do bloco de imagem: da o ponto de apoio e NAO corta nada, para
-     a folhagem poder passar dos dois lados da borda.
 
-     O respiro em cima e para a folhagem: e nele que cabe o pedaco da folha que
-     sobe acima da borda. Sem ele, a parte de cima das folhas iria alcancar o
-     texto da secao. */
-  .com-folhagem {
-    position: relative;
-    margin-top: clamp(30px, 5vh, 72px);
-  }
+  /* o embrulho da o ponto de apoio e NAO corta, para os riscos cruzarem a
+     borda e aparecerem dos dois lados dela */
+  .com-riscos { position: relative; }
 
-  /* A faixa mora na borda de CIMA do bloco, com altura zero. As folhas se
-     apoiam nela: um pedaco fica sobre o fundo da secao e o resto cai sobre a
-     imagem. */
-  .folhagem {
+  .riscos {
+    --escala: 1;
     position: absolute;
     z-index: 6;
     top: 0;
@@ -236,52 +228,59 @@
     pointer-events: none;
   }
 
-  .folha {
+  .risco {
     position: absolute;
-    top: 0;
-    display: block;
+    background: var(--champagne);
     opacity: 0;
-    pointer-events: none;
-    /* o caule fica no alto: a folha e pendurada por ele e cai sobre a imagem */
+    transition: opacity 0.6s var(--curva);
+  }
+
+  .riscos.aberto .risco { opacity: 0.62; }
+
+  /* a regua, no fio da borda: cresce da esquerda para a direita */
+  .risco-regua {
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    transition: width 1.8s var(--curva), opacity 0.6s var(--curva);
+  }
+
+  .riscos.aberto .risco-regua { width: 100%; }
+
+  /* quedas: descem da borda para dentro da imagem */
+  .risco-queda {
+    top: 0;
+    width: 1px;
+    height: 0;
+    transition: height 1.1s var(--curva) var(--atraso, 0.4s), opacity 0.6s var(--curva) var(--atraso, 0.4s);
+  }
+
+  .riscos.aberto .risco-queda { height: calc(var(--alt) * var(--escala)); }
+
+  /* diagonais a 26 graus, cruzando a borda; o giro e a partir do topo */
+  .risco-diagonal {
+    width: 1px;
+    height: 0;
     transform-origin: 50% 0;
-    /* ela chega mais deitada e mais acima; ao entrar, desce e se endireita */
-    transform:
-      translate(-50%, -34%)
-      perspective(900px)
-      rotateX(var(--rx-ini, 40deg))
-      rotateY(var(--ry-fim, 0deg))
-      rotate(var(--ang-ini, 0deg))
-      scale(0.9);
-    transition: opacity 1.5s var(--curva), transform 2s var(--curva);
-    will-change: transform, opacity;
+    transform: rotate(26deg);
+    transition: height 1.2s var(--curva) var(--atraso, 0.6s), opacity 0.6s var(--curva) var(--atraso, 0.6s);
   }
 
-  /* So a camada da frente leva sombra. Sombra em setenta e tantas folhas
-     custaria caro e empastelaria a massa em vez de dar profundidade. */
-  .folha--frente { filter: drop-shadow(0 18px 26px rgba(11, 11, 12, 0.5)); }
-  .folha--meio { filter: drop-shadow(0 10px 16px rgba(11, 11, 12, 0.3)); }
+  .riscos.aberto .risco-diagonal { height: calc(var(--alt) * var(--escala)); }
 
-  .folha.aberta {
-    opacity: var(--op, 0.7);
-    transform:
-      translate(-50%, var(--sobe, -12%))
-      perspective(900px)
-      rotateX(var(--rx-fim, 8deg))
-      rotateY(var(--ry-fim, 0deg))
-      rotate(var(--ang-fim, 0deg))
-      scale(1);
+  /* o triangulo aberto, no encontro da regua com a primeira queda */
+  .risco-marca {
+    position: absolute;
+    color: var(--champagne);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: opacity 0.9s var(--curva) 1.1s, transform 1.1s var(--curva) 1.1s;
   }
 
-  .folha svg { display: block; width: 100%; height: auto; transform-origin: 50% 8%; }
+  .riscos.aberto .risco-marca { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
 
-  /* Um balanco de verdade, bem lento, girando a partir do caule. Fica no SVG e
-     nao na folha, senao brigaria com a transformacao de entrada, que mora la. */
-  .folha.aberta svg { animation: balancar 13s ease-in-out infinite alternate; }
-
-  @keyframes balancar {
-    from { transform: rotate(-2.2deg); }
-    to { transform: rotate(2.4deg); }
-  }
+  .risco-marca svg { display: block; }
 
   /* =========================================================== revelacoes == */
   .sobe {
@@ -1333,9 +1332,8 @@
     }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
-    /* No celular a banda da curadoria rola de lado, e a folhagem andaria junto
-       com ela. Fora que, em tela pequena, a folha cobre imagem demais. Sai. */
-    .folhagem { display: none; }
+    /* no celular os riscos ficam menores, so encostando na borda */
+    .riscos { --escala: 0.6; }
   }
 
   /* telas largas mas baixas, como notebook: o titulo encolhe para a abertura
@@ -1354,7 +1352,6 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .rolar .chevron, .faixa-trilho, .slide.ativa img,
-    .folha.aberta svg,
     .palco-foto.ativa, .palco-foto.ativa img { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
@@ -1906,259 +1903,108 @@
     if (ev.key === 'Escape') fecharMenu();
   });
 
-  /* 4b. As folhas.
+  /* 4b. OS RISCOS.
 
-     Frondes desenhadas em SVG pelo proprio script, em champagne, que entram
-     deslizando conforme a secao chega na tela e ficam POR CIMA das imagens.
-     Sao decoracao: nao recebem clique, nao entram na leitura de tela e nenhuma
-     delas cobre texto.
+     Linhas finas em champagne que se desenham sobre a borda de cima de cada
+     bloco de imagem: uma regua correndo no fio da borda, duas quedas descendo
+     para dentro da foto, tres diagonais a 26 graus cruzando a borda e o
+     triangulo aberto no encontro da regua com a primeira queda.
 
-     O desenho e gerado, e nao um arquivo: assim cada fronde tem o seu numero
-     de foliolos e a sua curva, e nenhuma fica igual a outra. Para mudar cor,
-     tamanho ou posicao, mexa na lista FOLHAS logo abaixo.
+     Tudo vem do manual, e nao ha desenho nenhum: sao divs de um pixel que
+     crescem. Por isso o conjunto e leve e fica preciso em qualquer largura.
 
-     Nota de marca: o manual nao tem rose. As cinco cores sao onix, marfim,
-     travertino, grafite e champagne; o champagne e o mais proximo de um rose
-     dourado, e e a cor de acento prevista. Como o manual pede champagne em
-     pouca area, as frondes ficam translucidas e so nos cantos. */
-  /* Uma folha de verdade, montada lamina por lamina.
-
-     Cada lamina e um contorno curvo que sai do caule, incha e afina na ponta.
-     Os vaos entre elas sao o que da o recorte de costela-de-adao. As do meio
-     saem mais longas e o angulo fecha em direcao a ponta.
-
-     O volume vem de tres coisas, nao de sombra chapada:
-       - dois degrades diferentes, um para o lado iluminado e outro para o lado
-         virado, entao um lado da folha parece mais claro que o outro;
-       - uma nervura clara dentro de cada lamina;
-       - a folha inteira girada em perspectiva pelo CSS.
-
-     `id` entra no nome dos degrades: sem isso, quatro folhas na mesma pagina
-     brigariam pelo mesmo identificador e todas sairiam com o degrade da ultima. */
-  /* Os degrades sao declarados UMA VEZ, num SVG escondido no fim da pagina, e
-     todas as folhas apontam para eles. Antes cada folha carregava os proprios:
-     com setenta e poucas folhas na tela isso viraria mais de cem definicoes
-     repetidas, de graca. */
-  var TONS = {
-    frente: { a: ['#7E6942', '#B49A6E', '#DCC79E'], b: ['#5E4E31', '#8E7850', '#B49A6E'] },
-    meio:   { a: ['#8A7452', '#BDA47A', '#E0CDA8'], b: ['#6B5A3C', '#9A845C', '#C0A87E'] },
-    fundo:  { a: ['#9C8865', '#C6B189', '#E6D8BC'], b: ['#82714F', '#A89272', '#CDB795'] }
-  };
-
-  (function guardarTons() {
-    var defs = '';
-    Object.keys(TONS).forEach(function (tom) {
-      ['a', 'b'].forEach(function (lado) {
-        var c = TONS[tom][lado];
-        var coords = lado === 'a' ? 'x1="0.1" y1="1" x2="0.8" y2="0"' : 'x1="0.9" y1="1" x2="0.2" y2="0.1"';
-        defs += '<linearGradient id="folha-' + tom + '-' + lado + '" ' + coords + '>'
-          + '<stop offset="0" stop-color="' + c[0] + '"/>'
-          + '<stop offset="0.55" stop-color="' + c[1] + '"/>'
-          + '<stop offset="1" stop-color="' + c[2] + '"/>'
-          + '</linearGradient>';
-      });
-    });
-
-    var svg = document.createElement('div');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-    svg.innerHTML = '<svg width="0" height="0"><defs>' + defs + '</defs></svg>';
-    document.body.appendChild(svg);
-  })();
-
-  function desenharFolha(laminas, tom) {
-    var claro = 'folha-' + tom + '-a';
-    var escuro = 'folha-' + tom + '-b';
-    var partes = [];
-
-    // caule
-    partes.push('<path d="M150 478 C 144 390 147 268 150 158" fill="none" stroke="url(#' + claro + ')" stroke-width="5.5" stroke-linecap="round"/>');
-
-    function lamina(x, y, comp, larg, ang, lado) {
-      var m = lado < 0 ? -1 : 1;
-      var w = larg * m;
-
-      // contorno: sai do caule, incha e termina em ponta
-      var d = 'M0,0'
-        + ' C' + (w * 0.62).toFixed(1) + ',' + (-comp * 0.10).toFixed(1)
-        + ' ' + (w * 0.88).toFixed(1) + ',' + (-comp * 0.44).toFixed(1)
-        + ' ' + (w * 0.30).toFixed(1) + ',' + (-comp).toFixed(1)
-        + ' C' + (-w * 0.16).toFixed(1) + ',' + (-comp * 0.62).toFixed(1)
-        + ' ' + (-w * 0.40).toFixed(1) + ',' + (-comp * 0.17).toFixed(1)
-        + ' 0,0 Z';
-
-      // nervura, dentro da lamina
-      var nervura = 'M0,0'
-        + ' C' + (w * 0.14).toFixed(1) + ',' + (-comp * 0.36).toFixed(1)
-        + ' ' + (w * 0.22).toFixed(1) + ',' + (-comp * 0.7).toFixed(1)
-        + ' ' + (w * 0.28).toFixed(1) + ',' + (-comp * 0.94).toFixed(1);
-
-      var giro = 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (ang * m).toFixed(1) + ')';
-      var tinta = lado < 0 ? escuro : claro;
-
-      return '<g transform="' + giro + '">'
-        + '<path d="' + d + '" fill="url(#' + tinta + ')"/>'
-        + '<path d="' + nervura + '" fill="none" stroke="#E4D3B2" stroke-width="1.1" stroke-linecap="round" opacity="0.38"/>'
-        + '</g>';
+     A faixa fica num embrulho em volta do bloco, e nao dentro dele: o bloco
+     corta o que transborda, e os riscos precisam cruzar a borda, aparecendo
+     dos dois lados dela. */
+  var RISCOS = [
+    {
+      alvo: '#curadoria .leque',
+      quedas: [
+        { x: '13%', alt: '132px' },
+        { x: '71%', alt: '74px', atraso: '0.62s' }
+      ],
+      diagonais: [
+        { x: '84%', y: '-46px', alt: '150px', atraso: '0.7s' },
+        { x: '89%', y: '-28px', alt: '104px', atraso: '0.82s' },
+        { x: '93.5%', y: '-60px', alt: '186px', atraso: '0.94s' }
+      ],
+      marca: '13%'
+    },
+    {
+      alvo: '#manifesto .faixa-imagem',
+      quedas: [
+        { x: '9%', alt: '96px' },
+        { x: '63%', alt: '58px', atraso: '0.6s' }
+      ],
+      diagonais: [
+        { x: '77%', y: '-34px', alt: '116px', atraso: '0.68s' },
+        { x: '82%', y: '-52px', alt: '158px', atraso: '0.8s' }
+      ],
+      marca: '9%'
+    },
+    {
+      alvo: '#servicos .palco',
+      quedas: [
+        { x: '17%', alt: '148px' },
+        { x: '78%', alt: '88px', atraso: '0.64s' }
+      ],
+      diagonais: [
+        { x: '30%', y: '-40px', alt: '128px', atraso: '0.72s' },
+        { x: '35%', y: '-22px', alt: '92px', atraso: '0.84s' },
+        { x: '39.5%', y: '-56px', alt: '170px', atraso: '0.96s' }
+      ],
+      marca: '17%'
     }
-
-    for (var i = 0; i < laminas; i++) {
-      var t = i / (laminas - 1);
-      var y = 452 - t * 312;
-      var x = 150 - (1 - Math.cos(t * 1.1)) * 9;
-      var comp = 34 + Math.sin(t * Math.PI) * 118;
-      var larg = comp * 0.6;
-      var ang = 76 - t * 42;
-
-      partes.push(lamina(x, y, comp, larg, ang, -1));
-      partes.push(lamina(x, y, comp, larg, ang, 1));
-    }
-
-    /* A folha e desenhada de baixo para cima, com o caule no pe. Aqui ela e
-       ESPELHADA na vertical, entao o caule vai para o alto e as laminas caem.
-
-       Por que espelhar em vez de girar 180 graus no CSS: girar em torno do
-       topo do elemento joga a caixa inteira para CIMA da borda. Foi o que
-       aconteceu nas duas tentativas anteriores, e por isso as folhas apareciam
-       em cima do texto e, depois do corte entrar, sumiram de vez. Espelhada, a
-       folha nasce onde tem de nascer e nao depende de giro nenhum. */
-    return '<svg viewBox="0 0 300 500" aria-hidden="true" focusable="false">'
-      + '<g transform="translate(0 500) scale(1 -1)">' + partes.join('') + '</g>'
-      + '</svg>';
-  }
-
-  /* A FOLHAGEM.
-
-     As folhas nao ficam soltas nos cantos: elas formam uma faixa apoiada na
-     borda de cima de cada bloco de imagem, caindo por cima dele, como mato
-     debrucado sobre a foto.
-
-     A faixa entra DENTRO do proprio bloco de imagem. Como o bloco corta o que
-     transborda, as folhas so podem cair para dentro da foto: nao ha como
-     escaparem para cima do texto.
-
-     A desordem e proposital, mas nao e sorteada: vem de uma conta com seno,
-     entao e sempre a mesma em qualquer carregamento, e nenhuma folha fica
-     exatamente igual a vizinha. */
-  function ruido(i, semente) {
-    var x = Math.sin(i * 12.9898 + semente * 78.233) * 43758.5453;
-    return x - Math.floor(x);
-  }
-
-  /* Tres camadas por faixa, do fundo para a frente. E isso que faz parecer
-     MATO ATRAS da foto, e nao folha colada nela:
-
-       fundo   muitas, pequenas, bem escondidas atras da borda e apagadas;
-       meio    medias, um pouco mais para baixo;
-       frente  poucas, grandes, mais para baixo e quase opacas.
-
-     Como o bloco corta o que transborda, boa parte de cada folha fica ESCONDIDA
-     acima da borda. E de proposito: so a parte que cai sobre a foto aparece, e
-     a massa parece continuar por tras. */
-  /* `sobe` agora e quanto a folha e puxada para CIMA da borda. Como nada mais
-     corta, esse pedaco fica visivel sobre o fundo da secao, e o resto cai sobre
-     a foto: e o que faz ela parecer apoiada na borda, e nao presa dentro. */
-  var CAMADAS = [
-    { nome: 'fundo',  tom: 'fundo',  quantas: 11, escala: [0.46, 0.28], sobe: [-40, 12], op: [0.4, 0.16],  laminas: [4, 2], z: 0 },
-    { nome: 'meio',   tom: 'meio',   quantas: 8,  escala: [0.74, 0.32], sobe: [-32, 10], op: [0.58, 0.18], laminas: [5, 2], z: 1 },
-    { nome: 'frente', tom: 'frente', quantas: 6,  escala: [1.00, 0.42], sobe: [-24, 8],  op: [0.78, 0.18], laminas: [6, 3], z: 2 }
   ];
 
-  var FOLHAGENS = [
-    { alvo: '#curadoria .leque',        base: 'clamp(90px, 11.5vw, 190px)' },
-    { alvo: '#manifesto .faixa-imagem', base: 'clamp(82px, 10.5vw, 172px)' },
-    { alvo: '#servicos .palco',         base: 'clamp(90px, 11.5vw, 190px)' }
-  ];
+  var TRIANGULO = '<svg width="15" height="10" viewBox="0 0 15 10" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1 1 L7.5 9 L14 1"/></svg>';
 
-  var folhasNaTela = [];
+  var riscosNaTela = [];
 
-  FOLHAGENS.forEach(function (conf, nc) {
+  RISCOS.forEach(function (conf) {
     var bloco = document.querySelector(conf.alvo);
     if (!bloco || !bloco.parentNode) return;
 
-    /* A faixa fica FORA do bloco de imagem, num embrulho em volta dele.
-
-       Dentro do bloco nao serve: o bloco corta o que transborda, e a folhagem
-       ficava decepada numa linha reta na borda, parecendo presa dentro da foto.
-       Ela tem de se APOIAR na borda e passar dos dois lados: um pedaco sobre o
-       fundo da secao, o resto caindo sobre a imagem.
-
-       O embrulho nao corta nada e comeca exatamente onde a imagem comeca. */
     var embrulho = document.createElement('div');
-    embrulho.className = 'com-folhagem';
+    embrulho.className = 'com-riscos';
     bloco.parentNode.insertBefore(embrulho, bloco);
     embrulho.appendChild(bloco);
 
     var faixa = document.createElement('div');
-    faixa.className = 'folhagem';
+    faixa.className = 'riscos';
     faixa.setAttribute('aria-hidden', 'true');
 
-    var ordem = 0;
+    var partes = ['<span class="risco risco-regua"></span>'];
 
-    CAMADAS.forEach(function (cam, nk) {
-      for (var i = 0; i < cam.quantas; i++) {
-        var semente = nc * 31 + nk * 7;
-        var r1 = ruido(i, semente + 1);
-        var r2 = ruido(i, semente + 5);
-        var r3 = ruido(i, semente + 11);
-
-        /* Vai de -6% a 106%: as pontas precisam passar da borda, senao sobra
-           um vazio nos cantos e a faixa deixa de parecer continua. Cada camada
-           comeca deslocada da anterior, para uma tapar o vao da outra. */
-        var passo = 112 / cam.quantas;
-        var esquerda = -6 + passo * (i + 0.5) + (r1 - 0.5) * passo * 0.7 + nk * passo * 0.28;
-
-        var tamanho = (cam.escala[0] + r2 * cam.escala[1]).toFixed(2);
-
-        /* O angulo abre MUITO: de quase deitada para um lado a quase deitada
-           para o outro. Antes variava so uns trinta graus e todas caiam
-           praticamente retas, enfileiradas. Mato de verdade nao faz isso.
-           A posicao ainda puxa o sentido (as da esquerda pendem para a
-           esquerda), mas o sorteio manda mais que ela. */
-        var pende = (esquerda - 50) * 0.7 + (r3 - 0.5) * 100;
-        pende = Math.max(-86, Math.min(86, pende));
-
-        var folha = document.createElement('span');
-        folha.className = 'folha folha--' + cam.nome;
-        folha.setAttribute('aria-hidden', 'true');
-        folha.style.cssText =
-          'left:' + esquerda.toFixed(1) + '%'
-          + ';width:calc(' + conf.base + ' * ' + tamanho + ')'
-          + ';z-index:' + cam.z
-          + ';--op:' + (cam.op[0] + r2 * cam.op[1]).toFixed(2)
-          // a folha ja nasce pendurada: o angulo e so a inclinacao
-          + ';--ang-ini:' + (pende * 1.5).toFixed(1) + 'deg'
-          + ';--ang-fim:' + pende.toFixed(1) + 'deg'
-          + ';--rx-ini:' + (40 + r1 * 22).toFixed(1) + 'deg'
-          + ';--rx-fim:' + (5 + r1 * 12).toFixed(1) + 'deg'
-          + ';--ry-fim:' + ((r3 - 0.5) * 26).toFixed(1) + 'deg'
-          // o quanto some atras da borda: o fundo some mais que a frente
-          + ';--sobe:' + (cam.sobe[0] - r2 * cam.sobe[1]).toFixed(0) + '%'
-          // entram da esquerda para a direita, camada por camada
-          + ';transition-delay:' + (ordem * 0.035).toFixed(2) + 's';
-        folha.innerHTML = desenharFolha(cam.laminas[0] + Math.round(r1 * cam.laminas[1]), cam.tom);
-
-        faixa.appendChild(folha);
-        folhasNaTela.push(folha);
-        ordem++;
-      }
+    conf.quedas.forEach(function (q) {
+      partes.push('<span class="risco risco-queda" style="left:' + q.x
+        + ';--alt:' + q.alt + (q.atraso ? ';--atraso:' + q.atraso : '') + '"></span>');
     });
 
+    conf.diagonais.forEach(function (d) {
+      partes.push('<span class="risco risco-diagonal" style="left:' + d.x
+        + ';top:' + d.y + ';--alt:' + d.alt + ';--atraso:' + d.atraso + '"></span>');
+    });
+
+    partes.push('<span class="risco-marca" style="left:' + conf.marca + '">' + TRIANGULO + '</span>');
+
+    faixa.innerHTML = partes.join('');
     embrulho.appendChild(faixa);
+    riscosNaTela.push(faixa);
   });
 
   if (calmo || !('IntersectionObserver' in window)) {
-    folhasNaTela.forEach(function (f) { f.classList.add('aberta'); });
+    riscosNaTela.forEach(function (f) { f.classList.add('aberto'); });
   } else {
-    var olhoFolha = new IntersectionObserver(function (entradas) {
+    var olhoRisco = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add('aberta');
-        olhoFolha.unobserve(e.target);
+        e.target.classList.add('aberto');
+        olhoRisco.unobserve(e.target);
       });
-    }, { rootMargin: '0px 0px -14% 0px', threshold: 0.01 });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
 
-    folhasNaTela.forEach(function (f) { olhoFolha.observe(f); });
+    riscosNaTela.forEach(function (f) { olhoRisco.observe(f); });
   }
 
   /* 5. Revelacao ao entrar na tela, escalonada dentro de cada grupo. */
