@@ -119,7 +119,7 @@ O endereco completo segue sempre o padrao
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
-| 04 | Servicos | Quatro linhas calmas em fio fino; ao apontar uma, um retrato segue o ponteiro |
+| 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
@@ -189,16 +189,15 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **O retrato dos servicos.** As quatro linhas ficam paradas, em fio fino, com
-  o nome e o texto lado a lado. Ao apontar uma, as outras recuam, o fio de
-  baixo acende em champagne e um RETRATO aparece seguindo o ponteiro, com
-  atraso: ele persegue o cursor em vez de grudar nele. E ele que da a
-  temperatura da secao sem ocupar espaco nenhum na pagina. As quatro fotos sao
-  carregadas na memoria antes, para a primeira troca nao piscar.
+- **O palco dos servicos.** A secao inteira e uma fotografia de borda a borda,
+  furando a margem lateral, com os quatro oficios escritos por cima dela e a
+  moldura champagne aberta por dentro. Trocar de oficio nao troca so o texto: a
+  fotografia e VARRIDA da direita para a esquerda, em vez de desbotar. Enquanto
+  esta no ar, a imagem avanca devagar. Cada troca sobe o empilhamento, porque a
+  foto que entra precisa ficar acima de todas que ja passaram.
 
-  O retrato so existe onde ha ponteiro fino e o sistema nao pede menos
-  movimento. No toque ele nao e nem criado: la cada linha mostra a sua propria
-  miniatura, ao lado do numero.
+  Em tela estreita o palco fica em pe, mais alto, com o veu vindo de baixo e o
+  texto empilhado no pe.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.
 - **Hora local.** Dado real, via fuso horario do navegador, atualizado a cada
   30 segundos. Nao e numero inventado.

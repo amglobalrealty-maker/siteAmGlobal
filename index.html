@@ -904,114 +904,144 @@
   .pilar p { font-size: 16px; }
 
   /* ============================================================= servicos ==
-     Quatro linhas em fio fino, calmas. Ao apontar uma, as outras recuam e um
-     RETRATO segue o ponteiro, com atraso: e ele que da a temperatura da secao,
-     sem ocupar espaco nenhum na pagina. No toque, onde nao ha ponteiro, cada
-     linha mostra a sua miniatura.
+     A secao inteira vira UM PALCO: uma fotografia de borda a borda, da largura
+     da pagina, com os quatro oficios escritos por cima dela. Trocar de oficio
+     nao troca so o texto: a fotografia inteira e varrida, de um lado ao outro,
+     em vez de desbotar. E a imagem grande que carrega a secao, e ela ocupa uma
+     faixa so, sem fazer a pagina crescer.
      ------------------------------------------------------------------------ */
-  .oficios { border-top: 1px solid var(--linha-clara); }
-
-  .oficio-linha {
+  .palco {
     position: relative;
-    display: grid;
-    grid-template-columns: auto auto minmax(0, 1.02fr) minmax(0, 1fr);
-    align-items: center;
-    gap: clamp(14px, 2.6vw, 46px);
-    padding: clamp(20px, 3.2vh, 36px) 0;
-    border-bottom: 1px solid var(--linha-clara);
-    transition: opacity 0.6s var(--curva), padding-left 0.8s var(--curva);
+    /* de borda a borda, furando a margem lateral da secao */
+    margin: 0 calc(-1 * var(--margem));
+    height: clamp(430px, 66vh, 640px);
+    overflow: hidden;
+    background: var(--onix-alto);
   }
 
-  /* apontar uma recua as outras */
-  .oficios:hover .oficio-linha { opacity: 0.32; }
-  .oficios .oficio-linha:hover { opacity: 1; padding-left: clamp(8px, 1.2vw, 20px); }
+  .palco-foto {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 0 0 100%);
+    transition: clip-path 1.15s var(--curva);
+  }
 
-  /* o fio de baixo acende em champagne na linha apontada */
-  .oficio-linha::after {
+  .palco-foto.ativa { clip-path: inset(0 0 0 0); }
+
+  .palco-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.26) contrast(1.05) brightness(0.62) saturate(0.76);
+    transform: scale(1.04);
+    transition: transform 8s var(--curva);
+  }
+
+  .palco-foto.ativa img { transform: scale(1.11); }
+
+  /* veu da esquerda, para os nomes lerem sobre qualquer foto */
+  .palco::after {
     content: '';
     position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 1px;
-    background: var(--champagne);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.9s var(--curva);
+    z-index: 2;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11, 11, 12, 0.92) 0%, rgba(11, 11, 12, 0.6) 46%, rgba(11, 11, 12, 0.25) 100%),
+      linear-gradient(to top, rgba(11, 11, 12, 0.55) 0%, transparent 42%);
+    pointer-events: none;
   }
 
-  .oficios .oficio-linha:hover::after { transform: scaleX(1); }
+  /* moldura champagne por dentro, sem fechar */
+  .palco-moldura {
+    position: absolute;
+    z-index: 3;
+    inset: clamp(16px, 2vw, 30px);
+    border-top: 1px solid rgba(180, 154, 110, 0.45);
+    border-left: 1px solid rgba(180, 154, 110, 0.45);
+    pointer-events: none;
+  }
 
-  .oficio-num {
+  .palco-corpo {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    align-items: end;
+    gap: clamp(20px, 4vw, 70px);
+    height: 100%;
+    padding: clamp(40px, 6vw, 72px) clamp(34px, 5vw, 78px);
+  }
+
+  .palco-lista { display: grid; align-content: end; gap: clamp(2px, 0.6vh, 8px); }
+
+  .palco-nome {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(10px, 1.4vw, 20px);
+    padding: 4px 0;
+    background: none;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  .palco-nome i {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--champagne);
+    transition: width 0.8s var(--curva);
+    align-self: center;
+  }
+
+  .palco-nome.ativo i { width: clamp(20px, 3vw, 44px); }
+
+  .palco-num {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.18em;
-    color: rgba(245, 242, 236, 0.3);
+    color: rgba(245, 242, 236, 0.35);
     font-variant-numeric: tabular-nums;
     transition: color 0.6s var(--curva);
   }
 
-  .oficios .oficio-linha:hover .oficio-num { color: var(--champagne); }
+  .palco-nome.ativo .palco-num { color: var(--champagne); }
 
-  /* miniatura: so onde nao ha ponteiro, no lugar do retrato flutuante */
-  .oficio-mini { display: none; }
-
-  .oficio-nome {
+  .palco-titulo {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(27px, 3.5vw, 50px);
+    font-size: clamp(27px, 3.6vw, 54px);
     line-height: 1.04;
-    letter-spacing: -0.01em;
-    color: var(--marfim);
+    color: rgba(245, 242, 236, 0.4);
+    transition: color 0.7s var(--curva);
   }
 
-  .oficio-desc {
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--texto-fraco);
-    max-width: 48ch;
-  }
+  .palco-nome.ativo .palco-titulo,
+  .palco-nome:hover .palco-titulo { color: var(--marfim); }
 
-  /* --- o retrato que segue o ponteiro --- */
-  .retrato {
-    position: fixed;
-    z-index: 60;
-    top: 0; left: 0;
-    width: clamp(196px, 16vw, 258px);
-    aspect-ratio: 3 / 4;
-    pointer-events: none;
-    will-change: transform;
-  }
+  .palco-fichas { position: relative; min-height: 118px; }
 
-  .retrato-int {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: var(--onix-alto);
-    opacity: 0;
-    transform: scale(0.94);
-    transition: opacity 0.55s var(--curva), transform 0.85s var(--curva);
-  }
-
-  .retrato.visivel .retrato-int { opacity: 1; transform: none; }
-
-  .retrato img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.2) contrast(1.04) brightness(0.86) saturate(0.85);
-  }
-
-  /* fio champagne no alto do retrato, como nas laminas */
-  .retrato-int::before {
-    content: '';
+  .palco-ficha {
     position: absolute;
-    z-index: 2;
-    left: 0; right: 0; top: 0;
-    height: 1px;
-    background: var(--champagne);
+    inset: auto 0 0 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.8s var(--curva), visibility 0.8s, transform 0.9s var(--curva);
   }
 
-  .retrato-int { position: relative; }
+  .palco-ficha.ativa { opacity: 1; visibility: visible; transform: none; }
+
+  .palco-ficha p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(245, 242, 236, 0.8);
+    max-width: 44ch;
+  }
+
+  .palco-ficha .filete { margin-bottom: 14px; }
 
   /* =============================================================== global == */
   .pracas {
@@ -1179,17 +1209,15 @@
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
     .pilar p { grid-column: 2; }
-    /* sem ponteiro nao ha retrato flutuante: cada linha mostra a sua miniatura */
-    .oficio-linha { grid-template-columns: auto auto minmax(0, 1fr); }
-    .oficio-mini {
-      display: block;
-      width: 58px;
-      height: 74px;
-      object-fit: cover;
-      filter: grayscale(0.2) contrast(1.04) brightness(0.86) saturate(0.85);
+    /* o palco fica em pe: a foto cobre tudo e o texto se empilha no pe */
+    .palco { height: clamp(520px, 84vh, 680px); }
+    .palco-corpo { grid-template-columns: 1fr; align-content: end; gap: 22px; }
+    .palco-titulo { font-size: clamp(25px, 7vw, 38px); }
+    .palco-fichas { min-height: 128px; }
+    .palco::after {
+      background:
+        linear-gradient(to top, rgba(11, 11, 12, 0.94) 0%, rgba(11, 11, 12, 0.5) 46%, rgba(11, 11, 12, 0.2) 100%);
     }
-    .oficio-nome { font-size: clamp(26px, 7vw, 40px); }
-    .oficio-desc { grid-column: 3; max-width: 100%; }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
   }
@@ -1532,35 +1560,57 @@
     </div>
   </div>
 
-  <!-- PROVISORIO: fotos do Unsplash, licenca livre, uma por oficio. Elas nao
-       sao material de imovel, mas seguem sendo temporarias. Ver README. -->
-  <div class="oficios sobe" id="oficios">
-    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
-      <span class="oficio-num">01</span>
-      <img class="oficio-mini" src="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
-      <span class="oficio-nome">Comprar</span>
-      <p class="oficio-desc">Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta. Com o racional de por que cada imóvel está nela, e por que os outros ficaram de fora.</p>
+  <!-- PROVISORIO: fotos do Unsplash, licenca livre, uma por oficio. Ver README. -->
+  <div class="palco sobe" id="palco">
+    <div class="palco-foto ativa" data-foto="0">
+      <img src="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="palco-foto" data-foto="1">
+      <img src="https://images.unsplash.com/photo-1778731660244-b6e8f905107d?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="palco-foto" data-foto="2">
+      <img src="https://images.unsplash.com/photo-1786018120871-cb134b61ddd0?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="palco-foto" data-foto="3">
+      <img src="https://images.unsplash.com/photo-1778731660451-323b78996230?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
     </div>
 
-    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1778731660244-b6e8f905107d?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
-      <span class="oficio-num">02</span>
-      <img class="oficio-mini" src="https://images.unsplash.com/photo-1778731660244-b6e8f905107d?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
-      <span class="oficio-nome">Vender</span>
-      <p class="oficio-desc">Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
-    </div>
+    <span class="palco-moldura" aria-hidden="true"></span>
 
-    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1786018120871-cb134b61ddd0?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
-      <span class="oficio-num">03</span>
-      <img class="oficio-mini" src="https://images.unsplash.com/photo-1786018120871-cb134b61ddd0?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
-      <span class="oficio-nome">Investir</span>
-      <p class="oficio-desc">Contexto antes da decisão: localização, produto, liquidez e momento. Comparáveis e leitura de mercado que sustentam o preço.</p>
-    </div>
+    <div class="palco-corpo">
+      <div class="palco-lista" id="palcoLista">
+        <button type="button" class="palco-nome ativo" data-oficio="0">
+          <span class="palco-num">01</span><i aria-hidden="true"></i><span class="palco-titulo">Comprar</span>
+        </button>
+        <button type="button" class="palco-nome" data-oficio="1">
+          <span class="palco-num">02</span><i aria-hidden="true"></i><span class="palco-titulo">Vender</span>
+        </button>
+        <button type="button" class="palco-nome" data-oficio="2">
+          <span class="palco-num">03</span><i aria-hidden="true"></i><span class="palco-titulo">Investir</span>
+        </button>
+        <button type="button" class="palco-nome" data-oficio="3">
+          <span class="palco-num">04</span><i aria-hidden="true"></i><span class="palco-titulo">Assessorar do exterior</span>
+        </button>
+      </div>
 
-    <div class="oficio-linha" data-foto="https://images.unsplash.com/photo-1778731660451-323b78996230?auto=format&amp;fit=crop&amp;w=700&amp;q=70">
-      <span class="oficio-num">04</span>
-      <img class="oficio-mini" src="https://images.unsplash.com/photo-1778731660451-323b78996230?auto=format&amp;fit=crop&amp;w=180&amp;q=62" alt="" loading="lazy" decoding="async">
-      <span class="oficio-nome">Assessorar do exterior</span>
-      <p class="oficio-desc">Para quem compra à distância: documentação, câmbio, procuração e tributação, com um único ponto de contato e atendimento em mais de um idioma.</p>
+      <div class="palco-fichas">
+        <div class="palco-ficha ativa" data-ficha="0">
+          <span class="filete"></span>
+          <p>Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta. Com o racional de por que cada imóvel está nela, e por que os outros ficaram de fora.</p>
+        </div>
+        <div class="palco-ficha" data-ficha="1">
+          <span class="filete"></span>
+          <p>Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
+        </div>
+        <div class="palco-ficha" data-ficha="2">
+          <span class="filete"></span>
+          <p>Contexto antes da decisão: localização, produto, liquidez e momento. Comparáveis e leitura de mercado que sustentam o preço.</p>
+        </div>
+        <div class="palco-ficha" data-ficha="3">
+          <span class="filete"></span>
+          <p>Para quem compra à distância: documentação, câmbio, procuração e tributação, com um único ponto de contato e atendimento em mais de um idioma.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1926,63 +1976,43 @@
     aplicar();
   }
 
-  /* 8. Servicos: um retrato segue o ponteiro sobre a linha apontada.
+  /* 8. Servicos: trocar de oficio varre a fotografia do palco.
 
-     So entra onde existe ponteiro fino e o sistema nao pede menos movimento.
-     Em toque, a miniatura de cada linha ja mostra a imagem e nada disto roda. */
-  var oficios = document.getElementById('oficios');
-  var ponteiroFino = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+     A foto nova entra por cima, varrida da direita para a esquerda, em vez de
+     desbotar por cima da anterior. Por isso cada troca sobe o empilhamento: a
+     que entra tem de ficar acima de tudo que ja passou. */
+  var palco = document.getElementById('palco');
 
-  if (oficios && ponteiroFino && !calmo) {
-    var retrato = document.createElement('div');
-    retrato.className = 'retrato';
-    retrato.setAttribute('aria-hidden', 'true');
-    retrato.innerHTML = '<div class="retrato-int"><img alt=""></div>';
-    document.body.appendChild(retrato);
+  if (palco) {
+    var fotos = palco.querySelectorAll('.palco-foto');
+    var titulos = palco.querySelectorAll('.palco-nome');
+    var fichas = palco.querySelectorAll('.palco-ficha');
+    var camada = 1;
 
-    var retratoImg = retrato.querySelector('img');
-    var alvoX = 0, alvoY = 0, agoraX = 0, agoraY = 0;
-    var seguindo = false;
-    var quadro = null;
+    function trocarOficio(i) {
+      Array.prototype.forEach.call(titulos, function (t, k) { t.classList.toggle('ativo', k === i); });
+      Array.prototype.forEach.call(fichas, function (f, k) { f.classList.toggle('ativa', k === i); });
 
-    // guarda as fotos em memoria para a primeira troca nao piscar
-    Array.prototype.forEach.call(oficios.querySelectorAll('.oficio-linha'), function (linha) {
-      var foto = new Image();
-      foto.src = linha.getAttribute('data-foto');
-    });
-
-    function andar() {
-      // o atraso e o efeito: o retrato persegue o ponteiro, nao gruda nele
-      agoraX += (alvoX - agoraX) * 0.13;
-      agoraY += (alvoY - agoraY) * 0.13;
-      retrato.style.transform = 'translate3d(' + Math.round(agoraX) + 'px,' + Math.round(agoraY) + 'px,0)';
-      if (seguindo) quadro = window.requestAnimationFrame(andar);
-    }
-
-    function posicao(ev) {
-      var caixa = retrato.getBoundingClientRect();
-      alvoX = ev.clientX - caixa.width / 2;
-      alvoY = ev.clientY - caixa.height / 2;
-    }
-
-    Array.prototype.forEach.call(oficios.querySelectorAll('.oficio-linha'), function (linha) {
-      linha.addEventListener('mouseenter', function (ev) {
-        retratoImg.src = linha.getAttribute('data-foto');
-        posicao(ev);
-        // na primeira entrada ele nasce onde o ponteiro esta, sem vir voando
-        if (!seguindo) { agoraX = alvoX; agoraY = alvoY; }
-        retrato.classList.add('visivel');
-        if (!seguindo) { seguindo = true; andar(); }
+      Array.prototype.forEach.call(fotos, function (foto, k) {
+        if (k !== i) { foto.classList.remove('ativa'); return; }
+        camada++;
+        foto.style.zIndex = String(camada);
+        foto.classList.add('ativa');
       });
+    }
+
+    palco.addEventListener('click', function (ev) {
+      var botao = ev.target.closest('.palco-nome');
+      if (botao) trocarOficio(parseInt(botao.getAttribute('data-oficio'), 10));
     });
 
-    oficios.addEventListener('mousemove', posicao);
-
-    oficios.addEventListener('mouseleave', function () {
-      retrato.classList.remove('visivel');
-      seguindo = false;
-      if (quadro) window.cancelAnimationFrame(quadro);
-    });
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      Array.prototype.forEach.call(titulos, function (botao) {
+        var i = parseInt(botao.getAttribute('data-oficio'), 10);
+        botao.addEventListener('mouseenter', function () { trocarOficio(i); });
+        botao.addEventListener('focus', function () { trocarOficio(i); });
+      });
+    }
   }
 
   /* 9. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
