@@ -303,24 +303,7 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   sobe no pe. As outras continuam ali, de canto. A secao inteira ocupa pouco
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
-- **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados. Com
-  eles entram tres detalhes:
-
-  1. **O filete cresce** de zero ate os 24px que o manual pede.
-  2. **O rotulo assenta**: entra com as letras mais soltas (0,34em) e fecha no
-     espacamento certo (0,2em), clareando ao mesmo tempo.
-  3. **Os titulos sobem linha a linha**, cada linha dentro de uma janela que
-     corta o transbordo, uma logo depois da outra. E o mesmo movimento da
-     abertura, agora no resto da pagina.
-
-  A quebra dos titulos e feita pelo script, e nao no HTML: o texto continua
-  legivel e editavel no arquivo, e quem mexer nele nao precisa saber do efeito.
-  Titulo sem `<br>` e deixado em paz.
-
-- **Blocos de imagem varridos.** A banda da curadoria, a faixa da secao A
-  AMGlobal e o palco dos servicos entram varridos da esquerda para a direita.
-  E o mesmo gesto da cortina de entrada e da troca de foto dos servicos: o
-  site inteiro usa a varredura como forma de aparecer.
+- **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **A linha caida.** UMA linha em champagne sobre a borda de cima de cada bloco
   de imagem. A curva e a de um fio preso pelas duas pontas: cede no meio e sobe
   nas beiradas. Ela se desenha de uma ponta a outra quando o bloco chega na
