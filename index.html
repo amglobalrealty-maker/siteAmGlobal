@@ -203,6 +203,34 @@
   /* triangulo aberto, o marcador tirado do A */
   .chevron { display: block; }
 
+  /* ================================================================ folhas ==
+     Frondes em champagne que entram deslizando quando a secao chega na tela e
+     ficam POR CIMA das imagens. O desenho vem do script; aqui so o lugar, a
+     transparencia e o movimento.
+
+     Sao decoracao pura: `pointer-events: none` para nao roubar clique, e
+     `aria-hidden` no HTML para nao entrarem na leitura de tela. Como o manual
+     pede champagne em pouca area, ficam translucidas e so nos cantos.
+     ------------------------------------------------------------------------ */
+  .folha {
+    position: absolute;
+    z-index: 6;
+    display: block;
+    color: var(--champagne);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--giro-ini, 0deg)) scale(0.94);
+    transition: opacity 1.5s var(--curva), transform 1.9s var(--curva);
+    will-change: transform, opacity;
+  }
+
+  .folha.aberta {
+    opacity: var(--op, 0.5);
+    transform: translate(0, 0) rotate(var(--giro-fim, 0deg)) scale(1);
+  }
+
+  .folha svg { display: block; width: 100%; height: auto; }
+
   /* =========================================================== revelacoes == */
   .sobe {
     opacity: 0;
@@ -1266,6 +1294,9 @@
   @media (max-width: 520px) {
     .abertura .apoio { font-size: 16px; }
     .marca-nome { display: none; }
+    /* em tela pequena as frondes competiriam com o conteudo: ficam menores e
+       mais apagadas, so como sombra de canto */
+    .folha { --op: 0.26; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1821,6 +1852,81 @@
   document.addEventListener('keydown', function (ev) {
     if (ev.key === 'Escape') fecharMenu();
   });
+
+  /* 4b. As folhas.
+
+     Frondes desenhadas em SVG pelo proprio script, em champagne, que entram
+     deslizando conforme a secao chega na tela e ficam POR CIMA das imagens.
+     Sao decoracao: nao recebem clique, nao entram na leitura de tela e nenhuma
+     delas cobre texto.
+
+     O desenho e gerado, e nao um arquivo: assim cada fronde tem o seu numero
+     de foliolos e a sua curva, e nenhuma fica igual a outra. Para mudar cor,
+     tamanho ou posicao, mexa na lista FOLHAS logo abaixo.
+
+     Nota de marca: o manual nao tem rose. As cinco cores sao onix, marfim,
+     travertino, grafite e champagne; o champagne e o mais proximo de um rose
+     dourado, e e a cor de acento prevista. Como o manual pede champagne em
+     pouca area, as frondes ficam translucidas e so nos cantos. */
+  function desenharFolha(foliolos, inclinacao) {
+    var partes = ['<path d="M100 322 C 92 242 96 140 100 22" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.8"/>'];
+
+    for (var i = 0; i < foliolos; i++) {
+      var t = i / (foliolos - 1);
+      var y = 302 - t * 272;
+      var x = 100 - (1 - Math.cos(t * 1.15)) * 7;
+      // os foliolos do meio sao os mais longos, como numa fronde de verdade
+      var comp = 26 + Math.sin(t * Math.PI) * inclinacao;
+      var ang = 70 - t * 36;
+      var rx = (comp * 0.17).toFixed(1);
+      var ry = comp.toFixed(1);
+      var desloca = (-comp * 0.9).toFixed(1);
+
+      partes.push('<ellipse rx="' + rx + '" ry="' + ry + '" transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (-ang).toFixed(1) + ') translate(0 ' + desloca + ')"/>');
+      partes.push('<ellipse rx="' + rx + '" ry="' + ry + '" transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ') translate(0 ' + desloca + ')"/>');
+    }
+
+    return '<svg viewBox="0 0 200 330" fill="currentColor" aria-hidden="true" focusable="false">' + partes.join('') + '</svg>';
+  }
+
+  var FOLHAS = [
+    { onde: 'curadoria', foliolos: 15, comp: 54, css: 'top:-9%;left:-7%;width:clamp(160px,21vw,340px);--op:0.5',  dx: '-38%', dy: '16%',  ini: '-24deg', fim: '-8deg' },
+    { onde: 'manifesto', foliolos: 13, comp: 48, css: 'top:-6%;right:-6%;width:clamp(150px,18vw,300px);--op:0.42', dx: '34%',  dy: '-14%', ini: '26deg',  fim: '9deg' },
+    { onde: 'servicos',  foliolos: 17, comp: 58, css: 'top:-8%;right:-8%;width:clamp(170px,22vw,360px);--op:0.46', dx: '32%',  dy: '18%',  ini: '30deg',  fim: '12deg' },
+    { onde: 'global',    foliolos: 14, comp: 50, css: 'bottom:-10%;left:-7%;width:clamp(150px,19vw,310px);--op:0.4', dx: '-30%', dy: '20%',  ini: '-28deg', fim: '-11deg' }
+  ];
+
+  var folhasNaTela = [];
+
+  FOLHAS.forEach(function (f) {
+    var secao = document.getElementById(f.onde);
+    if (!secao) return;
+
+    var folha = document.createElement('span');
+    folha.className = 'folha';
+    folha.setAttribute('aria-hidden', 'true');
+    folha.style.cssText = f.css
+      + ';--dx:' + f.dx + ';--dy:' + f.dy
+      + ';--giro-ini:' + f.ini + ';--giro-fim:' + f.fim;
+    folha.innerHTML = desenharFolha(f.foliolos, f.comp);
+
+    secao.appendChild(folha);
+    folhasNaTela.push(folha);
+  });
+
+  if (calmo || !('IntersectionObserver' in window)) {
+    folhasNaTela.forEach(function (f) { f.classList.add('aberta'); });
+  } else {
+    var olhoFolha = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('aberta');
+        olhoFolha.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -14% 0px', threshold: 0.01 });
+
+    folhasNaTela.forEach(function (f) { olhoFolha.observe(f); });
+  }
 
   /* 5. Revelacao ao entrar na tela, escalonada dentro de cada grupo. */
   var alvos = document.querySelectorAll('.sobe');

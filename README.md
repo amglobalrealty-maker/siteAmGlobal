@@ -39,6 +39,17 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 Palavras proibidas pelo manual e que nao aparecem em lugar nenhum do site:
 oportunidade, imperdivel, corretor, luxuoso.
 
+### Sobre "rose"
+
+A cliente pediu as folhas em rose. **O manual nao tem rose**: as cinco cores
+sao onix, marfim, travertino, grafite e champagne. O champagne `#B49A6E` e o
+mais proximo de um rose dourado e e a cor de acento prevista, entao foi ele que
+entrou. Como o manual pede champagne em pouca area e nunca em bloco grande, as
+frondes ficam translucidas (entre 40% e 50%) e so nos cantos.
+
+Se um rose de verdade for aprovado depois, ele precisa entrar no manual antes
+de entrar no site, e basta trocar a cor na regra `.folha`.
+
 ## O que ainda esta provisorio
 
 Quatro pontos dependem de material que a cliente ainda precisa enviar.
@@ -283,6 +294,19 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
+- **As folhas.** Quatro frondes entram deslizando quando a secao chega na tela
+  e ficam POR CIMA das imagens, nos cantos da curadoria, da secao A AMGlobal,
+  dos servicos e da secao Global. Cada uma vem de uma direcao, com giro e
+  tamanho proprios.
+
+  **O desenho e gerado pelo script, nao e arquivo.** A funcao monta a fronde
+  com o numero de foliolos que voce pedir: os do meio saem mais longos e o
+  angulo fecha na ponta, como numa fronde de verdade. Por isso nenhuma fica
+  igual a outra. Para mudar cor, tamanho, posicao ou direcao de entrada, mexa
+  na lista `FOLHAS`, dentro do script.
+
+  Sao decoracao pura: nao recebem clique, ficam fora da leitura de tela e
+  nenhuma cobre texto.
 - **O palco dos servicos.** A secao inteira e uma fotografia de borda a borda,
   furando a margem lateral, com os quatro oficios escritos por cima dela e a
   moldura champagne aberta por dentro. Trocar de oficio nao troca so o texto: a
