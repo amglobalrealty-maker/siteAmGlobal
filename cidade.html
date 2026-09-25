@@ -544,7 +544,7 @@
   function lamina(im, i, slug) {
     return '<a class="leque-item' + (i === 0 ? ' aberto' : '') + '"'
       + ' href="imovel.html?c=' + esc(slug) + '&amp;i=' + i + '">'
-      + '<img src="' + esc(im.fotos[0]) + '" alt="" loading="lazy" decoding="async">'
+      + '<img src="' + esc(im.fotos[0].src) + '" alt="" loading="lazy" decoding="async">'
       + '<span class="leque-num">' + ('0' + (i + 1)) + '</span>'
       + '<span class="leque-vertical"><span>' + esc(im.bairro) + '</span></span>'
       + '<span class="leque-ficha">'

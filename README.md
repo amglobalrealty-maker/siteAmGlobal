@@ -137,10 +137,28 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 ### O conteudo mora num lugar so
 
-`dados.js` e a fonte unica: as duas paginas o carregam. Cada cidade tem nome,
-pais, foto de capa, linha de abertura, tres notas sobre a praca e a lista de
-residencias; cada residencia tem nome, bairro, area, suites, vagas, um texto e
-as fotos. **Mexer nesse arquivo muda as duas paginas**, sem tocar em script.
+`dados.js` e a fonte unica: as duas paginas o carregam. **Mexer nesse arquivo
+muda as duas**, sem tocar em script.
+
+Cada cidade tem nome, pais, foto de capa, linha de abertura, tres notas sobre a
+praca e a lista de residencias. Cada residencia tem:
+
+| Campo | O que e |
+|---|---|
+| `nome`, `bairro` | titulo e endereco curto |
+| `area`, `terreno` | area construida e area do terreno |
+| `suites`, `vagas` | contagens |
+| `ano` | ano da construcao ou da reforma |
+| `orientacao` | para onde a face principal olha |
+| `condominio`, `iptu` | custos mensais, ou "Não há" |
+| `situacao` | como esta a documentacao |
+| `texto` | um ou mais paragrafos, separados por quebra de linha |
+| `ambientes` | lista de comodos |
+| `perto` | pares de lugar e tempo ate la |
+| `fotos` | lista de fotos; a primeira e a capa |
+
+As fotos vem do objeto `f`, no topo do arquivo, e **cada uma ja carrega a
+propria legenda**. Para trocar a foto de um imovel, troque a chave.
 
 Para incluir uma cidade: uma entrada em `CIDADES`, o apelido em `ORDEM` e um
 botao no filtro do `index.html` com o mesmo apelido em `data-slug`. Para
@@ -158,9 +176,19 @@ e o que aparece na home.
 
 | Ficha do imovel | |
 |---|---|
-| Capa | A foto principal, o nome, o endereco e a ficha com area, suites, vagas e valor |
-| A residencia | O texto e as fotos em alturas escalonadas |
+| Capa | A foto principal, o nome, o endereco e os numeros: area, suites, vagas e valor |
+| A residencia | O texto do imovel |
+| O dossie | A ficha tecnica PARADA de um lado enquanto as fotos correm do outro |
 | Visita | Agendar visita, solicitar dossie e as outras residencias da mesma cidade |
+
+**O dossie** e a parte que carrega a informacao. De um lado, uma coluna que
+fica parada enquanto a pessoa rola: ficha tecnica em pares (area construida,
+terreno, suites, vagas, ano, orientacao, condominio e IPTU), a lista de
+ambientes, o que fica ao redor com o tempo ate cada lugar, e a situacao da
+documentacao. Do outro, as fotos uma embaixo da outra, cada uma com numero e
+legenda dizendo o que mostra; as pares entram mais estreitas e recuadas, para
+a coluna nao virar uma fila. Abaixo de 1000px a ficha para de ser fixa e tudo
+vira uma coluna so.
 
 ### Conteudo de demonstracao
 

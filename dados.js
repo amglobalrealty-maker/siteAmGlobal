@@ -5,8 +5,8 @@
    partir DESTE arquivo: mudar aqui muda as duas, sem tocar em script nenhum.
 
    ATENCAO: TODO O CONTEUDO E DE DEMONSTRACAO.
-   Nome de imovel, bairro, area, suites, vagas, os textos e as notas de cada
-   praca foram inventados para o modelo ter forma. As fotos sao do Unsplash, de
+   Nome de imovel, bairro, numeros, textos, ambientes e o que fica ao redor
+   foram inventados para o modelo ter forma. As fotos sao do Unsplash, de
    licenca livre, e o manual proibe banco de imagem em material de imovel: elas
    saem quando chegar a fotografia propria.
 
@@ -19,39 +19,56 @@
 
    COMO INCLUIR UM IMOVEL
    Acrescente um objeto na lista `imoveis` da cidade. O primeiro da lista e o
-   que aparece na home. Os campos sao todos obrigatorios; `fotos` aceita de uma
-   a quantas forem, e a primeira e a capa.
+   que aparece na home. Campos:
+
+     nome, bairro                 titulo e endereco curto
+     area, terreno                area construida e area do terreno
+     suites, vagas                contagens
+     ano                          ano da construcao ou da reforma
+     orientacao                   para onde a face principal olha
+     condominio, iptu             custos mensais, ou 'Não há'
+     situacao                     como esta a documentacao
+     texto                        um ou mais paragrafos, separados por \n
+     ambientes                    lista de comodos
+     perto                        pares [lugar, tempo]
+     fotos                        lista de fotos; a primeira e a capa
+
+   As fotos vem do objeto `f` logo abaixo, e cada uma ja carrega a propria
+   legenda. Para trocar a foto de um imovel, troque a chave.
    --------------------------------------------------------------------------- */
 
 (function () {
   'use strict';
 
   var U = 'https://images.unsplash.com/photo-';
-  var G = '?auto=format&fit=crop&w=1500&q=68';   // foto de imovel
+  var G = '?auto=format&fit=crop&w=1600&q=70';   // foto de imovel
   var C = '?auto=format&fit=crop&w=1900&q=68';   // capa de cidade
 
-  // atalhos das fotos, so para a lista abaixo ficar legivel
+  function foto(id, legenda) { return { src: U + id + G, legenda: legenda }; }
+
+  // Cada foto ja vem com a legenda: assim a galeria informa, em vez de so
+  // enfileirar imagem. Trocar a foto de um imovel e trocar a chave aqui embaixo.
   var f = {
-    patio:      U + '1706808849780-7a04fbac83ef' + G,
-    pergolado:  U + '1633354747567-e0682586f082' + G,
-    palmeiras:  U + '1719887805632-de5be825f72b' + G,
-    branca:     U + '1660361339436-ddd4b85372da' + G,
-    horizonte:  U + '1745761320791-5ae142edee8c' + G,
-    jardim:     U + '1685514823717-7e1ff6ee0563' + G,
-    piscina:    U + '1706164971302-e30c0640cc3b' + G,
-    agua:       U + '1670589953882-b94c9cb380f5' + G,
-    vidro:      U + '1748063578185-3d68121b11ff' + G,
-    concreto:   U + '1580587771525-78b9dba3b914' + G,
-    varandas:   U + '1721815693498-cc28507c0ba2' + G,
-    clara:      U + '1628012209120-d9db7abf7eab' + G,
-    entrada:    U + '1723110994499-df46435aa4b3' + G,
-    ampla:      U + '1717167398817-121e3c283dbb' + G,
-    terraco:    U + '1613490493576-7fde63acd811' + G,
+    patio:     foto('1706808849780-7a04fbac83ef', 'Fachada e piscina'),
+    pergolado: foto('1633354747567-e0682586f082', 'Terraço coberto'),
+    palmeiras: foto('1719887805632-de5be825f72b', 'Fachada principal'),
+    branca:    foto('1660361339436-ddd4b85372da', 'Entrada'),
+    horizonte: foto('1745761320791-5ae142edee8c', 'Área de lazer'),
+    jardim:    foto('1685514823717-7e1ff6ee0563', 'Jardim'),
+    piscina:   foto('1706164971302-e30c0640cc3b', 'Piscina'),
+    agua:      foto('1670589953882-b94c9cb380f5', 'Frente para a água'),
+    vidro:     foto('1748063578185-3d68121b11ff', 'Estar envidraçado'),
+    concreto:  foto('1580587771525-78b9dba3b914', 'Volume principal'),
+    varandas:  foto('1721815693498-cc28507c0ba2', 'Varandas'),
+    clara:     foto('1628012209120-d9db7abf7eab', 'Fachada ao poente'),
+    entrada:   foto('1723110994499-df46435aa4b3', 'Acesso e garagem'),
+    ampla:     foto('1717167398817-121e3c283dbb', 'Implantação'),
+    terraco:   foto('1613490493576-7fde63acd811', 'Terraço'),
     // interiores
-    lareira:    U + '1776482128172-dd265ad0cb49' + G,
-    arco:       U + '1778731660244-b6e8f905107d' + G,
-    salao:      U + '1786018120871-cb134b61ddd0' + G,
-    escada:     U + '1778731660451-323b78996230' + G
+    lareira:   foto('1776482128172-dd265ad0cb49', 'Estar com lareira'),
+    arco:      foto('1778731660244-b6e8f905107d', 'Hall de entrada'),
+    salao:     foto('1786018120871-cb134b61ddd0', 'Salão principal'),
+    escada:    foto('1778731660451-323b78996230', 'Escada central')
   };
 
   window.AMGLOBAL = {
@@ -69,19 +86,34 @@
         ],
         imoveis: [
           {
-            nome: 'Casa Pátio', bairro: 'Jardins', area: '520 m²', suites: '4 suítes', vagas: '4 vagas',
-            texto: 'Uma casa organizada em torno de um pátio central, que ilumina os dois pavimentos sem abrir a vida para a rua. O térreo é contínuo: estar, jantar e cozinha desembocam no jardim. Os quartos ficam no pavimento de cima, longe da área social.',
-            fotos: [f.patio, f.lareira, f.concreto]
+            nome: 'Casa Pátio', bairro: 'Jardins',
+            area: '520 m²', terreno: '700 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2019', orientacao: 'Face norte', condominio: 'Não há', iptu: 'R$ 4.200 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Uma casa organizada em torno de um pátio central, que ilumina os dois pavimentos sem abrir a vida para a rua.\nO térreo é contínuo: estar, jantar e cozinha desembocam no jardim. Os quartos ficam no pavimento de cima, longe da área social.',
+            ambientes: ['Estar em dois ambientes', 'Jantar para dez', 'Cozinha integrada', 'Suíte master com closet', 'Escritório', 'Área de serviço independente'],
+            perto: [['Parque Ibirapuera', '6 min de carro'], ['Escolas internacionais', '10 min de carro'], ['Avenida Faria Lima', '12 min de carro']],
+            fotos: [f.patio, f.lareira, f.concreto, f.escada]
           },
           {
-            nome: 'Residência Vertical', bairro: 'Itaim Bibi', area: '340 m²', suites: '3 suítes', vagas: '3 vagas',
-            texto: 'Andar único num prédio de poucas unidades, com elevador privativo e vista aberta para o horizonte da cidade. A planta foi refeita para juntar a área social num vão só, sem colunas no meio.',
-            fotos: [f.concreto, f.arco, f.varandas]
+            nome: 'Residência Vertical', bairro: 'Itaim Bibi',
+            area: '340 m²', terreno: 'Andar único', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2016, reformado em 2024', orientacao: 'Face leste', condominio: 'R$ 6.800 por mês', iptu: 'R$ 2.900 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Andar único num prédio de poucas unidades, com elevador privativo e vista aberta para o horizonte da cidade.\nA planta foi refeita para juntar a área social num vão só, sem colunas no meio.',
+            ambientes: ['Estar de vão livre', 'Jantar integrado', 'Cozinha fechada', 'Suíte master com varanda', 'Lavabo social', 'Depósito privativo'],
+            perto: [['Parque do Povo', '4 min a pé'], ['Avenida Brigadeiro Faria Lima', '7 min a pé'], ['Aeroporto de Congonhas', '15 min de carro']],
+            fotos: [f.concreto, f.arco, f.varandas, f.salao]
           },
           {
-            nome: 'Casa Jardim Interno', bairro: 'Vila Nova Conceição', area: '610 m²', suites: '5 suítes', vagas: '5 vagas',
-            texto: 'Terreno raro no bairro, com jardim maduro e piscina orientada para o sol da tarde. A casa é de 2018 e passou por manutenção completa em 2025, com documentação em ordem.',
-            fotos: [f.clara, f.salao, f.patio]
+            nome: 'Casa Jardim Interno', bairro: 'Vila Nova Conceição',
+            area: '610 m²', terreno: '880 m²', suites: '5 suítes', vagas: '5 vagas',
+            ano: '2018, manutenção completa em 2025', orientacao: 'Face noroeste', condominio: 'Não há', iptu: 'R$ 5.600 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Terreno raro no bairro, com jardim maduro e piscina orientada para o sol da tarde.\nA casa passou por manutenção completa em 2025, com documentação em ordem e laudo estrutural disponível.',
+            ambientes: ['Estar com pé-direito duplo', 'Sala de jantar', 'Cozinha com copa', 'Cinco suítes', 'Adega', 'Casa de hóspedes'],
+            perto: [['Parque Ibirapuera', '5 min a pé'], ['Hospitais de referência', '8 min de carro'], ['Shopping Iguatemi', '11 min de carro']],
+            fotos: [f.clara, f.salao, f.patio, f.jardim]
           }
         ]
       },
@@ -97,19 +129,34 @@
         ],
         imoveis: [
           {
-            nome: 'Cobertura Horizonte', bairro: 'Leblon', area: '410 m²', suites: '3 suítes', vagas: '3 vagas',
-            texto: 'Cobertura em dois pavimentos com terraço voltado para o mar e para a montanha ao mesmo tempo. O pavimento de cima é só do terraço, com piscina e cozinha de apoio.',
-            fotos: [f.pergolado, f.arco, f.terraco]
+            nome: 'Cobertura Horizonte', bairro: 'Leblon',
+            area: '410 m²', terreno: 'Dois pavimentos', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2011, reformada em 2022', orientacao: 'Face sul, para o mar', condominio: 'R$ 7.400 por mês', iptu: 'R$ 3.100 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Cobertura em dois pavimentos com terraço voltado para o mar e para a montanha ao mesmo tempo.\nO pavimento de cima é só do terraço, com piscina e cozinha de apoio.',
+            ambientes: ['Estar para o mar', 'Jantar', 'Cozinha com ilha', 'Suíte master com vista', 'Terraço com piscina', 'Cozinha de apoio no terraço'],
+            perto: [['Praia do Leblon', '3 min a pé'], ['Jardim de Alah', '5 min a pé'], ['Lagoa Rodrigo de Freitas', '8 min a pé']],
+            fotos: [f.pergolado, f.arco, f.terraco, f.salao]
           },
           {
-            nome: 'Apartamento Canal', bairro: 'Ipanema', area: '280 m²', suites: '3 suítes', vagas: '2 vagas',
-            texto: 'Apartamento de frente, em prédio dos anos setenta com hall e fachada preservados. A reforma de 2024 refez instalações e esquadrias sem apagar o desenho original.',
-            fotos: [f.varandas, f.lareira, f.clara]
+            nome: 'Apartamento Canal', bairro: 'Ipanema',
+            area: '280 m²', terreno: 'Andar de frente', suites: '3 suítes', vagas: '2 vagas',
+            ano: '1974, reformado em 2024', orientacao: 'Face norte', condominio: 'R$ 4.900 por mês', iptu: 'R$ 2.200 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Apartamento de frente, em prédio dos anos setenta com hall e fachada preservados.\nA reforma de 2024 refez instalações e esquadrias sem apagar o desenho original.',
+            ambientes: ['Estar em dois ambientes', 'Varanda de frente', 'Cozinha reformada', 'Três suítes', 'Quarto de serviço', 'Vaga dupla'],
+            perto: [['Praia de Ipanema', '2 min a pé'], ['Feira de Ipanema', '6 min a pé'], ['Metrô General Osório', '9 min a pé']],
+            fotos: [f.varandas, f.lareira, f.clara, f.arco]
           },
           {
-            nome: 'Casa da Encosta', bairro: 'Jardim Botânico', area: '540 m²', suites: '4 suítes', vagas: '4 vagas',
-            texto: 'Casa encaixada na encosta, com mata nos fundos e silêncio incomum para a distância do centro. Os ambientes se abrem em patamares, acompanhando o terreno.',
-            fotos: [f.ampla, f.escada, f.jardim]
+            nome: 'Casa da Encosta', bairro: 'Jardim Botânico',
+            area: '540 m²', terreno: '1.100 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2009, reformada em 2021', orientacao: 'Face leste', condominio: 'Não há', iptu: 'R$ 2.800 por mês',
+            situacao: 'Escritura registrada, averbação em dia',
+            texto: 'Casa encaixada na encosta, com mata nos fundos e silêncio incomum para a distância do centro.\nOs ambientes se abrem em patamares, acompanhando o terreno.',
+            ambientes: ['Estar em patamares', 'Jantar para doze', 'Cozinha com despensa', 'Suíte master isolada', 'Estúdio independente', 'Piscina aquecida'],
+            perto: [['Jardim Botânico', '4 min a pé'], ['Parque Lage', '7 min de carro'], ['Lagoa Rodrigo de Freitas', '9 min de carro']],
+            fotos: [f.ampla, f.escada, f.jardim, f.lareira]
           }
         ]
       },
@@ -125,19 +172,34 @@
         ],
         imoveis: [
           {
-            nome: 'Casa Costa Norte', bairro: 'Jurerê', area: '680 m²', suites: '5 suítes', vagas: '6 vagas',
-            texto: 'Casa de praia feita para o ano inteiro, com estrutura preparada para a maresia e área de lazer coberta. O terreno tem saída direta para a areia.',
-            fotos: [f.horizonte, f.salao, f.piscina]
+            nome: 'Casa Costa Norte', bairro: 'Jurerê',
+            area: '680 m²', terreno: '1.000 m²', suites: '5 suítes', vagas: '6 vagas',
+            ano: '2020', orientacao: 'Face norte, para o mar', condominio: 'R$ 1.900 por mês', iptu: 'R$ 2.400 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Casa de praia feita para o ano inteiro, com estrutura preparada para a maresia e área de lazer coberta.\nO terreno tem saída direta para a areia.',
+            ambientes: ['Estar integrado', 'Jantar de frente para o mar', 'Cozinha com churrasqueira', 'Cinco suítes', 'Espaço gourmet coberto', 'Piscina aquecida'],
+            perto: [['Praia de Jurerê', 'saída direta'], ['Marina', '6 min de carro'], ['Aeroporto de Florianópolis', '35 min de carro']],
+            fotos: [f.horizonte, f.salao, f.piscina, f.vidro]
           },
           {
-            nome: 'Residência Mirante', bairro: 'Praia Brava', area: '420 m²', suites: '4 suítes', vagas: '4 vagas',
-            texto: 'Implantada na parte alta, com vista para a enseada inteira e pouca construção à frente. A sala tem pé-direito duplo e caixilho de canto sem montante.',
-            fotos: [f.entrada, f.arco, f.vidro]
+            nome: 'Residência Mirante', bairro: 'Praia Brava',
+            area: '420 m²', terreno: '600 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2022', orientacao: 'Face nordeste', condominio: 'R$ 1.400 por mês', iptu: 'R$ 1.700 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Implantada na parte alta, com vista para a enseada inteira e pouca construção à frente.\nA sala tem pé-direito duplo e caixilho de canto sem montante.',
+            ambientes: ['Estar com pé-direito duplo', 'Jantar', 'Cozinha integrada', 'Quatro suítes', 'Deck com borda infinita', 'Garagem coberta'],
+            perto: [['Praia Brava', '4 min a pé'], ['Centro de Jurerê', '9 min de carro'], ['Aeroporto de Florianópolis', '40 min de carro']],
+            fotos: [f.entrada, f.arco, f.vidro, f.terraco]
           },
           {
-            nome: 'Casa Dunas', bairro: 'Campeche', area: '390 m²', suites: '3 suítes', vagas: '3 vagas',
-            texto: 'Projeto contemporâneo em terreno plano, a poucos minutos da praia, com jardim de espécies nativas que pede pouca manutenção.',
-            fotos: [f.concreto, f.lareira, f.entrada]
+            nome: 'Casa Dunas', bairro: 'Campeche',
+            area: '390 m²', terreno: '520 m²', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2023', orientacao: 'Face leste', condominio: 'Não há', iptu: 'R$ 1.100 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Projeto contemporâneo em terreno plano, a poucos minutos da praia.\nO jardim é de espécies nativas e pede pouca manutenção.',
+            ambientes: ['Estar e jantar contínuos', 'Cozinha com ilha', 'Três suítes', 'Escritório', 'Deck com piscina', 'Depósito para pranchas'],
+            perto: [['Praia do Campeche', '7 min a pé'], ['Lagoa da Conceição', '15 min de carro'], ['Centro', '25 min de carro']],
+            fotos: [f.concreto, f.lareira, f.entrada, f.jardim]
           }
         ]
       },
@@ -153,19 +215,34 @@
         ],
         imoveis: [
           {
-            nome: 'Residência Lakeside', bairro: 'Winter Park', area: '390 m²', suites: '4 suítes', vagas: '2 vagas',
-            texto: 'Casa de frente para o lago, com píer privativo e jardim maduro. Bairro consolidado, de ruas arborizadas e escolas a pé.',
-            fotos: [f.palmeiras, f.lareira, f.clara]
+            nome: 'Residência Lakeside', bairro: 'Winter Park',
+            area: '390 m²', terreno: '750 m²', suites: '4 suítes', vagas: '2 vagas',
+            ano: '2017', orientacao: 'Face oeste, para o lago', condominio: 'US$ 320 por mês', iptu: 'US$ 980 por mês',
+            situacao: 'Title insurance disponível, sem pendências',
+            texto: 'Casa de frente para o lago, com píer privativo e jardim maduro.\nBairro consolidado, de ruas arborizadas e escolas a pé.',
+            ambientes: ['Estar para o lago', 'Jantar formal', 'Cozinha com ilha', 'Quatro suítes', 'Píer privativo', 'Garagem para dois carros'],
+            perto: [['Park Avenue', '8 min a pé'], ['Rollins College', '10 min a pé'], ['Aeroporto internacional', '25 min de carro']],
+            fotos: [f.palmeiras, f.lareira, f.clara, f.jardim]
           },
           {
-            nome: 'Casa do Lago', bairro: 'Windermere', area: '460 m²', suites: '5 suítes', vagas: '3 vagas',
-            texto: 'Condomínio fechado com acesso ao conjunto de lagos, casa de 2021 e área de lazer voltada para o poente.',
-            fotos: [f.clara, f.salao, f.ampla]
+            nome: 'Casa do Lago', bairro: 'Windermere',
+            area: '460 m²', terreno: '1.200 m²', suites: '5 suítes', vagas: '3 vagas',
+            ano: '2021', orientacao: 'Face poente', condominio: 'US$ 410 por mês', iptu: 'US$ 1.150 por mês',
+            situacao: 'Title insurance disponível, sem pendências',
+            texto: 'Condomínio fechado com acesso ao conjunto de lagos.\nA área de lazer é voltada para o poente, e a casa é de 2021.',
+            ambientes: ['Estar de pé-direito alto', 'Jantar', 'Cozinha e cozinha de apoio', 'Cinco suítes', 'Home theater', 'Piscina aquecida'],
+            perto: [['Rampa para barcos', '5 min de carro'], ['Escolas particulares', '10 min de carro'], ['Disney Springs', '20 min de carro']],
+            fotos: [f.clara, f.salao, f.ampla, f.piscina]
           },
           {
-            nome: 'Villa Reserva', bairro: 'Lake Nona', area: '350 m²', suites: '4 suítes', vagas: '2 vagas',
-            texto: 'Construção recente em bairro planejado, com piscina aquecida e estrutura pronta para locação por temporada, se for o caso.',
-            fotos: [f.ampla, f.arco, f.piscina]
+            nome: 'Villa Reserva', bairro: 'Lake Nona',
+            area: '350 m²', terreno: '640 m²', suites: '4 suítes', vagas: '2 vagas',
+            ano: '2023', orientacao: 'Face sul', condominio: 'US$ 280 por mês', iptu: 'US$ 860 por mês',
+            situacao: 'Title insurance disponível, liberada para locação',
+            texto: 'Construção recente em bairro planejado, com piscina aquecida.\nA estrutura está pronta para locação por temporada, se for o caso.',
+            ambientes: ['Estar integrado', 'Jantar', 'Cozinha com despensa', 'Quatro suítes', 'Lanai coberto', 'Piscina aquecida'],
+            perto: [['Centro médico', '6 min de carro'], ['Campo de golfe', '9 min de carro'], ['Aeroporto internacional', '18 min de carro']],
+            fotos: [f.ampla, f.arco, f.piscina, f.entrada]
           }
         ]
       },
@@ -181,19 +258,34 @@
         ],
         imoveis: [
           {
-            nome: 'Villa Bayfront', bairro: 'Coconut Grove', area: '560 m²', suites: '5 suítes', vagas: '4 vagas',
-            texto: 'Frente para a baía com deck e vaga de barco. A casa foi reformada em 2023, com esquadrias novas e certificação de janela para vento.',
-            fotos: [f.piscina, f.salao, f.agua]
+            nome: 'Villa Bayfront', bairro: 'Coconut Grove',
+            area: '560 m²', terreno: '980 m²', suites: '5 suítes', vagas: '4 vagas',
+            ano: '2008, reformada em 2023', orientacao: 'Face leste, para a baía', condominio: 'Não há', iptu: 'US$ 2.400 por mês',
+            situacao: 'Title insurance disponível, janelas com certificação',
+            texto: 'Frente para a baía, com deck e vaga de barco.\nA reforma de 2023 trocou esquadrias e trouxe certificação de janela para vento.',
+            ambientes: ['Estar para a baía', 'Jantar', 'Cozinha com ilha dupla', 'Cinco suítes', 'Deck com vaga de barco', 'Piscina de borda'],
+            perto: [['Marina', '3 min a pé'], ['CocoWalk', '9 min a pé'], ['Aeroporto internacional', '20 min de carro']],
+            fotos: [f.piscina, f.salao, f.agua, f.lareira]
           },
           {
-            nome: 'Residência Coral', bairro: 'Coral Gables', area: '480 m²', suites: '4 suítes', vagas: '3 vagas',
-            texto: 'Casa de linhas mediterrâneas em rua arborizada, com pátio interno sombreado e piscina longitudinal.',
-            fotos: [f.varandas, f.arco, f.jardim]
+            nome: 'Residência Coral', bairro: 'Coral Gables',
+            area: '480 m²', terreno: '900 m²', suites: '4 suítes', vagas: '3 vagas',
+            ano: '1998, reformada em 2020', orientacao: 'Face norte', condominio: 'Não há', iptu: 'US$ 1.900 por mês',
+            situacao: 'Title insurance disponível, sem pendências',
+            texto: 'Casa de linhas mediterrâneas em rua arborizada, com pátio interno sombreado.\nA piscina é longitudinal e acompanha o comprimento do jardim.',
+            ambientes: ['Estar com lareira', 'Jantar formal', 'Cozinha com copa', 'Quatro suítes', 'Pátio interno', 'Piscina longitudinal'],
+            perto: [['Miracle Mile', '7 min de carro'], ['Universidade de Miami', '10 min de carro'], ['Aeroporto internacional', '15 min de carro']],
+            fotos: [f.varandas, f.arco, f.jardim, f.escada]
           },
           {
-            nome: 'Apartamento Oceano', bairro: 'Bal Harbour', area: '300 m²', suites: '3 suítes', vagas: '2 vagas',
-            texto: 'Andar alto, de frente para o mar, em prédio com serviço completo e acesso direto à praia.',
-            fotos: [f.entrada, f.lareira, f.terraco]
+            nome: 'Apartamento Oceano', bairro: 'Bal Harbour',
+            area: '300 m²', terreno: 'Andar alto', suites: '3 suítes', vagas: '2 vagas',
+            ano: '2015', orientacao: 'Face leste, para o mar', condominio: 'US$ 3.600 por mês', iptu: 'US$ 1.500 por mês',
+            situacao: 'Title insurance disponível, sem pendências',
+            texto: 'Andar alto, de frente para o mar, em prédio com serviço completo.\nO acesso à praia é direto, pelo próprio edifício.',
+            ambientes: ['Estar de frente para o mar', 'Jantar', 'Cozinha fechada', 'Três suítes', 'Terraço corrido', 'Duas vagas cobertas'],
+            perto: [['Praia', 'acesso direto'], ['Bal Harbour Shops', '4 min a pé'], ['Aeroporto internacional', '30 min de carro']],
+            fotos: [f.entrada, f.lareira, f.terraco, f.salao]
           }
         ]
       },
@@ -209,19 +301,34 @@
         ],
         imoveis: [
           {
-            nome: 'Residência Dunas', bairro: 'Palm Jumeirah', area: '740 m²', suites: '6 suítes', vagas: '4 vagas',
-            texto: 'Casa em uma das frondes, com praia privativa e piscina de borda infinita voltada para a linha do horizonte da cidade.',
-            fotos: [f.agua, f.salao, f.piscina]
+            nome: 'Residência Dunas', bairro: 'Palm Jumeirah',
+            area: '740 m²', terreno: '1.050 m²', suites: '6 suítes', vagas: '4 vagas',
+            ano: '2019', orientacao: 'Face oeste, para o mar', condominio: 'AED 9.800 por mês', iptu: 'Não há',
+            situacao: 'Propriedade plena, registro concluído',
+            texto: 'Casa em uma das frondes, com praia privativa e piscina de borda infinita.\nA piscina é voltada para a linha do horizonte da cidade.',
+            ambientes: ['Estar para o mar', 'Jantar para dezesseis', 'Cozinha e cozinha de serviço', 'Seis suítes', 'Praia privativa', 'Academia'],
+            perto: [['Praia privativa', 'acesso direto'], ['Nakheel Mall', '7 min de carro'], ['Aeroporto internacional', '30 min de carro']],
+            fotos: [f.agua, f.salao, f.piscina, f.vidro]
           },
           {
-            nome: 'Villa Marina', bairro: 'Dubai Marina', area: '430 m²', suites: '4 suítes', vagas: '3 vagas',
-            texto: 'Unidade de esquina com vista dupla, para a marina e para o mar aberto, em prédio com serviço de hotel.',
-            fotos: [f.ampla, f.escada, f.vidro]
+            nome: 'Villa Marina', bairro: 'Dubai Marina',
+            area: '430 m²', terreno: 'Unidade de esquina', suites: '4 suítes', vagas: '3 vagas',
+            ano: '2021', orientacao: 'Face noroeste', condominio: 'AED 6.200 por mês', iptu: 'Não há',
+            situacao: 'Propriedade plena, registro concluído',
+            texto: 'Unidade de esquina com vista dupla, para a marina e para o mar aberto.\nO prédio tem serviço de hotel, com recepção e concierge.',
+            ambientes: ['Estar de esquina', 'Jantar', 'Cozinha equipada', 'Quatro suítes', 'Terraço em L', 'Serviço de concierge'],
+            perto: [['Marina Walk', '5 min a pé'], ['Praia JBR', '12 min a pé'], ['Aeroporto internacional', '35 min de carro']],
+            fotos: [f.ampla, f.escada, f.vidro, f.arco]
           },
           {
-            nome: 'Casa Downtown', bairro: 'Downtown Dubai', area: '310 m²', suites: '3 suítes', vagas: '2 vagas',
-            texto: 'Andar alto no centro, a pé do que interessa, com entrega prevista e incorporadora com histórico entregue.',
-            fotos: [f.concreto, f.arco, f.varandas]
+            nome: 'Casa Downtown', bairro: 'Downtown Dubai',
+            area: '310 m²', terreno: 'Andar alto', suites: '3 suítes', vagas: '2 vagas',
+            ano: 'Entrega prevista para 2027', orientacao: 'Face sul', condominio: 'AED 4.400 por mês', iptu: 'Não há',
+            situacao: 'Na planta, incorporadora com histórico entregue',
+            texto: 'Andar alto no centro, a pé do que interessa.\nA entrega está prevista e a incorporadora tem histórico de obras concluídas no prazo.',
+            ambientes: ['Estar integrado', 'Jantar', 'Cozinha fechada', 'Três suítes', 'Varanda corrida', 'Piscina no edifício'],
+            perto: [['Dubai Mall', '6 min a pé'], ['Burj Khalifa', '9 min a pé'], ['Aeroporto internacional', '18 min de carro']],
+            fotos: [f.concreto, f.arco, f.varandas, f.salao]
           }
         ]
       },
@@ -237,19 +344,34 @@
         ],
         imoveis: [
           {
-            nome: 'Palacete Restaurado', bairro: 'Príncipe Real', area: '430 m²', suites: '4 suítes', vagas: '2 vagas',
-            texto: 'Palacete do século dezenove restaurado com licença patrimonial, mantendo estuques, azulejo original e a escada de madeira. Instalações inteiramente novas por trás disso tudo.',
-            fotos: [f.jardim, f.escada, f.arco]
+            nome: 'Palacete Restaurado', bairro: 'Príncipe Real',
+            area: '430 m²', terreno: '310 m²', suites: '4 suítes', vagas: '2 vagas',
+            ano: '1887, restaurado em 2023', orientacao: 'Face sul', condominio: 'Não há', iptu: '€ 320 por mês',
+            situacao: 'Licença patrimonial em ordem, caderneta atualizada',
+            texto: 'Palacete do século dezenove restaurado com licença patrimonial, mantendo estuques, azulejo original e a escada de madeira.\nAs instalações são inteiramente novas por trás disso tudo.',
+            ambientes: ['Sala nobre com estuques', 'Jantar', 'Cozinha contemporânea', 'Quatro suítes', 'Pátio nos fundos', 'Garagem para dois carros'],
+            perto: [['Jardim do Príncipe Real', '2 min a pé'], ['Bairro Alto', '8 min a pé'], ['Aeroporto de Lisboa', '20 min de carro']],
+            fotos: [f.jardim, f.escada, f.arco, f.salao]
           },
           {
-            nome: 'Apartamento Tejo', bairro: 'Lapa', area: '260 m²', suites: '3 suítes', vagas: '1 vaga',
-            texto: 'Andar nobre com vista para o rio, pé-direito alto e janelas de sacada originais. Prédio com poucos vizinhos.',
-            fotos: [f.clara, f.lareira, f.varandas]
+            nome: 'Apartamento Tejo', bairro: 'Lapa',
+            area: '260 m²', terreno: 'Andar nobre', suites: '3 suítes', vagas: '1 vaga',
+            ano: '1920, reabilitado em 2021', orientacao: 'Face sul, para o rio', condominio: '€ 180 por mês', iptu: '€ 210 por mês',
+            situacao: 'Caderneta atualizada, sem ônus',
+            texto: 'Andar nobre com vista para o rio, pé-direito alto e janelas de sacada originais.\nO prédio tem poucos vizinhos e portaria durante o dia.',
+            ambientes: ['Duas salas em enfiada', 'Jantar', 'Cozinha reabilitada', 'Três suítes', 'Escritório', 'Arrecadação'],
+            perto: [['Jardim da Estrela', '6 min a pé'], ['Museu de Arte Antiga', '9 min a pé'], ['Aeroporto de Lisboa', '22 min de carro']],
+            fotos: [f.clara, f.lareira, f.varandas, f.escada]
           },
           {
-            nome: 'Casa do Miradouro', bairro: 'Graça', area: '340 m²', suites: '4 suítes', vagas: '1 vaga',
-            texto: 'Casa em rua calma, com terraço no topo e vista para o castelo. Reabilitada em 2024, pronta para morar.',
-            fotos: [f.varandas, f.salao, f.terraco]
+            nome: 'Casa do Miradouro', bairro: 'Graça',
+            area: '340 m²', terreno: '240 m²', suites: '4 suítes', vagas: '1 vaga',
+            ano: '1940, reabilitada em 2024', orientacao: 'Face poente, para o castelo', condominio: 'Não há', iptu: '€ 240 por mês',
+            situacao: 'Licença de utilização emitida, pronta para morar',
+            texto: 'Casa em rua calma, com terraço no topo e vista para o castelo.\nFoi reabilitada em 2024 e está pronta para morar.',
+            ambientes: ['Estar com lareira', 'Jantar', 'Cozinha com despensa', 'Quatro suítes', 'Terraço no topo', 'Lavandaria'],
+            perto: [['Miradouro da Graça', '3 min a pé'], ['Castelo de São Jorge', '11 min a pé'], ['Aeroporto de Lisboa', '15 min de carro']],
+            fotos: [f.varandas, f.salao, f.terraco, f.lareira]
           }
         ]
       },
@@ -265,19 +387,34 @@
         ],
         imoveis: [
           {
-            nome: 'Casa Atlântico', bairro: 'Quinta da Marinha', area: '610 m²', suites: '5 suítes', vagas: '4 vagas',
-            texto: 'Casa térrea de implantação horizontal, voltada para o campo de golfe, com pinhal nos fundos e piscina abrigada do vento.',
-            fotos: [f.vidro, f.lareira, f.ampla]
+            nome: 'Casa Atlântico', bairro: 'Quinta da Marinha',
+            area: '610 m²', terreno: '1.400 m²', suites: '5 suítes', vagas: '4 vagas',
+            ano: '2015, reformada em 2023', orientacao: 'Face sul', condominio: '€ 260 por mês', iptu: '€ 430 por mês',
+            situacao: 'Caderneta atualizada, sem ônus',
+            texto: 'Casa térrea de implantação horizontal, voltada para o campo de golfe, com pinhal nos fundos.\nA piscina fica abrigada do vento pela própria implantação.',
+            ambientes: ['Estar em dois ambientes', 'Jantar para catorze', 'Cozinha com copa', 'Cinco suítes', 'Piscina abrigada', 'Garagem fechada'],
+            perto: [['Campo de golfe', 'acesso direto'], ['Escolas internacionais', '8 min de carro'], ['Centro de Cascais', '10 min de carro']],
+            fotos: [f.vidro, f.lareira, f.ampla, f.jardim]
           },
           {
-            nome: 'Residência Guincho', bairro: 'Guincho', area: '480 m²', suites: '4 suítes', vagas: '3 vagas',
-            texto: 'Vista para o oceano e para a serra, com materiais escolhidos para o vento da costa. A sala abre inteira para o deck.',
-            fotos: [f.entrada, f.escada, f.horizonte]
+            nome: 'Residência Guincho', bairro: 'Guincho',
+            area: '480 m²', terreno: '1.000 m²', suites: '4 suítes', vagas: '3 vagas',
+            ano: '2019', orientacao: 'Face oeste, para o oceano', condominio: 'Não há', iptu: '€ 380 por mês',
+            situacao: 'Licença de utilização emitida, sem ônus',
+            texto: 'Vista para o oceano e para a serra, com materiais escolhidos para o vento da costa.\nA sala abre inteira para o deck.',
+            ambientes: ['Estar que abre para o deck', 'Jantar', 'Cozinha integrada', 'Quatro suítes', 'Deck para o oceano', 'Depósito para equipamentos'],
+            perto: [['Praia do Guincho', '6 min a pé'], ['Serra de Sintra', '12 min de carro'], ['Centro de Cascais', '14 min de carro']],
+            fotos: [f.entrada, f.escada, f.horizonte, f.terraco]
           },
           {
-            nome: 'Villa do Pinhal', bairro: 'Birre', area: '400 m²', suites: '4 suítes', vagas: '3 vagas',
-            texto: 'Rua tranquila, a caminho das escolas internacionais, com jardim grande e casa de hóspedes independente.',
-            fotos: [f.ampla, f.arco, f.jardim]
+            nome: 'Villa do Pinhal', bairro: 'Birre',
+            area: '400 m²', terreno: '900 m²', suites: '4 suítes', vagas: '3 vagas',
+            ano: '2012, reformada em 2022', orientacao: 'Face sudeste', condominio: 'Não há', iptu: '€ 290 por mês',
+            situacao: 'Caderneta atualizada, pronta para morar',
+            texto: 'Rua tranquila, a caminho das escolas internacionais, com jardim grande.\nA casa de hóspedes é independente, com entrada própria.',
+            ambientes: ['Estar com lareira', 'Jantar', 'Cozinha com ilha', 'Quatro suítes', 'Casa de hóspedes independente', 'Jardim com piscina'],
+            perto: [['Escolas internacionais', '4 min de carro'], ['Centro de Cascais', '9 min de carro'], ['Praia da Conceição', '11 min de carro']],
+            fotos: [f.ampla, f.arco, f.jardim, f.piscina]
           }
         ]
       }
