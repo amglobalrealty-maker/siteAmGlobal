@@ -247,8 +247,12 @@
       scale(0.9);
     transition: opacity 1.5s var(--curva), transform 2s var(--curva);
     will-change: transform, opacity;
-    filter: drop-shadow(0 16px 26px rgba(11, 11, 12, 0.55));
   }
+
+  /* So a camada da frente leva sombra. Sombra em setenta e tantas folhas
+     custaria caro e empastelaria a massa em vez de dar profundidade. */
+  .folha--frente { filter: drop-shadow(0 18px 26px rgba(11, 11, 12, 0.5)); }
+  .folha--meio { filter: drop-shadow(0 10px 16px rgba(11, 11, 12, 0.3)); }
 
   .folha.aberta {
     opacity: var(--op, 0.7);
@@ -1924,22 +1928,41 @@
 
      `id` entra no nome dos degrades: sem isso, quatro folhas na mesma pagina
      brigariam pelo mesmo identificador e todas sairiam com o degrade da ultima. */
-  function desenharFolha(laminas, id) {
-    var claro = 'folhaA' + id;
-    var escuro = 'folhaB' + id;
+  /* Os degrades sao declarados UMA VEZ, num SVG escondido no fim da pagina, e
+     todas as folhas apontam para eles. Antes cada folha carregava os proprios:
+     com setenta e poucas folhas na tela isso viraria mais de cem definicoes
+     repetidas, de graca. */
+  var TONS = {
+    frente: { a: ['#7E6942', '#B49A6E', '#DCC79E'], b: ['#5E4E31', '#8E7850', '#B49A6E'] },
+    meio:   { a: ['#8A7452', '#BDA47A', '#E0CDA8'], b: ['#6B5A3C', '#9A845C', '#C0A87E'] },
+    fundo:  { a: ['#9C8865', '#C6B189', '#E6D8BC'], b: ['#82714F', '#A89272', '#CDB795'] }
+  };
 
-    var partes = ['<defs>'
-      + '<linearGradient id="' + claro + '" x1="0.1" y1="1" x2="0.8" y2="0">'
-      +   '<stop offset="0" stop-color="#7E6942"/>'
-      +   '<stop offset="0.5" stop-color="#B49A6E"/>'
-      +   '<stop offset="1" stop-color="#DCC79E"/>'
-      + '</linearGradient>'
-      + '<linearGradient id="' + escuro + '" x1="0.9" y1="1" x2="0.2" y2="0.1">'
-      +   '<stop offset="0" stop-color="#5E4E31"/>'
-      +   '<stop offset="0.6" stop-color="#8E7850"/>'
-      +   '<stop offset="1" stop-color="#B49A6E"/>'
-      + '</linearGradient>'
-      + '</defs>'];
+  (function guardarTons() {
+    var defs = '';
+    Object.keys(TONS).forEach(function (tom) {
+      ['a', 'b'].forEach(function (lado) {
+        var c = TONS[tom][lado];
+        var coords = lado === 'a' ? 'x1="0.1" y1="1" x2="0.8" y2="0"' : 'x1="0.9" y1="1" x2="0.2" y2="0.1"';
+        defs += '<linearGradient id="folha-' + tom + '-' + lado + '" ' + coords + '>'
+          + '<stop offset="0" stop-color="' + c[0] + '"/>'
+          + '<stop offset="0.55" stop-color="' + c[1] + '"/>'
+          + '<stop offset="1" stop-color="' + c[2] + '"/>'
+          + '</linearGradient>';
+      });
+    });
+
+    var svg = document.createElement('div');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+    svg.innerHTML = '<svg width="0" height="0"><defs>' + defs + '</defs></svg>';
+    document.body.appendChild(svg);
+  })();
+
+  function desenharFolha(laminas, tom) {
+    var claro = 'folha-' + tom + '-a';
+    var escuro = 'folha-' + tom + '-b';
+    var partes = [];
 
     // caule
     partes.push('<path d="M150 478 C 144 390 147 268 150 158" fill="none" stroke="url(#' + claro + ')" stroke-width="5.5" stroke-linecap="round"/>');
@@ -2015,70 +2038,85 @@
     return x - Math.floor(x);
   }
 
+  /* Tres camadas por faixa, do fundo para a frente. E isso que faz parecer
+     MATO ATRAS da foto, e nao folha colada nela:
+
+       fundo   muitas, pequenas, bem escondidas atras da borda e apagadas;
+       meio    medias, um pouco mais para baixo;
+       frente  poucas, grandes, mais para baixo e quase opacas.
+
+     Como o bloco corta o que transborda, boa parte de cada folha fica ESCONDIDA
+     acima da borda. E de proposito: so a parte que cai sobre a foto aparece, e
+     a massa parece continuar por tras. */
+  var CAMADAS = [
+    { nome: 'fundo',  tom: 'fundo',  quantas: 11, escala: [0.50, 0.30], sobe: [-62, 12], op: [0.34, 0.16], laminas: [4, 2], z: 0 },
+    { nome: 'meio',   tom: 'meio',   quantas: 8,  escala: [0.80, 0.34], sobe: [-46, 10], op: [0.52, 0.18], laminas: [5, 2], z: 1 },
+    { nome: 'frente', tom: 'frente', quantas: 6,  escala: [1.05, 0.45], sobe: [-30, 9],  op: [0.72, 0.2],  laminas: [6, 3], z: 2 }
+  ];
+
   var FOLHAGENS = [
-    { alvo: '#curadoria .leque',        quantas: 9, base: 'clamp(84px, 11vw, 176px)' },
-    { alvo: '#manifesto .faixa-imagem', quantas: 8, base: 'clamp(76px, 10vw, 158px)' },
-    { alvo: '#servicos .palco',         quantas: 9, base: 'clamp(84px, 11vw, 176px)' }
+    { alvo: '#curadoria .leque',        base: 'clamp(90px, 11.5vw, 190px)' },
+    { alvo: '#manifesto .faixa-imagem', base: 'clamp(82px, 10.5vw, 172px)' },
+    { alvo: '#servicos .palco',         base: 'clamp(90px, 11.5vw, 190px)' }
   ];
 
   var folhasNaTela = [];
-  var contaFolha = 0;
 
   FOLHAGENS.forEach(function (conf, nc) {
     var bloco = document.querySelector(conf.alvo);
     if (!bloco) return;
 
     /* A faixa entra DENTRO do proprio bloco de imagem, e nao num embrulho em
-       volta dele. A tentativa anterior usava embrulho e as folhas acabaram
-       ancoradas na secao: foram parar em cima do texto, longe da imagem.
-
-       Aqui o bloco vira o ponto de apoio (`position: relative` pela classe) e
-       as folhas so podem cair para dentro dele. Nao ha como escaparem para o
-       texto. */
+       volta dele: assim as folhas so podem cair para dentro da foto. */
     bloco.classList.add('com-folhagem');
 
     var faixa = document.createElement('div');
     faixa.className = 'folhagem';
     faixa.setAttribute('aria-hidden', 'true');
 
-    for (var i = 0; i < conf.quantas; i++) {
-      var r1 = ruido(i, nc + 1);
-      var r2 = ruido(i, nc + 7);
-      var r3 = ruido(i, nc + 13);
+    var ordem = 0;
 
-      // espalha pela largura, com folga nas pontas e um empurrao de cada lado
-      var esquerda = ((i + 0.5) / conf.quantas) * 100 + (r1 - 0.5) * 9;
+    CAMADAS.forEach(function (cam, nk) {
+      for (var i = 0; i < cam.quantas; i++) {
+        var semente = nc * 31 + nk * 7;
+        var r1 = ruido(i, semente + 1);
+        var r2 = ruido(i, semente + 5);
+        var r3 = ruido(i, semente + 11);
 
-      // as das pontas saem maiores, como cachos mais cheios
-      var beirada = Math.abs(esquerda - 50) / 50;
-      var tamanho = (0.72 + beirada * 0.5 + r2 * 0.34).toFixed(2);
+        /* Vai de -6% a 106%: as pontas precisam passar da borda, senao sobra
+           um vazio nos cantos e a faixa deixa de parecer continua. Cada camada
+           comeca deslocada da anterior, para uma tapar o vao da outra. */
+        var passo = 112 / cam.quantas;
+        var esquerda = -6 + passo * (i + 0.5) + (r1 - 0.5) * passo * 0.7 + nk * passo * 0.28;
 
-      // cai para o lado de fora: negativa a esquerda, positiva a direita
-      var pende = (esquerda - 50) * 0.5 + (r3 - 0.5) * 26;
+        var tamanho = (cam.escala[0] + r2 * cam.escala[1]).toFixed(2);
+        var pende = (esquerda - 50) * 0.34 + (r3 - 0.5) * 30;
 
-      var folha = document.createElement('span');
-      folha.className = 'folha';
-      folha.setAttribute('aria-hidden', 'true');
-      folha.style.cssText =
-        'left:' + esquerda.toFixed(1) + '%'
-        + ';width:calc(' + conf.base + ' * ' + tamanho + ')'
-        + ';z-index:' + (i % 3)
-        + ';--op:' + (0.62 + r2 * 0.26).toFixed(2)
-        // a folha ja nasce pendurada: o angulo e so a inclinacao, sem os 180
-        + ';--ang-ini:' + (pende * 1.6).toFixed(1) + 'deg'
-        + ';--ang-fim:' + pende.toFixed(1) + 'deg'
-        + ';--rx-ini:' + (44 + r1 * 24).toFixed(1) + 'deg'
-        + ';--rx-fim:' + (6 + r1 * 13).toFixed(1) + 'deg'
-        + ';--ry-fim:' + ((r3 - 0.5) * 30).toFixed(1) + 'deg'
-        // sobe pouco: so o cabo do caule fica fora, a folha inteira cai na foto
-        + ';--sobe:' + (-8 - r2 * 9).toFixed(0) + '%'
-        // as da direita entram depois das da esquerda
-        + ';transition-delay:' + (i * 0.07).toFixed(2) + 's';
-      folha.innerHTML = desenharFolha(5 + Math.round(r1 * 3), contaFolha++);
+        var folha = document.createElement('span');
+        folha.className = 'folha folha--' + cam.nome;
+        folha.setAttribute('aria-hidden', 'true');
+        folha.style.cssText =
+          'left:' + esquerda.toFixed(1) + '%'
+          + ';width:calc(' + conf.base + ' * ' + tamanho + ')'
+          + ';z-index:' + cam.z
+          + ';--op:' + (cam.op[0] + r2 * cam.op[1]).toFixed(2)
+          // a folha ja nasce pendurada: o angulo e so a inclinacao
+          + ';--ang-ini:' + (pende * 1.5).toFixed(1) + 'deg'
+          + ';--ang-fim:' + pende.toFixed(1) + 'deg'
+          + ';--rx-ini:' + (40 + r1 * 22).toFixed(1) + 'deg'
+          + ';--rx-fim:' + (5 + r1 * 12).toFixed(1) + 'deg'
+          + ';--ry-fim:' + ((r3 - 0.5) * 26).toFixed(1) + 'deg'
+          // o quanto some atras da borda: o fundo some mais que a frente
+          + ';--sobe:' + (cam.sobe[0] - r2 * cam.sobe[1]).toFixed(0) + '%'
+          // entram da esquerda para a direita, camada por camada
+          + ';transition-delay:' + (ordem * 0.035).toFixed(2) + 's';
+        folha.innerHTML = desenharFolha(cam.laminas[0] + Math.round(r1 * cam.laminas[1]), cam.tom);
 
-      faixa.appendChild(folha);
-      folhasNaTela.push(folha);
-    }
+        faixa.appendChild(folha);
+        folhasNaTela.push(folha);
+        ordem++;
+      }
+    });
 
     bloco.appendChild(faixa);
   });

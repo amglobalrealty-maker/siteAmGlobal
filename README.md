@@ -294,10 +294,26 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
   laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
-- **A folhagem.** Vinte e seis folhas formam uma faixa APOIADA na borda de cima
-  de cada bloco de imagem, caindo por cima dele, como mato debrucado sobre a
-  foto. Sao tres faixas: sobre a banda da curadoria, sobre a faixa de imagem da
-  secao A AMGlobal e sobre o palco dos servicos.
+- **A folhagem.** Setenta e cinco folhas formam faixas de mato debrucado sobre
+  as imagens: vinte e cinco sobre a banda da curadoria, vinte e cinco sobre a
+  faixa de imagem da secao A AMGlobal e vinte e cinco sobre o palco dos
+  servicos.
+
+  **Sao tres camadas por faixa, e e delas que vem a profundidade:**
+
+  | Camada | Quantas | Tamanho | Quanto some atras da borda | Tom |
+  |---|---|---|---|---|
+  | Fundo | 11 | menores | 62% a 74% | mais claro e apagado |
+  | Meio | 8 | medias | 46% a 56% | intermediario |
+  | Frente | 6 | maiores | 30% a 39% | mais forte, com sombra |
+
+  Cada camada comeca deslocada da anterior, para uma tapar o vao da outra, e
+  todas vao de -6% a 106% da largura: as pontas precisam passar da borda, senao
+  sobra vazio nos cantos e a faixa deixa de parecer continua.
+
+  **A parte escondida e o segredo.** Como o bloco corta o que transborda, boa
+  parte de cada folha fica oculta acima da borda. E o que faz a massa parecer
+  continuar por tras da foto, em vez de folha colada nela.
 
   Cada folha e pendurada pelo caule, com a lamina caindo para baixo, e as das
   pontas pendem mais para fora. Elas entram da esquerda para a direita, uma
@@ -337,9 +353,13 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   balanco fica no SVG e nao na folha, senao brigaria com a transformacao de
   entrada.
 
-  Para mudar onde as faixas aparecem, quantas folhas cada uma tem ou o tamanho
-  base delas, mexa na lista `FOLHAGENS`, dentro do script. A cor esta na funcao
-  que desenha a folha, nos dois degrades.
+  Os degrades sao declarados UMA VEZ, num SVG escondido no fim da pagina, e as
+  setenta e cinco folhas apontam para eles. Antes cada folha carregava os
+  proprios, o que daria mais de cem definicoes repetidas de graca.
+
+  Para mudar onde as faixas aparecem e o tamanho base das folhas, mexa em
+  `FOLHAGENS`. Para mudar densidade, profundidade ou tom das camadas, mexa em
+  `CAMADAS`. As cores ficam em `TONS`, tres tons de champagne, um por camada.
 
   Sao decoracao pura: nao recebem clique, ficam fora da leitura de tela e
   nenhuma cobre texto. Com movimento reduzido, aparecem no lugar e nao
