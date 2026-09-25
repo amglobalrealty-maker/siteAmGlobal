@@ -113,7 +113,7 @@ O endereco completo segue sempre o padrao
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | As residencias penduradas num fio champagne que desce a secao alternando de lado. Filtravel por pais e cidade |
+| 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Lista sanfonada: comprar, vender, investir e assessorar do exterior |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -142,10 +142,13 @@ quantidade de residencias de cada um, e as cidades a direita.
 
 **A fonte da verdade sao as proprias residencias.** Cada uma carrega
 `data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
-delas quando a pagina abre, e o fio se redesenha a partir do que sobrar na
-tela. Para trocar o portfolio basta editar os blocos `fio-item`, mantendo esses
-dois atributos. So e preciso mexer no painel se entrar um pais ou uma cidade
-que ainda nao esteja listado la.
+delas quando a pagina abre. Depois de filtrar, a primeira lamina que sobrou se
+abre sozinha. Para trocar o portfolio basta editar os blocos `leque-item`,
+mantendo esses dois atributos. So e preciso mexer no painel se entrar um pais
+ou uma cidade que ainda nao esteja listado la.
+
+No celular a banda corre de lado, com encaixe: uma residencia por vez, ja
+aberta, arrastando para o lado.
 
 ### Imoveis de teste
 
@@ -175,13 +178,12 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **O fio da curadoria.** Uma unica curva champagne desce a secao passando pelo
-  centro de cada residencia, com um ponto em cada uma. Ela e desenhada em
-  pixels, no tamanho real da secao, entao acompanha qualquer largura de tela, e
-  e refeita a cada filtro: com tres residencias o fio e curto, com oito ele
-  desce a secao inteira. O traco se desenha quando a secao chega na tela.
-  O lado de cada residencia tambem sai do script, e nao do CSS, para a
-  alternancia continuar certa depois de filtrar.
+- **A banda da curadoria.** Cada residencia e uma lamina estreita, em pe, com a
+  cidade escrita na vertical. Apontar uma lamina a abre: ela empurra as
+  vizinhas, a foto recupera a cor, o filete champagne acende na borda e a ficha
+  sobe no pe. As outras continuam ali, de canto. A secao inteira ocupa pouco
+  mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
+  laminas so ficam mais estreitas ou mais largas.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **Sanfona dos servicos.** Uma linha aberta por vez.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.
