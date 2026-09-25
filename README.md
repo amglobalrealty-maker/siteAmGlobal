@@ -112,15 +112,17 @@ O endereco completo segue sempre o padrao
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Tres imoveis em grade escalonada, com numeral e chapa |
+| 02 | Curadoria | Lista curta de um lado, uma chapa grande do outro, que troca conforme a linha apontada |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Lista sanfonada: comprar, vender, investir e assessorar do exterior |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
-A numeracao nao e enfeite: ela aparece no indice lateral e acompanha onde a
-pessoa esta na pagina.
+A numeracao da tabela acima e organizacao interna deste documento. Ela **nao**
+aparece mais na tela: o indice lateral com os numeros 01 a 06 foi retirado a
+pedido da cliente. Quem diz onde a pessoa esta e o menu do topo, que sublinha
+a secao atual, mais o filete de progresso.
 
 ## Movimento
 
@@ -137,7 +139,11 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **Indice lateral.** A numeracao da secao atual acende em champagne.
+- **Curadoria.** Apontar uma linha da lista troca a chapa grande ao lado, com
+  fusao lenta e avanco continuo da imagem. A linha escolhida anda um pouco para
+  a direita, o numero e o bairro viram champagne, um filete corre sob ela e o
+  triangulo aberto aparece na ponta. No celular a chapa sobe para cima da lista
+  e o toque faz o mesmo papel do ponteiro.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **Sanfona dos servicos.** Uma linha aberta por vez.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.

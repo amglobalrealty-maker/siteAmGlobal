@@ -343,43 +343,6 @@
   .menu-abrir[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
   .menu-abrir[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
 
-  /* ============================================================== indice === */
-  /* numeracao lateral: diz onde a pessoa esta, nao e enfeite */
-  .indice {
-    position: fixed;
-    left: calc(var(--margem) / 2.2);
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 90;
-    display: grid;
-    gap: 16px;
-  }
-
-  .indice a {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-family: var(--sans);
-    font-size: 9.5px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    color: var(--texto-fraco);
-    text-decoration: none;
-    font-variant-numeric: tabular-nums;
-    transition: color 0.5s var(--curva);
-    mix-blend-mode: difference;
-  }
-
-  .indice i {
-    display: block;
-    width: 10px; height: 1px;
-    background: currentColor;
-    transition: width 0.5s var(--curva), background 0.5s var(--curva);
-  }
-
-  .indice a.ativo { color: var(--marfim); }
-  .indice a.ativo i { width: 26px; background: var(--champagne); }
-
   /* ============================================================= abertura == */
   .abertura {
     position: relative;
@@ -592,67 +555,190 @@
   .cabeca .rotulo { margin-bottom: 20px; }
   .cabeca-texto { padding-bottom: 8px; }
 
-  /* ============================================================ curadoria == */
-  .imoveis {
+  /* ============================================================ curadoria ==
+     Nao e vitrine de tres cartoes iguais. E uma SELECAO: de um lado a lista
+     curta, do outro uma unica chapa grande que troca conforme a linha que voce
+     aponta. A ideia e a de um dossie aberto sobre a mesa, e nao a de catalogo.
+     ------------------------------------------------------------------------ */
+  .selecao {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(20px, 2.6vw, 44px);
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(30px, 5vw, 86px);
+    align-items: start;
   }
 
-  /* escalonado: a coluna do meio desce, a terceira desce mais. Isso quebra a
-     grade de cartao e devolve ritmo editorial. */
-  .imovel:nth-child(2) { margin-top: clamp(28px, 7vw, 92px); }
-  .imovel:nth-child(3) { margin-top: clamp(56px, 14vw, 184px); }
+  /* --- a lista curta --- */
+  .selecao-lista { display: grid; }
 
-  .imovel { position: relative; display: block; text-decoration: none; color: inherit; }
-
-  .imovel-chapa {
+  .selecao-item {
     position: relative;
-    aspect-ratio: 3 / 4;
-    background: var(--onix-alto);
-    border: 1px solid var(--linha-clara);
-    overflow: hidden;
-    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(14px, 2vw, 26px);
+    width: 100%;
+    padding: clamp(22px, 3.2vh, 34px) 0;
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--linha-clara);
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: padding-left 0.8s var(--curva);
   }
 
-  .imovel-chapa img {
+  .selecao-item:last-child { border-bottom: 1px solid var(--linha-clara); }
+  .selecao-item.ativo { padding-left: clamp(10px, 1.4vw, 20px); }
+
+  /* filete champagne que marca a linha escolhida */
+  .selecao-item::after {
+    content: '';
     position: absolute;
+    left: 0; bottom: -1px;
+    width: 100%; height: 1px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.9s var(--curva);
+  }
+
+  .selecao-item.ativo::after { transform: scaleX(1); }
+
+  .selecao-num {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    font-variant-numeric: tabular-nums;
+    color: rgba(245, 242, 236, 0.3);
+    transition: color 0.7s var(--curva);
+  }
+
+  .selecao-item.ativo .selecao-num { color: var(--champagne); }
+
+  .selecao-corpo { display: grid; gap: 7px; min-width: 0; }
+
+  .selecao-nome {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2.5vw, 31px);
+    line-height: 1.04;
+    color: rgba(245, 242, 236, 0.5);
+    transition: color 0.7s var(--curva);
+  }
+
+  .selecao-item.ativo .selecao-nome,
+  .selecao-item:hover .selecao-nome { color: var(--marfim); }
+
+  .selecao-local {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.34);
+    transition: color 0.7s var(--curva);
+  }
+
+  .selecao-item.ativo .selecao-local { color: var(--champagne); }
+
+  /* o triangulo aberto, deitado, so na linha escolhida */
+  .selecao-seta {
+    justify-self: end;
+    color: var(--champagne);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.7s var(--curva), transform 0.7s var(--curva);
+  }
+
+  .selecao-item.ativo .selecao-seta { opacity: 1; transform: none; }
+
+  /* --- o palco: uma chapa so, que troca --- */
+  .selecao-palco {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--onix-alto);
+  }
+
+  /* fio champagne deslocado atras da chapa: moldura sem moldurar */
+  .selecao-palco::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: clamp(-22px, -1.6vw, -14px);
+    right: clamp(-22px, -1.6vw, -14px);
+    width: 46%;
+    height: 46%;
+    border-top: 1px solid rgba(180, 154, 110, 0.45);
+    border-right: 1px solid rgba(180, 154, 110, 0.45);
+    pointer-events: none;
+  }
+
+  .selecao-chapa {
+    position: absolute;
+    z-index: 1;
     inset: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 1.1s var(--curva), transform 1.4s var(--curva);
+  }
+
+  .selecao-chapa.ativa { opacity: 1; transform: none; }
+
+  .selecao-chapa img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: grayscale(0.3) contrast(1.05) brightness(0.84) saturate(0.74);
-    transition: transform 1.6s var(--curva), filter 0.9s var(--curva);
   }
 
-  .imovel:hover .imovel-chapa img {
-    transform: scale(1.05);
-    filter: grayscale(0.06) contrast(1.02) brightness(0.96) saturate(0.95);
+  .selecao-chapa.ativa img { animation: respirar 11s ease-out forwards; }
+
+  @keyframes respirar {
+    from { transform: scale(1.02); }
+    to { transform: scale(1.1); }
   }
 
-  /* sombra no alto da chapa, so para o numeral ter contraste */
-  .imovel-chapa::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(11, 11, 12, 0.5) 0%, transparent 34%);
-    pointer-events: none;
-  }
-
-  .imovel-num {
+  /* o numeral grande sobre a chapa, alinhado ao alto */
+  .selecao-marca {
     position: absolute;
     z-index: 2;
-    left: 22px; top: 16px;
+    left: clamp(18px, 2vw, 30px);
+    top: clamp(12px, 1.4vw, 20px);
     font-family: var(--serif);
-    font-size: clamp(40px, 5vw, 64px);
     font-weight: 300;
+    font-size: clamp(46px, 6vw, 82px);
     line-height: 1;
-    color: rgba(245, 242, 236, 0.66);
+    color: rgba(245, 242, 236, 0.72);
     font-variant-numeric: tabular-nums;
-    transition: color 0.8s var(--curva);
+    text-shadow: 0 2px 26px rgba(11, 11, 12, 0.5);
   }
 
-  .imovel:hover .imovel-num { color: var(--champagne); }
+  /* a ficha, no pe da chapa, sobre um veu curto */
+  .selecao-ficha {
+    position: absolute;
+    z-index: 2;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px clamp(18px, 2.4vw, 34px);
+    padding: clamp(46px, 7vw, 74px) clamp(18px, 2vw, 30px) clamp(16px, 1.8vw, 24px);
+    background: linear-gradient(to top, rgba(11, 11, 12, 0.88) 0%, transparent 100%);
+    font-size: 12.5px;
+    color: rgba(245, 242, 236, 0.74);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .selecao-conta {
+    margin-top: clamp(18px, 2.4vh, 26px);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.32);
+    font-variant-numeric: tabular-nums;
+  }
 
   /* faixa cheia de imagem, usada como respiro entre a citacao e os pilares */
   .faixa-imagem {
@@ -668,30 +754,6 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(0.26) contrast(1.04) brightness(0.9) saturate(0.78);
-  }
-
-  .imovel-local {
-    display: block;
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--champagne);
-    margin-bottom: 12px;
-  }
-
-  .imovel h3 { margin-bottom: 16px; }
-
-  .imovel-dados {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 26px;
-    font-size: 13px;
-    color: var(--texto-fraco);
-    font-variant-numeric: tabular-nums;
-    padding-top: 14px;
-    border-top: 1px solid var(--linha-clara);
   }
 
   .curadoria-fim {
@@ -938,7 +1000,6 @@
 
   /* ======================================================= telas estreitas == */
   @media (max-width: 1100px) {
-    .indice { display: none; }
     .cabeca { grid-template-columns: 1fr; align-items: start; }
     .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
@@ -962,9 +1023,11 @@
     .menu.aberto { clip-path: inset(0 0 0 0); }
     .menu a { font-size: 30px; font-family: var(--serif); font-weight: 300; text-transform: none; letter-spacing: 0; opacity: 1; }
     .menu a::after { bottom: -4px; }
-    .imoveis { grid-template-columns: 1fr; }
-    .imovel:nth-child(2), .imovel:nth-child(3) { margin-top: 0; }
-    .imovel-chapa { aspect-ratio: 4 / 3; }
+    /* a chapa sobe para cima da lista: e ela que a pessoa ve primeiro */
+    .selecao { grid-template-columns: 1fr; gap: 26px; }
+    .selecao-palco { order: -1; aspect-ratio: 4 / 3; }
+    .selecao-palco::before { display: none; }
+    .selecao-nome { color: var(--marfim); }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -990,7 +1053,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rolar .chevron, .faixa-trilho, .slide.ativa img { animation: none; }
+    .rolar .chevron, .faixa-trilho, .slide.ativa img, .selecao-chapa.ativa img { animation: none; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
@@ -1033,16 +1096,6 @@
     </button>
   </div>
 </header>
-
-<!-- ================================================================== indice -->
-<nav class="indice" id="indice" aria-label="Índice das seções">
-  <a href="#abertura" data-alvo="abertura"><i></i>01</a>
-  <a href="#curadoria" data-alvo="curadoria"><i></i>02</a>
-  <a href="#manifesto" data-alvo="manifesto"><i></i>03</a>
-  <a href="#servicos" data-alvo="servicos"><i></i>04</a>
-  <a href="#global" data-alvo="global"><i></i>05</a>
-  <a href="#contato" data-alvo="contato"><i></i>06</a>
-</nav>
 
 <main>
 
@@ -1119,43 +1172,76 @@
     </div>
   </div>
 
-  <!-- ATENCAO: estrutura, sem dado inventado. Cada bloco recebe nome, bairro,
+  <!-- ATENCAO: estrutura, sem dado inventado. Cada linha recebe nome, bairro,
        area, suites, vagas e valor quando o portfolio for cadastrado.
        As fotos sao PROVISORIAS, do Unsplash. O manual proibe banco de imagem em
        material de imovel: elas saem assim que chegar a fotografia propria. -->
-  <div class="imoveis">
-    <article class="imovel sobe">
-      <div class="imovel-chapa">
-        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1100&amp;q=70"
-             alt="" loading="lazy" decoding="async">
-        <span class="imovel-num">01</span>
-      </div>
-      <span class="imovel-local">Bairro, cidade</span>
-      <h3>Residência em curadoria</h3>
-      <div class="imovel-dados"><span>Área</span><span>Suítes</span><span>Sob consulta</span></div>
-    </article>
+  <div class="selecao sobe">
+    <div class="selecao-lista" id="selecaoLista">
+      <button type="button" class="selecao-item ativo" data-imovel="0">
+        <span class="selecao-num">01</span>
+        <span class="selecao-corpo">
+          <span class="selecao-nome">Residência em curadoria</span>
+          <span class="selecao-local">Bairro, cidade</span>
+        </span>
+        <span class="selecao-seta" aria-hidden="true">
+          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M1 1 L11 9 L1 17"/>
+          </svg>
+        </span>
+      </button>
 
-    <article class="imovel sobe">
-      <div class="imovel-chapa">
-        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1100&amp;q=70"
-             alt="" loading="lazy" decoding="async">
-        <span class="imovel-num">02</span>
-      </div>
-      <span class="imovel-local">Bairro, cidade</span>
-      <h3>Residência em curadoria</h3>
-      <div class="imovel-dados"><span>Área</span><span>Suítes</span><span>Sob consulta</span></div>
-    </article>
+      <button type="button" class="selecao-item" data-imovel="1">
+        <span class="selecao-num">02</span>
+        <span class="selecao-corpo">
+          <span class="selecao-nome">Residência em curadoria</span>
+          <span class="selecao-local">Bairro, cidade</span>
+        </span>
+        <span class="selecao-seta" aria-hidden="true">
+          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M1 1 L11 9 L1 17"/>
+          </svg>
+        </span>
+      </button>
 
-    <article class="imovel sobe">
-      <div class="imovel-chapa">
-        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=70"
+      <button type="button" class="selecao-item" data-imovel="2">
+        <span class="selecao-num">03</span>
+        <span class="selecao-corpo">
+          <span class="selecao-nome">Residência em curadoria</span>
+          <span class="selecao-local">Bairro, cidade</span>
+        </span>
+        <span class="selecao-seta" aria-hidden="true">
+          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M1 1 L11 9 L1 17"/>
+          </svg>
+        </span>
+      </button>
+
+      <p class="selecao-conta">Seleção de setembro &middot; três residências</p>
+    </div>
+
+    <div class="selecao-palco" id="selecaoPalco">
+      <figure class="selecao-chapa ativa" data-chapa="0">
+        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1300&amp;q=70"
              alt="" loading="lazy" decoding="async">
-        <span class="imovel-num">03</span>
-      </div>
-      <span class="imovel-local">Bairro, cidade</span>
-      <h3>Residência em curadoria</h3>
-      <div class="imovel-dados"><span>Área</span><span>Suítes</span><span>Sob consulta</span></div>
-    </article>
+        <span class="selecao-marca">01</span>
+        <figcaption class="selecao-ficha"><span>Área</span><span>Suítes</span><span>Sob consulta</span></figcaption>
+      </figure>
+
+      <figure class="selecao-chapa" data-chapa="1">
+        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1300&amp;q=70"
+             alt="" loading="lazy" decoding="async">
+        <span class="selecao-marca">02</span>
+        <figcaption class="selecao-ficha"><span>Área</span><span>Suítes</span><span>Sob consulta</span></figcaption>
+      </figure>
+
+      <figure class="selecao-chapa" data-chapa="2">
+        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1300&amp;q=70"
+             alt="" loading="lazy" decoding="async">
+        <span class="selecao-marca">03</span>
+        <figcaption class="selecao-ficha"><span>Área</span><span>Suítes</span><span>Sob consulta</span></figcaption>
+      </figure>
+    </div>
   </div>
 
   <div class="curadoria-fim sobe">
@@ -1459,7 +1545,6 @@
 
   /* 6. Indice lateral e menu acompanham a secao visivel. */
   var secoes = ['abertura', 'curadoria', 'manifesto', 'servicos', 'global', 'contato'];
-  var itensIndice = document.querySelectorAll('.indice a');
   var itensMenu = document.querySelectorAll('.menu a');
 
   if ('IntersectionObserver' in window) {
@@ -1467,9 +1552,6 @@
       entradas.forEach(function (e) {
         if (!e.isIntersecting) return;
         var id = e.target.id;
-        Array.prototype.forEach.call(itensIndice, function (a) {
-          a.classList.toggle('ativo', a.getAttribute('data-alvo') === id);
-        });
         Array.prototype.forEach.call(itensMenu, function (a) {
           a.classList.toggle('ativo', a.getAttribute('href') === '#' + id);
         });
@@ -1482,7 +1564,48 @@
     });
   }
 
-  /* 7. Servicos: uma linha aberta por vez. */
+  /* 7. Curadoria: a linha apontada manda na chapa grande ao lado. */
+  var listaSelecao = document.getElementById('selecaoLista');
+  var palco = document.getElementById('selecaoPalco');
+
+  if (listaSelecao && palco) {
+    var linhas = listaSelecao.querySelectorAll('.selecao-item');
+    var chapas = palco.querySelectorAll('.selecao-chapa');
+
+    function escolher(i) {
+      Array.prototype.forEach.call(linhas, function (l, k) {
+        l.classList.toggle('ativo', k === i);
+      });
+      Array.prototype.forEach.call(chapas, function (c, k) {
+        // tira e recoloca para o avanco lento da imagem recomecar
+        c.classList.remove('ativa');
+        if (k === i) {
+          void c.offsetWidth;
+          c.classList.add('ativa');
+        }
+      });
+    }
+
+    listaSelecao.addEventListener('click', function (ev) {
+      var linha = ev.target.closest('.selecao-item');
+      if (!linha) return;
+      escolher(parseInt(linha.getAttribute('data-imovel'), 10));
+    });
+
+    // no desktop basta apontar; no toque, o clique acima resolve
+    if (window.matchMedia('(hover: hover)').matches) {
+      Array.prototype.forEach.call(linhas, function (linha) {
+        linha.addEventListener('mouseenter', function () {
+          escolher(parseInt(linha.getAttribute('data-imovel'), 10));
+        });
+        linha.addEventListener('focus', function () {
+          escolher(parseInt(linha.getAttribute('data-imovel'), 10));
+        });
+      });
+    }
+  }
+
+  /* 8. Servicos: uma linha aberta por vez. */
   var lista = document.getElementById('listaServicos');
 
   lista.addEventListener('click', function (ev) {
@@ -1496,7 +1619,7 @@
     botao.setAttribute('aria-expanded', jaAberto ? 'false' : 'true');
   });
 
-  /* 8. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
+  /* 9. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
   var slides = document.getElementById('slides');
   var marcadores = document.getElementById('marcadores');
 
@@ -1547,7 +1670,7 @@
     }
   }
 
-  /* 9. Hora local de cada praca. Dado real, atualizado a cada minuto. */
+  /* 10. Hora local de cada praca. Dado real, atualizado a cada minuto. */
   var relogios = document.querySelectorAll('.relogio-hora');
 
   function marcarHoras() {
