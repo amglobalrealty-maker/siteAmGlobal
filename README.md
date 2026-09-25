@@ -113,7 +113,7 @@ O endereco completo segue sempre o padrao
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Indice de faixas de largura cheia; apontar uma faixa a abre e traz a fotografia por tras do texto. Filtravel por pais e cidade |
+| 02 | Curadoria | As residencias penduradas num fio champagne que desce a secao alternando de lado. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Lista sanfonada: comprar, vender, investir e assessorar do exterior |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -140,11 +140,12 @@ quantidade de residencias de cada um, e as cidades a direita.
 - Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
 - Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
 
-**A fonte da verdade sao as proprias linhas do indice.** Cada uma carrega
+**A fonte da verdade sao as proprias residencias.** Cada uma carrega
 `data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
-delas quando a pagina abre. Para trocar o portfolio basta editar as linhas,
-mantendo esses dois atributos. So e preciso mexer no painel se entrar um pais
-ou uma cidade que ainda nao esteja listado la.
+delas quando a pagina abre, e o fio se redesenha a partir do que sobrar na
+tela. Para trocar o portfolio basta editar os blocos `fio-item`, mantendo esses
+dois atributos. So e preciso mexer no painel se entrar um pais ou uma cidade
+que ainda nao esteja listado la.
 
 ### Imoveis de teste
 
@@ -174,10 +175,13 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **Curadoria.** Cada residencia e uma faixa de largura cheia, com fio fino em
-  cima e embaixo. Apontar uma faixa a faz crescer e traz a fotografia por tras
-  do texto, com o nome e o bairro deslizando um pouco para a direita e o numero
-  virando champagne. Sem apontar, a secao e so tipografia sobre onix.
+- **O fio da curadoria.** Uma unica curva champagne desce a secao passando pelo
+  centro de cada residencia, com um ponto em cada uma. Ela e desenhada em
+  pixels, no tamanho real da secao, entao acompanha qualquer largura de tela, e
+  e refeita a cada filtro: com tres residencias o fio e curto, com oito ele
+  desce a secao inteira. O traco se desenha quando a secao chega na tela.
+  O lado de cada residencia tambem sai do script, e nao do CSS, para a
+  alternancia continuar certa depois de filtrar.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **Sanfona dos servicos.** Uma linha aberta por vez.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.

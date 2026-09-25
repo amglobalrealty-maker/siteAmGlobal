@@ -663,135 +663,156 @@
   .filtro-cidade[hidden] { display: none !important; }
 
   /* ============================================================ curadoria ==
-     Um indice que se abre. Cada residencia e uma faixa de largura cheia com o
-     nome e o lugar sobre fio fino; ao apontar, a faixa cresce e a fotografia
-     aparece POR TRAS do texto. Nada de grade de cartoes, nada de vitrine.
+     Um FIO. As residencias ficam penduradas em alturas diferentes, alternando
+     de lado, e uma unica curva champagne passa por todas, desenhada no
+     tamanho real da secao pelo script e redesenhada a cada filtro. O fio e a
+     curadoria: ele mostra que aquilo foi escolhido em sequencia, uma coisa de
+     cada vez, e nao empilhado numa grade.
+
+     Pouca tinta, muito ar, chapa pequena. Nada de cartao, nada de faixa.
+     Sem o script, ficam as chapas e os textos, sem o fio: nada quebra.
      ------------------------------------------------------------------------ */
-  .dossie { border-top: 1px solid var(--linha-clara); }
+  .fio { position: relative; display: grid; gap: clamp(58px, 11vh, 132px); }
 
-  .dossie-linha {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: clamp(14px, 2.6vw, 40px);
-    width: 100%;
-    padding: clamp(24px, 3.8vh, 40px) 0;
-    background: none;
-    border: 0;
-    border-bottom: 1px solid var(--linha-clara);
-    color: inherit;
-    text-align: left;
-    cursor: pointer;
-    overflow: hidden;
-    transition: padding 0.9s var(--curva);
-  }
-
-  .dossie-linha[hidden] { display: none !important; }
-
-  /* a fotografia mora atras do texto e so aparece ao apontar */
-  .dossie-fundo {
+  .fio-traco {
     position: absolute;
     z-index: 0;
     inset: 0;
-    opacity: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
     pointer-events: none;
-    transition: opacity 1s var(--curva);
   }
 
-  .dossie-fundo img {
+  .fio-traco path {
+    fill: none;
+    stroke: rgba(180, 154, 110, 0.55);
+    stroke-width: 1;
+    stroke-dasharray: var(--comp, 4000);
+    stroke-dashoffset: var(--comp, 4000);
+    transition: stroke-dashoffset 2.6s var(--curva);
+  }
+
+  .fio.tracado .fio-traco path { stroke-dashoffset: 0; }
+
+  .fio-traco circle {
+    fill: var(--champagne);
+    opacity: 0;
+    transition: opacity 0.9s var(--curva);
+  }
+
+  .fio.tracado .fio-traco circle { opacity: 1; }
+
+  .fio-item {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(22px, 4vw, 72px);
+    align-items: center;
+  }
+
+  .fio-item[hidden] { display: none !important; }
+
+  /* o lado vem do script, para a alternancia continuar certa depois do filtro */
+  .fio-item.dir .fio-chapa { order: 2; }
+
+  .fio-chapa {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 430px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+
+  .fio-item.dir .fio-chapa { justify-self: end; }
+
+  .fio-chapa img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.14);
-    filter: grayscale(0.34) contrast(1.04) brightness(0.5) saturate(0.7);
-    transition: transform 1.8s var(--curva);
+    filter: grayscale(0.38) contrast(1.04) brightness(0.72) saturate(0.66);
+    transform: scale(1.02);
+    transition: filter 1.1s var(--curva), transform 1.6s var(--curva);
   }
 
-  .dossie-fundo::after {
+  .fio-item:hover .fio-chapa img,
+  .fio-item:focus-within .fio-chapa img {
+    filter: grayscale(0.04) contrast(1.02) brightness(0.98) saturate(0.98);
+    transform: scale(1.06);
+  }
+
+  /* fio champagne curto, saindo da chapa na direcao do texto */
+  .fio-chapa::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(11, 11, 12, 0.9) 0%, rgba(11, 11, 12, 0.5) 58%, rgba(11, 11, 12, 0.8) 100%);
+    top: 50%;
+    right: 0;
+    width: 0;
+    height: 1px;
+    background: var(--champagne);
+    transition: width 1s var(--curva);
   }
 
-  .dossie-linha:hover,
-  .dossie-linha:focus-visible {
-    padding-top: clamp(40px, 6.2vh, 76px);
-    padding-bottom: clamp(40px, 6.2vh, 76px);
+  .fio-item.dir .fio-chapa::after { right: auto; left: 0; }
+  .fio-item:hover .fio-chapa::after { width: clamp(20px, 3vw, 46px); }
+
+  .fio-texto {
+    display: grid;
+    gap: 13px;
+    max-width: 36ch;
+    align-content: center;
   }
 
-  .dossie-linha:hover .dossie-fundo,
-  .dossie-linha:focus-visible .dossie-fundo { opacity: 1; }
+  .fio-item.dir .fio-texto { justify-self: end; }
 
-  .dossie-linha:hover .dossie-fundo img,
-  .dossie-linha:focus-visible .dossie-fundo img { transform: scale(1); }
-
-  .dossie-num,
-  .dossie-corpo,
-  .dossie-dados { position: relative; z-index: 1; }
-
-  .dossie-num {
+  .fio-num {
     font-family: var(--sans);
     font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    color: rgba(245, 242, 236, 0.32);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    color: rgba(245, 242, 236, 0.3);
     font-variant-numeric: tabular-nums;
     transition: color 0.7s var(--curva);
   }
 
-  .dossie-linha:hover .dossie-num,
-  .dossie-linha:focus-visible .dossie-num { color: var(--champagne); }
+  .fio-item:hover .fio-num { color: var(--champagne); }
 
-  .dossie-corpo { display: grid; gap: 9px; min-width: 0; }
-
-  .dossie-nome {
+  .fio-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(25px, 3.5vw, 48px);
-    line-height: 1.02;
-    transition: transform 0.9s var(--curva);
+    font-size: clamp(25px, 2.7vw, 37px);
+    line-height: 1.05;
+    color: var(--marfim);
   }
 
-  .dossie-lugar {
+  .fio-lugar {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.4);
-    transition: color 0.7s var(--curva), transform 0.9s var(--curva);
+    color: rgba(245, 242, 236, 0.44);
+    transition: color 0.7s var(--curva);
   }
 
-  .dossie-linha:hover .dossie-nome,
-  .dossie-linha:hover .dossie-lugar,
-  .dossie-linha:focus-visible .dossie-nome,
-  .dossie-linha:focus-visible .dossie-lugar { transform: translateX(clamp(6px, 1vw, 18px)); }
+  .fio-item:hover .fio-lugar { color: var(--champagne); }
 
-  .dossie-linha:hover .dossie-lugar,
-  .dossie-linha:focus-visible .dossie-lugar { color: var(--champagne); }
-
-  .dossie-dados {
+  .fio-dados {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    justify-self: end;
-    gap: 6px clamp(14px, 2vw, 30px);
-    max-width: 46%;
+    gap: 5px 22px;
+    padding-top: 13px;
+    border-top: 1px solid var(--linha-clara);
     font-size: 12.5px;
-    color: rgba(245, 242, 236, 0.55);
+    color: rgba(245, 242, 236, 0.5);
     font-variant-numeric: tabular-nums;
-    text-align: right;
   }
 
-  .dossie-vazio {
-    padding: clamp(40px, 7vh, 80px) 0;
-    border-bottom: 1px solid var(--linha-clara);
-    color: var(--texto-fraco);
-  }
-
-  .dossie-vazio[hidden] { display: none !important; }
+  .fio-vazio { padding: clamp(40px, 7vh, 80px) 0; color: var(--texto-fraco); }
+  .fio-vazio[hidden] { display: none !important; }
 
   .curadoria-conta {
     margin-top: 22px;
@@ -1091,8 +1112,12 @@
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
     .filtro-cidades { grid-template-columns: 1fr; }
-    .dossie-linha { grid-template-columns: auto minmax(0, 1fr); }
-    .dossie-dados { grid-column: 2; justify-self: start; justify-content: flex-start; max-width: 100%; text-align: left; }
+    /* uma coluna: a chapa em cima, o texto embaixo, e o fio some */
+    .fio-item, .fio-item.dir { grid-template-columns: 1fr; gap: 20px; }
+    .fio-item.dir .fio-chapa { order: 0; justify-self: start; }
+    .fio-item.dir .fio-texto { justify-self: start; }
+    .fio-chapa { max-width: 100%; aspect-ratio: 4 / 3; }
+    .fio-traco { display: none; }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -1277,95 +1302,113 @@
   </div>
 
 
+
   <!-- ATENCAO: OITO IMOVEIS DE TESTE, so para o filtro de pais e cidade ter o
        que filtrar. Nome, area e suites sao inventados de proposito e a
        fotografia e do Unsplash, que o manual proibe em material de imovel.
-       Quando o portfolio real for cadastrado, troque linha por linha: o filtro
-       le `data-pais` e `data-cidade` daqui, entao basta manter esses atributos
-       e acrescentar ou remover linhas. As contagens do painel sao calculadas
-       sozinhas a partir destas linhas. -->
-  <div class="dossie sobe" id="dossie">
-    <button type="button" class="dossie-linha" data-pais="Brasil" data-cidade="São Paulo">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">01</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Casa Pátio</span>
-        <span class="dossie-lugar">Jardins &middot; São Paulo</span>
-      </span>
-      <span class="dossie-dados"><span>520 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
-    </button>
+       Quando o portfolio real for cadastrado, troque item por item: o filtro le
+       `data-pais` e `data-cidade` daqui, e o fio se redesenha sozinho a partir
+       do que sobrar na tela. Nao e preciso mexer em nenhum script. -->
+  <div class="fio" id="fio">
+    <svg class="fio-traco" id="fioTraco" aria-hidden="true"></svg>
 
-    <button type="button" class="dossie-linha" data-pais="Brasil" data-cidade="Rio de Janeiro">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">02</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Cobertura Horizonte</span>
-        <span class="dossie-lugar">Leblon &middot; Rio de Janeiro</span>
-      </span>
-      <span class="dossie-dados"><span>410 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Brasil" data-cidade="São Paulo">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">01</span>
+        <h3 class="fio-nome">Casa Pátio</h3>
+        <span class="fio-lugar">Jardins &middot; São Paulo</span>
+        <div class="fio-dados"><span>520 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <button type="button" class="dossie-linha" data-pais="Brasil" data-cidade="Florianópolis">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">03</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Casa Costa Norte</span>
-        <span class="dossie-lugar">Jurerê &middot; Florianópolis</span>
-      </span>
-      <span class="dossie-dados"><span>680 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Brasil" data-cidade="Rio de Janeiro">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">02</span>
+        <h3 class="fio-nome">Cobertura Horizonte</h3>
+        <span class="fio-lugar">Leblon &middot; Rio de Janeiro</span>
+        <div class="fio-dados"><span>410 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <button type="button" class="dossie-linha" data-pais="Estados Unidos" data-cidade="Orlando">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">04</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Residência Lakeside</span>
-        <span class="dossie-lugar">Winter Park &middot; Orlando</span>
-      </span>
-      <span class="dossie-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Brasil" data-cidade="Florianópolis">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">03</span>
+        <h3 class="fio-nome">Casa Costa Norte</h3>
+        <span class="fio-lugar">Jurerê &middot; Florianópolis</span>
+        <div class="fio-dados"><span>680 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <button type="button" class="dossie-linha" data-pais="Estados Unidos" data-cidade="Miami">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">05</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Villa Bayfront</span>
-        <span class="dossie-lugar">Coconut Grove &middot; Miami</span>
-      </span>
-      <span class="dossie-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Estados Unidos" data-cidade="Orlando">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">04</span>
+        <h3 class="fio-nome">Residência Lakeside</h3>
+        <span class="fio-lugar">Winter Park &middot; Orlando</span>
+        <div class="fio-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <button type="button" class="dossie-linha" data-pais="Emirados" data-cidade="Dubai">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">06</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Residência Dunas</span>
-        <span class="dossie-lugar">Palm Jumeirah &middot; Dubai</span>
-      </span>
-      <span class="dossie-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Estados Unidos" data-cidade="Miami">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">05</span>
+        <h3 class="fio-nome">Villa Bayfront</h3>
+        <span class="fio-lugar">Coconut Grove &middot; Miami</span>
+        <div class="fio-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <button type="button" class="dossie-linha" data-pais="Portugal" data-cidade="Lisboa">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">07</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Palacete Restaurado</span>
-        <span class="dossie-lugar">Príncipe Real &middot; Lisboa</span>
-      </span>
-      <span class="dossie-dados"><span>430 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Emirados" data-cidade="Dubai">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">06</span>
+        <h3 class="fio-nome">Residência Dunas</h3>
+        <span class="fio-lugar">Palm Jumeirah &middot; Dubai</span>
+        <div class="fio-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <button type="button" class="dossie-linha" data-pais="Portugal" data-cidade="Cascais">
-      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
-      <span class="dossie-num">08</span>
-      <span class="dossie-corpo">
-        <span class="dossie-nome">Casa Atlântico</span>
-        <span class="dossie-lugar">Quinta da Marinha &middot; Cascais</span>
-      </span>
-      <span class="dossie-dados"><span>610 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
-    </button>
+    <article class="fio-item" data-pais="Portugal" data-cidade="Lisboa">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">07</span>
+        <h3 class="fio-nome">Palacete Restaurado</h3>
+        <span class="fio-lugar">Príncipe Real &middot; Lisboa</span>
+        <div class="fio-dados"><span>430 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
 
-    <p class="dossie-vazio" id="dossieVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
+    <article class="fio-item" data-pais="Portugal" data-cidade="Cascais">
+      <figure class="fio-chapa">
+        <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1000&amp;q=68" alt="" loading="lazy" decoding="async">
+      </figure>
+      <div class="fio-texto">
+        <span class="fio-num">08</span>
+        <h3 class="fio-nome">Casa Atlântico</h3>
+        <span class="fio-lugar">Quinta da Marinha &middot; Cascais</span>
+        <div class="fio-dados"><span>610 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></div>
+      </div>
+    </article>
+
+    <p class="fio-vazio" id="fioVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
   </div>
 
   <p class="curadoria-conta" id="curadoriaConta"></p>
@@ -1700,11 +1743,11 @@
   var abrirFiltro = document.getElementById('filtroAbrir');
   var painelFiltro = document.getElementById('filtroPainel');
   var valorFiltro = document.getElementById('filtroValor');
-  var dossie = document.getElementById('dossie');
+  var fio = document.getElementById('fio');
 
-  if (abrirFiltro && painelFiltro && dossie) {
-    var linhasDossie = dossie.querySelectorAll('.dossie-linha');
-    var vazio = document.getElementById('dossieVazio');
+  if (abrirFiltro && painelFiltro && fio) {
+    var linhasDossie = fio.querySelectorAll('.fio-item');
+    var vazio = document.getElementById('fioVazio');
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
@@ -1744,7 +1787,94 @@
       }
 
       valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
+      desenharFio();
     }
+
+    /* O fio.
+
+       Uma curva champagne que passa pelo centro de cada residencia visivel,
+       alternando de lado. E medida em pixels na tela, entao acompanha qualquer
+       largura, e refeita a cada filtro: com tres residencias o fio e curto, com
+       oito ele desce a secao inteira. O lado de cada item tambem sai daqui, e
+       nao do CSS, para a alternancia continuar certa depois de filtrar. */
+    var traco = document.getElementById('fioTraco');
+
+    function desenharFio() {
+      if (!traco) return;
+
+      var vistos = [];
+      Array.prototype.forEach.call(linhasDossie, function (item) {
+        if (!item.hidden) vistos.push(item);
+      });
+
+      // o lado alterna pela ordem do que sobrou na tela
+      vistos.forEach(function (item, k) {
+        item.classList.toggle('dir', k % 2 === 1);
+      });
+
+      if (vistos.length < 2) { traco.innerHTML = ''; return; }
+
+      var caixa = fio.getBoundingClientRect();
+      if (!caixa.width || !caixa.height) return;
+      traco.setAttribute('viewBox', '0 0 ' + caixa.width + ' ' + caixa.height);
+
+      var pontos = vistos.map(function (item, k) {
+        var r = item.getBoundingClientRect();
+        return [
+          caixa.width * (k % 2 === 0 ? 0.455 : 0.545),
+          r.top - caixa.top + r.height / 2
+        ];
+      });
+
+      // entra um pouco antes do primeiro e sai um pouco depois do ultimo
+      var folga = 54;
+      var d = 'M' + pontos[0][0].toFixed(1) + ',' + Math.max(0, pontos[0][1] - folga).toFixed(1);
+      d += ' L' + pontos[0][0].toFixed(1) + ',' + pontos[0][1].toFixed(1);
+
+      for (var i = 1; i < pontos.length; i++) {
+        var a = pontos[i - 1], b = pontos[i];
+        var meio = (b[1] - a[1]) * 0.5;
+        d += ' C' + a[0].toFixed(1) + ',' + (a[1] + meio).toFixed(1)
+           + ' ' + b[0].toFixed(1) + ',' + (b[1] - meio).toFixed(1)
+           + ' ' + b[0].toFixed(1) + ',' + b[1].toFixed(1);
+      }
+
+      var fim = pontos[pontos.length - 1];
+      d += ' L' + fim[0].toFixed(1) + ',' + Math.min(caixa.height, fim[1] + folga).toFixed(1);
+
+      var bolinhas = pontos.map(function (p) {
+        return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3"/>';
+      }).join('');
+
+      traco.innerHTML = '<path d="' + d + '"/>' + bolinhas;
+
+      var caminho = traco.querySelector('path');
+      var comp = Math.ceil(caminho.getTotalLength());
+      caminho.style.setProperty('--comp', comp);
+    }
+
+    // o fio so se desenha quando a secao chega na tela
+    if (calmo || !('IntersectionObserver' in window)) {
+      fio.classList.add('tracado');
+    } else {
+      var olhoFio = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          fio.classList.add('tracado');
+          olhoFio.disconnect();
+        });
+      }, { rootMargin: '0px 0px -20% 0px', threshold: 0.05 });
+      olhoFio.observe(fio);
+    }
+
+    var esperaFio = null;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(esperaFio);
+      esperaFio = window.setTimeout(desenharFio, 180);
+    }, { passive: true });
+
+    // as fotos entram depois e mudam a altura da secao
+    window.addEventListener('load', desenharFio);
 
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {
