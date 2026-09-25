@@ -112,6 +112,46 @@ Para trocar, substitua o `src` da tag `img` correspondente.
 O endereco completo segue sempre o padrao
 `https://images.unsplash.com/<identificador>?auto=format&fit=crop&w=<largura>&q=70`.
 
+## As paginas de cidade
+
+Clicar numa cidade no filtro do topo abre a pagina daquela praca.
+
+**E um arquivo so para as oito cidades:** `cidade.html`. A cidade vem no
+endereco, em `?c=`:
+
+```
+cidade.html?c=sao-paulo
+cidade.html?c=dubai
+```
+
+Endereco sem `?c=` ou com cidade desconhecida cai num recado com link para a
+curadoria completa, em vez de pagina em branco.
+
+**Como a pagina e montada.** Quem manda no conteudo e o objeto `CIDADES`, no
+script do fim do arquivo. Cada cidade tem nome, pais, foto de capa, uma linha
+de abertura, tres notas sobre a praca e a lista de residencias. Toda a pagina
+sai dali: capa, banda de residencias, notas e o fecho com as outras pracas.
+
+**Para incluir uma cidade nova** bastam duas coisas: uma entrada em `CIDADES`
+com um slug novo, e um botao no painel de filtro do `index.html` com esse mesmo
+slug em `data-slug`. Cidade sem `data-slug` continua so filtrando a home, sem
+abrir pagina.
+
+| Secao da pagina | O que traz |
+|---|---|
+| Capa | Foto em tela quase cheia, nome da cidade em corpo grande, a linha de abertura e a contagem de residencias |
+| A selecao | A mesma banda de laminas da home, com as residencias daquela cidade |
+| A praca | Tres notas sobre o que pesa na decisao naquela cidade |
+| Fecho | Chamada para contato e o atalho para as outras pracas |
+
+### Conteudo de demonstracao
+
+**Tudo nas paginas de cidade e inventado**, a pedido da cliente, para o modelo
+ter forma: nome de imovel, bairro, area, suites e os textos das pracas. As
+fotos sao do Unsplash. Enquanto for assim, as paginas levam `noindex`, para
+nao aparecerem em buscador. **Tire essa linha do `<head>` quando o portfolio
+real entrar.**
+
 ## Estrutura da pagina
 
 | Numero | Secao | O que faz |
@@ -137,7 +177,8 @@ quantidade de residencias de cada um, e as cidades a direita.
 
 - Escolher o **pais** abre as cidades dele e ja filtra a curadoria. O painel
   fica aberto, para a pessoa poder afinar.
-- Escolher a **cidade** filtra, fecha o painel e leva ate a curadoria.
+- Escolher a **cidade** abre a pagina daquela praca (ver "As paginas de
+  cidade"). "Todas as cidades" continua so filtrando a home.
 - O texto do seletor sempre mostra onde a pessoa esta: "Todos os paises", o
   nome do pais ou o nome da cidade.
 - Abaixo do indice, uma linha diz quantas residencias aquele recorte tem.

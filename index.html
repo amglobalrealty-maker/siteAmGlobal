@@ -1328,16 +1328,18 @@
 
     <div class="filtro-col">
       <span class="rotulo">Cidade</span>
+      <!-- `data-slug` e o que leva a pagina da cidade (cidade.html?c=<slug>).
+           Cidade sem slug continua apenas filtrando a curadoria aqui. -->
       <div class="filtro-cidades" id="filtroCidades">
         <button type="button" class="filtro-cidade ativo" data-cidade="">Todas as cidades</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="São Paulo">São Paulo</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Rio de Janeiro">Rio de Janeiro</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Florianópolis">Florianópolis</button>
-        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Orlando">Orlando</button>
-        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Miami">Miami</button>
-        <button type="button" class="filtro-cidade" data-pais="Emirados" data-cidade="Dubai">Dubai</button>
-        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Lisboa">Lisboa</button>
-        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Cascais">Cascais</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">São Paulo</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">Rio de Janeiro</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">Florianópolis</button>
+        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">Orlando</button>
+        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">Miami</button>
+        <button type="button" class="filtro-cidade" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">Dubai</button>
+        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">Lisboa</button>
+        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">Cascais</button>
       </div>
     </div>
   </div>
@@ -1965,6 +1967,13 @@
 
       var bCidade = ev.target.closest('.filtro-cidade');
       if (bCidade) {
+        // cidade com pagina propria leva para ela; o resto filtra aqui mesmo
+        var slug = bCidade.getAttribute('data-slug');
+        if (slug) {
+          window.location.href = 'cidade.html?c=' + encodeURIComponent(slug);
+          return;
+        }
+
         cidadeAtual = bCidade.getAttribute('data-cidade') || '';
         // escolher a cidade sem ter escolhido o pais assume o pais dela
         var dePais = bCidade.getAttribute('data-pais');
