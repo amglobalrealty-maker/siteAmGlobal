@@ -212,13 +212,20 @@
      `aria-hidden` no HTML para nao entrarem na leitura de tela. Como o manual
      pede champagne em pouca area, ficam translucidas e so nos cantos.
      ------------------------------------------------------------------------ */
-  /* O proprio bloco de imagem e o ponto de apoio. Sem isto as folhas se
-     prendem na secao inteira e vao parar em cima do texto. */
-  .com-folhagem { position: relative; }
+  /* O embrulho do bloco de imagem: da o ponto de apoio e NAO corta nada, para
+     a folhagem poder passar dos dois lados da borda.
 
-  /* A faixa mora na borda de CIMA do bloco, com altura zero. Como o bloco
-     corta o que transborda, as folhas so podem cair para DENTRO da imagem:
-     e exatamente onde elas devem ficar. */
+     O respiro em cima e para a folhagem: e nele que cabe o pedaco da folha que
+     sobe acima da borda. Sem ele, a parte de cima das folhas iria alcancar o
+     texto da secao. */
+  .com-folhagem {
+    position: relative;
+    margin-top: clamp(30px, 5vh, 72px);
+  }
+
+  /* A faixa mora na borda de CIMA do bloco, com altura zero. As folhas se
+     apoiam nela: um pedaco fica sobre o fundo da secao e o resto cai sobre a
+     imagem. */
   .folhagem {
     position: absolute;
     z-index: 6;
@@ -2048,10 +2055,13 @@
      Como o bloco corta o que transborda, boa parte de cada folha fica ESCONDIDA
      acima da borda. E de proposito: so a parte que cai sobre a foto aparece, e
      a massa parece continuar por tras. */
+  /* `sobe` agora e quanto a folha e puxada para CIMA da borda. Como nada mais
+     corta, esse pedaco fica visivel sobre o fundo da secao, e o resto cai sobre
+     a foto: e o que faz ela parecer apoiada na borda, e nao presa dentro. */
   var CAMADAS = [
-    { nome: 'fundo',  tom: 'fundo',  quantas: 11, escala: [0.50, 0.30], sobe: [-62, 12], op: [0.34, 0.16], laminas: [4, 2], z: 0 },
-    { nome: 'meio',   tom: 'meio',   quantas: 8,  escala: [0.80, 0.34], sobe: [-46, 10], op: [0.52, 0.18], laminas: [5, 2], z: 1 },
-    { nome: 'frente', tom: 'frente', quantas: 6,  escala: [1.05, 0.45], sobe: [-30, 9],  op: [0.72, 0.2],  laminas: [6, 3], z: 2 }
+    { nome: 'fundo',  tom: 'fundo',  quantas: 11, escala: [0.46, 0.28], sobe: [-40, 12], op: [0.4, 0.16],  laminas: [4, 2], z: 0 },
+    { nome: 'meio',   tom: 'meio',   quantas: 8,  escala: [0.74, 0.32], sobe: [-32, 10], op: [0.58, 0.18], laminas: [5, 2], z: 1 },
+    { nome: 'frente', tom: 'frente', quantas: 6,  escala: [1.00, 0.42], sobe: [-24, 8],  op: [0.78, 0.18], laminas: [6, 3], z: 2 }
   ];
 
   var FOLHAGENS = [
@@ -2064,11 +2074,20 @@
 
   FOLHAGENS.forEach(function (conf, nc) {
     var bloco = document.querySelector(conf.alvo);
-    if (!bloco) return;
+    if (!bloco || !bloco.parentNode) return;
 
-    /* A faixa entra DENTRO do proprio bloco de imagem, e nao num embrulho em
-       volta dele: assim as folhas so podem cair para dentro da foto. */
-    bloco.classList.add('com-folhagem');
+    /* A faixa fica FORA do bloco de imagem, num embrulho em volta dele.
+
+       Dentro do bloco nao serve: o bloco corta o que transborda, e a folhagem
+       ficava decepada numa linha reta na borda, parecendo presa dentro da foto.
+       Ela tem de se APOIAR na borda e passar dos dois lados: um pedaco sobre o
+       fundo da secao, o resto caindo sobre a imagem.
+
+       O embrulho nao corta nada e comeca exatamente onde a imagem comeca. */
+    var embrulho = document.createElement('div');
+    embrulho.className = 'com-folhagem';
+    bloco.parentNode.insertBefore(embrulho, bloco);
+    embrulho.appendChild(bloco);
 
     var faixa = document.createElement('div');
     faixa.className = 'folhagem';
@@ -2090,7 +2109,14 @@
         var esquerda = -6 + passo * (i + 0.5) + (r1 - 0.5) * passo * 0.7 + nk * passo * 0.28;
 
         var tamanho = (cam.escala[0] + r2 * cam.escala[1]).toFixed(2);
-        var pende = (esquerda - 50) * 0.34 + (r3 - 0.5) * 30;
+
+        /* O angulo abre MUITO: de quase deitada para um lado a quase deitada
+           para o outro. Antes variava so uns trinta graus e todas caiam
+           praticamente retas, enfileiradas. Mato de verdade nao faz isso.
+           A posicao ainda puxa o sentido (as da esquerda pendem para a
+           esquerda), mas o sorteio manda mais que ela. */
+        var pende = (esquerda - 50) * 0.7 + (r3 - 0.5) * 100;
+        pende = Math.max(-86, Math.min(86, pende));
 
         var folha = document.createElement('span');
         folha.className = 'folha folha--' + cam.nome;
@@ -2118,7 +2144,7 @@
       }
     });
 
-    bloco.appendChild(faixa);
+    embrulho.appendChild(faixa);
   });
 
   if (calmo || !('IntersectionObserver' in window)) {

@@ -301,19 +301,29 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 
   **Sao tres camadas por faixa, e e delas que vem a profundidade:**
 
-  | Camada | Quantas | Tamanho | Quanto some atras da borda | Tom |
+  | Camada | Quantas | Tamanho | Quanto sobe acima da borda | Tom |
   |---|---|---|---|---|
-  | Fundo | 11 | menores | 62% a 74% | mais claro e apagado |
-  | Meio | 8 | medias | 46% a 56% | intermediario |
-  | Frente | 6 | maiores | 30% a 39% | mais forte, com sombra |
+  | Fundo | 11 | menores | 40% a 52% | mais claro e apagado |
+  | Meio | 8 | medias | 32% a 42% | intermediario |
+  | Frente | 6 | maiores | 24% a 32% | mais forte, com sombra |
 
   Cada camada comeca deslocada da anterior, para uma tapar o vao da outra, e
   todas vao de -6% a 106% da largura: as pontas precisam passar da borda, senao
   sobra vazio nos cantos e a faixa deixa de parecer continua.
 
-  **A parte escondida e o segredo.** Como o bloco corta o que transborda, boa
-  parte de cada folha fica oculta acima da borda. E o que faz a massa parecer
-  continuar por tras da foto, em vez de folha colada nela.
+  **A folhagem NAO fica dentro da foto.** Ela se apoia na borda e passa dos
+  dois lados: um pedaco sobre o fundo da secao, o resto caindo sobre a imagem.
+  Por isso a faixa mora num embrulho em volta do bloco, e nao dentro dele: o
+  bloco corta o que transborda e decepava a folhagem numa linha reta.
+
+  O embrulho tem um respiro no alto, e e nele que cabe o pedaco que sobe. Na
+  tela mais larga a folha sobe no maximo 144px e a folga e de 168px a 200px,
+  entao ela nunca alcanca o texto da secao.
+
+  **Os angulos abrem de -68 a 64 graus**, e nove das vinte e cinco passam de 40
+  graus. A posicao puxa o sentido (as da esquerda pendem para a esquerda), mas
+  o sorteio manda mais que ela: sem isso todas caem retas e enfileiradas, que
+  nao e como mato se comporta.
 
   Cada folha e pendurada pelo caule, com a lamina caindo para baixo, e as das
   pontas pendem mais para fora. Elas entram da esquerda para a direita, uma
