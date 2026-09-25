@@ -222,7 +222,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Video de fundo em tela cheia; ela fica grudada e as outras secoes sobem por cima |
+| 01 | Abertura | Primeira secao da coluna da direita: tagline e um unico chamado, ao lado da faixa de video |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
@@ -280,18 +280,26 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 
 - **Cortina de entrada.** O simbolo e revelado por uma cortina que sobe, uma
   vez, no primeiro carregamento, e a abertura sobe por linhas.
-- **A abertura fica.** Ela gruda no topo com altura de uma tela inteira, e as
-  secoes seguintes sobem POR CIMA dela, cada uma com fundo opaco proprio. A
-  abertura mora na camada 0 e todo o resto na camada 1.
+- **A pagina roda em duas colunas.** A da esquerda e uma faixa de video que
+  FICA PARADA, colada no topo, do comeco ao fim da pagina. A da direita carrega
+  todas as secoes, que sobem POR CIMA dela: a coluna das secoes e puxada para a
+  esquerda e cobre parte da faixa, com um fio champagne marcando a borda e uma
+  sombra separando as duas camadas. A faixa mora na camada 0 e as secoes na
+  camada 1.
 
   Um detalhe que costuma quebrar isso: `overflow-x: hidden` no `body`
   transforma a pagina num container de rolagem e mata o `position: sticky`. Por
   isso o body usa `overflow-x: clip`, que corta do mesmo jeito sem criar
-  container. **Nao troque de volta para `hidden`.**
+  container. **Nao troque de volta para `hidden`.** O outro ponto e o
+  `align-items: start` no trilho: sem ele a faixa esticaria e nao teria por
+  onde deslizar.
 
-- **O video de fundo.** Ele nao vem no HTML: o endereco fica guardado num
+  Abaixo de 1100px nao ha largura para duas colunas: a faixa vira um cartaz no
+  alto, em largura cheia, e as secoes vem abaixo na ordem normal.
+
+- **O video da faixa.** Ele nao vem no HTML: o endereco fica guardado num
   atributo e so vira `src` quando vale a pena, porque o arquivo passa de vinte
-  megabytes. Nao carrega em tela estreita, nem para quem pede menos movimento
+  megabytes. Nao carrega abaixo de 1100px, nem para quem pede menos movimento
   no sistema, nem para quem esta em economia de dados. Nesses casos fica a
   fotografia, que ja esta na tela desde o primeiro instante.
 

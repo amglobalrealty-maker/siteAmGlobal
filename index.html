@@ -347,39 +347,49 @@
   .menu-abrir[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
   .menu-abrir[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
 
-  /* ============================================================= abertura ==
-     A abertura FICA. Ela gruda no topo da tela com altura de uma tela inteira,
-     e as secoes seguintes sobem por cima dela, cada uma com fundo proprio.
-     Por isso a abertura mora na camada 0 e todo o resto na camada 1.
+  /* =============================================================== trilho ==
+     A pagina roda em duas colunas. A da ESQUERDA e uma faixa de video que fica
+     PARADA, colada no topo, do comeco ao fim. A da DIREITA carrega todas as
+     secoes, que sobem passando ao lado dela.
+
+     A borda interna da faixa e cortada na diagonal, no mesmo espirito das
+     diagonais da marca, e leva um fio champagne acompanhando o corte.
 
      Detalhe que costuma quebrar isto: `overflow-x: hidden` no body transforma
-     a pagina num container de rolagem e mata o `sticky`. Por isso ali em cima
-     esta `clip`, que corta do mesmo jeito sem criar container.
+     a pagina num container de rolagem e mata o `position: sticky`. Por isso
+     ali em cima esta `clip`, que corta do mesmo jeito sem criar container.
      ------------------------------------------------------------------------ */
-  .abertura {
+  .trilho {
+    display: grid;
+    grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  /* A faixa de video FICA. Ela mora na camada de baixo, e por isso as secoes
+     passam por cima dela, e nao ao lado. */
+  .trilho-video {
     position: sticky;
     top: 0;
     z-index: 0;
     height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
     overflow: hidden;
-    padding: clamp(124px, 17vh, 190px) var(--margem) clamp(32px, 5vh, 56px);
+    background: var(--onix-alto);
   }
 
-  /* As demais secoes sobem por cima da abertura. O fundo opaco delas vem da
-     regra `section` mais adiante, que `.claro` e `.pedra` sobrescrevem; aqui
-     so se resolve o empilhamento, sem tocar em cor. */
-  main > section:not(.abertura),
-  footer {
+  /* As secoes sao puxadas para a esquerda e sobem POR CIMA da faixa, cobrindo
+     parte dela. O fio champagne na borda marca onde uma coisa passa sobre a
+     outra; a sombra separa as duas camadas sem precisar de moldura. */
+  .trilho-secoes {
+    --margem: clamp(20px, 4vw, 76px);
     position: relative;
     z-index: 1;
+    min-width: 0;
+    margin-left: calc(-1 * clamp(22px, 5vw, 118px));
+    border-left: 1px solid rgba(180, 154, 110, 0.5);
+    box-shadow: -26px 0 60px rgba(11, 11, 12, 0.55);
   }
 
-  footer { background: var(--onix); }
-
-  /* --- o video de fundo --- */
+  /* --- o video --- */
   .fundo { position: absolute; inset: 0; background: var(--onix-alto); }
 
   .fundo video,
@@ -403,13 +413,16 @@
   .fundo video { position: relative; opacity: 0; transition: opacity 1.4s var(--curva); }
   .fundo.rodando video { opacity: 1; }
 
-  /* veu: garante leitura do titulo sobre a foto, sem escurecer tudo por igual */
+  /* veu de cima e de baixo da faixa: encaixa o video no onix da pagina em vez
+     de deixar um retangulo de video solto */
   .abertura-veu {
     position: absolute;
+    z-index: 2;
     inset: 0;
+    pointer-events: none;
     background:
-      linear-gradient(to top, rgba(11, 11, 12, 0.97) 0%, rgba(11, 11, 12, 0.74) 34%, rgba(11, 11, 12, 0.34) 66%, rgba(11, 11, 12, 0.62) 100%),
-      radial-gradient(80% 65% at 74% 10%, rgba(180, 154, 110, 0.10) 0%, transparent 60%);
+      linear-gradient(to bottom, rgba(11, 11, 12, 0.8) 0%, transparent 22%, transparent 74%, rgba(11, 11, 12, 0.85) 100%),
+      linear-gradient(to right, rgba(11, 11, 12, 0.55) 0%, transparent 34%);
   }
 
   /* As pracas, no pe da abertura: numero em Jost e nome em Cormorant italico.
@@ -487,6 +500,17 @@
   .marcador:focus-visible .marcador-num { color: var(--champagne); }
 
   .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 8px; }
+
+  /* A abertura virou a primeira secao da coluna da direita: ela nao carrega
+     mais o video, so o texto, e ocupa uma tela de altura. */
+  .abertura {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(118px, 16vh, 180px) var(--margem) clamp(32px, 5vh, 56px);
+  }
 
   .abertura-conteudo { position: relative; max-width: 1080px; }
 
@@ -1151,7 +1175,15 @@
   .pendente { color: rgba(245, 242, 236, 0.4); font-size: 14px; letter-spacing: 0.02em; }
 
   /* =============================================================== rodape == */
-  footer { border-top: 1px solid var(--linha-clara); overflow: hidden; }
+  /* o rodape fica FORA do trilho: ele fecha a pagina em largura cheia, por
+     cima de tudo, e e onde a faixa de video termina */
+  footer {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--linha-clara);
+    overflow: hidden;
+    background: var(--onix);
+  }
 
   .faixa {
     display: flex;
@@ -1200,7 +1232,22 @@
   }
 
   /* ======================================================= telas estreitas == */
+  /* Abaixo de 1100px nao ha largura para as duas colunas: a faixa de video vira
+     um cartaz no alto, em largura cheia, e as secoes vem abaixo, na ordem
+     normal. Nada fica parado e nada passa por cima de nada. */
   @media (max-width: 1100px) {
+    .trilho { grid-template-columns: 1fr; }
+    .trilho-video { position: relative; height: clamp(320px, 56svh, 520px); }
+    .trilho-secoes {
+      --margem: clamp(22px, 6.5vw, 130px);
+      margin-left: 0;
+      border-left: 0;
+      box-shadow: none;
+    }
+    .abertura { min-height: 0; padding-top: clamp(52px, 8vh, 90px); }
+    .abertura-veu {
+      background: linear-gradient(to bottom, rgba(11, 11, 12, 0.72) 0%, transparent 34%, rgba(11, 11, 12, 0.6) 100%);
+    }
     .cabeca { grid-template-columns: 1fr; align-items: start; }
     .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
@@ -1365,25 +1412,32 @@
 
 <main>
 
-<!-- ================================================================ abertura -->
-<section class="abertura" id="abertura">
-  <!-- PROVISORIO: video aereo sobre villas, do Pexels, licenca livre, servido
-       pelo proprio Pexels. A foto atras dele e do Unsplash e aparece enquanto o
-       video nao comeca. Os dois saem quando chegar material proprio; o video
-       final deve ser hospedado aqui, e nao puxado de fora. Ver README.
+<div class="trilho">
 
-       O endereco do video NAO esta no `src`: quem o coloca e o script, e so
-       quando vale a pena (tela larga, sem economia de dados e sem pedido de
-       menos movimento). Nas demais situacoes fica so a foto. -->
+<!-- ====================================================== a faixa de video -->
+<!-- PROVISORIO: video aereo sobre villas, do Pexels, licenca livre, servido
+     pelo proprio Pexels. A foto atras dele e do Unsplash e aparece enquanto o
+     video nao comeca. Os dois saem quando chegar material proprio; o video
+     final deve ser hospedado aqui, e nao puxado de fora. Ver README.
+
+     O endereco do video NAO esta no `src`: quem o coloca e o script, e so
+     quando vale a pena (tela larga, sem economia de dados e sem pedido de
+     menos movimento). Nas demais situacoes fica so a foto. -->
+<aside class="trilho-video" aria-hidden="true">
   <div class="fundo" id="fundo">
-    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
+    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1400&amp;q=68"
          alt="" fetchpriority="high" decoding="async">
     <video id="videoFundo" muted loop playsinline preload="none"
            data-video="https://videos.pexels.com/video-files/14502236/14502236-hd_1920_1080_25fps.mp4"
-           aria-hidden="true" tabindex="-1"></video>
+           tabindex="-1"></video>
   </div>
   <div class="abertura-veu"></div>
+</aside>
 
+<div class="trilho-secoes">
+
+<!-- ================================================================ abertura -->
+<section class="abertura" id="abertura">
   <div class="abertura-conteudo">
     <span class="filete"></span>
     <h1>
@@ -1739,6 +1793,9 @@
     </div>
   </div>
 </section>
+
+</div><!-- fim da coluna das secoes -->
+</div><!-- fim do trilho -->
 
 </main>
 
@@ -2123,9 +2180,10 @@
   if (fundo && video) {
     var conexao = navigator.connection || null;
     var economia = !!(conexao && (conexao.saveData || /2g/.test(conexao.effectiveType || '')));
-    var telaLarga = window.matchMedia('(min-width: 900px)').matches;
+    var telaLarga = window.matchMedia('(min-width: 1101px)').matches;
 
     if (telaLarga && !calmo && !economia) {
+      // a faixa so vira video quando ha as duas colunas; abaixo disso fica foto
       video.addEventListener('playing', function () { fundo.classList.add('rodando'); });
       video.addEventListener('error', function () { fundo.classList.remove('rodando'); });
 
