@@ -239,11 +239,11 @@
     transform-origin: 50% 0;
     /* ela chega mais deitada e mais acima; ao entrar, desce e se endireita */
     transform:
-      translate(-50%, -46%)
+      translate(-50%, -34%)
       perspective(900px)
       rotateX(var(--rx-ini, 40deg))
       rotateY(var(--ry-fim, 0deg))
-      rotate(var(--ang-ini, 180deg))
+      rotate(var(--ang-ini, 0deg))
       scale(0.9);
     transition: opacity 1.5s var(--curva), transform 2s var(--curva);
     will-change: transform, opacity;
@@ -253,11 +253,11 @@
   .folha.aberta {
     opacity: var(--op, 0.7);
     transform:
-      translate(-50%, var(--sobe, -28%))
+      translate(-50%, var(--sobe, -12%))
       perspective(900px)
       rotateX(var(--rx-fim, 8deg))
       rotateY(var(--ry-fim, 0deg))
-      rotate(var(--ang-fim, 180deg))
+      rotate(var(--ang-fim, 0deg))
       scale(1);
   }
 
@@ -1984,7 +1984,17 @@
       partes.push(lamina(x, y, comp, larg, ang, 1));
     }
 
-    return '<svg viewBox="0 0 300 500" aria-hidden="true" focusable="false">' + partes.join('') + '</svg>';
+    /* A folha e desenhada de baixo para cima, com o caule no pe. Aqui ela e
+       ESPELHADA na vertical, entao o caule vai para o alto e as laminas caem.
+
+       Por que espelhar em vez de girar 180 graus no CSS: girar em torno do
+       topo do elemento joga a caixa inteira para CIMA da borda. Foi o que
+       aconteceu nas duas tentativas anteriores, e por isso as folhas apareciam
+       em cima do texto e, depois do corte entrar, sumiram de vez. Espelhada, a
+       folha nasce onde tem de nascer e nao depende de giro nenhum. */
+    return '<svg viewBox="0 0 300 500" aria-hidden="true" focusable="false">'
+      + '<g transform="translate(0 500) scale(1 -1)">' + partes.join('') + '</g>'
+      + '</svg>';
   }
 
   /* A FOLHAGEM.
@@ -2054,8 +2064,9 @@
         + ';width:calc(' + conf.base + ' * ' + tamanho + ')'
         + ';z-index:' + (i % 3)
         + ';--op:' + (0.62 + r2 * 0.26).toFixed(2)
-        + ';--ang-ini:' + (180 + pende * 1.5).toFixed(1) + 'deg'
-        + ';--ang-fim:' + (180 + pende).toFixed(1) + 'deg'
+        // a folha ja nasce pendurada: o angulo e so a inclinacao, sem os 180
+        + ';--ang-ini:' + (pende * 1.6).toFixed(1) + 'deg'
+        + ';--ang-fim:' + pende.toFixed(1) + 'deg'
         + ';--rx-ini:' + (44 + r1 * 24).toFixed(1) + 'deg'
         + ';--rx-fim:' + (6 + r1 * 13).toFixed(1) + 'deg'
         + ';--ry-fim:' + ((r3 - 0.5) * 30).toFixed(1) + 'deg'

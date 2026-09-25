@@ -303,6 +303,12 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   pontas pendem mais para fora. Elas entram da esquerda para a direita, uma
   logo depois da outra, quando o bloco chega na tela.
 
+  **A folha ja e DESENHADA pendurada**, espelhada na vertical pelo proprio SVG.
+  Nao tente resolver isso girando 180 graus no CSS: o giro acontece em torno do
+  topo do elemento e joga a caixa inteira para cima da borda. Foi o que
+  aconteceu em duas tentativas, e o resultado foi a folhagem aparecer sobre o
+  texto e, depois do corte entrar, sumir por completo.
+
   **A faixa entra DENTRO do proprio bloco de imagem.** Como o bloco corta o que
   transborda, as folhas so podem cair para dentro da foto: nao ha como
   escaparem para cima do texto. Uma tentativa anterior punha a faixa num
