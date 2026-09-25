@@ -273,8 +273,21 @@ fotos sao do Unsplash. Estao distribuidos assim:
 
 O manual pede movimento discreto, entao cada efeito tem uma razao.
 
-- **Cortina de entrada.** O simbolo e revelado por uma cortina que sobe, uma
-  vez, no primeiro carregamento, e a abertura sobe por linhas.
+- **Cortina de entrada.** No primeiro carregamento a tela e onix com o simbolo
+  no meio, e ela **ABRE como um pano de teatro**, em tres tempos:
+
+  | Quando | O que acontece |
+  |---|---|
+  | ate 1,4s | o simbolo se revela de baixo para cima |
+  | 1,4s | um fio champagne acende na juncao das duas folhas |
+  | 1,8s | as folhas correm para os lados e o site aparece no meio |
+
+  Sao duas folhas de onix, cada uma com 50,5% da largura: a sobra de meio por
+  cento em cada lado evita costura visivel no meio. A cortina so fica
+  `hidden` 1,65s depois, quando as folhas ja sairam da tela, mas para de
+  bloquear o clique assim que comeca a abrir.
+
+  Com movimento reduzido nao ha espera nenhuma: ela ja nasce aberta.
 - **Slideshow da abertura.** Quatro fotos, uma por praca, trocando a cada 6,6
   segundos com fusao lenta e avanco continuo da imagem, que e o que da a
   sensacao de video. O slideshow para sozinho quando a aba perde o foco.

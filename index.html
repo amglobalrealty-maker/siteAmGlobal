@@ -254,26 +254,69 @@
 
   .sobe.visivel { opacity: 1; transform: none; }
 
-  /* ============================================================ cortina ==== */
+  /* ============================================================ cortina ====
+     A cortina nao desbota: ela ABRE. Sao duas folhas de onix que correm para os
+     lados, como um pano de teatro, deixando o site aparecer no meio.
+
+     Ordem: o simbolo se revela de baixo para cima, um fio champagne acende na
+     juncao das duas folhas, e so entao elas correm.
+     ------------------------------------------------------------------------ */
   .cortina {
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: var(--onix);
     display: grid;
     place-items: center;
-    transition: opacity 0.9s var(--curva), visibility 0.9s;
+    overflow: hidden;
   }
 
-  .cortina.saiu { opacity: 0; visibility: hidden; }
+  /* some so depois que as folhas terminaram de correr */
+  .cortina.saiu { pointer-events: none; visibility: hidden; transition: visibility 0s linear 1.65s; }
 
-  /* o simbolo aparece por uma cortina que sobe, sem redesenhar nada */
+  .cortina-folha {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* meio por cento a mais em cada lado, para nao sobrar costura no meio */
+    width: 50.5%;
+    background: var(--onix);
+    transition: transform 1.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .cortina-folha--esq { left: 0; }
+  .cortina-folha--dir { right: 0; }
+
+  .cortina.saiu .cortina-folha--esq { transform: translateX(-100%); }
+  .cortina.saiu .cortina-folha--dir { transform: translateX(100%); }
+
+  /* o fio champagne na juncao, que acende pouco antes de as folhas abrirem */
+  .cortina-fio {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--champagne);
+    opacity: 0;
+    transform: scaleY(0);
+    transition: opacity 0.5s var(--curva), transform 0.9s var(--curva);
+  }
+
+  .cortina.abrindo .cortina-fio { opacity: 0.65; transform: scaleY(1); }
+  .cortina.saiu .cortina-fio { opacity: 0; transition-duration: 0.35s; }
+
+  /* o simbolo, por cima das duas folhas */
   .cortina img {
+    position: relative;
+    z-index: 2;
     width: clamp(78px, 11vw, 124px);
     height: auto;
     clip-path: inset(100% 0 0 0);
     animation: revelar 1.25s var(--curva) 0.15s forwards;
+    transition: opacity 0.5s var(--curva), transform 0.9s var(--curva);
   }
+
+  .cortina.saiu img { opacity: 0; transform: scale(0.94); }
 
   @keyframes revelar {
     from { clip-path: inset(100% 0 0 0); }
@@ -1329,6 +1372,9 @@
 <!-- ================================================================ cortina -->
 <!-- O simbolo se desenha uma vez, no primeiro carregamento. Nada alem disso. -->
 <div class="cortina" id="cortina" aria-hidden="true">
+  <span class="cortina-folha cortina-folha--esq"></span>
+  <span class="cortina-folha cortina-folha--dir"></span>
+  <span class="cortina-fio"></span>
   <img src="marca.svg" alt="" width="200" height="176">
 </div>
 
@@ -1812,13 +1858,25 @@
 
   var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* 1. Cortina: o simbolo se desenha, depois a abertura entra por linhas. */
+  /* 1. Cortina, em tres tempos:
+        ate 1,4s   o simbolo se revela de baixo para cima;
+        1,4s       o fio champagne acende na juncao das duas folhas;
+        1,8s       as folhas correm para os lados e o site aparece no meio,
+                   junto com a abertura entrando por linhas.
+     Com movimento reduzido nao ha espera nenhuma: a cortina ja nasce aberta. */
   var cortina = document.getElementById('cortina');
-  var espera = calmo ? 0 : 1500;
-  window.setTimeout(function () {
+
+  function abrirCortina() {
     cortina.classList.add('saiu');
     document.body.classList.add('pronto');
-  }, espera);
+  }
+
+  if (calmo) {
+    abrirCortina();
+  } else {
+    window.setTimeout(function () { cortina.classList.add('abrindo'); }, 1400);
+    window.setTimeout(abrirCortina, 1800);
+  }
 
   /* 2. Barra de progresso da leitura. */
   var barra = document.getElementById('progresso');
