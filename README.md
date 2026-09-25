@@ -180,8 +180,20 @@ e o que aparece na home.
 |---|---|
 | Capa | Foto quase em tela cheia, nome da cidade, linha de abertura e a contagem |
 | A selecao | A banda de laminas, com as residencias daquela cidade |
-| A praca | Retrato da cidade de um lado, tres notas sobre o que pesa na decisao ali do outro |
-| Fecho | Contato e atalho para as outras pracas |
+| A praca | Faixa fotografica de borda a borda, com as tres notas caindo em diagonal sobre ela |
+| Fecho | Contato e atalho para as outras pracas. E a pausa CLARA da pagina, em marfim, como no imovel.html |
+
+**A praca** e o momento visual da pagina de cidade. Uma so faixa, de borda a
+borda, com a foto da cidade ocupando tudo e o veu vindo na diagonal. Sobre ela,
+as tres notas descem em degrau: a primeira encosta a esquerda no alto, a
+segunda fica no meio, a terceira desce a direita. A descida e o desenho da
+secao, e ela ecoa a diagonal da marca.
+
+Cada nota leva um numeral grande em champagne e um filete champagne acima. A
+foto avanca devagar enquanto a secao esta na tela.
+
+Abaixo de 900px nao ha largura para a diagonal: as notas se alinham a esquerda,
+uma embaixo da outra, e o veu passa a vir de cima para baixo.
 
 | Ficha do imovel | |
 |---|---|
