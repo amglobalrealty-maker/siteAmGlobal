@@ -299,14 +299,29 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   dos servicos e da secao Global. Cada uma vem de uma direcao, com giro e
   tamanho proprios.
 
-  **O desenho e gerado pelo script, nao e arquivo.** A funcao monta a fronde
-  com o numero de foliolos que voce pedir: os do meio saem mais longos e o
-  angulo fecha na ponta, como numa fronde de verdade. Por isso nenhuma fica
-  igual a outra. Para mudar cor, tamanho, posicao ou direcao de entrada, mexa
-  na lista `FOLHAS`, dentro do script.
+  **O desenho e gerado pelo script, nao e arquivo.** A funcao monta a folha
+  lamina por lamina: cada uma sai do caule, incha e afina na ponta, e os vaos
+  entre elas fazem o recorte de costela-de-adao. As do meio saem mais longas e
+  o angulo fecha em direcao a ponta.
+
+  **O volume nao vem de sombra chapada.** Vem de tres coisas somadas:
+
+  1. Dois degrades diferentes, um para o lado iluminado e outro para o lado
+     virado, entao um lado da folha parece mais claro que o outro.
+  2. Uma nervura clara dentro de cada lamina.
+  3. A folha inteira girada em perspectiva pelo CSS: ela chega deitada e de
+     lado, com `rotateX` e `rotateY` fortes, e se endireita ao entrar.
+
+  Depois de entrar, cada folha balanca devagar, num ciclo de treze segundos. O
+  balanco fica no SVG e nao na folha, senao brigaria com a transformacao de
+  entrada.
+
+  Para mudar cor, tamanho, posicao, numero de laminas ou direcao de entrada,
+  mexa na lista `FOLHAS`, dentro do script.
 
   Sao decoracao pura: nao recebem clique, ficam fora da leitura de tela e
-  nenhuma cobre texto.
+  nenhuma cobre texto. Com movimento reduzido, aparecem no lugar e nao
+  balancam.
 - **O palco dos servicos.** A secao inteira e uma fotografia de borda a borda,
   furando a margem lateral, com os quatro oficios escritos por cima dela e a
   moldura champagne aberta por dentro. Trocar de oficio nao troca so o texto: a

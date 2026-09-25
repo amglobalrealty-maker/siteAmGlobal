@@ -216,20 +216,42 @@
     position: absolute;
     z-index: 6;
     display: block;
-    color: var(--champagne);
     opacity: 0;
     pointer-events: none;
-    transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--giro-ini, 0deg)) scale(0.94);
-    transition: opacity 1.5s var(--curva), transform 1.9s var(--curva);
+    /* a folha chega deitada, de lado e recuada; ao entrar, se endireita */
+    transform:
+      translate(var(--dx, 0), var(--dy, 0))
+      perspective(1100px)
+      rotateY(var(--ry-ini, 0deg))
+      rotateX(var(--rx-ini, 0deg))
+      rotate(var(--giro-ini, 0deg))
+      scale(0.88);
+    transition: opacity 1.6s var(--curva), transform 2.1s var(--curva);
     will-change: transform, opacity;
+    filter: drop-shadow(0 20px 34px rgba(11, 11, 12, 0.5));
   }
 
   .folha.aberta {
     opacity: var(--op, 0.5);
-    transform: translate(0, 0) rotate(var(--giro-fim, 0deg)) scale(1);
+    transform:
+      translate(0, 0)
+      perspective(1100px)
+      rotateY(var(--ry-fim, 0deg))
+      rotateX(var(--rx-fim, 0deg))
+      rotate(var(--giro-fim, 0deg))
+      scale(1);
   }
 
-  .folha svg { display: block; width: 100%; height: auto; }
+  .folha svg { display: block; width: 100%; height: auto; transform-origin: 50% 90%; }
+
+  /* Um balanco de verdade, bem lento. Fica no SVG e nao na folha, senao ele
+     brigaria com a transformacao de entrada, que mora na folha. */
+  .folha.aberta svg { animation: balancar 13s ease-in-out infinite alternate; }
+
+  @keyframes balancar {
+    from { transform: rotate(-1.8deg) scale(0.995); }
+    to { transform: rotate(2deg) scale(1.005); }
+  }
 
   /* =========================================================== revelacoes == */
   .sobe {
@@ -1302,6 +1324,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .rolar .chevron, .faixa-trilho, .slide.ativa img,
+    .folha.aberta svg,
     .palco-foto.ativa, .palco-foto.ativa img { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
@@ -1868,37 +1891,111 @@
      travertino, grafite e champagne; o champagne e o mais proximo de um rose
      dourado, e e a cor de acento prevista. Como o manual pede champagne em
      pouca area, as frondes ficam translucidas e so nos cantos. */
-  function desenharFolha(foliolos, inclinacao) {
-    var partes = ['<path d="M100 322 C 92 242 96 140 100 22" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.8"/>'];
+  /* Uma folha de verdade, montada lamina por lamina.
 
-    for (var i = 0; i < foliolos; i++) {
-      var t = i / (foliolos - 1);
-      var y = 302 - t * 272;
-      var x = 100 - (1 - Math.cos(t * 1.15)) * 7;
-      // os foliolos do meio sao os mais longos, como numa fronde de verdade
-      var comp = 26 + Math.sin(t * Math.PI) * inclinacao;
-      var ang = 70 - t * 36;
-      var rx = (comp * 0.17).toFixed(1);
-      var ry = comp.toFixed(1);
-      var desloca = (-comp * 0.9).toFixed(1);
+     Cada lamina e um contorno curvo que sai do caule, incha e afina na ponta.
+     Os vaos entre elas sao o que da o recorte de costela-de-adao. As do meio
+     saem mais longas e o angulo fecha em direcao a ponta.
 
-      partes.push('<ellipse rx="' + rx + '" ry="' + ry + '" transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (-ang).toFixed(1) + ') translate(0 ' + desloca + ')"/>');
-      partes.push('<ellipse rx="' + rx + '" ry="' + ry + '" transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ') translate(0 ' + desloca + ')"/>');
+     O volume vem de tres coisas, nao de sombra chapada:
+       - dois degrades diferentes, um para o lado iluminado e outro para o lado
+         virado, entao um lado da folha parece mais claro que o outro;
+       - uma nervura clara dentro de cada lamina;
+       - a folha inteira girada em perspectiva pelo CSS.
+
+     `id` entra no nome dos degrades: sem isso, quatro folhas na mesma pagina
+     brigariam pelo mesmo identificador e todas sairiam com o degrade da ultima. */
+  function desenharFolha(laminas, id) {
+    var claro = 'folhaA' + id;
+    var escuro = 'folhaB' + id;
+
+    var partes = ['<defs>'
+      + '<linearGradient id="' + claro + '" x1="0.1" y1="1" x2="0.8" y2="0">'
+      +   '<stop offset="0" stop-color="#7E6942"/>'
+      +   '<stop offset="0.5" stop-color="#B49A6E"/>'
+      +   '<stop offset="1" stop-color="#DCC79E"/>'
+      + '</linearGradient>'
+      + '<linearGradient id="' + escuro + '" x1="0.9" y1="1" x2="0.2" y2="0.1">'
+      +   '<stop offset="0" stop-color="#5E4E31"/>'
+      +   '<stop offset="0.6" stop-color="#8E7850"/>'
+      +   '<stop offset="1" stop-color="#B49A6E"/>'
+      + '</linearGradient>'
+      + '</defs>'];
+
+    // caule
+    partes.push('<path d="M150 478 C 144 390 147 268 150 158" fill="none" stroke="url(#' + claro + ')" stroke-width="5.5" stroke-linecap="round"/>');
+
+    function lamina(x, y, comp, larg, ang, lado) {
+      var m = lado < 0 ? -1 : 1;
+      var w = larg * m;
+
+      // contorno: sai do caule, incha e termina em ponta
+      var d = 'M0,0'
+        + ' C' + (w * 0.62).toFixed(1) + ',' + (-comp * 0.10).toFixed(1)
+        + ' ' + (w * 0.88).toFixed(1) + ',' + (-comp * 0.44).toFixed(1)
+        + ' ' + (w * 0.30).toFixed(1) + ',' + (-comp).toFixed(1)
+        + ' C' + (-w * 0.16).toFixed(1) + ',' + (-comp * 0.62).toFixed(1)
+        + ' ' + (-w * 0.40).toFixed(1) + ',' + (-comp * 0.17).toFixed(1)
+        + ' 0,0 Z';
+
+      // nervura, dentro da lamina
+      var nervura = 'M0,0'
+        + ' C' + (w * 0.14).toFixed(1) + ',' + (-comp * 0.36).toFixed(1)
+        + ' ' + (w * 0.22).toFixed(1) + ',' + (-comp * 0.7).toFixed(1)
+        + ' ' + (w * 0.28).toFixed(1) + ',' + (-comp * 0.94).toFixed(1);
+
+      var giro = 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (ang * m).toFixed(1) + ')';
+      var tinta = lado < 0 ? escuro : claro;
+
+      return '<g transform="' + giro + '">'
+        + '<path d="' + d + '" fill="url(#' + tinta + ')"/>'
+        + '<path d="' + nervura + '" fill="none" stroke="#E4D3B2" stroke-width="1.1" stroke-linecap="round" opacity="0.38"/>'
+        + '</g>';
     }
 
-    return '<svg viewBox="0 0 200 330" fill="currentColor" aria-hidden="true" focusable="false">' + partes.join('') + '</svg>';
+    for (var i = 0; i < laminas; i++) {
+      var t = i / (laminas - 1);
+      var y = 452 - t * 312;
+      var x = 150 - (1 - Math.cos(t * 1.1)) * 9;
+      var comp = 34 + Math.sin(t * Math.PI) * 118;
+      var larg = comp * 0.6;
+      var ang = 76 - t * 42;
+
+      partes.push(lamina(x, y, comp, larg, ang, -1));
+      partes.push(lamina(x, y, comp, larg, ang, 1));
+    }
+
+    return '<svg viewBox="0 0 300 500" aria-hidden="true" focusable="false">' + partes.join('') + '</svg>';
   }
 
+  /* Cada folha tem lugar, tamanho, transparencia e um PAR de giros: de onde
+     ela entra e onde ela para. Os giros em X e Y sao o que da a perspectiva:
+     ela chega deitada e de lado, e se endireita ao entrar. */
   var FOLHAS = [
-    { onde: 'curadoria', foliolos: 15, comp: 54, css: 'top:-9%;left:-7%;width:clamp(160px,21vw,340px);--op:0.5',  dx: '-38%', dy: '16%',  ini: '-24deg', fim: '-8deg' },
-    { onde: 'manifesto', foliolos: 13, comp: 48, css: 'top:-6%;right:-6%;width:clamp(150px,18vw,300px);--op:0.42', dx: '34%',  dy: '-14%', ini: '26deg',  fim: '9deg' },
-    { onde: 'servicos',  foliolos: 17, comp: 58, css: 'top:-8%;right:-8%;width:clamp(170px,22vw,360px);--op:0.46', dx: '32%',  dy: '18%',  ini: '30deg',  fim: '12deg' },
-    { onde: 'global',    foliolos: 14, comp: 50, css: 'bottom:-10%;left:-7%;width:clamp(150px,19vw,310px);--op:0.4', dx: '-30%', dy: '20%',  ini: '-28deg', fim: '-11deg' }
+    { onde: 'curadoria', laminas: 9,
+      css: 'top:-11%;left:-9%;width:clamp(190px,25vw,420px);--op:0.62',
+      dx: '-36%', dy: '14%', giroIni: '-26deg', giroFim: '-9deg',
+      ryIni: '-52deg', ryFim: '-18deg', rxIni: '26deg', rxFim: '8deg' },
+
+    { onde: 'manifesto', laminas: 8,
+      css: 'top:-8%;right:-8%;width:clamp(170px,21vw,360px);--op:0.5',
+      dx: '32%', dy: '-12%', giroIni: '28deg', giroFim: '11deg',
+      ryIni: '48deg', ryFim: '16deg', rxIni: '-22deg', rxFim: '-7deg' },
+
+    { onde: 'servicos', laminas: 10,
+      css: 'top:-10%;right:-10%;width:clamp(200px,26vw,440px);--op:0.55',
+      dx: '34%', dy: '16%', giroIni: '34deg', giroFim: '14deg',
+      ryIni: '56deg', ryFim: '20deg', rxIni: '24deg', rxFim: '9deg' },
+
+    { onde: 'global', laminas: 8,
+      css: 'bottom:-12%;left:-8%;width:clamp(180px,22vw,370px);--op:0.46',
+      dx: '-30%', dy: '18%', giroIni: '-30deg', giroFim: '-12deg',
+      ryIni: '-46deg', ryFim: '-15deg', rxIni: '-20deg', rxFim: '-6deg' }
   ];
 
   var folhasNaTela = [];
 
-  FOLHAS.forEach(function (f) {
+  FOLHAS.forEach(function (f, n) {
     var secao = document.getElementById(f.onde);
     if (!secao) return;
 
@@ -1907,8 +2004,10 @@
     folha.setAttribute('aria-hidden', 'true');
     folha.style.cssText = f.css
       + ';--dx:' + f.dx + ';--dy:' + f.dy
-      + ';--giro-ini:' + f.ini + ';--giro-fim:' + f.fim;
-    folha.innerHTML = desenharFolha(f.foliolos, f.comp);
+      + ';--giro-ini:' + f.giroIni + ';--giro-fim:' + f.giroFim
+      + ';--ry-ini:' + f.ryIni + ';--ry-fim:' + f.ryFim
+      + ';--rx-ini:' + f.rxIni + ';--rx-fim:' + f.rxFim;
+    folha.innerHTML = desenharFolha(f.laminas, n);
 
     secao.appendChild(folha);
     folhasNaTela.push(folha);
