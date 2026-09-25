@@ -303,13 +303,16 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   pontas pendem mais para fora. Elas entram da esquerda para a direita, uma
   logo depois da outra, quando o bloco chega na tela.
 
-  Cada bloco de imagem e embrulhado num elemento so para isso, porque os blocos
-  cortam o que transborda e as folhas precisam passar por cima da borda, para
-  dentro e para fora. **O embrulho e feito pelo script, nao esta no HTML.**
+  **A faixa entra DENTRO do proprio bloco de imagem.** Como o bloco corta o que
+  transborda, as folhas so podem cair para dentro da foto: nao ha como
+  escaparem para cima do texto. Uma tentativa anterior punha a faixa num
+  embrulho em volta do bloco, e as folhas acabavam ancoradas na secao inteira,
+  parando em cima do texto e longe da imagem.
 
   A desordem e proposital mas nao e sorteada: vem de uma conta com seno, entao
   e sempre a mesma em qualquer carregamento e nenhuma folha fica igual a
-  vizinha. Em tela pequena a faixa fica mais rala, com metade das folhas.
+  vizinha. Abaixo de 900px a folhagem some: naquela largura a banda da
+  curadoria rola de lado e a faixa andaria junto com ela.
 
   **O desenho e gerado pelo script, nao e arquivo.** A funcao monta a folha
   lamina por lamina: cada uma sai do caule, incha e afina na ponta, e os vaos

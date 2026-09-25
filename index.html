@@ -212,11 +212,13 @@
      `aria-hidden` no HTML para nao entrarem na leitura de tela. Como o manual
      pede champagne em pouca area, ficam translucidas e so nos cantos.
      ------------------------------------------------------------------------ */
-  /* o embrulho existe so para dar o ponto de apoio, e nao corta o que sai */
+  /* O proprio bloco de imagem e o ponto de apoio. Sem isto as folhas se
+     prendem na secao inteira e vao parar em cima do texto. */
   .com-folhagem { position: relative; }
 
-  /* a faixa mora na borda de CIMA do bloco de imagem, com altura zero: as
-     folhas penduram a partir dela, metade para fora e metade para dentro */
+  /* A faixa mora na borda de CIMA do bloco, com altura zero. Como o bloco
+     corta o que transborda, as folhas so podem cair para DENTRO da imagem:
+     e exatamente onde elas devem ficar. */
   .folhagem {
     position: absolute;
     z-index: 6;
@@ -1320,6 +1322,9 @@
     }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
+    /* No celular a banda da curadoria rola de lado, e a folhagem andaria junto
+       com ela. Fora que, em tela pequena, a folha cobre imagem demais. Sai. */
+    .folhagem { display: none; }
   }
 
   /* telas largas mas baixas, como notebook: o titulo encolhe para a abertura
@@ -1333,10 +1338,6 @@
   @media (max-width: 520px) {
     .abertura .apoio { font-size: 16px; }
     .marca-nome { display: none; }
-    /* em tela pequena a folhagem competiria com o conteudo: fica mais rala e
-       so encosta na borda, sem avancar sobre a imagem */
-    .folha { --op: 0.4 !important; }
-    .folha:nth-child(even) { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1992,9 +1993,9 @@
      borda de cima de cada bloco de imagem, caindo por cima dele, como mato
      debrucado sobre a foto.
 
-     Cada bloco de imagem e embrulhado num elemento so para isso, porque os
-     blocos cortam o que transborda e as folhas precisam passar POR CIMA da
-     borda, para dentro e para fora. O embrulho nao corta nada.
+     A faixa entra DENTRO do proprio bloco de imagem. Como o bloco corta o que
+     transborda, as folhas so podem cair para dentro da foto: nao ha como
+     escaparem para cima do texto.
 
      A desordem e proposital, mas nao e sorteada: vem de uma conta com seno,
      entao e sempre a mesma em qualquer carregamento, e nenhuma folha fica
@@ -2005,9 +2006,9 @@
   }
 
   var FOLHAGENS = [
-    { alvo: '#curadoria .leque',        quantas: 9, base: 'clamp(96px, 13vw, 210px)' },
-    { alvo: '#manifesto .faixa-imagem', quantas: 8, base: 'clamp(88px, 12vw, 190px)' },
-    { alvo: '#servicos .palco',         quantas: 9, base: 'clamp(96px, 13vw, 210px)' }
+    { alvo: '#curadoria .leque',        quantas: 9, base: 'clamp(84px, 11vw, 176px)' },
+    { alvo: '#manifesto .faixa-imagem', quantas: 8, base: 'clamp(76px, 10vw, 158px)' },
+    { alvo: '#servicos .palco',         quantas: 9, base: 'clamp(84px, 11vw, 176px)' }
   ];
 
   var folhasNaTela = [];
@@ -2015,13 +2016,16 @@
 
   FOLHAGENS.forEach(function (conf, nc) {
     var bloco = document.querySelector(conf.alvo);
-    if (!bloco || !bloco.parentNode) return;
+    if (!bloco) return;
 
-    // embrulho: da o ponto de apoio sem cortar o que sai para fora
-    var embrulho = document.createElement('div');
-    embrulho.className = 'com-folhagem';
-    bloco.parentNode.insertBefore(embrulho, bloco);
-    embrulho.appendChild(bloco);
+    /* A faixa entra DENTRO do proprio bloco de imagem, e nao num embrulho em
+       volta dele. A tentativa anterior usava embrulho e as folhas acabaram
+       ancoradas na secao: foram parar em cima do texto, longe da imagem.
+
+       Aqui o bloco vira o ponto de apoio (`position: relative` pela classe) e
+       as folhas so podem cair para dentro dele. Nao ha como escaparem para o
+       texto. */
+    bloco.classList.add('com-folhagem');
 
     var faixa = document.createElement('div');
     faixa.className = 'folhagem';
@@ -2055,7 +2059,8 @@
         + ';--rx-ini:' + (44 + r1 * 24).toFixed(1) + 'deg'
         + ';--rx-fim:' + (6 + r1 * 13).toFixed(1) + 'deg'
         + ';--ry-fim:' + ((r3 - 0.5) * 30).toFixed(1) + 'deg'
-        + ';--sobe:' + (-26 - r2 * 16).toFixed(0) + '%'
+        // sobe pouco: so o cabo do caule fica fora, a folha inteira cai na foto
+        + ';--sobe:' + (-8 - r2 * 9).toFixed(0) + '%'
         // as da direita entram depois das da esquerda
         + ';transition-delay:' + (i * 0.07).toFixed(2) + 's';
       folha.innerHTML = desenharFolha(5 + Math.round(r1 * 3), contaFolha++);
@@ -2064,7 +2069,7 @@
       folhasNaTela.push(folha);
     }
 
-    embrulho.appendChild(faixa);
+    bloco.appendChild(faixa);
   });
 
   if (calmo || !('IntersectionObserver' in window)) {
