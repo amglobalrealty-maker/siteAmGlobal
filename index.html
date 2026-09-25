@@ -47,7 +47,9 @@
         cliente so para o site nao ficar vazio. O manual proibe banco de imagem
         em material de imovel: elas saem assim que chegar a fotografia propria.
         Enderecos e creditos no README.
-     3. Os imoveis sao estrutura vazia. Nenhum dado foi inventado.
+     3. Os oito imoveis da curadoria sao DE TESTE, so para o filtro de pais e
+        cidade ter o que filtrar. Nome, area e suites foram inventados. Trocar
+        pelo portfolio real, mantendo data-pais e data-cidade em cada linha.
      4. Telefone, e-mail, endereco e CRECI estao como espaco reservado.
      --------------------------------------------------------------------------- -->
 
@@ -555,188 +557,248 @@
   .cabeca .rotulo { margin-bottom: 20px; }
   .cabeca-texto { padding-bottom: 8px; }
 
-  /* ============================================================ curadoria ==
-     Nao e vitrine de tres cartoes iguais. E uma SELECAO: de um lado a lista
-     curta, do outro uma unica chapa grande que troca conforme a linha que voce
-     aponta. A ideia e a de um dossie aberto sobre a mesa, e nao a de catalogo.
+  /* ============================================================== filtro ===
+     Selecionar o pais no topo abre as cidades dele e filtra o indice logo
+     abaixo. O painel desce por tras do cabecalho, em largura cheia.
      ------------------------------------------------------------------------ */
-  .selecao {
-    display: grid;
-    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-    gap: clamp(30px, 5vw, 86px);
-    align-items: start;
+  .filtro-abrir {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 0 0 8px;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid rgba(245, 242, 236, 0.22);
+    color: var(--marfim);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.5s var(--curva);
   }
 
-  /* --- a lista curta --- */
-  .selecao-lista { display: grid; }
+  .filtro-abrir:hover { border-bottom-color: var(--champagne); }
 
-  .selecao-item {
+  .filtro-rotulo {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.42);
+  }
+
+  .filtro-valor {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .filtro-abrir svg { transition: transform 0.6s var(--curva); color: var(--champagne); }
+  .filtro-abrir[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  .filtro-painel {
+    position: fixed;
+    z-index: 95;
+    left: 0; right: 0; top: 0;
+    padding: clamp(104px, 13vh, 142px) var(--margem) clamp(38px, 5.5vh, 64px);
+    background: rgba(11, 11, 12, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--linha-clara);
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition: clip-path 0.8s var(--curva), visibility 0.8s;
+  }
+
+  .filtro-painel.aberto { clip-path: inset(0 0 0 0); visibility: visible; }
+
+  .filtro-grade {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: clamp(28px, 5vw, 86px);
+    max-width: 1180px;
+  }
+
+  .filtro-col { display: grid; align-content: start; }
+  .filtro-col > .rotulo { margin-bottom: 18px; }
+
+  .filtro-pais,
+  .filtro-cidade {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 0;
+    background: none;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(20px, 2.1vw, 27px);
+    line-height: 1.1;
+    color: rgba(245, 242, 236, 0.44);
+    transition: color 0.5s var(--curva), padding-left 0.5s var(--curva);
+  }
+
+  .filtro-pais:hover,
+  .filtro-cidade:hover { color: var(--marfim); padding-left: 9px; }
+
+  .filtro-pais.ativo,
+  .filtro-cidade.ativo { color: var(--marfim); }
+
+  .filtro-conta {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(245, 242, 236, 0.3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .filtro-pais.ativo .filtro-conta,
+  .filtro-cidade.ativo .filtro-conta { color: var(--champagne); }
+
+  .filtro-cidades { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(18px, 3vw, 44px); }
+  .filtro-cidade[hidden] { display: none !important; }
+
+  /* ============================================================ curadoria ==
+     Um indice que se abre. Cada residencia e uma faixa de largura cheia com o
+     nome e o lugar sobre fio fino; ao apontar, a faixa cresce e a fotografia
+     aparece POR TRAS do texto. Nada de grade de cartoes, nada de vitrine.
+     ------------------------------------------------------------------------ */
+  .dossie { border-top: 1px solid var(--linha-clara); }
+
+  .dossie-linha {
     position: relative;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: clamp(14px, 2vw, 26px);
+    gap: clamp(14px, 2.6vw, 40px);
     width: 100%;
-    padding: clamp(22px, 3.2vh, 34px) 0;
+    padding: clamp(24px, 3.8vh, 40px) 0;
     background: none;
     border: 0;
-    border-top: 1px solid var(--linha-clara);
+    border-bottom: 1px solid var(--linha-clara);
     color: inherit;
     text-align: left;
     cursor: pointer;
-    transition: padding-left 0.8s var(--curva);
+    overflow: hidden;
+    transition: padding 0.9s var(--curva);
   }
 
-  .selecao-item:last-child { border-bottom: 1px solid var(--linha-clara); }
-  .selecao-item.ativo { padding-left: clamp(10px, 1.4vw, 20px); }
+  .dossie-linha[hidden] { display: none !important; }
 
-  /* filete champagne que marca a linha escolhida */
-  .selecao-item::after {
+  /* a fotografia mora atras do texto e so aparece ao apontar */
+  .dossie-fundo {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s var(--curva);
+  }
+
+  .dossie-fundo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.14);
+    filter: grayscale(0.34) contrast(1.04) brightness(0.5) saturate(0.7);
+    transition: transform 1.8s var(--curva);
+  }
+
+  .dossie-fundo::after {
     content: '';
     position: absolute;
-    left: 0; bottom: -1px;
-    width: 100%; height: 1px;
-    background: var(--champagne);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.9s var(--curva);
+    inset: 0;
+    background: linear-gradient(to right, rgba(11, 11, 12, 0.9) 0%, rgba(11, 11, 12, 0.5) 58%, rgba(11, 11, 12, 0.8) 100%);
   }
 
-  .selecao-item.ativo::after { transform: scaleX(1); }
+  .dossie-linha:hover,
+  .dossie-linha:focus-visible {
+    padding-top: clamp(40px, 6.2vh, 76px);
+    padding-bottom: clamp(40px, 6.2vh, 76px);
+  }
 
-  .selecao-num {
+  .dossie-linha:hover .dossie-fundo,
+  .dossie-linha:focus-visible .dossie-fundo { opacity: 1; }
+
+  .dossie-linha:hover .dossie-fundo img,
+  .dossie-linha:focus-visible .dossie-fundo img { transform: scale(1); }
+
+  .dossie-num,
+  .dossie-corpo,
+  .dossie-dados { position: relative; z-index: 1; }
+
+  .dossie-num {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 10px;
     letter-spacing: 0.16em;
+    color: rgba(245, 242, 236, 0.32);
     font-variant-numeric: tabular-nums;
-    color: rgba(245, 242, 236, 0.3);
     transition: color 0.7s var(--curva);
   }
 
-  .selecao-item.ativo .selecao-num { color: var(--champagne); }
+  .dossie-linha:hover .dossie-num,
+  .dossie-linha:focus-visible .dossie-num { color: var(--champagne); }
 
-  .selecao-corpo { display: grid; gap: 7px; min-width: 0; }
+  .dossie-corpo { display: grid; gap: 9px; min-width: 0; }
 
-  .selecao-nome {
+  .dossie-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(22px, 2.5vw, 31px);
-    line-height: 1.04;
-    color: rgba(245, 242, 236, 0.5);
-    transition: color 0.7s var(--curva);
+    font-size: clamp(25px, 3.5vw, 48px);
+    line-height: 1.02;
+    transition: transform 0.9s var(--curva);
   }
 
-  .selecao-item.ativo .selecao-nome,
-  .selecao-item:hover .selecao-nome { color: var(--marfim); }
-
-  .selecao-local {
+  .dossie-lugar {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.34);
-    transition: color 0.7s var(--curva);
+    color: rgba(245, 242, 236, 0.4);
+    transition: color 0.7s var(--curva), transform 0.9s var(--curva);
   }
 
-  .selecao-item.ativo .selecao-local { color: var(--champagne); }
+  .dossie-linha:hover .dossie-nome,
+  .dossie-linha:hover .dossie-lugar,
+  .dossie-linha:focus-visible .dossie-nome,
+  .dossie-linha:focus-visible .dossie-lugar { transform: translateX(clamp(6px, 1vw, 18px)); }
 
-  /* o triangulo aberto, deitado, so na linha escolhida */
-  .selecao-seta {
-    justify-self: end;
-    color: var(--champagne);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.7s var(--curva), transform 0.7s var(--curva);
-  }
+  .dossie-linha:hover .dossie-lugar,
+  .dossie-linha:focus-visible .dossie-lugar { color: var(--champagne); }
 
-  .selecao-item.ativo .selecao-seta { opacity: 1; transform: none; }
-
-  /* --- o palco: uma chapa so, que troca --- */
-  .selecao-palco {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    background: var(--onix-alto);
-  }
-
-  /* fio champagne deslocado atras da chapa: moldura sem moldurar */
-  .selecao-palco::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    top: clamp(-22px, -1.6vw, -14px);
-    right: clamp(-22px, -1.6vw, -14px);
-    width: 46%;
-    height: 46%;
-    border-top: 1px solid rgba(180, 154, 110, 0.45);
-    border-right: 1px solid rgba(180, 154, 110, 0.45);
-    pointer-events: none;
-  }
-
-  .selecao-chapa {
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-    margin: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: scale(1.03);
-    transition: opacity 1.1s var(--curva), transform 1.4s var(--curva);
-  }
-
-  .selecao-chapa.ativa { opacity: 1; transform: none; }
-
-  .selecao-chapa img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.3) contrast(1.05) brightness(0.84) saturate(0.74);
-  }
-
-  .selecao-chapa.ativa img { animation: respirar 11s ease-out forwards; }
-
-  @keyframes respirar {
-    from { transform: scale(1.02); }
-    to { transform: scale(1.1); }
-  }
-
-  /* o numeral grande sobre a chapa, alinhado ao alto */
-  .selecao-marca {
-    position: absolute;
-    z-index: 2;
-    left: clamp(18px, 2vw, 30px);
-    top: clamp(12px, 1.4vw, 20px);
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(46px, 6vw, 82px);
-    line-height: 1;
-    color: rgba(245, 242, 236, 0.72);
-    font-variant-numeric: tabular-nums;
-    text-shadow: 0 2px 26px rgba(11, 11, 12, 0.5);
-  }
-
-  /* a ficha, no pe da chapa, sobre um veu curto */
-  .selecao-ficha {
-    position: absolute;
-    z-index: 2;
-    left: 0; right: 0; bottom: 0;
+  .dossie-dados {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px clamp(18px, 2.4vw, 34px);
-    padding: clamp(46px, 7vw, 74px) clamp(18px, 2vw, 30px) clamp(16px, 1.8vw, 24px);
-    background: linear-gradient(to top, rgba(11, 11, 12, 0.88) 0%, transparent 100%);
+    justify-content: flex-end;
+    justify-self: end;
+    gap: 6px clamp(14px, 2vw, 30px);
+    max-width: 46%;
     font-size: 12.5px;
-    color: rgba(245, 242, 236, 0.74);
+    color: rgba(245, 242, 236, 0.55);
     font-variant-numeric: tabular-nums;
+    text-align: right;
   }
 
-  .selecao-conta {
-    margin-top: clamp(18px, 2.4vh, 26px);
+  .dossie-vazio {
+    padding: clamp(40px, 7vh, 80px) 0;
+    border-bottom: 1px solid var(--linha-clara);
+    color: var(--texto-fraco);
+  }
+
+  .dossie-vazio[hidden] { display: none !important; }
+
+  .curadoria-conta {
+    margin-top: 22px;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.32);
+    color: rgba(245, 242, 236, 0.34);
     font-variant-numeric: tabular-nums;
   }
 
@@ -1024,10 +1086,13 @@
     .menu a { font-size: 30px; font-family: var(--serif); font-weight: 300; text-transform: none; letter-spacing: 0; opacity: 1; }
     .menu a::after { bottom: -4px; }
     /* a chapa sobe para cima da lista: e ela que a pessoa ve primeiro */
-    .selecao { grid-template-columns: 1fr; gap: 26px; }
-    .selecao-palco { order: -1; aspect-ratio: 4 / 3; }
-    .selecao-palco::before { display: none; }
-    .selecao-nome { color: var(--marfim); }
+    /* no celular o painel ocupa a tela inteira e rola */
+    .filtro-rotulo { display: none; }
+    .filtro-painel { bottom: 0; overflow-y: auto; }
+    .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
+    .filtro-cidades { grid-template-columns: 1fr; }
+    .dossie-linha { grid-template-columns: auto minmax(0, 1fr); }
+    .dossie-dados { grid-column: 2; justify-self: start; justify-content: flex-start; max-width: 100%; text-align: left; }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -1053,7 +1118,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rolar .chevron, .faixa-trilho, .slide.ativa img, .selecao-chapa.ativa img { animation: none; }
+    .rolar .chevron, .faixa-trilho, .slide.ativa img { animation: none; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
@@ -1081,6 +1146,16 @@
   </a>
 
   <div class="topo-direita">
+    <!-- Filtro por pais. Escolher o pais abre as cidades dele e filtra o
+         indice da curadoria, logo abaixo. -->
+    <button type="button" class="filtro-abrir" id="filtroAbrir" aria-expanded="false" aria-controls="filtroPainel">
+      <span class="filtro-rotulo">Onde</span>
+      <span class="filtro-valor" id="filtroValor">Todos os países</span>
+      <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <path d="M1 1 L5.5 6 L10 1"/>
+      </svg>
+    </button>
+
     <nav class="menu" id="menu" aria-label="Navegacao principal">
       <a href="#curadoria">Curadoria</a>
       <a href="#manifesto">A AMGlobal</a>
@@ -1096,6 +1171,35 @@
     </button>
   </div>
 </header>
+
+<!-- ========================================================== painel do filtro -->
+<div class="filtro-painel" id="filtroPainel" role="dialog" aria-label="Filtrar por país e cidade">
+  <div class="filtro-grade">
+    <div class="filtro-col">
+      <span class="rotulo">País</span>
+      <button type="button" class="filtro-pais ativo" data-pais="">Todos os países<span class="filtro-conta" data-conta-pais=""></span></button>
+      <button type="button" class="filtro-pais" data-pais="Brasil">Brasil<span class="filtro-conta" data-conta-pais="Brasil"></span></button>
+      <button type="button" class="filtro-pais" data-pais="Estados Unidos">Estados Unidos<span class="filtro-conta" data-conta-pais="Estados Unidos"></span></button>
+      <button type="button" class="filtro-pais" data-pais="Emirados">Emirados<span class="filtro-conta" data-conta-pais="Emirados"></span></button>
+      <button type="button" class="filtro-pais" data-pais="Portugal">Portugal<span class="filtro-conta" data-conta-pais="Portugal"></span></button>
+    </div>
+
+    <div class="filtro-col">
+      <span class="rotulo">Cidade</span>
+      <div class="filtro-cidades" id="filtroCidades">
+        <button type="button" class="filtro-cidade ativo" data-cidade="">Todas as cidades</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="São Paulo">São Paulo</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Rio de Janeiro">Rio de Janeiro</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Florianópolis">Florianópolis</button>
+        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Orlando">Orlando</button>
+        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Miami">Miami</button>
+        <button type="button" class="filtro-cidade" data-pais="Emirados" data-cidade="Dubai">Dubai</button>
+        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Lisboa">Lisboa</button>
+        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Cascais">Cascais</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <main>
 
@@ -1172,77 +1276,99 @@
     </div>
   </div>
 
-  <!-- ATENCAO: estrutura, sem dado inventado. Cada linha recebe nome, bairro,
-       area, suites, vagas e valor quando o portfolio for cadastrado.
-       As fotos sao PROVISORIAS, do Unsplash. O manual proibe banco de imagem em
-       material de imovel: elas saem assim que chegar a fotografia propria. -->
-  <div class="selecao sobe">
-    <div class="selecao-lista" id="selecaoLista">
-      <button type="button" class="selecao-item ativo" data-imovel="0">
-        <span class="selecao-num">01</span>
-        <span class="selecao-corpo">
-          <span class="selecao-nome">Residência em curadoria</span>
-          <span class="selecao-local">Bairro, cidade</span>
-        </span>
-        <span class="selecao-seta" aria-hidden="true">
-          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M1 1 L11 9 L1 17"/>
-          </svg>
-        </span>
-      </button>
 
-      <button type="button" class="selecao-item" data-imovel="1">
-        <span class="selecao-num">02</span>
-        <span class="selecao-corpo">
-          <span class="selecao-nome">Residência em curadoria</span>
-          <span class="selecao-local">Bairro, cidade</span>
-        </span>
-        <span class="selecao-seta" aria-hidden="true">
-          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M1 1 L11 9 L1 17"/>
-          </svg>
-        </span>
-      </button>
+  <!-- ATENCAO: OITO IMOVEIS DE TESTE, so para o filtro de pais e cidade ter o
+       que filtrar. Nome, area e suites sao inventados de proposito e a
+       fotografia e do Unsplash, que o manual proibe em material de imovel.
+       Quando o portfolio real for cadastrado, troque linha por linha: o filtro
+       le `data-pais` e `data-cidade` daqui, entao basta manter esses atributos
+       e acrescentar ou remover linhas. As contagens do painel sao calculadas
+       sozinhas a partir destas linhas. -->
+  <div class="dossie sobe" id="dossie">
+    <button type="button" class="dossie-linha" data-pais="Brasil" data-cidade="São Paulo">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">01</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Casa Pátio</span>
+        <span class="dossie-lugar">Jardins &middot; São Paulo</span>
+      </span>
+      <span class="dossie-dados"><span>520 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+    </button>
 
-      <button type="button" class="selecao-item" data-imovel="2">
-        <span class="selecao-num">03</span>
-        <span class="selecao-corpo">
-          <span class="selecao-nome">Residência em curadoria</span>
-          <span class="selecao-local">Bairro, cidade</span>
-        </span>
-        <span class="selecao-seta" aria-hidden="true">
-          <svg width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M1 1 L11 9 L1 17"/>
-          </svg>
-        </span>
-      </button>
+    <button type="button" class="dossie-linha" data-pais="Brasil" data-cidade="Rio de Janeiro">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">02</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Cobertura Horizonte</span>
+        <span class="dossie-lugar">Leblon &middot; Rio de Janeiro</span>
+      </span>
+      <span class="dossie-dados"><span>410 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></span>
+    </button>
 
-      <p class="selecao-conta">Seleção de setembro &middot; três residências</p>
-    </div>
+    <button type="button" class="dossie-linha" data-pais="Brasil" data-cidade="Florianópolis">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">03</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Casa Costa Norte</span>
+        <span class="dossie-lugar">Jurerê &middot; Florianópolis</span>
+      </span>
+      <span class="dossie-dados"><span>680 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+    </button>
 
-    <div class="selecao-palco" id="selecaoPalco">
-      <figure class="selecao-chapa ativa" data-chapa="0">
-        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1300&amp;q=70"
-             alt="" loading="lazy" decoding="async">
-        <span class="selecao-marca">01</span>
-        <figcaption class="selecao-ficha"><span>Área</span><span>Suítes</span><span>Sob consulta</span></figcaption>
-      </figure>
+    <button type="button" class="dossie-linha" data-pais="Estados Unidos" data-cidade="Orlando">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">04</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Residência Lakeside</span>
+        <span class="dossie-lugar">Winter Park &middot; Orlando</span>
+      </span>
+      <span class="dossie-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+    </button>
 
-      <figure class="selecao-chapa" data-chapa="1">
-        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1300&amp;q=70"
-             alt="" loading="lazy" decoding="async">
-        <span class="selecao-marca">02</span>
-        <figcaption class="selecao-ficha"><span>Área</span><span>Suítes</span><span>Sob consulta</span></figcaption>
-      </figure>
+    <button type="button" class="dossie-linha" data-pais="Estados Unidos" data-cidade="Miami">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">05</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Villa Bayfront</span>
+        <span class="dossie-lugar">Coconut Grove &middot; Miami</span>
+      </span>
+      <span class="dossie-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+    </button>
 
-      <figure class="selecao-chapa" data-chapa="2">
-        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1300&amp;q=70"
-             alt="" loading="lazy" decoding="async">
-        <span class="selecao-marca">03</span>
-        <figcaption class="selecao-ficha"><span>Área</span><span>Suítes</span><span>Sob consulta</span></figcaption>
-      </figure>
-    </div>
+    <button type="button" class="dossie-linha" data-pais="Emirados" data-cidade="Dubai">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">06</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Residência Dunas</span>
+        <span class="dossie-lugar">Palm Jumeirah &middot; Dubai</span>
+      </span>
+      <span class="dossie-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></span>
+    </button>
+
+    <button type="button" class="dossie-linha" data-pais="Portugal" data-cidade="Lisboa">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">07</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Palacete Restaurado</span>
+        <span class="dossie-lugar">Príncipe Real &middot; Lisboa</span>
+      </span>
+      <span class="dossie-dados"><span>430 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+    </button>
+
+    <button type="button" class="dossie-linha" data-pais="Portugal" data-cidade="Cascais">
+      <span class="dossie-fundo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1500&amp;q=66" alt="" loading="lazy" decoding="async"></span>
+      <span class="dossie-num">08</span>
+      <span class="dossie-corpo">
+        <span class="dossie-nome">Casa Atlântico</span>
+        <span class="dossie-lugar">Quinta da Marinha &middot; Cascais</span>
+      </span>
+      <span class="dossie-dados"><span>610 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+    </button>
+
+    <p class="dossie-vazio" id="dossieVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
   </div>
+
+  <p class="curadoria-conta" id="curadoriaConta"></p>
 
   <div class="curadoria-fim sobe">
     <p>Parte do portfólio não é publicada. Esses imóveis são apresentados apenas em conversa.</p>
@@ -1564,45 +1690,129 @@
     });
   }
 
-  /* 7. Curadoria: a linha apontada manda na chapa grande ao lado. */
-  var listaSelecao = document.getElementById('selecaoLista');
-  var palco = document.getElementById('selecaoPalco');
+  /* 7. Filtro por pais e cidade.
 
-  if (listaSelecao && palco) {
-    var linhas = listaSelecao.querySelectorAll('.selecao-item');
-    var chapas = palco.querySelectorAll('.selecao-chapa');
+     Escolher o pais abre as cidades DELE e ja filtra o indice. Escolher a
+     cidade fecha o painel e leva a pessoa ate a curadoria. A fonte da verdade
+     sao os atributos data-pais e data-cidade das proprias linhas do indice:
+     ate as contagens do painel saem de la, entao trocar o portfolio nao pede
+     nenhuma mudanca aqui. */
+  var abrirFiltro = document.getElementById('filtroAbrir');
+  var painelFiltro = document.getElementById('filtroPainel');
+  var valorFiltro = document.getElementById('filtroValor');
+  var dossie = document.getElementById('dossie');
 
-    function escolher(i) {
-      Array.prototype.forEach.call(linhas, function (l, k) {
-        l.classList.toggle('ativo', k === i);
+  if (abrirFiltro && painelFiltro && dossie) {
+    var linhasDossie = dossie.querySelectorAll('.dossie-linha');
+    var vazio = document.getElementById('dossieVazio');
+    var conta = document.getElementById('curadoriaConta');
+    var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
+    var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
+    var paisAtual = '';
+    var cidadeAtual = '';
+
+    function quantas(pais) {
+      var n = 0;
+      Array.prototype.forEach.call(linhasDossie, function (l) {
+        if (!pais || l.getAttribute('data-pais') === pais) n++;
       });
-      Array.prototype.forEach.call(chapas, function (c, k) {
-        // tira e recoloca para o avanco lento da imagem recomecar
-        c.classList.remove('ativa');
-        if (k === i) {
-          void c.offsetWidth;
-          c.classList.add('ativa');
-        }
-      });
+      return n;
     }
 
-    listaSelecao.addEventListener('click', function (ev) {
-      var linha = ev.target.closest('.selecao-item');
-      if (!linha) return;
-      escolher(parseInt(linha.getAttribute('data-imovel'), 10));
+    // contagens do painel, uma vez, a partir das linhas que existem
+    Array.prototype.forEach.call(painelFiltro.querySelectorAll('[data-conta-pais]'), function (span) {
+      span.textContent = quantas(span.getAttribute('data-conta-pais'));
     });
 
-    // no desktop basta apontar; no toque, o clique acima resolve
-    if (window.matchMedia('(hover: hover)').matches) {
-      Array.prototype.forEach.call(linhas, function (linha) {
-        linha.addEventListener('mouseenter', function () {
-          escolher(parseInt(linha.getAttribute('data-imovel'), 10));
-        });
-        linha.addEventListener('focus', function () {
-          escolher(parseInt(linha.getAttribute('data-imovel'), 10));
-        });
+    function aplicar() {
+      var visiveis = 0;
+      Array.prototype.forEach.call(linhasDossie, function (linha) {
+        var casaPais = !paisAtual || linha.getAttribute('data-pais') === paisAtual;
+        var casaCidade = !cidadeAtual || linha.getAttribute('data-cidade') === cidadeAtual;
+        var mostra = casaPais && casaCidade;
+        linha.hidden = !mostra;
+        if (mostra) visiveis++;
+      });
+
+      if (vazio) vazio.hidden = visiveis > 0;
+
+      if (conta) {
+        var onde = cidadeAtual || paisAtual || 'todas as praças';
+        conta.textContent = visiveis === 1
+          ? '1 residência em ' + onde
+          : visiveis + ' residências em ' + onde;
+      }
+
+      valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
+    }
+
+    function mostrarCidades() {
+      Array.prototype.forEach.call(botoesCidade, function (b) {
+        var dePais = b.getAttribute('data-pais');
+        // "Todas as cidades" nao tem pais: fica sempre
+        b.hidden = !!dePais && !!paisAtual && dePais !== paisAtual;
+        if (!paisAtual) b.hidden = !!dePais;
+        b.classList.toggle('ativo', (b.getAttribute('data-cidade') || '') === cidadeAtual);
       });
     }
+
+    function fecharFiltro() {
+      painelFiltro.classList.remove('aberto');
+      abrirFiltro.setAttribute('aria-expanded', 'false');
+    }
+
+    abrirFiltro.addEventListener('click', function () {
+      var aberto = painelFiltro.classList.toggle('aberto');
+      abrirFiltro.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    });
+
+    painelFiltro.addEventListener('click', function (ev) {
+      var bPais = ev.target.closest('.filtro-pais');
+      if (bPais) {
+        paisAtual = bPais.getAttribute('data-pais') || '';
+        cidadeAtual = '';
+        Array.prototype.forEach.call(botoesPais, function (b) {
+          b.classList.toggle('ativo', b === bPais);
+        });
+        mostrarCidades();
+        aplicar();
+        return;
+      }
+
+      var bCidade = ev.target.closest('.filtro-cidade');
+      if (bCidade) {
+        cidadeAtual = bCidade.getAttribute('data-cidade') || '';
+        // escolher a cidade sem ter escolhido o pais assume o pais dela
+        var dePais = bCidade.getAttribute('data-pais');
+        if (dePais) {
+          paisAtual = dePais;
+          Array.prototype.forEach.call(botoesPais, function (b) {
+            b.classList.toggle('ativo', b.getAttribute('data-pais') === dePais);
+          });
+          mostrarCidades();
+        }
+        Array.prototype.forEach.call(botoesCidade, function (b) {
+          b.classList.toggle('ativo', b === bCidade);
+        });
+        aplicar();
+        fecharFiltro();
+        var alvo = document.getElementById('curadoria');
+        if (alvo) alvo.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+
+    document.addEventListener('click', function (ev) {
+      if (!painelFiltro.classList.contains('aberto')) return;
+      if (painelFiltro.contains(ev.target) || abrirFiltro.contains(ev.target)) return;
+      fecharFiltro();
+    });
+
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') fecharFiltro();
+    });
+
+    mostrarCidades();
+    aplicar();
   }
 
   /* 8. Servicos: uma linha aberta por vez. */

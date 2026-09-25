@@ -53,8 +53,9 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
    proibe banco de imagem em material de imovel**, entao elas sao temporarias e
    saem assim que chegar a fotografia propria. Enderecos na tabela abaixo.
    Todas entram dessaturadas por CSS, para nao brigarem com onix e travertino.
-3. **Imoveis.** A secao Curadoria esta com a estrutura montada e tres espacos
-   vazios. Nao inventei nome, bairro, metragem nem valor. Falta a lista real.
+3. **Imoveis.** A curadoria esta com oito imoveis DE TESTE, a pedido da
+   cliente, para o filtro ter o que filtrar. Nome, area e suites sao
+   inventados. Falta a lista real. Ver a secao "O filtro por pais e cidade".
 4. **Contato.** WhatsApp, e-mail, endereco do escritorio e numero do CRECI estao
    como "A informar". O ano no rodape tambem precisa conferir.
 
@@ -112,7 +113,7 @@ O endereco completo segue sempre o padrao
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Lista curta de um lado, uma chapa grande do outro, que troca conforme a linha apontada |
+| 02 | Curadoria | Indice de faixas de largura cheia; apontar uma faixa a abre e traz a fotografia por tras do texto. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Lista sanfonada: comprar, vender, investir e assessorar do exterior |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -123,6 +124,40 @@ A numeracao da tabela acima e organizacao interna deste documento. Ela **nao**
 aparece mais na tela: o indice lateral com os numeros 01 a 06 foi retirado a
 pedido da cliente. Quem diz onde a pessoa esta e o menu do topo, que sublinha
 a secao atual, mais o filete de progresso.
+
+## O filtro por pais e cidade
+
+No canto direito do cabecalho, ao lado do menu, fica o seletor **Onde**. Ele
+abre um painel de largura cheia com duas colunas: os paises a esquerda, com a
+quantidade de residencias de cada um, e as cidades a direita.
+
+- Escolher o **pais** abre as cidades dele e ja filtra a curadoria. O painel
+  fica aberto, para a pessoa poder afinar.
+- Escolher a **cidade** filtra, fecha o painel e leva ate a curadoria.
+- O texto do seletor sempre mostra onde a pessoa esta: "Todos os paises", o
+  nome do pais ou o nome da cidade.
+- Abaixo do indice, uma linha diz quantas residencias aquele recorte tem.
+- Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
+- Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
+
+**A fonte da verdade sao as proprias linhas do indice.** Cada uma carrega
+`data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
+delas quando a pagina abre. Para trocar o portfolio basta editar as linhas,
+mantendo esses dois atributos. So e preciso mexer no painel se entrar um pais
+ou uma cidade que ainda nao esteja listado la.
+
+### Imoveis de teste
+
+Os oito imoveis da curadoria **sao de teste**, a pedido da cliente, so para o
+filtro ter o que filtrar. Nome, area e numero de suites foram inventados; as
+fotos sao do Unsplash. Estao distribuidos assim:
+
+| Pais | Cidades |
+|---|---|
+| Brasil | Sao Paulo, Rio de Janeiro, Florianopolis |
+| Estados Unidos | Orlando, Miami |
+| Emirados | Dubai |
+| Portugal | Lisboa, Cascais |
 
 ## Movimento
 
@@ -139,11 +174,10 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **Curadoria.** Apontar uma linha da lista troca a chapa grande ao lado, com
-  fusao lenta e avanco continuo da imagem. A linha escolhida anda um pouco para
-  a direita, o numero e o bairro viram champagne, um filete corre sob ela e o
-  triangulo aberto aparece na ponta. No celular a chapa sobe para cima da lista
-  e o toque faz o mesmo papel do ponteiro.
+- **Curadoria.** Cada residencia e uma faixa de largura cheia, com fio fino em
+  cima e embaixo. Apontar uma faixa a faz crescer e traz a fotografia por tras
+  do texto, com o nome e o bairro deslizando um pouco para a direita e o numero
+  virando champagne. Sem apontar, a secao e so tipografia sobre onix.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **Sanfona dos servicos.** Uma linha aberta por vez.
 - **Faixa do rodape.** As frases da marca correm devagar, em italico.
