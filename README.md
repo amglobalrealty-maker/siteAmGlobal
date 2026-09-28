@@ -137,9 +137,9 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 - **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
   continua so filtrando a home.
-- **"Ver o imovel"**, no pe da dobra da curadoria, abre a ficha da residencia
-  que esta no ar. E um link de verdade (`<a href>`): abre em nova aba, funciona
-  com teclado e nao depende de nada carregar.
+- **"Ver o imovel"**, na ficha do caderno da curadoria, abre o imovel que esta
+  no ar. E um link de verdade (`<a href>`): abre em nova aba, funciona com
+  teclado e nao depende de nada carregar.
 - **Lamina da banda**, na pagina da cidade, abre a ficha do imovel. No toque, o
   primeiro toque abre a lamina e o segundo entra, senao a pessoa sairia da
   pagina sem nunca ter visto a foto grande.
@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Uma dobra: uma residencia por vez, cortada na diagonal de 26 graus da marca, e trocar faz a diagonal varrer a tela. Filtravel por pais e cidade |
+| 02 | Curadoria | Um caderno em TRAVERTINO: algarismo enorme em contorno, a chapa em duotono por cima dele, a ficha ao lado. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -293,18 +293,17 @@ quantidade de residencias de cada um, e as cidades a direita.
 - Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
 - Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
 
-**A fonte da verdade sao as proprias residencias.** Cada NUMERO carrega
+**A fonte da verdade sao as proprias residencias.** Cada NUMERO da regua carrega
 `data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
 deles quando a pagina abre. Para trocar o portfolio, cada residencia pede
-QUATRO pedacos com o mesmo indice: a fotografia (`data-foto`), o numero
-(`data-marca`), o nome (`data-nome`) e o pe (`data-pe`), com o `href` da ficha
-no pe. So e preciso mexer no painel se entrar um pais ou uma cidade que ainda
-nao esteja listado la.
+QUATRO pedacos com o mesmo indice: o algarismo (`data-num`), a chapa
+(`data-chapa`), a ficha (`data-ficha`) e o numero da regua (`data-marca`), com
+o `href` do imovel dentro da ficha. So e preciso mexer no painel se entrar um
+pais ou uma cidade que ainda nao esteja listado la.
 
-**Filtrar encurta a lista de numeros**, e a contagem da dobra passa a contar o
-recorte: com o Brasil escolhido ela le "02 / 03". Se a residencia que estava no
-ar sair do recorte, entra a primeira que sobrou. Sem nenhum resultado, a secao
-nao mostra fotografia nenhuma — senao a imagem diria uma coisa e o texto outra.
+**Filtrar encurta a regua.** Se a residencia que estava no ar sair do recorte,
+entra a primeira que sobrou. Sem nenhum resultado a secao esconde o palco
+inteiro e mostra so o recado — senao a imagem diria uma coisa e o texto outra.
 
 ### Imoveis de teste
 
@@ -347,43 +346,53 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **A curadoria e uma DOBRA.** Uma residencia por vez, grande, cortada na
-  diagonal de 26 graus da marca: fotografia de um lado, tipo do outro. Trocar
-  de residencia faz a diagonal VARRER a tela, do canto direito ate o lugar
-  dela.
+- **A curadoria e um CADERNO, e e a unica secao de TRAVERTINO da home.**
 
-  Cinco tentativas anteriores foram recusadas, e vale registrar porque cada uma
-  errou de um jeito: oito laminas iguais que se abrem ao serem apontadas
+  Seis tentativas anteriores foram recusadas, e todas mexiam no ARRANJO das
+  fotos sobre o onix: oito laminas iguais que se abrem ao serem apontadas
   (basico), oito chapas de tamanhos diferentes com ar entre elas (solto), oito
   fotos encostadas com texto sobre cada uma (poluido), uma fotografia com o
-  indice ao lado (basico de novo), e uma fila que atravessava a tela de lado
-  com a rolagem (tambem recusada). A escolha foi feita comparando tres
-  direcoes montadas de verdade, lado a lado, numa pagina de teste.
+  indice ao lado (basico de novo), uma fila atravessando a tela com a rolagem,
+  e uma dobra na diagonal de 26 graus. **O que nunca mudou foi o fundo escuro e
+  o tratamento das imagens** — e era ai que estava o problema. Esta versao muda
+  as tres coisas de uma vez.
 
-  **O CORTE E CALCULADO, e nao escolhido a olho.** Para a inclinacao ser 26
-  graus de verdade, o quanto a diagonal anda na horizontal depende da ALTURA e
-  da LARGURA da caixa: uma caixa baixa e larga precisa de um corte curto, uma
-  alta e estreita de um corte longo. O script mede e escreve em `--x1` e
-  `--x2`, e refaz a conta quando a janela muda de tamanho. Conferido em tres
-  tamanhos de caixa: 26,0 graus nos tres.
+  **1. O FUNDO.** Travertino, nao onix. E pedra, que e do que as casas sao
+  feitas, e quebra sete secoes escuras seguidas. Nao e marfim porque a secao 03
+  ja e marfim, e duas claras coladas matariam o ritmo. A home passou a alternar
+  escuro, pedra, claro, escuro, pedra, escuro.
 
-  **Sobre a fotografia nao ha texto.** O tipo mora do outro lado da dobra, no
-  onix, onde le sem precisar de veu nenhum.
+  **2. A FOTOGRAFIA E DUOTONO.** Cinza puro (`grayscale(1)`) multiplicado sobre
+  o travertino (`mix-blend-mode: multiply`, com a caixa da chapa pintada de
+  travertino): os brancos da imagem viram a cor da propria pagina e os pretos
+  ficam onix. Oito fotos de procedencias diferentes passam a ler como UMA
+  colecao, que e o que separa um portfolio de uma pasta de arquivos. **A cor
+  volta inteira na ficha do imovel** — o duotono e da vitrine, nao do produto.
 
-  **Quem manda e o NUMERO.** A fotografia, o nome e o pe apenas o acompanham,
-  pelo mesmo indice (`data-marca`, `data-foto`, `data-nome`, `data-pe`), e o
-  filtro esconde SO o numero — as outras tres camadas nao precisam saber que o
-  filtro existe. Quem controla a visibilidade e a OPACIDADE, e nao o recorte:
-  se a animacao nao rodar, a fotografia troca do mesmo jeito. Foi o que
-  resolveu o mesmo problema no palco dos servicos.
+  **3. O ALGARISMO E ARQUITETURA.** Um numero enorme em Cormorant, so CONTORNO
+  e sem preenchimento (`-webkit-text-stroke`), cortado pela borda de baixo da
+  secao. A chapa passa POR CIMA dele. E o unico ornamento da secao, e ele nao e
+  ornamento: e o indice da curadoria, do tamanho que merece.
+
+  A ficha traz os numeros em REGUA — Area, Suites, Valor, cada um com rotulo
+  proprio em Jost e o valor em Cormorant. A navegacao e uma regua com numero E
+  cidade ("03 Florianopolis"), com o filete champagne correndo sob o que esta
+  no ar.
+
+  **Quem manda e o NUMERO da regua.** O algarismo, a chapa e a ficha apenas o
+  acompanham, pelo mesmo indice (`data-marca`, `data-num`, `data-chapa`,
+  `data-ficha`), e o filtro esconde SO o numero — as outras tres camadas nao
+  precisam saber que o filtro existe. Quem controla a visibilidade e a
+  OPACIDADE, e nao o deslocamento: se a animacao nao rodar, a chapa troca do
+  mesmo jeito. Foi o que resolveu o mesmo problema no palco dos servicos.
 
   Andar com as setas do teclado respeita o filtro: da ultima visivel volta para
   a primeira visivel, e nunca para uma que o filtro tirou da tela. As setas so
-  respondem com a dobra na tela, para nao roubar a navegacao de quem esta lendo
-  outra secao.
+  respondem com o caderno na tela, para nao roubar a navegacao de quem esta
+  lendo outra secao.
 
-  No celular nao ha largura para a diagonal: a dobra vira uma foto inteira com
-  o tipo sobre um veu no pe.
+  No celular nao ha largura para a composicao: o algarismo encolhe e vai para
+  cima, a chapa ocupa a linha inteira e a ficha desce para baixo dela.
 
   A secao nao tem mais a linha caida sobre a imagem.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.

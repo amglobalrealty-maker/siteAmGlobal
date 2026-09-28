@@ -751,189 +751,250 @@
   .filtro-cidade[hidden] { display: none !important; }
 
   /* ============================================================ curadoria ==
-     A DOBRA.
+     O CADERNO.
 
-     Uma residencia por vez, grande, cortada na diagonal de 26 graus da marca:
-     fotografia de um lado, tipo do outro. Trocar de residencia faz a diagonal
-     VARRER a tela, do canto direito ate o lugar dela.
+     Seis tentativas anteriores foram recusadas, todas mexendo no ARRANJO das
+     fotos sobre o onix. O que nunca mudou foi o fundo escuro e o tratamento
+     das imagens — e era ai que estava o problema. Esta versao muda as tres
+     coisas de uma vez.
 
-     O CORTE E CALCULADO, e nao escolhido a olho. Para a inclinacao ser 26 graus
-     de verdade, o quanto a diagonal anda na horizontal depende da ALTURA e da
-     LARGURA da caixa: uma caixa baixa e larga precisa de um corte curto, uma
-     alta e estreita de um corte longo. Quem mede e o script (`--x1` e `--x2`),
-     e refaz a conta quando a janela muda de tamanho.
+     1. O FUNDO. A secao passa a ser TRAVERTINO, nao onix. E pedra, que e do
+        que as casas sao feitas, e quebra sete secoes escuras seguidas. Nao foi
+        marfim porque a secao 03 ja e marfim, e duas claras coladas matariam o
+        ritmo da pagina.
 
-     Sobre a fotografia nao ha texto: o tipo mora do outro lado da dobra, no
-     onix, onde le sem veu nenhum.
+     2. A FOTOGRAFIA vira DUOTONO. Cinza puro multiplicado sobre o travertino:
+        os brancos da imagem viram a cor da propria pagina e os pretos ficam
+        onix. Oito fotos de procedencias diferentes passam a parecer uma
+        colecao, que e o que separa um portfolio de uma pasta de arquivos. A
+        cor volta inteira na ficha do imovel.
+
+     3. O NUMERAL vira ARQUITETURA. Um algarismo enorme em Cormorant, s CONTORNO
+        e sem preenchimento, cortado pela borda de baixo da secao. A fotografia
+        passa POR CIMA dele. E o unico ornamento, e ele nao e ornamento: e o
+        indice da curadoria, do tamanho que merece.
      ------------------------------------------------------------------------ */
-  .dobra {
+  .caderno {
     position: relative;
-    height: clamp(520px, 84vh, 800px);
+    min-height: clamp(460px, 72vh, 700px);
     margin: 0 calc(-1 * var(--margem));
+    padding: 0 var(--margem);
     overflow: hidden;
-    background: var(--onix);
   }
 
-  /* Quem manda na visibilidade e a OPACIDADE, e nao o recorte: se a animacao
-     nao rodar, a fotografia troca do mesmo jeito. Foi o que resolveu o mesmo
-     problema no palco dos servicos. */
-  .dobra-foto {
+  .caderno-palco {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2.4vw, 40px);
+    align-items: end;
+    min-height: clamp(420px, 66vh, 640px);
+  }
+
+  /* ---- o algarismo, em contorno, cortado embaixo ---- */
+  .caderno-nums {
     position: absolute;
-    inset: 0;
-    margin: 0;
-    opacity: 0;
-    visibility: hidden;
-    clip-path: polygon(var(--x1, 48%) 0, 100% 0, 100% 100%, var(--x2, 22%) 100%);
-    transition: opacity 0.9s var(--curva), visibility 0s linear 0.9s;
+    z-index: 1;
+    left: -0.06em;
+    bottom: -0.2em;
+    pointer-events: none;
   }
 
-  .dobra-foto.ativa {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.9s var(--curva), visibility 0s;
-    animation: varrer 1.1s var(--curva) both;
-  }
-
-  @keyframes varrer {
-    from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
-    to   { clip-path: polygon(var(--x1, 48%) 0, 100% 0, 100% 100%, var(--x2, 22%) 100%); }
-  }
-
-  .dobra-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.1) contrast(1.03) brightness(0.9) saturate(0.95);
-  }
-
-  .dobra-corpo {
-    position: absolute;
-    z-index: 3;
-    left: 0;
-    bottom: 0;
-    width: min(46%, 560px);
-    padding: 0 0 clamp(30px, 6vh, 64px) var(--margem);
-  }
-
-  .dobra-conta {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    color: var(--texto-fraco);
-    font-variant-numeric: tabular-nums;
-    margin-bottom: 14px;
-  }
-
-  .dobra-conta b { color: var(--champagne); font-weight: 400; }
-
-  /* altura fixa: o nome mais longo nao pode empurrar o resto ao trocar */
-  .dobra-nomes { position: relative; height: clamp(74px, 9vh, 104px); margin-bottom: 10px; }
-
-  .dobra-nome {
+  .caderno-num {
     position: absolute;
     left: 0;
     bottom: 0;
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(30px, 4.4vw, 62px);
-    line-height: 1.02;
-    color: var(--marfim);
+    font-size: clamp(190px, 27vw, 430px);
+    line-height: 0.78;
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(11, 11, 12, 0.38);
+    font-variant-numeric: lining-nums;
+    white-space: nowrap;
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.8s var(--curva), transform 0.8s var(--curva);
+    transition: opacity 0.9s var(--curva);
   }
 
-  .dobra-nome.ativa { opacity: 1; transform: none; transition-delay: 0.22s; }
+  .caderno-num.ativa { opacity: 1; }
 
-  .dobra-pes { position: relative; height: 52px; }
+  /* ---- a chapa ---- */
+  .caderno-chapas {
+    position: relative;
+    z-index: 2;
+    grid-column: 2 / span 4;
+    aspect-ratio: 3 / 4;
+    /* o duotono nasce daqui: o fundo e o tom CLARO do par */
+    background: var(--travertino);
+  }
 
-  .dobra-pe {
+  .caderno-chapa {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 6px 20px;
+    margin: 0;
     opacity: 0;
-    transition: opacity 0.7s var(--curva);
+    visibility: hidden;
+    transform: translateY(18px);
+    transition: opacity 0.9s var(--curva), transform 1s var(--curva), visibility 0s linear 0.9s;
   }
 
-  .dobra-pe.ativa { opacity: 1; transition-delay: 0.32s; }
-
-  .dobra-lugar {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--champagne);
+  .caderno-chapa.ativa {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.9s var(--curva), transform 1s var(--curva), visibility 0s;
   }
 
-  .dobra-dados {
-    font-size: 13px;
-    color: var(--texto-fraco);
-    font-variant-numeric: tabular-nums;
+  /* DUOTONO: cinza multiplicado sobre o travertino. Os brancos viram a cor da
+     pagina, os pretos ficam onix. E o que faz oito fotos de origens diferentes
+     lerem como uma colecao so. */
+  .caderno-chapa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06) brightness(1.06);
+    mix-blend-mode: multiply;
   }
 
-  .dobra-entrar {
+  /* ---- a ficha ---- */
+  .caderno-fichas {
+    position: relative;
+    z-index: 3;
+    grid-column: 7 / span 6;
+    min-height: clamp(210px, 30vh, 290px);
+    padding-bottom: clamp(6px, 2vh, 22px);
+  }
+
+  .caderno-ficha {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.8s var(--curva), transform 0.9s var(--curva), visibility 0s linear 0.8s;
+  }
+
+  .caderno-ficha.ativa {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.8s var(--curva) 0.18s, transform 0.9s var(--curva) 0.18s, visibility 0s;
+  }
+
+  .caderno-nome {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.9vw, 58px);
+    line-height: 1.02;
+    color: var(--onix);
+    margin-bottom: 12px;
+  }
+
+  .caderno-lugar {
     font-family: var(--sans);
     font-weight: 500;
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--marfim);
-    text-decoration: none;
-    padding-bottom: 3px;
-    border-bottom: 1px solid rgba(180, 154, 110, 0.55);
-    white-space: nowrap;
-    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
+    color: var(--grafite);
+    margin-bottom: 24px;
   }
 
-  .dobra-entrar:hover,
-  .dobra-entrar:focus-visible { color: var(--champagne); border-color: var(--champagne); }
-
-  /* os numeros, no alto, do lado do tipo */
-  .dobra-marcas {
-    position: absolute;
-    z-index: 4;
-    left: var(--margem);
-    top: clamp(26px, 5vh, 52px);
+  /* os numeros da ficha, em regua: cada um com o seu rotulo por cima */
+  .caderno-dados {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 10px clamp(26px, 4vw, 58px);
+    padding-top: 18px;
+    border-top: 1px solid rgba(11, 11, 12, 0.18);
+    margin-bottom: 26px;
   }
 
-  .dobra-marca {
-    padding: 4px 0;
+  .caderno-dado { display: grid; gap: 3px; }
+
+  .caderno-dado dt {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(58, 58, 60, 0.6);
+  }
+
+  .caderno-dado dd {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(17px, 1.6vw, 23px);
+    line-height: 1;
+    color: var(--onix);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- a regua de numeros, embaixo ---- */
+  .caderno-marcas {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(14px, 2vw, 30px);
+    margin-top: clamp(26px, 4vh, 48px);
+    padding-top: 18px;
+    border-top: 1px solid rgba(11, 11, 12, 0.18);
+  }
+
+  .caderno-marca {
+    position: relative;
+    padding: 2px 0 8px;
     background: none;
     border: 0;
-    border-bottom: 1px solid transparent;
-    color: rgba(245, 242, 236, 0.34);
+    color: rgba(58, 58, 60, 0.5);
     font-family: var(--sans);
-    font-size: 10px;
+    font-weight: 400;
+    font-size: 10.5px;
     letter-spacing: 0.18em;
     font-variant-numeric: tabular-nums;
     cursor: pointer;
-    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
+    transition: color 0.5s var(--curva);
   }
 
-  .dobra-marca[hidden] { display: none !important; }
-  .dobra-marca:hover { color: var(--marfim); }
-  .dobra-marca.ativa { color: var(--champagne); border-bottom-color: var(--champagne); }
+  .caderno-marca[hidden] { display: none !important; }
+  .caderno-marca:hover { color: var(--onix); }
+  .caderno-marca.ativa { color: var(--onix); }
 
-  /* filtro sem resultado: a secao nao mostra fotografia de quem foi filtrado
-     fora, senao a imagem diria uma coisa e o texto outra */
-  .dobra-vazio {
+  /* o filete champagne da marca, correndo sob o numero no ar */
+  .caderno-marca::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--curva);
+  }
+
+  .caderno-marca.ativa::after { transform: scaleX(1); }
+
+  .caderno-vazio {
     display: none;
-    max-width: 46ch;
-    color: rgba(245, 242, 236, 0.72);
+    max-width: 48ch;
+    margin-top: 26px;
+    color: var(--grafite);
   }
 
-  .dobra.vazia .dobra-vazio { display: block; }
-  .dobra.vazia .dobra-conta,
-  .dobra.vazia .dobra-nomes,
-  .dobra.vazia .dobra-pes { display: none; }
-  .dobra.vazia .dobra-foto { opacity: 0; visibility: hidden; }
+  .caderno.vazia .caderno-vazio { display: block; }
+  .caderno.vazia .caderno-palco,
+  .caderno.vazia .caderno-marcas { display: none; }
+
+  /* a secao ficou clara: o que era escrito para o onix precisa de outro tom */
+  #curadoria .curadoria-conta { color: rgba(58, 58, 60, 0.55); }
+  #curadoria .curadoria-fim { border-top-color: rgba(11, 11, 12, 0.18); }
+  #curadoria .curadoria-fim p { color: var(--grafite); }
 
   .curadoria-conta {
     margin-top: 22px;
@@ -1316,19 +1377,14 @@
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
     .filtro-cidades { grid-template-columns: 1fr; }
-    /* sem largura para a diagonal, a dobra vira uma foto inteira com o tipo
-       sobre um veu no pe: o corte em 26 graus comeria metade da tela */
-    .dobra { height: clamp(460px, 78vh, 620px); }
-    .dobra-foto, .dobra-foto.ativa { clip-path: none; animation: none; }
-    .dobra-corpo {
-      width: 100%;
-      padding-right: var(--margem);
-      padding-top: 64px;
-      background: linear-gradient(to top, rgba(11, 11, 12, 0.94) 0%, rgba(11, 11, 12, 0.72) 62%, transparent 100%);
-    }
-    .dobra-nomes { height: clamp(62px, 12vh, 88px); }
-    .dobra-pes { height: 74px; }
-    .dobra-marcas { gap: 10px; }
+    /* sem largura para a composicao: o algarismo encolhe e vai para tras, a
+       chapa ocupa a linha inteira e a ficha desce para baixo dela */
+    .caderno-palco { grid-template-columns: 1fr; gap: 26px; min-height: 0; }
+    .caderno-chapas { grid-column: 1 / -1; aspect-ratio: 4 / 5; }
+    .caderno-fichas { grid-column: 1 / -1; min-height: 190px; position: relative; }
+    .caderno-num { font-size: clamp(150px, 44vw, 260px); }
+    .caderno-nums { bottom: auto; top: -0.1em; left: -0.04em; }
+    .caderno-marcas { gap: 10px 18px; }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -1515,7 +1571,10 @@
 </section>
 
 <!-- =============================================================== curadoria -->
-<section id="curadoria">
+<!-- A secao 02 e a unica de TRAVERTINO na home. Pedra e do que as casas sao
+     feitas, e ela quebra sete secoes escuras seguidas. Nao e marfim porque a
+     secao 03 ja e marfim, e duas claras coladas matariam o ritmo da pagina. -->
+<section class="pedra" id="curadoria">
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
@@ -1535,108 +1594,146 @@
        fotografia e do Unsplash, que o manual proibe em material de imovel.
 
        Quando o portfolio real for cadastrado, cada residencia pede QUATRO
-       pedacos com o mesmo numero: a fotografia (`data-foto`), o numero
-       (`data-marca`), o nome (`data-nome`) e o pe (`data-pe`). O filtro le
-       `data-pais` e `data-cidade` do NUMERO, que e o unico que ele esconde; o
-       `href` do pe leva a ficha. -->
-  <div class="dobra sobe" id="dobra">
-    <div class="dobra-fotos">
-      <figure class="dobra-foto ativa" data-foto="0">
-        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="1">
-        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="2">
-        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="3">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="4">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="5">
-        <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="6">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-      <figure class="dobra-foto" data-foto="7">
-        <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
-      </figure>
-    </div>
-
-    <div class="dobra-marcas" id="dobraMarcas">
-      <button type="button" class="dobra-marca ativa" data-marca="0" data-pais="Brasil" data-cidade="São Paulo" aria-label="Casa Pátio">01</button>
-      <button type="button" class="dobra-marca" data-marca="1" data-pais="Brasil" data-cidade="Rio de Janeiro" aria-label="Cobertura Horizonte">02</button>
-      <button type="button" class="dobra-marca" data-marca="2" data-pais="Brasil" data-cidade="Florianópolis" aria-label="Casa Costa Norte">03</button>
-      <button type="button" class="dobra-marca" data-marca="3" data-pais="Estados Unidos" data-cidade="Orlando" aria-label="Residência Lakeside">04</button>
-      <button type="button" class="dobra-marca" data-marca="4" data-pais="Estados Unidos" data-cidade="Miami" aria-label="Villa Bayfront">05</button>
-      <button type="button" class="dobra-marca" data-marca="5" data-pais="Emirados" data-cidade="Dubai" aria-label="Residência Dunas">06</button>
-      <button type="button" class="dobra-marca" data-marca="6" data-pais="Portugal" data-cidade="Lisboa" aria-label="Palacete Restaurado">07</button>
-      <button type="button" class="dobra-marca" data-marca="7" data-pais="Portugal" data-cidade="Cascais" aria-label="Casa Atlântico">08</button>
-    </div>
-
-    <div class="dobra-corpo">
-      <p class="dobra-conta" id="dobraConta"></p>
-
-      <div class="dobra-nomes">
-        <h3 class="dobra-nome ativa" data-nome="0">Casa Pátio</h3>
-        <h3 class="dobra-nome" data-nome="1">Cobertura Horizonte</h3>
-        <h3 class="dobra-nome" data-nome="2">Casa Costa Norte</h3>
-        <h3 class="dobra-nome" data-nome="3">Residência Lakeside</h3>
-        <h3 class="dobra-nome" data-nome="4">Villa Bayfront</h3>
-        <h3 class="dobra-nome" data-nome="5">Residência Dunas</h3>
-        <h3 class="dobra-nome" data-nome="6">Palacete Restaurado</h3>
-        <h3 class="dobra-nome" data-nome="7">Casa Atlântico</h3>
+       pedacos com o mesmo indice: o algarismo (`data-num`), a chapa
+       (`data-chapa`), a ficha (`data-ficha`) e o numero da regua
+       (`data-marca`). O filtro le `data-pais` e `data-cidade` da REGUA, que e
+       o unico pedaco que ele esconde; o `href` da ficha leva ao imovel. -->
+  <div class="caderno sobe" id="caderno">
+    <div class="caderno-palco">
+      <div class="caderno-nums" aria-hidden="true">
+        <span class="caderno-num ativa" data-num="0">01</span>
+        <span class="caderno-num" data-num="1">02</span>
+        <span class="caderno-num" data-num="2">03</span>
+        <span class="caderno-num" data-num="3">04</span>
+        <span class="caderno-num" data-num="4">05</span>
+        <span class="caderno-num" data-num="5">06</span>
+        <span class="caderno-num" data-num="6">07</span>
+        <span class="caderno-num" data-num="7">08</span>
       </div>
 
-      <div class="dobra-pes">
-        <p class="dobra-pe ativa" data-pe="0">
-          <span class="dobra-lugar">Jardins &middot; São Paulo</span>
-          <span class="dobra-dados">520 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=sao-paulo&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="1">
-          <span class="dobra-lugar">Leblon &middot; Rio de Janeiro</span>
-          <span class="dobra-dados">410 m&sup2; &middot; 3 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=rio-de-janeiro&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="2">
-          <span class="dobra-lugar">Jurerê &middot; Florianópolis</span>
-          <span class="dobra-dados">680 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=florianopolis&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="3">
-          <span class="dobra-lugar">Winter Park &middot; Orlando</span>
-          <span class="dobra-dados">390 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=orlando&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="4">
-          <span class="dobra-lugar">Coconut Grove &middot; Miami</span>
-          <span class="dobra-dados">560 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=miami&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="5">
-          <span class="dobra-lugar">Palm Jumeirah &middot; Dubai</span>
-          <span class="dobra-dados">740 m&sup2; &middot; 6 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=dubai&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="6">
-          <span class="dobra-lugar">Príncipe Real &middot; Lisboa</span>
-          <span class="dobra-dados">430 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=lisboa&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="dobra-pe" data-pe="7">
-          <span class="dobra-lugar">Quinta da Marinha &middot; Cascais</span>
-          <span class="dobra-dados">610 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          <a class="dobra-entrar" href="imovel.html?c=cascais&amp;i=0">Ver o imóvel</a>
-        </p>
+      <div class="caderno-chapas">
+        <figure class="caderno-chapa ativa" data-chapa="0">
+          <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="1">
+          <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="2">
+          <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="3">
+          <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="4">
+          <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="5">
+          <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="6">
+          <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="caderno-chapa" data-chapa="7">
+          <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=72" alt="" loading="lazy" decoding="async">
+        </figure>
       </div>
 
-      <p class="dobra-vazio" id="dobraVazio">Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
+      <div class="caderno-fichas">
+        <div class="caderno-ficha ativa" data-ficha="0">
+          <h3 class="caderno-nome">Casa Pátio</h3>
+          <p class="caderno-lugar">Jardins &middot; São Paulo</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>520 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>4</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=sao-paulo&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="1">
+          <h3 class="caderno-nome">Cobertura Horizonte</h3>
+          <p class="caderno-lugar">Leblon &middot; Rio de Janeiro</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>410 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>3</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=rio-de-janeiro&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="2">
+          <h3 class="caderno-nome">Casa Costa Norte</h3>
+          <p class="caderno-lugar">Jurerê &middot; Florianópolis</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>680 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>5</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=florianopolis&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="3">
+          <h3 class="caderno-nome">Residência Lakeside</h3>
+          <p class="caderno-lugar">Winter Park &middot; Orlando</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>390 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>4</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=orlando&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="4">
+          <h3 class="caderno-nome">Villa Bayfront</h3>
+          <p class="caderno-lugar">Coconut Grove &middot; Miami</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>560 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>5</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=miami&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="5">
+          <h3 class="caderno-nome">Residência Dunas</h3>
+          <p class="caderno-lugar">Palm Jumeirah &middot; Dubai</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>740 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>6</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=dubai&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="6">
+          <h3 class="caderno-nome">Palacete Restaurado</h3>
+          <p class="caderno-lugar">Príncipe Real &middot; Lisboa</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>430 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>4</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=lisboa&amp;i=0">Ver o imóvel</a>
+        </div>
+        <div class="caderno-ficha" data-ficha="7">
+          <h3 class="caderno-nome">Casa Atlântico</h3>
+          <p class="caderno-lugar">Quinta da Marinha &middot; Cascais</p>
+          <dl class="caderno-dados">
+            <div class="caderno-dado"><dt>Área</dt><dd>610 m&sup2;</dd></div>
+            <div class="caderno-dado"><dt>Suítes</dt><dd>5</dd></div>
+            <div class="caderno-dado"><dt>Valor</dt><dd>Sob consulta</dd></div>
+          </dl>
+          <a class="botao" href="imovel.html?c=cascais&amp;i=0">Ver o imóvel</a>
+        </div>
+      </div>
     </div>
+
+    <div class="caderno-marcas" id="cadernoMarcas">
+      <button type="button" class="caderno-marca ativa" data-marca="0" data-pais="Brasil" data-cidade="São Paulo">01 &nbsp;São Paulo</button>
+      <button type="button" class="caderno-marca" data-marca="1" data-pais="Brasil" data-cidade="Rio de Janeiro">02 &nbsp;Rio de Janeiro</button>
+      <button type="button" class="caderno-marca" data-marca="2" data-pais="Brasil" data-cidade="Florianópolis">03 &nbsp;Florianópolis</button>
+      <button type="button" class="caderno-marca" data-marca="3" data-pais="Estados Unidos" data-cidade="Orlando">04 &nbsp;Orlando</button>
+      <button type="button" class="caderno-marca" data-marca="4" data-pais="Estados Unidos" data-cidade="Miami">05 &nbsp;Miami</button>
+      <button type="button" class="caderno-marca" data-marca="5" data-pais="Emirados" data-cidade="Dubai">06 &nbsp;Dubai</button>
+      <button type="button" class="caderno-marca" data-marca="6" data-pais="Portugal" data-cidade="Lisboa">07 &nbsp;Lisboa</button>
+      <button type="button" class="caderno-marca" data-marca="7" data-pais="Portugal" data-cidade="Cascais">08 &nbsp;Cascais</button>
+    </div>
+
+    <p class="caderno-vazio" id="cadernoVazio">Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
   </div>
 
   <p class="curadoria-conta" id="curadoriaConta"></p>
@@ -2058,42 +2155,30 @@
   var abrirFiltro = document.getElementById('filtroAbrir');
   var painelFiltro = document.getElementById('filtroPainel');
   var valorFiltro = document.getElementById('filtroValor');
-  var dobra = document.getElementById('dobra');
+  var caderno = document.getElementById('caderno');
 
-  if (abrirFiltro && painelFiltro && dobra) {
-    var marcas = dobra.querySelectorAll('.dobra-marca');
+  if (abrirFiltro && painelFiltro && caderno) {
+    var marcas = caderno.querySelectorAll('.caderno-marca');
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
     var paisAtual = '';
     var cidadeAtual = '';
 
-    /* A DOBRA.
+    /* O CADERNO.
 
-       Uma residencia por vez. Quem manda e o NUMERO (a marca): a fotografia, o
-       nome e o pe apenas o acompanham, pelo mesmo indice. E tambem so o numero
-       que o filtro esconde — as outras tres camadas nao precisam saber que o
-       filtro existe.
+       Quem manda e o NUMERO da regua: o algarismo grande, a chapa e a ficha
+       apenas o acompanham, pelo mesmo indice. E so o numero da regua que o
+       filtro esconde — as outras tres camadas nao precisam saber que o filtro
+       existe.
 
-       O CORTE de 26 graus e calculado: o quanto a diagonal anda na horizontal
-       depende da altura e da largura da caixa, entao e medido aqui e escrito em
-       `--x1` e `--x2`. Refeito quando a janela muda de tamanho. */
-    var TANGENTE26 = Math.tan(26 * Math.PI / 180);
-    var PE_DA_DIAGONAL = 22;          // onde a diagonal encosta embaixo, em % da largura
-
-    var fotos = dobra.querySelectorAll('.dobra-foto');
-    var nomes = dobra.querySelectorAll('.dobra-nome');
-    var pes = dobra.querySelectorAll('.dobra-pe');
-    var contaDobra = document.getElementById('dobraConta');
+       Quem controla a visibilidade e a OPACIDADE, e nao o deslocamento: se a
+       animacao nao rodar, a chapa troca do mesmo jeito. Foi o que resolveu o
+       mesmo problema no palco dos servicos. */
+    var algarismos = caderno.querySelectorAll('.caderno-num');
+    var chapas = caderno.querySelectorAll('.caderno-chapa');
+    var fichas = caderno.querySelectorAll('.caderno-ficha');
     var noAr = 0;
-
-    function medirCorte() {
-      var r = dobra.getBoundingClientRect();
-      if (!r.width || !r.height) return;
-      var anda = (r.height * TANGENTE26) / r.width * 100;
-      dobra.style.setProperty('--x2', PE_DA_DIAGONAL + '%');
-      dobra.style.setProperty('--x1', (PE_DA_DIAGONAL + anda).toFixed(2) + '%');
-    }
 
     function acender(lista, atributo, qual) {
       Array.prototype.forEach.call(lista, function (el) {
@@ -2111,27 +2196,24 @@
       var lista = naTela();
       if (!lista.length) return;
 
-      // andar para os lados respeita o FILTRO: da ultima visivel volta para a
-      // primeira visivel, e nao para uma que o filtro tirou da tela
-      var posicao = lista.findIndex(function (m) { return Number(m.getAttribute('data-marca')) === qual; });
+      // andar respeita o FILTRO: se o pedido saiu do recorte, entra o primeiro
+      // que sobrou, e nunca um que o filtro tirou da tela
+      var posicao = -1;
+      lista.forEach(function (m, i) { if (Number(m.getAttribute('data-marca')) === qual) posicao = i; });
       if (posicao < 0) { qual = Number(lista[0].getAttribute('data-marca')); posicao = 0; }
 
       noAr = qual;
       acender(marcas, 'data-marca', qual);
-      acender(fotos, 'data-foto', qual);
-      acender(nomes, 'data-nome', qual);
-      acender(pes, 'data-pe', qual);
-
-      if (contaDobra) {
-        var n = function (x) { return (x < 10 ? '0' : '') + x; };
-        contaDobra.innerHTML = '<b>' + n(posicao + 1) + '</b> / ' + n(lista.length);
-      }
+      acender(algarismos, 'data-num', qual);
+      acender(chapas, 'data-chapa', qual);
+      acender(fichas, 'data-ficha', qual);
     }
 
-    function andarDobra(passo) {
+    function andarCaderno(passo) {
       var lista = naTela();
       if (lista.length < 2) return;
-      var posicao = lista.findIndex(function (m) { return Number(m.getAttribute('data-marca')) === noAr; });
+      var posicao = 0;
+      lista.forEach(function (m, i) { if (Number(m.getAttribute('data-marca')) === noAr) posicao = i; });
       var nova = (posicao + passo + lista.length) % lista.length;
       mostrar(Number(lista[nova].getAttribute('data-marca')));
     }
@@ -2143,23 +2225,16 @@
       m.addEventListener('click', function () { mostrar(qual); });
     });
 
-    // as setas so respondem com a dobra na tela: senao roubariam a navegacao
+    // as setas so respondem com o caderno na tela: senao roubariam a navegacao
     // de quem esta lendo outra secao
     document.addEventListener('keydown', function (ev) {
       if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
-      var r = dobra.getBoundingClientRect();
+      var r = caderno.getBoundingClientRect();
       var alturaTela = window.innerHeight || 800;
       if (r.bottom < 80 || r.top > alturaTela - 80) return;
-      andarDobra(ev.key === 'ArrowRight' ? 1 : -1);
+      andarCaderno(ev.key === 'ArrowRight' ? 1 : -1);
       ev.preventDefault();
     });
-
-    var pedidoCorte = false;
-    window.addEventListener('resize', function () {
-      if (pedidoCorte) return;
-      pedidoCorte = true;
-      window.requestAnimationFrame(function () { medirCorte(); pedidoCorte = false; });
-    }, { passive: true });
 
     function quantas(pais) {
       var n = 0;
@@ -2185,7 +2260,7 @@
         if (mostraEsta) visiveis++;
       });
 
-      dobra.classList.toggle('vazia', visiveis === 0);
+      caderno.classList.toggle('vazia', visiveis === 0);
 
       if (conta) {
         var onde = cidadeAtual || paisAtual || 'todas as praças';
@@ -2196,12 +2271,10 @@
 
       valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
 
-      // a que estava no ar pode ter saido do recorte; mostrar() ja devolve para a
-      // primeira visivel, e ainda reescreve a contagem "02 / 03"
+      // a que estava no ar pode ter saido do recorte; mostrar() devolve sozinho
+      // para a primeira que sobrou
       if (visiveis) mostrar(noAr);
     }
-
-    medirCorte();
 
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {
