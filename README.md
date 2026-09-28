@@ -532,6 +532,76 @@ Conferido fora do navegador, rodando a secao inteira num DOM falso com o
 relogio travado: as cinco camadas andam sempre juntas, a volta funciona, o
 brilho segue a praca no ar, e os relogios batem.
 
+## O atendimento guiado
+
+Um botao fixo no canto inferior direito abre um painel que **parece uma
+conversa**: a casa fala, a pessoa escolhe entre respostas prontas, e o que ela
+escolheu fica ecoado do outro lado. Voltar e Recomecar no pe do painel; fecha no
+Esc.
+
+### Nao ha IA aqui, e isso e de proposito
+
+**1. O site nao tem servidor.** E HTML estatico que a Vercel serve direto do
+repositorio. Chave de IA no navegador e chave vazada: quem abrir o codigo-fonte
+da pagina passa a gastar na conta da cliente.
+
+**2. Um modelo de linguagem inventa com seguranca.** Ele afirmaria metragem,
+preco ou condicao de um imovel que nao existe. Em imobiliaria isso e problema
+juridico, e nao constrangimento. Tambem usaria as palavras que o manual proibe.
+
+**3. A cliente nao tem OpenAI nem n8n neste projeto.** Perguntada, ela escolheu
+o caminho guiado.
+
+Um modelo poderia entrar depois, mas so atras de um endpoint na Vercel, com
+chave em variavel de ambiente, limite por visitante e a trava de responder
+apenas a partir de um texto aprovado.
+
+### Como mudar as perguntas e as respostas
+
+**O roteiro inteiro esta num objeto chamado `ROTEIRO`, no topo do bloco 12 do
+script.** Para mudar uma fala, mexa so ali. O mecanismo nao sabe nada do
+assunto: ele le o roteiro e desenha, entao acrescentar uma parada nova nao pede
+nenhuma linha de codigo.
+
+Cada parada tem:
+
+| Campo | O que e |
+|---|---|
+| `fala` | o que a casa diz |
+| `opcoes` | o que a pessoa pode responder |
+
+E cada opcao tem:
+
+| Campo | O que e |
+|---|---|
+| `texto` | o que aparece no botao |
+| `vai` | o nome de outra parada do roteiro |
+| `ir` | um endereco: leva para fora e fecha a conversa |
+
+Endereco que comeca com `#` rola ate a secao da propria pagina; o resto navega.
+
+### O roteiro de hoje
+
+Doze paradas: inicio, comprar (Brasil, Estados Unidos, Portugal, Dubai, e
+"ainda nao sei"), vender (e "quero entender antes como funciona"), investir,
+"moro fora do Brasil", e falar com um consultor.
+
+⚠️ **E um primeiro rascunho**, tirado do briefing e do texto que ja estava no
+site. Ele existe para ser reescrito pela casa — por isso esta em texto puro.
+
+Ha conferencia automatica de que toda parada tem fala e saida, que nenhuma
+opcao aponta para parada inexistente, que nenhuma parada ficou inalcancavel,
+que as cidades citadas existem no `dados.js` e que nenhuma palavra proibida
+pelo manual entrou no roteiro. Do inicio, falar com um consultor esta a **um
+toque**.
+
+### O WhatsApp
+
+Enquanto o numero estiver como "A informar", o fim do roteiro leva para a secao
+de contato. Quando o numero chegar, trocar o `ir` da parada `consultor` por um
+endereco `https://wa.me/...` com a mensagem ja escrita e uma linha.
+
+
 ## Detalhes tecnicos
 
 - Um arquivo so. CSS e JavaScript ficam dentro do `index.html`.
