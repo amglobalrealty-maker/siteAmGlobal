@@ -234,33 +234,28 @@
   /* --------------------------------------------------------------- secoes -- */
   section { padding: var(--secao) var(--margem); }
 
-  /* A CABECA: titulo a esquerda, frase a direita, FILETE ATRAVESSANDO O VAZIO.
-     Mesma regra da home. O filete tem elemento proprio (`cabeca-fio`) porque
-     so assim o CSS sabe a largura do vao entre o titulo e a frase. */
+  /* A CABECA: DUAS DECLARACOES, e nao um titulo com legenda. Mesma regra da
+     home. O lugar da frase nunca foi o problema: era o tamanho. Uma legenda
+     de 17px nao segura meia tela, esteja onde estiver. */
   .cabeca {
     display: grid;
-    grid-template-columns: max-content minmax(40px, 1fr) minmax(0, 38ch);
-    gap: 0 clamp(18px, 2.6vw, 44px);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
+    gap: clamp(28px, 5vw, 96px);
     align-items: end;
     margin-bottom: clamp(44px, 7vh, 80px);
   }
 
   .cabeca .rotulo { margin-bottom: 20px; }
 
-  .cabeca-fio {
-    height: 1px;
-    background: var(--champagne);
-    opacity: 0.75;
-    margin-bottom: 0.72em;
-  }
-
   .cabeca-texto p {
     font-family: var(--serif);
     font-weight: 300;
-    font-style: italic;
-    font-size: clamp(17px, 1.5vw, 22px);
-    line-height: 1.5;
-    color: rgba(245, 242, 236, 0.82);
+    font-size: clamp(21px, 2.3vw, 34px);
+    line-height: 1.24;
+    letter-spacing: -0.005em;
+    max-width: 30ch;
+    color: rgba(245, 242, 236, 0.66);
+    text-wrap: balance;
   }
 
   /* ---- a banda das residencias, igual a da home ---- */
@@ -569,11 +564,10 @@
 
   /* ------------------------------------------------------- telas estreitas -- */
   @media (max-width: 1100px) {
-    /* sem largura para o filete atravessar: a frase desce para baixo do titulo
-       e o filete volta a ser o tracinho deitado de 24px da marca, antes dela */
-    .cabeca { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .cabeca-fio { width: 24px; margin: clamp(22px, 3vh, 32px) 0 16px; opacity: 1; }
-    .cabeca-texto p { max-width: 46ch; }
+    /* sem largura para as duas declaracoes lado a lado, a segunda desce para
+       baixo da primeira, e encolhe um pouco para nao competir com ela */
+    .cabeca { grid-template-columns: minmax(0, 1fr); gap: clamp(22px, 3.4vh, 34px); }
+    .cabeca-texto p { font-size: clamp(19px, 4.6vw, 26px); max-width: 34ch; }
     .fecho { grid-template-columns: 1fr; }
   }
 
@@ -736,7 +730,6 @@
       +       '<span class="rotulo">A seleção</span>'
       +       '<h2>Poucos imóveis.<br>Nenhum comum.</h2>'
       +     '</div>'
-      +     '<span class="cabeca-fio" aria-hidden="true"></span>'
       +     '<div class="cabeca-texto"><p>Cada residência está aqui por arquitetura, endereço, história ou a combinação dos três. Parte do portfólio não é publicada e só é apresentada em conversa.</p></div>'
       +   '</div>'
       +   '<div class="leque" id="leque">' + c.imoveis.map(function (im, i) { return lamina(im, i, slug); }).join('') + '</div>'
@@ -755,7 +748,6 @@
       +           '<span class="rotulo">A praça</span>'
       +           '<h2>O que pesa<br>em ' + esc(c.nome) + '</h2>'
       +         '</div>'
-      +         '<span class="cabeca-fio" aria-hidden="true"></span>'
       +         '<div class="cabeca-texto"><p>Três coisas que mudam a decisão nesta cidade, e que raramente aparecem num anúncio.</p></div>'
       +       '</div>'
       +       '<div class="notas-lista">' + c.notas.map(nota).join('') + '</div>'

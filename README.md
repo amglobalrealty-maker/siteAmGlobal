@@ -29,34 +29,37 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 | Texto, rotulos e botoes | Jost. Caixa-alta so na Jost, com tracking de 18% |
 | Alinhamento | Sempre a esquerda, nunca justificado |
 | Linha de leitura | Limitada a 68 caracteres |
-| Filete | Traco champagne de 24px antes de cada rotulo, e o mesmo traco EM PE ao lado da frase de abertura de cada secao |
+| Filete | Traco champagne de 24px antes de cada rotulo |
 | Marcador | Triangulo aberto derivado do A, usado na indicacao de rolagem |
 | Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto nem sobre foto. Saiu da secao Global quando ela virou fotografia; hoje nao esta em uso |
 
-### A cabeca das secoes
+### A cabeca das secoes: duas declaracoes
 
-Cada secao abre com filete, rotulo, titulo e uma frase curta. **Duas
-arrumacoes anteriores erraram pelos extremos:**
+Cada secao abre com filete, rotulo, titulo e uma frase curta. **Tres arrumacoes
+anteriores foram recusadas, e as tres mexiam no LUGAR da frase:**
 
-1. A frase na coluna da DIREITA, solta, longe do titulo e sem nada em volta:
-   virava legenda orfa boiando.
-2. A frase EMBAIXO do titulo, numa coluna estreita com um filete em pe. Ai a
-   cabeca inteira ficou espremida no canto esquerdo, com metade da tela vazia.
+1. Na coluna da DIREITA: ficou solta, longe do titulo e sem nada em volta.
+2. EMBAIXO do titulo, em coluna estreita com um filete em pe: a cabeca inteira
+   ficou espremida no canto esquerdo, com metade da tela vazia.
+3. Presa ao titulo por um filete champagne atravessando o vazio.
 
-Hoje as duas pontas voltam para os extremos e um **FILETE CHAMPAGNE ATRAVESSA
-O VAZIO** entre elas. A frase nao flutua mais, porque o filete a amarra ao
-titulo, e a largura da secao e ocupada. A frase fica em **Cormorant italico**,
-e le como abertura da secao.
+**O lugar nunca foi o problema: era o TAMANHO.** Uma legenda de 17px nao segura
+meia tela, esteja onde estiver — ela sempre vai parecer solta ou apertada. E o
+italico em Cormorant le como classico, nao como moderno.
 
-A cabeca e um grid de TRES colunas: `max-content` para o titulo, `1fr` para o
-filete e `38ch` para a frase.
+Hoje a frase e uma **SEGUNDA DECLARACAO**, e nao uma legenda:
 
-⚠️ **O filete tem elemento proprio** (`<span class="cabeca-fio">`), e nao e um
-pseudo-elemento. So assim o CSS sabe a largura do vao a atravessar — ela e o
-que sobra depois do titulo e da frase, e nenhum dos dois tem largura fixa.
+- mesmo Cormorant do titulo, **reto**, sem italico;
+- de **21 a 34px**, contra os 17 a 22 de antes;
+- sem filete, sem coluna estreita, sem borda;
+- as duas alinhadas pela base, uma de cada lado.
 
-Em tela estreita nao ha vazio para atravessar: a frase desce para baixo do
-titulo e o filete volta a ser o tracinho deitado de 24px da marca, antes dela.
+O titulo tem duas linhas e as frases caem em quatro a seis. Os dois lados ficam
+com peso parecido, que e o que faz a cabeca parar de ter um lado cheio e outro
+vazio.
+
+Em tela estreita a segunda declaracao desce para baixo da primeira e encolhe um
+pouco, para nao competir com ela.
 
 Vale igual na home (secoes 02, 04 e 05) e na pagina de cidade (A selecao e A
 praca).
