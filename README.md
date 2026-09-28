@@ -301,7 +301,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
-| 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
+| 04 | Servicos | Um campo de tipo, SEM fotografia: os quatro oficios em Cormorant grande, e quem nao esta no ar quase some |
 | 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
@@ -429,6 +429,47 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 
 Quem tiver "reduzir movimento" ligado no sistema nao ve nada disso: a pagina
 aparece inteira e parada.
+
+### A secao 04, Servicos: um campo de tipo, sem fotografia
+
+A secao era um **palco**: uma fotografia de borda a borda com os quatro oficios
+escritos por cima, e a imagem sendo varrida a cada troca. Foi a unica secao do
+site aprovada de primeira.
+
+**Ela saiu mesmo assim, por causa do RITMO da pagina.** Eram cinco secoes
+seguidas puxadas por imagem — abertura, curadoria, A AMGlobal, servicos e
+global. E a quarta e justamente a que menos precisa de foto: servico nao e uma
+coisa que se veja, entao qualquer fotografia ali era ilustracao.
+
+Hoje a secao e **um campo de tipo**. Os quatro oficios sao a secao inteira, em
+Cormorant de ate 96px, e quem nao esta no ar fica a 20% de opacidade. Trocar de
+oficio nao varre imagem nenhuma: e o proprio nome que ACENDE e o vizinho que
+APAGA. E o apagar do vizinho que faz o nome no ar parecer aceso, sem precisar
+de nenhum efeito.
+
+**Sao MENOS elementos que antes, e nao mais:** sairam as quatro fotografias, o
+veu que as escurecia, a moldura champagne e as duas animacoes de imagem. Ficou
+o tracinho champagne que cresce no oficio no ar, que ja estava la.
+
+No script tambem sumiu peso: a fila de tres camadas (fundo parado, a que sai, a
+que entra), o reinicio da varredura com reflow forcado e o temporizador de
+limpeza. Sem imagem, a troca fica sendo o que ela sempre foi por baixo — acender
+um nome e trocar a ficha.
+
+**O ritmo de imagem da pagina hoje:**
+
+| Secao | Imagens |
+|---|---|
+| 01 Abertura | 4 |
+| 02 Curadoria | 8 |
+| 03 A AMGlobal | 1 |
+| **04 Servicos** | **nenhuma — respiro** |
+| 05 Global | 3 |
+| 06 Contato | nenhuma |
+
+A faixa de imagem da secao 03 e a proxima candidata a sair, se for preciso mais
+respiro: ela some numa linha, e a pagina passa a alternar imagem e texto de
+verdade.
 
 ### A secao 05, Global: o nome atravessa a fotografia
 

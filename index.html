@@ -1047,103 +1047,43 @@
   .pilar p { font-size: 16px; }
 
   /* ============================================================= servicos ==
-     A secao inteira vira UM PALCO: uma fotografia de borda a borda, da largura
-     da pagina, com os quatro oficios escritos por cima dela. Trocar de oficio
-     nao troca so o texto: a fotografia inteira e varrida, de um lado ao outro,
-     em vez de desbotar. E a imagem grande que carrega a secao, e ela ocupa uma
-     faixa so, sem fazer a pagina crescer.
+     SEM FOTOGRAFIA.
+
+     A secao era um palco: uma fotografia de borda a borda com os quatro
+     oficios escritos por cima. Ela funcionava sozinha — foi a unica aprovada
+     de primeira —, mas a pagina tinha CINCO secoes seguidas puxadas por
+     imagem: abertura, curadoria, manifesto, servicos e global. E a quarta e
+     justamente a que menos precisa de foto: servico nao e uma coisa que se
+     veja. Qualquer fotografia ali era ilustracao.
+
+     Agora ela e um campo de TIPO. Os quatro oficios sao a secao inteira, em
+     Cormorant grande, e quem nao esta no ar quase some. Trocar de oficio nao
+     varre imagem nenhuma: e o proprio nome que ACENDE, e o vizinho que apaga.
+
+     Sao MENOS elementos que antes, e nao mais: sairam as quatro fotografias, o
+     veu que as escurecia, a moldura champagne e as duas animacoes de imagem.
+     Ficou o tracinho champagne que cresce no oficio no ar, que ja estava la.
      ------------------------------------------------------------------------ */
-  .palco {
-    position: relative;
-    /* de borda a borda, furando a margem lateral da secao */
-    margin: 0 calc(-1 * var(--margem));
-    height: clamp(430px, 66vh, 640px);
-    overflow: hidden;
-    background: var(--onix-alto);
-  }
-
-  /* Tres camadas fixas, nunca mais que isso: o fundo parado (1), a que esta
-     saindo (2) e a que entra varrendo por cima (3). Quem manda na visibilidade
-     e a opacidade; a varredura e enfeite. Assim, se a animacao nao rodar, a
-     imagem troca do mesmo jeito. */
-  .palco-foto {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    opacity: 0;
-  }
-
-  /* a que sai fica visivel por baixo enquanto a nova passa por cima */
-  .palco-foto.saindo { z-index: 2; opacity: 1; }
-
-  .palco-foto.ativa {
-    z-index: 3;
-    opacity: 1;
-    animation: varrer 1.15s var(--curva) both;
-  }
-
-  @keyframes varrer {
-    from { clip-path: inset(0 0 0 100%); }
-    to { clip-path: inset(0 0 0 0); }
-  }
-
-  .palco-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.26) contrast(1.05) brightness(0.62) saturate(0.76);
-    transform: scale(1.04);
-  }
-
-  .palco-foto.ativa img { animation: crescer 9s ease-out both; }
-
-  @keyframes crescer {
-    from { transform: scale(1.03); }
-    to { transform: scale(1.12); }
-  }
-
-  /* Veu da esquerda, para os nomes lerem sobre qualquer foto. Daqui para cima
-     os numeros sao altos de proposito: nenhuma foto pode alcancar o veu, a
-     moldura ou o texto, por mais trocas que aconteçam. */
-  .palco::after {
-    content: '';
-    position: absolute;
-    z-index: 5;
-    inset: 0;
-    background:
-      linear-gradient(to right, rgba(11, 11, 12, 0.92) 0%, rgba(11, 11, 12, 0.6) 46%, rgba(11, 11, 12, 0.25) 100%),
-      linear-gradient(to top, rgba(11, 11, 12, 0.55) 0%, transparent 42%);
-    pointer-events: none;
-  }
-
-  /* moldura champagne por dentro, sem fechar */
-  .palco-moldura {
-    position: absolute;
-    z-index: 6;
-    inset: clamp(16px, 2vw, 30px);
-    border-top: 1px solid rgba(180, 154, 110, 0.45);
-    border-left: 1px solid rgba(180, 154, 110, 0.45);
-    pointer-events: none;
-  }
+  .palco { position: relative; }
 
   .palco-corpo {
-    position: relative;
-    z-index: 7;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
     align-items: end;
-    gap: clamp(20px, 4vw, 70px);
-    height: 100%;
-    padding: clamp(40px, 6vw, 72px) clamp(34px, 5vw, 78px);
+    gap: clamp(26px, 5vw, 92px);
+    padding-top: clamp(14px, 3vh, 40px);
   }
 
-  .palco-lista { display: grid; align-content: end; gap: clamp(2px, 0.6vh, 8px); }
+  .palco-lista {
+    display: grid;
+    gap: clamp(2px, 0.8vh, 12px);
+  }
 
   .palco-nome {
     display: flex;
     align-items: baseline;
-    gap: clamp(10px, 1.4vw, 20px);
-    padding: 4px 0;
+    gap: clamp(12px, 1.6vw, 26px);
+    padding: clamp(2px, 0.6vh, 8px) 0;
     background: none;
     border: 0;
     text-align: left;
@@ -1151,6 +1091,7 @@
     color: inherit;
   }
 
+  /* o tracinho champagne cresce no oficio no ar */
   .palco-nome i {
     display: block;
     width: 0;
@@ -1158,35 +1099,42 @@
     background: var(--champagne);
     transition: width 0.8s var(--curva);
     align-self: center;
+    flex: none;
   }
 
-  .palco-nome.ativo i { width: clamp(20px, 3vw, 44px); }
+  .palco-nome.ativo i { width: clamp(24px, 4vw, 64px); }
 
   .palco-num {
     font-family: var(--sans);
     font-weight: 400;
-    font-size: 9.5px;
+    font-size: 10px;
     letter-spacing: 0.18em;
-    color: rgba(245, 242, 236, 0.35);
+    color: rgba(245, 242, 236, 0.28);
     font-variant-numeric: tabular-nums;
     transition: color 0.6s var(--curva);
+    flex: none;
   }
 
   .palco-nome.ativo .palco-num { color: var(--champagne); }
 
+  /* Sem fotografia atras, o nome pode ser grande de verdade: ele E a secao.
+     Quem nao esta no ar fica quase invisivel — e o apagar do vizinho que faz o
+     nome no ar parecer aceso, sem precisar de nenhum efeito. */
   .palco-titulo {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(27px, 3.6vw, 54px);
-    line-height: 1.04;
-    color: rgba(245, 242, 236, 0.4);
+    font-size: clamp(36px, 6.2vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    color: rgba(245, 242, 236, 0.2);
     transition: color 0.7s var(--curva);
   }
 
-  .palco-nome.ativo .palco-titulo,
-  .palco-nome:hover .palco-titulo { color: var(--marfim); }
+  .palco-nome.ativo .palco-titulo { color: var(--marfim); }
+  .palco-nome:hover .palco-titulo { color: rgba(245, 242, 236, 0.62); }
+  .palco-nome.ativo:hover .palco-titulo { color: var(--marfim); }
 
-  .palco-fichas { position: relative; min-height: 118px; }
+  .palco-fichas { position: relative; min-height: clamp(130px, 17vh, 170px); }
 
   .palco-ficha {
     position: absolute;
@@ -1200,13 +1148,13 @@
   .palco-ficha.ativa { opacity: 1; visibility: visible; transform: none; }
 
   .palco-ficha p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: rgba(245, 242, 236, 0.8);
-    max-width: 44ch;
+    font-size: 15.5px;
+    line-height: 1.62;
+    color: rgba(245, 242, 236, 0.72);
+    max-width: 38ch;
   }
 
-  .palco-ficha .filete { margin-bottom: 14px; }
+  .palco-ficha .filete { margin-bottom: 16px; }
 
   /* =============================================================== global ==
      O NOME ATRAVESSA A FOTOGRAFIA.
@@ -1611,15 +1559,11 @@
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
     .pilar p { grid-column: 2; }
-    /* o palco fica em pe: a foto cobre tudo e o texto se empilha no pe */
-    .palco { height: clamp(520px, 84vh, 680px); }
-    .palco-corpo { grid-template-columns: 1fr; align-content: end; gap: 22px; }
-    .palco-titulo { font-size: clamp(25px, 7vw, 38px); }
-    .palco-fichas { min-height: 128px; }
-    .palco::after {
-      background:
-        linear-gradient(to top, rgba(11, 11, 12, 0.94) 0%, rgba(11, 11, 12, 0.5) 46%, rgba(11, 11, 12, 0.2) 100%);
-    }
+    /* sem largura para os nomes e a ficha lado a lado, a ficha desce para
+       baixo da lista */
+    .palco-corpo { grid-template-columns: 1fr; gap: clamp(24px, 4vh, 40px); }
+    .palco-titulo { font-size: clamp(30px, 9vw, 52px); }
+    .palco-fichas { min-height: clamp(120px, 20vh, 160px); }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
     /* no celular a linha cai menos, para nao cobrir metade da foto */
@@ -1641,8 +1585,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rolar .chevron, .faixa-trilho, .slide.ativa img,
-    .palco-foto.ativa, .palco-foto.ativa img { animation: none !important; }
+    .rolar .chevron, .faixa-trilho, .slide.ativa img { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
@@ -1978,23 +1921,7 @@
     </div>
   </div>
 
-  <!-- PROVISORIO: fotos do Unsplash, licenca livre, uma por oficio. Ver README. -->
   <div class="palco sobe" id="palco">
-    <div class="palco-foto ativa" data-foto="0">
-      <img src="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
-    </div>
-    <div class="palco-foto" data-foto="1">
-      <img src="https://images.unsplash.com/photo-1778731660244-b6e8f905107d?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
-    </div>
-    <div class="palco-foto" data-foto="2">
-      <img src="https://images.unsplash.com/photo-1786018120871-cb134b61ddd0?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
-    </div>
-    <div class="palco-foto" data-foto="3">
-      <img src="https://images.unsplash.com/photo-1778731660451-323b78996230?auto=format&amp;fit=crop&amp;w=1700&amp;q=70" alt="" loading="lazy" decoding="async">
-    </div>
-
-    <span class="palco-moldura" aria-hidden="true"></span>
-
     <div class="palco-corpo">
       <div class="palco-lista" id="palcoLista">
         <button type="button" class="palco-nome ativo" data-oficio="0">
@@ -2547,49 +2474,25 @@
     aplicar();
   }
 
-  /* 8. Servicos: trocar de oficio varre a fotografia do palco.
+  /* 8. Servicos: trocar de oficio acende o nome e troca a ficha.
 
-     Sao tres camadas fixas e so tres: o fundo parado, a que sai e a que entra.
-     A que entra reinicia a animacao da varredura (tira a classe, forca o
-     navegador a recalcular, devolve a classe), senao a segunda troca nao
-     animaria. A que sai continua visivel por baixo ate a varredura terminar,
-     para a nova passar por cima da anterior e nao por cima do vazio.
+     A secao tinha quatro fotografias que se varriam na troca, em tres
+     camadas fixas. Elas sairam: a pagina tinha cinco secoes seguidas
+     puxadas por imagem, e servico e justamente o que menos precisa de foto.
 
-     A versao anterior subia o empilhamento a cada troca e dependia de uma
-     transicao que podia ser interrompida no meio. Era o motivo de a imagem nao
-     trocar. Agora quem manda na visibilidade e a opacidade, e a varredura e so
-     enfeite: mesmo que a animacao nao rode, a foto troca. */
+     Sem imagem, a troca fica sendo o que ela sempre foi por baixo: acender
+     um nome e apagar o vizinho. Sumiram a fila de tres camadas, o reinicio
+     da varredura e o temporizador de limpeza. */
   var palco = document.getElementById('palco');
 
   if (palco) {
-    var fotos = palco.querySelectorAll('.palco-foto');
     var titulos = palco.querySelectorAll('.palco-nome');
     var fichas = palco.querySelectorAll('.palco-ficha');
     var oficioAtual = 0;
-    var limpeza = null;
 
     function trocarOficio(i) {
-      if (i === oficioAtual || !fotos[i]) return;
-
-      var saindo = fotos[oficioAtual];
-      var entrando = fotos[i];
-
-      Array.prototype.forEach.call(fotos, function (f) { f.classList.remove('saindo'); });
-
-      saindo.classList.remove('ativa');
-      saindo.classList.add('saindo');
-
-      entrando.classList.remove('ativa');
-      void entrando.offsetWidth; // reinicia a varredura
-      entrando.classList.add('ativa');
-
-      window.clearTimeout(limpeza);
-      limpeza = window.setTimeout(function () {
-        saindo.classList.remove('saindo');
-      }, 1300);
-
+      if (i === oficioAtual || !titulos[i]) return;
       oficioAtual = i;
-
       Array.prototype.forEach.call(titulos, function (t, k) { t.classList.toggle('ativo', k === i); });
       Array.prototype.forEach.call(fichas, function (f, k) { f.classList.toggle('ativa', k === i); });
     }
