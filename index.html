@@ -630,17 +630,45 @@
   .pedra { background: var(--travertino); color: var(--onix); }
   .pedra p { color: var(--grafite); }
 
+  /* A cabeca e de UMA coluna so.
+
+     Era de duas, e a frase de abertura caia no canto superior direito, longe
+     do titulo e sem nada em volta: virava legenda solta. Vale para as tres
+     secoes que usam esta cabeca (02, 04 e 05) — corrigir so uma deixaria a
+     pagina desencontrada. */
   .cabeca {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-    gap: clamp(28px, 5vw, 90px);
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    max-width: 62ch;
     margin-bottom: clamp(52px, 8vh, 96px);
   }
 
   .cabeca h2 { margin-bottom: 0; }
   .cabeca .rotulo { margin-bottom: 20px; }
-  .cabeca-texto { padding-bottom: 8px; }
+
+  /* A frase se pendura no titulo, presa pelo filete champagne EM PE: o mesmo
+     tracinho da marca, so que deitado na vertical. Em Cormorant italico ela le
+     como abertura da secao, e nao como comentario ao lado. */
+  .cabeca-texto {
+    margin-top: clamp(20px, 2.6vh, 30px);
+    padding: 3px 0 3px 22px;
+    border-left: 1px solid rgba(180, 154, 110, 0.55);
+  }
+
+  .cabeca-texto p {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18px, 1.7vw, 23px);
+    line-height: 1.45;
+    max-width: 36ch;
+    color: rgba(245, 242, 236, 0.8);
+  }
+
+  /* na secao clara o tipo e escuro, e o filete precisa de mais peso */
+  .claro .cabeca-texto { border-left-color: rgba(180, 154, 110, 0.8); }
+  .claro .cabeca-texto p { color: var(--grafite); }
 
   /* ============================================================== filtro ===
      Selecionar o pais no topo abre as cidades dele e filtra o indice logo
@@ -1496,7 +1524,9 @@
 
   /* ======================================================= telas estreitas == */
   @media (max-width: 1100px) {
-    .cabeca { grid-template-columns: 1fr; align-items: start; }
+    /* a cabeca ja e de uma coluna so em qualquer largura; aqui ela so perde o
+       limite de medida, que numa tela estreita ja e dado pela propria tela */
+    .cabeca { max-width: none; }
     .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
   }

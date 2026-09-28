@@ -234,16 +234,38 @@
   /* --------------------------------------------------------------- secoes -- */
   section { padding: var(--secao) var(--margem); }
 
+  /* A cabeca e de UMA coluna so, igual a da home.
+
+     Era de duas, e a frase de abertura caia no canto superior direito, longe
+     do titulo e sem nada em volta: virava legenda solta. A praca ja tinha essa
+     correcao sozinha; agora ela vale para a pagina inteira. */
   .cabeca {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-    gap: clamp(28px, 5vw, 90px);
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    max-width: 62ch;
     margin-bottom: clamp(44px, 7vh, 80px);
   }
 
   .cabeca .rotulo { margin-bottom: 20px; }
-  .cabeca-texto { padding-bottom: 8px; color: var(--texto-fraco); }
+
+  /* A frase se pendura no titulo, presa pelo filete champagne EM PE: o mesmo
+     tracinho da marca, so que deitado na vertical. */
+  .cabeca-texto {
+    margin-top: clamp(20px, 2.6vh, 30px);
+    padding: 3px 0 3px 22px;
+    border-left: 1px solid rgba(180, 154, 110, 0.55);
+  }
+
+  .cabeca-texto p {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18px, 1.7vw, 23px);
+    line-height: 1.45;
+    max-width: 36ch;
+    color: rgba(245, 242, 236, 0.8);
+  }
 
   /* ---- a banda das residencias, igual a da home ---- */
   .leque { display: flex; gap: 5px; height: clamp(360px, 56vh, 590px); overflow: hidden; }
@@ -452,34 +474,10 @@
 
   .praca .rotulo { color: var(--champagne); }
 
-  /* Sobre a foto, a cabeca vira UMA coluna so. Na de duas, a frase de
-     abertura caia no canto superior direito, longe do titulo e sem nada em
-     volta: virava legenda solta. */
-  .praca .cabeca {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-    margin-bottom: 0;
-    max-width: 60ch;
-  }
-
-  /* A frase se pendura no titulo, presa pelo filete champagne em pe: o mesmo
-     tracinho da marca, so que deitado na vertical. */
-  .praca .cabeca-texto {
-    margin-top: clamp(20px, 2.6vh, 30px);
-    padding: 3px 0 3px 22px;
-    border-left: 1px solid rgba(180, 154, 110, 0.55);
-    color: rgba(245, 242, 236, 0.8);
-  }
-
-  .praca .cabeca-texto p {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(18px, 1.7vw, 23px);
-    line-height: 1.45;
-    max-width: 36ch;
-    color: inherit;
-  }
+  /* A cabeca de uma coluna e o filete em pe agora sao a regra da pagina
+     inteira, la em cima. Aqui sobra so o que e da PRACA: ela nao tem margem
+     embaixo, porque quem separa a cabeca das notas e o proprio grid da faixa. */
+  .praca .cabeca { margin-bottom: 0; }
 
   /* a descida: cada nota num degrau, mais para baixo e mais para a direita */
   .notas-lista {
@@ -575,7 +573,9 @@
 
   /* ------------------------------------------------------- telas estreitas -- */
   @media (max-width: 1100px) {
-    .cabeca { grid-template-columns: 1fr; align-items: start; }
+    /* a cabeca ja e de uma coluna so em qualquer largura; aqui ela so perde o
+       limite de medida, que numa tela estreita ja e dado pela propria tela */
+    .cabeca { max-width: none; }
     .fecho { grid-template-columns: 1fr; }
   }
 

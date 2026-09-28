@@ -29,9 +29,23 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 | Texto, rotulos e botoes | Jost. Caixa-alta so na Jost, com tracking de 18% |
 | Alinhamento | Sempre a esquerda, nunca justificado |
 | Linha de leitura | Limitada a 68 caracteres |
-| Filete | Traco champagne de 24px antes de cada rotulo |
+| Filete | Traco champagne de 24px antes de cada rotulo, e o mesmo traco EM PE ao lado da frase de abertura de cada secao |
 | Marcador | Triangulo aberto derivado do A, usado na indicacao de rolagem |
-| Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto nem sobre foto. Ficou so na secao Global, bem aberta, lendo como grao do travertino |
+| Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto nem sobre foto. Saiu da secao Global quando ela virou fotografia; hoje nao esta em uso |
+
+### A cabeca das secoes
+
+Cada secao abre com filete, rotulo, titulo e uma frase curta. Essa cabeca era
+de DUAS colunas — titulo a esquerda, frase a direita — e a frase caia no canto
+superior direito, longe do titulo e sem nada em volta: virava legenda solta.
+
+Hoje ela e de **uma coluna so**, na home e na pagina de cidade. A frase se
+pendura no titulo, logo abaixo, presa por um **filete champagne EM PE** (o
+mesmo tracinho da marca, deitado na vertical) e em **Cormorant italico**, para
+ler como abertura da secao e nao como comentario ao lado.
+
+A medida da frase e limitada a 36 caracteres por linha: frase longa quebra em
+mais linhas, nunca estoura a coluna.
 | Tom de voz | Frases curtas, sem superlativo, sem exclamacao |
 | Chamada | "Agende uma visita privada", exatamente como o manual aprovou |
 | Numeros | Tabulares, para alinhar em coluna |
@@ -265,7 +279,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
-| 05 | Global | Tres janelas em pe, e o ceu de cada uma marcando a hora que e la agora: madrugada, amanhecer, dia, entardecer, noite |
+| 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
@@ -393,59 +407,56 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 Quem tiver "reduzir movimento" ligado no sistema nao ve nada disso: a pagina
 aparece inteira e parada.
 
-### A secao 05, Global: a vista da janela
+### A secao 05, Global: o nome atravessa a fotografia
 
-A secao tinha tres colunas iguais com um filete em cima — o arranjo de "tres
-itens" que aparece em qualquer template. Depois foi um mapa-mundi pontilhado
-com arcos saindo de Sao Paulo, e depois esse mesmo mapa mostrando onde era dia
-e onde era noite. As tres versoes foram recusadas. As duas do mapa estao no
-historico desta branch, junto com o gerador do `mundo.svg`.
+**Cinco versoes desta secao foram recusadas**, e vale registrar o porque, que
+so ficou claro na quinta: tres colunas com a hora pequena, tres faixas com a
+hora grande e uma linha do dia, um mapa-mundi pontilhado com arcos, o mesmo
+mapa mostrando onde era dia, e tres janelas com o ceu mudando de cor.
 
-Agora sao **TRES JANELAS**: tres fotografias em pe, lado a lado, como olhar por
-tres janelas ao mesmo tempo. E o **ceu de cada uma muda de cor conforme a hora
-que e la agora** — madrugada, amanhecer, dia, entardecer, noite. A fotografia
-escurece e clareia junto: de noite ela quase some, ao meio-dia ela abre.
+**As cinco eram pequenas, claras, discretas e diagramaticas.** E a unica secao
+deste site aprovada de primeira foi a **04**: fotografia grande, tipo grande
+por cima, fundo escuro, movimento na troca. A distancia estava ai, e nao na
+ideia de cada versao. Todas as versoes anteriores estao no historico desta
+branch, junto com o gerador do mapa pontilhado.
 
-**AS TRES QUASE NUNCA ESTAO NO MESMO ESTADO**, e e isso que a secao conta: o
-mundo nao esta todo na mesma hora. Conferido nas 24 horas do dia — em NENHUMA
-delas as tres coincidem.
+Esta versao fala a lingua da 04, com uma composicao diferente para nao virar a
+04 de novo:
 
-**As cores saem do manual**, e nao de um por-do-sol de banco de imagem. O
-manual tem cinco cores e nenhuma e azul ou violeta:
+- **A secao voltou a ser ONIX**, e a textura de diagonais saiu junto.
+  Fotografia grande sobre travertino ficava lavada, e a textura era para fundo
+  de pedra, nao para cima de foto.
+- **A fotografia e um painel a direita**, ocupando cerca de 62% da largura, e
+  **o NOME DA PRACA ATRAVESSA A BORDA DELE** — metade no onix, metade na
+  imagem. Na 04 a fotografia sangra de borda a borda e os nomes ficam em lista
+  sobre ela; aqui e o tipo que manda e a fotografia entra por baixo.
+- **O nome e grande de verdade**: ate 200px em Cormorant. Um veu escurece a
+  ESQUERDA do painel, que e justamente onde o nome cruza, para ele ler.
+- **A troca e a mesma varredura da 04** (o recorte indo de 100% a 0), e a secao
+  ANDA SOZINHA a cada 7 segundos, com a barra de tempo correndo sob o marcador
+  — como no slideshow da abertura. Para quando a pessoa aponta e volta quando
+  ela sai; para tambem com a aba escondida, para nao gastar bateria a toa.
+- **O brilho da fotografia segue a hora que e la**: Dubai a noite entra escura,
+  Orlando de tarde entra aberta. Sao os mesmos cinco estados do dia (madrugada,
+  amanhecer, dia, entardecer, noite), guardados em `data-estado-do-dia` no
+  proprio elemento e lidos por quem troca de praca.
 
-| Estado | Cor do ceu | A fotografia |
-|---|---|---|
-| Madrugada | onix, pesado | escura, 46% de brilho |
-| Amanhecer | champagne | 80% de brilho |
-| Dia | marfim, leve | aberta, brilho cheio |
-| Entardecer | champagne, mais forte | 84% de brilho |
-| Noite | onix | escura, 52% de brilho |
+**Quem manda e o MARCADOR.** A fotografia, o nome, o relogio e o pe apenas o
+acompanham, pelo mesmo indice. Quem controla a visibilidade e a OPACIDADE e nao
+a varredura: se a animacao nao rodar, a foto troca do mesmo jeito. Foi o que
+resolveu o mesmo problema no palco dos servicos.
 
-Ha teste conferindo que toda cor usada no ceu esta na paleta do manual.
+A barra de tempo so recomeca do zero porque a classe sai, ha um reflow forcado
+(`void b.offsetWidth`) e ela volta. Sem o reflow o navegador nao reinicia a
+animacao.
 
-**AS FAIXAS DO DIA SAO AS DO OLHO**, nao as do calendario: o dia "abre" as 8h30
-e "fecha" as 16h30, porque e por volta disso que a luz vira, em qualquer
-estacao. Uma conta de nascer e por do sol de verdade mudaria de mes em mes e
-daria a Dubai um amanhecer as 5h e a Lisboa as 8h no inverno — diferenca que
-uma fotografia com veu nao consegue mostrar mesmo.
-
-**AS TRES JANELAS NAO SAO IGUAIS**: larguras diferentes (4 colunas cada, mas em
-posicoes diferentes), proporcoes diferentes (3/4.1, 3/4.8 e 3/4.4) e alturas de
-apoio diferentes. Tres retangulos do mesmo tamanho lado a lado seriam tres
-colunas, que e exatamente o que esta secao era antes.
-
-**Sobre a fotografia nao ha texto.** Nome, hora, estado do dia e diferenca de
-fuso ficam embaixo da janela, no travertino, onde leem sem veu.
-
-No celular as tres viram uma coluna so e o apoio escalonado sai — empilhado ele
-viraria buraco. O vao passa a ser deitado, 3/2.4, para a coluna nao ficar
-quilometrica.
+Com movimento reduzido no sistema a secao **nao anda sozinha**: fica na
+primeira e so troca se a pessoa pedir.
 
 ⚠️ **PROVISORIO:** as tres fotografias sao as MESMAS que o slideshow da
-abertura usa para Orlando, Portugal e Dubai. Elas se repetem na pagina de
-proposito por enquanto — sao as unicas do acervo provisorio que retratam estas
-tres pracas. Saem junto com o resto do banco de imagem quando chegar a
-fotografia propria.
+abertura usa para Orlando, Portugal e Dubai — sao as unicas do acervo
+provisorio que retratam estas tres pracas. Saem junto com o resto do banco de
+imagem quando chegar a fotografia propria.
 
 **A diferenca para Sao Paulo e CALCULADA, nunca escrita a mao.** Ela muda
 sozinha quando um dos dois lados entra ou sai do horario de verao: em janeiro
@@ -458,10 +469,9 @@ para nunca se contradizerem. A volta do dia esta tratada: com Sao Paulo as
 17:30 e Dubai ja em 00:30 do dia seguinte, a conta continua dizendo "7 horas a
 frente" em vez de "17 horas atras".
 
-Conferido fora do navegador, rodando a conta DO PROPRIO `index.html` com o
-relogio do mundo trocado por instantes fixos: cada hora cai na faixa certa do
-dia, todo estado e um dos cinco, as tres pracas nunca coincidem, e nenhuma
-diferenca de fuso passa de 12 horas.
+Conferido fora do navegador, rodando a secao inteira num DOM falso com o
+relogio travado: as cinco camadas andam sempre juntas, a volta funciona, o
+brilho segue a praca no ar, e os relogios batem.
 
 ## Detalhes tecnicos
 
