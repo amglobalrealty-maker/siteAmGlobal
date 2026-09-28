@@ -137,9 +137,9 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 - **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
   continua so filtrando a home.
-- **Chapa da curadoria**, na home, abre a ficha do imovel. Ela e um link de
-  verdade (`<a href>`), e nao um botao com script: abre em nova aba, funciona
-  com teclado e nao depende de nada carregar.
+- **"Ver o imovel"**, embaixo da fotografia da curadoria, abre a ficha da
+  residencia que esta no ar. E um link de verdade (`<a href>`): abre em nova
+  aba, funciona com teclado e nao depende de nada carregar.
 - **Lamina da banda**, na pagina da cidade, abre a ficha do imovel. No toque, o
   primeiro toque abre a lamina e o segundo entra, senao a pessoa sairia da
   pagina sem nunca ter visto a foto grande.
@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Uma parede de fotografias encostadas, de borda a borda: larguras diferentes por linha, alturas alternadas. Filtravel por pais e cidade, e filtrar RECOMPOE a parede |
+| 02 | Curadoria | Uma fotografia de cada vez, e a curadoria inteira como indice de tipo ao lado. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -293,18 +293,16 @@ quantidade de residencias de cada um, e as cidades a direita.
 - Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
 - Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
 
-**A fonte da verdade sao as proprias residencias.** Cada uma carrega
+**A fonte da verdade sao as proprias residencias.** Cada linha do indice carrega
 `data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
-delas quando a pagina abre. Para trocar o portfolio basta editar os blocos
-`chapa`, mantendo esses dois atributos e o `href`. So e preciso mexer no painel
-se entrar um pais ou uma cidade que ainda nao esteja listado la.
+delas quando a pagina abre. Para trocar o portfolio, cada residencia pede TRES
+pedacos com o mesmo numero: a linha do indice (`data-i`), a fotografia
+(`data-foto`) e o pe (`data-pe`). So e preciso mexer no painel se entrar um pais
+ou uma cidade que ainda nao esteja listado la.
 
-**Filtrar RECOMPOE a parede.** As chapas que sobram nao ficam onde estavam com
-buracos no meio: elas recebem outras larguras e ANDAM ate os lugares novos. O
-script guarda onde cada uma estava, deixa o navegador refazer a pagina, empurra
-cada uma de volta para o ponto antigo e so entao solta. As que chegam agora
-nascem apagadas e acendem no lugar. Com movimento reduzido no sistema, elas
-simplesmente aparecem ja no lugar novo.
+**Filtrar encolhe o indice**, e nao a fotografia. Se a residencia que estava no
+ar sair do recorte, entra a primeira que sobrou; se ela continuar no recorte,
+fica onde estava, para a foto nao trocar sem motivo.
 
 ### Imoveis de teste
 
@@ -347,39 +345,47 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **A parede da curadoria.** Uma parede de fotografias, de borda a borda da
-  tela. As chapas ficam encostadas umas nas outras, com 2px de onix entre elas.
-  Nada flutua, nada desce, nao sobra ar entre uma e outra.
+- **A curadoria: uma de cada vez.** A secao mostra UMA fotografia. A curadoria
+  inteira continua legivel, mas como indice: oito linhas de tipo pequeno, a
+  esquerda, separadas por um filete. Passar pelo indice troca a fotografia.
 
-  **O que varia e o tamanho, nunca o espaco.** Dentro de cada linha as larguras
-  sao diferentes (5+4+3 colunas, depois 3+5+4, depois 4+3+5) e a altura muda a
-  cada linha, alternando entre alta e baixa. Isso impede a parede de virar uma
-  grade sem abrir vao nenhum.
+  Tres tentativas anteriores erraram todas por excesso, e vale registrar
+  porque o motivo e o mesmo nas tres: oito laminas iguais que se abrem ao
+  serem apontadas (basico), oito chapas de tamanhos diferentes com ar entre
+  elas (solto), oito fotos encostadas com texto sobre cada uma (poluido). O
+  espaco nunca foi o problema: era a quantidade de coisa disputando o olho ao
+  mesmo tempo.
 
-  **As linhas fecham nas duas bordas, sempre.** A soma das larguras de uma
-  linha da sempre as doze colunas. Quando o filtro deixa uma linha incompleta,
-  com uma ou duas chapas, o script reparte a sobra entre as que ficaram: uma
-  chapa sozinha ocupa as doze, duas ficam 7+5. Nunca aparece buraco na direita.
+  **Sobre a fotografia nao ha texto nenhum.** O que descreve a residencia mora
+  embaixo dela, numa linha so: bairro e cidade em champagne, os numeros, e o
+  link para a ficha alinhado a direita.
 
-  **O tipo mora sobre a fotografia**, no pe, sobre um veu curto, e o numeral no
-  alto. Fora da foto, a secao voltaria a ter ar entre as chapas, que foi
-  exatamente o problema da tentativa anterior. O "Ver o imovel" aparece acima
-  do nome, com o lugar dele guardado mesmo apagado, senao o texto saltaria ao
-  apontar a chapa.
+  No indice, a linha no ar anda 16px para a direita, o numeral vira champagne
+  e um filete champagne de 9px cresce antes dela, que e o mesmo tracinho da
+  marca. O nome apaga para 58% quando nao esta no ar.
 
-  Apontar uma chapa acende a foto em cor cheia, leva o numeral para champagne e
-  desenha um filete champagne na borda de cima. No celular nao ha ponteiro:
-  tudo isso ja vem visivel, e a parede vira uma coluna so, ainda encostada.
+  **Quem manda e a linha do indice.** A fotografia e o pe apenas a acompanham,
+  pelo mesmo numero (`data-i`, `data-foto`, `data-pe`). Quem controla a
+  visibilidade e a OPACIDADE, e nao um efeito: se a animacao nao rodar, a foto
+  troca do mesmo jeito. Foi o que resolveu o mesmo problema no palco dos
+  servicos.
 
-  Com oito residencias a secao ocupa cerca de 1,2 tela no desktop.
+  No celular o indice desce para debaixo da vista, e a fotografia e a primeira
+  coisa que a pessoa ve. Como ali nao ha ponteiro, quem troca e o proprio
+  toque, e a foto e trazida para a tela: sem isso ela mudaria longe dos olhos
+  da pessoa.
+
+  A secao nao tem mais a linha caida sobre a imagem. Numa secao que precisava
+  de silencio, ela era mais um enfeite.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **A linha caida.** UMA linha em champagne sobre a borda de cima de cada bloco
   de imagem. A curva e a de um fio preso pelas duas pontas: cede no meio e sobe
   nas beiradas. Ela se desenha de uma ponta a outra quando o bloco chega na
   tela, em pouco mais de dois segundos e meio.
 
-  Sao tres, uma sobre a composicao da curadoria, uma sobre a faixa de imagem da
-  secao A AMGlobal e uma sobre o palco dos servicos, cada uma com a sua curva.
+  Sao duas, uma sobre a faixa de imagem da secao A AMGlobal e uma sobre o palco
+  dos servicos, cada uma com a sua curva. A curadoria tinha uma terceira, que
+  saiu: numa secao que precisava de silencio, ela era mais um enfeite.
   Todas nascem um pouco acima da foto e passam das duas bordas laterais, para
   parecerem um fio que continua para fora da tela.
 
