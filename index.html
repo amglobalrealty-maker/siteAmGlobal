@@ -748,69 +748,69 @@
   .filtro-cidade[hidden] { display: none !important; }
 
   /* ============================================================ curadoria ==
-     Nao e uma fileira de laminas iguais: e uma PAGINA COMPOSTA. Oito chapas
-     de tamanhos e proporcoes diferentes, duas por linha, a da direita sempre
-     mais baixa que a da esquerda. O olho desce da esquerda para a direita, e
-     nenhuma chapa divide a borda de cima com a vizinha.
+     Uma PAREDE de fotografias, de borda a borda da tela. As chapas ficam
+     encostadas umas nas outras, com 2px de onix entre elas: nada flutua, nada
+     desce, nao sobra ar entre uma e outra.
 
-     O tipo mora FORA da fotografia, embaixo dela. Era isso que obrigava a
-     versao antiga a ter acordeao: a ficha estava espremida dentro de uma
-     lamina estreita e so cabia se a lamina crescesse. Sem a ficha dentro, a
-     foto volta a ser so foto.
+     O que varia e o tamanho, nunca o espaco. Dentro de cada linha as larguras
+     sao diferentes, e a altura muda a cada linha. As linhas FECHAM nas duas
+     bordas: a soma das larguras da linha da sempre as doze colunas, e quando
+     o filtro deixa uma linha incompleta o script reparte a sobra entre as que
+     ficaram. Nunca ha um buraco na direita.
 
-     A QUEDA da chapa da direita nao e um numero escolhido a olho: e o vao ate
-     a vizinha da esquerda, inclinado em 26 graus, o angulo do triangulo
-     aberto da marca. O vao muda com a largura da tela, entao quem mede e
-     aplica e o script.
+     O tipo mora sobre a fotografia, no pe, sobre um veu curto. Fora dela, a
+     secao voltaria a ter ar entre as chapas, que foi exatamente o problema da
+     versao anterior.
 
-     Filtrar RECOMPOE a pagina: as chapas que sobram recebem outros lugares e
-     ANDAM ate eles, em vez de sumir e reaparecer.
+     Filtrar RECOMPOE a parede: as chapas que sobram recebem outras larguras e
+     ANDAM ate os lugares novos, em vez de sumir e reaparecer.
      ------------------------------------------------------------------------ */
   .composicao {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(14px, 2.2vw, 36px);
-    row-gap: clamp(44px, 7vh, 96px);
-    align-items: start;
+    gap: 2px;
+    margin: 0 calc(-1 * var(--margem));
+    background: var(--onix);
   }
 
   .chapa {
-    display: grid;
-    gap: 15px;
+    position: relative;
+    display: block;
+    grid-column: span 4;
+    height: clamp(310px, 42vh, 470px);
     margin: 0;
     padding: 0;
-    background: none;
+    overflow: hidden;
+    background: var(--onix-alto);
     border: 0;
     color: inherit;
     font: inherit;
     text-align: left;
     text-decoration: none;
     cursor: pointer;
-    transition: transform 0.95s var(--curva), opacity 0.7s var(--curva);
+    transition: transform 0.9s var(--curva), opacity 0.6s var(--curva);
   }
 
   .chapa[hidden] { display: none !important; }
 
-  /* Os quatro lugares da composicao, em roda.
-
-     Largura e altura mudam a cada lugar, e o peso troca de lado a cada linha:
-     na primeira a chapa grande esta a esquerda, na segunda esta a direita. E
-     isso que impede a secao de virar uma grade.
-
-     O VAO entre as duas chapas de uma linha tambem muda: largo na primeira,
-     estreito na segunda. Como a queda e o vao inclinado em 26 graus, o
-     angulo e sempre o mesmo e a queda, nao. */
-  .chapa[data-lugar="0"] { grid-column: 1 / span 6; --alto: clamp(300px, 42vh, 470px); }
-  .chapa[data-lugar="1"] { grid-column: 9 / span 4; --alto: clamp(330px, 48vh, 540px); }
-  .chapa[data-lugar="2"] { grid-column: 1 / span 4; --alto: clamp(300px, 42vh, 460px); }
-  .chapa[data-lugar="3"] { grid-column: 6 / span 7; --alto: clamp(270px, 37vh, 420px); }
+  /* duas alturas, uma por linha, alternadas pelo script */
+  .chapa[data-alto="alta"] { height: clamp(310px, 42vh, 470px); }
+  .chapa[data-alto="baixa"] { height: clamp(240px, 32vh, 380px); }
 
   .chapa-foto {
-    position: relative;
+    position: absolute;
+    inset: 0;
     display: block;
-    height: var(--alto, clamp(300px, 42vh, 470px));
     overflow: hidden;
-    background: var(--onix-alto);
+  }
+
+  /* veu curto no pe, so para o texto ler sobre qualquer foto */
+  .chapa-foto::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(11, 11, 12, 0.88) 0%, rgba(11, 11, 12, 0.16) 44%, transparent 72%);
+    pointer-events: none;
   }
 
   .chapa-foto img {
@@ -849,19 +849,23 @@
   .chapa:focus-visible .chapa-num { color: var(--champagne); }
 
   .chapa-ficha {
-    position: relative;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: grid;
-    gap: 7px;
-    padding-top: 15px;
-    border-top: 1px solid var(--linha-clara);
+    gap: 5px;
+    padding: 0 clamp(14px, 1.5vw, 24px) clamp(14px, 1.5vw, 22px);
   }
 
-  /* apontada, o filete champagne se desenha por cima da borda, da esquerda
-     para a direita */
-  .chapa-ficha::before {
+  /* apontada, o filete champagne se desenha na borda de cima da chapa, da
+     esquerda para a direita */
+  .chapa::before {
     content: '';
     position: absolute;
-    top: -1px;
+    z-index: 3;
+    top: 0;
     left: 0;
     width: 100%;
     height: 1px;
@@ -871,39 +875,43 @@
     transition: transform 0.9s var(--curva);
   }
 
-  .chapa:hover .chapa-ficha::before,
-  .chapa:focus-visible .chapa-ficha::before { transform: scaleX(1); }
+  .chapa:hover::before,
+  .chapa:focus-visible::before { transform: scaleX(1); }
 
+  /* ao contrario: o "Ver o imovel" vem escrito depois do nome, mas aparece
+     ACIMA dele. Numa chapa estreita os dois nao cabem lado a lado. */
   .chapa-linha {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 6px;
   }
 
   .chapa-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(22px, 2.3vw, 33px);
-    line-height: 1.04;
-    color: rgba(245, 242, 236, 0.86);
+    font-size: clamp(20px, 1.7vw, 27px);
+    line-height: 1.06;
+    color: rgba(245, 242, 236, 0.92);
     transition: color 0.6s var(--curva);
   }
 
   .chapa:hover .chapa-nome,
   .chapa:focus-visible .chapa-nome { color: var(--marfim); }
 
+  /* o lugar dele fica guardado mesmo apagado, senao o texto saltaria ao
+     apontar a chapa */
   .chapa-entrar {
     flex: none;
     font-family: var(--sans);
     font-weight: 500;
-    font-size: 10px;
+    font-size: 9.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--champagne);
     white-space: nowrap;
     opacity: 0;
-    transform: translateX(-8px);
+    transform: translateY(4px);
     transition: opacity 0.6s var(--curva), transform 0.6s var(--curva);
   }
 
@@ -919,14 +927,16 @@
     color: var(--champagne);
   }
 
+  /* numa linha so, para nao abrir altura dentro da chapa estreita */
   .chapa-dados {
     display: flex;
-    flex-wrap: wrap;
-    gap: 3px 18px;
-    margin-top: 4px;
-    font-size: 12.5px;
-    color: rgba(245, 242, 236, 0.55);
+    gap: 14px;
+    margin-top: 3px;
+    font-size: 11.5px;
+    color: rgba(245, 242, 236, 0.6);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .chapa-vazio {
@@ -934,7 +944,7 @@
     display: grid;
     place-content: center;
     min-height: clamp(220px, 34vh, 340px);
-    border: 1px solid var(--linha-clara);
+    background: var(--onix-alto);
     color: var(--texto-fraco);
     text-align: center;
     padding: 0 clamp(20px, 4vw, 60px);
@@ -1323,15 +1333,16 @@
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
     .filtro-cidades { grid-template-columns: 1fr; }
-    /* sem largura nao ha composicao: as chapas viram uma coluna so, cada uma
-       guardando a sua proporcao. A queda em diagonal e desligada pelo script,
-       porque aqui nao existe vizinha ao lado para medir o vao. */
-    .composicao { grid-template-columns: 1fr; row-gap: clamp(38px, 6vh, 64px); }
-    .chapa[data-lugar] { grid-column: 1 / -1; }
-    .chapa-foto img { filter: grayscale(0.08) contrast(1.02) brightness(0.92) saturate(0.95); }
+    /* sem largura nao ha linha de tres: a parede vira uma coluna so, e as
+       chapas continuam encostadas uma na outra. O `!important` e porque a
+       largura de cada chapa e escrita pelo script, direto no elemento. */
+    .composicao { grid-template-columns: 1fr; }
+    .chapa { grid-column: 1 / -1 !important; }
+    .chapa[data-alto="alta"], .chapa[data-alto="baixa"] { height: clamp(200px, 29vh, 290px); }
+    .chapa-foto img { filter: grayscale(0.08) contrast(1.02) brightness(0.86) saturate(0.95); }
     /* sem ponteiro nao ha como apontar: o que era revelado ja vem visivel */
     .chapa-entrar { opacity: 1; transform: none; }
-    .chapa-ficha::before { transform: scaleX(1); }
+    .chapa::before { transform: scaleX(1); }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -2116,20 +2127,22 @@
       span.textContent = quantas(span.getAttribute('data-conta-pais'));
     });
 
-    /* A COMPOSICAO.
+    /* A PAREDE.
 
-       Os lugares sao quatro, em roda, e quem os distribui e o script: assim o
-       filtro pode tirar uma chapa do meio sem abrir buraco na pagina.
+       Tres chapas por linha, encostadas, e cada linha FECHA nas duas bordas:
+       a soma das larguras da linha da sempre as doze colunas. As larguras
+       dentro da linha sao diferentes, e o desenho muda de linha para linha,
+       para a parede nao virar uma grade.
 
-       A QUEDA da chapa da direita nao e um numero escolhido a olho: e o vao
-       ate a vizinha da esquerda, inclinado em 26 graus, o angulo do triangulo
-       aberto da marca. Como o vao muda com a largura da tela, a queda e
-       medida, e nao escrita no CSS.
+       Quando o filtro deixa uma linha incompleta, com uma ou duas chapas, o
+       script reparte a sobra entre as que ficaram: assim nunca aparece um
+       buraco na direita.
 
        Ao filtrar, as chapas que ficam ANDAM ate o lugar novo: o script guarda
        onde elas estavam, deixa o navegador refazer a pagina, empurra cada uma
        de volta para o ponto antigo e so entao solta. */
-    var TANGENTE26 = Math.tan(26 * Math.PI / 180);
+    var DESENHOS = [[5, 4, 3], [3, 5, 4], [4, 3, 5]];
+    var POR_LINHA = 3;
     var naTela = [];
 
     function listar() {
@@ -2149,22 +2162,22 @@
     }
 
     function distribuir(lista) {
-      lista.forEach(function (c, i) { c.setAttribute('data-lugar', i % 4); });
-    }
+      for (var i = 0; i < lista.length; i += POR_LINHA) {
+        var linha = lista.slice(i, i + POR_LINHA);
+        var numero = i / POR_LINHA;
+        var larguras = DESENHOS[numero % DESENHOS.length].slice(0, linha.length);
 
-    /* o vao ate a vizinha, inclinado em 26 graus */
-    function derrubar(lista) {
-      lista.forEach(function (c) { c.style.marginTop = ''; });
-      // numa coluna so nao existe vizinha ao lado para medir
-      if ((window.innerWidth || 1200) <= 900) return;
+        // a linha tem que fechar nas doze colunas, mesmo incompleta
+        var soma = 0;
+        larguras.forEach(function (l) { soma += l; });
+        var sobra = 12 - soma;
+        var k = 0;
+        while (sobra > 0) { larguras[k % larguras.length]++; sobra--; k++; }
 
-      var vaos = [];
-      for (var i = 0; i + 1 < lista.length; i += 2) {
-        vaos.push(lista[i + 1].getBoundingClientRect().left - lista[i].getBoundingClientRect().right);
-      }
-      for (var j = 0; j + 1 < lista.length; j += 2) {
-        var vao = vaos[j / 2];
-        lista[j + 1].style.marginTop = (vao > 0 ? vao * TANGENTE26 : 0).toFixed(1) + 'px';
+        linha.forEach(function (c, j) {
+          c.style.gridColumn = 'span ' + larguras[j];
+          c.setAttribute('data-alto', numero % 2 ? 'baixa' : 'alta');
+        });
       }
     }
 
@@ -2211,7 +2224,6 @@
 
       naTela = listar();
       distribuir(naTela);
-      derrubar(naTela);
 
       if (vazio) vazio.hidden = visiveis > 0;
 
@@ -2227,16 +2239,6 @@
       if (antes) recompor(antes, naTela);
     }
 
-    /* a queda depende da largura: refazer quando a janela muda de tamanho */
-    var pedidoQueda = false;
-    window.addEventListener('resize', function () {
-      if (pedidoQueda) return;
-      pedidoQueda = true;
-      window.requestAnimationFrame(function () {
-        derrubar(naTela.length ? naTela : listar());
-        pedidoQueda = false;
-      });
-    }, { passive: true });
 
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {

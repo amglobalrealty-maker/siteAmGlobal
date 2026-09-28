@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Uma pagina composta: chapas de tamanhos diferentes, descendo da esquerda para a direita. Filtravel por pais e cidade, e filtrar RECOMPOE a pagina |
+| 02 | Curadoria | Uma parede de fotografias encostadas, de borda a borda: larguras diferentes por linha, alturas alternadas. Filtravel por pais e cidade, e filtrar RECOMPOE a parede |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -299,8 +299,8 @@ delas quando a pagina abre. Para trocar o portfolio basta editar os blocos
 `chapa`, mantendo esses dois atributos e o `href`. So e preciso mexer no painel
 se entrar um pais ou uma cidade que ainda nao esteja listado la.
 
-**Filtrar RECOMPOE a pagina.** As chapas que sobram nao ficam onde estavam com
-buracos no meio: elas recebem outros lugares na composicao e ANDAM ate eles. O
+**Filtrar RECOMPOE a parede.** As chapas que sobram nao ficam onde estavam com
+buracos no meio: elas recebem outras larguras e ANDAM ate os lugares novos. O
 script guarda onde cada uma estava, deixa o navegador refazer a pagina, empurra
 cada uma de volta para o ponto antigo e so entao solta. As que chegam agora
 nascem apagadas e acendem no lugar. Com movimento reduzido no sistema, elas
@@ -347,31 +347,31 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **A composicao da curadoria.** Nao e uma fileira de laminas iguais: e uma
-  pagina composta. Oito chapas de tamanhos diferentes, duas por linha, a da
-  direita sempre mais baixa que a da esquerda, e o peso trocando de lado a cada
-  linha: na primeira a grande esta a esquerda, na segunda a direita.
+- **A parede da curadoria.** Uma parede de fotografias, de borda a borda da
+  tela. As chapas ficam encostadas umas nas outras, com 2px de onix entre elas.
+  Nada flutua, nada desce, nao sobra ar entre uma e outra.
 
-  **O tipo mora fora da fotografia**, embaixo dela. Era isso que obrigava a
-  versao antiga a ter acordeao: a ficha estava espremida dentro de uma lamina
-  estreita e so cabia se a lamina crescesse. Sem a ficha dentro, a foto volta a
-  ser so foto, e o unico tipo sobre ela e o numeral.
+  **O que varia e o tamanho, nunca o espaco.** Dentro de cada linha as larguras
+  sao diferentes (5+4+3 colunas, depois 3+5+4, depois 4+3+5) e a altura muda a
+  cada linha, alternando entre alta e baixa. Isso impede a parede de virar uma
+  grade sem abrir vao nenhum.
 
-  **A queda nao e um numero escolhido a olho.** E o vao ate a vizinha da
-  esquerda, inclinado em 26 graus, o angulo do triangulo aberto da marca. Como
-  o vao muda com a largura da tela, quem mede e aplica e o script, e ele refaz
-  a conta quando a janela muda de tamanho. O angulo e sempre o mesmo; a queda,
-  nao, porque os vaos das duas linhas sao diferentes de proposito: numa tela de
-  1440px dao 138px e 78px.
+  **As linhas fecham nas duas bordas, sempre.** A soma das larguras de uma
+  linha da sempre as doze colunas. Quando o filtro deixa uma linha incompleta,
+  com uma ou duas chapas, o script reparte a sobra entre as que ficaram: uma
+  chapa sozinha ocupa as doze, duas ficam 7+5. Nunca aparece buraco na direita.
 
-  Apontar uma chapa acende a foto em cor cheia, leva o numeral para champagne,
-  desenha o filete champagne sobre a borda do tipo e traz o "Ver o imovel". No
-  celular nao ha ponteiro: tudo isso ja vem visivel, e as chapas viram uma
-  coluna so, sem queda.
+  **O tipo mora sobre a fotografia**, no pe, sobre um veu curto, e o numeral no
+  alto. Fora da foto, a secao voltaria a ter ar entre as chapas, que foi
+  exatamente o problema da tentativa anterior. O "Ver o imovel" aparece acima
+  do nome, com o lugar dele guardado mesmo apagado, senao o texto saltaria ao
+  apontar a chapa.
 
-  A secao passou a ocupar cerca de 2,8 telas com oito residencias. A versao
-  antiga cabia em meia tela, e era justamente isso que a fazia parecer um
-  componente pronto em vez de um portfolio.
+  Apontar uma chapa acende a foto em cor cheia, leva o numeral para champagne e
+  desenha um filete champagne na borda de cima. No celular nao ha ponteiro:
+  tudo isso ja vem visivel, e a parede vira uma coluna so, ainda encostada.
+
+  Com oito residencias a secao ocupa cerca de 1,2 tela no desktop.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **A linha caida.** UMA linha em champagne sobre a borda de cima de cada bloco
   de imagem. A curva e a de um fio preso pelas duas pontas: cede no meio e sobe
