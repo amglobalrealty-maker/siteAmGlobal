@@ -1162,33 +1162,35 @@
   .palco-ficha .filete { margin-bottom: 14px; }
 
   /* =============================================================== global ==
-     O MAPA.
+     O MAPA COM O SOL.
 
-     A secao tinha tres colunas iguais com um filete em cima — o arranjo de
-     "tres itens" de qualquer template. Agora ela e um mapa-mundi, e as pracas
-     estao onde elas ficam de verdade.
+     A primeira versao deste mapa era a versao obvia: pontilhado, com arcos
+     saindo de um ponto. E o que toda landing page de fintech tem. Os arcos
+     sairam.
 
-     O mapa e PONTILHADO, um ponto por celula de grade que cai em terra, e vem
-     de `mundo.svg` (gerado do Natural Earth, dominio publico). Fica num
-     arquivo separado porque sao 3.111 pontos: no HTML incharia a home, e de
-     fora ele e cacheado e comprime para 8 KB.
+     O que ficou no lugar e o SOL. O mapa clareia onde e dia e escurece onde e
+     noite, seguindo a posicao real do sol naquele instante. Com isso os tres
+     relogios deixam de ser numeros soltos e passam a ser EXPLICADOS pela
+     propria imagem: da para ver que em Orlando e tarde e em Dubai ja e noite.
 
-     A projecao e a equirretangular, a mais simples que existe — x so depende
-     da longitude, y so da latitude. E justamente por isso que serve: os
-     marcadores usam a MESMA conta do gerador, entao caem exatamente no lugar
-     certo sem nenhuma biblioteca.
+     O ponto subsolar (onde o sol esta a pino) e calculado a cada meio minuto,
+     junto com as horas:
+       longitude = 180 - (hora UTC decimal) * 15
+       latitude  = declinacao solar do dia
+     Nao e efemeride de observatorio: ignora a equacao do tempo, que da ate 16
+     minutos, ou seja ate 4 graus de longitude — 11px neste mapa. Para uma
+     sombra suave serve; para calcular nascer do sol nao serviria.
 
-     Os arcos saem de Sao Paulo para as tres pracas e se DESENHAM quando a
-     secao chega na tela, do mesmo jeito que a linha caida da home: o
-     comprimento do traco e medido depois de pronto.
-
-     Apontar uma faixa acende o ponto dela no mapa, e apontar o ponto acende a
-     faixa. Sao as duas metades da mesma coisa.
+     A LUZ e pintada TRES vezes, no lugar do sol e a 100% para cada lado. E o
+     que faz a claridade dar a volta pela borda: quando o sol esta em 5% da
+     largura, a beirada direita tambem tem de estar acesa, porque 355 graus de
+     longitude e o mesmo lugar que -5.
      ------------------------------------------------------------------------ */
   .mapa {
     position: relative;
     aspect-ratio: 1000 / 361;
-    margin-bottom: clamp(40px, 7vh, 96px);
+    margin: 0 calc(-1 * var(--margem)) clamp(40px, 7vh, 96px);
+    overflow: hidden;
   }
 
   .mapa-terra {
@@ -1199,27 +1201,29 @@
     object-fit: fill;
   }
 
-  /* os arcos ficam por cima da terra e por baixo dos marcadores */
-  .mapa-arcos {
+  /* a noite cobre tudo, fraca; o sol devolve a luz onde ele esta */
+  .mapa-noite {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
+    background: rgba(11, 11, 12, 0.11);
+    pointer-events: none;
   }
 
-  .mapa-arco {
-    fill: none;
-    stroke: var(--champagne);
-    stroke-width: 1;
-    stroke-opacity: 0.55;
-    vector-effect: non-scaling-stroke;
-    transition: stroke-opacity 0.6s var(--curva);
+  .mapa-sol {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 34% 180% at var(--sol-x, 50%) var(--sol-y, 50%),
+        rgba(245, 242, 236, 0.62) 0%, rgba(245, 242, 236, 0.28) 44%, rgba(245, 242, 236, 0) 72%),
+      radial-gradient(ellipse 34% 180% at calc(var(--sol-x, 50%) - 100%) var(--sol-y, 50%),
+        rgba(245, 242, 236, 0.62) 0%, rgba(245, 242, 236, 0.28) 44%, rgba(245, 242, 236, 0) 72%),
+      radial-gradient(ellipse 34% 180% at calc(var(--sol-x, 50%) + 100%) var(--sol-y, 50%),
+        rgba(245, 242, 236, 0.62) 0%, rgba(245, 242, 236, 0.28) 44%, rgba(245, 242, 236, 0) 72%);
+    transition: background-position 1s linear;
   }
 
-  .mapa-arco.aceso { stroke-opacity: 1; }
-
-  /* marcadores: posicionados em % pela mesma projecao do gerador */
+  /* ---- marcadores, na projecao do gerador ---- */
   .mapa-ponto {
     position: absolute;
     left: var(--x);
@@ -1231,16 +1235,16 @@
   .mapa-ponto::before {
     content: '';
     position: absolute;
-    left: -4px;
-    top: -4px;
-    width: 8px;
-    height: 8px;
+    left: -3.5px;
+    top: -3.5px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--champagne);
     transition: transform 0.5s var(--curva);
   }
 
-  .mapa-ponto.aceso::before { transform: scale(1.5); }
+  .mapa-ponto.aceso::before { transform: scale(1.6); }
 
   /* Sao Paulo nao e uma praca: e de onde a casa fala. Fica vazado. */
   .mapa-ponto--base::before {
@@ -1248,82 +1252,80 @@
     box-shadow: inset 0 0 0 1px var(--onix);
   }
 
-  .mapa-rotulo {
+  .mapa-etiqueta {
     position: absolute;
-    left: 12px;
-    top: -7px;
+    left: 14px;
+    top: -12px;
+    display: grid;
+    gap: 2px;
+    white-space: nowrap;
+  }
+
+  /* quem cai perto da borda direita escreve para a esquerda */
+  .mapa-ponto--esquerda .mapa-etiqueta {
+    left: auto;
+    right: 14px;
+    justify-items: end;
+    text-align: right;
+  }
+
+  .mapa-cidade {
     font-family: var(--sans);
     font-weight: 500;
     font-size: 9.5px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--onix);
-    white-space: nowrap;
     transition: color 0.5s var(--curva);
   }
 
-  /* Orlando cai perto da borda esquerda: o rotulo dele vai para o outro lado */
-  .mapa-ponto--esquerda .mapa-rotulo { left: auto; right: 12px; }
+  .mapa-hora {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2.4vw, 38px);
+    line-height: 0.92;
+    color: var(--onix);
+    font-variant-numeric: tabular-nums;
+  }
 
-  .mapa-ponto--base .mapa-rotulo { color: rgba(58, 58, 60, 0.62); font-weight: 400; }
-  .mapa-ponto.aceso .mapa-rotulo { color: var(--champagne); }
+  .mapa-ponto--base .mapa-cidade { color: rgba(58, 58, 60, 0.6); font-weight: 400; }
+  .mapa-ponto.aceso .mapa-cidade { color: var(--champagne); }
 
   /* ---- as faixas, embaixo do mapa ---- */
-  .pracas { display: grid; gap: clamp(30px, 4.5vh, 60px); }
+  .pracas { display: grid; gap: clamp(26px, 4vh, 48px); }
 
   .praca {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
     gap: clamp(20px, 3.2vw, 70px);
     align-items: baseline;
-    padding-top: 26px;
+    padding-top: 24px;
     border-top: 1px solid var(--linha-escura);
-    cursor: default;
   }
 
   .praca h3 {
-    font-size: clamp(26px, 3.1vw, 46px);
+    font-size: clamp(24px, 2.7vw, 38px);
     line-height: 1;
     margin: 0;
-    transition: color 0.5s var(--curva);
   }
 
   .praca p {
     font-size: 15px;
     line-height: 1.6;
     margin: 0;
-    max-width: 46ch;
+    max-width: 52ch;
   }
 
-  .praca-hora {
-    display: grid;
-    justify-items: end;
-    gap: 7px;
-    text-align: right;
-  }
-
-  .relogio-hora {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(46px, 6.4vw, 104px);
-    line-height: 0.86;
-    color: var(--onix);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .relogio-rotulo,
   .praca-diferenca {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--grafite);
+    color: rgba(58, 58, 60, 0.66);
     white-space: nowrap;
+    text-align: right;
   }
-
-  .praca-diferenca { color: rgba(58, 58, 60, 0.66); }
 
   /* ============================================================== contato == */
   .contato-grade {
@@ -1898,7 +1900,7 @@
     </div>
   </div>
 
-  <!-- O MAPA.
+  <!-- O MAPA COM O SOL.
 
        `mundo.svg` e o mapa-mundi em pontos, gerado do Natural Earth (dominio
        publico) numa projecao equirretangular. As posicoes abaixo (--x, --y)
@@ -1909,61 +1911,58 @@
          x = (longitude + 180) / 360
          y = (72 - latitude) / 130
 
-       Os arcos saem de Sao Paulo (370.5, 265.3) e sao curvas quadraticas com
-       o ponto de controle levantado, para lerem como rota e nao como reta. -->
+       A luz do sol e escrita pelo script em --sol-x e --sol-y, na mesma
+       conta. -->
   <div class="mapa sobe">
     <img class="mapa-terra" src="mundo.svg" alt="" width="1000" height="361" decoding="async">
-
-    <svg class="mapa-arcos" viewBox="0 0 1000 361" preserveAspectRatio="none" aria-hidden="true">
-      <path class="mapa-arco" data-praca="orlando"  d="M370.5,265.3 Q322.2,154.7 273.9,120.7"/>
-      <path class="mapa-arco" data-praca="portugal" d="M370.5,265.3 Q422.6,134.5 474.6,92.4"/>
-      <path class="mapa-arco" data-praca="dubai"    d="M370.5,265.3 Q512.0,128.7 653.5,130.0"/>
-    </svg>
+    <span class="mapa-noite" aria-hidden="true"></span>
+    <span class="mapa-sol" id="mapaSol" aria-hidden="true"></span>
 
     <span class="mapa-ponto mapa-ponto--base" style="--x:37.05%;--y:73.50%">
-      <span class="mapa-rotulo">São Paulo</span>
+      <span class="mapa-etiqueta"><span class="mapa-cidade">São Paulo</span></span>
     </span>
+
     <span class="mapa-ponto mapa-ponto--esquerda" data-praca="orlando" style="--x:27.39%;--y:33.43%">
-      <span class="mapa-rotulo">Orlando</span>
+      <span class="mapa-etiqueta">
+        <span class="mapa-cidade">Orlando</span>
+        <span class="mapa-hora" data-fuso="America/New_York">--:--</span>
+      </span>
     </span>
+
     <span class="mapa-ponto" data-praca="portugal" style="--x:47.46%;--y:25.60%">
-      <span class="mapa-rotulo">Portugal</span>
+      <span class="mapa-etiqueta">
+        <span class="mapa-cidade">Portugal</span>
+        <span class="mapa-hora" data-fuso="Europe/Lisbon">--:--</span>
+      </span>
     </span>
+
     <span class="mapa-ponto" data-praca="dubai" style="--x:65.35%;--y:36.00%">
-      <span class="mapa-rotulo">Dubai</span>
+      <span class="mapa-etiqueta">
+        <span class="mapa-cidade">Dubai</span>
+        <span class="mapa-hora" data-fuso="Asia/Dubai">--:--</span>
+      </span>
     </span>
   </div>
 
-  <!-- As faixas seguem a ordem do mapa, de oeste para leste. -->
+  <!-- As faixas seguem a ordem do mapa, de oeste para leste. A hora nao se
+       repete aqui: ela mora no mapa, junto da cidade. -->
   <div class="pracas">
     <div class="praca sobe" data-praca="orlando">
       <h3>Orlando</h3>
       <p>Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
-      <div class="praca-hora">
-        <span class="relogio-hora" data-fuso="America/New_York">--:--</span>
-        <span class="relogio-rotulo">Hora local</span>
-        <span class="praca-diferenca" data-diferenca="America/New_York"></span>
-      </div>
+      <span class="praca-diferenca" data-diferenca="America/New_York"></span>
     </div>
 
     <div class="praca sobe" data-praca="portugal">
       <h3>Portugal</h3>
       <p>A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
-      <div class="praca-hora">
-        <span class="relogio-hora" data-fuso="Europe/Lisbon">--:--</span>
-        <span class="relogio-rotulo">Hora local</span>
-        <span class="praca-diferenca" data-diferenca="Europe/Lisbon"></span>
-      </div>
+      <span class="praca-diferenca" data-diferenca="Europe/Lisbon"></span>
     </div>
 
     <div class="praca sobe" data-praca="dubai">
       <h3>Dubai</h3>
       <p>Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
-      <div class="praca-hora">
-        <span class="relogio-hora" data-fuso="Asia/Dubai">--:--</span>
-        <span class="relogio-rotulo">Hora local</span>
-        <span class="praca-diferenca" data-diferenca="Asia/Dubai"></span>
-      </div>
+      <span class="praca-diferenca" data-diferenca="Asia/Dubai"></span>
     </div>
   </div>
 </section>
@@ -2528,7 +2527,8 @@
      O `Intl` faz o trabalho pesado do fuso. Se ele nao souber um fuso, a praca
      fica sem hora em vez de mostrar lixo. */
   var AQUI = 'America/Sao_Paulo';
-  var relogios = document.querySelectorAll('.relogio-hora');
+  var relogios = document.querySelectorAll('.relogio-hora, .mapa-hora');
+  var luzDoSol = document.getElementById('mapaSol');
   var diferencas = document.querySelectorAll('.praca-diferenca');
 
   // minutos desde a meia-noite naquele fuso, para o MESMO instante
@@ -2574,6 +2574,28 @@
       }
     });
 
+    /* O SOL. O ponto subsolar e o lugar onde ele esta a pino agora:
+       longitude anda 15 graus para oeste a cada hora, latitude e a
+       declinacao do dia. Sai do MESMO instante das horas, entao a luz nunca
+       discorda dos relogios.
+
+       Nao e efemeride de observatorio: ignora a equacao do tempo, ate 16
+       minutos, ou seja ate 4 graus de longitude — 11px neste mapa. Para uma
+       sombra suave serve; para nascer do sol nao serviria. */
+    if (luzDoSol) {
+      var ano = agora.getUTCFullYear();
+      var diaDoAno = (Date.UTC(ano, agora.getUTCMonth(), agora.getUTCDate()) - Date.UTC(ano, 0, 0)) / 86400000;
+      var declinacao = 23.44 * Math.sin((2 * Math.PI / 365) * (diaDoAno - 81));
+      var horasUTC = agora.getUTCHours() + agora.getUTCMinutes() / 60;
+      var lonSol = 180 - horasUTC * 15;
+      while (lonSol > 180) lonSol -= 360;
+      while (lonSol < -180) lonSol += 360;
+
+      // a MESMA projecao do mapa: caixa de -180 a 180 e de 72 a -58
+      luzDoSol.style.setProperty('--sol-x', ((lonSol + 180) / 360 * 100).toFixed(2) + '%');
+      luzDoSol.style.setProperty('--sol-y', ((72 - declinacao) / 130 * 100).toFixed(2) + '%');
+    }
+
     if (daqui === null) return;
 
     Array.prototype.forEach.call(diferencas, function (el) {
@@ -2595,52 +2617,18 @@
   marcarHoras();
   window.setInterval(marcarHoras, 30000);
 
-  /* 11. O mapa: os arcos se desenham, e as duas metades se acendem juntas.
+  /* 11. O mapa e as faixas sao as duas metades da mesma coisa: apontar uma
+     acende a outra. Sem isso o mapa vira enfeite parado ao lado de uma lista.
 
-     O comprimento do traco e MEDIDO depois de pronto, com getTotalLength, e e
-     ele que faz o arco se DESENHAR em vez de aparecer de uma vez. Mesmo
-     recurso da linha caida da home.
-
-     A espessura nao acompanha o esticamento (`vector-effect` no CSS), entao o
-     arco fica com um pixel em qualquer largura de tela — sem isso ele
-     engrossaria junto com o mapa. */
-  var arcos = document.querySelectorAll('.mapa-arco');
-
-  if (arcos.length) {
-    Array.prototype.forEach.call(arcos, function (arco, i) {
-      var tamanho = 0;
-      try { tamanho = arco.getTotalLength(); } catch (erro) { tamanho = 0; }
-      if (!tamanho) return;
-      arco.style.strokeDasharray = tamanho;
-      arco.style.strokeDashoffset = calmo ? 0 : tamanho;
-      arco.style.transition = 'stroke-dashoffset 1.9s var(--curva) ' + (0.25 + i * 0.28) + 's, stroke-opacity 0.6s var(--curva)';
-    });
-
-    if (!calmo && 'IntersectionObserver' in window) {
-      var mapa = document.querySelector('.mapa');
-      var olhoMapa = new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          Array.prototype.forEach.call(arcos, function (arco) { arco.style.strokeDashoffset = 0; });
-          olhoMapa.disconnect();
-        });
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.2 });
-      if (mapa) olhoMapa.observe(mapa);
-    }
-  }
-
-  /* Apontar uma faixa acende o ponto dela no mapa; apontar o ponto acende a
-     faixa. Sao as duas metades da mesma coisa, e sem isso o mapa vira enfeite
-     parado ao lado de uma lista. */
+     Os arcos que saiam de Sao Paulo foram REMOVIDOS: mapa pontilhado com
+     arcos e o desenho que toda landing page de fintech tem. O que o mapa
+     conta agora e o sol, e isso nenhuma delas conta. */
   var faixas = document.querySelectorAll('.praca[data-praca]');
   var pontosMapa = document.querySelectorAll('.mapa-ponto[data-praca]');
 
   function acenderPraca(qual) {
     Array.prototype.forEach.call(pontosMapa, function (p) {
       p.classList.toggle('aceso', p.getAttribute('data-praca') === qual);
-    });
-    Array.prototype.forEach.call(arcos, function (a) {
-      a.classList.toggle('aceso', a.getAttribute('data-praca') === qual);
     });
     Array.prototype.forEach.call(faixas, function (f) {
       f.classList.toggle('acesa', f.getAttribute('data-praca') === qual);

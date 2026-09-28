@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
-| 05 | Global | Um mapa-mundi pontilhado, com as pracas onde elas ficam de verdade e arcos saindo de Sao Paulo. Abaixo, as tres faixas com a hora local grande |
+| 05 | Global | Um mapa-mundi pontilhado que CLAREIA ONDE E DIA, seguindo o sol de verdade, com as pracas e as horas delas no lugar certo |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
@@ -418,11 +418,36 @@ x = (longitude + 180) / 360
 y = (72 - latitude) / 130
 ```
 
-**Tres arcos saem de Sao Paulo** para as tres pracas e se DESENHAM quando a
-secao chega na tela — mesmo recurso da linha caida: o comprimento do traco e
-medido depois de pronto, e a espessura nao acompanha o esticamento. Sao curvas
-quadraticas com o ponto de controle levantado acima do meio da corda, para
-lerem como rota e nao como reta.
+**O MAPA MOSTRA O SOL.** Ele clareia onde e dia e escurece onde e noite,
+seguindo a posicao real do sol naquele instante. Com isso os tres relogios
+deixam de ser numeros soltos e passam a ser EXPLICADOS pela propria imagem: da
+para ver que em Orlando e tarde e em Dubai ja e noite.
+
+A primeira versao deste mapa tinha arcos saindo de Sao Paulo. **Eles foram
+removidos**: mapa pontilhado com arcos e o desenho que toda landing page de
+fintech tem, e a cliente recusou, com razao. O mapa nao estava errado; a
+execucao estava obvia.
+
+O ponto subsolar (onde o sol esta a pino) e calculado a cada meio minuto, junto
+com as horas e a partir do MESMO instante, entao a luz nunca discorda dos
+relogios:
+
+```
+longitude do sol = 180 - (hora UTC decimal) * 15
+latitude do sol  = declinacao solar do dia (formula de Cooper)
+```
+
+**A luz e pintada TRES vezes**, no lugar do sol e a 100% para cada lado. E o
+que faz a claridade dar a volta pela borda: com o sol em 4% da largura, a
+beirada direita tambem tem de estar acesa, porque 355 graus de longitude e o
+mesmo lugar que -5.
+
+⚠️ **Nao e efemeride de observatorio.** A conta ignora a equacao do tempo, que
+da ate 16 minutos, ou seja ate 4 graus de longitude — 11px neste mapa. Para uma
+sombra suave serve; para calcular nascer do sol nao serviria.
+
+**As horas moram NO MAPA**, ao lado de cada cidade, em Cormorant. Abaixo ficam
+so a descricao e a diferenca para Sao Paulo: a hora nao se repete.
 
 **Sao Paulo e marcado como BASE**, com o ponto vazado, e nao como praca: e de
 onde a casa fala.
@@ -435,9 +460,8 @@ No celular o mapa fica sem rotulo: a 340px de largura ele teria 123px de altura
 e os nomes ficariam ilegiveis e colados. Os pontos e os arcos seguem legiveis, e
 quem diz o nome sao as faixas logo abaixo.
 
-Abaixo do mapa, cada praca e uma faixa da largura inteira, com o relogio grande
-a direita (46 a 104px em Cormorant, contra 34px antes), na mesma ordem do mapa,
-de oeste para leste.
+Abaixo do mapa, cada praca e uma faixa da largura inteira com a descricao e a
+diferenca de fuso, na mesma ordem do mapa, de oeste para leste.
 
 **A diferenca para Sao Paulo e CALCULADA, nunca escrita a mao.** Ela muda
 sozinha quando um dos dois lados entra ou sai do horario de verao: em janeiro
@@ -450,9 +474,12 @@ contradizerem. A volta do dia esta tratada: com Sao Paulo as 17:30 e Dubai ja
 em 00:30 do dia seguinte, a conta continua dizendo "7 horas a frente" em vez de
 "17 horas atras".
 
-Conferido fora do navegador em cinco instantes — incluindo a virada do dia e os
-dois hemisferios no verao — que nenhuma diferenca passa de 12 horas; e que os
-quatro marcadores caem onde a projecao manda, com erro maximo de 0,004%.
+Conferido fora do navegador, rodando a conta DO PROPRIO `index.html` com o
+relogio do mundo trocado por instantes fixos: o sol anda 15 graus para oeste a
+cada hora, meio-dia UTC cai em Greenwich, a luz da a volta pela borda, as
+estacoes movem o sol na vertical (dezembro em -23,4 graus, junho em +23,4),
+nenhuma diferenca de fuso passa de 12 horas, e os quatro marcadores caem onde a
+projecao manda, com erro maximo de 0,004%.
 
 ## Detalhes tecnicos
 
