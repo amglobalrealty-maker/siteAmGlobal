@@ -35,17 +35,31 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 
 ### A cabeca das secoes
 
-Cada secao abre com filete, rotulo, titulo e uma frase curta. Essa cabeca era
-de DUAS colunas — titulo a esquerda, frase a direita — e a frase caia no canto
-superior direito, longe do titulo e sem nada em volta: virava legenda solta.
+Cada secao abre com filete, rotulo, titulo e uma frase curta. **Duas
+arrumacoes anteriores erraram pelos extremos:**
 
-Hoje ela e de **uma coluna so**, na home e na pagina de cidade. A frase se
-pendura no titulo, logo abaixo, presa por um **filete champagne EM PE** (o
-mesmo tracinho da marca, deitado na vertical) e em **Cormorant italico**, para
-ler como abertura da secao e nao como comentario ao lado.
+1. A frase na coluna da DIREITA, solta, longe do titulo e sem nada em volta:
+   virava legenda orfa boiando.
+2. A frase EMBAIXO do titulo, numa coluna estreita com um filete em pe. Ai a
+   cabeca inteira ficou espremida no canto esquerdo, com metade da tela vazia.
 
-A medida da frase e limitada a 36 caracteres por linha: frase longa quebra em
-mais linhas, nunca estoura a coluna.
+Hoje as duas pontas voltam para os extremos e um **FILETE CHAMPAGNE ATRAVESSA
+O VAZIO** entre elas. A frase nao flutua mais, porque o filete a amarra ao
+titulo, e a largura da secao e ocupada. A frase fica em **Cormorant italico**,
+e le como abertura da secao.
+
+A cabeca e um grid de TRES colunas: `max-content` para o titulo, `1fr` para o
+filete e `38ch` para a frase.
+
+⚠️ **O filete tem elemento proprio** (`<span class="cabeca-fio">`), e nao e um
+pseudo-elemento. So assim o CSS sabe a largura do vao a atravessar — ela e o
+que sobra depois do titulo e da frase, e nenhum dos dois tem largura fixa.
+
+Em tela estreita nao ha vazio para atravessar: a frase desce para baixo do
+titulo e o filete volta a ser o tracinho deitado de 24px da marca, antes dela.
+
+Vale igual na home (secoes 02, 04 e 05) e na pagina de cidade (A selecao e A
+praca).
 | Tom de voz | Frases curtas, sem superlativo, sem exclamacao |
 | Chamada | "Agende uma visita privada", exatamente como o manual aprovou |
 | Numeros | Tabulares, para alinhar em coluna |

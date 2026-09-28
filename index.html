@@ -630,44 +630,49 @@
   .pedra { background: var(--travertino); color: var(--onix); }
   .pedra p { color: var(--grafite); }
 
-  /* A cabeca e de UMA coluna so.
+  /* A CABECA: titulo a esquerda, frase a direita, FILETE ATRAVESSANDO O VAZIO.
 
-     Era de duas, e a frase de abertura caia no canto superior direito, longe
-     do titulo e sem nada em volta: virava legenda solta. Vale para as tres
-     secoes que usam esta cabeca (02, 04 e 05) — corrigir so uma deixaria a
-     pagina desencontrada. */
+     Duas tentativas anteriores erraram pelos extremos. Na primeira a frase
+     ficava na coluna da direita, solta, longe do titulo e sem nada em volta:
+     legenda orfa. Na segunda ela desceu para baixo do titulo, numa coluna
+     estreita com um filete em pe — e ai a cabeca inteira ficou espremida no
+     canto esquerdo, com metade da tela vazia.
+
+     Agora as duas pontas voltam para os extremos e um FILETE CHAMPAGNE
+     ATRAVESSA o vao entre elas. A frase nao flutua mais, porque o filete a
+     amarra ao titulo, e a largura da secao e ocupada.
+
+     O filete precisa de elemento proprio (`cabeca-fio`): so assim o CSS sabe
+     a largura do vao, que e o que sobra depois do titulo e da frase. E por
+     isso que a coluna dele e `1fr` entre duas colunas de conteudo. */
   .cabeca {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-    max-width: 62ch;
+    grid-template-columns: max-content minmax(40px, 1fr) minmax(0, 38ch);
+    gap: 0 clamp(18px, 2.6vw, 44px);
+    align-items: end;
     margin-bottom: clamp(52px, 8vh, 96px);
   }
 
   .cabeca h2 { margin-bottom: 0; }
   .cabeca .rotulo { margin-bottom: 20px; }
 
-  /* A frase se pendura no titulo, presa pelo filete champagne EM PE: o mesmo
-     tracinho da marca, so que deitado na vertical. Em Cormorant italico ela le
-     como abertura da secao, e nao como comentario ao lado. */
-  .cabeca-texto {
-    margin-top: clamp(20px, 2.6vh, 30px);
-    padding: 3px 0 3px 22px;
-    border-left: 1px solid rgba(180, 154, 110, 0.55);
+  .cabeca-fio {
+    height: 1px;
+    background: var(--champagne);
+    opacity: 0.75;
+    margin-bottom: 0.72em;
   }
 
   .cabeca-texto p {
     font-family: var(--serif);
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(18px, 1.7vw, 23px);
-    line-height: 1.45;
-    max-width: 36ch;
-    color: rgba(245, 242, 236, 0.8);
+    font-size: clamp(17px, 1.5vw, 22px);
+    line-height: 1.5;
+    color: rgba(245, 242, 236, 0.82);
   }
 
-  /* na secao clara o tipo e escuro, e o filete precisa de mais peso */
-  .claro .cabeca-texto { border-left-color: rgba(180, 154, 110, 0.8); }
+  /* na secao clara o tipo e escuro */
   .claro .cabeca-texto p { color: var(--grafite); }
 
   /* ============================================================== filtro ===
@@ -1524,9 +1529,15 @@
 
   /* ======================================================= telas estreitas == */
   @media (max-width: 1100px) {
-    /* a cabeca ja e de uma coluna so em qualquer largura; aqui ela so perde o
-       limite de medida, que numa tela estreita ja e dado pela propria tela */
-    .cabeca { max-width: none; }
+    /* sem largura para o filete atravessar: a frase desce para baixo do titulo
+       e o filete volta a ser o tracinho deitado de 24px da marca, antes dela */
+    .cabeca { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .cabeca-fio {
+      width: 24px;
+      margin: clamp(22px, 3vh, 32px) 0 16px;
+      opacity: 1;
+    }
+    .cabeca-texto p { max-width: 46ch; }
     .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
   }
@@ -1781,6 +1792,7 @@
       <span class="rotulo">02 — Curadoria</span>
       <h2>Poucos imóveis.<br>Nenhum comum.</h2>
     </div>
+    <span class="cabeca-fio" aria-hidden="true"></span>
     <div class="cabeca-texto">
       <p>Cada residência no portfólio tem uma razão para estar aqui: arquitetura, endereço, história ou a combinação dos três. O que não sustenta uma dessas razões fica de fora.</p>
     </div>
@@ -1954,6 +1966,7 @@
       <span class="rotulo">04 — Serviços</span>
       <h2>Do primeiro contato<br>à escritura</h2>
     </div>
+    <span class="cabeca-fio" aria-hidden="true"></span>
     <div class="cabeca-texto">
       <p>Um consultor conduz a jornada inteira. Sem transferências, sem repetir o que você já explicou.</p>
     </div>
@@ -2025,6 +2038,7 @@
       <span class="rotulo">05 — Global</span>
       <h2>Onde o mundo<br>escolhe morar</h2>
     </div>
+    <span class="cabeca-fio" aria-hidden="true"></span>
     <div class="cabeca-texto">
       <p>Parcerias em três frentes, para quem compra fora do país ou chega de fora para comprar aqui.</p>
     </div>
