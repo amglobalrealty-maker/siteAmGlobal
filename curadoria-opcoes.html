@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Curadoria — três opções | AMGlobal Realty</title>
+
+<!-- ===========================================================================
+     PAGINA DE ESCOLHA, TEMPORARIA.
+
+     Nao faz parte do site. Existe so para a cliente comparar tres curadorias
+     no navegador em vez de na minha descricao. Quando ela escolher, a opcao
+     vencedora vai para o index.html e ESTE ARQUIVO E APAGADO, junto com o
+     link que leva ate ele.
+
+     As oito residencias sao as mesmas das tres opcoes, e saem de um unico
+     lugar (a lista RESIDENCIAS, no script), para nenhuma opcao ganhar por ter
+     conteudo melhor que a outra.
+
+     Fotografia do Unsplash, provisoria, como no resto do site.
+     ========================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style>
+  :root {
+    --onix: #0B0B0C;
+    --marfim: #F5F2EC;
+    --travertino: #D8CFC0;
+    --grafite: #3A3A3C;
+    --champagne: #B49A6E;
+
+    --onix-alto: #131316;
+    --linha-clara: rgba(245, 242, 236, 0.11);
+    --texto-fraco: rgba(245, 242, 236, 0.58);
+
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
+
+    --margem: clamp(22px, 6.5vw, 130px);
+    --curva: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  /* `clip` e nao `hidden`: com `hidden` o position:sticky da opcao A para de
+     funcionar, e a fila nao anda */
+  body {
+    background: var(--onix);
+    color: var(--marfim);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.62;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  a { color: inherit; }
+
+  .filete { display: block; width: 24px; height: 1px; background: var(--champagne); margin-bottom: 20px; }
+
+  .rotulo {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--texto-fraco);
+    margin-bottom: 16px;
+  }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 300; line-height: 1.04; }
+
+  /* ---------------------------------------------------------------- recado -- */
+  .recado {
+    padding: clamp(56px, 12vh, 120px) var(--margem) clamp(40px, 7vh, 80px);
+    border-bottom: 1px solid var(--linha-clara);
+  }
+
+  .recado h1 { font-size: clamp(34px, 5vw, 62px); margin-bottom: 22px; }
+  .recado p { color: var(--texto-fraco); max-width: 62ch; margin-bottom: 14px; }
+  .recado strong { color: var(--marfim); font-weight: 400; }
+
+  .atalhos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+
+  .atalho {
+    padding: 11px 20px;
+    border: 1px solid var(--linha-clara);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.5s var(--curva), color 0.5s var(--curva);
+  }
+
+  .atalho:hover { border-color: var(--champagne); color: var(--champagne); }
+
+  /* ---------------------------------------------------------------- opcao --- */
+  .opcao { padding: clamp(64px, 11vh, 130px) 0; border-bottom: 1px solid var(--linha-clara); }
+
+  .opcao-cabeca { padding: 0 var(--margem) clamp(34px, 6vh, 70px); }
+  .opcao-letra { font-family: var(--serif); font-size: clamp(40px, 6vw, 82px); color: var(--champagne); line-height: 0.9; }
+  .opcao-nome { font-size: clamp(26px, 3.4vw, 44px); margin: 10px 0 14px; }
+  .opcao-como { color: var(--texto-fraco); max-width: 60ch; font-size: 15.5px; }
+
+  /* ================================================== A — o corredor ======== */
+  /* A curadoria nao fica parada esperando: ela ANDA. Enquanto a pagina desce,
+     a fila de residencias atravessa a tela de lado, como um travelling de
+     cinema. Cada uma tem largura, altura e altura de apoio diferentes. */
+  .corredor-tunel { position: relative; height: 300vh; }
+
+  .corredor-preso {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .corredor-trilho {
+    display: flex;
+    align-items: center;
+    gap: clamp(26px, 3.4vw, 64px);
+    padding: 0 var(--margem);
+    will-change: transform;
+  }
+
+  .corredor-item {
+    flex: none;
+    width: var(--larg);
+    margin-top: var(--apoio, 0px);
+    text-decoration: none;
+  }
+
+  .corredor-quadro {
+    position: relative;
+    aspect-ratio: var(--forma);
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+
+  .corredor-quadro img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.22) contrast(1.04) brightness(0.86) saturate(0.88);
+    transition: filter 1s var(--curva), transform 1.4s var(--curva);
+  }
+
+  .corredor-item:hover .corredor-quadro img { filter: none; transform: scale(1.04); }
+
+  .corredor-num {
+    position: absolute;
+    top: 12px;
+    left: 13px;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    color: rgba(245, 242, 236, 0.66);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .corredor-pe { display: grid; gap: 4px; padding-top: 14px; }
+  .corredor-nome { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 27px); line-height: 1.08; }
+  .corredor-lugar { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); }
+
+  /* o ultimo cartao do trilho: o convite */
+  .corredor-fim {
+    flex: none;
+    width: clamp(240px, 22vw, 330px);
+    align-self: center;
+    padding-left: clamp(10px, 2vw, 40px);
+    border-left: 1px solid var(--linha-clara);
+  }
+
+  .corredor-fim p { font-size: 15px; color: var(--texto-fraco); margin-bottom: 18px; }
+
+  /* a regua embaixo, dizendo onde a fila esta */
+  .corredor-regua {
+    position: absolute;
+    left: var(--margem);
+    right: var(--margem);
+    bottom: clamp(26px, 5vh, 54px);
+    height: 1px;
+    background: var(--linha-clara);
+  }
+
+  .corredor-regua span {
+    display: block;
+    height: 1px;
+    width: 0;
+    background: var(--champagne);
+    transform-origin: left;
+  }
+
+  /* ================================================== B — a dobra =========== */
+  /* Uma residencia por vez, em tela cheia, cortada na diagonal de 26 graus da
+     marca: fotografia de um lado, tipo do outro. Trocar de residencia faz a
+     diagonal VARRER a tela. O corte e calculado, e nao chutado: a inclinacao
+     e sempre 26 graus, qualquer que seja o tamanho da caixa. */
+  .dobra {
+    position: relative;
+    height: clamp(520px, 84vh, 800px);
+    overflow: hidden;
+    background: var(--onix);
+  }
+
+  .dobra-foto {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    clip-path: polygon(var(--x1, 24%) 0, 100% 0, 100% 100%, var(--x2, 51%) 100%);
+    transition: opacity 0.9s var(--curva), visibility 0s linear 0.9s;
+  }
+
+  .dobra-foto.ativa {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.9s var(--curva), visibility 0s;
+    animation: varrer 1.1s var(--curva) both;
+  }
+
+  @keyframes varrer {
+    from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+    to   { clip-path: polygon(var(--x1, 24%) 0, 100% 0, 100% 100%, var(--x2, 51%) 100%); }
+  }
+
+  .dobra-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.1) contrast(1.03) brightness(0.9) saturate(0.95);
+  }
+
+  .dobra-corpo {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    width: min(46%, 560px);
+    padding: 0 0 clamp(30px, 6vh, 64px) var(--margem);
+  }
+
+  .dobra-conta {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--texto-fraco);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 14px;
+  }
+
+  .dobra-conta b { color: var(--champagne); font-weight: 400; }
+
+  .dobra-nomes { position: relative; height: clamp(74px, 9vh, 104px); margin-bottom: 10px; }
+
+  .dobra-nome {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-family: var(--serif);
+    font-size: clamp(30px, 4.4vw, 62px);
+    line-height: 1.02;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s var(--curva), transform 0.8s var(--curva);
+  }
+
+  .dobra-nome.ativa { opacity: 1; transform: none; transition-delay: 0.22s; }
+
+  .dobra-pes { position: relative; height: 52px; }
+
+  .dobra-pe {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 20px;
+    opacity: 0;
+    transition: opacity 0.7s var(--curva);
+  }
+
+  .dobra-pe.ativa { opacity: 1; transition-delay: 0.32s; }
+
+  .dobra-lugar { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); }
+  .dobra-dados { font-size: 13px; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+
+  .dobra-entrar {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(180, 154, 110, 0.55);
+    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
+  }
+
+  .dobra-entrar:hover { color: var(--champagne); border-color: var(--champagne); }
+
+  /* os numeros, encostados no canto de baixo */
+  .dobra-marcas {
+    position: absolute;
+    z-index: 4;
+    left: var(--margem);
+    top: clamp(26px, 5vh, 52px);
+    display: flex;
+    gap: 14px;
+  }
+
+  .dobra-marca {
+    padding: 4px 0;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(245, 242, 236, 0.34);
+    font-variant-numeric: tabular-nums;
+    border-bottom: 1px solid transparent;
+    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
+  }
+
+  .dobra-marca:hover { color: var(--marfim); }
+  .dobra-marca.ativa { color: var(--champagne); border-bottom-color: var(--champagne); }
+
+  /* ================================================== C — a linha do mundo == */
+  /* As oito pracas numa linha so, de OESTE para LESTE: Orlando e Miami, depois
+     o Brasil, depois Portugal, e Dubai no fim. A linha e o desenho da secao, e
+     a fotografia sobe dela.
+
+     As pracas nao estao na longitude exata de proposito: Lisboa e Cascais
+     distam 0,3 grau, e uma cobriria a outra. Elas ficam espacadas dentro do
+     seu pais, e os paises em ordem de longitude. */
+  .mundo { padding: 0 var(--margem); }
+
+  .mundo-vista {
+    position: relative;
+    height: clamp(300px, 52vh, 560px);
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+
+  .mundo-foto {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s var(--curva), visibility 0s linear 1s;
+  }
+
+  .mundo-foto.ativa { opacity: 1; visibility: visible; transition: opacity 1s var(--curva), visibility 0s; }
+
+  .mundo-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.1) contrast(1.03) brightness(0.92) saturate(0.95);
+  }
+
+  .mundo-pes { position: relative; height: 58px; margin-top: 16px; }
+
+  .mundo-pe {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 22px;
+    opacity: 0;
+    transition: opacity 0.7s var(--curva);
+  }
+
+  .mundo-pe.ativa { opacity: 1; transition-delay: 0.2s; }
+
+  .mundo-nome { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 34px); line-height: 1; }
+  .mundo-lugar { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); }
+  .mundo-dados { font-size: 13px; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+
+  .mundo-entrar {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(180, 154, 110, 0.55);
+    white-space: nowrap;
+  }
+
+  /* a linha */
+  .mundo-mapa { position: relative; margin-top: clamp(26px, 5vh, 52px); padding-top: 30px; }
+
+  .mundo-eixo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--linha-clara);
+  }
+
+  .mundo-paises { display: flex; }
+
+  .mundo-pais {
+    position: relative;
+    flex: var(--peso, 1) 1 0;
+    padding-top: 0;
+    border-left: 1px solid var(--linha-clara);
+    padding-left: 14px;
+  }
+
+  .mundo-pais:first-child { border-left: 0; padding-left: 0; }
+
+  .mundo-pais-nome {
+    display: block;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.3);
+    margin-bottom: 16px;
+  }
+
+  .mundo-cidades { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .mundo-cidade {
+    position: relative;
+    padding: 0 0 4px;
+    text-align: left;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: rgba(245, 242, 236, 0.46);
+    transition: color 0.5s var(--curva);
+    white-space: nowrap;
+  }
+
+  /* o espeto: sobe da cidade ate o eixo */
+  .mundo-cidade::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -46px;
+    width: 1px;
+    height: 46px;
+    background: var(--champagne);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.6s var(--curva);
+  }
+
+  .mundo-cidade:hover { color: var(--marfim); }
+  .mundo-cidade.ativa { color: var(--champagne); }
+  .mundo-cidade.ativa::before { transform: scaleY(1); }
+
+  .mundo-cidade span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(245, 242, 236, 0.26);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ------------------------------------------------------- telas estreitas -- */
+  @media (max-width: 900px) {
+    .corredor-tunel { height: auto; }
+    .corredor-preso { position: static; height: auto; overflow-x: auto; scroll-snap-type: x mandatory; }
+    .corredor-item { width: 78vw; scroll-snap-align: center; }
+    .corredor-regua { display: none; }
+    .corredor-fim { width: 70vw; }
+
+    .dobra { height: clamp(460px, 78vh, 620px); }
+    .dobra-foto, .dobra-foto.ativa { clip-path: none; animation: none; }
+    .dobra-corpo {
+      width: 100%;
+      padding-right: var(--margem);
+      background: linear-gradient(to top, rgba(11, 11, 12, 0.94) 0%, rgba(11, 11, 12, 0.7) 62%, transparent 100%);
+      padding-top: 60px;
+    }
+    .dobra-marcas { display: none; }
+
+    .mundo-paises { flex-wrap: wrap; gap: 26px; }
+    .mundo-pais { flex: 1 1 42%; border-left: 0; padding-left: 0; }
+    .mundo-cidade::before { display: none; }
+    .mundo-entrar { margin-left: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .dobra-foto.ativa { animation: none; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="recado">
+  <span class="filete"></span>
+  <span class="rotulo">Página temporária de escolha</span>
+  <h1>Três curadorias.<br>Escolha uma.</h1>
+  <p>As três mostram <strong>as mesmas oito residências</strong>, com as mesmas fotografias e os mesmos dados, para nenhuma ganhar por ter conteúdo melhor que a outra. O que muda é só o jeito de apresentar.</p>
+  <p>Todas funcionam de verdade: pode apontar, clicar e rolar. Quando você escolher, eu aplico a escolhida na home e apago esta página.</p>
+  <div class="atalhos">
+    <a class="atalho" href="#opcaoA">A — O corredor</a>
+    <a class="atalho" href="#opcaoB">B — A dobra</a>
+    <a class="atalho" href="#opcaoC">C — A linha do mundo</a>
+    <a class="atalho" href="index.html">Voltar ao site</a>
+  </div>
+</div>
+
+<!-- ============================================================== opcao A -- -->
+<section class="opcao" id="opcaoA">
+  <div class="opcao-cabeca">
+    <span class="opcao-letra">A</span>
+    <h2 class="opcao-nome">O corredor</h2>
+    <p class="opcao-como">A curadoria não fica parada esperando ser apontada: ela anda. Enquanto você desce a página, a fila de residências atravessa a tela de lado, como um travelling de cinema. Cada uma tem largura, formato e altura de apoio diferentes, então a fila nunca vira uma régua. <strong>Role a página devagar.</strong></p>
+  </div>
+
+  <div class="corredor-tunel" id="corredorTunel">
+    <div class="corredor-preso">
+      <div class="corredor-trilho" id="corredorTrilho"></div>
+      <div class="corredor-regua"><span id="corredorRegua"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== opcao B -- -->
+<section class="opcao" id="opcaoB">
+  <div class="opcao-cabeca">
+    <span class="opcao-letra">B</span>
+    <h2 class="opcao-nome">A dobra</h2>
+    <p class="opcao-como">Uma residência por vez, grande, cortada na diagonal de 26 graus da marca: fotografia de um lado, tipo do outro. Trocar de residência faz a diagonal varrer a tela. O corte é calculado, e não escolhido a olho: a inclinação é sempre 26 graus, em qualquer tamanho de tela. <strong>Aponte os números no alto, ou use as setas do teclado.</strong></p>
+  </div>
+
+  <div class="dobra" id="dobra">
+    <div class="dobra-fotos" id="dobraFotos"></div>
+    <div class="dobra-marcas" id="dobraMarcas"></div>
+    <div class="dobra-corpo">
+      <p class="dobra-conta" id="dobraConta"></p>
+      <div class="dobra-nomes" id="dobraNomes"></div>
+      <div class="dobra-pes" id="dobraPes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== opcao C -- -->
+<section class="opcao" id="opcaoC">
+  <div class="opcao-cabeca">
+    <span class="opcao-letra">C</span>
+    <h2 class="opcao-nome">A linha do mundo</h2>
+    <p class="opcao-como">As oito praças numa linha só, de oeste para leste: Orlando e Miami, depois o Brasil, depois Portugal, e Dubai no fim. A linha é o desenho da seção, e a fotografia sobe dela por um fio champagne. É a única das três que diz, só pela forma, que a AMGlobal é global. <strong>Aponte as cidades na linha.</strong></p>
+  </div>
+
+  <div class="mundo">
+    <div class="mundo-vista" id="mundoVista"></div>
+    <div class="mundo-pes" id="mundoPes"></div>
+    <div class="mundo-mapa">
+      <span class="mundo-eixo"></span>
+      <div class="mundo-paises" id="mundoPaises"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* As oito residencias, num lugar so. As tres opcoes leem daqui. */
+var RESIDENCIAS = [
+  { n: 'Casa Pátio',           b: 'Jardins',           c: 'São Paulo',      p: 'Brasil',         s: 'sao-paulo',      a: '520 m²', q: '4 suítes', f: 'photo-1706808849780-7a04fbac83ef' },
+  { n: 'Cobertura Horizonte',  b: 'Leblon',            c: 'Rio de Janeiro', p: 'Brasil',         s: 'rio-de-janeiro', a: '410 m²', q: '3 suítes', f: 'photo-1633354747567-e0682586f082' },
+  { n: 'Casa Costa Norte',     b: 'Jurerê',            c: 'Florianópolis',  p: 'Brasil',         s: 'florianopolis',  a: '680 m²', q: '5 suítes', f: 'photo-1745761320791-5ae142edee8c' },
+  { n: 'Residência Lakeside',  b: 'Winter Park',       c: 'Orlando',        p: 'Estados Unidos', s: 'orlando',        a: '390 m²', q: '4 suítes', f: 'photo-1719887805632-de5be825f72b' },
+  { n: 'Villa Bayfront',       b: 'Coconut Grove',     c: 'Miami',          p: 'Estados Unidos', s: 'miami',          a: '560 m²', q: '5 suítes', f: 'photo-1706164971302-e30c0640cc3b' },
+  { n: 'Residência Dunas',     b: 'Palm Jumeirah',     c: 'Dubai',          p: 'Emirados',       s: 'dubai',          a: '740 m²', q: '6 suítes', f: 'photo-1670589953882-b94c9cb380f5' },
+  { n: 'Palacete Restaurado',  b: 'Príncipe Real',     c: 'Lisboa',         p: 'Portugal',       s: 'lisboa',         a: '430 m²', q: '4 suítes', f: 'photo-1685514823717-7e1ff6ee0563' },
+  { n: 'Casa Atlântico',       b: 'Quinta da Marinha', c: 'Cascais',        p: 'Portugal',       s: 'cascais',        a: '610 m²', q: '5 suítes', f: 'photo-1748063578185-3d68121b11ff' }
+];
+
+var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function esc(t) {
+  return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function foto(r, largura) {
+  return 'https://images.unsplash.com/' + r.f + '?auto=format&fit=crop&w=' + largura + '&q=70';
+}
+function ficha(r) {
+  return 'imovel.html?c=' + encodeURIComponent(r.s) + '&i=0';
+}
+function numero(i) {
+  return (i + 1 < 10 ? '0' : '') + (i + 1);
+}
+
+/* ========================================================== A — o corredor ==
+   A fila anda de lado enquanto a pagina desce. A conta e feita no quadro do
+   navegador, e nunca direto no evento de rolagem. */
+(function () {
+  var tunel = document.getElementById('corredorTunel');
+  var trilho = document.getElementById('corredorTrilho');
+  var regua = document.getElementById('corredorRegua');
+  if (!tunel || !trilho) return;
+
+  /* largura, formato e altura de apoio, em roda: e isso que impede a fila de
+     virar uma regua de cartoes iguais */
+  var LARGURAS = ['clamp(240px, 27vw, 430px)', 'clamp(190px, 20vw, 310px)', 'clamp(280px, 33vw, 520px)', 'clamp(210px, 23vw, 350px)'];
+  var FORMAS = ['4 / 5', '1 / 1', '3 / 4', '5 / 4'];
+  var APOIOS = ['0px', 'clamp(30px, 7vh, 80px)', 'clamp(-60px, -6vh, -20px)', 'clamp(14px, 3vh, 40px)'];
+
+  trilho.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<a class="corredor-item" href="' + ficha(r) + '"'
+      + ' style="--larg:' + LARGURAS[i % 4] + ';--forma:' + FORMAS[i % 4] + ';--apoio:' + APOIOS[i % 4] + '">'
+      + '<span class="corredor-quadro">'
+      +   '<img src="' + foto(r, 900) + '" alt="" loading="lazy" decoding="async">'
+      +   '<span class="corredor-num">' + numero(i) + '</span>'
+      + '</span>'
+      + '<span class="corredor-pe">'
+      +   '<span class="corredor-nome">' + esc(r.n) + '</span>'
+      +   '<span class="corredor-lugar">' + esc(r.b) + ' &middot; ' + esc(r.c) + '</span>'
+      + '</span>'
+      + '</a>';
+  }).join('') + '<div class="corredor-fim">'
+    + '<span class="filete"></span>'
+    + '<p>Parte do portfólio não é publicada. Esses imóveis são apresentados apenas em conversa.</p>'
+    + '<a class="atalho" href="index.html#contato">Solicite o dossiê</a>'
+    + '</div>';
+
+  var pedido = false;
+
+  function andar() {
+    var r = tunel.getBoundingClientRect();
+    var alturaTela = window.innerHeight || 800;
+    var curso = r.height - alturaTela;
+    if (curso <= 0) return;
+
+    var p = Math.max(0, Math.min(1, -r.top / curso));
+    var sobra = trilho.scrollWidth - (window.innerWidth || 1200);
+    if (sobra < 0) sobra = 0;
+
+    trilho.style.transform = 'translate3d(' + (-p * sobra).toFixed(1) + 'px,0,0)';
+    if (regua) regua.style.width = (p * 100).toFixed(1) + '%';
+  }
+
+  function aoRolar() {
+    if (pedido) return;
+    pedido = true;
+    window.requestAnimationFrame(function () { andar(); pedido = false; });
+  }
+
+  if ((window.innerWidth || 1200) > 900) {
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    window.addEventListener('resize', aoRolar, { passive: true });
+    andar();
+  }
+}());
+
+/* ============================================================= B — a dobra ==
+   O corte e calculado: para a inclinacao ser 26 graus de verdade, o quanto a
+   diagonal anda na horizontal depende da ALTURA da caixa e da sua LARGURA. */
+(function () {
+  var caixa = document.getElementById('dobra');
+  var caixaFotos = document.getElementById('dobraFotos');
+  var caixaMarcas = document.getElementById('dobraMarcas');
+  var caixaNomes = document.getElementById('dobraNomes');
+  var caixaPes = document.getElementById('dobraPes');
+  var conta = document.getElementById('dobraConta');
+  if (!caixa || !caixaFotos) return;
+
+  var TANGENTE26 = Math.tan(26 * Math.PI / 180);
+  var PE_DA_DIAGONAL = 22;   // onde a diagonal encosta em baixo, em % da largura
+
+  caixaFotos.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<figure class="dobra-foto' + (i === 0 ? ' ativa' : '') + '" data-foto="' + i + '">'
+      + '<img src="' + foto(r, 1600) + '" alt=""' + (i === 0 ? '' : ' loading="lazy"') + ' decoding="async">'
+      + '</figure>';
+  }).join('');
+
+  caixaMarcas.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<button type="button" class="dobra-marca' + (i === 0 ? ' ativa' : '') + '" data-marca="' + i + '"'
+      + ' aria-label="' + esc(r.n) + '">' + numero(i) + '</button>';
+  }).join('');
+
+  caixaNomes.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<h3 class="dobra-nome' + (i === 0 ? ' ativa' : '') + '" data-nome="' + i + '">' + esc(r.n) + '</h3>';
+  }).join('');
+
+  caixaPes.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<p class="dobra-pe' + (i === 0 ? ' ativa' : '') + '" data-pe="' + i + '">'
+      + '<span class="dobra-lugar">' + esc(r.b) + ' &middot; ' + esc(r.c) + '</span>'
+      + '<span class="dobra-dados">' + esc(r.a) + ' &middot; ' + esc(r.q) + ' &middot; Sob consulta</span>'
+      + '<a class="dobra-entrar" href="' + ficha(r) + '">Ver o imóvel</a>'
+      + '</p>';
+  }).join('');
+
+  var fotos = caixaFotos.querySelectorAll('.dobra-foto');
+  var marcas = caixaMarcas.querySelectorAll('.dobra-marca');
+  var nomes = caixaNomes.querySelectorAll('.dobra-nome');
+  var pes = caixaPes.querySelectorAll('.dobra-pe');
+  var noAr = 0;
+
+  /* a diagonal de 26 graus, em porcentagem da largura da caixa */
+  function medirCorte() {
+    var r = caixa.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    var anda = (r.height * TANGENTE26) / r.width * 100;
+    caixa.style.setProperty('--x2', PE_DA_DIAGONAL + '%');
+    caixa.style.setProperty('--x1', (PE_DA_DIAGONAL + anda).toFixed(2) + '%');
+  }
+
+  function acender(lista, atributo, qual) {
+    Array.prototype.forEach.call(lista, function (el) {
+      el.classList.toggle('ativa', Number(el.getAttribute(atributo)) === qual);
+    });
+  }
+
+  function mostrar(qual) {
+    if (qual < 0) qual = RESIDENCIAS.length - 1;
+    if (qual >= RESIDENCIAS.length) qual = 0;
+    noAr = qual;
+
+    acender(fotos, 'data-foto', qual);
+    acender(marcas, 'data-marca', qual);
+    acender(nomes, 'data-nome', qual);
+    acender(pes, 'data-pe', qual);
+
+    if (conta) conta.innerHTML = '<b>' + numero(qual) + '</b> / ' + numero(RESIDENCIAS.length - 1);
+  }
+
+  Array.prototype.forEach.call(marcas, function (m) {
+    var qual = Number(m.getAttribute('data-marca'));
+    m.addEventListener('mouseenter', function () { mostrar(qual); });
+    m.addEventListener('focus', function () { mostrar(qual); });
+    m.addEventListener('click', function () { mostrar(qual); });
+  });
+
+  document.addEventListener('keydown', function (ev) {
+    var r = caixa.getBoundingClientRect();
+    var alturaTela = window.innerHeight || 800;
+    // so responde quando a dobra esta na tela
+    if (r.bottom < 80 || r.top > alturaTela - 80) return;
+    if (ev.key === 'ArrowRight') { mostrar(noAr + 1); ev.preventDefault(); }
+    if (ev.key === 'ArrowLeft') { mostrar(noAr - 1); ev.preventDefault(); }
+  });
+
+  var pedido = false;
+  window.addEventListener('resize', function () {
+    if (pedido) return;
+    pedido = true;
+    window.requestAnimationFrame(function () { medirCorte(); pedido = false; });
+  }, { passive: true });
+
+  medirCorte();
+  mostrar(0);
+}());
+
+/* ================================================== C — a linha do mundo ====
+   Os paises em ordem de longitude, e as cidades dentro do seu pais. Nao e a
+   longitude exata de proposito: Lisboa e Cascais distam 0,3 grau e uma
+   cobriria a outra. */
+(function () {
+  var vista = document.getElementById('mundoVista');
+  var caixaPes = document.getElementById('mundoPes');
+  var caixaPaises = document.getElementById('mundoPaises');
+  if (!vista || !caixaPaises) return;
+
+  var ORDEM = ['Estados Unidos', 'Brasil', 'Portugal', 'Emirados'];
+
+  vista.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<figure class="mundo-foto' + (i === 0 ? ' ativa' : '') + '" data-foto="' + i + '">'
+      + '<img src="' + foto(r, 1500) + '" alt=""' + (i === 0 ? '' : ' loading="lazy"') + ' decoding="async">'
+      + '</figure>';
+  }).join('');
+
+  caixaPes.innerHTML = RESIDENCIAS.map(function (r, i) {
+    return '<p class="mundo-pe' + (i === 0 ? ' ativa' : '') + '" data-pe="' + i + '">'
+      + '<span class="mundo-nome">' + esc(r.n) + '</span>'
+      + '<span class="mundo-lugar">' + esc(r.b) + ' &middot; ' + esc(r.c) + '</span>'
+      + '<span class="mundo-dados">' + esc(r.a) + ' &middot; ' + esc(r.q) + ' &middot; Sob consulta</span>'
+      + '<a class="mundo-entrar" href="' + ficha(r) + '">Ver o imóvel</a>'
+      + '</p>';
+  }).join('');
+
+  caixaPaises.innerHTML = ORDEM.map(function (pais) {
+    var dele = [];
+    RESIDENCIAS.forEach(function (r, i) { if (r.p === pais) dele.push({ r: r, i: i }); });
+    return '<div class="mundo-pais" style="--peso:' + dele.length + '">'
+      + '<span class="mundo-pais-nome">' + esc(pais) + '</span>'
+      + '<div class="mundo-cidades">'
+      + dele.map(function (d) {
+          return '<button type="button" class="mundo-cidade' + (d.i === 0 ? ' ativa' : '') + '" data-cidade="' + d.i + '">'
+            + esc(d.r.c) + '<span>' + numero(d.i) + '</span>'
+            + '</button>';
+        }).join('')
+      + '</div></div>';
+  }).join('');
+
+  var fotos = vista.querySelectorAll('.mundo-foto');
+  var pes = caixaPes.querySelectorAll('.mundo-pe');
+  var cidades = caixaPaises.querySelectorAll('.mundo-cidade');
+
+  function acender(lista, atributo, qual) {
+    Array.prototype.forEach.call(lista, function (el) {
+      el.classList.toggle('ativa', Number(el.getAttribute(atributo)) === qual);
+    });
+  }
+
+  function mostrar(qual) {
+    acender(fotos, 'data-foto', qual);
+    acender(pes, 'data-pe', qual);
+    acender(cidades, 'data-cidade', qual);
+  }
+
+  Array.prototype.forEach.call(cidades, function (b) {
+    var qual = Number(b.getAttribute('data-cidade'));
+    b.addEventListener('mouseenter', function () { mostrar(qual); });
+    b.addEventListener('focus', function () { mostrar(qual); });
+    b.addEventListener('click', function () { mostrar(qual); });
+  });
+}());
+</script>
+</body>
+</html>
