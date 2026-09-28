@@ -234,29 +234,37 @@
   /* --------------------------------------------------------------- secoes -- */
   section { padding: var(--secao) var(--margem); }
 
-  /* A CABECA: DUAS DECLARACOES, e nao um titulo com legenda. Mesma regra da
-     home. O lugar da frase nunca foi o problema: era o tamanho. Uma legenda
-     de 17px nao segura meia tela, esteja onde estiver. */
+  /* A CABECA: UM BLOCO SO, EM DUAS ESCALAS. Mesma regra da home.
+     Titulo e frase deixaram de ser duas pecas a posicionar e viraram um texto
+     corrido no mesmo Cormorant: o titulo entra grande, a frase continua na
+     mesma linha, menor. Nao ha o que posicionar porque nao ha duas coisas. */
   .cabeca {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
-    gap: clamp(28px, 5vw, 96px);
-    align-items: end;
+    display: block;
+    max-width: min(100%, 1060px);
     margin-bottom: clamp(44px, 7vh, 80px);
   }
 
-  .cabeca .rotulo { margin-bottom: 20px; }
+  .cabeca > div { display: contents; }
+
+  .cabeca .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
+
+  .cabeca h2 {
+    display: inline;
+    font-size: clamp(30px, 4.6vw, 56px);
+    line-height: 1.1;
+  }
 
   .cabeca-texto p {
+    display: inline;
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(21px, 2.3vw, 34px);
-    line-height: 1.24;
-    letter-spacing: -0.005em;
-    max-width: 30ch;
-    color: rgba(245, 242, 236, 0.66);
-    text-wrap: balance;
+    font-size: clamp(19px, 2.1vw, 30px);
+    line-height: 1.38;
+    color: rgba(245, 242, 236, 0.6);
+    max-width: none;
   }
+
+  .cabeca-texto p::before { content: '— '; color: var(--champagne); }
 
   /* ---- a banda das residencias, igual a da home ---- */
   .leque { display: flex; gap: 5px; height: clamp(360px, 56vh, 590px); overflow: hidden; }
@@ -564,10 +572,8 @@
 
   /* ------------------------------------------------------- telas estreitas -- */
   @media (max-width: 1100px) {
-    /* sem largura para as duas declaracoes lado a lado, a segunda desce para
-       baixo da primeira, e encolhe um pouco para nao competir com ela */
-    .cabeca { grid-template-columns: minmax(0, 1fr); gap: clamp(22px, 3.4vh, 34px); }
-    .cabeca-texto p { font-size: clamp(19px, 4.6vw, 26px); max-width: 34ch; }
+    /* o bloco continua corrido; so a diferenca entre as duas escalas encolhe */
+    .cabeca-texto p { font-size: clamp(17px, 4.4vw, 22px); }
     .fecho { grid-template-columns: 1fr; }
   }
 
@@ -728,7 +734,7 @@
       +     '<div>'
       +       '<span class="filete"></span>'
       +       '<span class="rotulo">A seleção</span>'
-      +       '<h2>Poucos imóveis.<br>Nenhum comum.</h2>'
+      +       '<h2>Poucos imóveis. Nenhum comum.</h2>'
       +     '</div>'
       +     '<div class="cabeca-texto"><p>Cada residência está aqui por arquitetura, endereço, história ou a combinação dos três. Parte do portfólio não é publicada e só é apresentada em conversa.</p></div>'
       +   '</div>'
@@ -746,7 +752,7 @@
       +         '<div>'
       +           '<span class="filete"></span>'
       +           '<span class="rotulo">A praça</span>'
-      +           '<h2>O que pesa<br>em ' + esc(c.nome) + '</h2>'
+      +           '<h2>O que pesa em ' + esc(c.nome) + '</h2>'
       +         '</div>'
       +         '<div class="cabeca-texto"><p>Três coisas que mudam a decisão nesta cidade, e que raramente aparecem num anúncio.</p></div>'
       +       '</div>'

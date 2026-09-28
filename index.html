@@ -630,45 +630,64 @@
   .pedra { background: var(--travertino); color: var(--onix); }
   .pedra p { color: var(--grafite); }
 
-  /* A CABECA: DUAS DECLARACOES, e nao um titulo com legenda.
+  /* A CABECA: UM BLOCO SO, EM DUAS ESCALAS.
 
-     Tres arrumacoes anteriores foram recusadas, e as tres mexiam no LUGAR da
-     frase: na coluna da direita (ficou solta), embaixo do titulo numa coluna
-     estreita (ficou espremida no canto), e presa ao titulo por um filete
-     atravessando o vazio.
+     Quatro arrumacoes anteriores foram recusadas, e as quatro tratavam titulo
+     e frase como DUAS PECAS a posicionar: a frase na coluna da direita (ficou
+     solta), embaixo do titulo em coluna estreita (ficou espremida no canto),
+     presa por um filete atravessando o vazio, e enfim grande, do lado direito
+     (ainda nao era).
 
-     O lugar nunca foi o problema: era o TAMANHO. Uma legenda de 17px nao
-     segura meia tela, esteja onde estiver — ela sempre vai parecer solta ou
-     apertada. E o italico em Cormorant le como classico, nao como moderno.
+     Enquanto forem duas pecas, uma sempre vai ficar solta em relacao a outra.
+     Entao elas deixaram de ser duas: o titulo e a frase agora sao UM TEXTO
+     CORRIDO, no mesmo Cormorant, so que em duas escalas. O titulo entra
+     grande, a frase continua na mesma linha, menor, e o paragrafo desce
+     sozinho — como a entrada de uma reportagem.
 
-     Agora a frase e uma SEGUNDA DECLARACAO: mesmo Cormorant do titulo, reto,
-     num corpo grande o bastante para ocupar o lado dela sozinha. Sem filete,
-     sem italico, sem coluna estreita. Duas frases de peso, uma de cada lado,
-     alinhadas pela base. */
+     Nao ha o que posicionar, porque nao ha duas coisas. E nao ha o que poluir,
+     porque sao menos elementos que antes, nao mais: saiu o filete em pe, saiu
+     a segunda coluna, saiu a borda.
+
+     O truque e `display: contents` nos dois embrulhos: ele some com as caixas
+     e deixa filete, rotulo, titulo e frase como filhos diretos da cabeca. Ai
+     o titulo e a frase, os dois em `inline`, correm no mesmo paragrafo. */
   .cabeca {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
-    gap: clamp(28px, 5vw, 96px);
-    align-items: end;
+    display: block;
+    max-width: min(100%, 1060px);
     margin-bottom: clamp(52px, 8vh, 96px);
   }
 
-  .cabeca h2 { margin-bottom: 0; }
-  .cabeca .rotulo { margin-bottom: 20px; }
+  /* as caixas somem; o conteudo delas sobe para a cabeca */
+  .cabeca > div { display: contents; }
+
+  .cabeca .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
+
+  .cabeca h2 {
+    display: inline;
+    font-size: clamp(34px, 5vw, 66px);
+    line-height: 1.1;
+    margin: 0;
+  }
 
   .cabeca-texto p {
+    display: inline;
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(21px, 2.3vw, 34px);
-    line-height: 1.24;
-    letter-spacing: -0.005em;
-    max-width: 30ch;
-    color: rgba(245, 242, 236, 0.66);
-    text-wrap: balance;
+    font-size: clamp(19px, 2.1vw, 30px);
+    line-height: 1.38;
+    color: rgba(245, 242, 236, 0.6);
+    max-width: none;
+  }
+
+  /* o travessao champagne e toda a pontuacao de que o bloco precisa: separa as
+     duas escalas sem acrescentar um elemento */
+  .cabeca-texto p::before {
+    content: '— ';
+    color: var(--champagne);
   }
 
   /* na secao clara o tipo e escuro */
-  .claro .cabeca-texto p { color: rgba(58, 58, 60, 0.82); }
+  .claro .cabeca-texto p { color: rgba(58, 58, 60, 0.78); }
 
   /* ============================================================== filtro ===
      Selecionar o pais no topo abre as cidades dele e filtra o indice logo
@@ -1524,10 +1543,9 @@
 
   /* ======================================================= telas estreitas == */
   @media (max-width: 1100px) {
-    /* sem largura para as duas declaracoes lado a lado, a segunda desce para
-       baixo da primeira, e encolhe um pouco para nao competir com ela */
-    .cabeca { grid-template-columns: minmax(0, 1fr); gap: clamp(22px, 3.4vh, 34px); }
-    .cabeca-texto p { font-size: clamp(19px, 4.6vw, 26px); max-width: 34ch; }
+    /* o bloco continua corrido; so a diferenca entre as duas escalas encolhe,
+       porque numa tela estreita ela ficaria exagerada */
+    .cabeca-texto p { font-size: clamp(17px, 4.4vw, 22px); }
     .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
   }
@@ -1780,7 +1798,7 @@
     <div>
       <span class="filete"></span>
       <span class="rotulo">02 — Curadoria</span>
-      <h2>Poucos imóveis.<br>Nenhum comum.</h2>
+      <h2>Poucos imóveis. Nenhum comum.</h2>
     </div>
     <div class="cabeca-texto">
       <p>Cada residência no portfólio tem uma razão para estar aqui: arquitetura, endereço, história ou a combinação dos três. O que não sustenta uma dessas razões fica de fora.</p>
@@ -1953,7 +1971,7 @@
     <div>
       <span class="filete"></span>
       <span class="rotulo">04 — Serviços</span>
-      <h2>Do primeiro contato<br>à escritura</h2>
+      <h2>Do primeiro contato à escritura</h2>
     </div>
     <div class="cabeca-texto">
       <p>Um consultor conduz a jornada inteira. Sem transferências, sem repetir o que você já explicou.</p>
@@ -2024,7 +2042,7 @@
     <div>
       <span class="filete"></span>
       <span class="rotulo">05 — Global</span>
-      <h2>Onde o mundo<br>escolhe morar</h2>
+      <h2>Onde o mundo escolhe morar</h2>
     </div>
     <div class="cabeca-texto">
       <p>Parcerias em três frentes, para quem compra fora do país ou chega de fora para comprar aqui.</p>

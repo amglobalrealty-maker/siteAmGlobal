@@ -33,33 +33,39 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 | Marcador | Triangulo aberto derivado do A, usado na indicacao de rolagem |
 | Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto nem sobre foto. Saiu da secao Global quando ela virou fotografia; hoje nao esta em uso |
 
-### A cabeca das secoes: duas declaracoes
+### A cabeca das secoes: um bloco so, em duas escalas
 
-Cada secao abre com filete, rotulo, titulo e uma frase curta. **Tres arrumacoes
-anteriores foram recusadas, e as tres mexiam no LUGAR da frase:**
+Cada secao abre com filete, rotulo, titulo e uma frase curta. **Quatro
+arrumacoes foram recusadas, e as quatro tratavam titulo e frase como DUAS
+PECAS a posicionar:**
 
-1. Na coluna da DIREITA: ficou solta, longe do titulo e sem nada em volta.
+1. A frase na coluna da DIREITA: ficou solta, longe do titulo e sem nada em
+   volta.
 2. EMBAIXO do titulo, em coluna estreita com um filete em pe: a cabeca inteira
    ficou espremida no canto esquerdo, com metade da tela vazia.
 3. Presa ao titulo por um filete champagne atravessando o vazio.
+4. Grande, do lado direito, alinhada pela base, como segunda declaracao.
 
-**O lugar nunca foi o problema: era o TAMANHO.** Uma legenda de 17px nao segura
-meia tela, esteja onde estiver — ela sempre vai parecer solta ou apertada. E o
-italico em Cormorant le como classico, nao como moderno.
+**Enquanto forem duas pecas, uma sempre vai ficar solta em relacao a outra.**
+Por isso nenhuma posicao resolvia.
 
-Hoje a frase e uma **SEGUNDA DECLARACAO**, e nao uma legenda:
+Hoje elas deixaram de ser duas: o titulo e a frase sao **UM TEXTO CORRIDO**, no
+mesmo Cormorant, em duas escalas. O titulo entra grande (34 a 66px), a frase
+continua na mesma linha, menor (19 a 30px), separada por um **travessao
+champagne**, e o paragrafo desce sozinho — como a entrada de uma reportagem.
 
-- mesmo Cormorant do titulo, **reto**, sem italico;
-- de **21 a 34px**, contra os 17 a 22 de antes;
-- sem filete, sem coluna estreita, sem borda;
-- as duas alinhadas pela base, uma de cada lado.
+**E e MENOS, e nao mais:** saiu o filete em pe, saiu a segunda coluna, saiu a
+borda, sairam as quebras fixas dos titulos. A cabeca tem menos elementos do que
+tinha na primeira versao.
 
-O titulo tem duas linhas e as frases caem em quatro a seis. Os dois lados ficam
-com peso parecido, que e o que faz a cabeca parar de ter um lado cheio e outro
-vazio.
+⚠️ O recurso que permite isso e **`display: contents` nos dois embrulhos**: ele
+apaga as caixas e deixa filete, rotulo, titulo e frase como filhos diretos da
+cabeca. Ai o titulo e a frase, os dois em `inline`, correm no mesmo paragrafo.
+Sem isso eles seriam dois blocos empilhados, que e de onde se veio.
 
-Em tela estreita a segunda declaracao desce para baixo da primeira e encolhe um
-pouco, para nao competir com ela.
+As quebras fixas (`<br>`) sairam SO dos titulos de cabeca. Os outros titulos do
+site — o do contato, os dos recados — nao viraram texto corrido e mantem as
+delas.
 
 Vale igual na home (secoes 02, 04 e 05) e na pagina de cidade (A selecao e A
 praca).
