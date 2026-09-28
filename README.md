@@ -32,6 +32,12 @@ Deploy: a Vercel publica a branch automaticamente. Nao ha Build Command.
 | Filete | Traco champagne de 24px antes de cada rotulo |
 | Marcador | Triangulo aberto derivado do A, usado na indicacao de rolagem |
 | Textura | Diagonais a 26 graus, tom sobre tom, nunca atras de texto nem sobre foto. Saiu da secao Global quando ela virou fotografia; hoje nao esta em uso |
+| Tom de voz | Frases curtas, sem superlativo, sem exclamacao |
+| Chamada | "Agende uma visita privada", exatamente como o manual aprovou |
+| Numeros | Tabulares, para alinhar em coluna |
+
+Palavras proibidas pelo manual e que nao aparecem em lugar nenhum do site:
+oportunidade, imperdivel, corretor, luxuoso.
 
 ### A cabeca das secoes: um bloco so, em duas escalas
 
@@ -69,12 +75,6 @@ delas.
 
 Vale igual na home (secoes 02, 04 e 05) e na pagina de cidade (A selecao e A
 praca).
-| Tom de voz | Frases curtas, sem superlativo, sem exclamacao |
-| Chamada | "Agende uma visita privada", exatamente como o manual aprovou |
-| Numeros | Tabulares, para alinhar em coluna |
-
-Palavras proibidas pelo manual e que nao aparecem em lugar nenhum do site:
-oportunidade, imperdivel, corretor, luxuoso.
 
 ### Sobre "rose"
 
@@ -301,7 +301,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
-| 04 | Servicos | Um campo de tipo, SEM fotografia: os quatro oficios em Cormorant grande, e quem nao esta no ar quase some |
+| 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
 | 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
@@ -430,46 +430,41 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 Quem tiver "reduzir movimento" ligado no sistema nao ve nada disso: a pagina
 aparece inteira e parada.
 
-### A secao 04, Servicos: um campo de tipo, sem fotografia
+### A secao 04, Servicos: o percurso
 
-A secao era um **palco**: uma fotografia de borda a borda com os quatro oficios
-escritos por cima, e a imagem sendo varrida a cada troca. Foi a unica secao do
-site aprovada de primeira.
+**Tres versoes anteriores:** uma fotografia de borda a borda com os quatro
+oficios escritos por cima (a unica secao aprovada de primeira, mas a pagina
+tinha cinco secoes seguidas puxadas por imagem); os mesmos nomes sem
+fotografia, em Cormorant de ate 96px (grandes demais); e enfim esta.
 
-**Ela saiu mesmo assim, por causa do RITMO da pagina.** Eram cinco secoes
-seguidas puxadas por imagem — abertura, curadoria, A AMGlobal, servicos e
-global. E a quarta e justamente a que menos precisa de foto: servico nao e uma
-coisa que se veja, entao qualquer fotografia ali era ilustracao.
+O titulo da secao e **"Do primeiro contato a escritura"** — ou seja, um
+TRAJETO. Nenhuma das versoes anteriores usava isso.
 
-Hoje a secao e **um campo de tipo**. Os quatro oficios sao a secao inteira, em
-Cormorant de ate 96px, e quem nao esta no ar fica a 20% de opacidade. Trocar de
-oficio nao varre imagem nenhuma: e o proprio nome que ACENDE e o vizinho que
-APAGA. E o apagar do vizinho que faz o nome no ar parecer aceso, sem precisar
-de nenhum efeito.
+Agora a forma diz o que o titulo diz: os quatro oficios sao **estacoes de um
+percurso**, e a **linha champagne AVANCA** ate a estacao em que a pessoa esta.
+A linha nao e enfeite: ela e a jornada, e o quanto dela ja se andou. As
+estacoes ja passadas ficam com o ponto contornado; a atual, com o ponto cheio.
 
-**Sao MENOS elementos que antes, e nao mais:** sairam as quatro fotografias, o
-veu que as escurecia, a moldura champagne e as duas animacoes de imagem. Ficou
-o tracinho champagne que cresce no oficio no ar, que ja estava la.
+**O tipo voltou a um corpo de leitura:** 22 a 34px, contra os 36 a 96px da
+versao anterior. Quem carrega a secao e o trajeto, e nao o tamanho da letra.
 
-No script tambem sumiu peso: a fila de tres camadas (fundo parado, a que sai, a
-que entra), o reinicio da varredura com reflow forcado e o temporizador de
-limpeza. Sem imagem, a troca fica sendo o que ela sempre foi por baixo — acender
-um nome e trocar a ficha.
+⚠️ **O avanco da linha e MEDIDO, e nao uma fracao chutada.** O ponto de cada
+estacao fica na borda esquerda dela, e as colunas do grid nao tem a mesma
+largura em toda tela — `indice / 3` daria errado. O script le a posicao real do
+botao dentro da trilha, e refaz a conta quando a janela muda de tamanho e
+quando as fontes terminam de carregar, porque as duas coisas mudam a largura
+das colunas.
 
-**O ritmo de imagem da pagina hoje:**
+No celular nao ha largura para quatro estacoes lado a lado: **o trajeto vira
+vertical**, com a linha descendo pela esquerda e as estacoes descendo com ela.
 
-| Secao | Imagens |
-|---|---|
-| 01 Abertura | 4 |
-| 02 Curadoria | 8 |
-| 03 A AMGlobal | 1 |
-| **04 Servicos** | **nenhuma — respiro** |
-| 05 Global | 3 |
-| 06 Contato | nenhuma |
+**A secao nao tem imagem nenhuma**, e e isso que da o respiro no meio da
+pagina: abertura (4 imagens), curadoria (8), A AMGlobal (1), **servicos
+(nenhuma)**, global (3), contato (nenhuma).
 
-A faixa de imagem da secao 03 e a proxima candidata a sair, se for preciso mais
-respiro: ela some numa linha, e a pagina passa a alternar imagem e texto de
-verdade.
+A linha caida que pousava sobre o palco desta secao foi removida junto com a
+fotografia: ela e um fio pousado na borda de cima de uma imagem, e sem imagem
+nao tem onde pousar. Restaram duas, na curadoria e na faixa da secao 03.
 
 ### A secao 05, Global: o nome atravessa a fotografia
 
