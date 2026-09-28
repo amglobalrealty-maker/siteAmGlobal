@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
-| 05 | Global | Orlando, Portugal e Dubai em ordem de longitude, cada uma numa faixa, com a hora local grande e o fuso desenhado como um dia inteiro |
+| 05 | Global | Um mapa-mundi pontilhado, com as pracas onde elas ficam de verdade e arcos saindo de Sao Paulo. Abaixo, as tres faixas com a hora local grande |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
@@ -393,24 +393,51 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 Quem tiver "reduzir movimento" ligado no sistema nao ve nada disso: a pagina
 aparece inteira e parada.
 
-### A secao 05, Global: tres horas, nao tres colunas
+### A secao 05, Global: o mapa
 
 A secao tinha tres colunas iguais com um filete em cima — o arranjo de "tres
-itens" que aparece em qualquer template. E o dado mais interessante que ela
-tem, tres relogios correndo em tres fusos, estava no pe de cada coluna,
-pequeno, como rodape.
+itens" que aparece em qualquer template. Agora ela e um **mapa-mundi**, e as
+pracas estao onde ficam de verdade.
 
-**A HORA virou o assunto.** Cada praca e uma faixa da largura inteira, com o
-relogio grande a direita (46 a 104px em Cormorant, contra 34px antes).
+**O mapa e PONTILHADO**, um ponto por celula de grade que cai em terra: 3.111
+pontos. Mora em **`mundo.svg`**, arquivo separado — no HTML incharia a home, e
+de fora ele e cacheado e comprime de 96 KB para 8 KB.
 
-**O FUSO virou desenho.** O filete que separa as faixas deixou de ser enfeite e
-passou a ser um dia inteiro, da meia-noite a meia-noite: escuro nas pontas,
-claro no meio, com um ponto champagne na hora que e la agora. O ponto e CHEIO
-de dia (das 6h as 18h) e VAZADO de noite.
+**Procedencia:** gerado de `ne_110m_land` do **Natural Earth**, que e
+**dominio publico** e nao exige credito. O gerador esta no historico desta
+branch; para refazer o mapa com outra densidade, basta mudar o passo da grade.
 
-**A ordem e de LONGITUDE, de oeste para leste** — Orlando, Portugal, Dubai.
-Nao e arbitraria: assim os tres pontos descem para a direita, e a secao desenha
-o sol atravessando o mundo. Trocar a ordem quebra esse desenho.
+**A projecao e a equirretangular**, a mais simples que existe: `x` depende so
+da longitude, `y` so da latitude. E por isso que serve — os marcadores das
+pracas usam a MESMA conta do gerador, entao caem no lugar certo sem nenhuma
+biblioteca. A caixa e 1000 x 361, de longitude -180 a 180 e latitude 72 a -58
+(corta a Antartida e o Artico vazio).
+
+```
+x = (longitude + 180) / 360
+y = (72 - latitude) / 130
+```
+
+**Tres arcos saem de Sao Paulo** para as tres pracas e se DESENHAM quando a
+secao chega na tela — mesmo recurso da linha caida: o comprimento do traco e
+medido depois de pronto, e a espessura nao acompanha o esticamento. Sao curvas
+quadraticas com o ponto de controle levantado acima do meio da corda, para
+lerem como rota e nao como reta.
+
+**Sao Paulo e marcado como BASE**, com o ponto vazado, e nao como praca: e de
+onde a casa fala.
+
+**As duas metades sao ligadas.** Apontar uma faixa acende o ponto dela no mapa,
+e apontar o ponto acende a faixa. Sem isso o mapa vira enfeite parado ao lado
+de uma lista.
+
+No celular o mapa fica sem rotulo: a 340px de largura ele teria 123px de altura
+e os nomes ficariam ilegiveis e colados. Os pontos e os arcos seguem legiveis, e
+quem diz o nome sao as faixas logo abaixo.
+
+Abaixo do mapa, cada praca e uma faixa da largura inteira, com o relogio grande
+a direita (46 a 104px em Cormorant, contra 34px antes), na mesma ordem do mapa,
+de oeste para leste.
 
 **A diferenca para Sao Paulo e CALCULADA, nunca escrita a mao.** Ela muda
 sozinha quando um dos dois lados entra ou sai do horario de verao: em janeiro
@@ -418,14 +445,14 @@ Portugal esta 3 horas a frente, em julho esta 4. Orlando e Portugal mudam em
 datas diferentes das nossas, e Dubai nao muda nunca — escrever "7 horas a
 frente" no HTML daria informacao errada duas vezes por ano.
 
-Tudo sai do MESMO instante, numa leitura so, para as tres coisas (hora, ponto e
-diferenca) nunca se contradizerem. A volta do dia esta tratada: com Sao Paulo
-as 17:30 e Dubai ja em 00:30 do dia seguinte, a conta continua dizendo "7 horas
-a frente" em vez de "17 horas atras".
+A hora e a diferenca saem do MESMO instante, numa leitura so, para nunca se
+contradizerem. A volta do dia esta tratada: com Sao Paulo as 17:30 e Dubai ja
+em 00:30 do dia seguinte, a conta continua dizendo "7 horas a frente" em vez de
+"17 horas atras".
 
 Conferido fora do navegador em cinco instantes — incluindo a virada do dia e os
-dois hemisferios no verao — que nenhum ponto cai fora da linha e nenhuma
-diferenca passa de 12 horas.
+dois hemisferios no verao — que nenhuma diferenca passa de 12 horas; e que os
+quatro marcadores caem onde a projecao manda, com erro maximo de 0,004%.
 
 ## Detalhes tecnicos
 
