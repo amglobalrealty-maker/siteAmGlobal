@@ -137,9 +137,9 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 - **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
   continua so filtrando a home.
-- **"Ver o imovel"**, embaixo da fotografia da curadoria, abre a ficha da
-  residencia que esta no ar. E um link de verdade (`<a href>`): abre em nova
-  aba, funciona com teclado e nao depende de nada carregar.
+- **Residencia da fila da curadoria**, na home, abre a ficha do imovel. Cada
+  uma e um link de verdade (`<a href>`): abre em nova aba, funciona com teclado
+  e nao depende de nada carregar.
 - **Lamina da banda**, na pagina da cidade, abre a ficha do imovel. No toque, o
   primeiro toque abre a lamina e o segundo entra, senao a pessoa sairia da
   pagina sem nunca ter visto a foto grande.
@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Uma fotografia de cada vez, e a curadoria inteira como indice de tipo ao lado. Filtravel por pais e cidade |
+| 02 | Curadoria | Um travelling: a fila de residencias atravessa a tela de lado enquanto a pagina desce. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -293,16 +293,24 @@ quantidade de residencias de cada um, e as cidades a direita.
 - Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
 - Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
 
-**A fonte da verdade sao as proprias residencias.** Cada linha do indice carrega
-`data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
-delas quando a pagina abre. Para trocar o portfolio, cada residencia pede TRES
-pedacos com o mesmo numero: a linha do indice (`data-i`), a fotografia
-(`data-foto`) e o pe (`data-pe`). So e preciso mexer no painel se entrar um pais
-ou uma cidade que ainda nao esteja listado la.
+**A fonte da verdade sao as proprias residencias.** Cada uma carrega `data-pais`
+e `data-cidade`; ate as contagens do painel sao somadas a partir delas quando a
+pagina abre. Para trocar o portfolio basta editar os blocos `residencia`,
+mantendo esses dois atributos e o `href`. So e preciso mexer no painel se
+entrar um pais ou uma cidade que ainda nao esteja listado la.
 
-**Filtrar encolhe o indice**, e nao a fotografia. Se a residencia que estava no
-ar sair do recorte, entra a primeira que sobrou; se ela continuar no recorte,
-fica onde estava, para a foto nao trocar sem motivo.
+**Filtrar encurta a fila e encurta o tunel junto.** Quem sobra reassume a roda
+de larguras e formatos desde o inicio, entao a fila nao fica com dois cartoes
+iguais colados nem com um buraco no ritmo.
+
+### Pagina temporaria de escolha
+
+`curadoria-opcoes.html` mostra tres curadorias funcionando lado a lado: **A, o
+corredor** (a que esta na home), **B, a dobra** (uma por vez, cortada na
+diagonal de 26 graus da marca) e **C, a linha do mundo** (as oito pracas numa
+linha de oeste para leste). Ela existe so para a cliente comparar e escolher.
+
+**Essa pagina sai antes do merge**, junto com este trecho do README.
 
 ### Imoveis de teste
 
@@ -345,38 +353,41 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **A curadoria: uma de cada vez.** A secao mostra UMA fotografia. A curadoria
-  inteira continua legivel, mas como indice: oito linhas de tipo pequeno, a
-  esquerda, separadas por um filete. Passar pelo indice troca a fotografia.
+- **A curadoria anda.** Ela nao fica parada esperando ser apontada: enquanto a
+  pagina desce, a fila de residencias atravessa a tela de lado, como um
+  travelling de cinema. A rolagem vertical vira movimento horizontal.
 
-  Tres tentativas anteriores erraram todas por excesso, e vale registrar
-  porque o motivo e o mesmo nas tres: oito laminas iguais que se abrem ao
+  Quatro tentativas anteriores foram recusadas, e vale registrar porque as
+  quatro erraram de jeitos diferentes: oito laminas iguais que se abrem ao
   serem apontadas (basico), oito chapas de tamanhos diferentes com ar entre
-  elas (solto), oito fotos encostadas com texto sobre cada uma (poluido). O
-  espaco nunca foi o problema: era a quantidade de coisa disputando o olho ao
-  mesmo tempo.
+  elas (solto), oito fotos encostadas com texto sobre cada uma (poluido), uma
+  fotografia com o indice ao lado (basico de novo). Nenhuma delas se MEXIA, e
+  e o movimento que a cliente aprovou nas outras secoes.
 
-  **Sobre a fotografia nao ha texto nenhum.** O que descreve a residencia mora
-  embaixo dela, numa linha so: bairro e cidade em champagne, os numeros, e o
-  link para a ficha alinhado a direita.
+  **Largura, formato e altura de apoio mudam a cada residencia**, em roda de
+  quatro. E isso que impede a fila de virar uma regua de cartoes iguais. Quem
+  veste cada uma e o script, contando so as visiveis: filtrando, quem sobra
+  reassume a roda desde o inicio, e a fila nao fica com dois cartoes iguais
+  colados nem com um buraco no ritmo.
 
-  No indice, a linha no ar anda 16px para a direita, o numeral vira champagne
-  e um filete champagne de 9px cresce antes dela, que e o mesmo tracinho da
-  marca. O nome apaga para 58% quando nao esta no ar.
+  **O tunel tem a altura do passeio**, e nao um numero escolhido a olho: uma
+  tela, mais exatamente o tanto que a fila sobra para fora dela. Rolar 100px
+  anda 100px de fila. Filtrando para uma residencia so, a fila cabe na tela e
+  o tunel encolhe para uma tela, em vez de pedir tres telas de rolagem sem
+  nada acontecer. A medida e refeita quando a janela muda de tamanho e quando
+  as fotografias terminam de carregar, porque as duas coisas mudam a largura
+  da fila.
 
-  **Quem manda e a linha do indice.** A fotografia e o pe apenas a acompanham,
-  pelo mesmo numero (`data-i`, `data-foto`, `data-pe`). Quem controla a
-  visibilidade e a OPACIDADE, e nao um efeito: se a animacao nao rodar, a foto
-  troca do mesmo jeito. Foi o que resolveu o mesmo problema no palco dos
-  servicos.
+  **Uma armadilha que custou caro em outro lugar do projeto e vale repetir:**
+  `overflow-x: hidden` no `body` MATA o `position: sticky`. O miolo do tunel
+  fica preso enquanto ele passa, entao o body usa `overflow-x: clip`, que
+  esconde do mesmo jeito sem criar uma caixa de rolagem.
 
-  No celular o indice desce para debaixo da vista, e a fotografia e a primeira
-  coisa que a pessoa ve. Como ali nao ha ponteiro, quem troca e o proprio
-  toque, e a foto e trazida para a tela: sem isso ela mudaria longe dos olhos
-  da pessoa.
+  Apontar uma residencia acende a foto em cor cheia e desenha um filete
+  champagne sobre a borda do tipo. No celular nao ha tunel: a fila corre de
+  lado com o dedo, com encaixe, uma residencia por vez.
 
-  A secao nao tem mais a linha caida sobre a imagem. Numa secao que precisava
-  de silencio, ela era mais um enfeite.
+  A secao nao tem mais a linha caida sobre a imagem.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **A linha caida.** UMA linha em champagne sobre a borda de cima de cada bloco
   de imagem. A curva e a de um fio preso pelas duas pontas: cede no meio e sobe

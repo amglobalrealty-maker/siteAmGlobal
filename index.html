@@ -96,7 +96,9 @@
     line-height: 1.62;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* `clip` e nao `hidden`: com `hidden` o `position: sticky` do tunel da
+       curadoria para de funcionar e a fila de residencias nao anda */
+    overflow-x: clip;
   }
 
   body.travado { overflow: hidden; }
@@ -748,211 +750,169 @@
   .filtro-cidade[hidden] { display: none !important; }
 
   /* ============================================================ curadoria ==
-     UMA DE CADA VEZ.
+     A CURADORIA ANDA.
 
-     As tres tentativas anteriores erraram todas por excesso: oito laminas
-     iguais (basico), oito chapas com ar entre elas (solto), oito fotos
-     encostadas com texto sobre cada uma (poluido). O espaco nunca foi o
-     problema: era a quantidade de coisa disputando o olho ao mesmo tempo.
+     Ela nao fica parada esperando ser apontada: enquanto a pagina desce, a
+     fila de residencias atravessa a tela de lado, como um travelling de
+     cinema. A rolagem vertical vira movimento horizontal.
 
-     Aqui a secao mostra UMA fotografia. A curadoria inteira continua legivel,
-     mas como indice: oito linhas de tipo pequeno, alinhadas, separadas por um
-     filete. Passar pelo indice troca a fotografia.
+     Largura, formato e altura de apoio mudam a cada residencia, em roda de
+     quatro. E isso que impede a fila de virar uma regua de cartoes iguais, e
+     e por isso que quem veste as residencias e o script: filtrando, quem
+     sobra reassume a roda desde o inicio, sem buraco no meio.
 
-     SOBRE A FOTO NAO HA TEXTO NENHUM. O que descreve a residencia mora embaixo
-     dela, numa linha so: bairro e cidade, os numeros e o link para a ficha.
+     O tunel e alto e o miolo fica PRESO nele enquanto passa. Por causa disso
+     o `overflow-x` do body e `clip` e nao `hidden`: com `hidden` o preso para
+     de funcionar e a fila nao anda.
      ------------------------------------------------------------------------ */
-  .vitrine {
-    display: grid;
-    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-    gap: clamp(28px, 5vw, 78px);
-    align-items: start;
-  }
-
-  /* ---- o indice ---- */
-  .vitrine-indice {
-    display: grid;
-    align-content: start;
-    border-top: 1px solid var(--linha-clara);
-  }
-
-  .vitrine-linha {
+  .tunel {
     position: relative;
-    display: grid;
-    grid-template-columns: 30px minmax(0, 1fr) auto;
-    align-items: baseline;
-    gap: 14px;
-    width: 100%;
-    padding: clamp(11px, 1.5vh, 17px) 0;
-    background: none;
-    border: 0;
-    border-bottom: 1px solid var(--linha-clara);
+    height: 250vh;
+    margin: 0 calc(-1 * var(--margem));
+  }
+
+  .tunel-preso {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .trilho {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 3.2vw, 60px);
+    padding: 0 var(--margem);
+    will-change: transform;
+  }
+
+  .residencia {
+    flex: none;
+    width: var(--larg, clamp(240px, 27vw, 430px));
+    margin-top: var(--apoio, 0px);
+    text-decoration: none;
     color: inherit;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-    transition: padding-left 0.7s var(--curva);
   }
 
-  .vitrine-linha[hidden] { display: none !important; }
-  .vitrine-linha.ativa { padding-left: 16px; }
+  .residencia[hidden] { display: none !important; }
 
-  /* o filete champagne da marca, crescendo antes da linha no ar */
-  .vitrine-linha::before {
-    content: '';
+  .residencia-quadro {
+    position: relative;
+    display: block;
+    aspect-ratio: var(--forma, 4 / 5);
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+
+  .residencia-quadro img {
     position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0;
-    height: 1px;
-    background: var(--champagne);
-    transition: width 0.7s var(--curva);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.24) contrast(1.04) brightness(0.84) saturate(0.86);
+    transition: filter 1s var(--curva), transform 1.4s var(--curva);
   }
 
-  .vitrine-linha.ativa::before { width: 9px; }
+  .residencia:hover .residencia-quadro img,
+  .residencia:focus-visible .residencia-quadro img {
+    filter: grayscale(0.02) contrast(1.02) brightness(1) saturate(1);
+    transform: scale(1.04);
+  }
 
-  .vitrine-num {
+  /* o numeral e a unica coisa que o tipo empresta para a imagem */
+  .residencia-num {
+    position: absolute;
+    z-index: 2;
+    top: 12px;
+    left: 13px;
     font-family: var(--sans);
     font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    color: rgba(245, 242, 236, 0.36);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    color: rgba(245, 242, 236, 0.66);
     font-variant-numeric: tabular-nums;
-    transition: color 0.6s var(--curva);
   }
 
-  .vitrine-linha.ativa .vitrine-num { color: var(--champagne); }
+  .residencia-pe {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    padding-top: 15px;
+    border-top: 1px solid var(--linha-clara);
+    margin-top: 15px;
+  }
 
-  .vitrine-nome {
+  /* apontada, o filete champagne se desenha sobre a borda */
+  .residencia-pe::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s var(--curva);
+  }
+
+  .residencia:hover .residencia-pe::before,
+  .residencia:focus-visible .residencia-pe::before { transform: scaleX(1); }
+
+  .residencia-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(17px, 1.35vw, 21px);
-    line-height: 1.12;
-    color: rgba(245, 242, 236, 0.58);
-    transition: color 0.6s var(--curva);
+    font-size: clamp(19px, 1.7vw, 27px);
+    line-height: 1.08;
+    color: rgba(245, 242, 236, 0.9);
+    transition: color 0.5s var(--curva);
   }
 
-  .vitrine-linha.ativa .vitrine-nome,
-  .vitrine-linha:hover .vitrine-nome,
-  .vitrine-linha:focus-visible .vitrine-nome { color: var(--marfim); }
+  .residencia:hover .residencia-nome { color: var(--marfim); }
 
-  .vitrine-cidade {
+  .residencia-lugar {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.28);
-    white-space: nowrap;
-    transition: color 0.6s var(--curva);
-  }
-
-  .vitrine-linha.ativa .vitrine-cidade { color: var(--champagne); }
-
-  .vitrine-vazio {
-    padding: 26px 0;
-    font-size: 14px;
-    color: var(--texto-fraco);
-  }
-
-  .vitrine-vazio[hidden] { display: none !important; }
-
-  /* ---- a vista ---- */
-  .vitrine-vista { display: grid; gap: clamp(15px, 2vh, 24px); }
-
-  .vitrine-fotos {
-    position: relative;
-    height: clamp(330px, 56vh, 620px);
-    overflow: hidden;
-    background: var(--onix-alto);
-  }
-
-  /* Quem manda na visibilidade e a opacidade, e nao um efeito: se a animacao
-     nao rodar, a foto troca do mesmo jeito. Foi o que resolveu o mesmo bug no
-     palco dos servicos. */
-  .vitrine-foto {
-    position: absolute;
-    inset: 0;
-    margin: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.1s var(--curva), visibility 0s linear 1.1s;
-  }
-
-  .vitrine-foto.ativa {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 1.1s var(--curva), visibility 0s;
-  }
-
-  .vitrine-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.12) contrast(1.03) brightness(0.93) saturate(0.94);
-    transform: scale(1.02);
-  }
-
-  .vitrine-foto.ativa img { animation: aproximar-vitrine 11s ease-out both; }
-
-  @keyframes aproximar-vitrine {
-    from { transform: scale(1.02); }
-    to { transform: scale(1.09); }
-  }
-
-  /* o pe: uma linha so, embaixo da foto */
-  .vitrine-pes { position: relative; min-height: 54px; }
-
-  .vitrine-pe {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 7px 22px;
-    margin: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.7s var(--curva), visibility 0s linear 0.7s;
-  }
-
-  .vitrine-pe.ativa {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.7s var(--curva) 0.18s, visibility 0s;
-  }
-
-  .vitrine-lugar {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
     color: var(--champagne);
   }
 
-  .vitrine-dados {
-    font-size: 13px;
-    color: rgba(245, 242, 236, 0.58);
+  .residencia-dados {
+    font-size: 12px;
+    color: rgba(245, 242, 236, 0.5);
     font-variant-numeric: tabular-nums;
-  }
-
-  .vitrine-entrar {
-    margin-left: auto;
-    padding-bottom: 3px;
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--marfim);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(180, 154, 110, 0.55);
     white-space: nowrap;
-    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
   }
 
-  .vitrine-entrar:hover { color: var(--champagne); border-color: var(--champagne); }
+  .trilho-vazio {
+    flex: none;
+    width: min(70vw, 460px);
+    color: var(--texto-fraco);
+  }
+
+  .trilho-vazio[hidden] { display: none !important; }
+
+  /* a regua embaixo: diz onde a fila esta */
+  .tunel-regua {
+    position: absolute;
+    left: var(--margem);
+    right: var(--margem);
+    bottom: clamp(24px, 5vh, 54px);
+    height: 1px;
+    background: var(--linha-clara);
+  }
+
+  .tunel-regua span {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--champagne);
+  }
 
   .curadoria-conta {
     margin-top: 22px;
@@ -1335,13 +1295,24 @@
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
     .filtro-cidades { grid-template-columns: 1fr; }
-    /* sem largura para as duas colunas, o indice desce para debaixo da
-       vista, e a fotografia e a primeira coisa que a pessoa ve */
-    .vitrine { grid-template-columns: 1fr; gap: 26px; }
-    .vitrine-vista { order: -1; }
-    .vitrine-fotos { height: clamp(290px, 46vh, 420px); }
-    .vitrine-pes { min-height: 76px; }
-    .vitrine-entrar { margin-left: 0; }
+    /* sem tunel numa tela estreita: a fila corre de lado com o dedo, com
+       encaixe, uma residencia por vez */
+    .tunel { height: auto; }
+    .tunel-preso {
+      position: static;
+      height: auto;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tunel-preso::-webkit-scrollbar { display: none; }
+    .residencia { width: 76vw !important; margin-top: 0 !important; scroll-snap-align: center; }
+    .residencia-quadro { aspect-ratio: 4 / 5 !important; }
+    .residencia-quadro img { filter: grayscale(0.06) contrast(1.02) brightness(0.94) saturate(0.96); }
+    .residencia-pe::before { transform: scaleX(1); }
+    .tunel-regua { display: none; }
+    .trilho-vazio { width: 76vw; }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -1547,126 +1518,114 @@
        que filtrar. Nome, area e suites sao inventados de proposito e a
        fotografia e do Unsplash, que o manual proibe em material de imovel.
 
-       Quando o portfolio real for cadastrado, cada residencia pede TRES
-       pedacos com o mesmo numero: a linha do indice (`data-i`), a fotografia
-       (`data-foto`) e o pe (`data-pe`). O filtro le `data-pais` e
-       `data-cidade` da linha do indice, e o `href` do pe leva a ficha. -->
-  <div class="vitrine sobe" id="vitrine">
-    <div class="vitrine-indice" id="vitrineIndice">
-      <button type="button" class="vitrine-linha ativa" data-i="0" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
-        <span class="vitrine-num">01</span>
-        <span class="vitrine-nome">Casa Pátio</span>
-        <span class="vitrine-cidade">São Paulo</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="1" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
-        <span class="vitrine-num">02</span>
-        <span class="vitrine-nome">Cobertura Horizonte</span>
-        <span class="vitrine-cidade">Rio de Janeiro</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="2" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
-        <span class="vitrine-num">03</span>
-        <span class="vitrine-nome">Casa Costa Norte</span>
-        <span class="vitrine-cidade">Florianópolis</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="3" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
-        <span class="vitrine-num">04</span>
-        <span class="vitrine-nome">Residência Lakeside</span>
-        <span class="vitrine-cidade">Orlando</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="4" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
-        <span class="vitrine-num">05</span>
-        <span class="vitrine-nome">Villa Bayfront</span>
-        <span class="vitrine-cidade">Miami</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="5" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
-        <span class="vitrine-num">06</span>
-        <span class="vitrine-nome">Residência Dunas</span>
-        <span class="vitrine-cidade">Dubai</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="6" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
-        <span class="vitrine-num">07</span>
-        <span class="vitrine-nome">Palacete Restaurado</span>
-        <span class="vitrine-cidade">Lisboa</span>
-      </button>
-      <button type="button" class="vitrine-linha" data-i="7" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
-        <span class="vitrine-num">08</span>
-        <span class="vitrine-nome">Casa Atlântico</span>
-        <span class="vitrine-cidade">Cascais</span>
-      </button>
+       Quando o portfolio real for cadastrado, troque residencia por
+       residencia: o filtro le `data-pais` e `data-cidade`, e o `href` leva a
+       ficha. O LUGAR de cada uma na fila nao esta escrito aqui: largura,
+       formato e altura de apoio sao postos pelo script, para o filtro poder
+       tirar uma do meio sem quebrar o ritmo da fila. -->
+  <div class="tunel" id="tunel">
+    <div class="tunel-preso">
+      <div class="trilho" id="trilho">
+        <a class="residencia" href="imovel.html?c=sao-paulo&amp;i=0" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" decoding="async">
+            <span class="residencia-num">01</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Casa Pátio</span>
+            <span class="residencia-lugar">Jardins &middot; São Paulo</span>
+            <span class="residencia-dados">520 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
 
-      <p class="vitrine-vazio" id="vitrineVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
-    </div>
+        <a class="residencia" href="imovel.html?c=rio-de-janeiro&amp;i=0" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">02</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Cobertura Horizonte</span>
+            <span class="residencia-lugar">Leblon &middot; Rio de Janeiro</span>
+            <span class="residencia-dados">410 m&sup2; &middot; 3 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
 
-    <div class="vitrine-vista">
-      <div class="vitrine-fotos" id="vitrineFotos">
-        <figure class="vitrine-foto ativa" data-foto="0">
-          <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="1">
-          <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="2">
-          <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="3">
-          <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="4">
-          <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="5">
-          <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="6">
-          <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
-        <figure class="vitrine-foto" data-foto="7">
-          <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" decoding="async">
-        </figure>
+        <a class="residencia" href="imovel.html?c=florianopolis&amp;i=0" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">03</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Casa Costa Norte</span>
+            <span class="residencia-lugar">Jurerê &middot; Florianópolis</span>
+            <span class="residencia-dados">680 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
+
+        <a class="residencia" href="imovel.html?c=orlando&amp;i=0" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">04</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Residência Lakeside</span>
+            <span class="residencia-lugar">Winter Park &middot; Orlando</span>
+            <span class="residencia-dados">390 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
+
+        <a class="residencia" href="imovel.html?c=miami&amp;i=0" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">05</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Villa Bayfront</span>
+            <span class="residencia-lugar">Coconut Grove &middot; Miami</span>
+            <span class="residencia-dados">560 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
+
+        <a class="residencia" href="imovel.html?c=dubai&amp;i=0" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">06</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Residência Dunas</span>
+            <span class="residencia-lugar">Palm Jumeirah &middot; Dubai</span>
+            <span class="residencia-dados">740 m&sup2; &middot; 6 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
+
+        <a class="residencia" href="imovel.html?c=lisboa&amp;i=0" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">07</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Palacete Restaurado</span>
+            <span class="residencia-lugar">Príncipe Real &middot; Lisboa</span>
+            <span class="residencia-dados">430 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
+
+        <a class="residencia" href="imovel.html?c=cascais&amp;i=0" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
+          <span class="residencia-quadro">
+            <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
+            <span class="residencia-num">08</span>
+          </span>
+          <span class="residencia-pe">
+            <span class="residencia-nome">Casa Atlântico</span>
+            <span class="residencia-lugar">Quinta da Marinha &middot; Cascais</span>
+            <span class="residencia-dados">610 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
+          </span>
+        </a>
+
+        <p class="trilho-vazio" id="trilhoVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
       </div>
 
-      <div class="vitrine-pes">
-        <p class="vitrine-pe ativa" data-pe="0">
-          <span class="vitrine-lugar">Jardins &middot; São Paulo</span>
-          <span class="vitrine-dados">520 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=sao-paulo&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="1">
-          <span class="vitrine-lugar">Leblon &middot; Rio de Janeiro</span>
-          <span class="vitrine-dados">410 m&sup2; &middot; 3 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=rio-de-janeiro&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="2">
-          <span class="vitrine-lugar">Jurerê &middot; Florianópolis</span>
-          <span class="vitrine-dados">680 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=florianopolis&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="3">
-          <span class="vitrine-lugar">Winter Park &middot; Orlando</span>
-          <span class="vitrine-dados">390 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=orlando&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="4">
-          <span class="vitrine-lugar">Coconut Grove &middot; Miami</span>
-          <span class="vitrine-dados">560 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=miami&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="5">
-          <span class="vitrine-lugar">Palm Jumeirah &middot; Dubai</span>
-          <span class="vitrine-dados">740 m&sup2; &middot; 6 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=dubai&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="6">
-          <span class="vitrine-lugar">Príncipe Real &middot; Lisboa</span>
-          <span class="vitrine-dados">430 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=lisboa&amp;i=0">Ver o imóvel</a>
-        </p>
-        <p class="vitrine-pe" data-pe="7">
-          <span class="vitrine-lugar">Quinta da Marinha &middot; Cascais</span>
-          <span class="vitrine-dados">610 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          <a class="vitrine-entrar" href="imovel.html?c=cascais&amp;i=0">Ver o imóvel</a>
-        </p>
-      </div>
+      <div class="tunel-regua"><span id="tunelRegua"></span></div>
     </div>
   </div>
 
@@ -2089,73 +2048,128 @@
   var abrirFiltro = document.getElementById('filtroAbrir');
   var painelFiltro = document.getElementById('filtroPainel');
   var valorFiltro = document.getElementById('filtroValor');
-  var vitrine = document.getElementById('vitrine');
+  var trilho = document.getElementById('trilho');
 
-  if (abrirFiltro && painelFiltro && vitrine) {
-    var linhas = vitrine.querySelectorAll('.vitrine-linha');
-    var vazio = document.getElementById('vitrineVazio');
+  if (abrirFiltro && painelFiltro && trilho) {
+    var residencias = trilho.querySelectorAll('.residencia');
+    var vazio = document.getElementById('trilhoVazio');
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
     var paisAtual = '';
     var cidadeAtual = '';
 
-    /* UMA DE CADA VEZ.
+    /* A FILA ANDA.
 
-       O indice nao e um menu ao lado da foto: e a curadoria inteira escrita,
-       e a foto e a vista daquela que esta no ar. Por isso quem manda e a
-       linha do indice, e a fotografia e o pe apenas a acompanham, pelo mesmo
-       numero (`data-i`, `data-foto`, `data-pe`).
+       A rolagem vertical vira movimento horizontal: a posicao da fila e a
+       posicao da pagina dentro do tunel, de 0 a 1, multiplicada pelo quanto a
+       fila sobra para fora da tela.
 
-       A visibilidade e da OPACIDADE, e nao de um efeito: se a animacao nao
-       rodar, a foto troca do mesmo jeito. Foi o que resolveu o mesmo bug no
-       palco dos servicos. */
-    var fotos = document.getElementById('vitrineFotos').querySelectorAll('.vitrine-foto');
-    var pes = vitrine.querySelectorAll('.vitrine-pe');
-    var semPonteiro = window.matchMedia('(hover: none)').matches;
+       A conta e feita no quadro do navegador, e nunca direto no evento de
+       rolagem: assim ela acontece uma vez por quadro e nao trava a pagina.
 
-    function mostrar(linha) {
-      if (!linha) return;
-      var qual = linha.getAttribute('data-i');
+       Largura, formato e altura de apoio NAO estao escritos no HTML: quem
+       veste cada residencia e o script, contando so as que estao visiveis.
+       Filtrando, quem sobra reassume a roda desde o inicio, e a fila nao fica
+       com dois cartoes iguais colados nem com um buraco no ritmo. */
+    var tunel = document.getElementById('tunel');
+    var regua = document.getElementById('tunelRegua');
 
-      Array.prototype.forEach.call(linhas, function (l) {
-        l.classList.toggle('ativa', l === linha);
+    var LARGURAS = ['clamp(240px, 27vw, 430px)', 'clamp(190px, 20vw, 310px)', 'clamp(280px, 33vw, 520px)', 'clamp(210px, 23vw, 350px)'];
+    var FORMAS = ['4 / 5', '1 / 1', '3 / 4', '5 / 4'];
+    var APOIOS = ['0px', 'clamp(30px, 7vh, 80px)', 'clamp(-60px, -6vh, -20px)', 'clamp(14px, 3vh, 40px)'];
+
+    function vestir() {
+      var i = 0;
+      Array.prototype.forEach.call(residencias, function (r) {
+        if (r.hidden) return;
+        r.style.setProperty('--larg', LARGURAS[i % 4]);
+        r.style.setProperty('--forma', FORMAS[i % 4]);
+        r.style.setProperty('--apoio', APOIOS[i % 4]);
+        i++;
       });
-      Array.prototype.forEach.call(fotos, function (f) {
-        f.classList.toggle('ativa', f.getAttribute('data-foto') === qual);
-      });
-      Array.prototype.forEach.call(pes, function (p) {
-        p.classList.toggle('ativa', p.getAttribute('data-pe') === qual);
-      });
+    }
+
+    /* O tunel tem a altura do PASSEIO, e nao um numero escolhido a olho: uma
+       tela, mais exatamente o tanto que a fila sobra para fora dela. Assim
+       rolar 100px anda 100px de fila, e filtrando para uma residencia so o
+       tunel encolhe para uma tela em vez de pedir tres telas de rolagem sem
+       nada acontecer. */
+    function medirTunel() {
+      if (!tunel) return;
+      if ((window.innerWidth || 1200) <= 900) { tunel.style.height = ''; return; }
+
+      var alturaTela = window.innerHeight || 800;
+      var sobra = trilho.scrollWidth - (window.innerWidth || 1200);
+      if (sobra < 0) sobra = 0;
+      tunel.style.height = (alturaTela + sobra) + 'px';
+    }
+
+    function andar() {
+      if (!tunel) return;
+
+      // numa tela estreita nao ha tunel: a fila corre de lado com o dedo
+      if ((window.innerWidth || 1200) <= 900) {
+        trilho.style.transform = '';
+        if (regua) regua.style.width = '0';
+        return;
+      }
+
+      var r = tunel.getBoundingClientRect();
+      var alturaTela = window.innerHeight || 800;
+      var curso = r.height - alturaTela;
+      if (curso <= 0) return;
+
+      var p = Math.max(0, Math.min(1, -r.top / curso));
+      var sobra = trilho.scrollWidth - (window.innerWidth || 1200);
+      if (sobra < 0) sobra = 0;
+
+      trilho.style.transform = 'translate3d(' + (-p * sobra).toFixed(1) + 'px,0,0)';
+      if (regua) regua.style.width = (p * 100).toFixed(1) + '%';
+    }
+
+    var pedidoFila = false;
+
+    function aoRolarFila() {
+      if (pedidoFila) return;
+      pedidoFila = true;
+      window.requestAnimationFrame(function () { andar(); pedidoFila = false; });
+    }
+
+    // a largura da tela muda o tamanho do passeio: refazer a medida
+    var pedidoTunel = false;
+    function aoMudarTela() {
+      if (pedidoTunel) return;
+      pedidoTunel = true;
+      window.requestAnimationFrame(function () { medirTunel(); andar(); pedidoTunel = false; });
     }
 
     function quantas(pais) {
       var n = 0;
-      Array.prototype.forEach.call(linhas, function (l) {
-        if (!pais || l.getAttribute('data-pais') === pais) n++;
+      Array.prototype.forEach.call(residencias, function (r) {
+        if (!pais || r.getAttribute('data-pais') === pais) n++;
       });
       return n;
     }
 
-    // contagens do painel, uma vez, a partir das linhas que existem
+    // contagens do painel, uma vez, a partir das residencias que existem
     Array.prototype.forEach.call(painelFiltro.querySelectorAll('[data-conta-pais]'), function (span) {
       span.textContent = quantas(span.getAttribute('data-conta-pais'));
     });
 
     function aplicar() {
       var visiveis = 0;
-      var primeira = null;
 
-      Array.prototype.forEach.call(linhas, function (linha) {
-        var casaPais = !paisAtual || linha.getAttribute('data-pais') === paisAtual;
-        var casaCidade = !cidadeAtual || linha.getAttribute('data-cidade') === cidadeAtual;
-        var mostraEsta = casaPais && casaCidade;
-        linha.hidden = !mostraEsta;
-        if (mostraEsta) {
-          visiveis++;
-          if (!primeira) primeira = linha;
-        }
+      Array.prototype.forEach.call(residencias, function (r) {
+        var casaPais = !paisAtual || r.getAttribute('data-pais') === paisAtual;
+        var casaCidade = !cidadeAtual || r.getAttribute('data-cidade') === cidadeAtual;
+        var mostra = casaPais && casaCidade;
+        r.hidden = !mostra;
+        if (mostra) visiveis++;
       });
+
+      vestir();
+      medirTunel();
 
       if (vazio) vazio.hidden = visiveis > 0;
 
@@ -2168,27 +2182,16 @@
 
       valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
 
-      // a que estava no ar pode ter saido do recorte: entao entra a primeira
-      var noAr = null;
-      Array.prototype.forEach.call(linhas, function (l) {
-        if (l.classList.contains('ativa') && !l.hidden) noAr = l;
-      });
-      if (!noAr) mostrar(primeira);
+      // a fila encolheu ou cresceu: refazer a conta do passeio
+      andar();
     }
 
-    /* Apontar troca a fotografia. No toque nao ha ponteiro: quem troca e o
-       proprio toque, e a foto e trazida para a tela, senao ela mudaria longe
-       dos olhos da pessoa. */
-    Array.prototype.forEach.call(linhas, function (linha) {
-      linha.addEventListener('mouseenter', function () { mostrar(linha); });
-      linha.addEventListener('focus', function () { mostrar(linha); });
-      linha.addEventListener('click', function () {
-        mostrar(linha);
-        if (!semPonteiro) return;
-        var vista = document.getElementById('vitrineFotos');
-        if (vista) vista.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'center' });
-      });
-    });
+    window.addEventListener('scroll', aoRolarFila, { passive: true });
+    window.addEventListener('resize', aoMudarTela, { passive: true });
+
+    /* as fotografias mudam a largura da fila quando terminam de carregar, e a
+       largura da fila e a altura do tunel: entao a medida e refeita */
+    window.addEventListener('load', aoMudarTela);
 
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {
