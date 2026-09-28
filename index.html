@@ -1162,169 +1162,143 @@
   .palco-ficha .filete { margin-bottom: 14px; }
 
   /* =============================================================== global ==
-     O MAPA COM O SOL.
+     A VISTA DA JANELA.
 
-     A primeira versao deste mapa era a versao obvia: pontilhado, com arcos
-     saindo de um ponto. E o que toda landing page de fintech tem. Os arcos
-     sairam.
+     Tres fotografias em pe, como olhar por tres janelas ao mesmo tempo. O ceu
+     de cada uma muda de cor conforme a HORA QUE E LA AGORA: madrugada,
+     amanhecer, dia, entardecer, noite. As tres quase nunca estao no mesmo
+     estado, e e isso que a secao conta — o mundo nao esta todo na mesma hora.
 
-     O que ficou no lugar e o SOL. O mapa clareia onde e dia e escurece onde e
-     noite, seguindo a posicao real do sol naquele instante. Com isso os tres
-     relogios deixam de ser numeros soltos e passam a ser EXPLICADOS pela
-     propria imagem: da para ver que em Orlando e tarde e em Dubai ja e noite.
+     AS CORES SAEM DO MANUAL, e nao de um por-do-sol de banco de imagem. O
+     manual tem cinco cores e nenhuma delas e azul ou violeta. Entao:
+       madrugada e noite -> onix, pesado
+       amanhecer e entardecer -> champagne, quente
+       dia -> marfim, leve e limpo
+     A fotografia tambem escurece e clareia junto: de noite ela some quase
+     inteira, ao meio-dia ela abre.
 
-     O ponto subsolar (onde o sol esta a pino) e calculado a cada meio minuto,
-     junto com as horas:
-       longitude = 180 - (hora UTC decimal) * 15
-       latitude  = declinacao solar do dia
-     Nao e efemeride de observatorio: ignora a equacao do tempo, que da ate 16
-     minutos, ou seja ate 4 graus de longitude — 11px neste mapa. Para uma
-     sombra suave serve; para calcular nascer do sol nao serviria.
+     AS TRES JANELAS NAO SAO IGUAIS: larguras diferentes, alturas diferentes e
+     alturas de apoio diferentes. Tres retangulos do mesmo tamanho lado a lado
+     seriam tres colunas, que e exatamente o que esta secao era antes.
 
-     A LUZ e pintada TRES vezes, no lugar do sol e a 100% para cada lado. E o
-     que faz a claridade dar a volta pela borda: quando o sol esta em 5% da
-     largura, a beirada direita tambem tem de estar acesa, porque 355 graus de
-     longitude e o mesmo lugar que -5.
+     Sobre a fotografia nao ha texto nenhum: o tipo mora embaixo da janela, no
+     travertino, onde le sem veu.
      ------------------------------------------------------------------------ */
-  .mapa {
-    position: relative;
-    aspect-ratio: 1000 / 361;
-    margin: 0 calc(-1 * var(--margem)) clamp(40px, 7vh, 96px);
-    overflow: hidden;
+  .janelas {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2.6vw, 44px);
+    align-items: start;
   }
 
-  .mapa-terra {
-    position: absolute;
-    inset: 0;
+  .janela { display: grid; gap: clamp(16px, 2.2vh, 26px); }
+
+  /* larguras e apoios diferentes: a fileira nao pode virar uma grade */
+  .janela:nth-child(1) { grid-column: 1 / span 4;  margin-top: 0; }
+  .janela:nth-child(2) { grid-column: 5 / span 4;  margin-top: clamp(34px, 7vh, 88px); }
+  .janela:nth-child(3) { grid-column: 9 / span 4;  margin-top: clamp(14px, 3vh, 40px); }
+
+  .janela-vao {
+    position: relative;
+    overflow: hidden;
+    background: var(--onix);
+    aspect-ratio: var(--vao, 3 / 4.3);
+  }
+
+  .janela:nth-child(1) .janela-vao { --vao: 3 / 4.1; }
+  .janela:nth-child(2) .janela-vao { --vao: 3 / 4.8; }
+  .janela:nth-child(3) .janela-vao { --vao: 3 / 4.4; }
+
+  .janela-vao img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
+    transition: filter 2.4s var(--curva);
   }
 
-  /* a noite cobre tudo, fraca; o sol devolve a luz onde ele esta */
-  .mapa-noite {
-    position: absolute;
-    inset: 0;
-    background: rgba(11, 11, 12, 0.11);
-    pointer-events: none;
-  }
-
-  .mapa-sol {
+  /* o ceu: um veu que desce do alto da janela */
+  .janela-ceu {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-      radial-gradient(ellipse 34% 180% at var(--sol-x, 50%) var(--sol-y, 50%),
-        rgba(245, 242, 236, 0.62) 0%, rgba(245, 242, 236, 0.28) 44%, rgba(245, 242, 236, 0) 72%),
-      radial-gradient(ellipse 34% 180% at calc(var(--sol-x, 50%) - 100%) var(--sol-y, 50%),
-        rgba(245, 242, 236, 0.62) 0%, rgba(245, 242, 236, 0.28) 44%, rgba(245, 242, 236, 0) 72%),
-      radial-gradient(ellipse 34% 180% at calc(var(--sol-x, 50%) + 100%) var(--sol-y, 50%),
-        rgba(245, 242, 236, 0.62) 0%, rgba(245, 242, 236, 0.28) 44%, rgba(245, 242, 236, 0) 72%);
-    transition: background-position 1s linear;
+    transition: background 2.4s var(--curva);
   }
 
-  /* ---- marcadores, na projecao do gerador ---- */
-  .mapa-ponto {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    width: 0;
-    height: 0;
+  /* ---- os cinco estados do dia ---- */
+  .janela[data-estado="madrugada"] .janela-ceu {
+    background: linear-gradient(to bottom, rgba(11, 11, 12, 0.90) 0%, rgba(11, 11, 12, 0.58) 48%, rgba(11, 11, 12, 0.40) 100%);
+  }
+  .janela[data-estado="madrugada"] img { filter: grayscale(0.42) brightness(0.46) contrast(1.06); }
+
+  .janela[data-estado="amanhecer"] .janela-ceu {
+    background: linear-gradient(to bottom, rgba(180, 154, 110, 0.58) 0%, rgba(11, 11, 12, 0.26) 54%, rgba(11, 11, 12, 0.16) 100%);
+  }
+  .janela[data-estado="amanhecer"] img { filter: grayscale(0.18) brightness(0.80) contrast(1.04) saturate(1.06); }
+
+  .janela[data-estado="dia"] .janela-ceu {
+    background: linear-gradient(to bottom, rgba(245, 242, 236, 0.26) 0%, rgba(245, 242, 236, 0.04) 44%, rgba(11, 11, 12, 0.06) 100%);
+  }
+  .janela[data-estado="dia"] img { filter: grayscale(0.06) brightness(1) contrast(1.02); }
+
+  .janela[data-estado="entardecer"] .janela-ceu {
+    background: linear-gradient(to bottom, rgba(180, 154, 110, 0.70) 0%, rgba(11, 11, 12, 0.32) 56%, rgba(11, 11, 12, 0.22) 100%);
+  }
+  .janela[data-estado="entardecer"] img { filter: grayscale(0.12) brightness(0.84) contrast(1.05) saturate(1.10); }
+
+  .janela[data-estado="noite"] .janela-ceu {
+    background: linear-gradient(to bottom, rgba(11, 11, 12, 0.86) 0%, rgba(11, 11, 12, 0.52) 50%, rgba(11, 11, 12, 0.34) 100%);
+  }
+  .janela[data-estado="noite"] img { filter: grayscale(0.36) brightness(0.52) contrast(1.06); }
+
+  /* ---- o tipo, embaixo da janela ---- */
+  .janela-nome {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(24px, 2.4vw, 36px);
+    line-height: 1;
+    margin: 0;
   }
 
-  .mapa-ponto::before {
-    content: '';
-    position: absolute;
-    left: -3.5px;
-    top: -3.5px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--champagne);
-    transition: transform 0.5s var(--curva);
+  .janela-relogio {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-top: -6px;
   }
 
-  .mapa-ponto.aceso::before { transform: scale(1.6); }
-
-  /* Sao Paulo nao e uma praca: e de onde a casa fala. Fica vazado. */
-  .mapa-ponto--base::before {
-    background: none;
-    box-shadow: inset 0 0 0 1px var(--onix);
+  .janela-hora {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.4vw, 50px);
+    line-height: 0.9;
+    color: var(--onix);
+    font-variant-numeric: tabular-nums;
   }
 
-  .mapa-etiqueta {
-    position: absolute;
-    left: 14px;
-    top: -12px;
-    display: grid;
-    gap: 2px;
-    white-space: nowrap;
-  }
-
-  /* quem cai perto da borda direita escreve para a esquerda */
-  .mapa-ponto--esquerda .mapa-etiqueta {
-    left: auto;
-    right: 14px;
-    justify-items: end;
-    text-align: right;
-  }
-
-  .mapa-cidade {
+  .janela-estado {
     font-family: var(--sans);
     font-weight: 500;
     font-size: 9.5px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--onix);
-    transition: color 0.5s var(--curva);
+    color: var(--champagne);
+    white-space: nowrap;
   }
 
-  .mapa-hora {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(22px, 2.4vw, 38px);
-    line-height: 0.92;
-    color: var(--onix);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .mapa-ponto--base .mapa-cidade { color: rgba(58, 58, 60, 0.6); font-weight: 400; }
-  .mapa-ponto.aceso .mapa-cidade { color: var(--champagne); }
-
-  /* ---- as faixas, embaixo do mapa ---- */
-  .pracas { display: grid; gap: clamp(26px, 4vh, 48px); }
-
-  .praca {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
-    gap: clamp(20px, 3.2vw, 70px);
-    align-items: baseline;
-    padding-top: 24px;
-    border-top: 1px solid var(--linha-escura);
-  }
-
-  .praca h3 {
-    font-size: clamp(24px, 2.7vw, 38px);
-    line-height: 1;
-    margin: 0;
-  }
-
-  .praca p {
-    font-size: 15px;
+  .janela p {
+    font-size: 14.5px;
     line-height: 1.6;
     margin: 0;
-    max-width: 52ch;
+    max-width: 34ch;
   }
 
-  .praca-diferenca {
+  .janela-diferenca {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(58, 58, 60, 0.66);
-    white-space: nowrap;
-    text-align: right;
+    color: rgba(58, 58, 60, 0.62);
   }
 
   /* ============================================================== contato == */
@@ -1455,13 +1429,15 @@
     .leque-ficha { opacity: 1; transform: none; }
     .leque-item::before { transform: scaleY(1); }
     .leque-vazio { flex: 0 0 100%; }
-    /* o mapa continua, mas sem rotulo: a 340px de largura ele teria 123px de
-       altura e os nomes ficariam ilegiveis e colados. Os pontos e os arcos
-       seguem legiveis, e quem diz o nome sao as faixas logo abaixo. */
-    .mapa-rotulo { display: none; }
-    .praca { grid-template-columns: 1fr; gap: 14px; }
-    .praca-hora { justify-items: start; text-align: left; margin-top: 4px; }
-    .relogio-hora { font-size: clamp(42px, 15vw, 68px); }
+    /* sem largura para tres janelas lado a lado: elas viram uma coluna so,
+       e o apoio escalonado sai (empilhado ele viraria buraco) */
+    .janelas { grid-template-columns: 1fr; gap: clamp(34px, 6vh, 56px); }
+    .janela:nth-child(1), .janela:nth-child(2), .janela:nth-child(3) {
+      grid-column: 1 / -1;
+      margin-top: 0;
+    }
+    .janela-vao { --vao: 3 / 2.4 !important; }
+    .janela p { max-width: none; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
     .pilar p { grid-column: 2; }
@@ -1900,69 +1876,58 @@
     </div>
   </div>
 
-  <!-- O MAPA COM O SOL.
+  <!-- A VISTA DA JANELA.
 
-       `mundo.svg` e o mapa-mundi em pontos, gerado do Natural Earth (dominio
-       publico) numa projecao equirretangular. As posicoes abaixo (--x, --y)
-       saem da MESMA conta do gerador: x depende so da longitude, y so da
-       latitude. Mexer numa sem mexer na outra desalinha tudo.
+       Tres fotografias em pe, e o ceu de cada uma marcando a hora que e la
+       agora. O estado do dia (`data-estado`) e escrito pelo script, junto com
+       a hora e com a diferenca de fuso, a partir do mesmo instante.
 
-       A caixa e 1000 x 361, de longitude -180 a 180 e latitude 72 a -58.
-         x = (longitude + 180) / 360
-         y = (72 - latitude) / 130
-
-       A luz do sol e escrita pelo script em --sol-x e --sol-y, na mesma
-       conta. -->
-  <div class="mapa sobe">
-    <img class="mapa-terra" src="mundo.svg" alt="" width="1000" height="361" decoding="async">
-    <span class="mapa-noite" aria-hidden="true"></span>
-    <span class="mapa-sol" id="mapaSol" aria-hidden="true"></span>
-
-    <span class="mapa-ponto mapa-ponto--base" style="--x:37.05%;--y:73.50%">
-      <span class="mapa-etiqueta"><span class="mapa-cidade">São Paulo</span></span>
-    </span>
-
-    <span class="mapa-ponto mapa-ponto--esquerda" data-praca="orlando" style="--x:27.39%;--y:33.43%">
-      <span class="mapa-etiqueta">
-        <span class="mapa-cidade">Orlando</span>
-        <span class="mapa-hora" data-fuso="America/New_York">--:--</span>
+       PROVISORIO: as tres fotografias sao as MESMAS que o slideshow da
+       abertura usa para Orlando, Portugal e Dubai. Elas se repetem na pagina
+       de proposito por enquanto — sao as unicas do acervo provisorio que
+       retratam estas tres pracas. Saem junto com o resto do banco de imagem
+       quando chegar a fotografia propria. Enderecos no README. -->
+  <div class="janelas">
+    <div class="janela sobe" data-praca="orlando" data-estado="dia">
+      <span class="janela-vao">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=900&amp;q=72" alt="" loading="lazy" decoding="async">
+        <span class="janela-ceu" aria-hidden="true"></span>
       </span>
-    </span>
-
-    <span class="mapa-ponto" data-praca="portugal" style="--x:47.46%;--y:25.60%">
-      <span class="mapa-etiqueta">
-        <span class="mapa-cidade">Portugal</span>
-        <span class="mapa-hora" data-fuso="Europe/Lisbon">--:--</span>
-      </span>
-    </span>
-
-    <span class="mapa-ponto" data-praca="dubai" style="--x:65.35%;--y:36.00%">
-      <span class="mapa-etiqueta">
-        <span class="mapa-cidade">Dubai</span>
-        <span class="mapa-hora" data-fuso="Asia/Dubai">--:--</span>
-      </span>
-    </span>
-  </div>
-
-  <!-- As faixas seguem a ordem do mapa, de oeste para leste. A hora nao se
-       repete aqui: ela mora no mapa, junto da cidade. -->
-  <div class="pracas">
-    <div class="praca sobe" data-praca="orlando">
-      <h3>Orlando</h3>
+      <h3 class="janela-nome">Orlando</h3>
+      <p class="janela-relogio">
+        <span class="janela-hora" data-fuso="America/New_York">--:--</span>
+        <span class="janela-estado" data-estado-texto="America/New_York"></span>
+      </p>
       <p>Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
-      <span class="praca-diferenca" data-diferenca="America/New_York"></span>
+      <span class="janela-diferenca" data-diferenca="America/New_York"></span>
     </div>
 
-    <div class="praca sobe" data-praca="portugal">
-      <h3>Portugal</h3>
+    <div class="janela sobe" data-praca="portugal" data-estado="dia">
+      <span class="janela-vao">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=900&amp;q=72" alt="" loading="lazy" decoding="async">
+        <span class="janela-ceu" aria-hidden="true"></span>
+      </span>
+      <h3 class="janela-nome">Portugal</h3>
+      <p class="janela-relogio">
+        <span class="janela-hora" data-fuso="Europe/Lisbon">--:--</span>
+        <span class="janela-estado" data-estado-texto="Europe/Lisbon"></span>
+      </p>
       <p>A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
-      <span class="praca-diferenca" data-diferenca="Europe/Lisbon"></span>
+      <span class="janela-diferenca" data-diferenca="Europe/Lisbon"></span>
     </div>
 
-    <div class="praca sobe" data-praca="dubai">
-      <h3>Dubai</h3>
+    <div class="janela sobe" data-praca="dubai" data-estado="dia">
+      <span class="janela-vao">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=900&amp;q=72" alt="" loading="lazy" decoding="async">
+        <span class="janela-ceu" aria-hidden="true"></span>
+      </span>
+      <h3 class="janela-nome">Dubai</h3>
+      <p class="janela-relogio">
+        <span class="janela-hora" data-fuso="Asia/Dubai">--:--</span>
+        <span class="janela-estado" data-estado-texto="Asia/Dubai"></span>
+      </p>
       <p>Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
-      <span class="praca-diferenca" data-diferenca="Asia/Dubai"></span>
+      <span class="janela-diferenca" data-diferenca="Asia/Dubai"></span>
     </div>
   </div>
 </section>
@@ -2527,8 +2492,8 @@
      O `Intl` faz o trabalho pesado do fuso. Se ele nao souber um fuso, a praca
      fica sem hora em vez de mostrar lixo. */
   var AQUI = 'America/Sao_Paulo';
-  var relogios = document.querySelectorAll('.relogio-hora, .mapa-hora');
-  var luzDoSol = document.getElementById('mapaSol');
+  var relogios = document.querySelectorAll('.relogio-hora, .janela-hora');
+  var estados = document.querySelectorAll('[data-estado-texto]');
   var diferencas = document.querySelectorAll('.praca-diferenca');
 
   // minutos desde a meia-noite naquele fuso, para o MESMO instante
@@ -2574,27 +2539,39 @@
       }
     });
 
-    /* O SOL. O ponto subsolar e o lugar onde ele esta a pino agora:
-       longitude anda 15 graus para oeste a cada hora, latitude e a
-       declinacao do dia. Sai do MESMO instante das horas, entao a luz nunca
-       discorda dos relogios.
+    /* O ESTADO DO DIA de cada praca. Sai do MESMO instante das horas, entao
+       o ceu nunca discorda do relogio embaixo dele.
 
-       Nao e efemeride de observatorio: ignora a equacao do tempo, ate 16
-       minutos, ou seja ate 4 graus de longitude — 11px neste mapa. Para uma
-       sombra suave serve; para nascer do sol nao serviria. */
-    if (luzDoSol) {
-      var ano = agora.getUTCFullYear();
-      var diaDoAno = (Date.UTC(ano, agora.getUTCMonth(), agora.getUTCDate()) - Date.UTC(ano, 0, 0)) / 86400000;
-      var declinacao = 23.44 * Math.sin((2 * Math.PI / 365) * (diaDoAno - 81));
-      var horasUTC = agora.getUTCHours() + agora.getUTCMinutes() / 60;
-      var lonSol = 180 - horasUTC * 15;
-      while (lonSol > 180) lonSol -= 360;
-      while (lonSol < -180) lonSol += 360;
+       As faixas sao as do olho, nao as do calendario: o dia "abre" as 8h30 e
+       "fecha" as 16h30 porque e por volta disso que a luz vira, em qualquer
+       estacao. Uma conta de nascer e por do sol de verdade mudaria de mes em
+       mes e daria a Dubai um amanhecer as 5h e a Lisboa as 8h no inverno —
+       diferenca que uma fotografia com veu nao consegue mostrar mesmo. */
+    var FAIXAS = [
+      [0,    330,  'madrugada'],
+      [330,  510,  'amanhecer'],
+      [510,  990,  'dia'],
+      [990,  1170, 'entardecer'],
+      [1170, 1440, 'noite']
+    ];
 
-      // a MESMA projecao do mapa: caixa de -180 a 180 e de 72 a -58
-      luzDoSol.style.setProperty('--sol-x', ((lonSol + 180) / 360 * 100).toFixed(2) + '%');
-      luzDoSol.style.setProperty('--sol-y', ((72 - declinacao) / 130 * 100).toFixed(2) + '%');
+    function estadoDoDia(minutos) {
+      for (var k = 0; k < FAIXAS.length; k++) {
+        if (minutos >= FAIXAS[k][0] && minutos < FAIXAS[k][1]) return FAIXAS[k][2];
+      }
+      return 'noite';
     }
+
+    Array.prototype.forEach.call(estados, function (el) {
+      var fuso = el.getAttribute('data-estado-texto');
+      var min;
+      try { min = minutosNoFuso(fuso, agora); } catch (erro) { min = null; }
+      if (min === null) return;
+      var estado = estadoDoDia(min);
+      el.textContent = estado.charAt(0).toUpperCase() + estado.slice(1);
+      var janela = el.closest ? el.closest('.janela') : null;
+      if (janela) janela.setAttribute('data-estado', estado);
+    });
 
     if (daqui === null) return;
 
@@ -2617,34 +2594,6 @@
   marcarHoras();
   window.setInterval(marcarHoras, 30000);
 
-  /* 11. O mapa e as faixas sao as duas metades da mesma coisa: apontar uma
-     acende a outra. Sem isso o mapa vira enfeite parado ao lado de uma lista.
-
-     Os arcos que saiam de Sao Paulo foram REMOVIDOS: mapa pontilhado com
-     arcos e o desenho que toda landing page de fintech tem. O que o mapa
-     conta agora e o sol, e isso nenhuma delas conta. */
-  var faixas = document.querySelectorAll('.praca[data-praca]');
-  var pontosMapa = document.querySelectorAll('.mapa-ponto[data-praca]');
-
-  function acenderPraca(qual) {
-    Array.prototype.forEach.call(pontosMapa, function (p) {
-      p.classList.toggle('aceso', p.getAttribute('data-praca') === qual);
-    });
-    Array.prototype.forEach.call(faixas, function (f) {
-      f.classList.toggle('acesa', f.getAttribute('data-praca') === qual);
-    });
-  }
-
-  function ligarPar(el) {
-    var qual = el.getAttribute('data-praca');
-    el.addEventListener('mouseenter', function () { acenderPraca(qual); });
-    el.addEventListener('mouseleave', function () { acenderPraca(null); });
-    el.addEventListener('focusin', function () { acenderPraca(qual); });
-    el.addEventListener('focusout', function () { acenderPraca(null); });
-  }
-
-  Array.prototype.forEach.call(faixas, ligarPar);
-  Array.prototype.forEach.call(pontosMapa, ligarPar);
 })();
 </script>
 

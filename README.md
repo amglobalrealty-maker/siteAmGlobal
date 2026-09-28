@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
-| 05 | Global | Um mapa-mundi pontilhado que CLAREIA ONDE E DIA, seguindo o sol de verdade, com as pracas e as horas delas no lugar certo |
+| 05 | Global | Tres janelas em pe, e o ceu de cada uma marcando a hora que e la agora: madrugada, amanhecer, dia, entardecer, noite |
 | 06 | Contato | Fecho editorial e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
@@ -393,75 +393,59 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 Quem tiver "reduzir movimento" ligado no sistema nao ve nada disso: a pagina
 aparece inteira e parada.
 
-### A secao 05, Global: o mapa
+### A secao 05, Global: a vista da janela
 
 A secao tinha tres colunas iguais com um filete em cima — o arranjo de "tres
-itens" que aparece em qualquer template. Agora ela e um **mapa-mundi**, e as
-pracas estao onde ficam de verdade.
+itens" que aparece em qualquer template. Depois foi um mapa-mundi pontilhado
+com arcos saindo de Sao Paulo, e depois esse mesmo mapa mostrando onde era dia
+e onde era noite. As tres versoes foram recusadas. As duas do mapa estao no
+historico desta branch, junto com o gerador do `mundo.svg`.
 
-**O mapa e PONTILHADO**, um ponto por celula de grade que cai em terra: 3.111
-pontos. Mora em **`mundo.svg`**, arquivo separado — no HTML incharia a home, e
-de fora ele e cacheado e comprime de 96 KB para 8 KB.
+Agora sao **TRES JANELAS**: tres fotografias em pe, lado a lado, como olhar por
+tres janelas ao mesmo tempo. E o **ceu de cada uma muda de cor conforme a hora
+que e la agora** — madrugada, amanhecer, dia, entardecer, noite. A fotografia
+escurece e clareia junto: de noite ela quase some, ao meio-dia ela abre.
 
-**Procedencia:** gerado de `ne_110m_land` do **Natural Earth**, que e
-**dominio publico** e nao exige credito. O gerador esta no historico desta
-branch; para refazer o mapa com outra densidade, basta mudar o passo da grade.
+**AS TRES QUASE NUNCA ESTAO NO MESMO ESTADO**, e e isso que a secao conta: o
+mundo nao esta todo na mesma hora. Conferido nas 24 horas do dia — em NENHUMA
+delas as tres coincidem.
 
-**A projecao e a equirretangular**, a mais simples que existe: `x` depende so
-da longitude, `y` so da latitude. E por isso que serve — os marcadores das
-pracas usam a MESMA conta do gerador, entao caem no lugar certo sem nenhuma
-biblioteca. A caixa e 1000 x 361, de longitude -180 a 180 e latitude 72 a -58
-(corta a Antartida e o Artico vazio).
+**As cores saem do manual**, e nao de um por-do-sol de banco de imagem. O
+manual tem cinco cores e nenhuma e azul ou violeta:
 
-```
-x = (longitude + 180) / 360
-y = (72 - latitude) / 130
-```
+| Estado | Cor do ceu | A fotografia |
+|---|---|---|
+| Madrugada | onix, pesado | escura, 46% de brilho |
+| Amanhecer | champagne | 80% de brilho |
+| Dia | marfim, leve | aberta, brilho cheio |
+| Entardecer | champagne, mais forte | 84% de brilho |
+| Noite | onix | escura, 52% de brilho |
 
-**O MAPA MOSTRA O SOL.** Ele clareia onde e dia e escurece onde e noite,
-seguindo a posicao real do sol naquele instante. Com isso os tres relogios
-deixam de ser numeros soltos e passam a ser EXPLICADOS pela propria imagem: da
-para ver que em Orlando e tarde e em Dubai ja e noite.
+Ha teste conferindo que toda cor usada no ceu esta na paleta do manual.
 
-A primeira versao deste mapa tinha arcos saindo de Sao Paulo. **Eles foram
-removidos**: mapa pontilhado com arcos e o desenho que toda landing page de
-fintech tem, e a cliente recusou, com razao. O mapa nao estava errado; a
-execucao estava obvia.
+**AS FAIXAS DO DIA SAO AS DO OLHO**, nao as do calendario: o dia "abre" as 8h30
+e "fecha" as 16h30, porque e por volta disso que a luz vira, em qualquer
+estacao. Uma conta de nascer e por do sol de verdade mudaria de mes em mes e
+daria a Dubai um amanhecer as 5h e a Lisboa as 8h no inverno — diferenca que
+uma fotografia com veu nao consegue mostrar mesmo.
 
-O ponto subsolar (onde o sol esta a pino) e calculado a cada meio minuto, junto
-com as horas e a partir do MESMO instante, entao a luz nunca discorda dos
-relogios:
+**AS TRES JANELAS NAO SAO IGUAIS**: larguras diferentes (4 colunas cada, mas em
+posicoes diferentes), proporcoes diferentes (3/4.1, 3/4.8 e 3/4.4) e alturas de
+apoio diferentes. Tres retangulos do mesmo tamanho lado a lado seriam tres
+colunas, que e exatamente o que esta secao era antes.
 
-```
-longitude do sol = 180 - (hora UTC decimal) * 15
-latitude do sol  = declinacao solar do dia (formula de Cooper)
-```
+**Sobre a fotografia nao ha texto.** Nome, hora, estado do dia e diferenca de
+fuso ficam embaixo da janela, no travertino, onde leem sem veu.
 
-**A luz e pintada TRES vezes**, no lugar do sol e a 100% para cada lado. E o
-que faz a claridade dar a volta pela borda: com o sol em 4% da largura, a
-beirada direita tambem tem de estar acesa, porque 355 graus de longitude e o
-mesmo lugar que -5.
+No celular as tres viram uma coluna so e o apoio escalonado sai — empilhado ele
+viraria buraco. O vao passa a ser deitado, 3/2.4, para a coluna nao ficar
+quilometrica.
 
-⚠️ **Nao e efemeride de observatorio.** A conta ignora a equacao do tempo, que
-da ate 16 minutos, ou seja ate 4 graus de longitude — 11px neste mapa. Para uma
-sombra suave serve; para calcular nascer do sol nao serviria.
-
-**As horas moram NO MAPA**, ao lado de cada cidade, em Cormorant. Abaixo ficam
-so a descricao e a diferenca para Sao Paulo: a hora nao se repete.
-
-**Sao Paulo e marcado como BASE**, com o ponto vazado, e nao como praca: e de
-onde a casa fala.
-
-**As duas metades sao ligadas.** Apontar uma faixa acende o ponto dela no mapa,
-e apontar o ponto acende a faixa. Sem isso o mapa vira enfeite parado ao lado
-de uma lista.
-
-No celular o mapa fica sem rotulo: a 340px de largura ele teria 123px de altura
-e os nomes ficariam ilegiveis e colados. Os pontos e os arcos seguem legiveis, e
-quem diz o nome sao as faixas logo abaixo.
-
-Abaixo do mapa, cada praca e uma faixa da largura inteira com a descricao e a
-diferenca de fuso, na mesma ordem do mapa, de oeste para leste.
+⚠️ **PROVISORIO:** as tres fotografias sao as MESMAS que o slideshow da
+abertura usa para Orlando, Portugal e Dubai. Elas se repetem na pagina de
+proposito por enquanto — sao as unicas do acervo provisorio que retratam estas
+tres pracas. Saem junto com o resto do banco de imagem quando chegar a
+fotografia propria.
 
 **A diferenca para Sao Paulo e CALCULADA, nunca escrita a mao.** Ela muda
 sozinha quando um dos dois lados entra ou sai do horario de verao: em janeiro
@@ -469,17 +453,15 @@ Portugal esta 3 horas a frente, em julho esta 4. Orlando e Portugal mudam em
 datas diferentes das nossas, e Dubai nao muda nunca — escrever "7 horas a
 frente" no HTML daria informacao errada duas vezes por ano.
 
-A hora e a diferenca saem do MESMO instante, numa leitura so, para nunca se
-contradizerem. A volta do dia esta tratada: com Sao Paulo as 17:30 e Dubai ja
-em 00:30 do dia seguinte, a conta continua dizendo "7 horas a frente" em vez de
-"17 horas atras".
+A hora, o estado do dia e a diferenca saem do MESMO instante, numa leitura so,
+para nunca se contradizerem. A volta do dia esta tratada: com Sao Paulo as
+17:30 e Dubai ja em 00:30 do dia seguinte, a conta continua dizendo "7 horas a
+frente" em vez de "17 horas atras".
 
 Conferido fora do navegador, rodando a conta DO PROPRIO `index.html` com o
-relogio do mundo trocado por instantes fixos: o sol anda 15 graus para oeste a
-cada hora, meio-dia UTC cai em Greenwich, a luz da a volta pela borda, as
-estacoes movem o sol na vertical (dezembro em -23,4 graus, junho em +23,4),
-nenhuma diferenca de fuso passa de 12 horas, e os quatro marcadores caem onde a
-projecao manda, com erro maximo de 0,004%.
+relogio do mundo trocado por instantes fixos: cada hora cai na faixa certa do
+dia, todo estado e um dos cinco, as tres pracas nunca coincidem, e nenhuma
+diferenca de fuso passa de 12 horas.
 
 ## Detalhes tecnicos
 
