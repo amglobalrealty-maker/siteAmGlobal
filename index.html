@@ -748,162 +748,153 @@
   .filtro-cidade[hidden] { display: none !important; }
 
   /* ============================================================ curadoria ==
-     Uma BANDA so, da largura da pagina e da altura de pouco mais de meia tela.
-     Cada residencia e uma lamina estreita, em pe, com o nome escrito na
-     vertical. A lamina apontada se abre e empurra as vizinhas; as outras
-     continuam la, de canto. Toda a curadoria cabe numa tela, e acrescentar ou
-     tirar residencias nao faz a secao crescer: as laminas so ficam mais
-     estreitas ou mais largas.
+     Nao e uma fileira de laminas iguais: e uma PAGINA COMPOSTA. Oito chapas
+     de tamanhos e proporcoes diferentes, duas por linha, a da direita sempre
+     mais baixa que a da esquerda. O olho desce da esquerda para a direita, e
+     nenhuma chapa divide a borda de cima com a vizinha.
+
+     O tipo mora FORA da fotografia, embaixo dela. Era isso que obrigava a
+     versao antiga a ter acordeao: a ficha estava espremida dentro de uma
+     lamina estreita e so cabia se a lamina crescesse. Sem a ficha dentro, a
+     foto volta a ser so foto.
+
+     A QUEDA da chapa da direita nao e um numero escolhido a olho: e o vao ate
+     a vizinha da esquerda, inclinado em 26 graus, o angulo do triangulo
+     aberto da marca. O vao muda com a largura da tela, entao quem mede e
+     aplica e o script.
+
+     Filtrar RECOMPOE a pagina: as chapas que sobram recebem outros lugares e
+     ANDAM ate eles, em vez de sumir e reaparecer.
      ------------------------------------------------------------------------ */
-  .leque {
-    display: flex;
-    gap: 5px;
-    height: clamp(360px, 56vh, 590px);
-    overflow: hidden;
+  .composicao {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(14px, 2.2vw, 36px);
+    row-gap: clamp(44px, 7vh, 96px);
+    align-items: start;
   }
 
-  .leque-item {
-    position: relative;
-    flex: 1 1 0;
-    min-width: 0;
+  .chapa {
+    display: grid;
+    gap: 15px;
+    margin: 0;
     padding: 0;
-    background: var(--onix-alto);
+    background: none;
     border: 0;
     color: inherit;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
     cursor: pointer;
-    overflow: hidden;
-    transition: flex-grow 1.1s var(--curva);
+    transition: transform 0.95s var(--curva), opacity 0.7s var(--curva);
   }
 
-  .leque-item[hidden] { display: none !important; }
-  .leque-item.aberto { flex-grow: 4.4; }
+  .chapa[hidden] { display: none !important; }
 
-  .leque-item img {
+  /* Os quatro lugares da composicao, em roda.
+
+     Largura e altura mudam a cada lugar, e o peso troca de lado a cada linha:
+     na primeira a chapa grande esta a esquerda, na segunda esta a direita. E
+     isso que impede a secao de virar uma grade.
+
+     O VAO entre as duas chapas de uma linha tambem muda: largo na primeira,
+     estreito na segunda. Como a queda e o vao inclinado em 26 graus, o
+     angulo e sempre o mesmo e a queda, nao. */
+  .chapa[data-lugar="0"] { grid-column: 1 / span 6; --alto: clamp(300px, 42vh, 470px); }
+  .chapa[data-lugar="1"] { grid-column: 9 / span 4; --alto: clamp(330px, 48vh, 540px); }
+  .chapa[data-lugar="2"] { grid-column: 1 / span 4; --alto: clamp(300px, 42vh, 460px); }
+  .chapa[data-lugar="3"] { grid-column: 6 / span 7; --alto: clamp(270px, 37vh, 420px); }
+
+  .chapa-foto {
+    position: relative;
+    display: block;
+    height: var(--alto, clamp(300px, 42vh, 470px));
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+
+  .chapa-foto img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(0.5) contrast(1.05) brightness(0.55) saturate(0.6);
-    transition: filter 1.2s var(--curva), transform 1.6s var(--curva);
+    filter: grayscale(0.34) contrast(1.04) brightness(0.74) saturate(0.78);
+    transform: scale(1.01);
+    transition: filter 1.1s var(--curva), transform 1.5s var(--curva);
   }
 
-  .leque-item.aberto img {
-    filter: grayscale(0.06) contrast(1.02) brightness(0.92) saturate(0.96);
-    transform: scale(1.03);
+  .chapa:hover .chapa-foto img,
+  .chapa:focus-visible .chapa-foto img {
+    filter: grayscale(0.04) contrast(1.02) brightness(0.98) saturate(0.98);
+    transform: scale(1.05);
   }
 
-  /* veu curto no pe, so para o texto ler sobre qualquer foto */
-  .leque-item::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(11, 11, 12, 0.85) 0%, rgba(11, 11, 12, 0.1) 46%, transparent 100%);
-    pointer-events: none;
-  }
-
-  /* fio champagne na borda de quem esta aberta */
-  .leque-item::before {
-    content: '';
-    position: absolute;
-    z-index: 3;
-    left: 0; top: 0; bottom: 0;
-    width: 1px;
-    background: var(--champagne);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 1s var(--curva);
-  }
-
-  .leque-item.aberto::before { transform: scaleY(1); }
-
-  .leque-num {
+  /* o numeral e a unica coisa que o tipo empresta para a imagem */
+  .chapa-num {
     position: absolute;
     z-index: 2;
-    top: 18px; left: 0; right: 0;
-    text-align: center;
+    top: 14px;
+    left: 14px;
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
-    letter-spacing: 0.18em;
-    color: rgba(245, 242, 236, 0.5);
+    letter-spacing: 0.2em;
+    color: rgba(245, 242, 236, 0.62);
     font-variant-numeric: tabular-nums;
-    transition: color 0.8s var(--curva), opacity 0.6s var(--curva);
+    transition: color 0.7s var(--curva);
   }
 
-  .leque-item.aberto .leque-num { color: var(--champagne); }
+  .chapa:hover .chapa-num,
+  .chapa:focus-visible .chapa-num { color: var(--champagne); }
 
-  /* de canto, a cidade escrita de baixo para cima */
-  .leque-vertical {
-    position: absolute;
-    z-index: 2;
-    left: 0; right: 0; bottom: 22px;
-    display: flex;
-    justify-content: center;
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.82);
-    white-space: nowrap;
-    transition: opacity 0.5s var(--curva);
-  }
-
-  .leque-vertical span { writing-mode: vertical-rl; transform: rotate(180deg); }
-
-  .leque-item.aberto .leque-vertical { opacity: 0; }
-
-  /* aberta, a ficha deitada no pe */
-  .leque-ficha {
-    position: absolute;
-    z-index: 2;
-    left: 0; right: 0; bottom: 0;
+  .chapa-ficha {
+    position: relative;
     display: grid;
-    gap: 9px;
-    padding: 0 clamp(18px, 2vw, 30px) clamp(20px, 2.4vw, 30px);
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.8s var(--curva) 0.25s, transform 0.9s var(--curva) 0.25s;
-    text-align: left;
-    pointer-events: none;
+    gap: 7px;
+    padding-top: 15px;
+    border-top: 1px solid var(--linha-clara);
   }
 
-  .leque-item.aberto .leque-ficha { opacity: 1; transform: none; }
+  /* apontada, o filete champagne se desenha por cima da borda, da esquerda
+     para a direita */
+  .chapa-ficha::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.9s var(--curva);
+  }
 
-  .leque-nome {
+  .chapa:hover .chapa-ficha::before,
+  .chapa:focus-visible .chapa-ficha::before { transform: scaleX(1); }
+
+  .chapa-linha {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .chapa-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(24px, 2.4vw, 34px);
-    line-height: 1.05;
-    color: var(--marfim);
-    white-space: nowrap;
+    font-size: clamp(22px, 2.3vw, 33px);
+    line-height: 1.04;
+    color: rgba(245, 242, 236, 0.86);
+    transition: color 0.6s var(--curva);
   }
 
-  .leque-lugar {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--champagne);
-    white-space: nowrap;
-  }
+  .chapa:hover .chapa-nome,
+  .chapa:focus-visible .chapa-nome { color: var(--marfim); }
 
-  .leque-dados {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 20px;
-    padding-top: 11px;
-    border-top: 1px solid rgba(245, 242, 236, 0.18);
-    font-size: 12.5px;
-    color: rgba(245, 242, 236, 0.66);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .leque-entrar {
-    margin-top: 4px;
+  .chapa-entrar {
+    flex: none;
     font-family: var(--sans);
     font-weight: 500;
     font-size: 10px;
@@ -911,19 +902,45 @@
     text-transform: uppercase;
     color: var(--champagne);
     white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.6s var(--curva), transform 0.6s var(--curva);
   }
 
-  .leque-vazio {
+  .chapa:hover .chapa-entrar,
+  .chapa:focus-visible .chapa-entrar { opacity: 1; transform: none; }
+
+  .chapa-lugar {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+  }
+
+  .chapa-dados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 18px;
+    margin-top: 4px;
+    font-size: 12.5px;
+    color: rgba(245, 242, 236, 0.55);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chapa-vazio {
+    grid-column: 1 / -1;
     display: grid;
     place-content: center;
-    width: 100%;
+    min-height: clamp(220px, 34vh, 340px);
     border: 1px solid var(--linha-clara);
     color: var(--texto-fraco);
     text-align: center;
     padding: 0 clamp(20px, 4vw, 60px);
   }
 
-  .leque-vazio[hidden] { display: none !important; }
+  .chapa-vazio[hidden] { display: none !important; }
 
   .curadoria-conta {
     margin-top: 22px;
@@ -1301,28 +1318,20 @@
     .menu.aberto { clip-path: inset(0 0 0 0); }
     .menu a { font-size: 30px; font-family: var(--serif); font-weight: 300; text-transform: none; letter-spacing: 0; opacity: 1; }
     .menu a::after { bottom: -4px; }
-    /* a chapa sobe para cima da lista: e ela que a pessoa ve primeiro */
     /* no celular o painel ocupa a tela inteira e rola */
     .filtro-rotulo { display: none; }
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
     .filtro-cidades { grid-template-columns: 1fr; }
-    /* a banda passa a correr de lado, com encaixe: uma lamina por vez, aberta */
-    .leque {
-      height: clamp(380px, 62vh, 540px);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .leque::-webkit-scrollbar { display: none; }
-    .leque-item { flex: 0 0 78%; scroll-snap-align: center; }
-    .leque-item.aberto { flex-grow: 0; }
-    .leque-item img { filter: grayscale(0.08) contrast(1.02) brightness(0.9) saturate(0.95); }
-    .leque-vertical { display: none; }
-    .leque-ficha { opacity: 1; transform: none; }
-    .leque-item::before { transform: scaleY(1); }
-    .leque-vazio { flex: 0 0 100%; }
+    /* sem largura nao ha composicao: as chapas viram uma coluna so, cada uma
+       guardando a sua proporcao. A queda em diagonal e desligada pelo script,
+       porque aqui nao existe vizinha ao lado para medir o vao. */
+    .composicao { grid-template-columns: 1fr; row-gap: clamp(38px, 6vh, 64px); }
+    .chapa[data-lugar] { grid-column: 1 / -1; }
+    .chapa-foto img { filter: grayscale(0.08) contrast(1.02) brightness(0.92) saturate(0.95); }
+    /* sem ponteiro nao ha como apontar: o que era revelado ja vem visivel */
+    .chapa-entrar { opacity: 1; transform: none; }
+    .chapa-ficha::before { transform: scaleX(1); }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -1527,108 +1536,135 @@
   <!-- ATENCAO: OITO IMOVEIS DE TESTE, so para o filtro de pais e cidade ter o
        que filtrar. Nome, area e suites sao inventados de proposito e a
        fotografia e do Unsplash, que o manual proibe em material de imovel.
-       Quando o portfolio real for cadastrado, troque lamina por lamina: o
-       filtro le `data-pais` e `data-cidade` daqui. Entrar ou sair residencia
-       nao muda a altura da secao: as laminas so ficam mais estreitas ou mais
-       largas. -->
-  <div class="leque sobe" id="leque">
-    <button type="button" class="leque-item aberto" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
-      <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">01</span>
-      <span class="leque-vertical"><span>São Paulo</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Casa Pátio</span>
-        <span class="leque-lugar">Jardins &middot; São Paulo</span>
-        <span class="leque-dados"><span>520 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
-      </span>
-    </button>
+       Quando o portfolio real for cadastrado, troque chapa por chapa: o filtro
+       le `data-pais` e `data-cidade` daqui, e o `href` leva a ficha.
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
-      <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">02</span>
-      <span class="leque-vertical"><span>Rio de Janeiro</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Cobertura Horizonte</span>
-        <span class="leque-lugar">Leblon &middot; Rio de Janeiro</span>
-        <span class="leque-dados"><span>410 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+       O lugar de cada chapa na composicao NAO esta escrito aqui: quem
+       distribui e o script, para o filtro poder tirar uma do meio sem abrir
+       buraco na pagina. Acrescentar ou tirar residencia nao pede nada alem de
+       copiar um destes blocos. -->
+  <div class="composicao sobe" id="composicao">
+    <a class="chapa" href="imovel.html?c=sao-paulo&amp;i=0" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">01</span>
       </span>
-    </button>
-
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
-      <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">03</span>
-      <span class="leque-vertical"><span>Florianópolis</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Casa Costa Norte</span>
-        <span class="leque-lugar">Jurerê &middot; Florianópolis</span>
-        <span class="leque-dados"><span>680 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Casa Pátio</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Jardins &middot; São Paulo</span>
+        <span class="chapa-dados"><span>520 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
       </span>
-    </button>
+    </a>
 
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
-      <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">04</span>
-      <span class="leque-vertical"><span>Orlando</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Residência Lakeside</span>
-        <span class="leque-lugar">Winter Park &middot; Orlando</span>
-        <span class="leque-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+    <a class="chapa" href="imovel.html?c=rio-de-janeiro&amp;i=0" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">02</span>
       </span>
-    </button>
-
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
-      <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">05</span>
-      <span class="leque-vertical"><span>Miami</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Villa Bayfront</span>
-        <span class="leque-lugar">Coconut Grove &middot; Miami</span>
-        <span class="leque-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Cobertura Horizonte</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Leblon &middot; Rio de Janeiro</span>
+        <span class="chapa-dados"><span>410 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></span>
       </span>
-    </button>
+    </a>
 
-    <button type="button" class="leque-item" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
-      <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">06</span>
-      <span class="leque-vertical"><span>Dubai</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Residência Dunas</span>
-        <span class="leque-lugar">Palm Jumeirah &middot; Dubai</span>
-        <span class="leque-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+    <a class="chapa" href="imovel.html?c=florianopolis&amp;i=0" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">03</span>
       </span>
-    </button>
-
-    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
-      <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">07</span>
-      <span class="leque-vertical"><span>Lisboa</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Palacete Restaurado</span>
-        <span class="leque-lugar">Príncipe Real &middot; Lisboa</span>
-        <span class="leque-dados"><span>430 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Casa Costa Norte</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Jurerê &middot; Florianópolis</span>
+        <span class="chapa-dados"><span>680 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
       </span>
-    </button>
+    </a>
 
-    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
-      <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">08</span>
-      <span class="leque-vertical"><span>Cascais</span></span>
-      <span class="leque-ficha">
-        <span class="leque-nome">Casa Atlântico</span>
-        <span class="leque-lugar">Quinta da Marinha &middot; Cascais</span>
-        <span class="leque-dados"><span>610 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
-        <span class="leque-entrar">Ver o imóvel</span>
+    <a class="chapa" href="imovel.html?c=orlando&amp;i=0" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">04</span>
       </span>
-    </button>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Residência Lakeside</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Winter Park &middot; Orlando</span>
+        <span class="chapa-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+      </span>
+    </a>
 
-    <p class="leque-vazio" id="lequeVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
+    <a class="chapa" href="imovel.html?c=miami&amp;i=0" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">05</span>
+      </span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Villa Bayfront</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Coconut Grove &middot; Miami</span>
+        <span class="chapa-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+      </span>
+    </a>
+
+    <a class="chapa" href="imovel.html?c=dubai&amp;i=0" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">06</span>
+      </span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Residência Dunas</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Palm Jumeirah &middot; Dubai</span>
+        <span class="chapa-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></span>
+      </span>
+    </a>
+
+    <a class="chapa" href="imovel.html?c=lisboa&amp;i=0" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">07</span>
+      </span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Palacete Restaurado</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Príncipe Real &middot; Lisboa</span>
+        <span class="chapa-dados"><span>430 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+      </span>
+    </a>
+
+    <a class="chapa" href="imovel.html?c=cascais&amp;i=0" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
+      <span class="chapa-foto">
+        <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+        <span class="chapa-num">08</span>
+      </span>
+      <span class="chapa-ficha">
+        <span class="chapa-linha">
+          <span class="chapa-nome">Casa Atlântico</span>
+          <span class="chapa-entrar">Ver o imóvel</span>
+        </span>
+        <span class="chapa-lugar">Quinta da Marinha &middot; Cascais</span>
+        <span class="chapa-dados"><span>610 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+      </span>
+    </a>
+
+    <p class="chapa-vazio" id="composicaoVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
   </div>
 
   <p class="curadoria-conta" id="curadoriaConta"></p>
@@ -1941,7 +1977,7 @@
      faz o risco se desenhar em vez de simplesmente aparecer. */
   var LINHAS = [
     {
-      alvo: '#curadoria .leque',
+      alvo: '#curadoria .composicao',
       curva: 'M-30,22 C 240,200 690,186 1030,40',
       altura: 'clamp(96px, 15vw, 200px)',
       sobe: 'clamp(16px, 2.4vw, 38px)'
@@ -2056,11 +2092,11 @@
   var abrirFiltro = document.getElementById('filtroAbrir');
   var painelFiltro = document.getElementById('filtroPainel');
   var valorFiltro = document.getElementById('filtroValor');
-  var leque = document.getElementById('leque');
+  var composicao = document.getElementById('composicao');
 
-  if (abrirFiltro && painelFiltro && leque) {
-    var linhasDossie = leque.querySelectorAll('.leque-item');
-    var vazio = document.getElementById('lequeVazio');
+  if (abrirFiltro && painelFiltro && composicao) {
+    var chapas = composicao.querySelectorAll('.chapa');
+    var vazio = document.getElementById('composicaoVazio');
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
@@ -2069,7 +2105,7 @@
 
     function quantas(pais) {
       var n = 0;
-      Array.prototype.forEach.call(linhasDossie, function (l) {
+      Array.prototype.forEach.call(chapas, function (l) {
         if (!pais || l.getAttribute('data-pais') === pais) n++;
       });
       return n;
@@ -2080,15 +2116,102 @@
       span.textContent = quantas(span.getAttribute('data-conta-pais'));
     });
 
-    function aplicar() {
+    /* A COMPOSICAO.
+
+       Os lugares sao quatro, em roda, e quem os distribui e o script: assim o
+       filtro pode tirar uma chapa do meio sem abrir buraco na pagina.
+
+       A QUEDA da chapa da direita nao e um numero escolhido a olho: e o vao
+       ate a vizinha da esquerda, inclinado em 26 graus, o angulo do triangulo
+       aberto da marca. Como o vao muda com a largura da tela, a queda e
+       medida, e nao escrita no CSS.
+
+       Ao filtrar, as chapas que ficam ANDAM ate o lugar novo: o script guarda
+       onde elas estavam, deixa o navegador refazer a pagina, empurra cada uma
+       de volta para o ponto antigo e so entao solta. */
+    var TANGENTE26 = Math.tan(26 * Math.PI / 180);
+    var naTela = [];
+
+    function listar() {
+      var lista = [];
+      Array.prototype.forEach.call(chapas, function (c) { if (!c.hidden) lista.push(c); });
+      return lista;
+    }
+
+    function ondeEstao() {
+      var mapa = {};
+      Array.prototype.forEach.call(chapas, function (c) {
+        if (c.hidden) return;
+        var r = c.getBoundingClientRect();
+        mapa[c.getAttribute('data-slug')] = { x: r.left, y: r.top };
+      });
+      return mapa;
+    }
+
+    function distribuir(lista) {
+      lista.forEach(function (c, i) { c.setAttribute('data-lugar', i % 4); });
+    }
+
+    /* o vao ate a vizinha, inclinado em 26 graus */
+    function derrubar(lista) {
+      lista.forEach(function (c) { c.style.marginTop = ''; });
+      // numa coluna so nao existe vizinha ao lado para medir
+      if ((window.innerWidth || 1200) <= 900) return;
+
+      var vaos = [];
+      for (var i = 0; i + 1 < lista.length; i += 2) {
+        vaos.push(lista[i + 1].getBoundingClientRect().left - lista[i].getBoundingClientRect().right);
+      }
+      for (var j = 0; j + 1 < lista.length; j += 2) {
+        var vao = vaos[j / 2];
+        lista[j + 1].style.marginTop = (vao > 0 ? vao * TANGENTE26 : 0).toFixed(1) + 'px';
+      }
+    }
+
+    function recompor(antes, lista) {
+      var depois = ondeEstao();
+
+      lista.forEach(function (c) {
+        var slug = c.getAttribute('data-slug');
+        var a = antes[slug];
+        var d = depois[slug];
+        c.style.transition = 'none';
+        if (!a || !d) {
+          // chegou agora: nasce apagada e acende no lugar
+          c.style.opacity = '0';
+          return;
+        }
+        var dx = a.x - d.x;
+        var dy = a.y - d.y;
+        if (!dx && !dy) { c.style.transition = ''; return; }
+        c.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+      });
+
+      // obriga o navegador a aceitar o ponto de partida antes de soltar
+      void composicao.offsetWidth;
+
+      lista.forEach(function (c) {
+        c.style.transition = '';
+        c.style.transform = '';
+        c.style.opacity = '';
+      });
+    }
+
+    function aplicar(comMovimento) {
+      var antes = comMovimento && !calmo ? ondeEstao() : null;
       var visiveis = 0;
-      Array.prototype.forEach.call(linhasDossie, function (linha) {
-        var casaPais = !paisAtual || linha.getAttribute('data-pais') === paisAtual;
-        var casaCidade = !cidadeAtual || linha.getAttribute('data-cidade') === cidadeAtual;
+
+      Array.prototype.forEach.call(chapas, function (chapa) {
+        var casaPais = !paisAtual || chapa.getAttribute('data-pais') === paisAtual;
+        var casaCidade = !cidadeAtual || chapa.getAttribute('data-cidade') === cidadeAtual;
         var mostra = casaPais && casaCidade;
-        linha.hidden = !mostra;
+        chapa.hidden = !mostra;
         if (mostra) visiveis++;
       });
+
+      naTela = listar();
+      distribuir(naTela);
+      derrubar(naTela);
 
       if (vazio) vazio.hidden = visiveis > 0;
 
@@ -2101,50 +2224,19 @@
 
       valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
 
-      // depois de filtrar, abre a primeira que sobrou
-      var primeira = null;
-      Array.prototype.forEach.call(linhasDossie, function (item) {
-        if (!item.hidden && !primeira) primeira = item;
-      });
-      if (primeira) abrirLamina(primeira);
+      if (antes) recompor(antes, naTela);
     }
 
-    /* A banda.
-
-       Uma lamina por residencia. A apontada se abre e empurra as vizinhas; as
-       outras continuam na banda, de canto, com a cidade escrita na vertical.
-       Toda a curadoria cabe numa tela e acrescentar residencia nao faz a secao
-       crescer: as laminas so ficam mais estreitas. */
-    function abrirLamina(alvo) {
-      Array.prototype.forEach.call(linhasDossie, function (item) {
-        item.classList.toggle('aberto', item === alvo);
+    /* a queda depende da largura: refazer quando a janela muda de tamanho */
+    var pedidoQueda = false;
+    window.addEventListener('resize', function () {
+      if (pedidoQueda) return;
+      pedidoQueda = true;
+      window.requestAnimationFrame(function () {
+        derrubar(naTela.length ? naTela : listar());
+        pedidoQueda = false;
       });
-    }
-
-    var apontando = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    /* Clicar numa lamina leva para a ficha do imovel. No toque, onde nao ha
-       ponteiro, o primeiro toque abre a lamina e o segundo entra: sem isso a
-       pessoa sairia da pagina sem nunca ter visto a foto grande. */
-    leque.addEventListener('click', function (ev) {
-      var item = ev.target.closest('.leque-item');
-      if (!item) return;
-
-      if (!apontando && !item.classList.contains('aberto')) {
-        abrirLamina(item);
-        return;
-      }
-
-      var slug = item.getAttribute('data-slug');
-      if (slug) window.location.href = 'imovel.html?c=' + encodeURIComponent(slug) + '&i=0';
-    });
-
-    if (apontando) {
-      Array.prototype.forEach.call(linhasDossie, function (item) {
-        item.addEventListener('mouseenter', function () { abrirLamina(item); });
-        item.addEventListener('focus', function () { abrirLamina(item); });
-      });
-    }
+    }, { passive: true });
 
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {
@@ -2175,7 +2267,7 @@
           b.classList.toggle('ativo', b === bPais);
         });
         mostrarCidades();
-        aplicar();
+        aplicar(true);
         return;
       }
 
@@ -2201,7 +2293,7 @@
         Array.prototype.forEach.call(botoesCidade, function (b) {
           b.classList.toggle('ativo', b === bCidade);
         });
-        aplicar();
+        aplicar(true);
         fecharFiltro();
         var alvo = document.getElementById('curadoria');
         if (alvo) alvo.scrollIntoView({ behavior: calmo ? 'auto' : 'smooth', block: 'start' });
@@ -2219,7 +2311,7 @@
     });
 
     mostrarCidades();
-    aplicar();
+    aplicar(false);
   }
 
   /* 8. Servicos: trocar de oficio varre a fotografia do palco.

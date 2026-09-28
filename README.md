@@ -137,9 +137,12 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 - **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
   continua so filtrando a home.
-- **Lamina da curadoria**, tanto na home quanto na pagina da cidade, abre a
-  ficha do imovel. No toque, o primeiro toque abre a lamina e o segundo entra,
-  senao a pessoa sairia da pagina sem nunca ter visto a foto grande.
+- **Chapa da curadoria**, na home, abre a ficha do imovel. Ela e um link de
+  verdade (`<a href>`), e nao um botao com script: abre em nova aba, funciona
+  com teclado e nao depende de nada carregar.
+- **Lamina da banda**, na pagina da cidade, abre a ficha do imovel. No toque, o
+  primeiro toque abre a lamina e o segundo entra, senao a pessoa sairia da
+  pagina sem nunca ter visto a foto grande.
 - **Voltar**, no topo da ficha, leva para a cidade daquele imovel, com o nome
   dela escrito no link.
 
@@ -262,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
+| 02 | Curadoria | Uma pagina composta: chapas de tamanhos diferentes, descendo da esquerda para a direita. Filtravel por pais e cidade, e filtrar RECOMPOE a pagina |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -292,13 +295,16 @@ quantidade de residencias de cada um, e as cidades a direita.
 
 **A fonte da verdade sao as proprias residencias.** Cada uma carrega
 `data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
-delas quando a pagina abre. Depois de filtrar, a primeira lamina que sobrou se
-abre sozinha. Para trocar o portfolio basta editar os blocos `leque-item`,
-mantendo esses dois atributos. So e preciso mexer no painel se entrar um pais
-ou uma cidade que ainda nao esteja listado la.
+delas quando a pagina abre. Para trocar o portfolio basta editar os blocos
+`chapa`, mantendo esses dois atributos e o `href`. So e preciso mexer no painel
+se entrar um pais ou uma cidade que ainda nao esteja listado la.
 
-No celular a banda corre de lado, com encaixe: uma residencia por vez, ja
-aberta, arrastando para o lado.
+**Filtrar RECOMPOE a pagina.** As chapas que sobram nao ficam onde estavam com
+buracos no meio: elas recebem outros lugares na composicao e ANDAM ate eles. O
+script guarda onde cada uma estava, deixa o navegador refazer a pagina, empurra
+cada uma de volta para o ponto antigo e so entao solta. As que chegam agora
+nascem apagadas e acendem no lugar. Com movimento reduzido no sistema, elas
+simplesmente aparecem ja no lugar novo.
 
 ### Imoveis de teste
 
@@ -341,19 +347,38 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **A banda da curadoria.** Cada residencia e uma lamina estreita, em pe, com a
-  cidade escrita na vertical. Apontar uma lamina a abre: ela empurra as
-  vizinhas, a foto recupera a cor, o filete champagne acende na borda e a ficha
-  sobe no pe. As outras continuam ali, de canto. A secao inteira ocupa pouco
-  mais de meia tela, e entrar ou sair residencia **nao** muda essa altura: as
-  laminas so ficam mais estreitas ou mais largas.
+- **A composicao da curadoria.** Nao e uma fileira de laminas iguais: e uma
+  pagina composta. Oito chapas de tamanhos diferentes, duas por linha, a da
+  direita sempre mais baixa que a da esquerda, e o peso trocando de lado a cada
+  linha: na primeira a grande esta a esquerda, na segunda a direita.
+
+  **O tipo mora fora da fotografia**, embaixo dela. Era isso que obrigava a
+  versao antiga a ter acordeao: a ficha estava espremida dentro de uma lamina
+  estreita e so cabia se a lamina crescesse. Sem a ficha dentro, a foto volta a
+  ser so foto, e o unico tipo sobre ela e o numeral.
+
+  **A queda nao e um numero escolhido a olho.** E o vao ate a vizinha da
+  esquerda, inclinado em 26 graus, o angulo do triangulo aberto da marca. Como
+  o vao muda com a largura da tela, quem mede e aplica e o script, e ele refaz
+  a conta quando a janela muda de tamanho. O angulo e sempre o mesmo; a queda,
+  nao, porque os vaos das duas linhas sao diferentes de proposito: numa tela de
+  1440px dao 138px e 78px.
+
+  Apontar uma chapa acende a foto em cor cheia, leva o numeral para champagne,
+  desenha o filete champagne sobre a borda do tipo e traz o "Ver o imovel". No
+  celular nao ha ponteiro: tudo isso ja vem visivel, e as chapas viram uma
+  coluna so, sem queda.
+
+  A secao passou a ocupar cerca de 2,8 telas com oito residencias. A versao
+  antiga cabia em meia tela, e era justamente isso que a fazia parecer um
+  componente pronto em vez de um portfolio.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.
 - **A linha caida.** UMA linha em champagne sobre a borda de cima de cada bloco
   de imagem. A curva e a de um fio preso pelas duas pontas: cede no meio e sobe
   nas beiradas. Ela se desenha de uma ponta a outra quando o bloco chega na
   tela, em pouco mais de dois segundos e meio.
 
-  Sao tres, uma sobre a banda da curadoria, uma sobre a faixa de imagem da
+  Sao tres, uma sobre a composicao da curadoria, uma sobre a faixa de imagem da
   secao A AMGlobal e uma sobre o palco dos servicos, cada uma com a sua curva.
   Todas nascem um pouco acima da foto e passam das duas bordas laterais, para
   parecerem um fio que continua para fora da tela.
