@@ -137,9 +137,9 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 - **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
   continua so filtrando a home.
-- **Residencia da fila da curadoria**, na home, abre a ficha do imovel. Cada
-  uma e um link de verdade (`<a href>`): abre em nova aba, funciona com teclado
-  e nao depende de nada carregar.
+- **"Ver o imovel"**, no pe da dobra da curadoria, abre a ficha da residencia
+  que esta no ar. E um link de verdade (`<a href>`): abre em nova aba, funciona
+  com teclado e nao depende de nada carregar.
 - **Lamina da banda**, na pagina da cidade, abre a ficha do imovel. No toque, o
   primeiro toque abre a lamina e o segundo entra, senao a pessoa sairia da
   pagina sem nunca ter visto a foto grande.
@@ -265,7 +265,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | Numero | Secao | O que faz |
 |---|---|---|
 | 01 | Abertura | Tela cheia em onix, tagline em duas linhas, um unico chamado |
-| 02 | Curadoria | Um travelling: a fila de residencias atravessa a tela de lado enquanto a pagina desce. Filtravel por pais e cidade |
+| 02 | Curadoria | Uma dobra: uma residencia por vez, cortada na diagonal de 26 graus da marca, e trocar faz a diagonal varrer a tela. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um palco: fotografia de borda a borda com os quatro oficios escritos por cima |
 | 05 | Global | Orlando, Dubai e Portugal, com a hora local de cada praca |
@@ -293,24 +293,18 @@ quantidade de residencias de cada um, e as cidades a direita.
 - Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
 - Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
 
-**A fonte da verdade sao as proprias residencias.** Cada uma carrega `data-pais`
-e `data-cidade`; ate as contagens do painel sao somadas a partir delas quando a
-pagina abre. Para trocar o portfolio basta editar os blocos `residencia`,
-mantendo esses dois atributos e o `href`. So e preciso mexer no painel se
-entrar um pais ou uma cidade que ainda nao esteja listado la.
+**A fonte da verdade sao as proprias residencias.** Cada NUMERO carrega
+`data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
+deles quando a pagina abre. Para trocar o portfolio, cada residencia pede
+QUATRO pedacos com o mesmo indice: a fotografia (`data-foto`), o numero
+(`data-marca`), o nome (`data-nome`) e o pe (`data-pe`), com o `href` da ficha
+no pe. So e preciso mexer no painel se entrar um pais ou uma cidade que ainda
+nao esteja listado la.
 
-**Filtrar encurta a fila e encurta o tunel junto.** Quem sobra reassume a roda
-de larguras e formatos desde o inicio, entao a fila nao fica com dois cartoes
-iguais colados nem com um buraco no ritmo.
-
-### Pagina temporaria de escolha
-
-`curadoria-opcoes.html` mostra tres curadorias funcionando lado a lado: **A, o
-corredor** (a que esta na home), **B, a dobra** (uma por vez, cortada na
-diagonal de 26 graus da marca) e **C, a linha do mundo** (as oito pracas numa
-linha de oeste para leste). Ela existe so para a cliente comparar e escolher.
-
-**Essa pagina sai antes do merge**, junto com este trecho do README.
+**Filtrar encurta a lista de numeros**, e a contagem da dobra passa a contar o
+recorte: com o Brasil escolhido ela le "02 / 03". Se a residencia que estava no
+ar sair do recorte, entra a primeira que sobrou. Sem nenhum resultado, a secao
+nao mostra fotografia nenhuma — senao a imagem diria uma coisa e o texto outra.
 
 ### Imoveis de teste
 
@@ -353,39 +347,43 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   marcando o tempo. Clicar leva direto aquela praca.
 - **Barra de progresso.** Um filete champagne de 1px no topo mostra quanto
   falta da pagina.
-- **A curadoria anda.** Ela nao fica parada esperando ser apontada: enquanto a
-  pagina desce, a fila de residencias atravessa a tela de lado, como um
-  travelling de cinema. A rolagem vertical vira movimento horizontal.
+- **A curadoria e uma DOBRA.** Uma residencia por vez, grande, cortada na
+  diagonal de 26 graus da marca: fotografia de um lado, tipo do outro. Trocar
+  de residencia faz a diagonal VARRER a tela, do canto direito ate o lugar
+  dela.
 
-  Quatro tentativas anteriores foram recusadas, e vale registrar porque as
-  quatro erraram de jeitos diferentes: oito laminas iguais que se abrem ao
-  serem apontadas (basico), oito chapas de tamanhos diferentes com ar entre
-  elas (solto), oito fotos encostadas com texto sobre cada uma (poluido), uma
-  fotografia com o indice ao lado (basico de novo). Nenhuma delas se MEXIA, e
-  e o movimento que a cliente aprovou nas outras secoes.
+  Cinco tentativas anteriores foram recusadas, e vale registrar porque cada uma
+  errou de um jeito: oito laminas iguais que se abrem ao serem apontadas
+  (basico), oito chapas de tamanhos diferentes com ar entre elas (solto), oito
+  fotos encostadas com texto sobre cada uma (poluido), uma fotografia com o
+  indice ao lado (basico de novo), e uma fila que atravessava a tela de lado
+  com a rolagem (tambem recusada). A escolha foi feita comparando tres
+  direcoes montadas de verdade, lado a lado, numa pagina de teste.
 
-  **Largura, formato e altura de apoio mudam a cada residencia**, em roda de
-  quatro. E isso que impede a fila de virar uma regua de cartoes iguais. Quem
-  veste cada uma e o script, contando so as visiveis: filtrando, quem sobra
-  reassume a roda desde o inicio, e a fila nao fica com dois cartoes iguais
-  colados nem com um buraco no ritmo.
+  **O CORTE E CALCULADO, e nao escolhido a olho.** Para a inclinacao ser 26
+  graus de verdade, o quanto a diagonal anda na horizontal depende da ALTURA e
+  da LARGURA da caixa: uma caixa baixa e larga precisa de um corte curto, uma
+  alta e estreita de um corte longo. O script mede e escreve em `--x1` e
+  `--x2`, e refaz a conta quando a janela muda de tamanho. Conferido em tres
+  tamanhos de caixa: 26,0 graus nos tres.
 
-  **O tunel tem a altura do passeio**, e nao um numero escolhido a olho: uma
-  tela, mais exatamente o tanto que a fila sobra para fora dela. Rolar 100px
-  anda 100px de fila. Filtrando para uma residencia so, a fila cabe na tela e
-  o tunel encolhe para uma tela, em vez de pedir tres telas de rolagem sem
-  nada acontecer. A medida e refeita quando a janela muda de tamanho e quando
-  as fotografias terminam de carregar, porque as duas coisas mudam a largura
-  da fila.
+  **Sobre a fotografia nao ha texto.** O tipo mora do outro lado da dobra, no
+  onix, onde le sem precisar de veu nenhum.
 
-  **Uma armadilha que custou caro em outro lugar do projeto e vale repetir:**
-  `overflow-x: hidden` no `body` MATA o `position: sticky`. O miolo do tunel
-  fica preso enquanto ele passa, entao o body usa `overflow-x: clip`, que
-  esconde do mesmo jeito sem criar uma caixa de rolagem.
+  **Quem manda e o NUMERO.** A fotografia, o nome e o pe apenas o acompanham,
+  pelo mesmo indice (`data-marca`, `data-foto`, `data-nome`, `data-pe`), e o
+  filtro esconde SO o numero — as outras tres camadas nao precisam saber que o
+  filtro existe. Quem controla a visibilidade e a OPACIDADE, e nao o recorte:
+  se a animacao nao rodar, a fotografia troca do mesmo jeito. Foi o que
+  resolveu o mesmo problema no palco dos servicos.
 
-  Apontar uma residencia acende a foto em cor cheia e desenha um filete
-  champagne sobre a borda do tipo. No celular nao ha tunel: a fila corre de
-  lado com o dedo, com encaixe, uma residencia por vez.
+  Andar com as setas do teclado respeita o filtro: da ultima visivel volta para
+  a primeira visivel, e nunca para uma que o filtro tirou da tela. As setas so
+  respondem com a dobra na tela, para nao roubar a navegacao de quem esta lendo
+  outra secao.
+
+  No celular nao ha largura para a diagonal: a dobra vira uma foto inteira com
+  o tipo sobre um veu no pe.
 
   A secao nao tem mais a linha caida sobre a imagem.
 - **Revelacao ao rolar.** Os blocos sobem ao entrar na tela, escalonados.

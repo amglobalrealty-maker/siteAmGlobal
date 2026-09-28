@@ -96,8 +96,9 @@
     line-height: 1.62;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* `clip` e nao `hidden`: com `hidden` o `position: sticky` do tunel da
-       curadoria para de funcionar e a fila de residencias nao anda */
+    /* ⚠️ `clip` e nao `hidden`: `hidden` no body cria uma caixa de rolagem e
+       MATA qualquer `position: sticky` da pagina. Hoje nenhuma secao usa
+       sticky, mas a troca nao custa nada e a armadilha ja custou uma tarde. */
     overflow-x: clip;
   }
 
@@ -750,169 +751,189 @@
   .filtro-cidade[hidden] { display: none !important; }
 
   /* ============================================================ curadoria ==
-     A CURADORIA ANDA.
+     A DOBRA.
 
-     Ela nao fica parada esperando ser apontada: enquanto a pagina desce, a
-     fila de residencias atravessa a tela de lado, como um travelling de
-     cinema. A rolagem vertical vira movimento horizontal.
+     Uma residencia por vez, grande, cortada na diagonal de 26 graus da marca:
+     fotografia de um lado, tipo do outro. Trocar de residencia faz a diagonal
+     VARRER a tela, do canto direito ate o lugar dela.
 
-     Largura, formato e altura de apoio mudam a cada residencia, em roda de
-     quatro. E isso que impede a fila de virar uma regua de cartoes iguais, e
-     e por isso que quem veste as residencias e o script: filtrando, quem
-     sobra reassume a roda desde o inicio, sem buraco no meio.
+     O CORTE E CALCULADO, e nao escolhido a olho. Para a inclinacao ser 26 graus
+     de verdade, o quanto a diagonal anda na horizontal depende da ALTURA e da
+     LARGURA da caixa: uma caixa baixa e larga precisa de um corte curto, uma
+     alta e estreita de um corte longo. Quem mede e o script (`--x1` e `--x2`),
+     e refaz a conta quando a janela muda de tamanho.
 
-     O tunel e alto e o miolo fica PRESO nele enquanto passa. Por causa disso
-     o `overflow-x` do body e `clip` e nao `hidden`: com `hidden` o preso para
-     de funcionar e a fila nao anda.
+     Sobre a fotografia nao ha texto: o tipo mora do outro lado da dobra, no
+     onix, onde le sem veu nenhum.
      ------------------------------------------------------------------------ */
-  .tunel {
+  .dobra {
     position: relative;
-    height: 250vh;
+    height: clamp(520px, 84vh, 800px);
     margin: 0 calc(-1 * var(--margem));
-  }
-
-  .tunel-preso {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
     overflow: hidden;
+    background: var(--onix);
   }
 
-  .trilho {
-    display: flex;
-    align-items: center;
-    gap: clamp(24px, 3.2vw, 60px);
-    padding: 0 var(--margem);
-    will-change: transform;
-  }
-
-  .residencia {
-    flex: none;
-    width: var(--larg, clamp(240px, 27vw, 430px));
-    margin-top: var(--apoio, 0px);
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .residencia[hidden] { display: none !important; }
-
-  .residencia-quadro {
-    position: relative;
-    display: block;
-    aspect-ratio: var(--forma, 4 / 5);
-    overflow: hidden;
-    background: var(--onix-alto);
-  }
-
-  .residencia-quadro img {
+  /* Quem manda na visibilidade e a OPACIDADE, e nao o recorte: se a animacao
+     nao rodar, a fotografia troca do mesmo jeito. Foi o que resolveu o mesmo
+     problema no palco dos servicos. */
+  .dobra-foto {
     position: absolute;
     inset: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    clip-path: polygon(var(--x1, 48%) 0, 100% 0, 100% 100%, var(--x2, 22%) 100%);
+    transition: opacity 0.9s var(--curva), visibility 0s linear 0.9s;
+  }
+
+  .dobra-foto.ativa {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.9s var(--curva), visibility 0s;
+    animation: varrer 1.1s var(--curva) both;
+  }
+
+  @keyframes varrer {
+    from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+    to   { clip-path: polygon(var(--x1, 48%) 0, 100% 0, 100% 100%, var(--x2, 22%) 100%); }
+  }
+
+  .dobra-foto img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(0.24) contrast(1.04) brightness(0.84) saturate(0.86);
-    transition: filter 1s var(--curva), transform 1.4s var(--curva);
+    filter: grayscale(0.1) contrast(1.03) brightness(0.9) saturate(0.95);
   }
 
-  .residencia:hover .residencia-quadro img,
-  .residencia:focus-visible .residencia-quadro img {
-    filter: grayscale(0.02) contrast(1.02) brightness(1) saturate(1);
-    transform: scale(1.04);
-  }
-
-  /* o numeral e a unica coisa que o tipo empresta para a imagem */
-  .residencia-num {
+  .dobra-corpo {
     position: absolute;
-    z-index: 2;
-    top: 12px;
-    left: 13px;
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
-    color: rgba(245, 242, 236, 0.66);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .residencia-pe {
-    position: relative;
-    display: grid;
-    gap: 4px;
-    padding-top: 15px;
-    border-top: 1px solid var(--linha-clara);
-    margin-top: 15px;
-  }
-
-  /* apontada, o filete champagne se desenha sobre a borda */
-  .residencia-pe::before {
-    content: '';
-    position: absolute;
-    top: -1px;
+    z-index: 3;
     left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--champagne);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.8s var(--curva);
+    bottom: 0;
+    width: min(46%, 560px);
+    padding: 0 0 clamp(30px, 6vh, 64px) var(--margem);
   }
 
-  .residencia:hover .residencia-pe::before,
-  .residencia:focus-visible .residencia-pe::before { transform: scaleX(1); }
+  .dobra-conta {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--texto-fraco);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 14px;
+  }
 
-  .residencia-nome {
+  .dobra-conta b { color: var(--champagne); font-weight: 400; }
+
+  /* altura fixa: o nome mais longo nao pode empurrar o resto ao trocar */
+  .dobra-nomes { position: relative; height: clamp(74px, 9vh, 104px); margin-bottom: 10px; }
+
+  .dobra-nome {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(19px, 1.7vw, 27px);
-    line-height: 1.08;
-    color: rgba(245, 242, 236, 0.9);
-    transition: color 0.5s var(--curva);
+    font-size: clamp(30px, 4.4vw, 62px);
+    line-height: 1.02;
+    color: var(--marfim);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s var(--curva), transform 0.8s var(--curva);
   }
 
-  .residencia:hover .residencia-nome { color: var(--marfim); }
+  .dobra-nome.ativa { opacity: 1; transform: none; transition-delay: 0.22s; }
 
-  .residencia-lugar {
+  .dobra-pes { position: relative; height: 52px; }
+
+  .dobra-pe {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 20px;
+    opacity: 0;
+    transition: opacity 0.7s var(--curva);
+  }
+
+  .dobra-pe.ativa { opacity: 1; transition-delay: 0.32s; }
+
+  .dobra-lugar {
     font-family: var(--sans);
     font-weight: 400;
-    font-size: 9.5px;
+    font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--champagne);
   }
 
-  .residencia-dados {
-    font-size: 12px;
-    color: rgba(245, 242, 236, 0.5);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .trilho-vazio {
-    flex: none;
-    width: min(70vw, 460px);
+  .dobra-dados {
+    font-size: 13px;
     color: var(--texto-fraco);
+    font-variant-numeric: tabular-nums;
   }
 
-  .trilho-vazio[hidden] { display: none !important; }
+  .dobra-entrar {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--marfim);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(180, 154, 110, 0.55);
+    white-space: nowrap;
+    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
+  }
 
-  /* a regua embaixo: diz onde a fila esta */
-  .tunel-regua {
+  .dobra-entrar:hover,
+  .dobra-entrar:focus-visible { color: var(--champagne); border-color: var(--champagne); }
+
+  /* os numeros, no alto, do lado do tipo */
+  .dobra-marcas {
     position: absolute;
+    z-index: 4;
     left: var(--margem);
-    right: var(--margem);
-    bottom: clamp(24px, 5vh, 54px);
-    height: 1px;
-    background: var(--linha-clara);
+    top: clamp(26px, 5vh, 52px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
   }
 
-  .tunel-regua span {
-    display: block;
-    width: 0;
-    height: 1px;
-    background: var(--champagne);
+  .dobra-marca {
+    padding: 4px 0;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    color: rgba(245, 242, 236, 0.34);
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+    transition: color 0.5s var(--curva), border-color 0.5s var(--curva);
   }
+
+  .dobra-marca[hidden] { display: none !important; }
+  .dobra-marca:hover { color: var(--marfim); }
+  .dobra-marca.ativa { color: var(--champagne); border-bottom-color: var(--champagne); }
+
+  /* filtro sem resultado: a secao nao mostra fotografia de quem foi filtrado
+     fora, senao a imagem diria uma coisa e o texto outra */
+  .dobra-vazio {
+    display: none;
+    max-width: 46ch;
+    color: rgba(245, 242, 236, 0.72);
+  }
+
+  .dobra.vazia .dobra-vazio { display: block; }
+  .dobra.vazia .dobra-conta,
+  .dobra.vazia .dobra-nomes,
+  .dobra.vazia .dobra-pes { display: none; }
+  .dobra.vazia .dobra-foto { opacity: 0; visibility: hidden; }
 
   .curadoria-conta {
     margin-top: 22px;
@@ -1295,24 +1316,19 @@
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
     .filtro-cidades { grid-template-columns: 1fr; }
-    /* sem tunel numa tela estreita: a fila corre de lado com o dedo, com
-       encaixe, uma residencia por vez */
-    .tunel { height: auto; }
-    .tunel-preso {
-      position: static;
-      height: auto;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+    /* sem largura para a diagonal, a dobra vira uma foto inteira com o tipo
+       sobre um veu no pe: o corte em 26 graus comeria metade da tela */
+    .dobra { height: clamp(460px, 78vh, 620px); }
+    .dobra-foto, .dobra-foto.ativa { clip-path: none; animation: none; }
+    .dobra-corpo {
+      width: 100%;
+      padding-right: var(--margem);
+      padding-top: 64px;
+      background: linear-gradient(to top, rgba(11, 11, 12, 0.94) 0%, rgba(11, 11, 12, 0.72) 62%, transparent 100%);
     }
-    .tunel-preso::-webkit-scrollbar { display: none; }
-    .residencia { width: 76vw !important; margin-top: 0 !important; scroll-snap-align: center; }
-    .residencia-quadro { aspect-ratio: 4 / 5 !important; }
-    .residencia-quadro img { filter: grayscale(0.06) contrast(1.02) brightness(0.94) saturate(0.96); }
-    .residencia-pe::before { transform: scaleX(1); }
-    .tunel-regua { display: none; }
-    .trilho-vazio { width: 76vw; }
+    .dobra-nomes { height: clamp(62px, 12vh, 88px); }
+    .dobra-pes { height: 74px; }
+    .dobra-marcas { gap: 10px; }
     .pracas { grid-template-columns: 1fr; }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
@@ -1518,114 +1534,108 @@
        que filtrar. Nome, area e suites sao inventados de proposito e a
        fotografia e do Unsplash, que o manual proibe em material de imovel.
 
-       Quando o portfolio real for cadastrado, troque residencia por
-       residencia: o filtro le `data-pais` e `data-cidade`, e o `href` leva a
-       ficha. O LUGAR de cada uma na fila nao esta escrito aqui: largura,
-       formato e altura de apoio sao postos pelo script, para o filtro poder
-       tirar uma do meio sem quebrar o ritmo da fila. -->
-  <div class="tunel" id="tunel">
-    <div class="tunel-preso">
-      <div class="trilho" id="trilho">
-        <a class="residencia" href="imovel.html?c=sao-paulo&amp;i=0" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" decoding="async">
-            <span class="residencia-num">01</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Casa Pátio</span>
-            <span class="residencia-lugar">Jardins &middot; São Paulo</span>
-            <span class="residencia-dados">520 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
+       Quando o portfolio real for cadastrado, cada residencia pede QUATRO
+       pedacos com o mesmo numero: a fotografia (`data-foto`), o numero
+       (`data-marca`), o nome (`data-nome`) e o pe (`data-pe`). O filtro le
+       `data-pais` e `data-cidade` do NUMERO, que e o unico que ele esconde; o
+       `href` do pe leva a ficha. -->
+  <div class="dobra sobe" id="dobra">
+    <div class="dobra-fotos">
+      <figure class="dobra-foto ativa" data-foto="0">
+        <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="1">
+        <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="2">
+        <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="3">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="4">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="5">
+        <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="6">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="dobra-foto" data-foto="7">
+        <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1600&amp;q=70" alt="" loading="lazy" decoding="async">
+      </figure>
+    </div>
 
-        <a class="residencia" href="imovel.html?c=rio-de-janeiro&amp;i=0" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">02</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Cobertura Horizonte</span>
-            <span class="residencia-lugar">Leblon &middot; Rio de Janeiro</span>
-            <span class="residencia-dados">410 m&sup2; &middot; 3 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
+    <div class="dobra-marcas" id="dobraMarcas">
+      <button type="button" class="dobra-marca ativa" data-marca="0" data-pais="Brasil" data-cidade="São Paulo" aria-label="Casa Pátio">01</button>
+      <button type="button" class="dobra-marca" data-marca="1" data-pais="Brasil" data-cidade="Rio de Janeiro" aria-label="Cobertura Horizonte">02</button>
+      <button type="button" class="dobra-marca" data-marca="2" data-pais="Brasil" data-cidade="Florianópolis" aria-label="Casa Costa Norte">03</button>
+      <button type="button" class="dobra-marca" data-marca="3" data-pais="Estados Unidos" data-cidade="Orlando" aria-label="Residência Lakeside">04</button>
+      <button type="button" class="dobra-marca" data-marca="4" data-pais="Estados Unidos" data-cidade="Miami" aria-label="Villa Bayfront">05</button>
+      <button type="button" class="dobra-marca" data-marca="5" data-pais="Emirados" data-cidade="Dubai" aria-label="Residência Dunas">06</button>
+      <button type="button" class="dobra-marca" data-marca="6" data-pais="Portugal" data-cidade="Lisboa" aria-label="Palacete Restaurado">07</button>
+      <button type="button" class="dobra-marca" data-marca="7" data-pais="Portugal" data-cidade="Cascais" aria-label="Casa Atlântico">08</button>
+    </div>
 
-        <a class="residencia" href="imovel.html?c=florianopolis&amp;i=0" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">03</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Casa Costa Norte</span>
-            <span class="residencia-lugar">Jurerê &middot; Florianópolis</span>
-            <span class="residencia-dados">680 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
+    <div class="dobra-corpo">
+      <p class="dobra-conta" id="dobraConta"></p>
 
-        <a class="residencia" href="imovel.html?c=orlando&amp;i=0" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">04</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Residência Lakeside</span>
-            <span class="residencia-lugar">Winter Park &middot; Orlando</span>
-            <span class="residencia-dados">390 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
-
-        <a class="residencia" href="imovel.html?c=miami&amp;i=0" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">05</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Villa Bayfront</span>
-            <span class="residencia-lugar">Coconut Grove &middot; Miami</span>
-            <span class="residencia-dados">560 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
-
-        <a class="residencia" href="imovel.html?c=dubai&amp;i=0" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">06</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Residência Dunas</span>
-            <span class="residencia-lugar">Palm Jumeirah &middot; Dubai</span>
-            <span class="residencia-dados">740 m&sup2; &middot; 6 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
-
-        <a class="residencia" href="imovel.html?c=lisboa&amp;i=0" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">07</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Palacete Restaurado</span>
-            <span class="residencia-lugar">Príncipe Real &middot; Lisboa</span>
-            <span class="residencia-dados">430 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
-
-        <a class="residencia" href="imovel.html?c=cascais&amp;i=0" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
-          <span class="residencia-quadro">
-            <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="" loading="lazy" decoding="async">
-            <span class="residencia-num">08</span>
-          </span>
-          <span class="residencia-pe">
-            <span class="residencia-nome">Casa Atlântico</span>
-            <span class="residencia-lugar">Quinta da Marinha &middot; Cascais</span>
-            <span class="residencia-dados">610 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
-          </span>
-        </a>
-
-        <p class="trilho-vazio" id="trilhoVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
+      <div class="dobra-nomes">
+        <h3 class="dobra-nome ativa" data-nome="0">Casa Pátio</h3>
+        <h3 class="dobra-nome" data-nome="1">Cobertura Horizonte</h3>
+        <h3 class="dobra-nome" data-nome="2">Casa Costa Norte</h3>
+        <h3 class="dobra-nome" data-nome="3">Residência Lakeside</h3>
+        <h3 class="dobra-nome" data-nome="4">Villa Bayfront</h3>
+        <h3 class="dobra-nome" data-nome="5">Residência Dunas</h3>
+        <h3 class="dobra-nome" data-nome="6">Palacete Restaurado</h3>
+        <h3 class="dobra-nome" data-nome="7">Casa Atlântico</h3>
       </div>
 
-      <div class="tunel-regua"><span id="tunelRegua"></span></div>
+      <div class="dobra-pes">
+        <p class="dobra-pe ativa" data-pe="0">
+          <span class="dobra-lugar">Jardins &middot; São Paulo</span>
+          <span class="dobra-dados">520 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=sao-paulo&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="1">
+          <span class="dobra-lugar">Leblon &middot; Rio de Janeiro</span>
+          <span class="dobra-dados">410 m&sup2; &middot; 3 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=rio-de-janeiro&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="2">
+          <span class="dobra-lugar">Jurerê &middot; Florianópolis</span>
+          <span class="dobra-dados">680 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=florianopolis&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="3">
+          <span class="dobra-lugar">Winter Park &middot; Orlando</span>
+          <span class="dobra-dados">390 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=orlando&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="4">
+          <span class="dobra-lugar">Coconut Grove &middot; Miami</span>
+          <span class="dobra-dados">560 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=miami&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="5">
+          <span class="dobra-lugar">Palm Jumeirah &middot; Dubai</span>
+          <span class="dobra-dados">740 m&sup2; &middot; 6 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=dubai&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="6">
+          <span class="dobra-lugar">Príncipe Real &middot; Lisboa</span>
+          <span class="dobra-dados">430 m&sup2; &middot; 4 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=lisboa&amp;i=0">Ver o imóvel</a>
+        </p>
+        <p class="dobra-pe" data-pe="7">
+          <span class="dobra-lugar">Quinta da Marinha &middot; Cascais</span>
+          <span class="dobra-dados">610 m&sup2; &middot; 5 suítes &middot; Sob consulta</span>
+          <a class="dobra-entrar" href="imovel.html?c=cascais&amp;i=0">Ver o imóvel</a>
+        </p>
+      </div>
+
+      <p class="dobra-vazio" id="dobraVazio">Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
     </div>
   </div>
 
@@ -2048,106 +2058,113 @@
   var abrirFiltro = document.getElementById('filtroAbrir');
   var painelFiltro = document.getElementById('filtroPainel');
   var valorFiltro = document.getElementById('filtroValor');
-  var trilho = document.getElementById('trilho');
+  var dobra = document.getElementById('dobra');
 
-  if (abrirFiltro && painelFiltro && trilho) {
-    var residencias = trilho.querySelectorAll('.residencia');
-    var vazio = document.getElementById('trilhoVazio');
+  if (abrirFiltro && painelFiltro && dobra) {
+    var marcas = dobra.querySelectorAll('.dobra-marca');
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
     var paisAtual = '';
     var cidadeAtual = '';
 
-    /* A FILA ANDA.
+    /* A DOBRA.
 
-       A rolagem vertical vira movimento horizontal: a posicao da fila e a
-       posicao da pagina dentro do tunel, de 0 a 1, multiplicada pelo quanto a
-       fila sobra para fora da tela.
+       Uma residencia por vez. Quem manda e o NUMERO (a marca): a fotografia, o
+       nome e o pe apenas o acompanham, pelo mesmo indice. E tambem so o numero
+       que o filtro esconde — as outras tres camadas nao precisam saber que o
+       filtro existe.
 
-       A conta e feita no quadro do navegador, e nunca direto no evento de
-       rolagem: assim ela acontece uma vez por quadro e nao trava a pagina.
+       O CORTE de 26 graus e calculado: o quanto a diagonal anda na horizontal
+       depende da altura e da largura da caixa, entao e medido aqui e escrito em
+       `--x1` e `--x2`. Refeito quando a janela muda de tamanho. */
+    var TANGENTE26 = Math.tan(26 * Math.PI / 180);
+    var PE_DA_DIAGONAL = 22;          // onde a diagonal encosta embaixo, em % da largura
 
-       Largura, formato e altura de apoio NAO estao escritos no HTML: quem
-       veste cada residencia e o script, contando so as que estao visiveis.
-       Filtrando, quem sobra reassume a roda desde o inicio, e a fila nao fica
-       com dois cartoes iguais colados nem com um buraco no ritmo. */
-    var tunel = document.getElementById('tunel');
-    var regua = document.getElementById('tunelRegua');
+    var fotos = dobra.querySelectorAll('.dobra-foto');
+    var nomes = dobra.querySelectorAll('.dobra-nome');
+    var pes = dobra.querySelectorAll('.dobra-pe');
+    var contaDobra = document.getElementById('dobraConta');
+    var noAr = 0;
 
-    var LARGURAS = ['clamp(240px, 27vw, 430px)', 'clamp(190px, 20vw, 310px)', 'clamp(280px, 33vw, 520px)', 'clamp(210px, 23vw, 350px)'];
-    var FORMAS = ['4 / 5', '1 / 1', '3 / 4', '5 / 4'];
-    var APOIOS = ['0px', 'clamp(30px, 7vh, 80px)', 'clamp(-60px, -6vh, -20px)', 'clamp(14px, 3vh, 40px)'];
+    function medirCorte() {
+      var r = dobra.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      var anda = (r.height * TANGENTE26) / r.width * 100;
+      dobra.style.setProperty('--x2', PE_DA_DIAGONAL + '%');
+      dobra.style.setProperty('--x1', (PE_DA_DIAGONAL + anda).toFixed(2) + '%');
+    }
 
-    function vestir() {
-      var i = 0;
-      Array.prototype.forEach.call(residencias, function (r) {
-        if (r.hidden) return;
-        r.style.setProperty('--larg', LARGURAS[i % 4]);
-        r.style.setProperty('--forma', FORMAS[i % 4]);
-        r.style.setProperty('--apoio', APOIOS[i % 4]);
-        i++;
+    function acender(lista, atributo, qual) {
+      Array.prototype.forEach.call(lista, function (el) {
+        el.classList.toggle('ativa', Number(el.getAttribute(atributo)) === qual);
       });
     }
 
-    /* O tunel tem a altura do PASSEIO, e nao um numero escolhido a olho: uma
-       tela, mais exatamente o tanto que a fila sobra para fora dela. Assim
-       rolar 100px anda 100px de fila, e filtrando para uma residencia so o
-       tunel encolhe para uma tela em vez de pedir tres telas de rolagem sem
-       nada acontecer. */
-    function medirTunel() {
-      if (!tunel) return;
-      if ((window.innerWidth || 1200) <= 900) { tunel.style.height = ''; return; }
-
-      var alturaTela = window.innerHeight || 800;
-      var sobra = trilho.scrollWidth - (window.innerWidth || 1200);
-      if (sobra < 0) sobra = 0;
-      tunel.style.height = (alturaTela + sobra) + 'px';
+    function naTela() {
+      var lista = [];
+      Array.prototype.forEach.call(marcas, function (m) { if (!m.hidden) lista.push(m); });
+      return lista;
     }
 
-    function andar() {
-      if (!tunel) return;
+    function mostrar(qual) {
+      var lista = naTela();
+      if (!lista.length) return;
 
-      // numa tela estreita nao ha tunel: a fila corre de lado com o dedo
-      if ((window.innerWidth || 1200) <= 900) {
-        trilho.style.transform = '';
-        if (regua) regua.style.width = '0';
-        return;
+      // andar para os lados respeita o FILTRO: da ultima visivel volta para a
+      // primeira visivel, e nao para uma que o filtro tirou da tela
+      var posicao = lista.findIndex(function (m) { return Number(m.getAttribute('data-marca')) === qual; });
+      if (posicao < 0) { qual = Number(lista[0].getAttribute('data-marca')); posicao = 0; }
+
+      noAr = qual;
+      acender(marcas, 'data-marca', qual);
+      acender(fotos, 'data-foto', qual);
+      acender(nomes, 'data-nome', qual);
+      acender(pes, 'data-pe', qual);
+
+      if (contaDobra) {
+        var n = function (x) { return (x < 10 ? '0' : '') + x; };
+        contaDobra.innerHTML = '<b>' + n(posicao + 1) + '</b> / ' + n(lista.length);
       }
+    }
 
-      var r = tunel.getBoundingClientRect();
+    function andarDobra(passo) {
+      var lista = naTela();
+      if (lista.length < 2) return;
+      var posicao = lista.findIndex(function (m) { return Number(m.getAttribute('data-marca')) === noAr; });
+      var nova = (posicao + passo + lista.length) % lista.length;
+      mostrar(Number(lista[nova].getAttribute('data-marca')));
+    }
+
+    Array.prototype.forEach.call(marcas, function (m) {
+      var qual = Number(m.getAttribute('data-marca'));
+      m.addEventListener('mouseenter', function () { mostrar(qual); });
+      m.addEventListener('focus', function () { mostrar(qual); });
+      m.addEventListener('click', function () { mostrar(qual); });
+    });
+
+    // as setas so respondem com a dobra na tela: senao roubariam a navegacao
+    // de quem esta lendo outra secao
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
+      var r = dobra.getBoundingClientRect();
       var alturaTela = window.innerHeight || 800;
-      var curso = r.height - alturaTela;
-      if (curso <= 0) return;
+      if (r.bottom < 80 || r.top > alturaTela - 80) return;
+      andarDobra(ev.key === 'ArrowRight' ? 1 : -1);
+      ev.preventDefault();
+    });
 
-      var p = Math.max(0, Math.min(1, -r.top / curso));
-      var sobra = trilho.scrollWidth - (window.innerWidth || 1200);
-      if (sobra < 0) sobra = 0;
-
-      trilho.style.transform = 'translate3d(' + (-p * sobra).toFixed(1) + 'px,0,0)';
-      if (regua) regua.style.width = (p * 100).toFixed(1) + '%';
-    }
-
-    var pedidoFila = false;
-
-    function aoRolarFila() {
-      if (pedidoFila) return;
-      pedidoFila = true;
-      window.requestAnimationFrame(function () { andar(); pedidoFila = false; });
-    }
-
-    // a largura da tela muda o tamanho do passeio: refazer a medida
-    var pedidoTunel = false;
-    function aoMudarTela() {
-      if (pedidoTunel) return;
-      pedidoTunel = true;
-      window.requestAnimationFrame(function () { medirTunel(); andar(); pedidoTunel = false; });
-    }
+    var pedidoCorte = false;
+    window.addEventListener('resize', function () {
+      if (pedidoCorte) return;
+      pedidoCorte = true;
+      window.requestAnimationFrame(function () { medirCorte(); pedidoCorte = false; });
+    }, { passive: true });
 
     function quantas(pais) {
       var n = 0;
-      Array.prototype.forEach.call(residencias, function (r) {
-        if (!pais || r.getAttribute('data-pais') === pais) n++;
+      Array.prototype.forEach.call(marcas, function (m) {
+        if (!pais || m.getAttribute('data-pais') === pais) n++;
       });
       return n;
     }
@@ -2160,18 +2177,15 @@
     function aplicar() {
       var visiveis = 0;
 
-      Array.prototype.forEach.call(residencias, function (r) {
-        var casaPais = !paisAtual || r.getAttribute('data-pais') === paisAtual;
-        var casaCidade = !cidadeAtual || r.getAttribute('data-cidade') === cidadeAtual;
-        var mostra = casaPais && casaCidade;
-        r.hidden = !mostra;
-        if (mostra) visiveis++;
+      Array.prototype.forEach.call(marcas, function (m) {
+        var casaPais = !paisAtual || m.getAttribute('data-pais') === paisAtual;
+        var casaCidade = !cidadeAtual || m.getAttribute('data-cidade') === cidadeAtual;
+        var mostraEsta = casaPais && casaCidade;
+        m.hidden = !mostraEsta;
+        if (mostraEsta) visiveis++;
       });
 
-      vestir();
-      medirTunel();
-
-      if (vazio) vazio.hidden = visiveis > 0;
+      dobra.classList.toggle('vazia', visiveis === 0);
 
       if (conta) {
         var onde = cidadeAtual || paisAtual || 'todas as praças';
@@ -2182,16 +2196,12 @@
 
       valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
 
-      // a fila encolheu ou cresceu: refazer a conta do passeio
-      andar();
+      // a que estava no ar pode ter saido do recorte; mostrar() ja devolve para a
+      // primeira visivel, e ainda reescreve a contagem "02 / 03"
+      if (visiveis) mostrar(noAr);
     }
 
-    window.addEventListener('scroll', aoRolarFila, { passive: true });
-    window.addEventListener('resize', aoMudarTela, { passive: true });
-
-    /* as fotografias mudam a largura da fila quando terminam de carregar, e a
-       largura da fila e a altura do tunel: entao a medida e refeita */
-    window.addEventListener('load', aoMudarTela);
+    medirCorte();
 
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {
