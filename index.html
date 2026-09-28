@@ -1161,39 +1161,122 @@
 
   .palco-ficha .filete { margin-bottom: 14px; }
 
-  /* =============================================================== global == */
-  .pracas {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(24px, 3.4vw, 64px);
+  /* =============================================================== global ==
+     TRES HORAS, NAO TRES COLUNAS.
+
+     A secao tinha tres colunas iguais com um filete em cima — o arranjo de
+     "tres itens" que aparece em qualquer template. E o dado mais interessante
+     que ela tem, tres relogios correndo em tres fusos, estava no pe de cada
+     coluna, pequeno, como rodape.
+
+     Aqui a HORA e o assunto: cada praca vira uma faixa da largura inteira,
+     com o relogio grande a direita.
+
+     E o fuso vira DESENHO. O filete que separa as faixas deixou de ser
+     enfeite e passou a ser um dia inteiro, da meia-noite a meia-noite: escuro
+     nas pontas, claro no meio, com um ponto champagne na hora que e la agora.
+     O ponto e CHEIO de dia e VAZADO de noite. As pracas estao em ordem de
+     longitude, de oeste para leste, entao os tres pontos descem para a
+     direita: a linha inteira e o sol atravessando o mundo, feita de dado real
+     e nao de ilustracao.
+
+     A diferenca para Sao Paulo tambem e calculada, nunca escrita a mao — ela
+     muda sozinha quando um dos lados entra ou sai do horario de verao.
+     ------------------------------------------------------------------------ */
+  .pracas { display: grid; gap: clamp(34px, 5.5vh, 76px); }
+
+  .pracas-legenda {
+    max-width: 54ch;
+    margin-bottom: clamp(4px, 1vh, 14px);
+    font-size: 12px;
+    line-height: 1.55;
+    color: rgba(58, 58, 60, 0.62);
   }
 
-  .praca { border-top: 1px solid var(--linha-escura); padding-top: 24px; }
+  .praca { display: grid; gap: clamp(18px, 2.6vh, 32px); }
 
-  .praca h3 { margin-bottom: 10px; }
-  .praca p { font-size: 15px; margin-bottom: 22px; }
+  /* ---- o dia inteiro, numa linha ---- */
+  .praca-dia {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(11, 11, 12, 0.34) 0%,
+      rgba(11, 11, 12, 0.11) 22%,
+      rgba(11, 11, 12, 0.06) 50%,
+      rgba(11, 11, 12, 0.11) 78%,
+      rgba(11, 11, 12, 0.34) 100%
+    );
+  }
 
-  .relogio {
-    display: flex;
+  .praca-ponto {
+    position: absolute;
+    top: 50%;
+    left: var(--hora, 50%);
+    width: 7px;
+    height: 7px;
+    margin: -3.5px 0 0 -3.5px;
+    border-radius: 50%;
+    background: var(--champagne);
+    transition: left 1.4s var(--curva);
+  }
+
+  /* de noite o ponto e vazado: a mesma forma, sem peso */
+  .praca-ponto.noite {
+    background: none;
+    box-shadow: inset 0 0 0 1px var(--champagne);
+  }
+
+  /* ---- a faixa ---- */
+  .praca-corpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) auto;
+    gap: clamp(20px, 3.2vw, 70px);
     align-items: baseline;
-    gap: 10px;
-    font-variant-numeric: tabular-nums;
+  }
+
+  .praca h3 {
+    font-size: clamp(26px, 3.1vw, 46px);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .praca p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 46ch;
+  }
+
+  .praca-hora {
+    display: grid;
+    justify-items: end;
+    gap: 7px;
+    text-align: right;
   }
 
   .relogio-hora {
     font-family: var(--serif);
-    font-size: clamp(26px, 2.6vw, 34px);
     font-weight: 300;
-    line-height: 1;
+    font-size: clamp(46px, 6.4vw, 104px);
+    line-height: 0.86;
     color: var(--onix);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
-  .relogio-rotulo {
+  .relogio-rotulo,
+  .praca-diferenca {
+    font-family: var(--sans);
+    font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--grafite);
+    white-space: nowrap;
   }
+
+  .praca-diferenca { color: rgba(58, 58, 60, 0.66); }
 
   /* ============================================================== contato == */
   .contato-grade {
@@ -1323,7 +1406,11 @@
     .leque-ficha { opacity: 1; transform: none; }
     .leque-item::before { transform: scaleY(1); }
     .leque-vazio { flex: 0 0 100%; }
-    .pracas { grid-template-columns: 1fr; }
+    /* sem largura para a faixa: cada praca vira uma coluna, com a hora
+       embaixo e alinhada a esquerda como o resto */
+    .praca-corpo { grid-template-columns: 1fr; gap: 14px; }
+    .praca-hora { justify-items: start; text-align: left; margin-top: 4px; }
+    .relogio-hora { font-size: clamp(42px, 15vw, 68px); }
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
     .pilar p { grid-column: 2; }
@@ -1762,31 +1849,49 @@
     </div>
   </div>
 
+  <!-- As pracas estao em ordem de LONGITUDE, de oeste para leste. Nao e
+       arbitrario: assim os tres pontos da linha do dia descem para a direita,
+       e a secao inteira desenha o sol atravessando o mundo. Trocar a ordem
+       quebra esse desenho. -->
   <div class="pracas">
+    <p class="pracas-legenda sobe">Cada linha abaixo é um dia inteiro, da meia-noite à meia-noite. O ponto marca a hora que é lá agora: cheio de dia, vazado de noite.</p>
+
     <div class="praca sobe">
-      <h3>Orlando</h3>
-      <p>Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
-      <div class="relogio">
-        <span class="relogio-hora" data-fuso="America/New_York">--:--</span>
-        <span class="relogio-rotulo">Hora local</span>
+      <div class="praca-dia"><span class="praca-ponto" data-ponto="America/New_York"></span></div>
+      <div class="praca-corpo">
+        <h3>Orlando</h3>
+        <p>Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
+        <div class="praca-hora">
+          <span class="relogio-hora" data-fuso="America/New_York">--:--</span>
+          <span class="relogio-rotulo">Hora local</span>
+          <span class="praca-diferenca" data-diferenca="America/New_York"></span>
+        </div>
       </div>
     </div>
 
     <div class="praca sobe">
-      <h3>Dubai</h3>
-      <p>Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
-      <div class="relogio">
-        <span class="relogio-hora" data-fuso="Asia/Dubai">--:--</span>
-        <span class="relogio-rotulo">Hora local</span>
+      <div class="praca-dia"><span class="praca-ponto" data-ponto="Europe/Lisbon"></span></div>
+      <div class="praca-corpo">
+        <h3>Portugal</h3>
+        <p>A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
+        <div class="praca-hora">
+          <span class="relogio-hora" data-fuso="Europe/Lisbon">--:--</span>
+          <span class="relogio-rotulo">Hora local</span>
+          <span class="praca-diferenca" data-diferenca="Europe/Lisbon"></span>
+        </div>
       </div>
     </div>
 
     <div class="praca sobe">
-      <h3>Portugal</h3>
-      <p>A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
-      <div class="relogio">
-        <span class="relogio-hora" data-fuso="Europe/Lisbon">--:--</span>
-        <span class="relogio-rotulo">Hora local</span>
+      <div class="praca-dia"><span class="praca-ponto" data-ponto="Asia/Dubai"></span></div>
+      <div class="praca-corpo">
+        <h3>Dubai</h3>
+        <p>Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
+        <div class="praca-hora">
+          <span class="relogio-hora" data-fuso="Asia/Dubai">--:--</span>
+          <span class="relogio-rotulo">Hora local</span>
+          <span class="praca-diferenca" data-diferenca="Asia/Dubai"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -2334,19 +2439,96 @@
     }
   }
 
-  /* 10. Hora local de cada praca. Dado real, atualizado a cada minuto. */
+  /* 10. As tres horas.
+
+     Dado real, do relogio de quem esta olhando, relido a cada meio minuto.
+     Alem da hora, esta funcao escreve outras tres coisas, e todas SAIAM DO
+     MESMO instante para nunca se contradizerem entre si:
+
+       - o ponto na linha do dia, em porcentagem das 24 horas;
+       - se e dia ou noite ali (o ponto fica cheio ou vazado);
+       - a diferenca para Sao Paulo, em palavras.
+
+     A diferenca e CALCULADA, nunca escrita a mao: ela muda sozinha quando um
+     dos dois lados entra ou sai do horario de verao. Orlando e Portugal mudam
+     em datas diferentes das nossas, e Dubai nao muda nunca — escrever "7
+     horas a frente" no HTML daria informacao errada duas vezes por ano.
+
+     O `Intl` faz o trabalho pesado do fuso. Se ele nao souber um fuso, a praca
+     fica sem hora em vez de mostrar lixo. */
+  var AQUI = 'America/Sao_Paulo';
   var relogios = document.querySelectorAll('.relogio-hora');
+  var pontos = document.querySelectorAll('.praca-ponto');
+  var diferencas = document.querySelectorAll('.praca-diferenca');
+
+  // minutos desde a meia-noite naquele fuso, para o MESMO instante
+  function minutosNoFuso(fuso, quando) {
+    var partes = new Intl.DateTimeFormat('pt-BR', {
+      timeZone: fuso, hour: '2-digit', minute: '2-digit', hour12: false
+    }).formatToParts(quando);
+    var h = null, m = null;
+    partes.forEach(function (p) {
+      if (p.type === 'hour') h = Number(p.value);
+      if (p.type === 'minute') m = Number(p.value);
+    });
+    if (h === null || m === null || isNaN(h) || isNaN(m)) return null;
+    // 24:00 aparece em alguns ambientes no lugar de 00:00
+    return (h % 24) * 60 + m;
+  }
+
+  function emPalavras(minutos) {
+    if (minutos === 0) return 'Mesma hora de São Paulo';
+    var lado = minutos > 0 ? 'à frente de' : 'atrás de';
+    var abs = Math.abs(minutos);
+    var h = Math.floor(abs / 60);
+    var m = abs % 60;
+    var quanto;
+    if (m === 0) quanto = h + (h === 1 ? ' hora' : ' horas');
+    else if (h === 0) quanto = m + ' minutos';
+    else quanto = h + 'h' + (m < 10 ? '0' : '') + m;
+    return quanto + ' ' + lado + ' São Paulo';
+  }
 
   function marcarHoras() {
+    var agora = new Date();
+    var daqui = minutosNoFuso(AQUI, agora);
+
     Array.prototype.forEach.call(relogios, function (el) {
       var fuso = el.getAttribute('data-fuso');
       try {
         el.textContent = new Intl.DateTimeFormat('pt-BR', {
           timeZone: fuso, hour: '2-digit', minute: '2-digit', hour12: false
-        }).format(new Date());
+        }).format(agora);
       } catch (erro) {
         el.textContent = '';
       }
+    });
+
+    Array.prototype.forEach.call(pontos, function (el) {
+      var fuso = el.getAttribute('data-ponto');
+      var min;
+      try { min = minutosNoFuso(fuso, agora); } catch (erro) { min = null; }
+      if (min === null) return;
+      el.style.setProperty('--hora', (min / 1440 * 100).toFixed(2) + '%');
+      // dia das 6h as 18h; fora disso o ponto fica vazado
+      el.classList.toggle('noite', min < 360 || min >= 1080);
+    });
+
+    if (daqui === null) return;
+
+    Array.prototype.forEach.call(diferencas, function (el) {
+      var fuso = el.getAttribute('data-diferenca');
+      var la;
+      try { la = minutosNoFuso(fuso, agora); } catch (erro) { la = null; }
+      if (la === null) { el.textContent = ''; return; }
+
+      // a volta do dia: sem isto, 22:36 em Dubai contra 15:36 aqui daria
+      // "-1073 minutos" em vez de "7 horas a frente"
+      var d = la - daqui;
+      if (d > 720) d -= 1440;
+      if (d <= -720) d += 1440;
+
+      el.textContent = emPalavras(d);
     });
   }
 
