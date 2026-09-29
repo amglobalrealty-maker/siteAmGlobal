@@ -519,7 +519,25 @@
 
      O botao tem 24px de altura e o fio fica no meio dele: a area de toque
      precisa ser pegavel no celular, e um alvo de 1px nao e. */
+  /* Um veu curto no pe da fotografia. Existe por um motivo so: o fio de 1px
+     da barra sumiria numa foto que tenha piscina clara ou ceu aceso bem ali. */
+  .capa-palco::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: clamp(80px, 13%, 150px);
+    background: linear-gradient(to top, rgba(11, 11, 12, 0.6) 0%, rgba(11, 11, 12, 0.2) 46%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* A barra fica DENTRO da fotografia. Ficava abaixo dela, e era isso que
+     incomodava: virava uma terceira fileira solta embaixo da imagem. */
   .marcadores {
+    position: absolute;
+    z-index: 2;
+    left: var(--margem);
+    bottom: clamp(18px, 2.6vh, 34px);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -569,12 +587,19 @@
 
   @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-  /* o texto da pagina, logo abaixo da fotografia */
+  /* Uma linha so abaixo da fotografia: o texto e o botao a esquerda, o
+     "Rolar" a direita. Eram duas fileiras, e a de baixo tinha um item so. */
   .abertura-conteudo {
     position: relative;
     flex: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
     padding: clamp(22px, 3vh, 38px) var(--margem) 0;
   }
+
+  .abertura-texto { min-width: 0; }
 
   /* a abertura entra por linhas, uma depois da outra */
   .linha { display: block; overflow: hidden; }
@@ -614,17 +639,6 @@
       clip-path: inset(50%);
       white-space: nowrap;
     }
-  }
-
-  .abertura-rodape {
-    position: relative;
-    flex: none;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    margin-top: clamp(18px, 2.6vh, 32px);
-    padding: 0 var(--margem);
   }
 
   .rolar {
@@ -1622,7 +1636,8 @@
        logo abaixo dele. A proporcao aqui e a do recorte, 16 por 10. */
     .capa-palco { aspect-ratio: 16 / 10; max-height: none; }
     .slide img { object-position: center center; }
-    .abertura-rodape { flex-direction: column; align-items: flex-start; }
+    /* no celular o texto aparece de verdade, entao a linha unica se desfaz */
+    .abertura-conteudo { flex-direction: column; align-items: flex-start; gap: clamp(18px, 3vh, 30px); }
     .rolar { flex-direction: row; align-items: center; }
     /* no celular a linha cai menos, para nao cobrir metade da foto */
     .linha-caida { --altura: clamp(56px, 16vw, 96px); }
@@ -1634,7 +1649,6 @@
     /* A FOTOGRAFIA NAO ENCOLHE AQUI. Encolher a moldura e cortar a imagem, e
        o corte era justamente o defeito. Quem cede e o espaco abaixo dela. */
     .abertura-conteudo { padding-top: clamp(16px, 2vh, 26px); }
-    .abertura-rodape { margin-top: clamp(12px, 1.8vh, 22px); }
   }
 
   @media (max-width: 520px) {
@@ -1772,6 +1786,20 @@
         </picture>
       </div>
     </div>
+
+    <!-- A BARRA MORA DENTRO DA FOTOGRAFIA, no canto de baixo a esquerda. Ela
+         ficava abaixo da imagem e era isso que incomodava: virava uma terceira
+         fileira solta, e nas referencias dela esses controles sempre estiveram
+         sobre a foto.
+
+         Os botoes nao tem conteudo visivel nenhum: sao tres pedacos de fio
+         desenhados no CSS. Entao o aria-label e a UNICA coisa que os anuncia,
+         e nao pode sair daqui. -->
+    <div class="marcadores" id="marcadores">
+      <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
+      <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia"></button>
+      <button type="button" class="marcador" data-slide="2" aria-label="Ver a terceira fotografia"></button>
+    </div>
   </div>
 
   <!-- Este texto e o mesmo que esta desenhado nas imagens. No computador ele
@@ -1779,23 +1807,14 @@
        o que o Google le. No celular ele aparece, porque la a foto e o
        recorte da casa e nao traz texto nenhum. -->
   <div class="abertura-conteudo">
-    <span class="filete"></span>
-    <h1>
-      <span class="linha"><span class="atrasa-1">Imóveis extraordinários.</span></span>
-      <span class="linha"><span class="atrasa-2"><em>Visão global.</em></span></span>
-    </h1>
-    <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
-    <a class="botao" href="#curadoria">Ver a curadoria</a>
-  </div>
-
-  <div class="abertura-rodape">
-    <div class="marcadores" id="marcadores">
-      <!-- Os botoes nao tem conteudo visivel nenhum: sao tres pedacos de fio,
-           desenhados no CSS. Entao o aria-label e a UNICA coisa que os
-           anuncia, e nao pode sair daqui. -->
-      <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
-      <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia"></button>
-      <button type="button" class="marcador" data-slide="2" aria-label="Ver a terceira fotografia"></button>
+    <div class="abertura-texto">
+      <span class="filete"></span>
+      <h1>
+        <span class="linha"><span class="atrasa-1">Imóveis extraordinários.</span></span>
+        <span class="linha"><span class="atrasa-2"><em>Visão global.</em></span></span>
+      </h1>
+      <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
+      <a class="botao" href="#curadoria">Ver a curadoria</a>
     </div>
 
     <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
