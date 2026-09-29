@@ -431,76 +431,55 @@
   .menu-abrir[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
 
   /* ============================================================= abertura ==
-     O NOME ATRAS DA FOTOGRAFIA.
+     A FOTOGRAFIA TRAZ O TITULO DENTRO DELA.
 
-     A composicao e uma coisa so: AMGLOBAL ocupa a largura inteira, e a
-     fotografia sobe por cima da metade de baixo das letras. Quem carrega a
-     abertura passa a ser a marca; o titulo desce de tamanho e vai para dentro
-     da imagem, onde antes ele disputava espaco com ela.
+     A cliente mandou tres imagens prontas em que o titulo ja esta desenhado,
+     atravessando a casa. Entao o cabecalho virou uma faixa de fotografia de
+     borda a borda, e o texto da pagina vem LOGO ABAIXO dela, e nao por cima.
+     Isso dispensa posicionamento absoluto e faz o mesmo desenho servir no
+     computador e no celular: muda so o que aparece.
 
-     Tres camadas empilhadas, nesta ordem: o nome (z 0), o palco da fotografia
-     (z 1) e, dentro dele, o veu e o texto. O que cobre as letras e o palco.
+     ATENCAO: O TITULO DESSAS IMAGENS E PIXEL, NAO E LETRA. Dai tres coisas:
+
+     1. No computador o titulo de verdade fica invisivel, senao apareceria
+        dobrado. Ele CONTINUA no HTML: e o que o Google le e o que o leitor
+        de tela anuncia.
+     2. No celular a imagem inteira nao serve, porque o titulo desenhado
+        ficaria com uns 4px de altura. Cortar so a faixa de cima tambem nao
+        resolve: exigiria uma moldura mais larga que a foto, ou seja, uma
+        tira de 130px de altura. Por isso cada foto tem um RECORTE so da
+        casa, sem letra nenhuma, e ai o titulo de verdade aparece.
+     3. A foto perdeu o filtro e a aproximacao lenta. Os dois mexiam no texto
+        desenhado: o filtro lavava, e o movimento cortava as pontas.
+
+     QUANDO CHEGAREM AS IMAGENS SEM TEXTO: apaga-se o bloco @media do item 1
+     e os recortes de celular deixam de ser necessarios.
      ------------------------------------------------------------------------ */
   .abertura {
     position: relative;
-    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* O respiro de cima reserva a faixa do cabecalho fixo. E nada de cortar
-       aqui: quem esconde o transbordo e o palco da fotografia, logo abaixo.
-       Assim, em tela baixa a secao cresce em vez de comer o nome por cima. */
-    padding: clamp(104px, 14vh, 168px) var(--margem) clamp(26px, 4vh, 52px);
+    min-height: 100svh;
+    /* sem margem lateral: a fotografia vai de borda a borda */
+    padding: clamp(96px, 12vh, 150px) 0 clamp(26px, 4vh, 52px);
   }
 
-  /* O NOME.
-
-     `--mordida` e o quanto a fotografia come das letras, e e o unico numero
-     que muda a composicao. Esta em `em`, entao acompanha o tamanho do nome
-     sozinho, em qualquer tela.
-
-     O TAMANHO E ACERTADO NO SCRIPT, para o nome encostar nas duas margens em
-     qualquer largura: a largura de "AMGLOBAL" em Cormorant so se sabe medindo,
-     e um `clamp` certo numa tela fica curto na outra. O clamp aqui embaixo e a
-     rede de seguranca para quando o script nao rodar. */
-  .capa-nome {
-    --mordida: 0.30em;
-    position: relative;
-    z-index: 0;
-    flex: none;
-    margin-bottom: calc(-1 * var(--mordida));
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(38px, 14.5vw, 300px);
-    line-height: 0.78;
-    letter-spacing: 0.005em;
-    color: var(--marfim);
-    white-space: nowrap;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  .capa-ponto { color: var(--champagne); }
-
-  /* O PALCO DA FOTOGRAFIA: e ele que passa por cima das letras. */
+  /* A moldura da fotografia. A proporcao e a das imagens da cliente; o teto
+     de altura evita que numa tela muito larga ela tome a pagina inteira, e o
+     corte que sobra e sempre VERTICAL, nunca lateral, que e o que cortaria o
+     titulo desenhado. */
   .capa-palco {
     position: relative;
-    z-index: 1;
     flex: none;
-    display: flex;
-    align-items: flex-end;
-    height: clamp(290px, 50vh, 640px);
+    width: 100%;
+    aspect-ratio: 1853 / 849;
+    max-height: 74vh;
     overflow: hidden;
     background: var(--onix-alto);
   }
 
-  /* --- slideshow da abertura --- */
-  .slides {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    background: var(--onix-alto);
-  }
+  .slides { position: absolute; inset: 0; overflow: hidden; background: var(--onix-alto); }
 
   .slide {
     position: absolute;
@@ -512,58 +491,29 @@
 
   .slide.ativa { opacity: 1; }
 
+  .slide picture { display: block; width: 100%; height: 100%; }
+
   .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* a foto entra dessaturada para nao brigar com onix e travertino */
-    filter: grayscale(0.34) contrast(1.06) brightness(0.72) saturate(0.7);
-    transform: scale(1.04);
+    /* 30 por cento do corte sai de cima e 70 de baixo: o titulo desenhado
+       fica no alto, e a foto do penhasco e mais alta que as outras duas */
+    object-position: center 30%;
   }
 
-  /* o avanco lento da imagem e o que da a sensacao de video */
-  .slide.ativa img { animation: aproximar 9.5s ease-out forwards; }
-  .slide.ativa:nth-child(even) img { animation-name: afastar; }
-
-  @keyframes aproximar {
-    from { transform: scale(1.03) translate3d(0, 0, 0); }
-    to { transform: scale(1.15) translate3d(-1.6%, -1.1%, 0); }
-  }
-
-  @keyframes afastar {
-    from { transform: scale(1.15) translate3d(1.4%, 0.8%, 0); }
-    to { transform: scale(1.03) translate3d(0, 0, 0); }
-  }
-
-  /* Veu: escurece o pe e a esquerda, que e onde o texto pousa, e deixa o resto
-     da fotografia respirar. O topo nao precisa mais de protecao, porque o
-     cabecalho fixo agora fica sobre o onix e nao mais sobre a imagem. */
-  .abertura-veu {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background:
-      linear-gradient(to top, rgba(11, 11, 12, 0.93) 0%, rgba(11, 11, 12, 0.62) 34%, rgba(11, 11, 12, 0.10) 72%, rgba(11, 11, 12, 0.04) 100%),
-      linear-gradient(to right, rgba(11, 11, 12, 0.74) 0%, rgba(11, 11, 12, 0.24) 44%, transparent 74%);
-  }
-
-  /* Marcadores do slideshow. Cada praca tem numero em Jost e nome em Cormorant
-     italico, sempre no mesmo corpo, para nada saltar na troca. O que muda e o
-     peso da presenca: a ativa clareia e ganha o filete champagne correndo. */
+  /* Marcadores do slideshow. Perderam o nome da cidade: as imagens nao sao de
+     praca nenhuma identificavel, e rotular seria inventar. Ficou o indice. */
   .marcadores {
     display: flex;
     flex-wrap: wrap;
-    gap: 18px clamp(14px, 2vw, 30px);
+    gap: 14px clamp(14px, 2vw, 30px);
   }
 
   .marcador {
     position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: baseline;
-    gap: 10px;
-    min-width: clamp(104px, 12vw, 152px);
-    padding: 0 0 15px;
+    min-width: clamp(72px, 9vw, 124px);
+    padding: 0 0 13px;
     background: none;
     border: 0;
     cursor: pointer;
@@ -572,22 +522,11 @@
 
   .marcador-num {
     font-family: var(--sans);
-    font-style: normal;
     font-weight: 400;
-    font-size: 9.5px;
-    letter-spacing: 0.16em;
+    font-size: 11px;
+    letter-spacing: 0.2em;
     font-variant-numeric: tabular-nums;
-    color: rgba(245, 242, 236, 0.32);
-    transition: color 0.7s var(--curva);
-  }
-
-  .marcador-nome {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(18px, 1.5vw, 21px);
-    line-height: 1;
-    color: rgba(245, 242, 236, 0.42);
+    color: rgba(245, 242, 236, 0.34);
     transition: color 0.7s var(--curva);
   }
 
@@ -611,29 +550,19 @@
     transform-origin: left;
   }
 
-  .marcador:hover .marcador-nome { color: rgba(245, 242, 236, 0.78); }
-  .marcador:hover .marcador-num { color: rgba(245, 242, 236, 0.55); }
-
-  .marcador.ativo .marcador-nome { color: var(--marfim); }
+  .marcador:hover .marcador-num { color: rgba(245, 242, 236, 0.72); }
   .marcador.ativo .marcador-num { color: var(--champagne); }
   .marcador.ativo::after { animation: encher 6.6s linear forwards; }
-
   .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 8px; }
 
   @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-  /* o texto mora DENTRO da fotografia, no canto de baixo a esquerda */
+  /* o texto da pagina, logo abaixo da fotografia */
   .abertura-conteudo {
     position: relative;
-    z-index: 2;
-    max-width: 1080px;
-    padding: clamp(24px, 3.2vw, 52px);
+    flex: none;
+    padding: clamp(22px, 3vh, 38px) var(--margem) 0;
   }
-
-  /* O titulo desce de tamanho de proposito: quem e grande na abertura agora e
-     o nome da marca. Dois tipos gigantes na mesma tela brigam, e nenhum vence. */
-  .abertura h1 { font-size: clamp(28px, 3.5vw, 56px); margin-bottom: 22px; }
-  .abertura h1 em { font-style: italic; color: var(--travertino); }
 
   /* a abertura entra por linhas, uma depois da outra */
   .linha { display: block; overflow: hidden; }
@@ -646,15 +575,35 @@
   .pronto .abertura .atrasa-1 { transition-delay: 0.10s; }
   .pronto .abertura .atrasa-2 { transition-delay: 0.22s; }
 
+  .abertura h1 { font-size: clamp(30px, 3.6vw, 52px); margin-bottom: 20px; }
+  .abertura h1 em { font-style: italic; color: var(--travertino); }
+
   .abertura .apoio {
     color: var(--texto-fraco);
     font-size: clamp(15px, 1.05vw, 17px);
-    margin-bottom: 30px;
+    margin-bottom: 26px;
     max-width: 44ch;
   }
 
-  /* As quatro pracas descem para debaixo da fotografia. O filete de cada uma
-     ja desenha a fileira, entao a borda que existia aqui virava linha dobrada. */
+  /* NO COMPUTADOR o titulo ja vem desenhado na fotografia, entao ele some
+     daqui -- mas continua existindo no HTML, para o Google e para quem usa
+     leitor de tela. ESTE BLOCO INTEIRO SAI quando chegarem as imagens sem
+     texto: e a unica coisa que separa o arranjo de hoje do definitivo. */
+  @media (min-width: 901px) {
+    .abertura-conteudo .filete,
+    .abertura-conteudo h1,
+    .abertura-conteudo .apoio {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+
   .abertura-rodape {
     position: relative;
     flex: none;
@@ -662,7 +611,8 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 24px;
-    margin-top: clamp(20px, 3vh, 36px);
+    margin-top: clamp(18px, 2.6vh, 32px);
+    padding: 0 var(--margem);
   }
 
   .rolar {
@@ -1656,22 +1606,22 @@
     .percurso-parada::before { top: 6px; left: -24px; }
     .percurso-nome { font-size: clamp(21px, 6vw, 28px); }
     .percurso-fichas { min-height: clamp(120px, 18vh, 150px); }
-    /* no celular a fotografia baixa e o texto encosta mais nas bordas dela */
-    .capa-palco { height: clamp(270px, 46vh, 430px); }
-    .abertura-conteudo { padding: 20px; }
+    /* No celular entra o RECORTE so da casa, e o titulo de verdade aparece
+       logo abaixo dele. A proporcao aqui e a do recorte, 16 por 10. */
+    .capa-palco { aspect-ratio: 16 / 10; max-height: none; }
+    .slide img { object-position: center center; }
     .abertura-rodape { flex-direction: column; align-items: flex-start; }
     .rolar { flex-direction: row; align-items: center; }
     /* no celular a linha cai menos, para nao cobrir metade da foto */
     .linha-caida { --altura: clamp(56px, 16vw, 96px); }
   }
 
-  /* Telas largas mas baixas, como notebook: quem encolhe e a FOTOGRAFIA, e nao
-     mais o titulo. O nome tem de continuar do tamanho que esta, porque e ele
-     que faz a composicao; a imagem e que cede altura para tudo caber. */
+  /* Telas largas mas baixas, como notebook: quem encolhe e a fotografia, para
+     a abertura inteira caber sem empurrar nada para debaixo do cabecalho. */
   @media (min-width: 901px) and (max-height: 880px) {
-    .capa-palco { height: clamp(240px, 42vh, 470px); }
-    .abertura .apoio { margin-bottom: 22px; }
-    .abertura-rodape { margin-top: clamp(16px, 2.4vh, 28px); }
+    .capa-palco { max-height: 58vh; }
+    .abertura-conteudo { padding-top: clamp(16px, 2vh, 26px); }
+    .abertura-rodape { margin-top: clamp(12px, 1.8vh, 22px); }
   }
 
   @media (max-width: 520px) {
@@ -1681,7 +1631,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rolar .chevron, .faixa-trilho, .slide.ativa img { animation: none !important; }
+    .rolar .chevron, .faixa-trilho { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
@@ -1773,59 +1723,65 @@
 
 <!-- ================================================================ abertura -->
 <section class="abertura" id="abertura">
-  <!-- O NOME. Fica escondido do leitor de tela de proposito: o cabecalho logo
-       acima ja anuncia "AMGlobal Realty", e repetir seria ruido. Aqui ele e
-       desenho. O `span` de dentro existe para o script poder MEDIR a largura
-       das letras: um `div` ocuparia a linha toda e nao diria nada. -->
-  <div class="capa-nome" aria-hidden="true"><span id="capaNome">AMGLOBAL<span class="capa-ponto">.</span></span></div>
+  <!-- AS TRES IMAGENS DO CABECALHO, feitas pela cliente. O titulo esta
+       DESENHADO dentro delas. Por isso cada uma tem tres arquivos:
 
+         capa-N.webp       inteira, para computador
+         capa-N-960.webp   a mesma, menor, para tela media
+         capa-N-cel.webp   um recorte SO DA CASA, sem letra, para celular
+
+       E por isso o elemento picture: nao e so tamanho diferente, e
+       ENQUADRAMENTO diferente, e so ele troca a imagem por largura de tela. -->
   <div class="capa-palco">
-    <!-- PROVISORIO: fotos do Unsplash, licenca livre. Uma por praca em que a
-         AMGlobal atua. Trocar pela fotografia propria. Enderecos no README. -->
     <div class="slides" id="slides" aria-hidden="true">
       <div class="slide ativa">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
-             alt="" fetchpriority="high" decoding="async">
+        <picture>
+          <source media="(max-width: 900px)" srcset="fotos/capa-1-cel.webp">
+          <source media="(max-width: 1280px)" srcset="fotos/capa-1-960.webp">
+          <img src="fotos/capa-1.webp" alt="" width="1853" height="849" fetchpriority="high" decoding="async">
+        </picture>
       </div>
       <div class="slide">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
-             alt="" loading="lazy" decoding="async">
+        <picture>
+          <source media="(max-width: 900px)" srcset="fotos/capa-2-cel.webp">
+          <source media="(max-width: 1280px)" srcset="fotos/capa-2-960.webp">
+          <img src="fotos/capa-2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="slide">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
-             alt="" loading="lazy" decoding="async">
-      </div>
-      <div class="slide">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1900&amp;q=68"
-             alt="" loading="lazy" decoding="async">
+        <picture>
+          <source media="(max-width: 900px)" srcset="fotos/capa-3-cel.webp">
+          <source media="(max-width: 1280px)" srcset="fotos/capa-3-960.webp">
+          <img src="fotos/capa-3.webp" alt="" width="1852" height="849" loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
-    <div class="abertura-veu"></div>
+  </div>
 
-    <div class="abertura-conteudo">
-      <span class="filete"></span>
-      <h1>
-        <span class="linha"><span class="atrasa-1">Imóveis extraordinários.</span></span>
-        <span class="linha"><span class="atrasa-2"><em>Visão global.</em></span></span>
-      </h1>
-      <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
-      <a class="botao" href="#curadoria">Ver a curadoria</a>
-    </div>
+  <!-- Este texto e o mesmo que esta desenhado nas imagens. No computador ele
+       fica invisivel, para nao aparecer dobrado, mas continua aqui porque e
+       o que o Google le. No celular ele aparece, porque la a foto e o
+       recorte da casa e nao traz texto nenhum. -->
+  <div class="abertura-conteudo">
+    <span class="filete"></span>
+    <h1>
+      <span class="linha"><span class="atrasa-1">Imóveis extraordinários.</span></span>
+      <span class="linha"><span class="atrasa-2"><em>Visão global.</em></span></span>
+    </h1>
+    <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
+    <a class="botao" href="#curadoria">Ver a curadoria</a>
   </div>
 
   <div class="abertura-rodape">
     <div class="marcadores" id="marcadores">
-      <button type="button" class="marcador ativo" data-slide="0">
-        <span class="marcador-num">01</span><span class="marcador-nome">Brasil</span>
+      <button type="button" class="marcador ativo" data-slide="0" aria-label="Fotografia primeira">
+        <span class="marcador-num">01</span>
       </button>
-      <button type="button" class="marcador" data-slide="1">
-        <span class="marcador-num">02</span><span class="marcador-nome">Orlando</span>
+      <button type="button" class="marcador" data-slide="1" aria-label="Fotografia segunda">
+        <span class="marcador-num">02</span>
       </button>
-      <button type="button" class="marcador" data-slide="2">
-        <span class="marcador-num">03</span><span class="marcador-nome">Dubai</span>
-      </button>
-      <button type="button" class="marcador" data-slide="3">
-        <span class="marcador-num">04</span><span class="marcador-nome">Portugal</span>
+      <button type="button" class="marcador" data-slide="2" aria-label="Fotografia terceira">
+        <span class="marcador-num">03</span>
       </button>
     </div>
 
@@ -2913,45 +2869,6 @@
     window.setTimeout(function () { mMostrar(0); }, 0);
   }
 
-  /* 12. O nome da abertura encosta nas duas margens.
-
-     MEDIR E MAIS HONESTO DO QUE ADIVINHAR COM `vw`. A largura de "AMGLOBAL" em
-     Cormorant depende da fonte ja ter chegado, e um `clamp` acertado numa tela
-     fica curto na seguinte. Entao: escreve num tamanho conhecido, mede quanto
-     as letras ocuparam, e converte para o tamanho que enche a linha exata.
-
-     Quem e medido e o `span` de dentro, porque so ele encolhe ate o texto: o
-     `div` de fora ocupa a largura toda e responderia sempre a mesma coisa.
-
-     Se isto nao rodar, o `clamp` do CSS ja deixa o nome num tamanho decente. */
-  var capaNome = document.getElementById('capaNome');
-
-  if (capaNome && capaNome.parentNode && capaNome.parentNode.parentNode) {
-    var caixaNome = capaNome.parentNode;          // .capa-nome
-    var areaNome = caixaNome.parentNode;          // .abertura, com as margens
-    var TETO = 340;                               // acima disso vira cartaz
-    var REGUA = 100;                              // o tamanho de referencia
-
-    function encaixarNome() {
-      var estilo = window.getComputedStyle(areaNome);
-      var util = areaNome.clientWidth
-        - parseFloat(estilo.paddingLeft || 0)
-        - parseFloat(estilo.paddingRight || 0);
-      if (!(util > 0)) return;
-
-      caixaNome.style.fontSize = REGUA + 'px';
-      var ocupou = capaNome.getBoundingClientRect().width;
-      if (!(ocupou > 0)) { caixaNome.style.fontSize = ''; return; }
-
-      caixaNome.style.fontSize = Math.min(TETO, REGUA * util / ocupou).toFixed(2) + 'px';
-    }
-
-    encaixarNome();
-    window.addEventListener('resize', encaixarNome);
-    window.addEventListener('load', encaixarNome);
-    // a medida so vale de verdade depois de a Cormorant ter chegado
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(encaixarNome);
-  }
 })();
 
 </script>
