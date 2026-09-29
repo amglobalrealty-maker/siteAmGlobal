@@ -459,22 +459,24 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 100svh;
-    /* sem margem lateral: a fotografia vai de borda a borda */
-    padding: clamp(96px, 12vh, 150px) 0 clamp(26px, 4vh, 52px);
+    /* Sem margem lateral e SEM RESPIRO EM CIMA: a fotografia encosta no alto
+       da pagina. E isso que faz o cabecalho fixo voltar a flutuar sobre a
+       imagem, em vez de ficar sobre uma faixa de onix. */
+    padding: 0 0 clamp(26px, 4vh, 52px);
   }
 
-  /* A moldura da fotografia. A proporcao e a das imagens da cliente; o teto
-     de altura evita que numa tela muito larga ela tome a pagina inteira, e o
-     corte que sobra e sempre VERTICAL, nunca lateral, que e o que cortaria o
-     titulo desenhado. */
+  /* A moldura da fotografia, na proporcao exata das tres imagens.
+
+     SEM TETO DE ALTURA. Havia um de 74vh, e ele cortava a imagem por cima e
+     por baixo -- foi o primeiro defeito que ela viu. Como as tres imagens
+     foram levadas a MESMA proporcao na hora de gerar os arquivos (a do
+     penhasco era mais alta e perdeu o rodape de piscina, sem nenhuma letra),
+     a moldura cai certa e nao sobra corte nenhum em tela nenhuma. */
   .capa-palco {
     position: relative;
     flex: none;
     width: 100%;
     aspect-ratio: 1853 / 849;
-    max-height: 74vh;
     overflow: hidden;
     background: var(--onix-alto);
   }
@@ -497,9 +499,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 30 por cento do corte sai de cima e 70 de baixo: o titulo desenhado
-       fica no alto, e a foto do penhasco e mais alta que as outras duas */
-    object-position: center 30%;
+    /* As tres ja estao na proporcao da moldura, entao o cover aqui nao corta
+       nada: ele so garante o preenchimento se algum arquivo for trocado por
+       outro de proporcao diferente. */
+    object-position: center center;
   }
 
   /* Marcadores do slideshow. Perderam o nome da cidade: as imagens nao sao de
@@ -1619,7 +1622,8 @@
   /* Telas largas mas baixas, como notebook: quem encolhe e a fotografia, para
      a abertura inteira caber sem empurrar nada para debaixo do cabecalho. */
   @media (min-width: 901px) and (max-height: 880px) {
-    .capa-palco { max-height: 58vh; }
+    /* A FOTOGRAFIA NAO ENCOLHE AQUI. Encolher a moldura e cortar a imagem, e
+       o corte era justamente o defeito. Quem cede e o espaco abaixo dela. */
     .abertura-conteudo { padding-top: clamp(16px, 2vh, 26px); }
     .abertura-rodape { margin-top: clamp(12px, 1.8vh, 22px); }
   }
@@ -1736,23 +1740,26 @@
     <div class="slides" id="slides" aria-hidden="true">
       <div class="slide ativa">
         <picture>
-          <source media="(max-width: 900px)" srcset="fotos/capa-1-cel.webp">
-          <source media="(max-width: 1280px)" srcset="fotos/capa-1-960.webp">
-          <img src="fotos/capa-1.webp" alt="" width="1853" height="849" fetchpriority="high" decoding="async">
+          <source media="(max-width: 900px)" srcset="fotos/capa-1-cel.webp" width="1100" height="688">
+          <img src="fotos/capa-1.webp"
+               srcset="fotos/capa-1-960.webp 960w, fotos/capa-1.webp 1853w" sizes="100vw"
+               alt="" width="1853" height="849" fetchpriority="high" decoding="async">
         </picture>
       </div>
       <div class="slide">
         <picture>
-          <source media="(max-width: 900px)" srcset="fotos/capa-2-cel.webp">
-          <source media="(max-width: 1280px)" srcset="fotos/capa-2-960.webp">
-          <img src="fotos/capa-2.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+          <source media="(max-width: 900px)" srcset="fotos/capa-2-cel.webp" width="1100" height="688">
+          <img src="fotos/capa-2.webp"
+               srcset="fotos/capa-2-960.webp 960w, fotos/capa-2.webp 1672w" sizes="100vw"
+               alt="" width="1672" height="766" loading="lazy" decoding="async">
         </picture>
       </div>
       <div class="slide">
         <picture>
-          <source media="(max-width: 900px)" srcset="fotos/capa-3-cel.webp">
-          <source media="(max-width: 1280px)" srcset="fotos/capa-3-960.webp">
-          <img src="fotos/capa-3.webp" alt="" width="1852" height="849" loading="lazy" decoding="async">
+          <source media="(max-width: 900px)" srcset="fotos/capa-3-cel.webp" width="1100" height="688">
+          <img src="fotos/capa-3.webp"
+               srcset="fotos/capa-3-960.webp 960w, fotos/capa-3.webp 1852w" sizes="100vw"
+               alt="" width="1852" height="849" loading="lazy" decoding="async">
         </picture>
       </div>
     </div>
