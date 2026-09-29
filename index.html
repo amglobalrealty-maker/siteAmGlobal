@@ -1058,7 +1058,22 @@
      passa por curadoria antes de discricao -- e numerar sugeria ordem onde
      nao ha. Some tambem a ultima semelhanca com a secao 04.
      ------------------------------------------------------------------------ */
-  .manifesto-topo { max-width: min(100%, 1000px); margin-bottom: clamp(44px, 7vh, 88px); }
+  /* DUAS COLUNAS, e nao um bloco estreito com o resto solto.
+
+     Antes o topo tinha teto de 1000px e o paragrafo menor vinha depois, com
+     margin-left automatica: sobravam 600px de papel vazio a direita e o texto
+     pequeno pousava num lugar qualquer, sem relacao com nada.
+
+     Agora os dois dividem a largura toda, e o alinhamento e pelo PE: a ultima
+     linha do texto pequeno encosta na ultima linha do grande. E isso que faz
+     ele parecer colocado, e nao largado. */
+  .manifesto-topo {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(30px, 5vw, 104px);
+    align-items: end;
+    margin-bottom: clamp(48px, 8vh, 104px);
+  }
 
   .manifesto-topo .rotulo { margin-bottom: clamp(18px, 2.8vh, 28px); }
 
@@ -1071,11 +1086,13 @@
     line-height: 1.24;
     letter-spacing: -0.005em;
     color: var(--onix);
-    max-width: 26ch;
-    margin: 0 0 clamp(22px, 3vh, 34px);
+    max-width: 34ch;
+    margin: 0;
   }
 
-  .manifesto-texto { max-width: 52ch; margin-left: auto; }
+  /* corpo de leitura, mas nao de nota de rodape: ele divide a linha com um
+     texto de 44px, e a 15px pareceria sobra */
+  .manifesto-texto p { font-size: 17px; line-height: 1.66; max-width: 46ch; }
 
   /* ---- os tres principios, no papel claro ---- */
   .pilares {
@@ -1668,7 +1685,13 @@
     }
     .pilar:not(:first-child)::before { display: none; }
     .placa { min-height: clamp(320px, 52vh, 460px); }
-    .manifesto-texto { margin-left: 0; }
+    /* sem largura para as duas colunas, o texto menor desce para baixo do
+       maior, e o alinhamento pelo pe deixa de fazer sentido */
+    .manifesto-topo {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: clamp(22px, 3.4vh, 34px);
+    }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -2001,14 +2024,18 @@
 
 <!-- =============================================================== manifesto -->
 <section class="claro" id="manifesto">
+  <!-- Os dois textos dividem a largura, e nao um em cima do outro: e o que
+       fecha o vazio da direita e tira o paragrafo menor do limbo. -->
   <div class="manifesto-topo sobe">
-    <span class="filete"></span>
-    <span class="rotulo">03 — A AMGlobal</span>
-    <p class="manifesto-lede">Somos uma consultoria imobiliária de alto padrão. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
-  </div>
+    <div>
+      <span class="filete"></span>
+      <span class="rotulo">03 — A AMGlobal</span>
+      <p class="manifesto-lede">Somos uma consultoria imobiliária de alto padrão. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
+    </div>
 
-  <div class="manifesto-texto sobe">
-    <p>Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
+    <div class="manifesto-texto">
+      <p>Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
+    </div>
   </div>
 
   <div class="pilares sobe">
