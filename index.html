@@ -505,45 +505,63 @@
     object-position: center center;
   }
 
-  /* Marcadores do slideshow. Perderam o nome da cidade: as imagens nao sao de
-     praca nenhuma identificavel, e rotular seria inventar. Ficou o indice. */
+  /* OS BOTOES QUE TROCAM A FOTOGRAFIA.
+
+     Antes eram tres numeros em Jost de 11px dentro de caixas de 124px, e o
+     numero ficava perdido no meio do vazio. Tinham perdido o nome da cidade
+     (as imagens nao sao de praca identificavel, e rotular seria inventar) e
+     com ele perderam o que os sustentava.
+
+     A IDEIA: as tres fotografias aparecem em miniatura, e as que NAO estao no
+     ar ficam em monocromatico de onix, como arquivo; a que esta no ar volta a
+     ter cor. O presente tem cor, o resto e memoria. Sob a ativa corre o
+     filete champagne, que e o relogio ate a proxima.
+
+     As miniaturas sao arquivo proprio, de 9 a 12 KB. Reaproveitar o recorte
+     de celular faria o computador baixar 660 KB so para desenhar tres
+     retangulos de 116px, e no computador aquele arquivo nem e pedido. */
   .marcadores {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px clamp(14px, 2vw, 30px);
+    gap: 14px clamp(10px, 1.4vw, 18px);
   }
 
   .marcador {
-    position: relative;
-    min-width: clamp(72px, 9vw, 124px);
-    padding: 0 0 13px;
+    display: block;
+    padding: 0;
     background: none;
     border: 0;
     cursor: pointer;
     text-align: left;
   }
 
-  .marcador-num {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    font-variant-numeric: tabular-nums;
-    color: rgba(245, 242, 236, 0.34);
-    transition: color 0.7s var(--curva);
+  /* a moldura existe para o filete do tempo poder se pendurar no pe da foto */
+  .marcador-moldura { position: relative; display: block; }
+
+  .marcador-foto {
+    display: block;
+    width: clamp(78px, 8.5vw, 116px);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    /* fora do ar: monocromatico de onix */
+    filter: grayscale(1) brightness(0.44) contrast(1.14);
+    transition: filter 0.9s var(--curva);
   }
 
+  .marcador:hover .marcador-foto { filter: grayscale(0.66) brightness(0.7) contrast(1.08); }
+  .marcador.ativo .marcador-foto { filter: none; }
+
   /* trilho de base, sempre visivel, bem fraco */
-  .marcador::before {
+  .marcador-moldura::before {
     content: '';
     position: absolute;
     left: 0; right: 0; bottom: 0;
     height: 1px;
-    background: rgba(245, 242, 236, 0.16);
+    background: rgba(245, 242, 236, 0.22);
   }
 
-  /* filete champagne que corre enquanto o slide esta no ar */
-  .marcador::after {
+  /* filete champagne que corre enquanto a foto esta no ar */
+  .marcador-moldura::after {
     content: '';
     position: absolute;
     left: 0; right: 0; bottom: 0;
@@ -553,10 +571,23 @@
     transform-origin: left;
   }
 
-  .marcador:hover .marcador-num { color: rgba(245, 242, 236, 0.72); }
+  .marcador.ativo .marcador-moldura::after { animation: encher 6.6s linear forwards; }
+
+  .marcador-num {
+    display: block;
+    margin-top: 9px;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    font-variant-numeric: tabular-nums;
+    color: rgba(245, 242, 236, 0.3);
+    transition: color 0.7s var(--curva);
+  }
+
+  .marcador:hover .marcador-num { color: rgba(245, 242, 236, 0.66); }
   .marcador.ativo .marcador-num { color: var(--champagne); }
-  .marcador.ativo::after { animation: encher 6.6s linear forwards; }
-  .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 8px; }
+  .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
   @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
@@ -1637,7 +1668,7 @@
     html { scroll-behavior: auto; }
     .rolar .chevron, .faixa-trilho { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
-    .marcador.ativo::after { animation: none; transform: scaleX(1); }
+    .marcador.ativo .marcador-moldura::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
     .sobe { opacity: 1; transform: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
@@ -1781,13 +1812,26 @@
 
   <div class="abertura-rodape">
     <div class="marcadores" id="marcadores">
-      <button type="button" class="marcador ativo" data-slide="0" aria-label="Fotografia primeira">
+      <!-- A miniatura mostra a propria fotografia. Quem esta fora do ar fica
+           em monocromatico de onix, pelo CSS; quem esta no ar volta a ter
+           cor. A imagem e decorativa (alt vazio): quem anuncia o botao e o
+           aria-label, e o numero visivel repete isso para quem enxerga. -->
+      <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia">
+        <span class="marcador-moldura">
+          <img class="marcador-foto" src="fotos/capa-1-mini.webp" alt="" width="232" height="131" loading="lazy" decoding="async">
+        </span>
         <span class="marcador-num">01</span>
       </button>
-      <button type="button" class="marcador" data-slide="1" aria-label="Fotografia segunda">
+      <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia">
+        <span class="marcador-moldura">
+          <img class="marcador-foto" src="fotos/capa-2-mini.webp" alt="" width="232" height="131" loading="lazy" decoding="async">
+        </span>
         <span class="marcador-num">02</span>
       </button>
-      <button type="button" class="marcador" data-slide="2" aria-label="Fotografia terceira">
+      <button type="button" class="marcador" data-slide="2" aria-label="Ver a terceira fotografia">
+        <span class="marcador-moldura">
+          <img class="marcador-foto" src="fotos/capa-3-mini.webp" alt="" width="232" height="131" loading="lazy" decoding="async">
+        </span>
         <span class="marcador-num">03</span>
       </button>
     </div>
