@@ -1026,22 +1026,6 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* faixa cheia de imagem, usada como respiro entre a citacao e os pilares */
-  .faixa-imagem {
-    position: relative;
-    margin: 0 calc(-1 * var(--margem)) clamp(64px, 10vh, 120px);
-    height: clamp(240px, 46vh, 540px);
-    overflow: hidden;
-    background: var(--onix-alto);
-  }
-
-  .faixa-imagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.26) contrast(1.04) brightness(0.9) saturate(0.78);
-  }
-
   .curadoria-fim {
     display: flex;
     flex-wrap: wrap;
@@ -1055,41 +1039,120 @@
 
   .curadoria-fim p { font-size: 15px; color: var(--texto-fraco); max-width: 48ch; }
 
-  /* ============================================================ manifesto == */
-  .manifesto-topo {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: clamp(32px, 6vw, 104px);
-    align-items: start;
-    margin-bottom: clamp(64px, 10vh, 128px);
+  /* ============================================================ manifesto ==
+     A PLACA.
+
+     A secao 03 e a 04 tinham A MESMA FORMA -- numero, titulo, texto -- e uma
+     vinha logo depois da outra. Isso tirava a personalidade das duas.
+
+     Agora a fotografia, que era so uma faixa decorativa de respiro, vira uma
+     PRANCHA ONIX ENCARTADA no meio da pagina clara, e os tres principios
+     vivem sobre ela. A secao ganha contraste por dentro, sem precisar de mais
+     nenhum elemento.
+
+     A separacao entre os principios e um fio VERTICAL, e nao o filete
+     horizontal de 24px: aquele e o gesto da secao 04, e repeti-lo aqui
+     recriaria o problema que esta mudanca existe para resolver.
+
+     E a melhor linha do texto, "Escolher bem e enxergar longe", saiu de uma
+     coluna de 17 caracteres ao lado de texto corrido e passou a abrir a secao.
+     ------------------------------------------------------------------------ */
+  .manifesto-topo { margin-bottom: clamp(20px, 3vh, 36px); }
+
+  .manifesto-topo .citacao {
+    max-width: 20ch;
+    font-size: clamp(38px, 6.6vw, 104px);
+    line-height: 1.02;
+    margin-top: clamp(14px, 2vh, 26px);
   }
 
-  .manifesto-topo .citacao { margin-top: -0.12em; }
-
-  .manifesto-texto { display: grid; gap: 22px; padding-top: 10px; }
-
-  .pilares { display: grid; }
-
-  .pilar {
+  /* o texto corre pela direita, como entrada de materia debaixo do titulo */
+  .manifesto-texto {
     display: grid;
-    grid-template-columns: 92px minmax(0, 1fr) minmax(0, 1.35fr);
-    gap: clamp(18px, 3vw, 52px);
-    align-items: baseline;
-    padding: clamp(26px, 4vh, 40px) 0;
-    border-top: 1px solid var(--linha-escura);
+    gap: 20px;
+    max-width: 54ch;
+    margin-left: auto;
+    margin-bottom: clamp(52px, 8vh, 104px);
   }
 
-  .pilar:last-child { border-bottom: 1px solid var(--linha-escura); }
+  /* ---- a placa ---- */
+  .placa {
+    position: relative;
+    margin: 0 calc(-1 * var(--margem));
+    min-height: clamp(440px, 60vh, 680px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--onix);
+  }
+
+  .placa-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.3) contrast(1.05) brightness(0.74) saturate(0.76);
+  }
+
+  /* Aqui a fotografia e ATMOSFERA, e nao assunto: sem o veu o texto claro
+     disputaria com cada detalhe da imagem, e era essa disputa que fazia a
+     versao clara da secao 05 nao funcionar. */
+  .placa-veu {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      rgba(11, 11, 12, 0.93) 0%, rgba(11, 11, 12, 0.74) 42%, rgba(11, 11, 12, 0.44) 78%, rgba(11, 11, 12, 0.36) 100%);
+  }
+
+  .pilares {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 4vw, 72px);
+    padding: clamp(40px, 7vh, 92px) var(--margem) clamp(34px, 5.5vh, 66px);
+  }
+
+  .pilar { position: relative; }
+
+  /* o fio vertical, no meio do vao entre uma coluna e a seguinte */
+  .pilar:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(12px, 2vw, 36px));
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(245, 242, 236, 0.16);
+  }
 
   .pilar-num {
-    font-family: var(--serif);
-    font-size: 15px;
-    letter-spacing: 0.1em;
-    color: var(--grafite);
+    display: block;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    color: var(--champagne);
     font-variant-numeric: tabular-nums;
+    margin-bottom: clamp(14px, 2vh, 22px);
   }
 
-  .pilar p { font-size: 16px; }
+  /* A secao e clara, entao o titulo nasce onix e o paragrafo nasce grafite.
+     Dentro da placa o fundo e escuro: os dois voltam ao claro. */
+  .placa h3 {
+    color: var(--marfim);
+    font-size: clamp(22px, 2.1vw, 32px);
+    margin-bottom: clamp(12px, 1.6vh, 18px);
+  }
+
+  .placa .pilar p {
+    font-size: 15px;
+    line-height: 1.66;
+    color: rgba(245, 242, 236, 0.66);
+    max-width: 40ch;
+  }
 
   /* ============================================================= servicos ==
      QUATRO FRENTES.
@@ -1536,7 +1599,6 @@
     /* o bloco continua corrido; so a diferenca entre as duas escalas encolhe,
        porque numa tela estreita ela ficaria exagerada */
     .cabeca-texto p { font-size: clamp(17px, 4.4vw, 22px); }
-    .manifesto-topo { grid-template-columns: 1fr; }
     .citacao { max-width: 22ch; }
   }
 
@@ -1599,8 +1661,16 @@
     .mundo-hora { font-size: clamp(30px, 11vw, 56px); }
     .mundo-marcas { gap: 12px 20px; }
     .contato-grade { grid-template-columns: 1fr; }
-    .pilar { grid-template-columns: 56px minmax(0, 1fr); }
-    .pilar p { grid-column: 2; }
+    /* sem largura para tres colunas, os principios empilham e o fio vertical
+       vira uma linha entre um e o seguinte */
+    .placa { min-height: 0; }
+    .pilares { grid-template-columns: 1fr; gap: 0; }
+    .pilar:not(:first-child) {
+      margin-top: clamp(22px, 3.4vh, 32px);
+      padding-top: clamp(22px, 3.4vh, 32px);
+      border-top: 1px solid rgba(245, 242, 236, 0.16);
+    }
+    .pilar:not(:first-child)::before { display: none; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -1933,46 +2003,44 @@
 
 <!-- =============================================================== manifesto -->
 <section class="claro" id="manifesto">
-  <div class="manifesto-topo">
-    <div class="sobe">
-      <span class="filete"></span>
-      <span class="rotulo">03 — A AMGlobal</span>
-      <p class="citacao">Escolher bem e enxergar longe.</p>
-    </div>
-
-    <div class="manifesto-texto sobe">
-      <p>Somos uma consultoria imobiliária de alto padrão. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
-      <p>Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
-    </div>
+  <div class="manifesto-topo sobe">
+    <span class="filete"></span>
+    <span class="rotulo">03 — A AMGlobal</span>
+    <p class="citacao">Escolher bem é enxergar longe.</p>
   </div>
 
-  <!-- PROVISORIO: foto do Unsplash. Ver README. -->
-  <figure class="faixa-imagem sobe">
-    <img src="https://images.unsplash.com/photo-1660361339436-ddd4b85372da?auto=format&amp;fit=crop&amp;w=2000&amp;q=70"
+  <div class="manifesto-texto sobe">
+    <p>Somos uma consultoria imobiliária de alto padrão. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
+    <p>Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
+  </div>
+
+  <!-- A PLACA: uma prancha onix encartada no meio da pagina clara. A
+       fotografia e o fundo, e os tres principios vivem sobre ela. -->
+  <div class="placa sobe">
+    <!-- PROVISORIO: foto do Unsplash. Ver README. -->
+    <img class="placa-foto" src="https://images.unsplash.com/photo-1660361339436-ddd4b85372da?auto=format&amp;fit=crop&amp;w=2000&amp;q=70"
          alt="" loading="lazy" decoding="async">
-  </figure>
+    <div class="placa-veu" aria-hidden="true"></div>
 
-  <div class="pilares">
-    <div class="pilar sobe">
-      <span class="pilar-num">01</span>
-      <h3>Curadoria</h3>
-      <p>Qualidade sempre sobre volume. O valor está em filtrar melhor, não em mostrar tudo.</p>
-    </div>
-
-    <div class="pilar sobe">
-      <span class="pilar-num">02</span>
-      <h3>Precisão</h3>
-      <p>Metragem, planta, documentação e valores sem ambiguidade. O que se diz, se comprova.</p>
-    </div>
-
-    <div class="pilar sobe">
-      <span class="pilar-num">03</span>
-      <h3>Discrição</h3>
-      <p>A privacidade do cliente e do vendedor é parte do serviço, não um detalhe. Fora do mercado aberto quando for o caminho certo.</p>
+    <div class="pilares">
+      <div class="pilar">
+        <span class="pilar-num">01</span>
+        <h3>Curadoria</h3>
+        <p>Qualidade sempre sobre volume. O valor está em filtrar melhor, não em mostrar tudo.</p>
+      </div>
+      <div class="pilar">
+        <span class="pilar-num">02</span>
+        <h3>Precisão</h3>
+        <p>Metragem, planta, documentação e valores sem ambiguidade. O que se diz, se comprova.</p>
+      </div>
+      <div class="pilar">
+        <span class="pilar-num">03</span>
+        <h3>Discrição</h3>
+        <p>A privacidade do cliente e do vendedor é parte do serviço, não um detalhe. Fora do mercado aberto quando for o caminho certo.</p>
+      </div>
     </div>
   </div>
 </section>
-
 <!-- ================================================================ servicos -->
 <section id="servicos">
   <div class="cabeca sobe">
@@ -2252,7 +2320,7 @@
       sobe: 'clamp(16px, 2.4vw, 38px)'
     },
     {
-      alvo: '#manifesto .faixa-imagem',
+      alvo: '#manifesto .placa',
       curva: 'M-30,44 C 300,198 720,208 1030,26',
       altura: 'clamp(80px, 12vw, 160px)',
       sobe: 'clamp(12px, 1.8vw, 28px)'
