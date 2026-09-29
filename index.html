@@ -1092,139 +1092,106 @@
   .pilar p { font-size: 16px; }
 
   /* ============================================================= servicos ==
-     O PERCURSO.
+     QUATRO FRENTES.
 
-     O titulo da secao e "Do primeiro contato a escritura" — ou seja, um
-     TRAJETO. Nenhuma das versoes anteriores usava isso: a primeira era uma
-     fotografia de borda a borda com os nomes por cima, a segunda eram os
-     mesmos nomes em Cormorant de ate 96px, grandes demais.
+     A versao anterior chamava isto de PERCURSO e fazia uma linha champagne
+     avancar de 01 ate 04. Contava uma historia falsa: comprar, vender,
+     investir e assessorar do exterior nao sao etapas de um caminho, sao
+     quatro servicos diferentes. Quem vende nao passa antes por comprar.
 
-     Agora a forma diz o que o titulo diz. Os quatro oficios sao ESTACOES de um
-     trajeto, e a linha champagne AVANCA ate a estacao em que a pessoa esta. A
-     linha nao e enfeite: ela e a jornada, e o quanto dela ja andou.
+     E era uma secao vazia por construcao: tres quartos do texto ficava atras
+     de um clique, e o olho batia em quatro palavras soltas e um paragrafo.
 
-     O tipo voltou a um corpo de leitura — 22 a 34px, contra os 96 de antes.
-     Quem carrega a secao e o trajeto, e nao o tamanho da letra.
+     Agora as quatro aparecem juntas, cada uma com o seu texto. O que organiza
+     a fileira e o FILETE DE 24px da identidade, repetido uma vez por frente,
+     em cima de um fio fino que atravessa a coluna inteira. A numeracao e
+     enumeracao, e nao ordem: sao quatro, numeradas para referencia.
+
+     NAO HA SCRIPT NENHUM AQUI. A entrada aproveita o .sobe que o site ja tem,
+     e o escalonamento e feito com nth-child, em CSS. Sairam 68 linhas de
+     JavaScript.
      ------------------------------------------------------------------------ */
-  .percurso { position: relative; padding-top: clamp(10px, 2vh, 26px); }
+  .frentes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 54px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-  .percurso-trilha { position: relative; padding-top: clamp(30px, 4vh, 46px); }
+  /* A fileira em si nao anima: quem anima sao as colunas, uma depois da
+     outra. Sem isto, o .sobe faria a fileira inteira aparecer de uma vez e o
+     escalonamento de baixo nao seria visto. */
+  .frentes.sobe { opacity: 1; transform: none; }
 
-  /* a linha inteira, fraca: o caminho todo, do primeiro contato a escritura */
-  .percurso-linha {
+  .frente {
+    position: relative;
+    padding-top: clamp(22px, 3vh, 32px);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s var(--curva), transform 0.9s var(--curva);
+  }
+
+  .visivel .frente { opacity: 1; transform: none; }
+  .visivel .frente:nth-child(2) { transition-delay: 0.09s; }
+  .visivel .frente:nth-child(3) { transition-delay: 0.18s; }
+  .visivel .frente:nth-child(4) { transition-delay: 0.27s; }
+
+  /* o fio fino, que e o trilho da coluna */
+  .frente::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 1px;
     background: var(--linha-clara);
   }
 
-  /* o quanto ja se andou, em champagne */
-  .percurso-avanco {
-    display: block;
-    width: 0;
+  /* e, por cima dele, o filete de 24px do manual, um por frente. Ao passar o
+     mouse ele corre ate o fim da coluna: e a unica animacao de interacao. */
+  .frente::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 24px;
     height: 1px;
     background: var(--champagne);
     transition: width 0.9s var(--curva);
   }
 
-  .percurso-paradas {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(14px, 2.6vw, 44px);
-  }
+  .frente:hover::after { width: 100%; }
 
-  .percurso-parada {
-    position: relative;
-    display: grid;
-    gap: 10px;
-    justify-items: start;
-    padding: 0;
-    background: none;
-    border: 0;
-    text-align: left;
-    cursor: pointer;
-    color: inherit;
-  }
-
-  /* o ponto de cada estacao, pousado na linha */
-  .percurso-parada::before {
-    content: '';
-    position: absolute;
-    top: calc(-1 * clamp(30px, 4vh, 46px) - 3px);
-    left: 0;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--onix);
-    box-shadow: inset 0 0 0 1px rgba(245, 242, 236, 0.3);
-    transition: background 0.5s var(--curva), box-shadow 0.5s var(--curva), transform 0.5s var(--curva);
-  }
-
-  /* a estacao em que se esta: ponto cheio, em champagne */
-  .percurso-parada.ativa::before {
-    background: var(--champagne);
-    box-shadow: inset 0 0 0 1px var(--champagne);
-    transform: scale(1.35);
-  }
-
-  /* as que ja passaram ficam marcadas, mas sem peso */
-  .percurso-parada.andada::before { box-shadow: inset 0 0 0 1px rgba(180, 154, 110, 0.7); }
-
-  .percurso-num {
+  .frente-num {
+    display: block;
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.2em;
-    color: rgba(245, 242, 236, 0.3);
+    color: var(--champagne);
     font-variant-numeric: tabular-nums;
-    transition: color 0.5s var(--curva);
+    margin-bottom: clamp(12px, 1.8vh, 18px);
   }
 
-  .percurso-parada.ativa .percurso-num { color: var(--champagne); }
-
-  .percurso-nome {
+  .frente-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(22px, 2.4vw, 34px);
-    line-height: 1.08;
-    color: rgba(245, 242, 236, 0.44);
-    transition: color 0.6s var(--curva);
+    font-size: clamp(21px, 1.9vw, 29px);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    color: var(--marfim);
+    margin: 0 0 clamp(12px, 1.6vh, 18px);
     text-wrap: balance;
   }
 
-  .percurso-parada.ativa .percurso-nome { color: var(--marfim); }
-  .percurso-parada:hover .percurso-nome { color: rgba(245, 242, 236, 0.78); }
-  .percurso-parada.ativa:hover .percurso-nome { color: var(--marfim); }
-
-  /* a ficha da estacao em que se esta, num lugar so */
-  .percurso-fichas {
-    position: relative;
-    min-height: clamp(96px, 13vh, 130px);
-    margin-top: clamp(28px, 4.5vh, 56px);
-    padding-top: clamp(22px, 3vh, 32px);
-    border-top: 1px solid var(--linha-clara);
+  .frente p {
+    font-size: 14.5px;
+    line-height: 1.66;
+    color: rgba(245, 242, 236, 0.6);
+    max-width: 34ch;
+    transition: color 0.6s var(--curva);
   }
 
-  .percurso-ficha {
-    position: absolute;
-    inset: auto 0 auto 0;
-    top: clamp(22px, 3vh, 32px);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.7s var(--curva), visibility 0.7s, transform 0.8s var(--curva);
-  }
-
-  .percurso-ficha.ativa { opacity: 1; visibility: visible; transform: none; }
-
-  .percurso-ficha p {
-    font-size: 16px;
-    line-height: 1.62;
-    color: rgba(245, 242, 236, 0.74);
-    max-width: 62ch;
-  }
+  .frente:hover p { color: rgba(245, 242, 236, 0.82); }
 
   /* =============================================================== global ==
      O NOME ATRAVESSA A FOTOGRAFIA.
@@ -1629,15 +1596,10 @@
     .contato-grade { grid-template-columns: 1fr; }
     .pilar { grid-template-columns: 56px minmax(0, 1fr); }
     .pilar p { grid-column: 2; }
-    /* sem largura para quatro estacoes lado a lado, o trajeto vira vertical:
-       a linha desce pela esquerda e as estacoes descem com ela */
-    .percurso-trilha { padding-top: 0; padding-left: 24px; }
-    .percurso-linha { top: 8px; bottom: 8px; left: 3px; right: auto; width: 1px; height: auto; }
-    .percurso-avanco { width: 1px; height: 0; transition: height 0.9s var(--curva); }
-    .percurso-paradas { grid-template-columns: 1fr; gap: clamp(18px, 3.2vh, 30px); }
-    .percurso-parada::before { top: 6px; left: -24px; }
-    .percurso-nome { font-size: clamp(21px, 6vw, 28px); }
-    .percurso-fichas { min-height: clamp(120px, 18vh, 150px); }
+    /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
+    .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
+    .frente p { max-width: 54ch; }
+    .frente-nome { font-size: clamp(22px, 5.6vw, 28px); }
     /* No celular entra o RECORTE so da casa, e o titulo de verdade aparece
        logo abaixo dele. A proporcao aqui e a do recorte, 16 por 10. */
     .capa-palco { aspect-ratio: 16 / 10; max-height: none; }
@@ -2019,48 +1981,31 @@
     </div>
   </div>
 
-  <!-- O PERCURSO. O titulo da secao e um trajeto: "Do primeiro contato a
-       escritura". Os quatro oficios sao as estacoes dele, e a linha champagne
-       avanca ate a estacao em que a pessoa esta. -->
-  <div class="percurso sobe" id="percurso">
-    <div class="percurso-trilha">
-      <span class="percurso-linha" aria-hidden="true"><span class="percurso-avanco" id="percursoAvanco"></span></span>
-
-      <div class="percurso-paradas" id="percursoParadas">
-        <button type="button" class="percurso-parada ativa" data-parada="0">
-          <span class="percurso-num">01</span>
-          <span class="percurso-nome">Comprar</span>
-        </button>
-        <button type="button" class="percurso-parada" data-parada="1">
-          <span class="percurso-num">02</span>
-          <span class="percurso-nome">Vender</span>
-        </button>
-        <button type="button" class="percurso-parada" data-parada="2">
-          <span class="percurso-num">03</span>
-          <span class="percurso-nome">Investir</span>
-        </button>
-        <button type="button" class="percurso-parada" data-parada="3">
-          <span class="percurso-num">04</span>
-          <span class="percurso-nome">Assessorar do exterior</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="percurso-fichas">
-      <div class="percurso-ficha ativa" data-ficha="0">
-        <p>Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta. Com o racional de por que cada imóvel está nela, e por que os outros ficaram de fora.</p>
-      </div>
-      <div class="percurso-ficha" data-ficha="1">
-        <p>Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
-      </div>
-      <div class="percurso-ficha" data-ficha="2">
-        <p>Leitura de rentabilidade, liquidez e horizonte, no Brasil e fora. O imóvel entra como parte de um patrimônio, e não como uma compra isolada.</p>
-      </div>
-      <div class="percurso-ficha" data-ficha="3">
-        <p>Para quem mora fora e compra aqui, ou mora aqui e compra lá: documentação, remessa, representação e acompanhamento até a escritura.</p>
-      </div>
-    </div>
-  </div>
+  <!-- QUATRO FRENTES. Nao e um percurso: sao quatro servicos, e por isso
+       esta numa lista SEM ORDEM. Os numeros sao indice, para referencia, e
+       nao etapa: ninguem passa por comprar antes de vender. -->
+  <ul class="frentes sobe">
+    <li class="frente">
+      <span class="frente-num">01</span>
+      <h3 class="frente-nome">Comprar</h3>
+      <p>Entendemos objetivo, prazo e não negociáveis, e devolvemos uma seleção curta. Com o racional de por que cada imóvel está nela, e por que os outros ficaram de fora.</p>
+    </li>
+    <li class="frente">
+      <span class="frente-num">02</span>
+      <h3 class="frente-nome">Vender</h3>
+      <p>Posicionamento correto do ativo, material à altura, qualificação dos interessados e a opção de conduzir a venda fora do mercado aberto.</p>
+    </li>
+    <li class="frente">
+      <span class="frente-num">03</span>
+      <h3 class="frente-nome">Investir</h3>
+      <p>Leitura de rentabilidade, liquidez e horizonte, no Brasil e fora. O imóvel entra como parte de um patrimônio, e não como uma compra isolada.</p>
+    </li>
+    <li class="frente">
+      <span class="frente-num">04</span>
+      <h3 class="frente-nome">Assessorar do exterior</h3>
+      <p>Para quem mora fora e compra aqui, ou mora aqui e compra lá: documentação, remessa, representação e acompanhamento até a escritura.</p>
+    </li>
+  </ul>
 </section>
 
 <!-- ================================================================== global -->
@@ -2574,75 +2519,7 @@
     aplicar();
   }
 
-  /* 8. Servicos: o percurso.
-
-     A linha champagne avanca ate o PONTO da estacao em que a pessoa esta. O
-     quanto ela anda e MEDIDO, e nao uma fracao chutada: o ponto de cada
-     estacao fica na borda esquerda dela, e as colunas do grid nao tem a mesma
-     largura em toda tela, entao `i / 3` daria errado. Por isso a conta le a
-     posicao real do botao dentro da trilha.
-
-     Refeita quando a janela muda de tamanho, porque as colunas mudam junto. */
-  var percurso = document.getElementById('percurso');
-
-  if (percurso) {
-    var paradas = percurso.querySelectorAll('.percurso-parada');
-    var fichasP = percurso.querySelectorAll('.percurso-ficha');
-    var avanco = document.getElementById('percursoAvanco');
-    var trilha = percurso.querySelector('.percurso-trilha');
-    var naEstacao = 0;
-
-    function medirAvanco() {
-      if (!avanco || !trilha || !paradas[naEstacao]) return;
-      var largura = trilha.getBoundingClientRect().width;
-      if (!largura) return;
-      var aqui = paradas[naEstacao].getBoundingClientRect().left;
-      var zero = trilha.getBoundingClientRect().left;
-      // mais 3px para a linha chegar ao MEIO do ponto, e nao a borda dele
-      var ate = Math.max(0, Math.min(largura, aqui - zero + 3));
-      avanco.style.width = (ate / largura * 100).toFixed(2) + '%';
-    }
-
-    function irPara(i) {
-      if (!paradas[i]) return;
-      naEstacao = i;
-
-      Array.prototype.forEach.call(paradas, function (p, k) {
-        p.classList.toggle('ativa', k === i);
-        // as que ja passaram ficam marcadas, sem peso
-        p.classList.toggle('andada', k < i);
-      });
-      Array.prototype.forEach.call(fichasP, function (f, k) {
-        f.classList.toggle('ativa', k === i);
-      });
-
-      medirAvanco();
-    }
-
-    percurso.addEventListener('click', function (ev) {
-      var botao = ev.target.closest('.percurso-parada');
-      if (botao) irPara(parseInt(botao.getAttribute('data-parada'), 10));
-    });
-
-    Array.prototype.forEach.call(paradas, function (botao) {
-      var i = parseInt(botao.getAttribute('data-parada'), 10);
-      botao.addEventListener('mouseenter', function () { irPara(i); });
-      botao.addEventListener('focus', function () { irPara(i); });
-    });
-
-    var pedidoAvanco = false;
-    window.addEventListener('resize', function () {
-      if (pedidoAvanco) return;
-      pedidoAvanco = true;
-      window.requestAnimationFrame(function () { medirAvanco(); pedidoAvanco = false; });
-    }, { passive: true });
-
-    medirAvanco();
-    // as fontes chegam depois e mudam a largura das colunas
-    window.addEventListener('load', medirAvanco);
-  }
-
-  /* 9. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
+  /* 8. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
   var slides = document.getElementById('slides');
   var marcadores = document.getElementById('marcadores');
 
@@ -2696,7 +2573,7 @@
     }
   }
 
-  /* 10. As tres horas.
+  /* 9. As tres horas.
 
      Dado real, do relogio de quem esta olhando, relido a cada meio minuto.
      Alem da hora, esta funcao escreve outras tres coisas, e todas SAIAM DO
@@ -2824,7 +2701,7 @@
   marcarHoras();
   window.setInterval(marcarHoras, 30000);
 
-  /* 11. A secao Global: uma praca por vez, e ela anda sozinha.
+  /* 10. A secao Global: uma praca por vez, e ela anda sozinha.
 
      Quem manda e o MARCADOR: a fotografia, o nome, o relogio e o pe apenas o
      acompanham, pelo mesmo indice. Quem controla a visibilidade e a OPACIDADE
