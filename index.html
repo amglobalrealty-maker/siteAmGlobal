@@ -505,89 +505,67 @@
     object-position: center center;
   }
 
-  /* OS BOTOES QUE TROCAM A FOTOGRAFIA.
+  /* OS BOTOES QUE TROCAM A FOTOGRAFIA: UMA BARRA EM TRES PEDACOS.
 
-     Antes eram tres numeros em Jost de 11px dentro de caixas de 124px, e o
-     numero ficava perdido no meio do vazio. Tinham perdido o nome da cidade
-     (as imagens nao sao de praca identificavel, e rotular seria inventar) e
-     com ele perderam o que os sustentava.
+     Duas tentativas anteriores foram recusadas. A primeira eram tres numeros
+     em Jost de 11px dentro de caixas de 124px -- quando o nome da cidade
+     saiu, o numero ficou perdido no vazio da caixa. A segunda eram
+     miniaturas das proprias fotografias, em monocromatico fora do ar.
 
-     A IDEIA: as tres fotografias aparecem em miniatura, e as que NAO estao no
-     ar ficam em monocromatico de onix, como arquivo; a que esta no ar volta a
-     ter cor. O presente tem cor, o resto e memoria. Sob a ativa corre o
-     filete champagne, que e o relogio ate a proxima.
+     Agora nao ha numero nem imagem: so tres pedacos de fio. O pedaco da foto
+     que esta no ar se enche de champagne no tempo exato da troca, e OS QUE JA
+     PASSARAM FICAM CHEIOS -- entao a barra e a linha do tempo do ciclo
+     inteiro, e esvazia quando volta a primeira.
 
-     As miniaturas sao arquivo proprio, de 9 a 12 KB. Reaproveitar o recorte
-     de celular faria o computador baixar 660 KB so para desenhar tres
-     retangulos de 116px, e no computador aquele arquivo nem e pedido. */
+     O botao tem 24px de altura e o fio fica no meio dele: a area de toque
+     precisa ser pegavel no celular, e um alvo de 1px nao e. */
   .marcadores {
     display: flex;
-    flex-wrap: wrap;
-    gap: 14px clamp(10px, 1.4vw, 18px);
+    align-items: center;
+    gap: 8px;
   }
 
   .marcador {
+    position: relative;
     display: block;
+    width: clamp(44px, 6vw, 74px);
+    height: 24px;
     padding: 0;
     background: none;
     border: 0;
     cursor: pointer;
-    text-align: left;
   }
 
-  /* a moldura existe para o filete do tempo poder se pendurar no pe da foto */
-  .marcador-moldura { position: relative; display: block; }
-
-  .marcador-foto {
-    display: block;
-    width: clamp(78px, 8.5vw, 116px);
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    /* fora do ar: monocromatico de onix */
-    filter: grayscale(1) brightness(0.44) contrast(1.14);
-    transition: filter 0.9s var(--curva);
-  }
-
-  .marcador:hover .marcador-foto { filter: grayscale(0.66) brightness(0.7) contrast(1.08); }
-  .marcador.ativo .marcador-foto { filter: none; }
-
-  /* trilho de base, sempre visivel, bem fraco */
-  .marcador-moldura::before {
+  /* o trilho, sempre visivel, bem fraco */
+  .marcador::before {
     content: '';
     position: absolute;
-    left: 0; right: 0; bottom: 0;
+    left: 0; right: 0; top: 50%;
     height: 1px;
     background: rgba(245, 242, 236, 0.22);
+    transition: background 0.6s var(--curva);
   }
 
-  /* filete champagne que corre enquanto a foto esta no ar */
-  .marcador-moldura::after {
+  .marcador:hover::before { background: rgba(245, 242, 236, 0.5); }
+
+  /* o champagne que se enche */
+  .marcador::after {
     content: '';
     position: absolute;
-    left: 0; right: 0; bottom: 0;
+    left: 0; right: 0; top: 50%;
     height: 1px;
     background: var(--champagne);
     transform: scaleX(0);
     transform-origin: left;
+    /* a transicao so vale para o esvaziar do fim do ciclo: enquanto a foto
+       esta no ar, quem manda e a animacao */
+    transition: transform 0.6s var(--curva);
   }
 
-  .marcador.ativo .marcador-moldura::after { animation: encher 6.6s linear forwards; }
+  .marcador.andada::after { transform: scaleX(1); }
+  .marcador.ativo::after { animation: encher 6.6s linear forwards; }
 
-  .marcador-num {
-    display: block;
-    margin-top: 9px;
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
-    font-variant-numeric: tabular-nums;
-    color: rgba(245, 242, 236, 0.3);
-    transition: color 0.7s var(--curva);
-  }
-
-  .marcador:hover .marcador-num { color: rgba(245, 242, 236, 0.66); }
-  .marcador.ativo .marcador-num { color: var(--champagne); }
-  .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
+  .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 5px; }
 
   @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
@@ -1668,7 +1646,7 @@
     html { scroll-behavior: auto; }
     .rolar .chevron, .faixa-trilho { animation: none !important; }
     .cortina img { animation: none; clip-path: none; }
-    .marcador.ativo .marcador-moldura::after { animation: none; transform: scaleX(1); }
+    .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
     .sobe { opacity: 1; transform: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
@@ -1812,28 +1790,12 @@
 
   <div class="abertura-rodape">
     <div class="marcadores" id="marcadores">
-      <!-- A miniatura mostra a propria fotografia. Quem esta fora do ar fica
-           em monocromatico de onix, pelo CSS; quem esta no ar volta a ter
-           cor. A imagem e decorativa (alt vazio): quem anuncia o botao e o
-           aria-label, e o numero visivel repete isso para quem enxerga. -->
-      <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia">
-        <span class="marcador-moldura">
-          <img class="marcador-foto" src="fotos/capa-1-mini.webp" alt="" width="232" height="131" loading="lazy" decoding="async">
-        </span>
-        <span class="marcador-num">01</span>
-      </button>
-      <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia">
-        <span class="marcador-moldura">
-          <img class="marcador-foto" src="fotos/capa-2-mini.webp" alt="" width="232" height="131" loading="lazy" decoding="async">
-        </span>
-        <span class="marcador-num">02</span>
-      </button>
-      <button type="button" class="marcador" data-slide="2" aria-label="Ver a terceira fotografia">
-        <span class="marcador-moldura">
-          <img class="marcador-foto" src="fotos/capa-3-mini.webp" alt="" width="232" height="131" loading="lazy" decoding="async">
-        </span>
-        <span class="marcador-num">03</span>
-      </button>
+      <!-- Os botoes nao tem conteudo visivel nenhum: sao tres pedacos de fio,
+           desenhados no CSS. Entao o aria-label e a UNICA coisa que os
+           anuncia, e nao pode sair daqui. -->
+      <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
+      <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia"></button>
+      <button type="button" class="marcador" data-slide="2" aria-label="Ver a terceira fotografia"></button>
     </div>
 
     <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
@@ -2676,6 +2638,9 @@
       Array.prototype.forEach.call(botoes, function (b, k) {
         // tira e recoloca a classe para a barra de tempo recomecar do zero
         b.classList.remove('ativo');
+        // os pedacos que ja passaram ficam cheios: a barra vira a linha do
+        // tempo do ciclo inteiro, e esvazia sozinha ao voltar para a primeira
+        b.classList.toggle('andada', k < atual);
         if (k === atual) {
           void b.offsetWidth;
           b.classList.add('ativo');
