@@ -1298,6 +1298,10 @@
     perspective-origin: 50% 50%;
   }
 
+  /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
+     posicoes precisam sair da frente: sem isto ficariam empilhados no meio,
+     por cima do card ativo. Com tres pracas isso nunca aconteceu porque nao
+     sobrava nenhum. */
   .carta {
     position: absolute;
     top: 0;
@@ -1312,8 +1316,16 @@
     padding: 0;
     text-align: left;
     transform-style: preserve-3d;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transform: translateX(0) scale(0.66);
     transition: transform 0.95s var(--curva), opacity 0.95s var(--curva), filter 0.95s var(--curva);
   }
+
+  .carta[data-pos="0"],
+  .carta[data-pos="1"],
+  .carta[data-pos="-1"] { pointer-events: auto; }
 
   /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
      da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
@@ -2021,13 +2033,28 @@
        clicar num lateral traz ele para o meio, e isso precisa funcionar no
        teclado tambem.
 
+       A ORDEM E INTERCALADA DE PROPOSITO: o acervo provisorio so tem quatro
+       fotografias de lugar, uma por pais, entao as tres cidades brasileiras
+       dividem a mesma imagem. Como tres cards ficam visiveis por vez, duas do
+       mesmo pais lado a lado mostrariam a foto repetida -- os tres do Brasil
+       ficam nas posicoes 1, 4 e 7 de oito, e nunca se encostam.
+
        As classes `mundo-hora` e `data-estado-texto` sao os ganchos do script
        do relogio e NAO podem ser renomeadas sem mexer nele.
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
     <div class="cartas" id="cartas">
-      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver Orlando">
+      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Brasil</span>
+          <span class="carta-nome">São Paulo</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Orlando">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Estados Unidos</span>
@@ -2036,16 +2063,34 @@
           <span class="carta-estado" data-estado-texto="America/New_York"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Portugal">
+      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Lisboa">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Lisboa e Cascais</span>
-          <span class="carta-nome">Portugal</span>
+          <span class="carta-lugar">Portugal</span>
+          <span class="carta-nome">Lisboa</span>
           <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="2" data-pos="-1" data-estado="dia" aria-label="Ver Dubai">
+      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Rio de Janeiro">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Brasil</span>
+          <span class="carta-nome">Rio de Janeiro</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Miami">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Estados Unidos</span>
+          <span class="carta-nome">Miami</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Dubai">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2054,12 +2099,30 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
+      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Florianópolis">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Brasil</span>
+          <span class="carta-nome">Florianópolis</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="7" data-pos="-1" data-estado="dia" aria-label="Ver Cascais">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Portugal</span>
+          <span class="carta-nome">Cascais</span>
+          <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
+          <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
+        </span>
+      </button>
     </div>
 
-    <button type="button" class="seta seta--esq" id="setaEsq" aria-label="Praça anterior">
+    <button type="button" class="seta seta--esq" id="setaEsq" aria-label="Cidade anterior">
       <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M9.5 1 L1.5 8.5 L9.5 16"/></svg>
     </button>
-    <button type="button" class="seta seta--dir" id="setaDir" aria-label="Próxima praça">
+    <button type="button" class="seta seta--dir" id="setaDir" aria-label="Próxima cidade">
       <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1.5 1 L9.5 8.5 L1.5 16"/></svg>
     </button>
   </div>
