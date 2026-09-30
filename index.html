@@ -55,7 +55,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -1040,26 +1040,25 @@
   .curadoria-fim p { font-size: 15px; color: var(--texto-fraco); max-width: 48ch; }
 
   /* ============================================================ manifesto ==
-     A FOTOGRAFIA DENTRO DAS LETRAS.
+     A PAGINA DE TIPO.
 
-     Tres versoes desta secao foram recusadas por "basica", e as tres tinham o
-     mesmo defeito: TRES COISAS DE TAMANHO MEDIO, nenhuma dominando. As duas
-     secoes aprovadas da pagina -- o cabecalho e a 05 -- tem uma coisa so,
-     enorme, e o resto e apoio.
+     Cinco versoes foram recusadas, e todas tentavam resolver a secao com MAIS
+     coisa: uma placa escura, uma faixa, uma fotografia por dentro das letras.
 
-     Agora a frase E a secao. Ela vem em corpo gigante, e A FOTOGRAFIA APARECE
-     SO POR DENTRO DAS LETRAS, recortada pela forma do tipo, derivando devagar.
-     A faixa de imagem que existia aqui saiu: a fotografia deixou de ser um
-     bloco e virou a materia de que o texto e feito.
+     Esta vai no sentido contrario. A 02 e cheia de fotografia, a 04 tem quatro
+     colunas de texto e a 05 tem fotografia e relogios. A 03 vira a PAUSA da
+     pagina: so tipo, em escala, com ar em volta. Nenhuma imagem.
 
-     O texto de apresentacao e os tres principios encolheram de proposito. Eles
-     nao disputam com a frase; eles a cercam.
+     A frase sobe LINHA POR LINHA, de dentro de uma mascara. E o gesto do
+     titulo da abertura, a unica animacao desta pagina que nunca foi
+     contestada. Ela nao reaproveita a classe `.linha` porque aquela dispara no
+     carregamento; esta dispara ao rolar.
 
-     ONDE O NAVEGADOR NAO SOUBER RECORTAR, a frase fica em onix solido e a
-     secao continua inteira. E por isso que a cor onix esta declarada ANTES do
-     bloco @supports, e nao dentro dele.
+     As quebras de linha da frase sao ESCRITAS A MAO no HTML, e nao deixadas
+     para o navegador: mascarar linha por linha exige saber onde cada linha
+     comeca, e so ha como saber isso decidindo.
      ------------------------------------------------------------------------ */
-  .manifesto-fala { max-width: min(100%, 1080px); }
+  .manifesto-fala { max-width: min(100%, 1120px); }
   .manifesto-fala.sobe { opacity: 1; transform: none; }
   .manifesto-fala .rotulo { margin-bottom: clamp(16px, 2.4vh, 24px); }
 
@@ -1084,7 +1083,6 @@
 
   .manifesto-nota::before { content: '— '; color: var(--champagne); }
 
-  /* uma palavra do texto de apresentacao */
   .palavra {
     display: inline-block;
     opacity: 0;
@@ -1094,87 +1092,52 @@
 
   .visivel .palavra { opacity: 1; transform: none; }
 
-  /* ---- A FRASE, E A CASA PASSANDO POR DENTRO DELA ----
-
-     A FAIXA E ONIX dentro de uma secao clara. Nao e enfeite: este efeito so
-     funciona com letra recortada de fundo ESCURO e imagem CLARA por dentro.
-     A primeira tentativa foi o contrario -- letra fina, foto escura, papel
-     claro -- e o resultado foi sujo e ilegivel.
-
-     A CAIXA e o que o site observa ao rolar; A FRASE e o que e recortado. Os
-     dois nao podem ser o mesmo elemento: recortado a zero de largura, ele nao
-     conta como visivel, a classe nunca chega, e a varredura nunca abre.
-
-     As regras sao `.claro .lema` e nao `.lema` porque `.claro p` do site tem
-     prioridade maior que uma classe sozinha, e engolia a cor.
-
-     A COR DE FUNDO debaixo da imagem e a rede de seguranca: ela tambem e
-     recortada pela forma do tipo, entao se a fotografia nao carregar as
-     letras aparecem em marfim, e nao somem. */
-  .lema-caixa {
-    position: relative;
-    margin: clamp(40px, 6.5vh, 92px) calc(-1 * var(--margem));
-    padding: clamp(56px, 9vh, 124px) var(--margem);
-    background: var(--onix);
-    overflow: hidden;
-  }
-
+  /* ---- A FRASE ---- */
+  .lema-caixa { margin: clamp(52px, 9vh, 128px) 0 clamp(48px, 8vh, 112px); }
   .lema-caixa.sobe { opacity: 1; transform: none; }
 
   .claro .lema {
     margin: 0;
     font-family: var(--serif);
-    /* 600, e nao o 300 do resto do site: a fotografia precisa de espessura de
-       traco para caber dentro da letra e ser reconhecida */
-    font-weight: 600;
-    font-size: clamp(46px, 10.6vw, 176px);
-    line-height: 0.94;
-    letter-spacing: -0.024em;
-    color: var(--marfim);
-    max-width: 13ch;
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path 1.5s var(--curva);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(40px, 7.4vw, 128px);
+    line-height: 1.0;
+    letter-spacing: -0.018em;
+    color: var(--onix);
   }
 
-  .lema-caixa.visivel .lema { clip-path: inset(0 0 0 0); }
-
-  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    .claro .lema {
-      color: transparent;
-      /* se a fotografia nao carregar, esta cor sobra e as letras ficam marfim */
-      background-color: rgba(245, 242, 236, 0.92);
-      background-image:
-        linear-gradient(rgba(245, 242, 236, 0.12), rgba(245, 242, 236, 0.12)),
-        url('fotos/lema.webp');
-      /* larga de proposito: e a largura sobrando que da percurso para andar */
-      background-size: 260% auto;
-      background-position: 0% 48%;
-      background-repeat: no-repeat;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: passar 20s linear infinite alternate;
-    }
+  /* cada linha nasce de dentro de uma mascara. O respiro embaixo existe
+     porque `overflow: hidden` corta o rabo do "g" de "enxergar" e de
+     "longe" -- o padding devolve o espaco por dentro da mascara. */
+  .lema-linha {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.2em;
+    margin-bottom: -0.2em;
   }
 
-  /* A CASA PASSA. De ponta a ponta da imagem, em 20 segundos. A versao
-     anterior andava 18% do percurso em 34 segundos, e era por isso que
-     ninguem via nada acontecer. */
-  @keyframes passar {
-    from { background-position: 0% 46%; }
-    to   { background-position: 100% 54%; }
+  .lema-linha > span {
+    display: block;
+    transform: translateY(108%);
+    transition: transform 1.2s var(--curva);
   }
 
-  /* ---- os tres principios, de apoio ---- */
+  .lema-caixa.visivel .lema-linha > span { transform: none; }
+  .lema-caixa.visivel .lema-linha:nth-child(2) > span { transition-delay: 0.14s; }
+
+  /* ---- os tres principios, no pe da pagina ---- */
   .pilares {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(22px, 3.4vw, 64px);
+    gap: clamp(22px, 3.4vw, 68px);
+    padding-top: clamp(26px, 3.6vh, 40px);
+    border-top: 1px solid rgba(11, 11, 12, 0.14);
   }
 
   .pilares.sobe { opacity: 1; transform: none; }
 
   .pilar {
-    position: relative;
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 0.8s var(--curva), transform 0.9s var(--curva);
@@ -1184,31 +1147,13 @@
   .visivel .pilar:nth-child(2) { transition-delay: 0.10s; }
   .visivel .pilar:nth-child(3) { transition-delay: 0.20s; }
 
-  /* fio vertical que se desenha de cima para baixo */
-  .pilar:not(:first-child)::before {
-    content: '';
-    position: absolute;
-    left: calc(-1 * clamp(11px, 1.7vw, 32px));
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(11, 11, 12, 0.14);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 1.1s var(--curva);
-  }
-
-  .visivel .pilar:not(:first-child)::before { transform: scaleY(1); }
-  .visivel .pilar:nth-child(2)::before { transition-delay: 0.20s; }
-  .visivel .pilar:nth-child(3)::before { transition-delay: 0.30s; }
-
   .pilar h3 {
     font-family: var(--sans);
     font-weight: 500;
     font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--onix);
+    color: var(--champagne);
     line-height: 1.2;
     margin-bottom: clamp(10px, 1.4vh, 15px);
   }
@@ -1732,7 +1677,7 @@
     }
     .pilar:not(:first-child)::before { display: none; }
     /* no celular a frase ganha mais linhas, entao cabe mais estreita */
-    .claro .lema { max-width: 11ch; }
+    .claro .lema { font-size: clamp(36px, 9.4vw, 62px); }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -1773,7 +1718,7 @@
        montada, e a fotografia dentro das letras para de passear */
     .palavra, .pilar { opacity: 1; transform: none; }
     .pilar:not(:first-child)::before { transform: scaleY(1); }
-    .claro .lema { clip-path: none; animation: none; }
+    .lema-linha > span { transform: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -2078,11 +2023,13 @@
     <p class="manifesto-nota">Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
   </div>
 
-  <!-- A FRASE E A SECAO. A fotografia aparece por dentro das letras, e nao
-       como bloco: o endereco dela esta no CSS, na regra .lema. PROVISORIA,
-       do Unsplash, como as outras. Ver README. -->
+  <!-- A frase sobe linha por linha, de dentro de uma mascara. As quebras sao
+       escritas a mao: mascarar por linha exige saber onde cada uma comeca. -->
   <div class="lema-caixa sobe">
-    <p class="lema">Escolher bem é enxergar longe.</p>
+    <p class="lema">
+      <span class="lema-linha"><span>Escolher bem</span></span>
+      <span class="lema-linha"><span>é enxergar longe.</span></span>
+    </p>
   </div>
 
   <div class="pilares sobe">
@@ -2377,16 +2324,11 @@
       curva: 'M-30,22 C 240,200 690,186 1030,40',
       altura: 'clamp(96px, 15vw, 200px)',
       sobe: 'clamp(16px, 2.4vw, 38px)'
-    },
-    {
-      alvo: '#manifesto .lema',
-      curva: 'M-30,44 C 300,198 720,208 1030,26',
-      altura: 'clamp(80px, 12vw, 160px)',
-      sobe: 'clamp(12px, 1.8vw, 28px)'
     }
-    // A terceira linha caia sobre o palco dos servicos. O palco saiu junto com
-    // a fotografia daquela secao, e a linha caida so faz sentido sobre imagem:
-    // ela e um fio pousado na borda de cima de uma foto.
+    // Sobrou uma linha caida so. A da secao 03 saiu junto com a fotografia
+    // dela, e a dos servicos ja tinha saido antes, pelo mesmo motivo: a linha
+    // caida e um fio pousado na borda de cima de uma IMAGEM. Sobre uma pagina
+    // de tipo, sem imagem nenhuma, ela vira um risco solto no meio do branco.
   ];
 
   var linhasNaTela = [];
