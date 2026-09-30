@@ -1263,260 +1263,133 @@
   .frente:hover p { color: rgba(245, 242, 236, 0.82); }
 
   /* =============================================================== global ==
-     O NOME ATRAVESSA A FOTOGRAFIA.
+     AS TRES PRACAS AO MESMO TEMPO.
 
-     Quatro tentativas anteriores foram recusadas, e as quatro tinham a mesma
-     falha: eram PEQUENAS, CLARAS e DISCRETAS — tres colunas, um mapa
-     pontilhado, o mesmo mapa com o sol, tres janelinhas. Diagramas.
+     A secao se chama "Global" e mostrava UMA praca por vez, sete segundos
+     cada. A ideia que ela precisa passar e simultaneidade -- a casa esta nos
+     tres lugares agora -- e o rodizio dizia exatamente o contrario.
 
-     A unica secao deste site aprovada de primeira foi a 04: fotografia grande,
-     tipo grande por cima, fundo escuro, movimento na troca. Esta secao passa a
-     falar essa lingua.
+     E o rodizio escondia o que ha de melhor aqui: a fotografia de cada praca
+     escurece ou clareia conforme A HORA QUE E LA. Uma por vez, nao ha com o
+     que comparar. Lado a lado, isso vira o assunto da secao: bate o olho e ve
+     que e noite em Dubai e fim de tarde em Orlando, sem ler nada.
 
-     Para NAO virar a 04 de novo, a composicao e outra: la a fotografia sangra
-     de borda a borda e os nomes ficam em lista sobre ela. Aqui a fotografia e
-     um painel a direita, e o NOME DA PRACA ATRAVESSA A BORDA DELE — metade no
-     onix, metade na imagem. E o tipo que manda, e a fotografia entra por
-     baixo.
+     Por isso o nome da praca ENCOLHEU e a hora CRESCEU. O nome e rotulo; o
+     que a secao tem de raro e a hora, e ela e dado de verdade, relido a cada
+     meio minuto do relogio de quem esta olhando.
 
-     A troca e a mesma varredura da 04, que ela aprovou. Quem manda na
-     visibilidade e a OPACIDADE: se a animacao nao rodar, a foto troca do mesmo
-     jeito.
-
-     A fotografia tambem escurece e clareia conforme a HORA QUE E LA: de
-     madrugada ela quase some, ao meio-dia ela abre. Nao e efeito, e a mesma
-     informacao que o relogio da.
+     Sairam o rodizio, os marcadores, a barra de tempo e a varredura da troca:
+     nao ha mais troca.
      ------------------------------------------------------------------------ */
-  .mundo {
-    position: relative;
-    min-height: clamp(520px, 82vh, 780px);
-    margin: 0 calc(-1 * var(--margem));
-    padding: 0 var(--margem);
+  .pracas {
     display: grid;
-    align-items: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 1.6vw, 26px);
   }
 
-  /* ---- o painel de fotografia, a direita ---- */
-  .mundo-painel {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: clamp(52%, 62%, 68%);
+  /* a fileira nao anima; quem anima sao os paineis, um depois do outro */
+  .pracas.sobe { opacity: 1; transform: none; }
+
+  .praca {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: clamp(400px, 62vh, 700px);
     overflow: hidden;
-    background: var(--travertino);
-  }
-
-  .mundo-foto {
-    position: absolute;
-    inset: 0;
-    margin: 0;
+    background: var(--onix);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s var(--curva), visibility 0s linear 1s;
+    transform: translateY(16px);
+    transition: opacity 0.9s var(--curva), transform 0.9s var(--curva);
   }
 
-  .mundo-foto.ativa {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 1s var(--curva), visibility 0s;
-    animation: varrer-mundo 1.25s var(--curva) both;
-  }
+  .visivel .praca { opacity: 1; transform: none; }
+  .visivel .praca:nth-child(2) { transition-delay: 0.10s; }
+  .visivel .praca:nth-child(3) { transition-delay: 0.20s; }
 
-  @keyframes varrer-mundo {
-    from { clip-path: inset(0 0 0 100%); }
-    to   { clip-path: inset(0 0 0 0); }
-  }
+  .praca-foto { position: absolute; inset: 0; margin: 0; }
 
-  .mundo-foto img {
+  .praca-foto img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* lenta de proposito: quando o relogio vira a faixa do dia, a luz muda
+       sem ninguem ver o corte */
     transition: filter 2.4s var(--curva);
   }
 
-  /* O VEU CLAREIA a esquerda do painel, e nao escurece: a secao passou a ser
-     clara e o nome que a atravessa esta em onix. Ele ja e quase transparente
-     aos 62% da largura, entao a fotografia so perde forca exatamente onde o
-     tipo precisa ser lido, e volta inteira no resto. Foi por nao ter isto que
-     a versao clara anterior falhou: la a imagem lavava por igual.
-     ------------------------------------------------------------------- */
-  .mundo-painel::after {
+  /* A HORA MANDA NO BRILHO, POR PAINEL. E a diferenca entre os tres que faz
+     a secao dizer alguma coisa, entao as faixas estao mais afastadas entre si
+     do que estavam quando so uma aparecia por vez. */
+  .praca[data-estado="madrugada"]  .praca-foto img { filter: grayscale(0.42) brightness(0.46) contrast(1.08); }
+  .praca[data-estado="amanhecer"]  .praca-foto img { filter: grayscale(0.14) brightness(0.82) contrast(1.04) saturate(1.08); }
+  .praca[data-estado="dia"]        .praca-foto img { filter: grayscale(0.02) brightness(1.08) contrast(1.02); }
+  .praca[data-estado="entardecer"] .praca-foto img { filter: grayscale(0.08) brightness(0.88) contrast(1.05) saturate(1.14); }
+  .praca[data-estado="noite"]      .praca-foto img { filter: grayscale(0.36) brightness(0.52) contrast(1.08); }
+
+  /* o veu: o texto e claro e precisa ler sobre qualquer hora do dia */
+  .praca::after {
     content: '';
     position: absolute;
-    z-index: 2;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(to right,
-      rgba(245, 242, 236, 0.95) 0%, rgba(245, 242, 236, 0.62) 26%, rgba(245, 242, 236, 0.08) 62%, rgba(245, 242, 236, 0.22) 100%);
+    background: linear-gradient(to top,
+      rgba(11, 11, 12, 0.92) 0%, rgba(11, 11, 12, 0.6) 32%, rgba(11, 11, 12, 0.14) 68%, rgba(11, 11, 12, 0.06) 100%);
   }
 
-  /* ---- a hora manda no brilho da fotografia ---- */
-  .mundo[data-estado="madrugada"] .mundo-foto img { filter: grayscale(0.4) brightness(0.56) contrast(1.06); }
-  .mundo[data-estado="amanhecer"] .mundo-foto img { filter: grayscale(0.16) brightness(0.78) contrast(1.04) saturate(1.06); }
-  .mundo[data-estado="dia"]       .mundo-foto img { filter: grayscale(0.04) brightness(1) contrast(1.02); }
-  .mundo[data-estado="entardecer"] .mundo-foto img { filter: grayscale(0.1) brightness(0.84) contrast(1.05) saturate(1.12); }
-  .mundo[data-estado="noite"]     .mundo-foto img { filter: grayscale(0.34) brightness(0.62) contrast(1.06); }
-
-  /* ---- o tipo, por cima de tudo ---- */
-  .mundo-corpo {
+  .praca-dados {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     display: grid;
-    gap: clamp(18px, 2.6vh, 34px);
-    max-width: min(92%, 1100px);
-    padding: clamp(40px, 7vh, 90px) 0;
+    gap: clamp(8px, 1.1vh, 14px);
+    padding: clamp(20px, 2.2vw, 34px);
   }
 
-  /* O NOME. Altura fixa: o nome mais longo nao pode empurrar o resto ao
-     trocar. Ele nasce desta caixa e ATRAVESSA a borda do painel. */
-  .mundo-nomes {
-    position: relative;
-    height: clamp(72px, 13vw, 190px);
+  .praca-nome {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.62);
   }
 
-  .mundo-nome {
-    position: absolute;
-    left: 0;
-    bottom: 0;
+  /* a hora e o que a secao tem de raro: e ela que cresce */
+  .praca-hora {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(56px, 13vw, 200px);
-    line-height: 0.86;
-    letter-spacing: -0.02em;
-    color: var(--onix);
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.9s var(--curva), transform 1s var(--curva);
-  }
-
-  .mundo-nome.ativa { opacity: 1; transform: none; transition-delay: 0.2s; }
-
-  /* a hora, do tamanho de um subtitulo, e o estado do dia ao lado */
-  .mundo-relogios { position: relative; height: clamp(46px, 5.4vw, 78px); }
-
-  .mundo-relogio {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    align-items: baseline;
-    gap: clamp(12px, 1.6vw, 24px);
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.8s var(--curva), transform 0.9s var(--curva);
-  }
-
-  .mundo-relogio.ativa { opacity: 1; transform: none; transition-delay: 0.34s; }
-
-  .mundo-hora {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(34px, 5vw, 76px);
+    font-size: clamp(40px, 4.6vw, 82px);
     line-height: 0.88;
-    color: var(--onix);
+    color: var(--marfim);
     font-variant-numeric: tabular-nums;
   }
 
-  .mundo-estado {
+  .praca-estado {
     font-family: var(--sans);
     font-weight: 500;
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--grafite);
-    white-space: nowrap;
+    color: var(--champagne);
   }
 
-  /* o pe: a frase e a diferenca de fuso */
-  .mundo-pes { position: relative; min-height: clamp(78px, 9vh, 104px); max-width: 44ch; }
-
-  .mundo-pe {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    display: grid;
-    gap: 12px;
-    opacity: 0;
-    transition: opacity 0.8s var(--curva);
-  }
-
-  .mundo-pe.ativa { opacity: 1; transition-delay: 0.46s; }
-
-  .mundo-pe p {
-    font-size: 15.5px;
+  /* A SECAO E CLARA: sem esta regra o paragrafo sairia grafite, que e o que
+     `.claro p` pinta -- e grafite sobre fotografia escura nao le. */
+  .praca .praca-texto {
+    font-size: 14px;
     line-height: 1.6;
-    margin: 0;
-    color: rgba(58, 58, 60, 0.82);
+    color: rgba(245, 242, 236, 0.72);
+    max-width: 34ch;
+    margin: clamp(4px, 0.8vh, 10px) 0 0;
   }
 
-  .mundo-diferenca {
+  .praca-diferenca {
     font-family: var(--sans);
     font-weight: 400;
     font-size: 9.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(58, 58, 60, 0.6);
-  }
-
-  /* ---- os marcadores, com a barra de tempo ---- */
-  .mundo-marcas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(16px, 2.4vw, 38px);
-    margin-top: clamp(8px, 2vh, 22px);
-  }
-
-  .mundo-marca {
-    position: relative;
-    padding: 2px 0 10px;
-    background: none;
-    border: 0;
-    color: rgba(58, 58, 60, 0.5);
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-variant-numeric: tabular-nums;
-    cursor: pointer;
-    transition: color 0.5s var(--curva);
-  }
-
-  .mundo-marca:hover { color: var(--onix); }
-  .mundo-marca.ativo { color: var(--onix); }
-
-  /* o filete de baixo: fraco sempre, e champagne correndo no que esta no ar */
-  .mundo-marca::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: rgba(11, 11, 12, 0.16);
-  }
-
-  .mundo-marca::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--champagne);
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-
-  /* a barra corre no tempo da troca: e o relogio da secao, visivel */
-  .mundo-marca.ativo::after { animation: correr-mundo 7s linear both; }
-
-  @keyframes correr-mundo {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
+    color: rgba(245, 242, 236, 0.46);
   }
 
   /* ============================================================== contato == */
@@ -1648,24 +1521,11 @@
     .leque-ficha { opacity: 1; transform: none; }
     .leque-item::before { transform: scaleY(1); }
     .leque-vazio { flex: 0 0 100%; }
-    /* sem largura para o nome atravessar: o painel passa a ser uma faixa no
-       alto e o tipo desce inteiro para baixo dela */
-    .mundo { min-height: 0; display: block; padding-top: 0; }
-    .mundo-painel {
-      position: relative;
-      width: auto;
-      margin: 0 calc(-1 * var(--margem));
-      height: clamp(280px, 46vh, 420px);
-    }
-    .mundo-painel::after {
-      background: linear-gradient(to top, rgba(11, 11, 12, 0.72) 0%, rgba(11, 11, 12, 0.18) 60%, rgba(11, 11, 12, 0.3) 100%);
-    }
-    .mundo-corpo { max-width: none; padding-top: clamp(26px, 5vh, 44px); }
-    .mundo-nomes { height: clamp(52px, 16vw, 92px); }
-    .mundo-nome { font-size: clamp(42px, 15vw, 96px); }
-    .mundo-relogios { height: clamp(40px, 11vw, 64px); }
-    .mundo-hora { font-size: clamp(30px, 11vw, 56px); }
-    .mundo-marcas { gap: 12px 20px; }
+    /* sem largura para tres paineis lado a lado, eles empilham. A comparacao
+       de luz entre as pracas continua, so que na vertical. */
+    .pracas { grid-template-columns: 1fr; gap: 10px; }
+    .praca { min-height: clamp(300px, 46vh, 420px); }
+    .praca-hora { font-size: clamp(34px, 11vw, 58px); }
     .contato-grade { grid-template-columns: 1fr; }
     /* sem largura para tres colunas, os principios empilham e o fio vertical
        vira uma linha entre um e o seguinte */
@@ -2103,71 +1963,56 @@
     </div>
   </div>
 
-  <!-- O NOME ATRAVESSA A FOTOGRAFIA.
+  <!-- AS TRES AO MESMO TEMPO.
 
-       Uma praca por vez. Quem manda e o MARCADOR: a fotografia, o nome, o
-       relogio e o pe apenas o acompanham, pelo mesmo indice.
+       O brilho de cada fotografia segue a HORA QUE E NAQUELA PRACA, e e a
+       comparacao entre os tres paineis que da sentido ao efeito. As classes
+       `mundo-hora`, `data-estado-texto` e `mundo-diferenca` sao os ganchos do
+       script do relogio e NAO podem ser renomeadas sem mexer nele.
 
-       PROVISORIO: as tres fotografias sao as MESMAS que o slideshow da
-       abertura usa para Orlando, Portugal e Dubai — sao as unicas do acervo
-       provisorio que retratam estas tres pracas. Saem junto com o resto do
-       banco de imagem quando chegar a fotografia propria. -->
-  <div class="mundo sobe" id="mundo" data-estado="dia">
-    <div class="mundo-painel">
-      <figure class="mundo-foto ativa" data-foto="0">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1500&amp;q=72" alt="" decoding="async">
+       PROVISORIO: as tres fotografias sao as MESMAS do slideshow da abertura
+       para Orlando, Portugal e Dubai -- as unicas do acervo provisorio que
+       retratam estas pracas. Saem com o resto do banco de imagem. -->
+  <div class="pracas sobe">
+    <article class="praca" data-estado="dia">
+      <figure class="praca-foto">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="" loading="lazy" decoding="async">
       </figure>
-      <figure class="mundo-foto" data-foto="1">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1500&amp;q=72" alt="" loading="lazy" decoding="async">
+
+      <div class="praca-dados">
+        <span class="praca-nome">Orlando</span>
+        <span class="praca-hora mundo-hora" data-fuso="America/New_York">--:--</span>
+        <span class="praca-estado" data-estado-texto="America/New_York"></span>
+        <p class="praca-texto">Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
+        <span class="praca-diferenca mundo-diferenca" data-diferenca="America/New_York"></span>
+      </div>
+    </article>
+    <article class="praca" data-estado="dia">
+      <figure class="praca-foto">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="" loading="lazy" decoding="async">
       </figure>
-      <figure class="mundo-foto" data-foto="2">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1500&amp;q=72" alt="" loading="lazy" decoding="async">
+
+      <div class="praca-dados">
+        <span class="praca-nome">Portugal</span>
+        <span class="praca-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
+        <span class="praca-estado" data-estado-texto="Europe/Lisbon"></span>
+        <p class="praca-texto">A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
+        <span class="praca-diferenca mundo-diferenca" data-diferenca="Europe/Lisbon"></span>
+      </div>
+    </article>
+    <article class="praca" data-estado="dia">
+      <figure class="praca-foto">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="" loading="lazy" decoding="async">
       </figure>
-    </div>
 
-    <div class="mundo-corpo">
-      <div class="mundo-nomes">
-        <span class="mundo-nome ativa" data-nome="0">Orlando</span>
-        <span class="mundo-nome" data-nome="1">Portugal</span>
-        <span class="mundo-nome" data-nome="2">Dubai</span>
+      <div class="praca-dados">
+        <span class="praca-nome">Dubai</span>
+        <span class="praca-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
+        <span class="praca-estado" data-estado-texto="Asia/Dubai"></span>
+        <p class="praca-texto">Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
+        <span class="praca-diferenca mundo-diferenca" data-diferenca="Asia/Dubai"></span>
       </div>
-
-      <div class="mundo-relogios">
-        <span class="mundo-relogio ativa" data-relogio="0">
-          <span class="mundo-hora" data-fuso="America/New_York">--:--</span>
-          <span class="mundo-estado" data-estado-texto="America/New_York"></span>
-        </span>
-        <span class="mundo-relogio" data-relogio="1">
-          <span class="mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
-          <span class="mundo-estado" data-estado-texto="Europe/Lisbon"></span>
-        </span>
-        <span class="mundo-relogio" data-relogio="2">
-          <span class="mundo-hora" data-fuso="Asia/Dubai">--:--</span>
-          <span class="mundo-estado" data-estado-texto="Asia/Dubai"></span>
-        </span>
-      </div>
-
-      <div class="mundo-pes">
-        <div class="mundo-pe ativa" data-pe="0">
-          <p>Residências e ativos de renda no principal destino de brasileiros nos Estados Unidos.</p>
-          <span class="mundo-diferenca" data-diferenca="America/New_York"></span>
-        </div>
-        <div class="mundo-pe" data-pe="1">
-          <p>A porta de entrada na Europa, entre segunda residência e diversificação patrimonial.</p>
-          <span class="mundo-diferenca" data-diferenca="Europe/Lisbon"></span>
-        </div>
-        <div class="mundo-pe" data-pe="2">
-          <p>Um mercado de expansão rápida, com estrutura própria para o comprador estrangeiro.</p>
-          <span class="mundo-diferenca" data-diferenca="Asia/Dubai"></span>
-        </div>
-      </div>
-
-      <div class="mundo-marcas" id="mundoMarcas">
-        <button type="button" class="mundo-marca ativo" data-marca="0">01 &nbsp;Orlando</button>
-        <button type="button" class="mundo-marca" data-marca="1">02 &nbsp;Portugal</button>
-        <button type="button" class="mundo-marca" data-marca="2">03 &nbsp;Dubai</button>
-      </div>
-    </div>
+    </article>
   </div>
 </section>
 
@@ -2745,14 +2590,14 @@
       // guardado no proprio elemento: quem troca de praca le daqui para
       // acertar o brilho da fotografia
       el.setAttribute('data-estado-do-dia', estado);
-    });
 
-    /* a secao inteira segue a hora da praca que esta NO AR: sem isto, a
-       fotografia continuaria com o brilho da praca anterior depois que o
-       relogio virasse o minuto */
-    var secaoMundo = document.getElementById('mundo');
-    var noArAgora = secaoMundo && secaoMundo.querySelector('.mundo-relogio.ativa [data-estado-texto]');
-    if (noArAgora) secaoMundo.setAttribute('data-estado', noArAgora.getAttribute('data-estado-do-dia') || 'dia');
+      // (30/09) CADA PAINEL SEGUE A HORA DELE. Antes o estado ia para a secao
+      // inteira, porque so uma praca aparecia por vez. Com as tres lado a lado,
+      // um estado so deixaria os tres com o mesmo brilho -- e a comparacao
+      // entre eles e justamente o que a secao tem para dizer.
+      var painel = el.closest ? el.closest('.praca') : null;
+      if (painel) painel.setAttribute('data-estado', estado);
+    });
 
     if (daqui === null) return;
 
@@ -2775,93 +2620,7 @@
   marcarHoras();
   window.setInterval(marcarHoras, 30000);
 
-  /* 10. A secao Global: uma praca por vez, e ela anda sozinha.
-
-     Quem manda e o MARCADOR: a fotografia, o nome, o relogio e o pe apenas o
-     acompanham, pelo mesmo indice. Quem controla a visibilidade e a OPACIDADE
-     e nao a varredura: se a animacao nao rodar, a foto troca do mesmo jeito.
-     Foi o que resolveu o mesmo problema no palco dos servicos.
-
-     A barra de tempo embaixo do marcador e a MESMA da abertura: a classe sai e
-     volta com um reflow no meio, senao a animacao nao recomeca do zero.
-
-     Com movimento reduzido no sistema ela nao anda sozinha: fica na primeira e
-     so troca se a pessoa pedir. */
-  var mundo = document.getElementById('mundo');
-
-  if (mundo) {
-    var PAUSA = 7000;
-    var mFotos = mundo.querySelectorAll('.mundo-foto');
-    var mNomes = mundo.querySelectorAll('.mundo-nome');
-    var mRelogios = mundo.querySelectorAll('.mundo-relogio');
-    var mPes = mundo.querySelectorAll('.mundo-pe');
-    var mMarcas = mundo.querySelectorAll('.mundo-marca');
-    var mNoAr = 0;
-    var mTempo = null;
-
-    function mAcender(lista, atributo, qual) {
-      Array.prototype.forEach.call(lista, function (el) {
-        el.classList.toggle('ativa', Number(el.getAttribute(atributo)) === qual);
-      });
-    }
-
-    function mMostrar(i) {
-      mNoAr = (i + mFotos.length) % mFotos.length;
-
-      mAcender(mFotos, 'data-foto', mNoAr);
-      mAcender(mNomes, 'data-nome', mNoAr);
-      mAcender(mRelogios, 'data-relogio', mNoAr);
-      mAcender(mPes, 'data-pe', mNoAr);
-
-      Array.prototype.forEach.call(mMarcas, function (b) {
-        // tira e recoloca para a barra de tempo recomecar do zero
-        b.classList.remove('ativo');
-        if (Number(b.getAttribute('data-marca')) === mNoAr) {
-          void b.offsetWidth;
-          b.classList.add('ativo');
-        }
-      });
-
-      // o brilho da fotografia segue a hora da praca que entrou
-      var relogio = mRelogios[mNoAr];
-      var estado = relogio && relogio.querySelector('[data-estado-texto]');
-      var qual = estado && estado.getAttribute('data-estado-do-dia');
-      if (qual) mundo.setAttribute('data-estado', qual);
-    }
-
-    function mAgendar() {
-      window.clearInterval(mTempo);
-      if (calmo) return;
-      mTempo = window.setInterval(function () { mMostrar(mNoAr + 1); }, PAUSA);
-    }
-
-    mundo.addEventListener('click', function (ev) {
-      var botao = ev.target.closest('.mundo-marca');
-      if (!botao) return;
-      mMostrar(Number(botao.getAttribute('data-marca')));
-      mAgendar();
-    });
-
-    // parar enquanto a pessoa esta lendo, e voltar quando ela sai
-    mundo.addEventListener('mouseenter', function () { window.clearInterval(mTempo); });
-    mundo.addEventListener('mouseleave', mAgendar);
-    mundo.addEventListener('focusin', function () { window.clearInterval(mTempo); });
-    mundo.addEventListener('focusout', mAgendar);
-
-    if (!calmo) {
-      mAgendar();
-      // nao gastar bateria com a aba escondida
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) window.clearInterval(mTempo);
-        else mAgendar();
-      });
-    }
-
-    // o brilho da primeira, assim que as horas forem escritas
-    window.setTimeout(function () { mMostrar(0); }, 0);
-  }
-
-  /* 11. A secao 03 entra palavra por palavra.
+  /* 10. A secao 03 entra palavra por palavra.
 
      A divisao acontece AQUI, e nao no HTML, de proposito: o codigo-fonte da
      pagina continua com o paragrafo inteiro numa linha, que e o que o Google
