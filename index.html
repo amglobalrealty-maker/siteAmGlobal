@@ -1273,8 +1273,9 @@
      a perspectiva no PAI, o rotateY vira um achatamento horizontal sem
      profundidade -- parece um erro de largura, nao um card virado.
 
-     A faixa e ONIX dentro de uma secao clara, como na referencia. A secao
-     continua clara para o ritmo da pagina nao perder a alternancia.
+     A FAIXA E MARFIM, e nao mais onix. A secao inteira virou um campo claro so,
+     e os cards flutuam nele com sombra -- galeria expondo obra, e nao vitrine
+     iluminada. Quem separa o card do fundo agora e a SOMBRA, nao o contraste.
 
      Cada card e uma praca, e o do meio traz o que so esta secao tem: a hora
      que e la, agora.
@@ -1283,15 +1284,15 @@
     position: relative;
     margin: 0 calc(-1 * var(--margem));
     padding: clamp(46px, 7vh, 96px) 0;
-    background: var(--onix);
+    background: var(--marfim);
     overflow: hidden;
   }
 
   .palco-pracas.sobe { opacity: 1; transform: none; }
 
-  /* ---- o fundo da faixa: preto liso ----
+  /* ---- o fundo da faixa ----
 
-     TRES COISAS JA FORAM TENTADAS AQUI E REPROVADAS PELA CLIENTE. Ficam
+     QUATRO COISAS JA FORAM TENTADAS AQUI E REPROVADAS PELA CLIENTE. Ficam
      registradas para nao voltarem por engano:
 
      1. VIDEO correndo atras (um aereo de litoral). Mexia sozinho o tempo todo e
@@ -1303,9 +1304,11 @@
         rota riscada entre elas. Veredito: "nao esta chic e as linhas estao
         grotescas". Linha tecnica e linguagem de engenharia, e esta marca e o
         contrario disso.
+     4. O PROPRIO FUNDO PRETO LISO. Ela pediu branco.
 
-     Por ora o fundo e so o onix da faixa. Em marca de luxo, vazio costuma custar
-     mais caro que enfeite. */
+     O fundo agora e marfim chapado, e A CRIATIVIDADE MUDOU DE LUGAR: saiu do
+     fundo e foi para a TROCA dos cards, que e onde ela pediu. Foi no fundo que
+     eu errei cinco vezes; a troca e terreno melhor. */
 
   /* A PERSPECTIVA MORA AQUI, no pai. E ela que transforma o rotateY dos cards
      em profundidade de verdade em vez de um encolhimento horizontal. */
@@ -1339,7 +1342,15 @@
     pointer-events: none;
     z-index: 0;
     transform: translateX(0) scale(0.66);
-    transition: transform 0.95s var(--curva), opacity 0.95s var(--curva), filter 0.95s var(--curva);
+    /* O FOCO E MAIS LENTO QUE O MOVIMENTO, de proposito: 1,35s contra 0,95s.
+       O card chega ao lugar e SO ENTAO termina de entrar em foco, que e como
+       uma lente se comporta. Se os dois durassem o mesmo, a troca viraria um
+       bloco unico e o gesto sumiria. A sombra segue o movimento, nao o foco. */
+    transition:
+      transform 0.95s var(--curva),
+      opacity 0.95s var(--curva),
+      box-shadow 0.95s var(--curva),
+      filter 1.35s var(--curva);
   }
 
   .carta[data-pos="0"],
@@ -1350,65 +1361,76 @@
 
   /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
      da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
-  /* O DO MEIO GANHA UM FIO CHAMPAGNE E UMA SOMBRA FUNDA. Sobre preto chapado um
-     card sem borda nao termina em lugar nenhum: parece recortado e colado. O
-     fio de um pixel e a sombra sao o que descolam ele do fundo. */
+  /* O DO MEIO: NITIDO, com fio champagne e sombra funda. Sobre marfim e a
+     SOMBRA que descola o card do fundo -- sobre onix quem fazia isso era o
+     contraste, e agora ele nao existe mais. A sombra e de GRAFITE e nao de
+     preto puro: preto sobre marfim suja, grafite assenta. */
   .carta[data-pos="0"] {
     transform: translateX(0) rotateY(0deg) scale(1);
     z-index: 3;
     opacity: 1;
-    filter: saturate(1.12) contrast(1.03);
-    box-shadow: 0 0 0 1px rgba(180, 154, 110, 0.55), 0 46px 92px rgba(0, 0, 0, 0.72);
+    filter: saturate(1.1) contrast(1.03);
+    box-shadow:
+      0 0 0 1px rgba(180, 154, 110, 0.5),
+      0 44px 84px rgba(58, 58, 60, 0.3),
+      0 12px 26px rgba(58, 58, 60, 0.16);
   }
 
-  /* OS LATERAIS SAO OPACOS, E RECUAM POR PROFUNDIDADE, NAO POR APAGAMENTO.
-     Duas coisas ja foram consertadas aqui e nenhuma pode voltar:
+  /* OS LATERAIS RECUAM POR FOCO, e nao mais por brilho. E aqui esta a ANIMACAO
+     que ela pediu: quando o carrossel gira, o foco PASSA de um card para o
+     outro -- o que estava nitido desfoca, o que estava desfocado entra em
+     foco. E o gesto de uma camera trocando de assunto, e nao um efeito de site.
 
-     1. Transparencia, nao. Enquanto o fundo era chapado, baixar a opacidade
-        lia como "apagado"; com qualquer coisa atras, o fundo ATRAVESSA o card
+     TRES ERROS JA CORRIGIDOS AQUI, nenhum pode voltar:
+
+     1. Transparencia, nao: com qualquer coisa atras, o fundo ATRAVESSA o card
         e duas imagens somadas no mesmo lugar viram borrao.
-
-     2. Brilho esmagado, nao. Estavam em 0,55 e 0,35 e a cor morria. Quem afasta
-        esses cards ja e a escala, o giro e a sombra -- o brilho so precisa
-        confirmar. Por isso sobem para 0,82 e 0,6, e COM SATURACAO A MAIS: uma
-        imagem escurecida parece dessaturada, e a saturacao devolve o que o
-        brilho tirou. */
+     2. Brilho esmagado, nao: estavam em 0,55 e 0,35 e a cor morria.
+     3. E ESCURECER NAO SERVE MAIS, agora que o fundo e claro. Sobre marfim,
+        escuro nao le como "longe", le como sujo. Quem afasta e o DESFOQUE, mais
+        um leve CLAREAMENTO com menos contraste: e o que o ar faz com o que esta
+        longe, e por isso convence sem precisar apagar nada. */
   .carta[data-pos="1"] {
     transform: translateX(64%) rotateY(-30deg) scale(0.8);
     z-index: 2;
     opacity: 1;
-    filter: brightness(0.82) saturate(1.1);
+    filter: blur(1.4px) brightness(1.03) contrast(0.96) saturate(1.02);
+    box-shadow: 0 26px 52px rgba(58, 58, 60, 0.2);
   }
 
   .carta[data-pos="-1"] {
     transform: translateX(-64%) rotateY(30deg) scale(0.8);
     z-index: 2;
     opacity: 1;
-    filter: brightness(0.82) saturate(1.1);
+    filter: blur(1.4px) brightness(1.03) contrast(0.96) saturate(1.02);
+    box-shadow: 0 26px 52px rgba(58, 58, 60, 0.2);
   }
 
-  /* OS DOIS DE FORA. Ficam mais recuados e mais girados: eles sao profundidade,
-     nao leitura. E a referencia mostrava cinco, nao tres. */
+  /* OS DOIS DE FORA. Mais recuados, mais girados e MAIS FORA DE FOCO: eles sao
+     profundidade, nao leitura. */
   .carta[data-pos="2"] {
     transform: translateX(118%) rotateY(-40deg) scale(0.6);
     z-index: 1;
     opacity: 1;
-    filter: brightness(0.6) saturate(1.04);
+    filter: blur(3.4px) brightness(1.06) contrast(0.92) saturate(0.98);
+    box-shadow: 0 16px 34px rgba(58, 58, 60, 0.13);
   }
 
   .carta[data-pos="-2"] {
     transform: translateX(-118%) rotateY(40deg) scale(0.6);
     z-index: 1;
     opacity: 1;
-    filter: brightness(0.6) saturate(1.04);
+    filter: blur(3.4px) brightness(1.06) contrast(0.92) saturate(0.98);
+    box-shadow: 0 16px 34px rgba(58, 58, 60, 0.13);
   }
 
-  /* o hover acende, nunca apaga */
+  /* o hover puxa o card PARA O FOCO, que e o convite certo: ele diz "clique e
+     eu venho para a frente", que e exatamente o que o clique faz */
   .carta[data-pos="1"]:hover,
-  .carta[data-pos="-1"]:hover { filter: brightness(0.96) saturate(1.16); }
+  .carta[data-pos="-1"]:hover { filter: blur(0.4px) brightness(1.01) contrast(0.99) saturate(1.08); }
   .carta[data-pos="2"]:hover,
-  .carta[data-pos="-2"]:hover { filter: brightness(0.78) saturate(1.1); }
-  .carta[data-pos="0"]:hover { filter: saturate(1.2) contrast(1.05) brightness(1.04); }
+  .carta[data-pos="-2"]:hover { filter: blur(1.6px) brightness(1.03) contrast(0.96) saturate(1.02); }
+  .carta[data-pos="0"]:hover { filter: saturate(1.18) contrast(1.05); }
   .carta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
   .carta img {
@@ -1449,6 +1471,64 @@
     gap: 3px;
     padding: clamp(18px, 2vw, 30px);
   }
+
+  /* O FILETE CHAMPAGNE DE 24px, elemento do manual, SE DESENHA da esquerda para
+     a direita quando o card assume o meio, e se recolhe quando ele sai. E a
+     ultima batida da coreografia: primeiro o card chega, depois o foco fecha,
+     depois o texto sobe, e por fim o fio risca. */
+  .carta-texto::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    margin-bottom: 12px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.75s var(--curva);
+  }
+
+  .carta[data-pos="0"] .carta-texto::before { transform: scaleX(1); transition-delay: 0.52s; }
+
+  /* ---- O TEXTO SOBE DE DENTRO DE UMA MASCARA, e nao aparece por transparencia.
+     Cada linha e escrita, e nao acesa.
+
+     A MASCARA PRECISA FICAR PARADA ENQUANTO O TEXTO ANDA, e e so por isso que
+     existe o span de fora: se o corte fosse no proprio elemento que se move, os
+     dois andariam juntos e nao haveria efeito nenhum.
+
+     O padding-bottom com margin negativa igual da folga para as descidas do g e
+     do p, que senao ficariam decepadas pelo corte. */
+  .carta-linha {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+  }
+
+  .carta-linha > span {
+    display: block;
+    transform: translateY(118%);
+    transition: transform 0.9s var(--curva);
+  }
+
+  /* DUAS BATIDAS, E NAO UMA. O pais e o nome sobem quando o card entra na faixa
+     LEGIVEL, que e a do meio mais os dois vizinhos -- por isso os laterais
+     continuam com nome, como ela ja tinha aprovado. A hora e o momento do dia
+     sobem so quando o card assume o MEIO, porque so ali eles aparecem. */
+  .carta[data-pos="0"] .carta-linha:nth-child(1) > span,
+  .carta[data-pos="0"] .carta-linha:nth-child(2) > span,
+  .carta[data-pos="1"] .carta-linha:nth-child(1) > span,
+  .carta[data-pos="1"] .carta-linha:nth-child(2) > span,
+  .carta[data-pos="-1"] .carta-linha:nth-child(1) > span,
+  .carta[data-pos="-1"] .carta-linha:nth-child(2) > span { transform: none; }
+
+  .carta[data-pos="0"] .carta-linha:nth-child(3) > span,
+  .carta[data-pos="0"] .carta-linha:nth-child(4) > span { transform: none; }
+
+  .carta[data-pos="0"] .carta-linha:nth-child(1) > span { transition-delay: 0.10s; }
+  .carta[data-pos="0"] .carta-linha:nth-child(2) > span { transition-delay: 0.17s; }
+  .carta[data-pos="0"] .carta-linha:nth-child(3) > span { transition-delay: 0.30s; }
+  .carta[data-pos="0"] .carta-linha:nth-child(4) > span { transition-delay: 0.40s; }
 
   .carta-nome {
     font-family: var(--serif);
@@ -1507,15 +1587,17 @@
     width: clamp(38px, 4vw, 52px);
     height: clamp(38px, 4vw, 52px);
     padding: 0;
-    border: 1px solid rgba(245, 242, 236, 0.28);
+    /* (30/09) INVERTIDAS, porque a faixa virou marfim. Marfim sobre preto
+       sumiria por completo no fundo claro. */
+    border: 1px solid rgba(11, 11, 12, 0.2);
     border-radius: 50%;
-    background: rgba(11, 11, 12, 0.42);
-    color: var(--marfim);
+    background: rgba(245, 242, 236, 0.72);
+    color: var(--onix);
     cursor: pointer;
-    transition: border-color 0.5s var(--curva), background 0.5s var(--curva);
+    transition: border-color 0.5s var(--curva), background 0.5s var(--curva), color 0.5s var(--curva);
   }
 
-  .seta:hover { border-color: var(--champagne); background: rgba(11, 11, 12, 0.68); }
+  .seta:hover { border-color: var(--champagne); background: var(--marfim); color: var(--grafite); }
   .seta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
   .seta--esq { left: clamp(10px, 3vw, 54px); }
   .seta--dir { right: clamp(10px, 3vw, 54px); }
@@ -1711,6 +1793,10 @@
     .palavra, .pilar { opacity: 1; transform: none; }
     .pilar:not(:first-child)::before { transform: scaleY(1); }
     .lema-linha > span { transform: none; }
+    /* com movimento reduzido o texto dos cards ja nasce no lugar, e o filete
+       ja nasce riscado: nada sobe, nada se desenha */
+    .carta-linha > span { transform: none; }
+    .carta-texto::before { transform: scaleX(1); }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -2125,145 +2211,145 @@
       <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">São Paulo</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">São Paulo</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Lisboa">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Portugal</span>
-          <span class="carta-nome">Lisboa</span>
-          <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
-          <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
+          <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
+          <span class="carta-linha"><span class="carta-nome">Lisboa</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Emirados Árabes</span>
-          <span class="carta-nome">Dubai</span>
-          <span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
-          <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
+          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
+          <span class="carta-linha"><span class="carta-nome">Dubai</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Estados Unidos</span>
-          <span class="carta-nome">Orlando</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
+          <span class="carta-linha"><span class="carta-nome">Orlando</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Rio de Janeiro</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Rio de Janeiro</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Cascais">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Portugal</span>
-          <span class="carta-nome">Cascais</span>
-          <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
-          <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
+          <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
+          <span class="carta-linha"><span class="carta-nome">Cascais</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Emirados Árabes</span>
-          <span class="carta-nome">Abu Dhabi</span>
-          <span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
-          <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
+          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
+          <span class="carta-linha"><span class="carta-nome">Abu Dhabi</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Estados Unidos</span>
-          <span class="carta-nome">Miami</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
+          <span class="carta-linha"><span class="carta-nome">Miami</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Florianópolis</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Florianópolis</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Porto">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Portugal</span>
-          <span class="carta-nome">Porto</span>
-          <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
-          <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
+          <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
+          <span class="carta-linha"><span class="carta-nome">Porto</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Emirados Árabes</span>
-          <span class="carta-nome">Ras Al Khaimah</span>
-          <span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
-          <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
+          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
+          <span class="carta-linha"><span class="carta-nome">Ras Al Khaimah</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Estados Unidos</span>
-          <span class="carta-nome">Boca Raton</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
+          <span class="carta-linha"><span class="carta-nome">Boca Raton</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Balneário Camboriú</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Balneário Camboriú</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Portugal</span>
-          <span class="carta-nome">Algarve</span>
-          <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
-          <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
+          <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
+          <span class="carta-linha"><span class="carta-nome">Algarve</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Emirados Árabes</span>
-          <span class="carta-nome">Sharjah</span>
-          <span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
-          <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
+          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
+          <span class="carta-linha"><span class="carta-nome">Sharjah</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
       <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-lugar">Estados Unidos</span>
-          <span class="carta-nome">Fort Lauderdale</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
+          <span class="carta-linha"><span class="carta-nome">Fort Lauderdale</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
     </div>
