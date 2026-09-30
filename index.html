@@ -1040,61 +1040,70 @@
   .curadoria-fim p { font-size: 15px; color: var(--texto-fraco); max-width: 48ch; }
 
   /* ============================================================ manifesto ==
-     A FRASE SOBRE A FOTOGRAFIA.
+     UM BLOCO SO, E A SECAO SE MONTA EM ORDEM.
 
-     A versao anterior pos os tres principios, em texto de 15px, sobre a
-     imagem. Nao funcionou, e o motivo fica claro comparando com o que ja
-     funciona nesta pagina: no cabecalho e na secao 05 o TIPO E GRANDE e a
-     fotografia e suporte. Texto pequeno sobre foto some, e a secao vira um
-     banner qualquer.
+     A FRASE MENOR NAO FLUTUA MAIS, porque deixou de ser um bloco. Ela e a
+     continuacao do mesmo paragrafo, numa escala menor, atras de um travessao
+     champagne -- a mesma solucao que o site ja usa na cabeca das secoes, e
+     pelo mesmo motivo: texto solto no meio do branco nao tem como parecer
+     colocado, so tem como parecer largado. Tentar resolver isso posicionando
+     melhor o bloco nao funcionou duas vezes.
 
-     Invertido: os principios voltam para o papel claro, e sobre a fotografia
-     fica so a frase, no tamanho que ela merece.
+     A ANIMACAO nao e um efeito espalhado, e uma ORDEM DE ENTRADA:
 
-     O arco da secao: quem somos em voz baixa, os tres principios com
-     estrutura, e a imagem com a frase que resume tudo, no fim.
+       1. o texto entra palavra por palavra, de baixo
+       2. os tres principios entram um a um
+       3. os fios entre eles se desenham, de cima para baixo
+       4. a fotografia entra por varredura
+       5. a frase sobe, depois de a fotografia ter chegado
 
-     OS PRINCIPIOS PERDERAM O NUMERO. Eles nao sao uma sequencia -- ninguem
-     passa por curadoria antes de discricao -- e numerar sugeria ordem onde
-     nao ha. Some tambem a ultima semelhanca com a secao 04.
+     Todos os gestos ja existem no site: a varredura e a da secao 05, a subida
+     e a do titulo da abertura, o fio que se desenha e o da linha caida.
      ------------------------------------------------------------------------ */
-  /* DUAS COLUNAS, e nao um bloco estreito com o resto solto.
-
-     Antes o topo tinha teto de 1000px e o paragrafo menor vinha depois, com
-     margin-left automatica: sobravam 600px de papel vazio a direita e o texto
-     pequeno pousava num lugar qualquer, sem relacao com nada.
-
-     Agora os dois dividem a largura toda, e o alinhamento e pelo PE: a ultima
-     linha do texto pequeno encosta na ultima linha do grande. E isso que faz
-     ele parecer colocado, e nao largado. */
-  .manifesto-topo {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: clamp(30px, 5vw, 104px);
-    align-items: end;
-    margin-bottom: clamp(48px, 8vh, 104px);
+  .manifesto-fala {
+    max-width: min(100%, 1240px);
+    margin-bottom: clamp(52px, 8vh, 108px);
   }
 
-  .manifesto-topo .rotulo { margin-bottom: clamp(18px, 2.8vh, 28px); }
+  /* a fileira nao anima: quem anima sao as palavras, uma a uma */
+  .manifesto-fala.sobe { opacity: 1; transform: none; }
 
-  /* a primeira frase em corpo de titulo, a segunda em corpo de leitura: a
-     mesma diferenca de escala que organiza a cabeca das outras secoes */
+  .manifesto-fala .rotulo { margin-bottom: clamp(18px, 2.8vh, 28px); }
+
+  /* AS DUAS FRASES CORREM COMO UM PARAGRAFO SO, em duas escalas */
+  .manifesto-lede, .manifesto-nota { display: inline; margin: 0; max-width: none; }
+
   .manifesto-lede {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(24px, 3.1vw, 44px);
-    line-height: 1.24;
+    font-size: clamp(26px, 3.8vw, 52px);
+    line-height: 1.2;
     letter-spacing: -0.005em;
     color: var(--onix);
-    max-width: 34ch;
-    margin: 0;
   }
 
-  /* corpo de leitura, mas nao de nota de rodape: ele divide a linha com um
-     texto de 44px, e a 15px pareceria sobra */
-  .manifesto-texto p { font-size: 17px; line-height: 1.66; max-width: 46ch; }
+  .manifesto-nota {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(17px, 1.9vw, 26px);
+    line-height: 1.34;
+    color: rgba(58, 58, 60, 0.8);
+  }
 
-  /* ---- os tres principios, no papel claro ---- */
+  .manifesto-nota::before { content: '— '; color: var(--champagne); }
+
+  /* uma palavra. Sem mascara de proposito: mascarar exige recortar a caixa,
+     e ai o rabo do "q" e o til do "a" ficam cortados. */
+  .palavra {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.34em);
+    transition: opacity 0.7s var(--curva), transform 0.8s var(--curva);
+  }
+
+  .visivel .palavra { opacity: 1; transform: none; }
+
+  /* ---- os tres principios ---- */
   .pilares {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1102,10 +1111,22 @@
     margin-bottom: clamp(56px, 9vh, 116px);
   }
 
-  .pilar { position: relative; }
+  .pilares.sobe { opacity: 1; transform: none; }
 
-  /* fio VERTICAL no meio do vao. A secao 04 separa com filete horizontal; se
-     aqui fosse igual, as duas voltariam a ter a mesma cara. */
+  .pilar {
+    position: relative;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.8s var(--curva), transform 0.9s var(--curva);
+  }
+
+  .visivel .pilar { opacity: 1; transform: none; }
+  .visivel .pilar:nth-child(2) { transition-delay: 0.10s; }
+  .visivel .pilar:nth-child(3) { transition-delay: 0.20s; }
+
+  /* fio VERTICAL no meio do vao, e ele SE DESENHA de cima para baixo. A secao
+     04 separa com filete horizontal; se aqui fosse igual, as duas voltariam a
+     ter a mesma cara. */
   .pilar:not(:first-child)::before {
     content: '';
     position: absolute;
@@ -1114,7 +1135,14 @@
     bottom: 0;
     width: 1px;
     background: rgba(11, 11, 12, 0.14);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.1s var(--curva);
   }
+
+  .visivel .pilar:not(:first-child)::before { transform: scaleY(1); }
+  .visivel .pilar:nth-child(2)::before { transition-delay: 0.20s; }
+  .visivel .pilar:nth-child(3)::before { transition-delay: 0.30s; }
 
   .pilar h3 {
     font-size: clamp(23px, 2.3vw, 34px);
@@ -1134,6 +1162,8 @@
     background: var(--onix);
   }
 
+  .placa.sobe { opacity: 1; transform: none; }
+
   .placa-foto {
     position: absolute;
     inset: 0;
@@ -1152,6 +1182,15 @@
       linear-gradient(to right, rgba(11, 11, 12, 0.62) 0%, rgba(11, 11, 12, 0.12) 48%, transparent 78%);
   }
 
+  /* A VARREDURA: a fotografia e o veu entram juntos, da esquerda para a
+     direita, sobre o onix do fundo da placa. E a mesma da secao 05. */
+  .placa-foto, .placa-veu {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.35s var(--curva);
+  }
+
+  .placa.visivel .placa-foto, .placa.visivel .placa-veu { clip-path: inset(0 0 0 0); }
+
   .placa-frase {
     position: relative;
     z-index: 2;
@@ -1166,7 +1205,13 @@
     color: var(--marfim);
     max-width: 17ch;
     text-wrap: balance;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s var(--curva), transform 1s var(--curva);
   }
+
+  /* a frase so sobe depois de a fotografia ter chegado */
+  .placa.visivel .placa-frase { opacity: 1; transform: none; transition-delay: 0.6s; }
 
   /* ============================================================= servicos ==
      QUATRO FRENTES.
@@ -1685,13 +1730,6 @@
     }
     .pilar:not(:first-child)::before { display: none; }
     .placa { min-height: clamp(320px, 52vh, 460px); }
-    /* sem largura para as duas colunas, o texto menor desce para baixo do
-       maior, e o alinhamento pelo pe deixa de fazer sentido */
-    .manifesto-topo {
-      grid-template-columns: 1fr;
-      align-items: start;
-      gap: clamp(22px, 3.4vh, 34px);
-    }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -1727,6 +1765,10 @@
     .marcador.ativo::after { animation: none; transform: scaleX(1); }
     .linha > span { transform: none; }
     .sobe { opacity: 1; transform: none; }
+    /* a secao 03 se monta em ordem; com movimento reduzido ela ja nasce montada */
+    .palavra, .pilar, .placa-frase { opacity: 1; transform: none; }
+    .pilar:not(:first-child)::before { transform: scaleY(1); }
+    .placa-foto, .placa-veu { clip-path: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -2024,18 +2066,14 @@
 
 <!-- =============================================================== manifesto -->
 <section class="claro" id="manifesto">
-  <!-- Os dois textos dividem a largura, e nao um em cima do outro: e o que
-       fecha o vazio da direita e tira o paragrafo menor do limbo. -->
-  <div class="manifesto-topo sobe">
-    <div>
-      <span class="filete"></span>
-      <span class="rotulo">03 — A AMGlobal</span>
-      <p class="manifesto-lede">Somos uma consultoria imobiliária de alto padrão. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
-    </div>
-
-    <div class="manifesto-texto">
-      <p>Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
-    </div>
+  <!-- As duas frases correm como UM PARAGRAFO SO, em duas escalas. A menor
+       nao e um bloco em lugar nenhum: e a continuacao da maior, atras de um
+       travessao champagne. Foi por ser bloco que ela flutuava. -->
+  <div class="manifesto-fala sobe">
+    <span class="filete"></span>
+    <span class="rotulo">03 — A AMGlobal</span>
+    <p class="manifesto-lede">Somos uma consultoria imobiliária de alto padrão. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
+    <p class="manifesto-nota">Trabalhamos com um número pequeno de clientes por vez, porque é assim que se dá atenção real a cada negociação.</p>
   </div>
 
   <div class="pilares sobe">
@@ -2053,9 +2091,8 @@
     </div>
   </div>
 
-  <!-- A fotografia fecha a secao, e sobre ela vai SO A FRASE, grande. Foi
-       assim que funcionou no cabecalho e na secao 05: o tipo manda, a imagem
-       sustenta. A tentativa anterior fez o contrario e nao funcionou. -->
+  <!-- A fotografia fecha a secao: ela entra por varredura, e so depois a
+       frase sobe. Sobre a imagem vai SO a frase, grande. -->
   <div class="placa sobe">
     <!-- PROVISORIO: foto do Unsplash. Ver README. -->
     <img class="placa-foto" src="https://images.unsplash.com/photo-1660361339436-ddd4b85372da?auto=format&amp;fit=crop&amp;w=2000&amp;q=70"
@@ -2883,6 +2920,35 @@
     window.setTimeout(function () { mMostrar(0); }, 0);
   }
 
+  /* 11. A secao 03 entra palavra por palavra.
+
+     A divisao acontece AQUI, e nao no HTML, de proposito: o codigo-fonte da
+     pagina continua com o paragrafo inteiro numa linha, que e o que o Google
+     le e o que um leitor de tela anuncia. As caixas por palavra sao so
+     desenho, e nascem depois.
+
+     Com movimento reduzido nao ha divisao nenhuma: nem o trabalho. */
+  var fala = document.querySelector('.manifesto-lede');
+
+  if (fala && !calmo) {
+    var texto = fala.textContent;
+    var pedacos = texto.split(/(\s+)/);
+    var conta = 0;
+
+    fala.textContent = '';
+    pedacos.forEach(function (pedaco) {
+      if (pedaco === '') return;
+      if (/^\s+$/.test(pedaco)) { fala.appendChild(document.createTextNode(pedaco)); return; }
+      var caixa = document.createElement('span');
+      caixa.className = 'palavra';
+      caixa.textContent = pedaco;
+      // o atraso cresce com a palavra, mas para de crescer: com trinta
+      // palavras a ultima entraria quase um segundo depois da primeira
+      caixa.style.transitionDelay = Math.min(conta * 0.026, 0.62).toFixed(3) + 's';
+      fala.appendChild(caixa);
+      conta = conta + 1;
+    });
+  }
 })();
 
 </script>
