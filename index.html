@@ -1289,82 +1289,23 @@
 
   .palco-pracas.sobe { opacity: 1; transform: none; }
 
-  /* ---- o tracado: a malha do mundo e a rota entre as pracas ----
+  /* ---- o fundo da faixa: preto liso ----
 
-     NAO E CONTORNO DE LITORAL. Nao existe desenho de costa nenhum no projeto, e
-     riscar um rabisco inventado com o nome de uma cidade embaixo seria
-     geografia falsa num site que vende imovel. O que esta aqui e verificavel: a
-     malha de meridianos e paralelos, e as dezesseis cidades plotadas na posicao
-     geografica REAL delas, lida do data-lat e data-lon de cada card.
+     TRES COISAS JA FORAM TENTADAS AQUI E REPROVADAS PELA CLIENTE. Ficam
+     registradas para nao voltarem por engano:
 
-     A cada troca, uma rota e riscada da cidade anterior ate a nova, e a
-     distancia na legenda sai de formula de grande circulo -- nao esta escrita
-     em lugar nenhum do arquivo, e calculada na hora.
+     1. VIDEO correndo atras (um aereo de litoral). Mexia sozinho o tempo todo e
+        competia com a fotografia do card. Alem de 1,7 MB.
+     2. AURA: a propria foto do card, gigante e desfocada, acendendo o preto de
+        cor. Veredito dela: basico -- e e mesmo, borrao colorido atras de card e
+        o efeito mais comum que existe.
+     3. TRACADO: malha de meridianos e paralelos com as cidades plotadas e a
+        rota riscada entre elas. Veredito: "nao esta chic e as linhas estao
+        grotescas". Linha tecnica e linguagem de engenharia, e esta marca e o
+        contrario disso.
 
-     JA FORAM TENTADOS E NAO VOLTAM: video correndo atras (mexia sozinho o tempo
-     todo) e a aura desfocada (era so um borrao colorido, o efeito mais comum
-     que existe). */
-  .tracado {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  /* preserveAspectRatio="none" estica a malha em vez de cortar. Cortar
-     esconderia Orlando de um lado ou Ras Al Khaimah do outro, dependendo da
-     largura da tela -- e nenhuma das dezesseis pode sumir. */
-  .tracado svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .tracado-malha line { stroke: rgba(180, 154, 110, 0.13); stroke-width: 0.6; }
-  .tracado-malha line.mestra { stroke: rgba(180, 154, 110, 0.28); stroke-width: 1; }
-
-  .tracado-cidades circle { fill: rgba(245, 242, 236, 0.28); }
-
-  /* A ROTA SE RISCA, e nao aparece pronta. O traco inteiro nasce deslocado para
-     fora de si mesmo, pelo stroke-dashoffset, e volta ao lugar: e isso que da a
-     impressao de estar sendo riscado agora, a mao. */
-  .tracado-rota {
-    fill: none;
-    stroke: var(--champagne);
-    stroke-width: 1.3;
-    stroke-linecap: round;
-    opacity: 0.7;
-    transition: stroke-dashoffset 1.9s var(--curva);
-  }
-
-  /* o anel desliza da cidade anterior ate a nova enquanto a rota e riscada */
-  .tracado-marca circle {
-    fill: none;
-    stroke: var(--champagne);
-    stroke-width: 1.2;
-    transition: cx 1.9s var(--curva), cy 1.9s var(--curva);
-  }
-
-  .tracado-legenda {
-    position: absolute;
-    z-index: 1;
-    left: clamp(10px, 3vw, 54px);
-    bottom: clamp(14px, 2.4vh, 30px);
-    display: grid;
-    gap: 5px;
-    margin: 0;
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 9.5px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .tracado-coord { color: rgba(245, 242, 236, 0.5); }
-  .tracado-percurso { color: var(--champagne); }
+     Por ora o fundo e so o onix da faixa. Em marca de luxo, vazio costuma custar
+     mais caro que enfeite. */
 
   /* A PERSPECTIVA MORA AQUI, no pai. E ela que transforma o rotateY dos cards
      em profundidade de verdade em vez de um encolhimento horizontal. */
@@ -2180,24 +2121,8 @@
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
-    <!-- O TRACADO NASCE VAZIO. A malha, os dezesseis pontos, a rota e a legenda
-         sao todos escritos pelo script, a partir do data-lat e data-lon que
-         cada card carrega. Nenhuma coordenada e nenhuma distancia esta digitada
-         aqui: as posicoes vem dos cards e a distancia e calculada. -->
-    <div class="tracado" aria-hidden="true">
-      <svg id="tracadoSvg" viewBox="0 0 1000 420" preserveAspectRatio="none" focusable="false">
-        <g id="tracadoMalha" class="tracado-malha"></g>
-        <g id="tracadoCidades" class="tracado-cidades"></g>
-        <path id="tracadoRota" class="tracado-rota"></path>
-        <g id="tracadoMarca" class="tracado-marca"></g>
-      </svg>
-      <p class="tracado-legenda">
-        <span class="tracado-coord" id="tracadoCoord"></span>
-        <span class="tracado-percurso" id="tracadoPercurso"></span>
-      </p>
-    </div>
     <div class="cartas" id="cartas">
-      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo" data-lat="-23.5505" data-lon="-46.6333">
+      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Brasil</span>
@@ -2206,7 +2131,7 @@
           <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Lisboa" data-lat="38.7223" data-lon="-9.1393">
+      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Lisboa">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Portugal</span>
@@ -2215,7 +2140,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai" data-lat="25.2048" data-lon="55.2708">
+      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2224,7 +2149,7 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando" data-lat="28.5383" data-lon="-81.3792">
+      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Estados Unidos</span>
@@ -2233,7 +2158,7 @@
           <span class="carta-estado" data-estado-texto="America/New_York"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro" data-lat="-22.9068" data-lon="-43.1729">
+      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Brasil</span>
@@ -2242,7 +2167,7 @@
           <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Cascais" data-lat="38.6979" data-lon="-9.4215">
+      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Cascais">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Portugal</span>
@@ -2251,7 +2176,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi" data-lat="24.4539" data-lon="54.3773">
+      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2260,7 +2185,7 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami" data-lat="25.7617" data-lon="-80.1918">
+      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Estados Unidos</span>
@@ -2269,7 +2194,7 @@
           <span class="carta-estado" data-estado-texto="America/New_York"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis" data-lat="-27.5954" data-lon="-48.548">
+      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Brasil</span>
@@ -2278,7 +2203,7 @@
           <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Porto" data-lat="41.1579" data-lon="-8.6291">
+      <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Porto">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Portugal</span>
@@ -2287,7 +2212,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah" data-lat="25.7895" data-lon="55.9432">
+      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2296,7 +2221,7 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton" data-lat="26.3683" data-lon="-80.1289">
+      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Estados Unidos</span>
@@ -2305,7 +2230,7 @@
           <span class="carta-estado" data-estado-texto="America/New_York"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú" data-lat="-26.9906" data-lon="-48.6349">
+      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Brasil</span>
@@ -2314,7 +2239,7 @@
           <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve" data-lat="37.0194" data-lon="-7.9304">
+      <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Portugal</span>
@@ -2323,7 +2248,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah" data-lat="25.3463" data-lon="55.4209">
+      <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2332,7 +2257,7 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale" data-lat="26.1224" data-lon="-80.1373">
+      <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Estados Unidos</span>
@@ -3002,130 +2927,6 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
-    /* ---- o tracado: a malha do mundo e a rota entre as pracas ----
-
-       Tudo aqui sai do data-lat e data-lon dos cards. Nenhuma coordenada esta
-       digitada neste script, e a distancia e calculada por grande circulo. */
-    var svgTracado = document.getElementById('tracadoSvg');
-    var gMalha = document.getElementById('tracadoMalha');
-    var gCidades = document.getElementById('tracadoCidades');
-    var rotaEl = document.getElementById('tracadoRota');
-    var gMarca = document.getElementById('tracadoMarca');
-    var legCoord = document.getElementById('tracadoCoord');
-    var legPercurso = document.getElementById('tracadoPercurso');
-    var NS_SVG = 'http://www.w3.org/2000/svg';
-
-    /* A JANELA DO MAPA. Vai de 100 graus a oeste a 70 a leste, e de 56 norte a
-       42 sul: cabe Orlando numa ponta, Ras Al Khaimah na outra, o Porto em cima
-       e Florianopolis embaixo, todas com folga da borda. */
-    var O_OESTE = -100, O_LESTE = 70, O_NORTE = 56, O_SUL = -42;
-    var MAPA_L = 1000, MAPA_A = 420;
-
-    function paraX(lon) { return (lon - O_OESTE) / (O_LESTE - O_OESTE) * MAPA_L; }
-    function paraY(lat) { return (O_NORTE - lat) / (O_NORTE - O_SUL) * MAPA_A; }
-
-    function criarSvg(tag, atrib) {
-      var e = document.createElementNS(NS_SVG, tag);
-      for (var k in atrib) {
-        if (Object.prototype.hasOwnProperty.call(atrib, k)) e.setAttribute(k, atrib[k]);
-      }
-      return e;
-    }
-
-    function desenharMalha() {
-      if (!gMalha) return;
-      var g;
-      for (g = O_OESTE; g <= O_LESTE; g = g + 10) {
-        gMalha.appendChild(criarSvg('line', { x1: paraX(g).toFixed(1), y1: 0, x2: paraX(g).toFixed(1), y2: MAPA_A, 'class': g % 30 === 0 ? 'mestra' : '' }));
-      }
-      for (g = -40; g <= 50; g = g + 10) {
-        // a linha do Equador e a unica mestra na horizontal: ela e a unica que
-        // significa alguma coisa, as outras sao so ritmo
-        gMalha.appendChild(criarSvg('line', { x1: 0, y1: paraY(g).toFixed(1), x2: MAPA_L, y2: paraY(g).toFixed(1), 'class': g === 0 ? 'mestra' : '' }));
-      }
-    }
-
-    function desenharCidades() {
-      if (!gCidades) return;
-      Array.prototype.forEach.call(listaCartas, function (c) {
-        var la = parseFloat(c.getAttribute('data-lat'));
-        var lo = parseFloat(c.getAttribute('data-lon'));
-        if (isNaN(la) || isNaN(lo)) return;
-        gCidades.appendChild(criarSvg('circle', { cx: paraX(lo).toFixed(1), cy: paraY(la).toFixed(1), r: 2.2 }));
-      });
-    }
-
-    /* distancia de grande circulo, que e a que um aviao percorre */
-    function distanciaKm(a, b) {
-      var R = 6371;
-      var r = Math.PI / 180;
-      var dLat = (b[0] - a[0]) * r;
-      var dLon = (b[1] - a[1]) * r;
-      var s = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-      return Math.round(2 * R * Math.asin(Math.min(1, Math.sqrt(s))));
-    }
-
-    function grau(v, positivo, negativo) {
-      return Math.abs(v).toFixed(1).replace('.', ',') + ' ' + (v >= 0 ? positivo : negativo);
-    }
-
-    function milhar(n) {
-      return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    function riscarRota(de, para) {
-      if (!rotaEl) return;
-      var x1 = paraX(de[1]), y1 = paraY(de[0]);
-      var x2 = paraX(para[1]), y2 = paraY(para[0]);
-      // a curva empurra o meio do trecho para o lado, perpendicular a ele, 18%
-      // do proprio comprimento: e o que faz parecer rota de voo e nao regua
-      var cx = (x1 + x2) / 2 - (y2 - y1) * 0.18;
-      var cy = (y1 + y2) / 2 + (x2 - x1) * 0.18;
-      rotaEl.setAttribute('d', 'M ' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' Q ' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1));
-      var tam = rotaEl.getTotalLength ? rotaEl.getTotalLength() : 600;
-      rotaEl.style.transition = 'none';
-      rotaEl.style.strokeDasharray = tam;
-      rotaEl.style.strokeDashoffset = tam;
-      // sem esta leitura o navegador junta as duas escritas numa so e o traco
-      // aparece pronto, sem nunca ser riscado
-      rotaEl.getBoundingClientRect();
-      rotaEl.style.transition = '';
-      rotaEl.style.strokeDashoffset = '0';
-    }
-
-    function marcarCidade(p) {
-      if (!gMarca) return;
-      var anel = gMarca.firstChild;
-      if (!anel) {
-        anel = criarSvg('circle', { r: 5.5, cx: paraX(p[1]).toFixed(1), cy: paraY(p[0]).toFixed(1) });
-        gMarca.appendChild(anel);
-        return;
-      }
-      anel.setAttribute('cx', paraX(p[1]).toFixed(1));
-      anel.setAttribute('cy', paraY(p[0]).toFixed(1));
-    }
-
-    var pracaAnterior = null;
-
-    function tracarPraca() {
-      var c = listaCartas[naCarta];
-      if (!c) return;
-      var la = parseFloat(c.getAttribute('data-lat'));
-      var lo = parseFloat(c.getAttribute('data-lon'));
-      if (isNaN(la) || isNaN(lo)) return;
-      var agora = [la, lo];
-      var nomeEl = c.querySelector ? c.querySelector('.carta-nome') : null;
-      var nome = nomeEl ? nomeEl.textContent : '';
-      if (legCoord) legCoord.textContent = grau(la, 'N', 'S') + '   ' + grau(lo, 'L', 'O');
-      if (pracaAnterior) {
-        riscarRota(pracaAnterior.p, agora);
-        if (legPercurso) legPercurso.textContent = milhar(distanciaKm(pracaAnterior.p, agora)) + ' km de ' + pracaAnterior.nome;
-      }
-      marcarCidade(agora);
-      pracaAnterior = { p: agora, nome: nome };
-    }
-
     function posicaoRelativa(i) {
       var d = (i - naCarta + quantas) % quantas;
       // a metade de tras da roda aparece do lado esquerdo, com sinal negativo
@@ -3137,7 +2938,6 @@
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
-      tracarPraca();
     }
 
     function agendarCartas() {
@@ -3159,10 +2959,6 @@
     var setaDir = document.getElementById('setaDir');
     if (setaEsq) setaEsq.addEventListener('click', function () { mostrarCarta(naCarta - 1); pararCartas(); });
     if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); pararCartas(); });
-
-    // a malha e os pontos sao desenhados uma vez so, antes do primeiro card
-    desenharMalha();
-    desenharCidades();
 
     mostrarCarta(0);
 
