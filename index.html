@@ -1310,15 +1310,14 @@
   .fundo-pracas video {
     position: absolute;
     top: 0;
-    left: -16%;
-    width: 132%;
+    left: -25%;
+    width: 150%;
     height: 100%;
     object-fit: cover;
     transform: translate3d(0, 0, 0);
-    /* 2,6s e METADE do tempo que cada card fica na tela: o fundo ainda esta
-       andando quando o card ja parou, e e isso que parece camera em vez de
-       slide trocando */
-    transition: transform 2.6s var(--curva);
+    /* mais lento que a troca do card, para o fundo ainda estar andando quando o
+       card ja parou -- e o que parece camera em vez de slide trocando */
+    transition: transform 1.2s var(--curva);
   }
 
   /* O VEU, em duas camadas. A horizontal fecha em onix puro nas duas pontas --
@@ -1329,8 +1328,8 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to bottom, rgba(11, 11, 12, 0.72) 0%, rgba(11, 11, 12, 0.5) 34%, rgba(11, 11, 12, 0.78) 100%),
-      linear-gradient(to right, var(--onix) 0%, rgba(11, 11, 12, 0.34) 22%, rgba(11, 11, 12, 0.34) 78%, var(--onix) 100%);
+      linear-gradient(to bottom, rgba(11, 11, 12, 0.84) 0%, rgba(11, 11, 12, 0.62) 34%, rgba(11, 11, 12, 0.88) 100%),
+      linear-gradient(to right, var(--onix) 0%, rgba(11, 11, 12, 0.42) 22%, rgba(11, 11, 12, 0.42) 78%, var(--onix) 100%);
   }
 
   /* A PERSPECTIVA MORA AQUI, no pai. E ela que transforma o rotateY dos cards
@@ -1382,38 +1381,47 @@
     opacity: 1;
   }
 
+  /* OS LATERAIS SAO OPACOS E RECUAM POR BRILHO, NAO POR TRANSPARENCIA.
+     Enquanto o fundo era onix chapado, baixar a opacidade lia como "apagado".
+     Com um video atras, a transparencia deixa a imagem do fundo ATRAVESSAR o
+     card: aparecia um predio que nao era daquela cidade dentro dela, e duas
+     imagens somadas no mesmo lugar viram borrao. Opaco resolve. */
   .carta[data-pos="1"] {
     transform: translateX(64%) rotateY(-30deg) scale(0.8);
     z-index: 2;
-    opacity: 0.66;
-    filter: brightness(0.7);
+    opacity: 1;
+    filter: brightness(0.55);
   }
 
   .carta[data-pos="-1"] {
     transform: translateX(-64%) rotateY(30deg) scale(0.8);
     z-index: 2;
-    opacity: 0.66;
-    filter: brightness(0.7);
+    opacity: 1;
+    filter: brightness(0.55);
   }
 
-  /* OS DOIS DE FORA. Ficam mais recuados, mais girados e mais apagados: eles
+  /* OS DOIS DE FORA. Ficam mais recuados, mais girados e mais escuros: eles
      sao profundidade, nao leitura. E a referencia mostrava cinco, nao tres. */
   .carta[data-pos="2"] {
     transform: translateX(118%) rotateY(-40deg) scale(0.6);
     z-index: 1;
-    opacity: 0.32;
-    filter: brightness(0.5);
+    opacity: 1;
+    filter: brightness(0.35);
   }
 
   .carta[data-pos="-2"] {
     transform: translateX(-118%) rotateY(40deg) scale(0.6);
     z-index: 1;
-    opacity: 0.32;
-    filter: brightness(0.5);
+    opacity: 1;
+    filter: brightness(0.35);
   }
 
-  .carta:hover { opacity: 0.86; }
-  .carta[data-pos="0"]:hover { opacity: 1; }
+  /* o hover tambem sai da transparencia, pelo mesmo motivo */
+  .carta[data-pos="1"]:hover,
+  .carta[data-pos="-1"]:hover { filter: brightness(0.8); }
+  .carta[data-pos="2"]:hover,
+  .carta[data-pos="-2"]:hover { filter: brightness(0.6); }
+  .carta[data-pos="0"]:hover { filter: brightness(1.05); }
   .carta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
   .carta img {
@@ -2935,22 +2943,27 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
-    /* ---- o fundo que desliza junto com os cards ----
+    /* ---- o fundo que segue o gesto ----
 
-       O DESLOCAMENTO E ONDA TRIANGULAR, e nao acumulado: caminha de -1 a +1 ao
-       longo de metade da roda e volta na outra metade. Se ele so somasse para o
-       mesmo lado, em algum card chegaria na borda do video e precisaria dar um
-       pulo de volta, que apareceria. Assim o card 16 -- que e o 0 de novo --
-       vale exatamente o que valia no comeco, e a roda fecha sem emenda. */
+       O FUNDO SO ANDA COM GESTO DELA, E PARA O MESMO LADO. O rodizio automatico
+       nao escreve nada aqui: fundo que se mexe sozinho o tempo todo cansa a
+       vista e nao diz nada. A direcao vem do GESTO, nao da posicao na roda --
+       seta da direita empurra a imagem para a direita.
+
+       PRIMEIRA TENTATIVA ERRADA, para nao se repetir: o deslocamento era uma
+       onda amarrada ao indice do card. Ele andava sozinho no rodizio, e a
+       direcao saia de onde a roda estava, nao do que ela tinha feito. */
     var fundoPracas = document.getElementById('videoPracas');
-    var DESLIZE = 9; // por cento da largura do video; a sobra de cada lado e 16%
+    var PASSO_FUNDO = 2.4;    // por cento da largura do video, por gesto
+    var LIMITE_FUNDO = 16;    // a sobra de cada lado e 25%, entao nunca aparece borda
+    var deslocFundo = 0;
 
-    function deslizarFundo() {
-      if (!fundoPracas) return;
-      var meia = quantas / 2;
-      var d = naCarta <= meia ? naCarta : quantas - naCarta;
-      var onda = (d / meia) * 2 - 1;
-      fundoPracas.style.transform = 'translate3d(' + (-onda * DESLIZE).toFixed(2) + '%, 0, 0)';
+    function empurrarFundo(lado) {
+      if (!fundoPracas || !lado) return;
+      var novo = deslocFundo + lado * PASSO_FUNDO;
+      // no limite ele simplesmente para de andar -- nunca da pulo de volta
+      deslocFundo = Math.max(-LIMITE_FUNDO, Math.min(LIMITE_FUNDO, novo));
+      fundoPracas.style.transform = 'translate3d(' + deslocFundo.toFixed(2) + '%, 0, 0)';
     }
 
     /* O VIDEO SO E BAIXADO QUANDO A FAIXA CHEGA PERTO DA TELA, e nunca com
@@ -2977,7 +2990,6 @@
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
-      deslizarFundo();
     }
 
     function agendarCartas() {
@@ -2991,14 +3003,17 @@
     cartas.addEventListener('click', function (ev) {
       var alvo = ev.target.closest('.carta');
       if (!alvo) return;
+      // o lado tem de ser lido ANTES de mostrarCarta, que reescreve todo data-pos
+      var onde = Number(alvo.getAttribute('data-pos'));
       mostrarCarta(parseInt(alvo.getAttribute('data-carta'), 10));
+      empurrarFundo(onde > 0 ? 1 : (onde < 0 ? -1 : 0));
       pararCartas();
     });
 
     var setaEsq = document.getElementById('setaEsq');
     var setaDir = document.getElementById('setaDir');
-    if (setaEsq) setaEsq.addEventListener('click', function () { mostrarCarta(naCarta - 1); pararCartas(); });
-    if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); pararCartas(); });
+    if (setaEsq) setaEsq.addEventListener('click', function () { mostrarCarta(naCarta - 1); empurrarFundo(-1); pararCartas(); });
+    if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); empurrarFundo(1); pararCartas(); });
 
     mostrarCarta(0);
 
