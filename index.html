@@ -1094,9 +1094,23 @@
 
   .visivel .palavra { opacity: 1; transform: none; }
 
-  /* ---- A FRASE, que e a secao ---- */
-  .lema {
-    margin: clamp(44px, 7vh, 104px) 0 clamp(42px, 6.5vh, 92px);
+  /* ---- A FRASE, que e a secao ----
+
+     A CAIXA e o que o site observa ao rolar; A FRASE e o que e recortado. Os
+     dois nao podem ser o mesmo elemento: recortado a zero de largura, ele nao
+     conta como visivel, a classe nunca chega, e a varredura nunca abre. Foi
+     esse laco que deixou a frase invisivel, ocupando espaco sem pintar nada.
+
+     As regras sao `.claro .lema` e nao `.lema` porque `.claro p` do site tem
+     prioridade maior que uma classe sozinha, e engolia a cor.
+
+     O CONTORNO e rede de seguranca: se a fotografia nao pintar dentro das
+     letras por qualquer motivo, a frase continua legivel em vez de sumir. */
+  .lema-caixa { margin: clamp(30px, 4.6vh, 68px) 0 clamp(30px, 4.6vh, 66px); }
+  .lema-caixa.sobe { opacity: 1; transform: none; }
+
+  .claro .lema {
+    margin: 0;
     font-family: var(--serif);
     /* mais peso que o resto do site de proposito: um tipo fino nao tem
        espessura suficiente para caber fotografia nenhuma dentro dele */
@@ -1106,16 +1120,18 @@
     letter-spacing: -0.022em;
     color: var(--onix);
     max-width: 13ch;
-    /* a frase entra por varredura, como a fotografia da secao 05 */
     clip-path: inset(0 100% 0 0);
     transition: clip-path 1.5s var(--curva);
   }
 
-  .lema.visivel { clip-path: inset(0 0 0 0); }
+  .lema-caixa.visivel .lema { clip-path: inset(0 0 0 0); }
 
   @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-    .lema {
+    .claro .lema {
       color: transparent;
+      /* o contorno fica por baixo da imagem e aparece nas bordas da letra:
+         e ele que garante a leitura se o fundo nao pintar */
+      -webkit-text-stroke: 1px rgba(11, 11, 12, 0.3);
       /* o degrade por cima escurece a imagem DENTRO das letras: sobre papel
          marfim, so uma imagem escura desenha a forma do tipo */
       background-image:
@@ -1129,7 +1145,6 @@
       animation: deriva 34s ease-in-out infinite alternate;
     }
   }
-
   /* a imagem passeia devagar dentro do tipo. Devagar mesmo: em 34 segundos
      ninguem ve mexer, so percebe que nao esta parado. */
   @keyframes deriva {
@@ -1705,7 +1720,7 @@
     }
     .pilar:not(:first-child)::before { display: none; }
     /* no celular a frase ganha mais linhas, entao cabe mais estreita */
-    .lema { max-width: 11ch; }
+    .claro .lema { max-width: 11ch; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -1746,7 +1761,7 @@
        montada, e a fotografia dentro das letras para de passear */
     .palavra, .pilar { opacity: 1; transform: none; }
     .pilar:not(:first-child)::before { transform: scaleY(1); }
-    .lema { clip-path: none; animation: none; }
+    .claro .lema { clip-path: none; animation: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -2054,7 +2069,9 @@
   <!-- A FRASE E A SECAO. A fotografia aparece por dentro das letras, e nao
        como bloco: o endereco dela esta no CSS, na regra .lema. PROVISORIA,
        do Unsplash, como as outras. Ver README. -->
-  <p class="lema sobe">Escolher bem é enxergar longe.</p>
+  <div class="lema-caixa sobe">
+    <p class="lema">Escolher bem é enxergar longe.</p>
+  </div>
 
   <div class="pilares sobe">
     <div class="pilar">
