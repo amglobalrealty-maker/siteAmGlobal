@@ -1289,15 +1289,22 @@
 
   .palco-pracas.sobe { opacity: 1; transform: none; }
 
-  /* ---- o fundo em movimento ----
+  /* ---- a aura: o preto se acende com a cor da cidade que esta na frente ----
 
-     Um aereo de litoral, gradado escuro NO PROPRIO ARQUIVO e nao por filtro de
-     CSS: filtro sobre video e recalculado quadro a quadro e derruba o celular.
+     E a MESMA fotografia do card do meio, pedida ao servidor em tamanho
+     minusculo e soprada ate encher a faixa, com tanto desfoque que deixa de ser
+     imagem e vira luz. Quando o carrossel troca de cidade, a cor da faixa
+     atravessa de uma para a outra.
 
-     O clipe vai de IDA E VOLTA -- sete segundos para a frente e os mesmos sete
-     ao contrario. Sem isso, a cada laco a camera daria um salto visivel, porque
-     ela esta em movimento quando o trecho acaba. */
-  .fundo-pracas {
+     SAO DUAS CAMADAS QUE SE REVEZAM. Com uma so, a fotografia nova apareceria
+     por um instante antes de a anterior sumir, e a troca seria um corte. Uma
+     recebe a cor nova enquanto a outra ainda segura a antiga.
+
+     DESFOCAR POUCO E AMPLIAR E BARATO; desfocar muito e caro. Por isso a
+     imagem entra pequena, com 22px de borrao, e so depois e ampliada oito
+     vezes: o navegador calcula o desfoque numa superficie minuscula e estica o
+     resultado. Desfocar direto na largura da faixa trava celular. */
+  .aura {
     position: absolute;
     inset: 0;
     z-index: 0;
@@ -1305,31 +1312,33 @@
     pointer-events: none;
   }
 
-  /* MAIS LARGO QUE A FAIXA DE PROPOSITO. Os 16% que sobram de cada lado sao o
-     que deixa o video deslizar sem nunca mostrar a propria borda. */
-  .fundo-pracas video {
+  .aura img {
     position: absolute;
-    top: 0;
-    left: -25%;
-    width: 150%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 200px;
+    margin: -100px 0 0 -160px;
     object-fit: cover;
-    transform: translate3d(0, 0, 0);
-    /* mais lento que a troca do card, para o fundo ainda estar andando quando o
-       card ja parou -- e o que parece camera em vez de slide trocando */
-    transition: transform 1.2s var(--curva);
+    opacity: 0;
+    filter: blur(22px) saturate(1.9);
+    transform: scale(8);
+    transform-origin: 50% 50%;
+    transition: opacity 1.6s var(--curva);
   }
 
-  /* O VEU, em duas camadas. A horizontal fecha em onix puro nas duas pontas --
-     e ela que faz a faixa ter profundidade em vez de parecer um retangulo de
-     video colado. A vertical escurece o pe, onde ficam o nome e a hora. */
-  .fundo-pracas::after {
+  .aura img.acesa { opacity: 0.5; }
+
+  /* A VINHETA SEGURA A LUZ NO MEIO. Sem ela a cor encosta nas bordas e a faixa
+     deixa de ter fim -- vira uma mancha do tamanho da tela em vez de um brilho
+     saindo de tras dos cards. */
+  .aura::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to bottom, rgba(11, 11, 12, 0.84) 0%, rgba(11, 11, 12, 0.62) 34%, rgba(11, 11, 12, 0.88) 100%),
-      linear-gradient(to right, var(--onix) 0%, rgba(11, 11, 12, 0.42) 22%, rgba(11, 11, 12, 0.42) 78%, var(--onix) 100%);
+      radial-gradient(116% 84% at 50% 50%, transparent 0%, rgba(11, 11, 12, 0.5) 58%, var(--onix) 100%),
+      linear-gradient(to bottom, rgba(11, 11, 12, 0.46) 0%, transparent 32%, rgba(11, 11, 12, 0.6) 100%);
   }
 
   /* A PERSPECTIVA MORA AQUI, no pai. E ela que transforma o rotateY dos cards
@@ -1375,53 +1384,65 @@
 
   /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
      da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
+  /* O DO MEIO GANHA UM FIO CHAMPAGNE E UMA SOMBRA FUNDA. Sobre preto chapado um
+     card sem borda nao termina em lugar nenhum: parece recortado e colado. O
+     fio de um pixel e a sombra sao o que descolam ele do fundo. */
   .carta[data-pos="0"] {
     transform: translateX(0) rotateY(0deg) scale(1);
     z-index: 3;
     opacity: 1;
+    filter: saturate(1.12) contrast(1.03);
+    box-shadow: 0 0 0 1px rgba(180, 154, 110, 0.55), 0 46px 92px rgba(0, 0, 0, 0.72);
   }
 
-  /* OS LATERAIS SAO OPACOS E RECUAM POR BRILHO, NAO POR TRANSPARENCIA.
-     Enquanto o fundo era onix chapado, baixar a opacidade lia como "apagado".
-     Com um video atras, a transparencia deixa a imagem do fundo ATRAVESSAR o
-     card: aparecia um predio que nao era daquela cidade dentro dela, e duas
-     imagens somadas no mesmo lugar viram borrao. Opaco resolve. */
+  /* OS LATERAIS SAO OPACOS, E RECUAM POR PROFUNDIDADE, NAO POR APAGAMENTO.
+     Duas coisas ja foram consertadas aqui e nenhuma pode voltar:
+
+     1. Transparencia, nao. Enquanto o fundo era chapado, baixar a opacidade
+        lia como "apagado"; com qualquer coisa atras, o fundo ATRAVESSA o card
+        e duas imagens somadas no mesmo lugar viram borrao.
+
+     2. Brilho esmagado, nao. Estavam em 0,55 e 0,35 e a cor morria. Quem afasta
+        esses cards ja e a escala, o giro e a sombra -- o brilho so precisa
+        confirmar. Por isso sobem para 0,82 e 0,6, e COM SATURACAO A MAIS: uma
+        imagem escurecida parece dessaturada, e a saturacao devolve o que o
+        brilho tirou. */
   .carta[data-pos="1"] {
     transform: translateX(64%) rotateY(-30deg) scale(0.8);
     z-index: 2;
     opacity: 1;
-    filter: brightness(0.55);
+    filter: brightness(0.82) saturate(1.1);
   }
 
   .carta[data-pos="-1"] {
     transform: translateX(-64%) rotateY(30deg) scale(0.8);
     z-index: 2;
     opacity: 1;
-    filter: brightness(0.55);
+    filter: brightness(0.82) saturate(1.1);
   }
 
-  /* OS DOIS DE FORA. Ficam mais recuados, mais girados e mais escuros: eles
-     sao profundidade, nao leitura. E a referencia mostrava cinco, nao tres. */
+  /* OS DOIS DE FORA. Ficam mais recuados e mais girados: eles sao profundidade,
+     nao leitura. E a referencia mostrava cinco, nao tres. */
   .carta[data-pos="2"] {
     transform: translateX(118%) rotateY(-40deg) scale(0.6);
     z-index: 1;
     opacity: 1;
-    filter: brightness(0.35);
+    filter: brightness(0.6) saturate(1.04);
   }
 
   .carta[data-pos="-2"] {
     transform: translateX(-118%) rotateY(40deg) scale(0.6);
     z-index: 1;
     opacity: 1;
-    filter: brightness(0.35);
+    filter: brightness(0.6) saturate(1.04);
   }
 
-  /* o hover tambem sai da transparencia, pelo mesmo motivo */
+  /* o hover acende, nunca apaga */
   .carta[data-pos="1"]:hover,
-  .carta[data-pos="-1"]:hover { filter: brightness(0.8); }
+  .carta[data-pos="-1"]:hover { filter: brightness(0.96) saturate(1.16); }
   .carta[data-pos="2"]:hover,
-  .carta[data-pos="-2"]:hover { filter: brightness(0.6); }
-  .carta[data-pos="0"]:hover { filter: brightness(1.05); }
+  .carta[data-pos="-2"]:hover { filter: brightness(0.78) saturate(1.1); }
+  .carta[data-pos="0"]:hover { filter: saturate(1.2) contrast(1.05) brightness(1.04); }
   .carta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
   .carta img {
@@ -1434,11 +1455,16 @@
     transition: filter 2.4s var(--curva);
   }
 
-  .carta[data-estado="madrugada"]  img { filter: grayscale(0.4) brightness(0.52) contrast(1.08); }
-  .carta[data-estado="amanhecer"]  img { filter: grayscale(0.14) brightness(0.86) contrast(1.04) saturate(1.08); }
-  .carta[data-estado="dia"]        img { filter: grayscale(0.02) brightness(1.06) contrast(1.02); }
-  .carta[data-estado="entardecer"] img { filter: grayscale(0.08) brightness(0.9) contrast(1.05) saturate(1.14); }
-  .carta[data-estado="noite"]      img { filter: grayscale(0.34) brightness(0.58) contrast(1.08); }
+  /* O CLIMA DA HORA VEM DA COR, NAO DO CINZA. Estes filtros dessaturavam ate
+     0,4 de cinza para dar sensacao de madrugada, e era isso que estava comendo
+     a cor das fotografias. Madrugada e noite continuam escuras -- porque escuro
+     e o que a hora significa -- mas o cinza cai quase todo e a saturacao sobe:
+     madrugada fria e azulada, entardecer quente e cheio. */
+  .carta[data-estado="madrugada"]  img { filter: grayscale(0.12) brightness(0.62) contrast(1.1) saturate(1.1); }
+  .carta[data-estado="amanhecer"]  img { filter: grayscale(0) brightness(0.92) contrast(1.05) saturate(1.2); }
+  .carta[data-estado="dia"]        img { filter: grayscale(0) brightness(1.06) contrast(1.03) saturate(1.14); }
+  .carta[data-estado="entardecer"] img { filter: grayscale(0) brightness(0.96) contrast(1.06) saturate(1.3); }
+  .carta[data-estado="noite"]      img { filter: grayscale(0.1) brightness(0.68) contrast(1.1) saturate(1.12); }
 
   /* o veu do pe, para o nome e a hora lerem sobre qualquer fotografia */
   .carta::after {
@@ -2129,13 +2155,13 @@
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
-    <!-- O VIDEO NASCE SEM `src` DE PROPOSITO. Quem escreve o endereco e o
-         script, e so quando a secao entra na tela -- assim quem nao rola ate
-         aqui nao baixa 1,2 MB a toa, e o `poster` de 87 KB segura a imagem ate
-         la. Com movimento reduzido ligado no sistema, o `src` nunca e escrito e
-         o quadro parado fica sendo o fundo. -->
-    <div class="fundo-pracas" aria-hidden="true">
-      <video id="videoPracas" poster="fotos/pracas-fundo-cartaz.jpg" muted loop playsinline preload="none" tabindex="-1"></video>
+    <!-- A AURA NASCE VAZIA. Quem escreve o endereco e o script, copiando da
+         fotografia do card do meio e pedindo ao servidor uma versao minuscula:
+         ela vai levar desfoque, entao resolucao seria peso jogado fora. As duas
+         camadas se revezam para a troca de cor ser dissolvencia, e nao corte. -->
+    <div class="aura" aria-hidden="true">
+      <img id="auraA" alt="" decoding="async">
+      <img id="auraB" alt="" decoding="async">
     </div>
     <div class="cartas" id="cartas">
       <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
@@ -2943,40 +2969,45 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
-    /* ---- o fundo que segue o gesto ----
+    /* ---- a aura: o preto se acende com a cor da cidade que esta na frente ----
 
-       O FUNDO SO ANDA COM GESTO DELA, E PARA O MESMO LADO. O rodizio automatico
-       nao escreve nada aqui: fundo que se mexe sozinho o tempo todo cansa a
-       vista e nao diz nada. A direcao vem do GESTO, nao da posicao na roda --
-       seta da direita empurra a imagem para a direita.
+       Copia a fotografia do card do meio, pede ao servidor a versao minuscula
+       dela e acende com isso. As duas camadas se revezam.
 
-       PRIMEIRA TENTATIVA ERRADA, para nao se repetir: o deslocamento era uma
-       onda amarrada ao indice do card. Ele andava sozinho no rodizio, e a
-       direcao saia de onde a roda estava, nao do que ela tinha feito. */
-    var fundoPracas = document.getElementById('videoPracas');
-    var PASSO_FUNDO = 2.4;    // por cento da largura do video, por gesto
-    var LIMITE_FUNDO = 16;    // a sobra de cada lado e 25%, entao nunca aparece borda
-    var deslocFundo = 0;
+       JA FORAM TENTADAS E NAO VOLTAM: fotografia propria de fundo (some com a
+       cor do card, que e quem tem de mandar) e video correndo atras (mexia
+       sozinho o tempo todo, e cansava). */
+    var auraA = document.getElementById('auraA');
+    var auraB = document.getElementById('auraB');
+    var auraVez = 0;
+    var auraUltima = '';
 
-    function empurrarFundo(lado) {
-      if (!fundoPracas || !lado) return;
-      var novo = deslocFundo + lado * PASSO_FUNDO;
-      // no limite ele simplesmente para de andar -- nunca da pulo de volta
-      deslocFundo = Math.max(-LIMITE_FUNDO, Math.min(LIMITE_FUNDO, novo));
-      fundoPracas.style.transform = 'translate3d(' + deslocFundo.toFixed(2) + '%, 0, 0)';
+    /* pedir 160px de largura no lugar de 800: depois do desfoque a resolucao
+       nao aparece, e o que seria peso vira nada */
+    function urlPequena(src) {
+      if (!src) return '';
+      return src.replace(/([?&])w=\d+/, '$1w=160').replace(/([?&])q=\d+/, '$1q=45');
     }
 
-    /* O VIDEO SO E BAIXADO QUANDO A FAIXA CHEGA PERTO DA TELA, e nunca com
-       movimento reduzido ligado. Ate la quem segura a imagem e o `poster`. */
-    function acordarFundo() {
-      if (!fundoPracas || calmo || fundoPracas.getAttribute('src')) return;
-      var estreito = window.matchMedia('(max-width: 900px)').matches;
-      // o Safari so aceita tocar sozinho se a PROPRIEDADE muted estiver ligada,
-      // o atributo no HTML sozinho nao basta
-      fundoPracas.muted = true;
-      fundoPracas.setAttribute('src', estreito ? 'fotos/pracas-fundo-cel.mp4' : 'fotos/pracas-fundo.mp4');
-      var tocando = fundoPracas.play();
-      if (tocando && tocando.catch) tocando.catch(function () {});
+    function acenderAura() {
+      if (!auraA || !auraB) return;
+      var meio = listaCartas[naCarta];
+      var foto = meio && meio.querySelector ? meio.querySelector('img') : null;
+      var alvo = foto ? urlPequena(foto.getAttribute('src')) : '';
+      // cidades do mesmo pais dividem a fotografia: sem esta linha a aura faria
+      // uma dissolvencia de uma cor para ela mesma, que e so trabalho a toa
+      if (!alvo || alvo === auraUltima) return;
+      auraUltima = alvo;
+      var entra = auraVez === 0 ? auraA : auraB;
+      var sai = auraVez === 0 ? auraB : auraA;
+      auraVez = auraVez === 0 ? 1 : 0;
+      // so troca depois de a imagem estar carregada, senao a camada acende
+      // vazia e a faixa pisca preta no meio da dissolvencia
+      entra.onload = function () {
+        entra.classList.add('acesa');
+        sai.classList.remove('acesa');
+      };
+      entra.setAttribute('src', alvo);
     }
 
     function posicaoRelativa(i) {
@@ -2990,6 +3021,7 @@
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
+      acenderAura();
     }
 
     function agendarCartas() {
@@ -3003,33 +3035,16 @@
     cartas.addEventListener('click', function (ev) {
       var alvo = ev.target.closest('.carta');
       if (!alvo) return;
-      // o lado tem de ser lido ANTES de mostrarCarta, que reescreve todo data-pos
-      var onde = Number(alvo.getAttribute('data-pos'));
       mostrarCarta(parseInt(alvo.getAttribute('data-carta'), 10));
-      empurrarFundo(onde > 0 ? 1 : (onde < 0 ? -1 : 0));
       pararCartas();
     });
 
     var setaEsq = document.getElementById('setaEsq');
     var setaDir = document.getElementById('setaDir');
-    if (setaEsq) setaEsq.addEventListener('click', function () { mostrarCarta(naCarta - 1); empurrarFundo(-1); pararCartas(); });
-    if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); empurrarFundo(1); pararCartas(); });
+    if (setaEsq) setaEsq.addEventListener('click', function () { mostrarCarta(naCarta - 1); pararCartas(); });
+    if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); pararCartas(); });
 
     mostrarCarta(0);
-
-    var palcoDasPracas = document.getElementById('palcoPracas');
-    if (palcoDasPracas && window.IntersectionObserver) {
-      var olhoFundo = new IntersectionObserver(function (entradas) {
-        Array.prototype.forEach.call(entradas, function (e) {
-          if (!e.isIntersecting) return;
-          acordarFundo();
-          olhoFundo.disconnect();
-        });
-      }, { rootMargin: '250px' });
-      olhoFundo.observe(palcoDasPracas);
-    } else {
-      acordarFundo();
-    }
 
     if (!calmo) {
       agendarCartas();
