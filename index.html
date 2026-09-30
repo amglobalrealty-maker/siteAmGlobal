@@ -1343,16 +1343,23 @@
      regra do "nunca atras de texto" e respeitada: todo texto daqui mora dentro
      dos cards, que sao opacos.
 
-     SAO DUAS CAMADAS, e e ai que deixa de ser papel de parede: uma de
-     travertino, fina e cerrada; outra de champagne, mais larga e espacada. As
-     duas deslizam a cada troca de card, e em DISTANCIAS DIFERENTES -- e o
-     desencontro entre elas que da profundidade ao campo.
+     SAO DUAS FAMILIAS DE LINHAS EM ANGULOS ESPELHADOS, +26 e -26 graus, e nao
+     duas camadas paralelas. Paralelas ja foram tentadas e o veredito dela foi
+     "vejo, mas listra e sem graca" -- e tinha razao, listra e listra. Cruzadas,
+     elas viram TRAMA: losangos, como tecido ou pedra lavrada. Uma familia e
+     travertino e a outra champagne, entao os cruzamentos tem um ponto quente.
+
+     E AS DUAS ANDAM EM SENTIDOS OPOSTOS, uma para a esquerda e outra para a
+     direita, a MESMA distancia. Isso faz uma coisa que nao se explica olhando:
+     os pontos onde elas se cruzam nao vao para lado nenhum -- eles SOBEM. A
+     trama inteira parece escorrer na vertical, sem que nenhuma das duas camadas
+     pareca deslizar de lado.
 
      E O DESLIZE NUNCA ACABA NEM DA SALTO, porque cada camada anda EXATAMENTE UM
      PERIODO DO PROPRIO PADRAO. Durante o movimento se ve o deslize; no fim, o
-     desenho cai identico a onde estava. Entao ele pode somar para sempre na
-     mesma direcao sem nunca chegar a borda e sem nunca precisar voltar. A conta
-     do passo esta no script, e depende do seno de 26 graus. */
+     desenho cai identico a onde estava. Entao ele pode somar para sempre sem
+     nunca chegar a borda e sem nunca precisar voltar. A conta do passo esta no
+     script, e depende do seno de 26 graus. */
   .textura {
     position: absolute;
     inset: 0;
@@ -1377,14 +1384,17 @@
     transition: transform 1.5s var(--curva);
   }
 
-  /* travertino, fina e cerrada: e ela que faz a superficie */
+  /* A URDIDURA: travertino, inclinada para um lado. E ela que faz a superficie.
+     MESMO PASSO das duas, 22px -- e o passo igual que fecha losango de verdade
+     em vez de romboide torto. */
   .textura-camada--funda {
-    background-image: repeating-linear-gradient(26deg, rgba(216, 207, 192, 0.62) 0px, rgba(216, 207, 192, 0.62) 1px, transparent 1px, transparent 14px);
+    background-image: repeating-linear-gradient(26deg, rgba(216, 207, 192, 0.58) 0px, rgba(216, 207, 192, 0.58) 1px, transparent 1px, transparent 22px);
   }
 
-  /* champagne, larga e espacada: e ela que da o brilho, e anda quase o dobro */
+  /* A TRAMA: champagne, inclinada para o OUTRO lado. Ela e quem cruza, e o
+     champagne fica so nos cruzamentos de fato -- detalhe, como manda o manual. */
   .textura-camada--rasa {
-    background-image: repeating-linear-gradient(26deg, rgba(180, 154, 110, 0.3) 0px, rgba(180, 154, 110, 0.3) 1px, transparent 1px, transparent 34px);
+    background-image: repeating-linear-gradient(-26deg, rgba(180, 154, 110, 0.28) 0px, rgba(180, 154, 110, 0.28) 1px, transparent 1px, transparent 22px);
   }
 
   /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
@@ -3107,8 +3117,8 @@
     var texturaFunda = document.getElementById('texturaFunda');
     var texturaRasa = document.getElementById('texturaRasa');
     var SENO_26 = Math.sin(26 * Math.PI / 180);
-    var PASSO_FUNDA = 14 / SENO_26;   // 31,9px: um periodo da camada de travertino
-    var PASSO_RASA = 34 / SENO_26;    // 77,6px: um periodo da de champagne
+    var PERIODO = 22;                    // o mesmo nas duas, e o que fecha losango
+    var PASSO = PERIODO / SENO_26;       // 50,2px: um periodo de cada uma
     var andouFunda = 0, andouRasa = 0;
 
     function escreverTextura(transicao) {
@@ -3138,12 +3148,16 @@
          isso o encolhimento acontece ANTES do passo e com a transicao
          desligada, e so depois vem o deslize de verdade. */
       var encolheu = false;
-      if (Math.abs(andouFunda) > PASSO_FUNDA * 8) { andouFunda = andouFunda % (PASSO_FUNDA * 8); encolheu = true; }
-      if (Math.abs(andouRasa) > PASSO_RASA * 8) { andouRasa = andouRasa % (PASSO_RASA * 8); encolheu = true; }
+      if (Math.abs(andouFunda) > PASSO * 8) { andouFunda = andouFunda % (PASSO * 8); encolheu = true; }
+      if (Math.abs(andouRasa) > PASSO * 8) { andouRasa = andouRasa % (PASSO * 8); encolheu = true; }
       if (encolheu) escreverTextura('none');
 
-      andouFunda = andouFunda - passos * PASSO_FUNDA;
-      andouRasa = andouRasa - passos * PASSO_RASA;
+      /* SENTIDOS OPOSTOS, e e este sinal trocado que faz o efeito. As duas
+         familias estao em angulos espelhados; andando uma para cada lado, os
+         pontos onde elas se cruzam nao vao para os lados -- eles sobem. A trama
+         escorre na vertical sem nenhuma das camadas parecer deslizar. */
+      andouFunda = andouFunda - passos * PASSO;
+      andouRasa = andouRasa + passos * PASSO;
       escreverTextura('');
     }
 
