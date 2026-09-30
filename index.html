@@ -1289,10 +1289,55 @@
 
   .palco-pracas.sobe { opacity: 1; transform: none; }
 
+  /* ---- o fundo em movimento ----
+
+     Um aereo de litoral, gradado escuro NO PROPRIO ARQUIVO e nao por filtro de
+     CSS: filtro sobre video e recalculado quadro a quadro e derruba o celular.
+
+     O clipe vai de IDA E VOLTA -- sete segundos para a frente e os mesmos sete
+     ao contrario. Sem isso, a cada laco a camera daria um salto visivel, porque
+     ela esta em movimento quando o trecho acaba. */
+  .fundo-pracas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* MAIS LARGO QUE A FAIXA DE PROPOSITO. Os 16% que sobram de cada lado sao o
+     que deixa o video deslizar sem nunca mostrar a propria borda. */
+  .fundo-pracas video {
+    position: absolute;
+    top: 0;
+    left: -16%;
+    width: 132%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate3d(0, 0, 0);
+    /* 2,6s e METADE do tempo que cada card fica na tela: o fundo ainda esta
+       andando quando o card ja parou, e e isso que parece camera em vez de
+       slide trocando */
+    transition: transform 2.6s var(--curva);
+  }
+
+  /* O VEU, em duas camadas. A horizontal fecha em onix puro nas duas pontas --
+     e ela que faz a faixa ter profundidade em vez de parecer um retangulo de
+     video colado. A vertical escurece o pe, onde ficam o nome e a hora. */
+  .fundo-pracas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(11, 11, 12, 0.72) 0%, rgba(11, 11, 12, 0.5) 34%, rgba(11, 11, 12, 0.78) 100%),
+      linear-gradient(to right, var(--onix) 0%, rgba(11, 11, 12, 0.34) 22%, rgba(11, 11, 12, 0.34) 78%, var(--onix) 100%);
+  }
+
   /* A PERSPECTIVA MORA AQUI, no pai. E ela que transforma o rotateY dos cards
      em profundidade de verdade em vez de um encolhimento horizontal. */
   .cartas {
     position: relative;
+    z-index: 1;
     height: calc(clamp(232px, 25vw, 384px) * 4 / 3);
     perspective: 1500px;
     perspective-origin: 50% 50%;
@@ -2076,6 +2121,14 @@
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
+    <!-- O VIDEO NASCE SEM `src` DE PROPOSITO. Quem escreve o endereco e o
+         script, e so quando a secao entra na tela -- assim quem nao rola ate
+         aqui nao baixa 1,2 MB a toa, e o `poster` de 87 KB segura a imagem ate
+         la. Com movimento reduzido ligado no sistema, o `src` nunca e escrito e
+         o quadro parado fica sendo o fundo. -->
+    <div class="fundo-pracas" aria-hidden="true">
+      <video id="videoPracas" poster="fotos/pracas-fundo-cartaz.jpg" muted loop playsinline preload="none" tabindex="-1"></video>
+    </div>
     <div class="cartas" id="cartas">
       <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
@@ -2882,6 +2935,37 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
+    /* ---- o fundo que desliza junto com os cards ----
+
+       O DESLOCAMENTO E ONDA TRIANGULAR, e nao acumulado: caminha de -1 a +1 ao
+       longo de metade da roda e volta na outra metade. Se ele so somasse para o
+       mesmo lado, em algum card chegaria na borda do video e precisaria dar um
+       pulo de volta, que apareceria. Assim o card 16 -- que e o 0 de novo --
+       vale exatamente o que valia no comeco, e a roda fecha sem emenda. */
+    var fundoPracas = document.getElementById('videoPracas');
+    var DESLIZE = 9; // por cento da largura do video; a sobra de cada lado e 16%
+
+    function deslizarFundo() {
+      if (!fundoPracas) return;
+      var meia = quantas / 2;
+      var d = naCarta <= meia ? naCarta : quantas - naCarta;
+      var onda = (d / meia) * 2 - 1;
+      fundoPracas.style.transform = 'translate3d(' + (-onda * DESLIZE).toFixed(2) + '%, 0, 0)';
+    }
+
+    /* O VIDEO SO E BAIXADO QUANDO A FAIXA CHEGA PERTO DA TELA, e nunca com
+       movimento reduzido ligado. Ate la quem segura a imagem e o `poster`. */
+    function acordarFundo() {
+      if (!fundoPracas || calmo || fundoPracas.getAttribute('src')) return;
+      var estreito = window.matchMedia('(max-width: 900px)').matches;
+      // o Safari so aceita tocar sozinho se a PROPRIEDADE muted estiver ligada,
+      // o atributo no HTML sozinho nao basta
+      fundoPracas.muted = true;
+      fundoPracas.setAttribute('src', estreito ? 'fotos/pracas-fundo-cel.mp4' : 'fotos/pracas-fundo.mp4');
+      var tocando = fundoPracas.play();
+      if (tocando && tocando.catch) tocando.catch(function () {});
+    }
+
     function posicaoRelativa(i) {
       var d = (i - naCarta + quantas) % quantas;
       // a metade de tras da roda aparece do lado esquerdo, com sinal negativo
@@ -2893,6 +2977,7 @@
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
+      deslizarFundo();
     }
 
     function agendarCartas() {
@@ -2916,6 +3001,20 @@
     if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); pararCartas(); });
 
     mostrarCarta(0);
+
+    var palcoDasPracas = document.getElementById('palcoPracas');
+    if (palcoDasPracas && window.IntersectionObserver) {
+      var olhoFundo = new IntersectionObserver(function (entradas) {
+        Array.prototype.forEach.call(entradas, function (e) {
+          if (!e.isIntersecting) return;
+          acordarFundo();
+          olhoFundo.disconnect();
+        });
+      }, { rootMargin: '250px' });
+      olhoFundo.observe(palcoDasPracas);
+    } else {
+      acordarFundo();
+    }
 
     if (!calmo) {
       agendarCartas();
