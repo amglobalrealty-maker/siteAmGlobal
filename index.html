@@ -1320,81 +1320,41 @@
     perspective-origin: 50% 50%;
   }
 
-  /* ---- A TEXTURA DE DIAGONAIS ----
+  /* ---- O FUNDO DA FAIXA: UMA LUZ ----
 
-     QUATRO TENTATIVAS JA CAIRAM NESTE LUGAR, e vale ler a lista antes de propor
-     a quinta, porque ela mostra o padrao:
+     SEIS TENTATIVAS JA CAIRAM NESTE LUGAR. A lista inteira fica aqui porque ela
+     e o argumento contra repetir qualquer uma:
 
-     1. SOMBRA funda no chao.        Veredito: "detestei a sombra embaixo".
-     2. UM FIO de um pixel.          Veredito: "muito basico".
-     3. O PEDESTAL de travertino com o indice andando em cima. Veredito:
-        "detestei" -- e o incomodo verdadeiro era o fundo branco chapado.
-     4. Antes disso, sobre o fundo preto: video, aura desfocada e a malha de
-        meridianos. Recusados um a um.
+     Sobre o fundo PRETO:
+       1. VIDEO de litoral correndo atras.   "mexe o tempo todo"
+       2. AURA: a foto do card, desfocada.   "muito basico"
+       3. MALHA de meridianos com rotas.     "nao esta chic, linhas grotescas"
+     Sobre o fundo BRANCO:
+       4. SOMBRA funda embaixo do card.      "detestei a sombra embaixo"
+       5. UM FIO atravessando a faixa.       "muito basico"
+       6. PEDESTAL de travertino com indice. "detestei"
+       7. TRAMA de diagonais do manual.      "horrivel"
 
-     AS TRES PRIMEIRAS SO EXISTIAM POR CAUSA DO BRANCO CHAPADO: num campo liso o
-     card nao termina em lugar nenhum e pede algo que o apoie. O pedido dela
-     agora e outro e resolve isso pela raiz -- branco FICA, mas com efeito no
-     fundo em vez de cor solida.
+     AS DE NUMERO 4, 5 E 6 NEM ERAM SOBRE O FUNDO: eram tentativas de apoiar o
+     card num campo liso, onde ele nao termina em lugar nenhum. A 7 era textura
+     de verdade, prescrita pelo proprio manual dela (item 06, diagonais a 26
+     graus), e mesmo assim caiu.
 
-     ISTO NAO E INVENCAO MINHA: esta no manual dela, item 06 -- "diagonais a 26
-     graus como textura, tom sobre tom, nunca atras de texto". E a textura que a
-     propria identidade prescreve, e nesta secao ela nunca tinha sido usada. A
-     regra do "nunca atras de texto" e respeitada: todo texto daqui mora dentro
-     dos cards, que sao opacos.
+     O QUE ELA PEDIU AGORA E O CONTRARIO DE TUDO ISSO: "uma iluminacao discreta
+     atras dos cards". Sem padrao, sem objeto, sem movimento. So luz. */
+  /* UMA LUZ, E SO ISSO. Um poco morno atras dos cards, escurecendo de leve nas
+     bordas. Sobre marfim, "iluminar" e a diferenca entre o centro quase branco e
+     a borda puxando para o travertino: sem a borda ceder, o centro nao le como
+     aceso, le como nada.
 
-     SAO DUAS FAMILIAS DE LINHAS EM ANGULOS ESPELHADOS, +26 e -26 graus, e nao
-     duas camadas paralelas. Paralelas ja foram tentadas e o veredito dela foi
-     "vejo, mas listra e sem graca" -- e tinha razao, listra e listra. Cruzadas,
-     elas viram TRAMA: losangos, como tecido ou pedra lavrada. Uma familia e
-     travertino e a outra champagne, entao os cruzamentos tem um ponto quente.
-
-     E AS DUAS ANDAM EM SENTIDOS OPOSTOS, uma para a esquerda e outra para a
-     direita, a MESMA distancia. Isso faz uma coisa que nao se explica olhando:
-     os pontos onde elas se cruzam nao vao para lado nenhum -- eles SOBEM. A
-     trama inteira parece escorrer na vertical, sem que nenhuma das duas camadas
-     pareca deslizar de lado.
-
-     E O DESLIZE NUNCA ACABA NEM DA SALTO, porque cada camada anda EXATAMENTE UM
-     PERIODO DO PROPRIO PADRAO. Durante o movimento se ve o deslize; no fim, o
-     desenho cai identico a onde estava. Entao ele pode somar para sempre sem
-     nunca chegar a borda e sem nunca precisar voltar. A conta do passo esta no
-     script, e depende do seno de 26 graus. */
-  .textura {
+     O foco fica um pouco ACIMA do meio, em 42%, porque luz vem de cima -- no
+     centro exato pareceria um holofote de palco. */
+  .luz {
     position: absolute;
     inset: 0;
     z-index: 0;
-    overflow: hidden;
     pointer-events: none;
-    /* a textura e mais forte no meio e se dissolve nas bordas: assim ela e um
-       campo de luz atras dos cards, e nao um padrao cobrindo a secao inteira */
-    -webkit-mask-image: radial-gradient(128% 108% at 50% 46%, #000 0%, rgba(0, 0, 0, 0.55) 56%, transparent 100%);
-    mask-image: radial-gradient(128% 108% at 50% 46%, #000 0%, rgba(0, 0, 0, 0.55) 56%, transparent 100%);
-  }
-
-  /* MAIS LARGAS QUE A FAIXA de proposito: a sobra e o que deixa a camada
-     deslizar sem nunca mostrar onde ela comeca */
-  .textura-camada {
-    position: absolute;
-    top: -25%;
-    bottom: -25%;
-    left: -30%;
-    width: 160%;
-    transform: translate3d(0, 0, 0);
-    transition: transform 1.5s var(--curva);
-  }
-
-  /* A URDIDURA: travertino, inclinada para um lado. E ela que faz a superficie.
-     MESMO PASSO das duas, 22px -- e o passo igual que fecha losango de verdade
-     em vez de romboide torto. */
-  .textura-camada--funda {
-    background-image: repeating-linear-gradient(26deg, rgba(216, 207, 192, 0.58) 0px, rgba(216, 207, 192, 0.58) 1px, transparent 1px, transparent 22px);
-  }
-
-  /* A TRAMA: champagne, inclinada para o OUTRO lado. Ela e quem cruza, e o
-     champagne fica so nos cruzamentos de fato -- detalhe, como manda o manual. */
-  .textura-camada--rasa {
-    background-image: repeating-linear-gradient(-26deg, rgba(180, 154, 110, 0.28) 0px, rgba(180, 154, 110, 0.28) 1px, transparent 1px, transparent 22px);
+    background: radial-gradient(62% 78% at 50% 42%, #FDFCFA 0%, #F7F4EE 40%, rgba(216, 207, 192, 0.5) 100%);
   }
 
   /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
@@ -1677,6 +1637,162 @@
   }
 
   .seta:hover { border-color: var(--champagne); background: var(--marfim); color: var(--grafite); }
+
+  /* ---- A FICHA DA PRACA ----
+
+     Clicar no card do meio abre isto por cima da faixa. Clicar num card lateral
+     continua so trazendo ele para o meio -- duas acoes diferentes para dois
+     estados diferentes, e nao um clique que faz duas coisas.
+
+     TUDO AQUI E DADO REAL: a fotografia do proprio card, o pais, a cidade, a
+     hora que e la agora e a diferenca para a hora de quem esta olhando. Nao ha
+     uma linha de texto inventada sobre nenhuma cidade -- o acervo nao tem isso,
+     e inventar mercado imobiliario em site que vende imovel e mentira.
+
+     O BOTAO DE IMOVEIS SO APARECE EM OITO DAS DEZESSEIS. A curadoria tem oito
+     cidades; nas outras oito o botao nao existe, em vez de levar a pessoa para
+     uma lista vazia. Quando entrar o acervo real, o botao aparece sozinho: quem
+     decide e a existencia do filtro daquela cidade, e nao uma lista aqui. */
+  .ficha {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: stretch;
+    background: var(--marfim);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.55s var(--curva);
+  }
+
+  .ficha.aberta { opacity: 1; pointer-events: auto; }
+  .ficha[hidden] { display: none; }
+
+  .ficha-foto {
+    position: relative;
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+
+  .ficha-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.06);
+    transition: transform 1.6s var(--curva);
+  }
+
+  .ficha.aberta .ficha-foto img { transform: none; }
+
+  .ficha-dados {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: clamp(28px, 4vw, 64px);
+  }
+
+  .ficha-pais {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--grafite);
+  }
+
+  .ficha-cidade {
+    margin: 4px 0 0;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(38px, 5vw, 76px);
+    line-height: 1;
+    color: var(--onix);
+  }
+
+  /* o filete de 24px do manual, separando o nome dos dados */
+  .ficha-filete {
+    width: 24px;
+    height: 1px;
+    margin: clamp(18px, 2.4vh, 30px) 0;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.7s var(--curva) 0.25s;
+  }
+
+  .ficha.aberta .ficha-filete { transform: scaleX(1); }
+
+  .ficha-hora {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.4vw, 56px);
+    line-height: 1;
+    color: var(--onix);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ficha-momento {
+    margin: 6px 0 0;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--champagne);
+  }
+
+  .ficha-diferenca {
+    margin: 14px 0 0;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(58, 58, 60, 0.75);
+    max-width: 32ch;
+  }
+
+  .ficha-imoveis {
+    align-self: flex-start;
+    margin-top: clamp(22px, 3vh, 38px);
+    padding: 14px 26px;
+    border: 1px solid rgba(11, 11, 12, 0.25);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--onix);
+    text-decoration: none;
+    transition: border-color 0.4s var(--curva), background 0.4s var(--curva), color 0.4s var(--curva);
+  }
+
+  .ficha-imoveis:hover { border-color: var(--champagne); background: var(--onix); color: var(--marfim); }
+  .ficha-imoveis[hidden] { display: none; }
+
+  .ficha-fechar {
+    position: absolute;
+    z-index: 2;
+    top: clamp(14px, 2vw, 26px);
+    right: clamp(14px, 2vw, 26px);
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid rgba(11, 11, 12, 0.2);
+    border-radius: 50%;
+    background: rgba(245, 242, 236, 0.9);
+    color: var(--onix);
+    cursor: pointer;
+    transition: border-color 0.4s var(--curva), background 0.4s var(--curva);
+  }
+
+  .ficha-fechar:hover { border-color: var(--champagne); background: var(--marfim); }
+  .ficha-fechar:focus-visible,
+  .ficha-imoveis:focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
   .seta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
   .seta--esq { left: clamp(10px, 3vw, 54px); }
   .seta--dir { right: clamp(10px, 3vw, 54px); }
@@ -1819,6 +1935,10 @@
     .carta[data-pos="1"]  { transform: translateX(58%) rotateY(-22deg) scale(0.74); }
     .carta[data-pos="-1"] { transform: translateX(-58%) rotateY(22deg) scale(0.74); }
     .seta { display: none; }
+    /* sem largura para duas colunas, a ficha empilha: a foto em cima, os dados
+       embaixo, e ela passa a rolar por dentro se nao couber */
+    .ficha { grid-template-columns: 1fr; grid-template-rows: 40% auto; overflow-y: auto; }
+    .ficha-dados { padding: clamp(22px, 6vw, 40px); }
     .contato-grade { grid-template-columns: 1fr; }
     /* sem largura para tres colunas, os principios empilham e o fio vertical
        vira uma linha entre um e o seguinte */
@@ -2286,13 +2406,7 @@
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
-    <!-- A TEXTURA DO MANUAL, item 06: diagonais a 26 graus, tom sobre tom. Duas
-         camadas que deslizam em distancias diferentes a cada troca de card. O
-         script so escreve o translate; o desenho e todo do CSS. -->
-    <div class="textura" aria-hidden="true">
-      <span class="textura-camada textura-camada--funda" id="texturaFunda"></span>
-      <span class="textura-camada textura-camada--rasa" id="texturaRasa"></span>
-    </div>
+    <div class="luz" aria-hidden="true"></div>
     <div class="cartas" id="cartas">
       <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
@@ -2438,6 +2552,31 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
+    </div>
+
+    <!-- A FICHA. Nasce vazia: a fotografia, o pais, a cidade, a hora e a
+         diferenca de fuso sao todos copiados do card que foi clicado, e o botao
+         de imoveis so aparece se a curadoria tiver aquela cidade. Nada aqui e
+         digitado a mao, entao acrescentar praca no carrossel nao exige tocar
+         neste bloco. -->
+    <!-- SEM aria-modal: ela cobre a faixa, e nao a pagina. Dizer que e modal
+         quando nao e faz o leitor de tela esconder o resto do site sem motivo. -->
+    <div class="ficha" id="fichaPraca" role="dialog" aria-labelledby="fichaCidade" hidden>
+      <button type="button" class="ficha-fechar" id="fichaFechar" aria-label="Fechar">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1 1 L12 12 M12 1 L1 12"/></svg>
+      </button>
+      <div class="ficha-foto">
+        <img id="fichaImg" alt="" decoding="async">
+      </div>
+      <div class="ficha-dados">
+        <p class="ficha-pais" id="fichaPais"></p>
+        <h3 class="ficha-cidade" id="fichaCidade"></h3>
+        <span class="ficha-filete" aria-hidden="true"></span>
+        <p class="ficha-hora" id="fichaHora">--:--</p>
+        <p class="ficha-momento" id="fichaMomento"></p>
+        <p class="ficha-diferenca" id="fichaDiferenca"></p>
+        <a class="ficha-imoveis" id="fichaImoveis" href="#curadoria" hidden></a>
+      </div>
     </div>
 
     <button type="button" class="seta seta--esq" id="setaEsq" aria-label="Cidade anterior">
@@ -3099,66 +3238,121 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
-    /* ---- a textura de diagonais que desliza ----
+    /* ---- a ficha da praca, que abre ao clicar no card do meio ----
 
-       POR QUE O PASSO E ESSE NUMERO, e nao um valor escolhido a dedo:
+       TUDO E COPIADO DO CARD: fotografia, pais, cidade e fuso. Nada esta
+       digitado aqui, entao acrescentar praca no carrossel nao exige tocar neste
+       bloco. */
+    var ficha = document.getElementById('fichaPraca');
+    var fichaImg = document.getElementById('fichaImg');
+    var fichaPais = document.getElementById('fichaPais');
+    var fichaCidade = document.getElementById('fichaCidade');
+    var fichaHora = document.getElementById('fichaHora');
+    var fichaMomento = document.getElementById('fichaMomento');
+    var fichaDiferenca = document.getElementById('fichaDiferenca');
+    var fichaImoveis = document.getElementById('fichaImoveis');
+    var fichaFechar = document.getElementById('fichaFechar');
+    var voltarPara = null;
 
-       As diagonais sao um padrao que se repete a cada 14px (a camada funda) e a
-       cada 34px (a rasa), medidos NA DIRECAO DO GRADIENTE, que esta a 26 graus.
-       O deslize e HORIZONTAL. Andar dx na horizontal desloca o padrao em
-       dx * seno(26) ao longo do eixo dele -- entao, para andar exatamente um
-       periodo, dx tem de ser o periodo DIVIDIDO pelo seno.
-
-       E por que exatamente um periodo: durante a transicao se ve o movimento,
-       mas no fim o desenho cai identico a onde estava. Assim ele soma para
-       sempre na mesma direcao, nunca chega numa borda e nunca precisa voltar.
-       Qualquer outro valor deixaria o padrao "fora de fase" e, em algum
-       momento, exigiria um salto de volta -- que apareceria. */
-    var texturaFunda = document.getElementById('texturaFunda');
-    var texturaRasa = document.getElementById('texturaRasa');
-    var SENO_26 = Math.sin(26 * Math.PI / 180);
-    var PERIODO = 22;                    // o mesmo nas duas, e o que fecha losango
-    var PASSO = PERIODO / SENO_26;       // 50,2px: um periodo de cada uma
-    var andouFunda = 0, andouRasa = 0;
-
-    function escreverTextura(transicao) {
-      if (texturaFunda) {
-        texturaFunda.style.transition = transicao;
-        texturaFunda.style.transform = 'translate3d(' + andouFunda.toFixed(2) + 'px, 0, 0)';
-      }
-      if (texturaRasa) {
-        texturaRasa.style.transition = transicao;
-        texturaRasa.style.transform = 'translate3d(' + andouRasa.toFixed(2) + 'px, 0, 0)';
-      }
-      // assenta antes de devolver a transicao, senao o navegador junta os dois
-      // quadros e o encolhimento vira animacao
-      if (transicao === 'none' && texturaFunda) texturaFunda.getBoundingClientRect();
+    // a mesma fotografia, pedida grande: na ficha ela ocupa meia tela
+    function urlGrande(src) {
+      if (!src) return '';
+      return src.replace(/([?&])w=\d+/, '$1w=1400').replace(/([?&])q=\d+/, '$1q=80');
     }
 
-    function deslizarTextura(passos) {
-      if (!passos) return;
+    /* A DIFERENCA E PARA QUEM ESTA OLHANDO, e nao para Sao Paulo. O `emPalavras`
+       do relogio la de cima serve a outra secao e tem "Sao Paulo" escrito
+       dentro dele; aqui a referencia e o fuso do proprio navegador. */
+    function diferencaParaVoce(fuso, agora) {
+      var aqui = null, la = null;
+      try { aqui = minutosNoFuso(Intl.DateTimeFormat().resolvedOptions().timeZone, agora); } catch (erro) { aqui = null; }
+      try { la = minutosNoFuso(fuso, agora); } catch (erro) { la = null; }
+      if (aqui === null || la === null) return '';
 
-      /* PRIMEIRO ENCOLHER, E SEM TRANSICAO. O acumulado nao pode crescer sem
-         fim numa pagina aberta o dia inteiro, e tirar oito periodos nao muda o
-         DESENHO -- multiplo inteiro de periodo cai igual.
+      // a volta do dia: sem isto, 22:36 la contra 15:36 aqui daria -1073 minutos
+      var d = la - aqui;
+      if (d > 720) d = d - 1440;
+      if (d <= -720) d = d + 1440;
+      if (d === 0) return 'Mesma hora que aqui, agora.';
 
-         MAS MUDA O MOVIMENTO, e foi assim que o teste pegou: encolher de -255
-         para -32 e um salto de +223px, e com a transicao ligada ele ANIMA. A
-         textura deslizaria para tras, a vista, durante um segundo e meio. Por
-         isso o encolhimento acontece ANTES do passo e com a transicao
-         desligada, e so depois vem o deslize de verdade. */
-      var encolheu = false;
-      if (Math.abs(andouFunda) > PASSO * 8) { andouFunda = andouFunda % (PASSO * 8); encolheu = true; }
-      if (Math.abs(andouRasa) > PASSO * 8) { andouRasa = andouRasa % (PASSO * 8); encolheu = true; }
-      if (encolheu) escreverTextura('none');
+      var lado = d > 0 ? 'a frente de voce' : 'atras de voce';
+      var abs = Math.abs(d);
+      var h = Math.floor(abs / 60), m = abs % 60;
+      var quanto;
+      if (m === 0) quanto = h + (h === 1 ? ' hora' : ' horas');
+      else if (h === 0) quanto = m + ' minutos';
+      else quanto = h + 'h' + (m < 10 ? '0' : '') + m;
+      return quanto + ' ' + lado + ', agora.';
+    }
 
-      /* SENTIDOS OPOSTOS, e e este sinal trocado que faz o efeito. As duas
-         familias estao em angulos espelhados; andando uma para cada lado, os
-         pontos onde elas se cruzam nao vao para os lados -- eles sobem. A trama
-         escorre na vertical sem nenhuma das camadas parecer deslizar. */
-      andouFunda = andouFunda - passos * PASSO;
-      andouRasa = andouRasa + passos * PASSO;
-      escreverTextura('');
+    function abrirFicha(card) {
+      if (!ficha || !card) return;
+      var foto = card.querySelector('img');
+      var pais = card.querySelector('.carta-lugar');
+      var cidade = card.querySelector('.carta-nome');
+      var relogio = card.querySelector('.mundo-hora');
+      var fuso = relogio ? relogio.getAttribute('data-fuso') : '';
+      var agora = new Date();
+      var nome = cidade ? cidade.textContent : '';
+
+      if (fichaImg && foto) fichaImg.setAttribute('src', urlGrande(foto.getAttribute('src')));
+      if (fichaPais && pais) fichaPais.textContent = pais.textContent;
+      if (fichaCidade) fichaCidade.textContent = nome;
+      if (fichaHora) fichaHora.textContent = relogio ? relogio.textContent : '--:--';
+
+      var min = null;
+      try { min = minutosNoFuso(fuso, agora); } catch (erro) { min = null; }
+      if (fichaMomento) fichaMomento.textContent = min === null ? '' : estadoDoDia(min);
+      if (fichaDiferenca) fichaDiferenca.textContent = diferencaParaVoce(fuso, agora);
+
+      /* O BOTAO SO APARECE SE A CURADORIA TIVER A CIDADE. Quem decide e a
+         existencia do botao de filtro la embaixo, e nao uma lista escrita aqui:
+         hoje sao oito das dezesseis, e no dia em que entrar praca nova no acervo
+         o botao dela aparece sozinho. Sem isso, metade dos cards levaria a
+         pessoa para uma lista vazia. */
+      var noFiltro = nome ? document.querySelector('.filtro-cidade[data-cidade="' + nome.replace(/"/g, '') + '"]') : null;
+      if (fichaImoveis) {
+        fichaImoveis.hidden = !noFiltro;
+        if (noFiltro) fichaImoveis.textContent = 'Ver imoveis em ' + nome;
+      }
+
+      voltarPara = card;
+      ficha.hidden = false;
+      // assenta antes de acender, senao a ficha aparece pronta em vez de entrar
+      ficha.getBoundingClientRect();
+      ficha.classList.add('aberta');
+      if (fichaFechar) fichaFechar.focus();
+      pararCartas();
+    }
+
+    function fecharFicha() {
+      if (!ficha || ficha.hidden) return;
+      ficha.classList.remove('aberta');
+      // o `hidden` so volta depois da transicao, senao ela some de uma vez
+      window.setTimeout(function () {
+        if (!ficha.classList.contains('aberta')) ficha.hidden = true;
+      }, 600);
+      if (voltarPara && voltarPara.focus) voltarPara.focus();
+      voltarPara = null;
+    }
+
+    if (fichaFechar) fichaFechar.addEventListener('click', fecharFicha);
+
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') fecharFicha();
+    });
+
+    if (fichaImoveis) {
+      fichaImoveis.addEventListener('click', function () {
+        /* ACIONA O FILTRO QUE JA EXISTE, em vez de duplicar a logica dele. O
+           handler da curadoria e delegado no painel, entao um clique
+           programatico no botao daquela cidade faz exatamente o que o clique de
+           uma pessoa faria. O href leva para #curadoria e o navegador rola. */
+        var nome = fichaCidade ? fichaCidade.textContent : '';
+        var botao = nome ? document.querySelector('.filtro-cidade[data-cidade="' + nome.replace(/"/g, '') + '"]') : null;
+        if (botao) botao.click();
+        fecharFicha();
+      });
     }
 
     function posicaoRelativa(i) {
@@ -3168,21 +3362,10 @@
     }
 
     function mostrarCarta(i) {
-      var antes = naCarta;
       naCarta = (i + quantas) % quantas;
-
-      /* QUANTOS PASSOS, E PARA QUE LADO. Pelo caminho mais curto na roda: do
-         card 15 para o 0 e UM passo para a frente, e nao quinze para tras.
-         Sem esta conta, a textura correria a volta inteira ao contrario toda vez
-         que o carrossel fechasse o circulo. */
-      var passos = naCarta - antes;
-      if (passos > quantas / 2) passos = passos - quantas;
-      if (passos < -quantas / 2) passos = passos + quantas;
-
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
-      deslizarTextura(passos);
     }
 
     function agendarCartas() {
@@ -3193,9 +3376,14 @@
     function pararCartas() { window.clearInterval(relogioCartas); }
 
     // clicar num card lateral traz ele para o meio, e para o rodizio
+    /* DUAS ACOES PARA DOIS ESTADOS, e nao um clique que faz duas coisas: o card
+       lateral vem para o meio, e o card que JA ESTA no meio abre a ficha. Quem
+       clica num card de lado quer ve-lo; quem clica no que ja esta na frente
+       quer mais do que ele ja mostra. */
     cartas.addEventListener('click', function (ev) {
       var alvo = ev.target.closest('.carta');
       if (!alvo) return;
+      if (alvo.getAttribute('data-pos') === '0') { abrirFicha(alvo); return; }
       mostrarCarta(parseInt(alvo.getAttribute('data-carta'), 10));
       pararCartas();
     });
