@@ -1320,94 +1320,71 @@
     perspective-origin: 50% 50%;
   }
 
-  /* ---- O PEDESTAL ----
+  /* ---- A TEXTURA DE DIAGONAIS ----
 
-     DUAS TENTATIVAS JA CAIRAM NESTE LUGAR, e as duas por motivos opostos:
+     QUATRO TENTATIVAS JA CAIRAM NESTE LUGAR, e vale ler a lista antes de propor
+     a quinta, porque ela mostra o padrao:
 
-     1. SOMBRA NO CHAO, funda e de grafite. Veredito: "detestei a sombra embaixo
-        do card". Sobre marfim, sombra grande nao le como altura, le como mancha
-        cinza.
-     2. UM FIO de um pixel atravessando a faixa. Veredito: "muito basico". E e
-        mesmo -- uma linha e a coisa mais discreta que existe, e o padrao dela
-        nesta secao inteira e recusar discricao.
+     1. SOMBRA funda no chao.        Veredito: "detestei a sombra embaixo".
+     2. UM FIO de um pixel.          Veredito: "muito basico".
+     3. O PEDESTAL de travertino com o indice andando em cima. Veredito:
+        "detestei" -- e o incomodo verdadeiro era o fundo branco chapado.
+     4. Antes disso, sobre o fundo preto: video, aura desfocada e a malha de
+        meridianos. Recusados um a um.
 
-     O QUE ESTA AQUI AGORA E MATERIAL, E NAO LINHA. Uma faixa de travertino
-     ocupando exatamente a altura do padding de baixo da secao, entao a borda de
-     cima dela cai na BASE do card do meio, sem calculo nenhum: os dois usam o
-     mesmo clamp. O card nao flutua nem se apoia num risco -- ele esta em cima
-     de uma superficie.
+     AS TRES PRIMEIRAS SO EXISTIAM POR CAUSA DO BRANCO CHAPADO: num campo liso o
+     card nao termina em lugar nenhum e pede algo que o apoie. O pedido dela
+     agora e outro e resolve isso pela raiz -- branco FICA, mas com efeito no
+     fundo em vez de cor solida.
 
-     O degrade vertical vai de claro em cima para cheio embaixo, que e o que
-     acontece com uma superficie recebendo luz de cima. As pontas se dissolvem
-     por MASCARA e nao por gradiente de cor, para o degrade vertical continuar
-     inteiro embaixo dela.
+     ISTO NAO E INVENCAO MINHA: esta no manual dela, item 06 -- "diagonais a 26
+     graus como textura, tom sobre tom, nunca atras de texto". E a textura que a
+     propria identidade prescreve, e nesta secao ela nunca tinha sido usada. A
+     regra do "nunca atras de texto" e respeitada: todo texto daqui mora dentro
+     dos cards, que sao opacos.
 
-     E SOBRE O PEDESTAL ANDA O INDICE DA PRACA, que e a parte com conteudo: o
-     numero da cidade na roda, deslizando ao longo da faixa conforme o carrossel
-     gira. Ele diz onde voce esta nas dezesseis, e o percurso dele pela faixa E
-     a barra de progresso -- sem precisar desenhar uma. */
-  .pedestal {
+     SAO DUAS CAMADAS, e e ai que deixa de ser papel de parede: uma de
+     travertino, fina e cerrada; outra de champagne, mais larga e espacada. As
+     duas deslizam a cada troca de card, e em DISTANCIAS DIFERENTES -- e o
+     desencontro entre elas que da profundidade ao campo.
+
+     E O DESLIZE NUNCA ACABA NEM DA SALTO, porque cada camada anda EXATAMENTE UM
+     PERIODO DO PROPRIO PADRAO. Durante o movimento se ve o deslize; no fim, o
+     desenho cai identico a onde estava. Entao ele pode somar para sempre na
+     mesma direcao sem nunca chegar a borda e sem nunca precisar voltar. A conta
+     do passo esta no script, e depende do seno de 26 graus. */
+  .textura {
     position: absolute;
+    inset: 0;
     z-index: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* MESMO clamp do padding de baixo da secao: e isso que faz a borda de cima
-       do pedestal cair exatamente na base do card do meio */
-    height: clamp(46px, 7vh, 96px);
+    overflow: hidden;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(216, 207, 192, 0.4) 0%, rgba(216, 207, 192, 0.8) 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+    /* a textura e mais forte no meio e se dissolve nas bordas: assim ela e um
+       campo de luz atras dos cards, e nao um padrao cobrindo a secao inteira */
+    -webkit-mask-image: radial-gradient(128% 108% at 50% 46%, #000 0%, rgba(0, 0, 0, 0.55) 56%, transparent 100%);
+    mask-image: radial-gradient(128% 108% at 50% 46%, #000 0%, rgba(0, 0, 0, 0.55) 56%, transparent 100%);
   }
 
-  /* O MARCADOR QUE ANDA. O `left` e escrito pelo script em porcentagem; o
-     translate de -50% e o que faz a conta apontar para o centro dele e nao
-     para a borda esquerda. */
-  .pedestal-indice {
+  /* MAIS LARGAS QUE A FAIXA de proposito: a sobra e o que deixa a camada
+     deslizar sem nunca mostrar onde ela comeca */
+  .textura-camada {
     position: absolute;
-    top: 0;
-    left: 8%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 9px;
-    transition: left 1.15s var(--curva), opacity 0.4s var(--curva);
+    top: -25%;
+    bottom: -25%;
+    left: -30%;
+    width: 160%;
+    transform: translate3d(0, 0, 0);
+    transition: transform 1.5s var(--curva);
   }
 
-  /* o tracinho que aponta para o ponto exato da faixa */
-  .pedestal-indice::before {
-    content: '';
-    width: 1px;
-    height: 13px;
-    background: var(--champagne);
+  /* travertino, fina e cerrada: e ela que faz a superficie */
+  .textura-camada--funda {
+    background-image: repeating-linear-gradient(26deg, rgba(216, 207, 192, 0.62) 0px, rgba(216, 207, 192, 0.62) 1px, transparent 1px, transparent 14px);
   }
 
-  .pedestal-conta {
-    display: flex;
-    align-items: baseline;
-    gap: 7px;
-  }
-
-  /* o numero em serifa e o total em Jost: e o par tipografico do manual, e e
-     ele que faz isso parecer legenda de galeria em vez de contador */
-  .pedestal-numero {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(22px, 2vw, 34px);
-    line-height: 0.9;
-    color: var(--grafite);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .pedestal-total {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: rgba(58, 58, 60, 0.5);
-    font-variant-numeric: tabular-nums;
+  /* champagne, larga e espacada: e ela que da o brilho, e anda quase o dobro */
+  .textura-camada--rasa {
+    background-image: repeating-linear-gradient(26deg, rgba(180, 154, 110, 0.3) 0px, rgba(180, 154, 110, 0.3) 1px, transparent 1px, transparent 34px);
   }
 
   /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
@@ -1449,17 +1426,21 @@
   .carta[data-pos="2"],
   .carta[data-pos="-2"] { pointer-events: auto; }
 
-  /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
-     da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
-  /* O DO MEIO: NITIDO, com o fio champagne de um pixel em volta.
+  /* AS POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o da
+     direita, -1 o da esquerda, e 2 e -2 sao os dois de fora. */
 
-     SEM SOMBRA NO CHAO. Ela chegou a existir aqui, funda e de grafite, para o
-     card descolar do fundo claro. Veredito dela: detestou. E tinha razao --
-     sobre marfim, sombra grande nao le como altura, le como MANCHA CINZA
-     debaixo do card.
+  /* O DO MEIO: NITIDO, e o unico enfeite dele e o fio champagne de um pixel em
+     volta.
 
-     Quem apoia o card agora e a PRATELEIRA: o fio horizontal em .cartas::before.
-     Em vez de flutuar sobre uma sombra, ele esta em cima de alguma coisa. */
+     NAO HA NADA APOIANDO O CARD, e isso e decisao e nao esquecimento. Tres
+     coisas ja tentaram esse papel e as tres foram recusadas: sombra funda no
+     chao ("detestei a sombra embaixo"), um fio atravessando a faixa ("muito
+     basico") e um pedestal de travertino com o indice andando em cima ("tire
+     esse pedestal").
+
+     Quem resolve agora e o FUNDO, e nao um objeto sob o card: a textura de
+     diagonais deixou o campo de ser liso, e num campo com textura o card ja
+     tem contra o que terminar. */
   .carta[data-pos="0"] {
     transform: translateX(0) rotateY(0deg) scale(1);
     z-index: 3;
@@ -2295,6 +2276,13 @@
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
+    <!-- A TEXTURA DO MANUAL, item 06: diagonais a 26 graus, tom sobre tom. Duas
+         camadas que deslizam em distancias diferentes a cada troca de card. O
+         script so escreve o translate; o desenho e todo do CSS. -->
+    <div class="textura" aria-hidden="true">
+      <span class="textura-camada textura-camada--funda" id="texturaFunda"></span>
+      <span class="textura-camada textura-camada--rasa" id="texturaRasa"></span>
+    </div>
     <div class="cartas" id="cartas">
       <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
@@ -2440,18 +2428,6 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
-    </div>
-
-    <!-- O PEDESTAL. O numero e o total sao escritos pelo script a partir da
-         quantidade de cards que existir de fato: os valores aqui sao so o que
-         aparece se o script nao rodar. O `left` do marcador tambem vem de la. -->
-    <div class="pedestal" aria-hidden="true">
-      <span class="pedestal-indice" id="indicePraca">
-        <span class="pedestal-conta">
-          <span class="pedestal-numero" id="indiceNumero">01</span>
-          <span class="pedestal-total" id="indiceTotal">/ 16</span>
-        </span>
-      </span>
     </div>
 
     <button type="button" class="seta seta--esq" id="setaEsq" aria-label="Cidade anterior">
@@ -3113,43 +3089,62 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
-    /* ---- o indice que anda pelo pedestal ----
+    /* ---- a textura de diagonais que desliza ----
 
-       O percurso dele pela faixa E a barra de progresso: nao precisa desenhar
-       uma. Vai de 8% a 92% da largura, e nao de 0 a 100, para o numero nunca
-       encostar na parte da faixa que a mascara ja esta dissolvendo. */
-    var indiceEl = document.getElementById('indicePraca');
-    var indiceNumero = document.getElementById('indiceNumero');
-    var indiceTotal = document.getElementById('indiceTotal');
-    var ultimoIndice = null;
-    var INICIO_FAIXA = 8, FIM_FAIXA = 92;
+       POR QUE O PASSO E ESSE NUMERO, e nao um valor escolhido a dedo:
 
-    if (indiceTotal) indiceTotal.textContent = '/ ' + (quantas < 10 ? '0' : '') + quantas;
+       As diagonais sao um padrao que se repete a cada 14px (a camada funda) e a
+       cada 34px (a rasa), medidos NA DIRECAO DO GRADIENTE, que esta a 26 graus.
+       O deslize e HORIZONTAL. Andar dx na horizontal desloca o padrao em
+       dx * seno(26) ao longo do eixo dele -- entao, para andar exatamente um
+       periodo, dx tem de ser o periodo DIVIDIDO pelo seno.
 
-    function marcarIndice() {
-      if (!indiceEl) return;
-      var fracao = quantas > 1 ? naCarta / (quantas - 1) : 0;
-      var onde = INICIO_FAIXA + fracao * (FIM_FAIXA - INICIO_FAIXA);
+       E por que exatamente um periodo: durante a transicao se ve o movimento,
+       mas no fim o desenho cai identico a onde estava. Assim ele soma para
+       sempre na mesma direcao, nunca chega numa borda e nunca precisa voltar.
+       Qualquer outro valor deixaria o padrao "fora de fase" e, em algum
+       momento, exigiria um salto de volta -- que apareceria. */
+    var texturaFunda = document.getElementById('texturaFunda');
+    var texturaRasa = document.getElementById('texturaRasa');
+    var SENO_26 = Math.sin(26 * Math.PI / 180);
+    var PASSO_FUNDA = 14 / SENO_26;   // 31,9px: um periodo da camada de travertino
+    var PASSO_RASA = 34 / SENO_26;    // 77,6px: um periodo da de champagne
+    var andouFunda = 0, andouRasa = 0;
 
-      /* A RODA FECHA, E SEM ISTO O SALTO APARECERIA. Do ultimo card para o
-         primeiro o marcador correria a faixa inteira de volta, contra o sentido
-         do carrossel. Quando o passo e maior que um, ele APAGA, se reposiciona
-         do outro lado e reacende. */
-      var saltou = ultimoIndice !== null && Math.abs(naCarta - ultimoIndice) > 1;
-      ultimoIndice = naCarta;
+    function escreverTextura(transicao) {
+      if (texturaFunda) {
+        texturaFunda.style.transition = transicao;
+        texturaFunda.style.transform = 'translate3d(' + andouFunda.toFixed(2) + 'px, 0, 0)';
+      }
+      if (texturaRasa) {
+        texturaRasa.style.transition = transicao;
+        texturaRasa.style.transform = 'translate3d(' + andouRasa.toFixed(2) + 'px, 0, 0)';
+      }
+      // assenta antes de devolver a transicao, senao o navegador junta os dois
+      // quadros e o encolhimento vira animacao
+      if (transicao === 'none' && texturaFunda) texturaFunda.getBoundingClientRect();
+    }
 
-      if (indiceNumero) indiceNumero.textContent = (naCarta + 1 < 10 ? '0' : '') + (naCarta + 1);
+    function deslizarTextura(passos) {
+      if (!passos) return;
 
-      if (!saltou) { indiceEl.style.left = onde.toFixed(2) + '%'; return; }
+      /* PRIMEIRO ENCOLHER, E SEM TRANSICAO. O acumulado nao pode crescer sem
+         fim numa pagina aberta o dia inteiro, e tirar oito periodos nao muda o
+         DESENHO -- multiplo inteiro de periodo cai igual.
 
-      indiceEl.style.transition = 'none';
-      indiceEl.style.opacity = '0';
-      indiceEl.style.left = onde.toFixed(2) + '%';
-      // sem esta leitura o navegador junta tudo num quadro so e o marcador
-      // reaparece sem nunca ter apagado
-      indiceEl.getBoundingClientRect();
-      indiceEl.style.transition = '';
-      indiceEl.style.opacity = '';
+         MAS MUDA O MOVIMENTO, e foi assim que o teste pegou: encolher de -255
+         para -32 e um salto de +223px, e com a transicao ligada ele ANIMA. A
+         textura deslizaria para tras, a vista, durante um segundo e meio. Por
+         isso o encolhimento acontece ANTES do passo e com a transicao
+         desligada, e so depois vem o deslize de verdade. */
+      var encolheu = false;
+      if (Math.abs(andouFunda) > PASSO_FUNDA * 8) { andouFunda = andouFunda % (PASSO_FUNDA * 8); encolheu = true; }
+      if (Math.abs(andouRasa) > PASSO_RASA * 8) { andouRasa = andouRasa % (PASSO_RASA * 8); encolheu = true; }
+      if (encolheu) escreverTextura('none');
+
+      andouFunda = andouFunda - passos * PASSO_FUNDA;
+      andouRasa = andouRasa - passos * PASSO_RASA;
+      escreverTextura('');
     }
 
     function posicaoRelativa(i) {
@@ -3159,11 +3154,21 @@
     }
 
     function mostrarCarta(i) {
+      var antes = naCarta;
       naCarta = (i + quantas) % quantas;
+
+      /* QUANTOS PASSOS, E PARA QUE LADO. Pelo caminho mais curto na roda: do
+         card 15 para o 0 e UM passo para a frente, e nao quinze para tras.
+         Sem esta conta, a textura correria a volta inteira ao contrario toda vez
+         que o carrossel fechasse o circulo. */
+      var passos = naCarta - antes;
+      if (passos > quantas / 2) passos = passos - quantas;
+      if (passos < -quantas / 2) passos = passos + quantas;
+
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
-      marcarIndice();
+      deslizarTextura(passos);
     }
 
     function agendarCartas() {
