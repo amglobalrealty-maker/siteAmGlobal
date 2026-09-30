@@ -1320,43 +1320,94 @@
     perspective-origin: 50% 50%;
   }
 
-  /* ---- A PRATELEIRA ----
+  /* ---- O PEDESTAL ----
 
-     Um fio atravessando a faixa na altura da base do card do meio. Ele entrou
-     no lugar da sombra no chao, que ela detestou -- e com razao: sobre marfim,
-     sombra grande nao le como altura, le como mancha cinza.
+     DUAS TENTATIVAS JA CAIRAM NESTE LUGAR, e as duas por motivos opostos:
 
-     O fio resolve outra coisa: o card deixa de FLUTUAR e passa a estar APOIADO.
-     Ele fica em z-index 0, atras dos cards, entao o do meio o INTERROMPE onde
-     pisa, e a linha continua dos dois lados. E isso que faz parecer apoio e nao
-     um risco decorativo passando por tras.
+     1. SOMBRA NO CHAO, funda e de grafite. Veredito: "detestei a sombra embaixo
+        do card". Sobre marfim, sombra grande nao le como altura, le como mancha
+        cinza.
+     2. UM FIO de um pixel atravessando a faixa. Veredito: "muito basico". E e
+        mesmo -- uma linha e a coisa mais discreta que existe, e o padrao dela
+        nesta secao inteira e recusar discricao.
 
-     OS LATERAIS FICAM ACIMA DA LINHA de proposito, porque a escala menor sobe a
-     base deles. Nao e defeito: o que esta mais longe se apoia mais alto no
-     campo de visao, e e assim que perspectiva funciona.
+     O QUE ESTA AQUI AGORA E MATERIAL, E NAO LINHA. Uma faixa de travertino
+     ocupando exatamente a altura do padding de baixo da secao, entao a borda de
+     cima dela cai na BASE do card do meio, sem calculo nenhum: os dois usam o
+     mesmo clamp. O card nao flutua nem se apoia num risco -- ele esta em cima
+     de uma superficie.
 
-     E GRAFITE, E NAO CHAMPAGNE. O champagne ja esta em dois lugares aqui -- a
-     borda do card do meio e o filete de 24px sob o texto -- e o manual manda
-     usa-lo so em detalhe. Chao e estrutura, nao detalhe.
+     O degrade vertical vai de claro em cima para cheio embaixo, que e o que
+     acontece com uma superficie recebendo luz de cima. As pontas se dissolvem
+     por MASCARA e nao por gradiente de cor, para o degrade vertical continuar
+     inteiro embaixo dela.
 
-     AS PONTAS SE DISSOLVEM. Uma linha de ponta a ponta viraria divisor de
-     secao; dissolvida, ela e um plano que termina fora do quadro. */
-  .cartas::before {
-    content: '';
+     E SOBRE O PEDESTAL ANDA O INDICE DA PRACA, que e a parte com conteudo: o
+     numero da cidade na roda, deslizando ao longo da faixa conforme o carrossel
+     gira. Ele diz onde voce esta nas dezesseis, e o percurso dele pela faixa E
+     a barra de progresso -- sem precisar desenhar uma. */
+  .pedestal {
     position: absolute;
     z-index: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 1px;
+    /* MESMO clamp do padding de baixo da secao: e isso que faz a borda de cima
+       do pedestal cair exatamente na base do card do meio */
+    height: clamp(46px, 7vh, 96px);
     pointer-events: none;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(58, 58, 60, 0.2) 18%,
-      rgba(58, 58, 60, 0.2) 82%,
-      transparent 100%
-    );
+    background: linear-gradient(to bottom, rgba(216, 207, 192, 0.4) 0%, rgba(216, 207, 192, 0.8) 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  }
+
+  /* O MARCADOR QUE ANDA. O `left` e escrito pelo script em porcentagem; o
+     translate de -50% e o que faz a conta apontar para o centro dele e nao
+     para a borda esquerda. */
+  .pedestal-indice {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    transition: left 1.15s var(--curva), opacity 0.4s var(--curva);
+  }
+
+  /* o tracinho que aponta para o ponto exato da faixa */
+  .pedestal-indice::before {
+    content: '';
+    width: 1px;
+    height: 13px;
+    background: var(--champagne);
+  }
+
+  .pedestal-conta {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+  }
+
+  /* o numero em serifa e o total em Jost: e o par tipografico do manual, e e
+     ele que faz isso parecer legenda de galeria em vez de contador */
+  .pedestal-numero {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2vw, 34px);
+    line-height: 0.9;
+    color: var(--grafite);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pedestal-total {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(58, 58, 60, 0.5);
+    font-variant-numeric: tabular-nums;
   }
 
   /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
@@ -2391,6 +2442,18 @@
       </button>
     </div>
 
+    <!-- O PEDESTAL. O numero e o total sao escritos pelo script a partir da
+         quantidade de cards que existir de fato: os valores aqui sao so o que
+         aparece se o script nao rodar. O `left` do marcador tambem vem de la. -->
+    <div class="pedestal" aria-hidden="true">
+      <span class="pedestal-indice" id="indicePraca">
+        <span class="pedestal-conta">
+          <span class="pedestal-numero" id="indiceNumero">01</span>
+          <span class="pedestal-total" id="indiceTotal">/ 16</span>
+        </span>
+      </span>
+    </div>
+
     <button type="button" class="seta seta--esq" id="setaEsq" aria-label="Cidade anterior">
       <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M9.5 1 L1.5 8.5 L9.5 16"/></svg>
     </button>
@@ -3050,6 +3113,45 @@
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
 
+    /* ---- o indice que anda pelo pedestal ----
+
+       O percurso dele pela faixa E a barra de progresso: nao precisa desenhar
+       uma. Vai de 8% a 92% da largura, e nao de 0 a 100, para o numero nunca
+       encostar na parte da faixa que a mascara ja esta dissolvendo. */
+    var indiceEl = document.getElementById('indicePraca');
+    var indiceNumero = document.getElementById('indiceNumero');
+    var indiceTotal = document.getElementById('indiceTotal');
+    var ultimoIndice = null;
+    var INICIO_FAIXA = 8, FIM_FAIXA = 92;
+
+    if (indiceTotal) indiceTotal.textContent = '/ ' + (quantas < 10 ? '0' : '') + quantas;
+
+    function marcarIndice() {
+      if (!indiceEl) return;
+      var fracao = quantas > 1 ? naCarta / (quantas - 1) : 0;
+      var onde = INICIO_FAIXA + fracao * (FIM_FAIXA - INICIO_FAIXA);
+
+      /* A RODA FECHA, E SEM ISTO O SALTO APARECERIA. Do ultimo card para o
+         primeiro o marcador correria a faixa inteira de volta, contra o sentido
+         do carrossel. Quando o passo e maior que um, ele APAGA, se reposiciona
+         do outro lado e reacende. */
+      var saltou = ultimoIndice !== null && Math.abs(naCarta - ultimoIndice) > 1;
+      ultimoIndice = naCarta;
+
+      if (indiceNumero) indiceNumero.textContent = (naCarta + 1 < 10 ? '0' : '') + (naCarta + 1);
+
+      if (!saltou) { indiceEl.style.left = onde.toFixed(2) + '%'; return; }
+
+      indiceEl.style.transition = 'none';
+      indiceEl.style.opacity = '0';
+      indiceEl.style.left = onde.toFixed(2) + '%';
+      // sem esta leitura o navegador junta tudo num quadro so e o marcador
+      // reaparece sem nunca ter apagado
+      indiceEl.getBoundingClientRect();
+      indiceEl.style.transition = '';
+      indiceEl.style.opacity = '';
+    }
+
     function posicaoRelativa(i) {
       var d = (i - naCarta + quantas) % quantas;
       // a metade de tras da roda aparece do lado esquerdo, com sinal negativo
@@ -3061,6 +3163,7 @@
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
+      marcarIndice();
     }
 
     function agendarCartas() {
