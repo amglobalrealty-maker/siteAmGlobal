@@ -1263,182 +1263,188 @@
   .frente:hover p { color: rgba(245, 242, 236, 0.82); }
 
   /* =============================================================== global ==
-     A PAISAGEM E AS BOLINHAS.
+     O COVERFLOW.
 
-     Feita a partir de uma referencia que a cliente mandou: uma paisagem
-     grande ocupando a secao, e cards REDONDOS em arco na direita, com foto
-     dentro e o nome ao lado.
+     Feito a partir da segunda referencia dela: cards lado a lado, o do meio
+     grande e de frente, os vizinhos GIRADOS em perspectiva e recuando, setas
+     nas laterais, fundo escuro.
 
-     Aqui cada bolinha e uma praca, e traz o que so esta secao tem: A HORA QUE
-     E LA, agora. E o brilho da foto dentro dela segue essa hora -- de
-     madrugada quase some, ao meio-dia abre. E o mesmo dado do relogio, dito
-     em imagem em vez de em numero.
+     O giro e de verdade: `perspective` no palco e `rotateY` em cada card. Sem
+     a perspectiva no PAI, o rotateY vira um achatamento horizontal sem
+     profundidade -- parece um erro de largura, nao um card virado.
 
-     AS POSICOES SAO EM PORCENTAGEM, e nao em pixels: e isso que faz o arco
-     continuar arco em qualquer largura de tela. A do meio avanca mais para a
-     direita que as outras duas, que e o que desenha a curva.
+     A faixa e ONIX dentro de uma secao clara, como na referencia. A secao
+     continua clara para o ritmo da pagina nao perder a alternancia.
+
+     Cada card e uma praca, e o do meio traz o que so esta secao tem: a hora
+     que e la, agora.
      ------------------------------------------------------------------------ */
-  .paisagem {
+  .palco-pracas {
     position: relative;
     margin: 0 calc(-1 * var(--margem));
-    aspect-ratio: 16 / 9;
-    min-height: clamp(460px, 76vh, 840px);
-    overflow: hidden;
+    padding: clamp(46px, 7vh, 96px) 0;
     background: var(--onix);
+    overflow: hidden;
   }
 
-  .paisagem.sobe { opacity: 1; transform: none; }
+  .palco-pracas.sobe { opacity: 1; transform: none; }
 
-  .paisagem-foto {
+  /* A PERSPECTIVA MORA AQUI, no pai. E ela que transforma o rotateY dos cards
+     em profundidade de verdade em vez de um encolhimento horizontal. */
+  .cartas {
+    position: relative;
+    height: calc(clamp(232px, 25vw, 384px) * 4 / 3);
+    perspective: 1500px;
+    perspective-origin: 50% 50%;
+  }
+
+  .carta {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: clamp(232px, 25vw, 384px);
+    margin-left: calc(clamp(232px, 25vw, 384px) / -2);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--onix-alto);
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    transform-style: preserve-3d;
+    transition: transform 0.95s var(--curva), opacity 0.95s var(--curva), filter 0.95s var(--curva);
+  }
+
+  /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
+     da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
+  .carta[data-pos="0"] {
+    transform: translateX(0) rotateY(0deg) scale(1);
+    z-index: 3;
+    opacity: 1;
+  }
+
+  .carta[data-pos="1"] {
+    transform: translateX(64%) rotateY(-30deg) scale(0.8);
+    z-index: 2;
+    opacity: 0.66;
+    filter: brightness(0.7);
+  }
+
+  .carta[data-pos="-1"] {
+    transform: translateX(-64%) rotateY(30deg) scale(0.8);
+    z-index: 2;
+    opacity: 0.66;
+    filter: brightness(0.7);
+  }
+
+  .carta:hover { opacity: 0.86; }
+  .carta[data-pos="0"]:hover { opacity: 1; }
+  .carta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
+
+  .carta img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* a paisagem entra por varredura quando a secao aparece */
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path 1.6s var(--curva);
+    /* a hora que e la manda no brilho, como antes */
+    transition: filter 2.4s var(--curva);
   }
 
-  .paisagem.visivel .paisagem-foto { clip-path: inset(0 0 0 0); }
+  .carta[data-estado="madrugada"]  img { filter: grayscale(0.4) brightness(0.52) contrast(1.08); }
+  .carta[data-estado="amanhecer"]  img { filter: grayscale(0.14) brightness(0.86) contrast(1.04) saturate(1.08); }
+  .carta[data-estado="dia"]        img { filter: grayscale(0.02) brightness(1.06) contrast(1.02); }
+  .carta[data-estado="entardecer"] img { filter: grayscale(0.08) brightness(0.9) contrast(1.05) saturate(1.14); }
+  .carta[data-estado="noite"]      img { filter: grayscale(0.34) brightness(0.58) contrast(1.08); }
 
-  /* escurece a esquerda e o pe: e por onde passa o texto das bolinhas */
-  .paisagem-veu {
+  /* o veu do pe, para o nome e a hora lerem sobre qualquer fotografia */
+  .carta::after {
+    content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-      linear-gradient(to right, rgba(11, 11, 12, 0.62) 0%, rgba(11, 11, 12, 0.2) 44%, rgba(11, 11, 12, 0.34) 100%),
-      linear-gradient(to top, rgba(11, 11, 12, 0.5) 0%, transparent 46%);
+    background: linear-gradient(to top, rgba(11, 11, 12, 0.9) 0%, rgba(11, 11, 12, 0.42) 38%, transparent 72%);
   }
 
-  /* ---- as bolinhas ---- */
-  .bolha {
+  .carta-texto {
     position: absolute;
     z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: clamp(12px, 1.6vw, 24px);
-    opacity: 0;
-    transform: translateY(18px) scale(0.92);
-    transition: opacity 1s var(--curva), transform 1.1s var(--curva);
-  }
-
-  .paisagem.visivel .bolha { opacity: 1; transform: none; }
-  .paisagem.visivel .bolha:nth-of-type(2) { transition-delay: 0.55s; }
-  .paisagem.visivel .bolha:nth-of-type(3) { transition-delay: 0.9s; }
-
-  /* O ARCO. A do meio avanca para a direita; as de cima e de baixo recuam. */
-  .bolha:nth-of-type(1) { top: 11%; right: 13%; }
-  .bolha:nth-of-type(2) { top: 40%; right: 4%; }
-  .bolha:nth-of-type(3) { top: 69%; right: 15%; }
-
-  .bolha-texto {
+    left: 0; right: 0; bottom: 0;
     display: grid;
-    justify-items: end;
-    gap: 2px;
-    text-align: right;
-    white-space: nowrap;
+    gap: 3px;
+    padding: clamp(18px, 2vw, 30px);
   }
 
-  .bolha-nome {
+  .carta-nome {
     font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(17px, 1.6vw, 25px);
-    line-height: 1.1;
+    font-weight: 300;
+    font-size: clamp(24px, 2.4vw, 40px);
+    line-height: 1.02;
     color: var(--marfim);
   }
 
-  .bolha-lugar {
+  .carta-lugar {
     font-family: var(--sans);
     font-weight: 400;
-    font-size: 10.5px;
-    letter-spacing: 0.16em;
+    font-size: 10px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.6);
+    color: rgba(245, 242, 236, 0.62);
   }
 
-  /* a hora e o que esta secao tem de raro: ela e o maior tipo da bolinha */
-  .bolha-hora {
-    margin-top: 6px;
+  /* A HORA so aparece no card do meio: nos laterais ela ficaria pequena,
+     girada e ilegivel -- ruido em vez de informacao. */
+  .carta-hora {
+    margin-top: 8px;
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(26px, 2.6vw, 44px);
+    font-size: clamp(30px, 3vw, 52px);
     line-height: 0.95;
     color: var(--marfim);
     font-variant-numeric: tabular-nums;
+    opacity: 0;
+    transition: opacity 0.7s var(--curva);
   }
 
-  .bolha-estado {
+  .carta[data-pos="0"] .carta-hora { opacity: 1; transition-delay: 0.25s; }
+
+  .carta-estado {
     font-family: var(--sans);
     font-weight: 500;
     font-size: 9.5px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--champagne);
+    opacity: 0;
+    transition: opacity 0.7s var(--curva);
   }
 
-  .bolha-foto {
-    position: relative;
-    display: block;
-    flex: none;
-    width: clamp(88px, 11vw, 150px);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 10px 34px rgba(11, 11, 12, 0.42);
-    transition: width 0.9s var(--curva), box-shadow 0.9s var(--curva);
-  }
+  .carta[data-pos="0"] .carta-estado { opacity: 1; transition-delay: 0.3s; }
 
-  /* o unico redondo do site inteiro, e de proposito: e a forma da referencia */
-  .bolha-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: filter 2.4s var(--curva);
-  }
-
-  /* a que esta no ar cresce e ganha o aro champagne */
-  .bolha.ativa .bolha-foto {
-    width: clamp(122px, 15.5vw, 212px);
-    box-shadow: 0 0 0 1px var(--champagne), 0 16px 44px rgba(11, 11, 12, 0.5);
-  }
-
-  .bolha:not(.ativa) .bolha-texto { opacity: 0.66; transition: opacity 0.9s var(--curva); }
-
-  /* A HORA MANDA NO BRILHO DA FOTO DE CADA BOLINHA. Como as tres aparecem
-     juntas, a diferenca entre elas e visivel -- e e ela que conta a historia. */
-  .bolha[data-estado="madrugada"]  .bolha-foto img { filter: grayscale(0.42) brightness(0.5) contrast(1.08); }
-  .bolha[data-estado="amanhecer"]  .bolha-foto img { filter: grayscale(0.14) brightness(0.84) contrast(1.04) saturate(1.08); }
-  .bolha[data-estado="dia"]        .bolha-foto img { filter: grayscale(0.02) brightness(1.08) contrast(1.02); }
-  .bolha[data-estado="entardecer"] .bolha-foto img { filter: grayscale(0.08) brightness(0.9) contrast(1.05) saturate(1.14); }
-  .bolha[data-estado="noite"]      .bolha-foto img { filter: grayscale(0.36) brightness(0.56) contrast(1.08); }
-
-  /* ---- os pontinhos da direita, como no print ---- */
-  .paisagem-pontos {
+  /* ---- as setas ---- */
+  .seta {
     position: absolute;
-    z-index: 3;
-    right: clamp(12px, 1.6vw, 26px);
+    z-index: 4;
     top: 50%;
     transform: translateY(-50%);
     display: grid;
-    gap: 10px;
-  }
-
-  .paisagem-ponto {
-    width: 6px;
-    height: 6px;
+    place-items: center;
+    width: clamp(38px, 4vw, 52px);
+    height: clamp(38px, 4vw, 52px);
     padding: 0;
-    border: 0;
+    border: 1px solid rgba(245, 242, 236, 0.28);
     border-radius: 50%;
-    background: rgba(245, 242, 236, 0.34);
+    background: rgba(11, 11, 12, 0.42);
+    color: var(--marfim);
     cursor: pointer;
-    transition: background 0.6s var(--curva), transform 0.6s var(--curva);
+    transition: border-color 0.5s var(--curva), background 0.5s var(--curva);
   }
 
-  .paisagem-ponto.ativo { background: var(--champagne); transform: scale(1.5); }
-  .paisagem-ponto:focus-visible { outline: 1px solid var(--champagne); outline-offset: 5px; }
+  .seta:hover { border-color: var(--champagne); background: rgba(11, 11, 12, 0.68); }
+  .seta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
+  .seta--esq { left: clamp(10px, 3vw, 54px); }
+  .seta--dir { right: clamp(10px, 3vw, 54px); }
+  .seta svg { display: block; }
 
   /* ============================================================== contato == */
   .contato-grade {
@@ -1569,30 +1575,11 @@
     .leque-ficha { opacity: 1; transform: none; }
     .leque-item::before { transform: scaleY(1); }
     .leque-vazio { flex: 0 0 100%; }
-    /* SEM LARGURA PARA O ARCO. As bolinhas saem do arco e viram uma fileira
-       no pe da paisagem: o texto vai para baixo de cada foto, centralizado. */
-    .paisagem { aspect-ratio: 3 / 4; min-height: clamp(420px, 68vh, 620px); }
-    /* As bolinhas continuam ABSOLUTAS, so mudam de lugar: viram uma fileira no
-       pe da paisagem, com o texto embaixo de cada foto. Elas nao podem virar
-       estaticas -- a do meio precisaria de um translate para centralizar, e
-       esse translate brigaria com o da entrada. */
-    .bolha {
-      flex-direction: column-reverse;
-      align-items: center;
-      gap: 9px;
-      top: auto;
-      right: auto;
-      bottom: clamp(18px, 4vh, 42px);
-    }
-    .bolha:nth-of-type(1) { left: 4%; }
-    .bolha:nth-of-type(2) { left: 37%; }
-    .bolha:nth-of-type(3) { left: 70%; }
-    .bolha-texto { justify-items: center; text-align: center; white-space: normal; }
-    .bolha-lugar { font-size: 9px; letter-spacing: 0.12em; }
-    .bolha-foto { width: clamp(60px, 19vw, 92px); }
-    .bolha.ativa .bolha-foto { width: clamp(78px, 25vw, 118px); }
-    .bolha-hora { font-size: clamp(19px, 5.6vw, 28px); margin-top: 3px; }
-    .paisagem-pontos { display: none; }
+    /* No celular os cards laterais recuam mais e giram menos: com pouca
+       largura, um giro grande esconde o card inteiro atras do do meio. */
+    .carta[data-pos="1"]  { transform: translateX(58%) rotateY(-22deg) scale(0.74); }
+    .carta[data-pos="-1"] { transform: translateX(-58%) rotateY(22deg) scale(0.74); }
+    .seta { display: none; }
     .contato-grade { grid-template-columns: 1fr; }
     /* sem largura para tres colunas, os principios empilham e o fio vertical
        vira uma linha entre um e o seguinte */
@@ -2030,54 +2017,51 @@
     </div>
   </div>
 
-  <!-- A PAISAGEM E AS BOLINHAS, a partir da referencia da cliente.
+  <!-- O COVERFLOW, a partir da referencia da cliente. Os cards sao BOTOES:
+       clicar num lateral traz ele para o meio, e isso precisa funcionar no
+       teclado tambem.
 
-       A paisagem de fundo e a casa no penhasco -- o recorte SEM TEXTO, o
-       mesmo ja conferido a olho. As fotos redondas sao as tres pracas.
-
-       As classes `mundo-hora`, `data-estado-texto` e `mundo-diferenca` sao os
-       ganchos do script do relogio e NAO podem ser renomeadas sem mexer nele.
+       As classes `mundo-hora` e `data-estado-texto` sao os ganchos do script
+       do relogio e NAO podem ser renomeadas sem mexer nele.
 
        PROVISORIO: fotografia do acervo temporario. Ver README. -->
-  <div class="paisagem sobe" id="paisagem">
-    <img class="paisagem-foto" src="fotos/capa-2-cel.webp" alt="" width="1400" height="875" loading="lazy" decoding="async">
-    <div class="paisagem-veu" aria-hidden="true"></div>
-
-    <article class="bolha ativa" data-praca="0" data-estado="dia">
-      <div class="bolha-texto">
-        <span class="bolha-nome">Orlando</span>
-        <span class="bolha-lugar">Estados Unidos</span>
-        <span class="bolha-hora mundo-hora" data-fuso="America/New_York">--:--</span>
-        <span class="bolha-estado" data-estado-texto="America/New_York"></span>
-      </div>
-      <span class="bolha-foto"><img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=520&amp;q=74" alt="" loading="lazy" decoding="async"></span>
-    </article>
-
-    <article class="bolha" data-praca="1" data-estado="dia">
-      <div class="bolha-texto">
-        <span class="bolha-nome">Portugal</span>
-        <span class="bolha-lugar">Lisboa e Cascais</span>
-        <span class="bolha-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
-        <span class="bolha-estado" data-estado-texto="Europe/Lisbon"></span>
-      </div>
-      <span class="bolha-foto"><img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=520&amp;q=74" alt="" loading="lazy" decoding="async"></span>
-    </article>
-
-    <article class="bolha" data-praca="2" data-estado="dia">
-      <div class="bolha-texto">
-        <span class="bolha-nome">Dubai</span>
-        <span class="bolha-lugar">Emirados Árabes</span>
-        <span class="bolha-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
-        <span class="bolha-estado" data-estado-texto="Asia/Dubai"></span>
-      </div>
-      <span class="bolha-foto"><img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=520&amp;q=74" alt="" loading="lazy" decoding="async"></span>
-    </article>
-
-    <div class="paisagem-pontos" id="paisagemPontos">
-      <button type="button" class="paisagem-ponto ativo" data-ponto="0" aria-label="Ver Orlando"></button>
-      <button type="button" class="paisagem-ponto" data-ponto="1" aria-label="Ver Portugal"></button>
-      <button type="button" class="paisagem-ponto" data-ponto="2" aria-label="Ver Dubai"></button>
+  <div class="palco-pracas sobe" id="palcoPracas">
+    <div class="cartas" id="cartas">
+      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver Orlando">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Estados Unidos</span>
+          <span class="carta-nome">Orlando</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Portugal">
+        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Lisboa e Cascais</span>
+          <span class="carta-nome">Portugal</span>
+          <span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span>
+          <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="2" data-pos="-1" data-estado="dia" aria-label="Ver Dubai">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Emirados Árabes</span>
+          <span class="carta-nome">Dubai</span>
+          <span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
+          <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
+        </span>
+      </button>
     </div>
+
+    <button type="button" class="seta seta--esq" id="setaEsq" aria-label="Praça anterior">
+      <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M9.5 1 L1.5 8.5 L9.5 16"/></svg>
+    </button>
+    <button type="button" class="seta seta--dir" id="setaDir" aria-label="Próxima praça">
+      <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1.5 1 L9.5 8.5 L1.5 16"/></svg>
+    </button>
   </div>
 </section>
 
@@ -2660,7 +2644,7 @@
       // inteira, porque so uma praca aparecia por vez. Com as tres lado a lado,
       // um estado so deixaria os tres com o mesmo brilho -- e a comparacao
       // entre eles e justamente o que a secao tem para dizer.
-      var painel = el.closest ? el.closest('.bolha') : null;      if (painel) painel.setAttribute('data-estado', estado);
+      var painel = el.closest ? el.closest('.carta') : null;      if (painel) painel.setAttribute('data-estado', estado);
     });
 
     if (daqui === null) return;
@@ -2713,53 +2697,65 @@
       conta = conta + 1;
     });
   }
-  /* 11. A secao Global: a bolinha no ar vai passando.
+  /* 11. A secao Global: o coverflow das pracas.
 
-     As tres ficam sempre na tela -- o que muda e QUAL esta no ar: ela cresce,
-     ganha o aro champagne e o texto dela abre. Quem esta parado vendo percebe
-     as tres; quem passa o olho ve uma.
+     O QUE O SCRIPT FAZ E SO ESCREVER `data-pos` em cada card; quem desenha o
+     giro e a perspectiva e o CSS. Assim a animacao e do navegador, e mexer no
+     visual nao passa por aqui.
 
-     O ponto da direita tambem leva direto, e clicar PARA o rodizio: quem
-     escolheu uma praca nao quer que ela saia sozinha meio segundo depois. */
-  var paisagem = document.getElementById('paisagem');
+     A conta da posicao usa a DISTANCIA CIRCULAR: com tres pracas, a de indice
+     2 vista da 0 esta a uma parada para TRAS, e nao duas para a frente. Sem
+     isso o card da esquerda daria a volta pela direita a cada giro. */
+  var cartas = document.getElementById('cartas');
 
-  if (paisagem) {
-    var bolhas = paisagem.querySelectorAll('.bolha');
-    var pontos = paisagem.querySelectorAll('.paisagem-ponto');
-    var naBolha = 0;
-    var relogioBolhas = null;
-    var DURACAO_BOLHA = 5200;
+  if (cartas) {
+    var listaCartas = cartas.querySelectorAll('.carta');
+    var quantas = listaCartas.length;
+    var naCarta = 0;
+    var relogioCartas = null;
+    var DURACAO_CARTA = 5200;
 
-    function mostrarBolha(i) {
-      naBolha = (i + bolhas.length) % bolhas.length;
-      Array.prototype.forEach.call(bolhas, function (b, k) {
-        b.classList.toggle('ativa', k === naBolha);
-      });
-      Array.prototype.forEach.call(pontos, function (p, k) {
-        p.classList.toggle('ativo', k === naBolha);
+    function posicaoRelativa(i) {
+      var d = (i - naCarta + quantas) % quantas;
+      // a metade de tras da roda aparece do lado esquerdo, com sinal negativo
+      return d > quantas / 2 ? d - quantas : d;
+    }
+
+    function mostrarCarta(i) {
+      naCarta = (i + quantas) % quantas;
+      Array.prototype.forEach.call(listaCartas, function (c, k) {
+        c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });
     }
 
-    function agendarBolhas() {
-      window.clearInterval(relogioBolhas);
-      relogioBolhas = window.setInterval(function () { mostrarBolha(naBolha + 1); }, DURACAO_BOLHA);
+    function agendarCartas() {
+      window.clearInterval(relogioCartas);
+      relogioCartas = window.setInterval(function () { mostrarCarta(naCarta + 1); }, DURACAO_CARTA);
     }
 
-    paisagem.addEventListener('click', function (ev) {
-      var alvo = ev.target.closest('.paisagem-ponto, .bolha');
+    function pararCartas() { window.clearInterval(relogioCartas); }
+
+    // clicar num card lateral traz ele para o meio, e para o rodizio
+    cartas.addEventListener('click', function (ev) {
+      var alvo = ev.target.closest('.carta');
       if (!alvo) return;
-      var qual = alvo.getAttribute('data-ponto') || alvo.getAttribute('data-praca');
-      if (qual === null) return;
-      mostrarBolha(parseInt(qual, 10));
-      window.clearInterval(relogioBolhas); // escolheu: para de girar
+      mostrarCarta(parseInt(alvo.getAttribute('data-carta'), 10));
+      pararCartas();
     });
 
+    var setaEsq = document.getElementById('setaEsq');
+    var setaDir = document.getElementById('setaDir');
+    if (setaEsq) setaEsq.addEventListener('click', function () { mostrarCarta(naCarta - 1); pararCartas(); });
+    if (setaDir) setaDir.addEventListener('click', function () { mostrarCarta(naCarta + 1); pararCartas(); });
+
+    mostrarCarta(0);
+
     if (!calmo) {
-      agendarBolhas();
+      agendarCartas();
       // nao gastar bateria com a aba escondida
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) window.clearInterval(relogioBolhas);
-        else agendarBolhas();
+        if (document.hidden) pararCartas();
+        else agendarCartas();
       });
     }
   }
