@@ -55,7 +55,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -1094,31 +1094,43 @@
 
   .visivel .palavra { opacity: 1; transform: none; }
 
-  /* ---- A FRASE, que e a secao ----
+  /* ---- A FRASE, E A CASA PASSANDO POR DENTRO DELA ----
+
+     A FAIXA E ONIX dentro de uma secao clara. Nao e enfeite: este efeito so
+     funciona com letra recortada de fundo ESCURO e imagem CLARA por dentro.
+     A primeira tentativa foi o contrario -- letra fina, foto escura, papel
+     claro -- e o resultado foi sujo e ilegivel.
 
      A CAIXA e o que o site observa ao rolar; A FRASE e o que e recortado. Os
      dois nao podem ser o mesmo elemento: recortado a zero de largura, ele nao
-     conta como visivel, a classe nunca chega, e a varredura nunca abre. Foi
-     esse laco que deixou a frase invisivel, ocupando espaco sem pintar nada.
+     conta como visivel, a classe nunca chega, e a varredura nunca abre.
 
      As regras sao `.claro .lema` e nao `.lema` porque `.claro p` do site tem
      prioridade maior que uma classe sozinha, e engolia a cor.
 
-     O CONTORNO e rede de seguranca: se a fotografia nao pintar dentro das
-     letras por qualquer motivo, a frase continua legivel em vez de sumir. */
-  .lema-caixa { margin: clamp(30px, 4.6vh, 68px) 0 clamp(30px, 4.6vh, 66px); }
+     A COR DE FUNDO debaixo da imagem e a rede de seguranca: ela tambem e
+     recortada pela forma do tipo, entao se a fotografia nao carregar as
+     letras aparecem em marfim, e nao somem. */
+  .lema-caixa {
+    position: relative;
+    margin: clamp(40px, 6.5vh, 92px) calc(-1 * var(--margem));
+    padding: clamp(56px, 9vh, 124px) var(--margem);
+    background: var(--onix);
+    overflow: hidden;
+  }
+
   .lema-caixa.sobe { opacity: 1; transform: none; }
 
   .claro .lema {
     margin: 0;
     font-family: var(--serif);
-    /* mais peso que o resto do site de proposito: um tipo fino nao tem
-       espessura suficiente para caber fotografia nenhuma dentro dele */
-    font-weight: 500;
-    font-size: clamp(50px, 11.4vw, 184px);
+    /* 600, e nao o 300 do resto do site: a fotografia precisa de espessura de
+       traco para caber dentro da letra e ser reconhecida */
+    font-weight: 600;
+    font-size: clamp(46px, 10.6vw, 176px);
     line-height: 0.94;
-    letter-spacing: -0.022em;
-    color: var(--onix);
+    letter-spacing: -0.024em;
+    color: var(--marfim);
     max-width: 13ch;
     clip-path: inset(0 100% 0 0);
     transition: clip-path 1.5s var(--curva);
@@ -1129,27 +1141,27 @@
   @supports ((-webkit-background-clip: text) or (background-clip: text)) {
     .claro .lema {
       color: transparent;
-      /* o contorno fica por baixo da imagem e aparece nas bordas da letra:
-         e ele que garante a leitura se o fundo nao pintar */
-      -webkit-text-stroke: 1px rgba(11, 11, 12, 0.3);
-      /* o degrade por cima escurece a imagem DENTRO das letras: sobre papel
-         marfim, so uma imagem escura desenha a forma do tipo */
+      /* se a fotografia nao carregar, esta cor sobra e as letras ficam marfim */
+      background-color: rgba(245, 242, 236, 0.92);
       background-image:
-        linear-gradient(rgba(11, 11, 12, 0.3), rgba(11, 11, 12, 0.3)),
-        url('https://images.unsplash.com/photo-1660361339436-ddd4b85372da?auto=format&fit=crop&w=2000&q=70');
-      background-size: 150% auto;
-      background-position: 46% 30%;
+        linear-gradient(rgba(245, 242, 236, 0.12), rgba(245, 242, 236, 0.12)),
+        url('fotos/lema.webp');
+      /* larga de proposito: e a largura sobrando que da percurso para andar */
+      background-size: 260% auto;
+      background-position: 0% 48%;
       background-repeat: no-repeat;
       -webkit-background-clip: text;
       background-clip: text;
-      animation: deriva 34s ease-in-out infinite alternate;
+      animation: passar 20s linear infinite alternate;
     }
   }
-  /* a imagem passeia devagar dentro do tipo. Devagar mesmo: em 34 segundos
-     ninguem ve mexer, so percebe que nao esta parado. */
-  @keyframes deriva {
-    from { background-position: 40% 22%; }
-    to   { background-position: 58% 46%; }
+
+  /* A CASA PASSA. De ponta a ponta da imagem, em 20 segundos. A versao
+     anterior andava 18% do percurso em 34 segundos, e era por isso que
+     ninguem via nada acontecer. */
+  @keyframes passar {
+    from { background-position: 0% 46%; }
+    to   { background-position: 100% 54%; }
   }
 
   /* ---- os tres principios, de apoio ---- */
