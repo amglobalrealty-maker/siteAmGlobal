@@ -1325,7 +1325,9 @@
 
   .carta[data-pos="0"],
   .carta[data-pos="1"],
-  .carta[data-pos="-1"] { pointer-events: auto; }
+  .carta[data-pos="-1"],
+  .carta[data-pos="2"],
+  .carta[data-pos="-2"] { pointer-events: auto; }
 
   /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
      da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
@@ -1347,6 +1349,22 @@
     z-index: 2;
     opacity: 0.66;
     filter: brightness(0.7);
+  }
+
+  /* OS DOIS DE FORA. Ficam mais recuados, mais girados e mais apagados: eles
+     sao profundidade, nao leitura. E a referencia mostrava cinco, nao tres. */
+  .carta[data-pos="2"] {
+    transform: translateX(118%) rotateY(-40deg) scale(0.6);
+    z-index: 1;
+    opacity: 0.32;
+    filter: brightness(0.5);
+  }
+
+  .carta[data-pos="-2"] {
+    transform: translateX(-118%) rotateY(40deg) scale(0.6);
+    z-index: 1;
+    opacity: 0.32;
+    filter: brightness(0.5);
   }
 
   .carta:hover { opacity: 0.86; }
@@ -1587,8 +1605,11 @@
     .leque-ficha { opacity: 1; transform: none; }
     .leque-item::before { transform: scaleY(1); }
     .leque-vazio { flex: 0 0 100%; }
-    /* No celular os cards laterais recuam mais e giram menos: com pouca
-       largura, um giro grande esconde o card inteiro atras do do meio. */
+    /* No celular CINCO nao cabem: os de fora ficariam so uma tira de dois
+       pixels na borda. Eles saem, e ficam os tres de sempre -- recuando mais
+       e girando menos, porque com pouca largura um giro grande esconde o card
+       inteiro atras do do meio. */
+    .carta[data-pos="2"], .carta[data-pos="-2"] { opacity: 0; pointer-events: none; }
     .carta[data-pos="1"]  { transform: translateX(58%) rotateY(-22deg) scale(0.74); }
     .carta[data-pos="-1"] { transform: translateX(-58%) rotateY(22deg) scale(0.74); }
     .seta { display: none; }
@@ -2029,21 +2050,26 @@
     </div>
   </div>
 
-  <!-- O COVERFLOW, a partir da referencia da cliente. Os cards sao BOTOES:
-       clicar num lateral traz ele para o meio, e isso precisa funcionar no
-       teclado tambem.
+  <!-- O COVERFLOW, a partir da referencia da cliente: CINCO cards na tela, o
+       do meio de frente e os quatro vizinhos girando para dentro. Os cards
+       sao BOTOES -- clicar num lateral traz ele para o meio, e isso precisa
+       funcionar no teclado tambem.
 
-       A ORDEM E INTERCALADA DE PROPOSITO: o acervo provisorio tem quatro
-       fotografias de lugar, uma por pais, entao todas as cidades de um mesmo
-       pais dividem a mesma imagem. Como tres cards ficam visiveis por vez,
-       duas do mesmo pais vizinhas mostrariam a foto repetida na tela. Com
-       quatorze cidades -- cinco delas no Brasil -- essa ordem deixa de ser
-       obvia, e o script que gera este bloco ABORTA se algum pais se repetir
-       em vizinhos.
+       QUATRO CIDADES POR PAIS, NO CICLO BRASIL / PORTUGAL / EMIRADOS /
+       ESTADOS UNIDOS, e isso nao e arbitrario. O acervo provisorio tem quatro
+       fotografias de lugar, uma por pais: com cinco cards na tela, duas
+       cidades do mesmo pais a dois passos apareceriam juntas com a MESMA
+       imagem. Em roda, a distancia entre itens do mesmo pais e o tamanho da
+       roda dividido pela quantidade dele -- para essa distancia ser sempre
+       maior que dois, a roda tem de ser multiplo de quatro e cada pais
+       precisa ter a mesma quantidade. Dai 4 x 4 = 16, e a distancia e sempre
+       quatro, inclusive na emenda. O script que gera este bloco ABORTA se a
+       conta nao fechar.
 
-       ATENCAO: O FILTRO DA CURADORIA SO TEM OITO CIDADES. Quem ler aqui uma praca
-       que nao esta la nao vai achar imovel nenhum dela. Quando entrar o
-       acervo real, as duas listas precisam casar.
+       ATENCAO: O FILTRO DA CURADORIA SO TEM OITO CIDADES. Quem ler aqui uma
+       praca que nao esta la nao vai achar imovel nenhum dela. Quando entrar o
+       acervo real, as duas listas precisam casar -- e ai cada cidade tera a
+       sua fotografia e este equilibrio deixa de ser necessario.
 
        As classes `mundo-hora` e `data-estado-texto` sao os ganchos do script
        do relogio e NAO podem ser renomeadas sem mexer nele.
@@ -2069,16 +2095,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Rio de Janeiro">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Rio de Janeiro</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Dubai">
+      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2087,11 +2104,20 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Florianópolis">
+      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Estados Unidos</span>
+          <span class="carta-nome">Orlando</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Florianópolis</span>
+          <span class="carta-nome">Rio de Janeiro</span>
           <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
           <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
         </span>
@@ -2105,16 +2131,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Balneário Camboriú">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Balneário Camboriú</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Abu Dhabi">
+      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2123,11 +2140,20 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Belo Horizonte">
+      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Estados Unidos</span>
+          <span class="carta-nome">Miami</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Brasil</span>
-          <span class="carta-nome">Belo Horizonte</span>
+          <span class="carta-nome">Florianópolis</span>
           <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
           <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
         </span>
@@ -2141,16 +2167,7 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Orlando">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-lugar">Estados Unidos</span>
-          <span class="carta-nome">Orlando</span>
-          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
-          <span class="carta-estado" data-estado-texto="America/New_York"></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Ras Al Khaimah">
+      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Emirados Árabes</span>
@@ -2159,7 +2176,25 @@
           <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Algarve">
+      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton">
+        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Estados Unidos</span>
+          <span class="carta-nome">Boca Raton</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/New_York"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Brasil</span>
+          <span class="carta-nome">Balneário Camboriú</span>
+          <span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span>
+          <span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Portugal</span>
@@ -2168,11 +2203,20 @@
           <span class="carta-estado" data-estado-texto="Europe/Lisbon"></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="13" data-pos="-1" data-estado="dia" aria-label="Ver Miami">
+      <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah">
+        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-lugar">Emirados Árabes</span>
+          <span class="carta-nome">Sharjah</span>
+          <span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span>
+          <span class="carta-estado" data-estado-texto="Asia/Dubai"></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-lugar">Estados Unidos</span>
-          <span class="carta-nome">Miami</span>
+          <span class="carta-nome">Fort Lauderdale</span>
           <span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span>
           <span class="carta-estado" data-estado-texto="America/New_York"></span>
         </span>
