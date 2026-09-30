@@ -1320,6 +1320,45 @@
     perspective-origin: 50% 50%;
   }
 
+  /* ---- A PRATELEIRA ----
+
+     Um fio atravessando a faixa na altura da base do card do meio. Ele entrou
+     no lugar da sombra no chao, que ela detestou -- e com razao: sobre marfim,
+     sombra grande nao le como altura, le como mancha cinza.
+
+     O fio resolve outra coisa: o card deixa de FLUTUAR e passa a estar APOIADO.
+     Ele fica em z-index 0, atras dos cards, entao o do meio o INTERROMPE onde
+     pisa, e a linha continua dos dois lados. E isso que faz parecer apoio e nao
+     um risco decorativo passando por tras.
+
+     OS LATERAIS FICAM ACIMA DA LINHA de proposito, porque a escala menor sobe a
+     base deles. Nao e defeito: o que esta mais longe se apoia mais alto no
+     campo de visao, e e assim que perspectiva funciona.
+
+     E GRAFITE, E NAO CHAMPAGNE. O champagne ja esta em dois lugares aqui -- a
+     borda do card do meio e o filete de 24px sob o texto -- e o manual manda
+     usa-lo so em detalhe. Chao e estrutura, nao detalhe.
+
+     AS PONTAS SE DISSOLVEM. Uma linha de ponta a ponta viraria divisor de
+     secao; dissolvida, ela e um plano que termina fora do quadro. */
+  .cartas::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(58, 58, 60, 0.2) 18%,
+      rgba(58, 58, 60, 0.2) 82%,
+      transparent 100%
+    );
+  }
+
   /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
      posicoes precisam sair da frente: sem isto ficariam empilhados no meio,
      por cima do card ativo. Com tres pracas isso nunca aconteceu porque nao
@@ -1361,19 +1400,21 @@
 
   /* AS TRES POSICOES. O `data-pos` e escrito pelo script: 0 e o do meio, 1 e o
      da direita, -1 o da esquerda. Com tres pracas, e so isso que existe. */
-  /* O DO MEIO: NITIDO, com fio champagne e sombra funda. Sobre marfim e a
-     SOMBRA que descola o card do fundo -- sobre onix quem fazia isso era o
-     contraste, e agora ele nao existe mais. A sombra e de GRAFITE e nao de
-     preto puro: preto sobre marfim suja, grafite assenta. */
+  /* O DO MEIO: NITIDO, com o fio champagne de um pixel em volta.
+
+     SEM SOMBRA NO CHAO. Ela chegou a existir aqui, funda e de grafite, para o
+     card descolar do fundo claro. Veredito dela: detestou. E tinha razao --
+     sobre marfim, sombra grande nao le como altura, le como MANCHA CINZA
+     debaixo do card.
+
+     Quem apoia o card agora e a PRATELEIRA: o fio horizontal em .cartas::before.
+     Em vez de flutuar sobre uma sombra, ele esta em cima de alguma coisa. */
   .carta[data-pos="0"] {
     transform: translateX(0) rotateY(0deg) scale(1);
     z-index: 3;
     opacity: 1;
     filter: saturate(1.1) contrast(1.03);
-    box-shadow:
-      0 0 0 1px rgba(180, 154, 110, 0.5),
-      0 44px 84px rgba(58, 58, 60, 0.3),
-      0 12px 26px rgba(58, 58, 60, 0.16);
+    box-shadow: 0 0 0 1px rgba(180, 154, 110, 0.5);
   }
 
   /* OS LATERAIS RECUAM POR FOCO, e nao mais por brilho. E aqui esta a ANIMACAO
@@ -1395,7 +1436,6 @@
     z-index: 2;
     opacity: 1;
     filter: blur(1.4px) brightness(1.03) contrast(0.96) saturate(1.02);
-    box-shadow: 0 26px 52px rgba(58, 58, 60, 0.2);
   }
 
   .carta[data-pos="-1"] {
@@ -1403,7 +1443,6 @@
     z-index: 2;
     opacity: 1;
     filter: blur(1.4px) brightness(1.03) contrast(0.96) saturate(1.02);
-    box-shadow: 0 26px 52px rgba(58, 58, 60, 0.2);
   }
 
   /* OS DOIS DE FORA. Mais recuados, mais girados e MAIS FORA DE FOCO: eles sao
@@ -1413,7 +1452,6 @@
     z-index: 1;
     opacity: 1;
     filter: blur(3.4px) brightness(1.06) contrast(0.92) saturate(0.98);
-    box-shadow: 0 16px 34px rgba(58, 58, 60, 0.13);
   }
 
   .carta[data-pos="-2"] {
@@ -1421,7 +1459,6 @@
     z-index: 1;
     opacity: 1;
     filter: blur(3.4px) brightness(1.06) contrast(0.92) saturate(0.98);
-    box-shadow: 0 16px 34px rgba(58, 58, 60, 0.13);
   }
 
   /* o hover puxa o card PARA O FOCO, que e o convite certo: ele diz "clique e
