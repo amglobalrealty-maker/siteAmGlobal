@@ -1677,9 +1677,13 @@
     inset: 0;
     z-index: 6;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
     align-items: stretch;
-    background: var(--marfim);
+    /* ONIX, e nao marfim. A ficha abre sobre a faixa clara: painel escuro faz
+       dela um OBJETO que subiu, e nao uma continuacao da secao. E onix e a cor
+       dominante do manual. */
+    background: var(--onix);
+    color: var(--marfim);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.55s var(--curva);
@@ -1720,7 +1724,7 @@
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--grafite);
+    color: var(--champagne);
   }
 
   .ficha-cidade {
@@ -1729,7 +1733,67 @@
     font-weight: 300;
     font-size: clamp(38px, 5vw, 76px);
     line-height: 1;
-    color: var(--onix);
+    color: var(--marfim);
+  }
+
+  /* ---- O LUGAR RESERVADO PARA O TEXTO DELA ----
+
+     Nasce escondido e so aparece quando houver o que dizer. Hoje nao ha: nao
+     existe uma linha sobre essas cidades em lugar nenhum do projeto, e texto de
+     mercado imobiliario inventado em site que vende imovel e mentira.
+
+     Quando ela mandar uma ou duas frases por praca, o lugar ja esta aqui -- o
+     script le de `data-sobre` no card e o paragrafo acende sozinho. */
+  .ficha-sobre {
+    margin: 0 0 clamp(18px, 2.4vh, 28px);
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: rgba(245, 242, 236, 0.72);
+    max-width: 42ch;
+  }
+
+  .ficha-sobre[hidden] { display: none; }
+
+  /* ---- A GRADE DE FATOS ----
+
+     Rotulo miudo em Jost, valor grande em serifa: e o par do manual, e e ele
+     que faz isto parecer dossie em vez de formulario preenchido. Cada linha e
+     separada por um fio, e nao por espaco -- fio da estrutura, espaco da
+     frouxidao.
+
+     TUDO AQUI E VERIFICAVEL. Hora e fuso vem do relogio; moeda e idioma sao do
+     PAIS e sao fato, nao afirmacao de marketing; a distancia e calculada por
+     grande circulo a partir das coordenadas que cada card carrega. */
+  .ficha-grade {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(16px, 2vw, 32px);
+    margin: 0;
+  }
+
+  .ficha-item {
+    padding: clamp(11px, 1.5vh, 16px) 0;
+    border-top: 1px solid rgba(245, 242, 236, 0.13);
+  }
+
+  .ficha-item dt {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.45);
+  }
+
+  .ficha-item dd {
+    margin: 5px 0 0;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(20px, 2.1vw, 30px);
+    line-height: 1.05;
+    color: var(--marfim);
+    font-variant-numeric: tabular-nums;
   }
 
   /* o filete de 24px do manual, separando o nome dos dados */
@@ -1745,50 +1809,21 @@
 
   .ficha.aberta .ficha-filete { transform: scaleX(1); }
 
-  .ficha-hora {
-    margin: 0;
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(30px, 3.4vw, 56px);
-    line-height: 1;
-    color: var(--onix);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .ficha-momento {
-    margin: 6px 0 0;
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 9.5px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--champagne);
-  }
-
-  .ficha-diferenca {
-    margin: 14px 0 0;
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.6;
-    color: rgba(58, 58, 60, 0.75);
-    max-width: 32ch;
-  }
-
   .ficha-imoveis {
     align-self: flex-start;
-    margin-top: clamp(22px, 3vh, 38px);
+    margin-top: clamp(20px, 3vh, 34px);
     padding: 14px 26px;
-    border: 1px solid rgba(11, 11, 12, 0.25);
+    border: 1px solid rgba(245, 242, 236, 0.3);
     font-family: var(--sans);
     font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--onix);
+    color: var(--marfim);
     text-decoration: none;
     transition: border-color 0.4s var(--curva), background 0.4s var(--curva), color 0.4s var(--curva);
   }
 
-  .ficha-imoveis:hover { border-color: var(--champagne); background: var(--onix); color: var(--marfim); }
+  .ficha-imoveis:hover { border-color: var(--champagne); background: var(--champagne); color: var(--onix); }
   .ficha-imoveis[hidden] { display: none; }
 
   .ficha-fechar {
@@ -1801,15 +1836,16 @@
     width: 42px;
     height: 42px;
     padding: 0;
-    border: 1px solid rgba(11, 11, 12, 0.2);
+    /* claro sobre escuro, porque o painel virou onix */
+    border: 1px solid rgba(245, 242, 236, 0.28);
     border-radius: 50%;
-    background: rgba(245, 242, 236, 0.9);
-    color: var(--onix);
+    background: rgba(11, 11, 12, 0.5);
+    color: var(--marfim);
     cursor: pointer;
     transition: border-color 0.4s var(--curva), background 0.4s var(--curva);
   }
 
-  .ficha-fechar:hover { border-color: var(--champagne); background: var(--marfim); }
+  .ficha-fechar:hover { border-color: var(--champagne); background: rgba(11, 11, 12, 0.8); }
   .ficha-fechar:focus-visible,
   .ficha-imoveis:focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
   .seta:focus-visible { outline: 1px solid var(--champagne); outline-offset: 4px; }
@@ -1956,8 +1992,14 @@
     .seta { display: none; }
     /* sem largura para duas colunas, a ficha empilha: a foto em cima, os dados
        embaixo, e ela passa a rolar por dentro se nao couber */
-    .ficha { grid-template-columns: 1fr; grid-template-rows: 40% auto; overflow-y: auto; }
+    .ficha { grid-template-columns: 1fr; grid-template-rows: 34% auto; overflow-y: auto; }
     .ficha-dados { padding: clamp(22px, 6vw, 40px); }
+    /* uma coluna so: duas de 160px nao cabem valores como "Dirham (AED)" em
+       serifa de 20px sem estourar */
+    .ficha-grade { grid-template-columns: 1fr; }
+    .ficha-item { padding: 10px 0; }
+    .ficha-item dd { font-size: 19px; }
+    .ficha-sobre { font-size: 13.5px; }
     .contato-grade { grid-template-columns: 1fr; }
     /* sem largura para tres colunas, os principios empilham e o fio vertical
        vira uma linha entre um e o seguinte */
@@ -2427,7 +2469,7 @@
   <div class="palco-pracas sobe" id="palcoPracas">
     <div class="luz" aria-hidden="true"></div>
     <div class="cartas" id="cartas">
-      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo">
+      <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo" data-lat="-23.5505" data-lon="-46.6333" data-moeda="Real (BRL)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
@@ -2436,7 +2478,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Lisboa">
+      <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Lisboa" data-lat="38.7223" data-lon="-9.1393" data-moeda="Euro (EUR)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
@@ -2445,7 +2487,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai">
+      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai" data-lat="25.2048" data-lon="55.2708" data-moeda="Dirham (AED)" data-idioma="Árabe">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
@@ -2454,7 +2496,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando">
+      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando" data-lat="28.5383" data-lon="-81.3792" data-moeda="Dólar (USD)" data-idioma="Inglês">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
@@ -2463,7 +2505,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro">
+      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro" data-lat="-22.9068" data-lon="-43.1729" data-moeda="Real (BRL)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
@@ -2472,7 +2514,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Cascais">
+      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Cascais" data-lat="38.6979" data-lon="-9.4215" data-moeda="Euro (EUR)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
@@ -2481,7 +2523,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi">
+      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi" data-lat="24.4539" data-lon="54.3773" data-moeda="Dirham (AED)" data-idioma="Árabe">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
@@ -2490,7 +2532,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami">
+      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami" data-lat="25.7617" data-lon="-80.1918" data-moeda="Dólar (USD)" data-idioma="Inglês">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
@@ -2499,7 +2541,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis">
+      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis" data-lat="-27.5954" data-lon="-48.548" data-moeda="Real (BRL)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
@@ -2508,7 +2550,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Porto">
+      <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Porto" data-lat="41.1579" data-lon="-8.6291" data-moeda="Euro (EUR)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
@@ -2517,7 +2559,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah">
+      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah" data-lat="25.7895" data-lon="55.9432" data-moeda="Dirham (AED)" data-idioma="Árabe">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
@@ -2526,7 +2568,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton">
+      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton" data-lat="26.3683" data-lon="-80.1289" data-moeda="Dólar (USD)" data-idioma="Inglês">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
@@ -2535,7 +2577,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú">
+      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú" data-lat="-26.9906" data-lon="-48.6349" data-moeda="Real (BRL)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
@@ -2544,7 +2586,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve">
+      <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve" data-lat="37.0194" data-lon="-7.9304" data-moeda="Euro (EUR)" data-idioma="Português">
         <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
@@ -2553,7 +2595,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah">
+      <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah" data-lat="25.3463" data-lon="55.4209" data-moeda="Dirham (AED)" data-idioma="Árabe">
         <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
@@ -2562,7 +2604,7 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale">
+      <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale" data-lat="26.1224" data-lon="-80.1373" data-moeda="Dólar (USD)" data-idioma="Inglês">
         <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
@@ -2591,9 +2633,12 @@
         <p class="ficha-pais" id="fichaPais"></p>
         <h3 class="ficha-cidade" id="fichaCidade"></h3>
         <span class="ficha-filete" aria-hidden="true"></span>
-        <p class="ficha-hora" id="fichaHora">--:--</p>
-        <p class="ficha-momento" id="fichaMomento"></p>
-        <p class="ficha-diferenca" id="fichaDiferenca"></p>
+        <!-- o paragrafo da cidade. Nasce escondido e so acende quando o card
+             trouxer `data-sobre`. Nenhum traz hoje: esse texto e dela, e
+             inventar mercado imobiliario em site de imovel e mentira. -->
+        <p class="ficha-sobre" id="fichaSobre" hidden></p>
+        <!-- a grade de fatos e escrita pelo script a partir dos dados do card -->
+        <dl class="ficha-grade" id="fichaGrade"></dl>
         <a class="ficha-imoveis" id="fichaImoveis" href="#curadoria" hidden></a>
       </div>
     </div>
@@ -3266,12 +3311,53 @@
     var fichaImg = document.getElementById('fichaImg');
     var fichaPais = document.getElementById('fichaPais');
     var fichaCidade = document.getElementById('fichaCidade');
-    var fichaHora = document.getElementById('fichaHora');
-    var fichaMomento = document.getElementById('fichaMomento');
-    var fichaDiferenca = document.getElementById('fichaDiferenca');
+    var fichaSobre = document.getElementById('fichaSobre');
+    var fichaGrade = document.getElementById('fichaGrade');
     var fichaImoveis = document.getElementById('fichaImoveis');
     var fichaFechar = document.getElementById('fichaFechar');
     var voltarPara = null;
+
+    /* A REFERENCIA DA DISTANCIA E O PRIMEIRO CARD DA RODA, e o rotulo sai do
+       NOME dele -- nao esta escrito "Sao Paulo" em lugar nenhum deste script.
+       Se a ordem das pracas mudar, o rotulo muda junto, em vez de passar a
+       mentir. */
+    var cardBase = listaCartas[0];
+    var nomeBase = '';
+    var coordBase = null;
+    if (cardBase) {
+      var nb = cardBase.querySelector('.carta-nome');
+      nomeBase = nb ? nb.textContent : '';
+      var la0 = parseFloat(cardBase.getAttribute('data-lat'));
+      var lo0 = parseFloat(cardBase.getAttribute('data-lon'));
+      if (!isNaN(la0) && !isNaN(lo0)) coordBase = [la0, lo0];
+    }
+
+    /* distancia de grande circulo, que e a que um aviao percorre */
+    function distanciaKm(a, b) {
+      var R = 6371, r = Math.PI / 180;
+      var dLat = (b[0] - a[0]) * r, dLon = (b[1] - a[1]) * r;
+      var s = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      return Math.round(2 * R * Math.asin(Math.min(1, Math.sqrt(s))));
+    }
+
+    function milhar(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+    /* montado com createElement e textContent, e nao com innerHTML: o conteudo
+       vem de atributos do proprio HTML, mas montar por DOM nao deixa brecha
+       nenhuma para o dia em que esse texto vier de outro lugar */
+    function fichaItem(rotulo, valor) {
+      if (!valor) return null;
+      var caixa = document.createElement('div');
+      caixa.className = 'ficha-item';
+      var dt = document.createElement('dt');
+      dt.textContent = rotulo;
+      var dd = document.createElement('dd');
+      dd.textContent = valor;
+      caixa.appendChild(dt);
+      caixa.appendChild(dd);
+      return caixa;
+    }
 
     // a mesma fotografia, pedida grande: na ficha ela ocupa meia tela
     function urlGrande(src) {
@@ -3292,16 +3378,17 @@
       var d = la - aqui;
       if (d > 720) d = d - 1440;
       if (d <= -720) d = d + 1440;
-      if (d === 0) return 'Mesma hora que aqui, agora.';
+      if (d === 0) return 'Mesma hora';
 
-      var lado = d > 0 ? 'a frente de voce' : 'atras de voce';
+      // compacto, porque isto vira VALOR de uma celula da grade e nao frase
+      var lado = d > 0 ? 'à frente' : 'atrás';
       var abs = Math.abs(d);
       var h = Math.floor(abs / 60), m = abs % 60;
       var quanto;
       if (m === 0) quanto = h + (h === 1 ? ' hora' : ' horas');
-      else if (h === 0) quanto = m + ' minutos';
+      else if (h === 0) quanto = m + ' min';
       else quanto = h + 'h' + (m < 10 ? '0' : '') + m;
-      return quanto + ' ' + lado + ', agora.';
+      return quanto + ' ' + lado;
     }
 
     function abrirFicha(card) {
@@ -3317,21 +3404,46 @@
       if (fichaImg && foto) fichaImg.setAttribute('src', urlGrande(foto.getAttribute('src')));
       if (fichaPais && pais) fichaPais.textContent = pais.textContent;
       if (fichaCidade) fichaCidade.textContent = nome;
-      if (fichaHora) fichaHora.textContent = relogio ? relogio.textContent : '--:--';
 
-      /* O MOMENTO DO DIA E COPIADO DO CARD, e nao recalculado.
+      /* o paragrafo da cidade so acende se o card trouxer o texto. Nenhum traz
+         hoje; o lugar fica pronto para quando ela escrever. */
+      var sobre = card.getAttribute('data-sobre');
+      if (fichaSobre) {
+        fichaSobre.textContent = sobre || '';
+        fichaSobre.hidden = !sobre;
+      }
 
-         A PRIMEIRA VERSAO CHAMAVA estadoDoDia() AQUI E QUEBRAVA A FICHA INTEIRA:
-         aquela funcao esta declarada DENTRO de marcarHoras(), entao e local a
-         ela e invisivel daqui. O clique dava ReferenceError e nada abria -- e o
-         teste de bloco isolado nao pegou, porque injetava a funcao por fora.
+      /* ---- a grade de fatos ----
 
-         Copiar e melhor do que consertar o escopo: o relogio ja escreveu esse
-         texto no card, a ficha mostra exatamente o que esta na tela, e some uma
-         dependencia entre dois blocos que nao precisavam se conhecer. */
-      var momentoNoCard = card.querySelector('.carta-estado');
-      if (fichaMomento) fichaMomento.textContent = momentoNoCard ? momentoNoCard.textContent : '';
-      if (fichaDiferenca) fichaDiferenca.textContent = diferencaParaVoce(fuso, agora);
+         O MOMENTO DO DIA E COPIADO DO CARD, e nao recalculado. A funcao
+         estadoDoDia() esta declarada DENTRO de marcarHoras(), entao e local a
+         ela e invisivel daqui: chamar de fora dava ReferenceError e a ficha nao
+         abria. Copiar tambem e melhor -- a ficha mostra exatamente o que esta
+         na tela. */
+      if (fichaGrade) {
+        while (fichaGrade.firstChild) fichaGrade.removeChild(fichaGrade.firstChild);
+
+        var momentoNoCard = card.querySelector('.carta-estado');
+        var horaLa = relogio ? relogio.textContent : '';
+        var momento = momentoNoCard ? momentoNoCard.textContent : '';
+
+        var itens = [];
+        itens.push(fichaItem(momento ? 'Hora local, ' + momento.toLowerCase() : 'Hora local', horaLa));
+        itens.push(fichaItem('Em relação a você', diferencaParaVoce(fuso, agora)));
+        itens.push(fichaItem('Moeda', card.getAttribute('data-moeda')));
+        itens.push(fichaItem('Idioma', card.getAttribute('data-idioma')));
+
+        // a distancia nao aparece na praca que E a referencia: "0 km de si
+        // mesma" e ruido, nao informacao
+        var laC = parseFloat(card.getAttribute('data-lat'));
+        var loC = parseFloat(card.getAttribute('data-lon'));
+        if (coordBase && !isNaN(laC) && !isNaN(loC)) {
+          var km = distanciaKm(coordBase, [laC, loC]);
+          if (km > 0) itens.push(fichaItem('De ' + nomeBase, milhar(km) + ' km'));
+        }
+
+        itens.forEach(function (it) { if (it) fichaGrade.appendChild(it); });
+      }
 
       /* O BOTAO SO APARECE SE A CURADORIA TIVER A CIDADE. Quem decide e a
          existencia do botao de filtro la embaixo, e nao uma lista escrita aqui:
