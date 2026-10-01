@@ -81,6 +81,32 @@
     --secao: clamp(96px, 15vh, 190px);
 
     --curva: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ---- AS QUATRO CURVAS ----
+
+       Ate aqui havia UMA, usada em 48 lugares: o hover de um link e a entrada
+       de uma secao inteira aceleravam e desaceleravam exatamente igual. Era
+       isso que fazia o movimento do site parecer sempre o mesmo efeito.
+
+       Cada uma tem um trabalho, e a escolha nao e por gosto:
+
+       ENTRA passa do ponto e volta. Coisa que chega tem inercia -- parar exato
+       no destino e o que nao acontece no mundo, e e o que faz uma entrada
+       parecer desenhada no computador. O exagero e pequeno de proposito.
+
+       SAI nao tem volta nenhuma e comeca rapido. Saida que demora prende a
+       pessoa: o que ela ja decidiu fechar tem de sumir do caminho.
+
+       AMBIENTE e longa e macia dos dois lados, para movimento grande ou lento
+       -- foco de camera, cortina, painel. Com a curva de entrada, movimento
+       longo chega abrupto; com esta, ele assenta.
+
+       TOQUE e seca e curta, para resposta a mouse e dedo. Aqui demora e defeito:
+       o que responde ao toque tem de parecer instantaneo. */
+    --entra: cubic-bezier(0.34, 1.32, 0.46, 1);
+    --sai: cubic-bezier(0.55, 0, 0.9, 0.3);
+    --ambiente: cubic-bezier(0.4, 0, 0.18, 1);
+    --toque: cubic-bezier(0.22, 0, 0.1, 1);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -184,7 +210,7 @@
     background: var(--champagne);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.7s var(--curva);
+    transition: transform 0.7s var(--entra);
   }
 
   .botao:hover::after, .botao:focus-visible::after { transform: scaleX(1); }
@@ -240,7 +266,7 @@
     opacity: 0.78;
     stroke-dasharray: var(--comp, 2400);
     stroke-dashoffset: var(--comp, 2400);
-    transition: stroke-dashoffset 2.6s var(--curva);
+    transition: stroke-dashoffset 2.6s var(--ambiente);
   }
 
   .linha-caida.aberta path { stroke-dashoffset: 0; }
@@ -249,7 +275,7 @@
   .sobe {
     opacity: 0;
     transform: translateY(26px);
-    transition: opacity 1s var(--curva), transform 1s var(--curva);
+    transition: opacity 1s var(--curva), transform 1s var(--entra);
   }
 
   .sobe.visivel { opacity: 1; transform: none; }
@@ -299,7 +325,7 @@
     background: var(--champagne);
     opacity: 0;
     transform: scaleY(0);
-    transition: opacity 0.5s var(--curva), transform 0.9s var(--curva);
+    transition: opacity 0.5s var(--toque), transform 0.9s var(--entra);
   }
 
   .cortina.abrindo .cortina-fio { opacity: 0.65; transform: scaleY(1); }
@@ -313,7 +339,7 @@
     height: auto;
     clip-path: inset(100% 0 0 0);
     animation: revelar 1.25s var(--curva) 0.15s forwards;
-    transition: opacity 0.5s var(--curva), transform 0.9s var(--curva);
+    transition: opacity 0.5s var(--toque), transform 0.9s var(--entra);
   }
 
   .cortina.saiu img { opacity: 0; transform: scale(0.94); }
@@ -388,7 +414,7 @@
     color: var(--marfim);
     text-decoration: none;
     opacity: 0.74;
-    transition: opacity 0.4s var(--curva);
+    transition: opacity 0.4s var(--toque);
   }
 
   .menu a::after {
@@ -399,7 +425,7 @@
     background: var(--champagne);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.5s var(--curva);
+    transition: transform 0.5s var(--toque);
   }
 
   .menu a:hover { opacity: 1; }
@@ -423,7 +449,7 @@
     display: block;
     width: 26px; height: 1px;
     background: currentColor;
-    transition: transform 0.5s var(--curva), opacity 0.3s;
+    transition: transform 0.5s var(--toque), opacity 0.3s;
   }
 
   .menu-abrir span + span { margin-top: 7px; }
@@ -487,7 +513,7 @@
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 1.8s var(--curva);
+    transition: opacity 1.8s var(--ambiente);
     will-change: opacity;
   }
 
@@ -583,7 +609,7 @@
     transform-origin: left;
     /* a transicao so vale para o esvaziar do fim do ciclo: enquanto a foto
        esta no ar, quem manda e a animacao */
-    transition: transform 0.6s var(--curva);
+    transition: transform 0.6s var(--entra);
   }
 
   .marcador.andada::after { transform: scaleX(1); }
@@ -612,7 +638,7 @@
   .linha > span {
     display: block;
     transform: translateY(105%);
-    transition: transform 1.25s var(--curva);
+    transition: transform 1.25s var(--ambiente);
   }
   .pronto .linha > span { transform: none; }
   .pronto .abertura .atrasa-1 { transition-delay: 0.10s; }
@@ -749,7 +775,7 @@
     color: var(--marfim);
     cursor: pointer;
     white-space: nowrap;
-    transition: border-color 0.5s var(--curva);
+    transition: border-color 0.5s var(--toque);
   }
 
   .filtro-abrir:hover { border-bottom-color: var(--champagne); }
@@ -771,7 +797,7 @@
     line-height: 1;
   }
 
-  .filtro-abrir svg { transition: transform 0.6s var(--curva); color: var(--champagne); }
+  .filtro-abrir svg { transition: transform 0.6s var(--entra); color: var(--champagne); }
   .filtro-abrir[aria-expanded="true"] svg { transform: rotate(180deg); }
 
   .filtro-painel {
@@ -785,10 +811,18 @@
     border-bottom: 1px solid var(--linha-clara);
     clip-path: inset(0 0 100% 0);
     visibility: hidden;
-    transition: clip-path 0.8s var(--curva), visibility 0.8s;
+    /* ABRIR E FECHAR NAO SAO A MESMA COISA, e e por isso que a transicao esta
+       declarada duas vezes. A regra base e a SAIDA: quem fechou ja decidiu, e o
+       painel tem de sair do caminho. A de baixo e a ENTRADA, mais longa e macia,
+       porque e movimento grande -- com curva de chegada ele bateria no fim. */
+    transition: clip-path 0.55s var(--sai), visibility 0.55s;
   }
 
-  .filtro-painel.aberto { clip-path: inset(0 0 0 0); visibility: visible; }
+  .filtro-painel.aberto {
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+    transition: clip-path 0.9s var(--ambiente), visibility 0.9s;
+  }
 
   .filtro-grade {
     display: grid;
@@ -831,7 +865,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(245, 242, 236, 0.28);
-    transition: color 0.5s var(--curva);
+    transition: color 0.5s var(--toque);
   }
 
   /* fora do pais escolhido: apaga, mas CONTINUA CLICAVEL -- clicar nela troca o
@@ -856,7 +890,7 @@
     font-size: clamp(20px, 2.1vw, 27px);
     line-height: 1.1;
     color: rgba(245, 242, 236, 0.44);
-    transition: color 0.5s var(--curva), padding-left 0.5s var(--curva);
+    transition: color 0.5s var(--toque), padding-left 0.5s var(--toque);
   }
 
   .filtro-pais:hover,
@@ -917,7 +951,7 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(0.5) contrast(1.05) brightness(0.55) saturate(0.6);
-    transition: filter 1.2s var(--curva), transform 1.6s var(--curva);
+    transition: filter 1.2s var(--ambiente), transform 1.6s var(--ambiente);
   }
 
   .leque-item.aberto img {
@@ -944,7 +978,7 @@
     background: var(--champagne);
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform 1s var(--curva);
+    transition: transform 1s var(--entra);
   }
 
   .leque-item.aberto::before { transform: scaleY(1); }
@@ -979,7 +1013,7 @@
     text-transform: uppercase;
     color: rgba(245, 242, 236, 0.82);
     white-space: nowrap;
-    transition: opacity 0.5s var(--curva);
+    transition: opacity 0.5s var(--toque);
   }
 
   .leque-vertical span { writing-mode: vertical-rl; transform: rotate(180deg); }
@@ -996,7 +1030,7 @@
     padding: 0 clamp(18px, 2vw, 30px) clamp(20px, 2.4vw, 30px);
     opacity: 0;
     transform: translateY(14px);
-    transition: opacity 0.8s var(--curva) 0.25s, transform 0.9s var(--curva) 0.25s;
+    transition: opacity 0.8s var(--curva) 0.25s, transform 0.9s var(--entra) 0.25s;
     text-align: left;
     pointer-events: none;
   }
@@ -1127,7 +1161,7 @@
     display: inline-block;
     opacity: 0;
     transform: translateY(0.3em);
-    transition: opacity 0.7s var(--curva), transform 0.8s var(--curva);
+    transition: opacity 0.7s var(--curva), transform 0.8s var(--entra);
   }
 
   .visivel .palavra { opacity: 1; transform: none; }
@@ -1160,7 +1194,7 @@
   .lema-linha > span {
     display: block;
     transform: translateY(108%);
-    transition: transform 1.2s var(--curva);
+    transition: transform 1.2s var(--ambiente);
   }
 
   .lema-caixa.visivel .lema-linha > span { transform: none; }
@@ -1180,7 +1214,7 @@
   .pilar {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 0.8s var(--curva), transform 0.9s var(--curva);
+    transition: opacity 0.8s var(--curva), transform 0.9s var(--entra);
   }
 
   .visivel .pilar { opacity: 1; transform: none; }
@@ -1239,7 +1273,7 @@
     padding-top: clamp(22px, 3vh, 32px);
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.9s var(--curva), transform 0.9s var(--curva);
+    transition: opacity 0.9s var(--curva), transform 0.9s var(--entra);
   }
 
   .visivel .frente { opacity: 1; transform: none; }
@@ -1482,11 +1516,7 @@
        O card chega ao lugar e SO ENTAO termina de entrar em foco, que e como
        uma lente se comporta. Se os dois durassem o mesmo, a troca viraria um
        bloco unico e o gesto sumiria. A sombra segue o movimento, nao o foco. */
-    transition:
-      transform 0.95s var(--curva),
-      opacity 0.95s var(--curva),
-      box-shadow 0.95s var(--curva),
-      filter 1.35s var(--curva);
+    transition: transform 0.95s var(--entra), opacity 0.95s var(--curva), box-shadow 0.95s var(--curva), filter 1.35s var(--ambiente);
   }
 
   .carta[data-pos="0"],
@@ -1578,7 +1608,7 @@
     height: 100%;
     object-fit: cover;
     /* a hora que e la manda no brilho, como antes */
-    transition: filter 2.4s var(--curva);
+    transition: filter 2.4s var(--ambiente);
   }
 
   /* O CLIMA DA HORA VEM DA COR, NAO DO CINZA. Estes filtros dessaturavam ate
@@ -1622,7 +1652,7 @@
     background: var(--champagne);
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 0.75s var(--curva);
+    transition: transform 0.75s var(--entra);
   }
 
   .carta[data-pos="0"] .carta-texto::before { transform: scaleX(1); transition-delay: 0.52s; }
@@ -1646,7 +1676,7 @@
   .carta-linha > span {
     display: block;
     transform: translateY(118%);
-    transition: transform 0.9s var(--curva);
+    transition: transform 0.9s var(--entra);
   }
 
   /* DUAS BATIDAS, E NAO UMA. O pais e o nome sobem quando o card entra na faixa
@@ -1732,7 +1762,7 @@
     background: rgba(245, 242, 236, 0.72);
     color: var(--onix);
     cursor: pointer;
-    transition: border-color 0.5s var(--curva), background 0.5s var(--curva), color 0.5s var(--curva);
+    transition: border-color 0.5s var(--toque), background 0.5s var(--toque), color 0.5s var(--toque);
   }
 
   .seta:hover { border-color: var(--champagne); background: var(--marfim); color: var(--grafite); }
@@ -1767,10 +1797,16 @@
     color: var(--marfim);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.55s var(--curva);
+    /* a saida e mais curta que a entrada, pelo mesmo motivo do painel do filtro:
+       quem fechou a ficha ja decidiu */
+    transition: opacity 0.4s var(--sai);
   }
 
-  .ficha.aberta { opacity: 1; pointer-events: auto; }
+  .ficha.aberta {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.6s var(--ambiente);
+  }
   .ficha[hidden] { display: none; }
 
   .ficha-foto {
@@ -1786,7 +1822,7 @@
     height: 100%;
     object-fit: cover;
     transform: scale(1.06);
-    transition: transform 1.6s var(--curva);
+    transition: transform 1.6s var(--ambiente);
   }
 
   .ficha.aberta .ficha-foto img { transform: none; }
@@ -1885,7 +1921,7 @@
     background: var(--champagne);
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 0.7s var(--curva) 0.25s;
+    transition: transform 0.7s var(--entra) 0.25s;
   }
 
   .ficha.aberta .ficha-filete { transform: scaleX(1); }
@@ -1901,7 +1937,7 @@
     text-transform: uppercase;
     color: var(--marfim);
     text-decoration: none;
-    transition: border-color 0.4s var(--curva), background 0.4s var(--curva), color 0.4s var(--curva);
+    transition: border-color 0.4s var(--toque), background 0.4s var(--toque), color 0.4s var(--toque);
   }
 
   .ficha-imoveis:hover { border-color: var(--champagne); background: var(--champagne); color: var(--onix); }
@@ -1923,7 +1959,7 @@
     background: rgba(11, 11, 12, 0.5);
     color: var(--marfim);
     cursor: pointer;
-    transition: border-color 0.4s var(--curva), background 0.4s var(--curva);
+    transition: border-color 0.4s var(--toque), background 0.4s var(--toque);
   }
 
   .ficha-fechar:hover { border-color: var(--champagne); background: rgba(11, 11, 12, 0.8); }
@@ -2036,9 +2072,12 @@
       padding: 0 var(--margem);
       background: var(--onix);
       clip-path: inset(0 0 100% 0);
-      transition: clip-path 0.8s var(--curva);
+      /* o menu do celular segue a mesma regra dos outros paineis: fecha rapido,
+         abre devagar. Recorte nao aceita exagero -- o painel ja esta todo
+         revelado no fim, entao passar do ponto so vira hesitacao. */
+      transition: clip-path 0.5s var(--sai);
     }
-    .menu.aberto { clip-path: inset(0 0 0 0); }
+    .menu.aberto { clip-path: inset(0 0 0 0); transition: clip-path 0.85s var(--ambiente); }
     .menu a { font-size: 30px; font-family: var(--serif); font-weight: 300; text-transform: none; letter-spacing: 0; opacity: 1; }
     .menu a::after { bottom: -4px; }
     /* a chapa sobe para cima da lista: e ela que a pessoa ve primeiro */
