@@ -1290,6 +1290,47 @@
 
   .palco-pracas.sobe { opacity: 1; transform: none; }
 
+  /* ---- O TITULO ENTRA NA COMPOSICAO ----
+
+     Veredito dela sobre a secao: "ainda esta muito basico". Olhando o print, o
+     problema nao era efeito nenhum -- era COMPOSICAO. Numa tela de 1900px
+     sobravam uns 400px de marfim vazio de CADA LADO do carrossel, e o titulo
+     ficava solto la em cima, separado de tudo por um vao. Carrossel pequeno
+     largado no meio de um campo branco.
+
+     Em tela larga a secao vira DUAS COLUNAS: o titulo ocupa a esquerda, que
+     estava vazia, e o carrossel a direita. Nada foi acrescentado -- o que havia
+     de solto passou a ter lugar.
+
+     E O CARROSSEL PERDE A SANGRIA DA ESQUERDA E MANTEM A DA DIREITA. Ele corre
+     para fora da pagina de um lado so, e e isso que diz que a fila continua:
+     sao dezesseis pracas, nao cinco. Sangrando dos dois lados ele voltaria a
+     ser uma faixa centrada, que e o que estava la.
+
+     TUDO PRESO AO #global. O `.cabeca` e compartilhado com as outras secoes;
+     mexer nele solto mudaria a pagina inteira.
+
+     ABAIXO DE 1100px NAO HA DUAS COLUNAS. Nessa largura o titulo espremido
+     ficaria com tres palavras por linha, entao tudo volta a empilhar, com o
+     titulo em cima, como nas outras secoes. */
+  @media (min-width: 1100px) {
+    #global {
+      display: grid;
+      grid-template-columns: minmax(290px, 0.82fr) minmax(0, 2.2fr);
+      align-items: center;
+      column-gap: clamp(30px, 4vw, 76px);
+    }
+
+    /* na coluna estreita ele nao precisa de teto nem do vao de baixo: quem
+       separa agora e a coluna ao lado, e nao um espaco embaixo */
+    #global .cabeca {
+      max-width: none;
+      margin-bottom: 0;
+    }
+
+    #global .palco-pracas { margin: 0 calc(-1 * var(--margem)) 0 0; }
+  }
+
   /* ---- o fundo da faixa ----
 
      QUATRO COISAS JA FORAM TENTADAS AQUI E REPROVADAS PELA CLIENTE. Ficam
