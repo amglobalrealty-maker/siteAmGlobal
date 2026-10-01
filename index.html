@@ -3319,9 +3319,18 @@
       if (fichaCidade) fichaCidade.textContent = nome;
       if (fichaHora) fichaHora.textContent = relogio ? relogio.textContent : '--:--';
 
-      var min = null;
-      try { min = minutosNoFuso(fuso, agora); } catch (erro) { min = null; }
-      if (fichaMomento) fichaMomento.textContent = min === null ? '' : estadoDoDia(min);
+      /* O MOMENTO DO DIA E COPIADO DO CARD, e nao recalculado.
+
+         A PRIMEIRA VERSAO CHAMAVA estadoDoDia() AQUI E QUEBRAVA A FICHA INTEIRA:
+         aquela funcao esta declarada DENTRO de marcarHoras(), entao e local a
+         ela e invisivel daqui. O clique dava ReferenceError e nada abria -- e o
+         teste de bloco isolado nao pegou, porque injetava a funcao por fora.
+
+         Copiar e melhor do que consertar o escopo: o relogio ja escreveu esse
+         texto no card, a ficha mostra exatamente o que esta na tela, e some uma
+         dependencia entre dois blocos que nao precisavam se conhecer. */
+      var momentoNoCard = card.querySelector('.carta-estado');
+      if (fichaMomento) fichaMomento.textContent = momentoNoCard ? momentoNoCard.textContent : '';
       if (fichaDiferenca) fichaDiferenca.textContent = diferencaParaVoce(fuso, agora);
 
       /* O BOTAO SO APARECE SE A CURADORIA TIVER A CIDADE. Quem decide e a
