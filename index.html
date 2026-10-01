@@ -800,6 +800,46 @@
   .filtro-col { display: grid; align-content: start; }
   .filtro-col > .rotulo { margin-bottom: 18px; }
 
+  /* ---- AS OITO CIDADES, SEMPRE ----
+
+     O PAINEL ABRIA VAZIO. Com "Todos os paises" selecionado -- que e o estado em
+     que ele nasce -- as oito cidades ficavam escondidas e sobrava so o rotulo:
+     sessenta por cento da largura em preto, mostrando uma linha. O vazio
+     aparecia justamente na primeira coisa que a pessoa via.
+
+     Agora elas aparecem todas, em DUAS COLUNAS, e escolher um pais passa a
+     APAGAR as outras em vez de sumir com elas. Nada nunca esvazia, e quem abre o
+     filtro ve o portfolio inteiro de uma vez. */
+  .filtro-cidades {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(20px, 3vw, 54px);
+    align-content: start;
+  }
+
+  /* "Todas as cidades" e o reajuste, nao uma cidade: atravessa as duas colunas */
+  .filtro-cidade[data-cidade=""] { grid-column: 1 / -1; }
+
+  /* O PAIS DE CADA CIDADE SAI DO PROPRIO ATRIBUTO, sem uma palavra a mais na
+     marcacao: acrescentar praca continua sendo acrescentar um botao. Com as oito
+     juntas, sem isto nao se sabe onde fica Cascais. */
+  .filtro-cidade[data-pais]::after {
+    content: attr(data-pais);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.28);
+    transition: color 0.5s var(--curva);
+  }
+
+  /* fora do pais escolhido: apaga, mas CONTINUA CLICAVEL -- clicar nela troca o
+     pais junto, que e o atalho que o filtro ja sabia fazer */
+  .filtro-cidade.fora { color: rgba(245, 242, 236, 0.2); }
+  .filtro-cidade.fora::after { color: rgba(245, 242, 236, 0.13); }
+  .filtro-cidade.fora:hover { color: rgba(245, 242, 236, 0.72); }
+
   .filtro-pais,
   .filtro-cidade {
     display: flex;
@@ -3039,12 +3079,25 @@
       });
     }
 
+    /* NENHUMA CIDADE SOME MAIS.
+
+       Antes era `if (!paisAtual) b.hidden = !!dePais;` -- sem pais escolhido,
+       TODAS as cidades sumiam. E "todos os paises" e o estado em que o painel
+       NASCE, entao ele abria com a coluna da direita vazia: sessenta por cento de
+       preto mostrando uma linha so.
+
+       Agora as oito ficam sempre na tela, e escolher um pais APAGA as de fora em
+       vez de esconde-las. Some o vazio, e de quebra a pessoa ve de onde sao as
+       outras pracas -- o que uma lista que desaparece nunca contou.
+
+       As apagadas CONTINUAM CLICAVEIS: clicar numa delas troca o pais junto, que
+       e um atalho que este filtro ja sabia fazer e que, com as cidades
+       escondidas, ninguem conseguia usar. */
     function mostrarCidades() {
       Array.prototype.forEach.call(botoesCidade, function (b) {
         var dePais = b.getAttribute('data-pais');
-        // "Todas as cidades" nao tem pais: fica sempre
-        b.hidden = !!dePais && !!paisAtual && dePais !== paisAtual;
-        if (!paisAtual) b.hidden = !!dePais;
+        b.hidden = false;
+        b.classList.toggle('fora', !!dePais && !!paisAtual && dePais !== paisAtual);
         b.classList.toggle('ativo', (b.getAttribute('data-cidade') || '') === cidadeAtual);
       });
     }
