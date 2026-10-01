@@ -1658,9 +1658,10 @@
 
   /* ---- A FICHA DA PRACA ----
 
-     Clicar no card do meio abre isto por cima da faixa. Clicar num card lateral
-     continua so trazendo ele para o meio -- duas acoes diferentes para dois
-     estados diferentes, e nao um clique que faz duas coisas.
+     QUALQUER CARD ABRE ISTO. Chegou a existir aqui uma regra em que so o card
+     do meio abria e os laterais apenas vinham para o centro. Na pratica ela
+     clicou e nada abriu: regra sutil que ninguem descobre sozinho nao e regra,
+     e defeito.
 
      TUDO AQUI E DADO REAL: a fotografia do proprio card, o pais, a cidade, a
      hora que e la agora e a diferenca para a hora de quem esta olhando. Nao ha
@@ -3394,16 +3395,22 @@
     function pararCartas() { window.clearInterval(relogioCartas); }
 
     // clicar num card lateral traz ele para o meio, e para o rodizio
-    /* DUAS ACOES PARA DOIS ESTADOS, e nao um clique que faz duas coisas: o card
-       lateral vem para o meio, e o card que JA ESTA no meio abre a ficha. Quem
-       clica num card de lado quer ve-lo; quem clica no que ja esta na frente
-       quer mais do que ele ja mostra. */
+    /* QUALQUER CARD ABRE A FICHA, e nao so o do meio.
+
+       EU TINHA INVENTADO UMA REGRA QUE ELA NAO PEDIU: card lateral so vinha para
+       o centro, e so o do centro abria. Chamei aquilo de "duas acoes para dois
+       estados", mas o pedido dela era "quando clicar em UM DOS CARDS tem que
+       mostrar mais da cidade". O resultado pratico foi ela clicar e nada abrir.
+
+       Regra sutil que ninguem descobre sozinho nao e regra, e defeito. O card
+       clicado tambem vem para o centro: assim, ao fechar a ficha, a pessoa esta
+       olhando a praca que acabou de ver. */
     cartas.addEventListener('click', function (ev) {
       var alvo = ev.target.closest('.carta');
       if (!alvo) return;
-      if (alvo.getAttribute('data-pos') === '0') { abrirFicha(alvo); return; }
       mostrarCarta(parseInt(alvo.getAttribute('data-carta'), 10));
       pararCartas();
+      abrirFicha(alvo);
     });
 
     var setaEsq = document.getElementById('setaEsq');
