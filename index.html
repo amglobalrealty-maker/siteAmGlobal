@@ -1342,19 +1342,37 @@
 
      O QUE ELA PEDIU AGORA E O CONTRARIO DE TUDO ISSO: "uma iluminacao discreta
      atras dos cards". Sem padrao, sem objeto, sem movimento. So luz. */
-  /* UMA LUZ, E SO ISSO. Um poco morno atras dos cards, escurecendo de leve nas
-     bordas. Sobre marfim, "iluminar" e a diferenca entre o centro quase branco e
-     a borda puxando para o travertino: sem a borda ceder, o centro nao le como
-     aceso, le como nada.
+  /* UM HALO ATRAS DO CARD DO MEIO, e nao um campo na faixa inteira.
 
-     O foco fica um pouco ACIMA do meio, em 42%, porque luz vem de cima -- no
-     centro exato pareceria um holofote de palco. */
+     A PRIMEIRA TENTATIVA FOI UM DEGRADE COBRINDO A SECAO, do branco no centro
+     ao travertino nas bordas. Veredito dela: "ficou so com um fundo bege". E
+     estava certa -- espalhado naquela largura, degrade nao le como luz, le como
+     tinta, e a borda em travertino E o bege.
+
+     A DIFICULDADE E REAL: sobre fundo claro, luz nao pode ficar mais clara,
+     porque o branco e o teto. A primeira versao fez a unica coisa que sobrava,
+     que foi escurecer o resto -- e escurecer marfim da bege.
+
+     ENTAO A LUZ FICA MAIS QUENTE, e nao mais clara. O halo e um creme
+     alaranjado sobre o marfim: a diferenca que o olho pega e de TEMPERATURA,
+     nao de brilho, e temperatura cabe num fundo claro sem precisar escurecer
+     nada em volta.
+
+     E ELE E COLADO NO CARD, com queda rapida, do tamanho dele e um pouco maior.
+     Luz por tras de um objeto vaza pelas BORDAS dele e morre logo: e a queda
+     rapida que faz o olho ler "aceso atras" em vez de "mancha ali". O resto da
+     faixa continua marfim puro, sem bege nenhum. */
   .luz {
     position: absolute;
-    inset: 0;
     z-index: 0;
+    left: 50%;
+    top: 50%;
+    width: clamp(232px, 25vw, 384px);
+    height: calc(clamp(232px, 25vw, 384px) * 4 / 3);
+    transform: translate(-50%, -50%) scale(1.3);
     pointer-events: none;
-    background: radial-gradient(62% 78% at 50% 42%, #FDFCFA 0%, #F7F4EE 40%, rgba(216, 207, 192, 0.5) 100%);
+    background: radial-gradient(closest-side, rgba(255, 238, 206, 0.92) 0%, rgba(255, 240, 213, 0.55) 52%, rgba(255, 243, 222, 0) 100%);
+    filter: blur(26px);
   }
 
   /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
