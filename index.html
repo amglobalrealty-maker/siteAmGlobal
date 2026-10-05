@@ -657,24 +657,26 @@
     max-width: 44ch;
   }
 
-  /* NO COMPUTADOR o titulo ja vem desenhado na fotografia, entao ele some
-     daqui -- mas continua existindo no HTML, para o Google e para quem usa
-     leitor de tela. ESTE BLOCO INTEIRO SAI quando chegarem as imagens sem
-     texto: e a unica coisa que separa o arranjo de hoje do definitivo. */
-  @media (min-width: 901px) {
-    .abertura-conteudo .filete,
-    .abertura-conteudo h1,
-    .abertura-conteudo .apoio {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
+  /* O TITULO SOME DAQUI EM TODA LARGURA, mas continua existindo no HTML,
+     para o Google e para quem usa leitor de tela. No computador ele ja vem
+     desenhado na fotografia; no celular (05/10) ele esta em HTML dentro de
+     cada .slide, por cima da foto. Era so no computador; passou a valer
+     sempre quando o celular ganhou o banner inteiro. */
+  .abertura-conteudo .filete,
+  .abertura-conteudo h1,
+  .abertura-conteudo .apoio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
+
+  /* o texto sobre a foto e o botao sobre a foto so existem no celular */
+  .slide-texto, .capa-acao { display: none; }
 
   .rolar {
     display: flex;
@@ -2227,13 +2229,61 @@
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
     .frente-nome { font-size: clamp(22px, 5.6vw, 28px); }
-    /* No celular entra o RECORTE so da casa, e o titulo de verdade aparece
-       logo abaixo dele. A proporcao aqui e a do recorte, 16 por 10. */
-    .capa-palco { aspect-ratio: 16 / 10; max-height: none; }
+    /* ---- A ABERTURA NO CELULAR (05/10): O BANNER INTEIRO, COM AS ESCRITAS ----
+       As tres imagens trazem o titulo DESENHADO, e cada uma diz uma coisa.
+       No celular entra o recorte so da casa (sem letra) e as mesmas palavras
+       da imagem voltam em HTML por cima da foto, compostas em pe: a palavra
+       grande no alto, filete, subtitulo e paragrafo embaixo; o botao e a
+       barra sobre a foto. O texto mora dentro de cada .slide, entao troca
+       no mesmo fade da fotografia. A foto ocupa a primeira tela inteira.
+
+       O veu e do proprio .slide-texto, e nao do palco: .slide tem
+       will-change, que cria um contexto de empilhamento, e um veu no palco
+       ficaria por cima do texto em vez de por baixo. */
+    .abertura { padding-bottom: 0; }
+    .capa-palco { aspect-ratio: auto; height: min(100svh, 820px); min-height: 600px; max-height: none; }
     .slide img { object-position: center center; }
-    /* no celular o texto aparece de verdade, entao a linha unica se desfaz */
-    .abertura-conteudo { flex-direction: column; align-items: flex-start; gap: clamp(18px, 3vh, 30px); }
-    .rolar { flex-direction: row; align-items: center; }
+    .slide-texto {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: absolute;
+      inset: 0;
+      padding: 112px var(--margem) 156px;
+      pointer-events: none;
+      background: linear-gradient(to bottom,
+        rgba(11, 11, 12, 0.78) 0%, rgba(11, 11, 12, 0.46) 22%, rgba(11, 11, 12, 0) 44%,
+        rgba(11, 11, 12, 0) 52%, rgba(11, 11, 12, 0.52) 70%, rgba(11, 11, 12, 0.9) 100%);
+    }
+    .capa-titulo {
+      margin: 0;
+      padding-bottom: 0.08em;   /* para o descendente do "p" nao cortar no recorte do degrade */
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(40px, 11.8vw, 60px);
+      line-height: 0.96;
+      letter-spacing: -0.012em;
+      text-wrap: balance;
+      /* o mesmo degrade claro da imagem: branco em cima, travertino embaixo */
+      background: linear-gradient(to bottom, #FFFFFF 0%, var(--marfim) 55%, var(--travertino) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    .capa-titulo--caixa { text-transform: uppercase; font-size: clamp(42px, 12.8vw, 62px); letter-spacing: 0; }
+    .slide-texto .filete { margin-bottom: 18px; }
+    .capa-sub { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(24px, 6.6vw, 32px); line-height: 1.1; color: var(--marfim); text-wrap: balance; }
+    .capa-sub em { font-style: italic; color: var(--travertino); }
+    .capa-apoio { margin: 14px 0 0; font-family: var(--sans); font-size: 14.5px; line-height: 1.55; color: rgba(245, 242, 236, 0.84); max-width: 34ch; }
+    .capa-acao { display: inline-block; position: absolute; z-index: 2; left: var(--margem); bottom: 78px; color: var(--marfim); }
+    /* o bloco de baixo da foto some: o h1 ja e invisivel, e o botao e o Rolar
+       foram para cima da foto */
+    .abertura-conteudo { padding: 0; }
+    .abertura-conteudo .botao, .rolar { display: none; }
+    /* RESPIRO MENOR ENTRE SECOES (05/10): com 126px em cima e embaixo, sobravam
+       telas quase vazias entre uma secao e outra no celular */
+    :root { --secao: clamp(64px, 9vh, 92px); }
     /* no celular a linha cai menos, para nao cobrir metade da foto */
     .linha-caida { --altura: clamp(56px, 16vw, 96px); }
   }
@@ -2377,6 +2427,14 @@
                srcset="fotos/capa-1-960.webp 960w, fotos/capa-1.webp 1853w, fotos/capa-1-2x.webp 2800w" sizes="100vw"
                alt="" width="1853" height="849" fetchpriority="high" decoding="async">
         </picture>
+        <div class="slide-texto">
+          <p class="capa-titulo">Imóveis<br>extraordinários.</p>
+          <div class="capa-pe">
+            <span class="filete"></span>
+            <p class="capa-sub"><em>Visão global.</em></p>
+            <p class="capa-apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
+          </div>
+        </div>
       </div>
       <div class="slide">
         <picture>
@@ -2385,6 +2443,14 @@
                srcset="fotos/capa-2-960.webp 960w, fotos/capa-2.webp 1672w, fotos/capa-2-2x.webp 2800w" sizes="100vw"
                alt="" width="1672" height="766" loading="lazy" decoding="async">
         </picture>
+        <div class="slide-texto">
+          <p class="capa-titulo capa-titulo--caixa">Exclusivo.</p>
+          <div class="capa-pe">
+            <span class="filete"></span>
+            <p class="capa-sub">Imóveis raros. <em>Curadoria que atravessa fronteiras.</em></p>
+            <p class="capa-apoio">Selecionamos propriedades singulares para quem busca localização, arquitetura e discrição em escala internacional.</p>
+          </div>
+        </div>
       </div>
       <div class="slide">
         <picture>
@@ -2393,6 +2459,13 @@
                srcset="fotos/capa-3-960.webp 960w, fotos/capa-3.webp 1852w, fotos/capa-3-2x.webp 2800w" sizes="100vw"
                alt="" width="1852" height="849" loading="lazy" decoding="async">
         </picture>
+        <div class="slide-texto">
+          <p class="capa-titulo">Onde exclusividade encontra estratégia.</p>
+          <div class="capa-pe">
+            <span class="filete"></span>
+            <p class="capa-sub"><em>Assessoria personalizada para investimentos imobiliários em três continentes.</em></p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2404,6 +2477,11 @@
          Os botoes nao tem conteudo visivel nenhum: sao tres pedacos de fio
          desenhados no CSS. Entao o aria-label e a UNICA coisa que os anuncia,
          e nao pode sair daqui. -->
+    <!-- O BOTAO SOBRE A FOTO (05/10), so no celular: la a abertura e a tela
+         inteira e o botao de baixo da foto deixou de existir. No computador
+         este fica escondido e vale o de .abertura-conteudo. -->
+    <a class="botao capa-acao" href="#curadoria">Ver a curadoria</a>
+
     <div class="marcadores" id="marcadores">
       <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
       <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia"></button>
@@ -2411,10 +2489,12 @@
     </div>
   </div>
 
-  <!-- Este texto e o mesmo que esta desenhado nas imagens. No computador ele
-       fica invisivel, para nao aparecer dobrado, mas continua aqui porque e
-       o que o Google le. No celular ele aparece, porque la a foto e o
-       recorte da casa e nao traz texto nenhum. -->
+  <!-- Este texto e o da primeira imagem. Fica invisivel em TODA largura, para
+       nao aparecer dobrado: no computador o titulo esta desenhado na
+       fotografia e no celular ele esta em HTML dentro de cada .slide (ver
+       .slide-texto). Continua aqui porque e o que o Google e o leitor de
+       tela leem. No computador sobram o botao e o "Rolar"; no celular nem
+       eles, porque o botao foi para cima da foto. -->
   <div class="abertura-conteudo">
     <div class="abertura-texto">
       <span class="filete"></span>
