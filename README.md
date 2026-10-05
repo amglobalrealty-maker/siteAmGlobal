@@ -302,7 +302,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Tres fotografias da cliente com o titulo DESENHADO nelas, em rodizio. No celular entra o recorte so da casa, na tela inteira, e as mesmas palavras de cada imagem voltam em HTML por cima da foto (desde 05/10/2026); o h1 fica invisivel em toda largura, so para Google e leitor de tela |
+| 01 | Abertura | Tres fotografias da cliente com o titulo DESENHADO nelas, em rodizio. No celular a imagem entra inteira, sem corte, abaixo do cabecalho, e o subtitulo e o paragrafo de cada quadro voltam em HTML logo abaixo, trocando junto (desde 05/10/2026); o h1 fica invisivel em toda largura, so para Google e leitor de tela |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
@@ -366,13 +366,17 @@ banda e as cartas ganharam setas (02/10): antes so andavam com o dedo.
 Passada completa em 05/10/2026, tela por tela, em 390x844: nada vaza de lado.
 Dois acertos sairam dela:
 
-- **A abertura e o banner inteiro.** As tres imagens trazem o titulo desenhado,
-  e cada uma diz uma coisa; no celular o site mostrava so o recorte da casa e
-  um texto fixo embaixo. Agora o recorte ocupa a primeira tela e as palavras
-  de cada imagem voltam em HTML por cima dele, dentro de cada `.slide`, entao
-  trocam no mesmo fade da foto. O botao "Ver a curadoria" e a barra ficam sobre
-  a foto. O veu escuro e do proprio bloco de texto, porque `.slide` tem
-  `will-change` e um veu no palco ficaria por cima do texto.
+- **A abertura mostra a imagem inteira.** As tres imagens trazem o titulo
+  desenhado, e cada uma diz uma coisa; no celular o site mostrava so o recorte
+  da casa e um texto fixo embaixo. Uma primeira versao recompos as palavras em
+  HTML por cima do recorte, na tela inteira; ela pediu a IMAGEM INTEIRA, como
+  no computador. Entao a foto entra completa, sem corte, abaixo do cabecalho
+  (que ali nao pode flutuar sobre ela, porque cobriria a letra), a barra de
+  tres tracos desce para baixo da imagem, e o que fica miudo demais para ler
+  -- subtitulo e paragrafo de cada quadro -- volta em HTML logo abaixo, em
+  `.quadros-texto`, trocando junto com a foto. A altura do cabecalho vem do
+  script, na variavel `--alto-topo`. Os recortes `capa-N-cel.webp` ficaram
+  sem uso.
 - **Respiro menor entre secoes.** Eram 126px em cima e embaixo de cada secao,
   e sobravam telas quase vazias entre uma e outra; no celular passou a
   `clamp(64px, 9vh, 92px)`.

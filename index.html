@@ -675,8 +675,8 @@
     white-space: nowrap;
   }
 
-  /* o texto sobre a foto e o botao sobre a foto so existem no celular */
-  .slide-texto, .capa-acao { display: none; }
+  /* o texto de cada quadro so existe no celular: no computador esta desenhado na imagem */
+  .quadros-texto { display: none; }
 
   .rolar {
     display: flex;
@@ -2229,58 +2229,30 @@
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
     .frente-nome { font-size: clamp(22px, 5.6vw, 28px); }
-    /* ---- A ABERTURA NO CELULAR (05/10): O BANNER INTEIRO, COM AS ESCRITAS ----
-       As tres imagens trazem o titulo DESENHADO, e cada uma diz uma coisa.
-       No celular entra o recorte so da casa (sem letra) e as mesmas palavras
-       da imagem voltam em HTML por cima da foto, compostas em pe: a palavra
-       grande no alto, filete, subtitulo e paragrafo embaixo; o botao e a
-       barra sobre a foto. O texto mora dentro de cada .slide, entao troca
-       no mesmo fade da fotografia. A foto ocupa a primeira tela inteira.
-
-       O veu e do proprio .slide-texto, e nao do palco: .slide tem
-       will-change, que cria um contexto de empilhamento, e um veu no palco
-       ficaria por cima do texto em vez de por baixo. */
-    .abertura { padding-bottom: 0; }
-    .capa-palco { aspect-ratio: auto; height: min(100svh, 820px); min-height: 600px; max-height: none; }
-    .slide img { object-position: center center; }
-    .slide-texto {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: absolute;
-      inset: 0;
-      padding: 112px var(--margem) 156px;
-      pointer-events: none;
-      background: linear-gradient(to bottom,
-        rgba(11, 11, 12, 0.78) 0%, rgba(11, 11, 12, 0.46) 22%, rgba(11, 11, 12, 0) 44%,
-        rgba(11, 11, 12, 0) 52%, rgba(11, 11, 12, 0.52) 70%, rgba(11, 11, 12, 0.9) 100%);
-    }
-    .capa-titulo {
-      margin: 0;
-      padding-bottom: 0.08em;   /* para o descendente do "p" nao cortar no recorte do degrade */
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(40px, 11.8vw, 60px);
-      line-height: 0.96;
-      letter-spacing: -0.012em;
-      text-wrap: balance;
-      /* o mesmo degrade claro da imagem: branco em cima, travertino embaixo */
-      background: linear-gradient(to bottom, #FFFFFF 0%, var(--marfim) 55%, var(--travertino) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-    }
-    .capa-titulo--caixa { text-transform: uppercase; font-size: clamp(42px, 12.8vw, 62px); letter-spacing: 0; }
-    .slide-texto .filete { margin-bottom: 18px; }
-    .capa-sub { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(24px, 6.6vw, 32px); line-height: 1.1; color: var(--marfim); text-wrap: balance; }
-    .capa-sub em { font-style: italic; color: var(--travertino); }
-    .capa-apoio { margin: 14px 0 0; font-family: var(--sans); font-size: 14.5px; line-height: 1.55; color: rgba(245, 242, 236, 0.84); max-width: 34ch; }
-    .capa-acao { display: inline-block; position: absolute; z-index: 2; left: var(--margem); bottom: 78px; color: var(--marfim); }
-    /* o bloco de baixo da foto some: o h1 ja e invisivel, e o botao e o Rolar
-       foram para cima da foto */
-    .abertura-conteudo { padding: 0; }
-    .abertura-conteudo .botao, .rolar { display: none; }
+    /* ---- A ABERTURA NO CELULAR (05/10): A IMAGEM INTEIRA ----
+       As tres imagens trazem o titulo DESENHADO. A primeira versao para o
+       celular recortava so a casa e recompunha as palavras em HTML por cima,
+       na tela inteira; ela pediu a IMAGEM INTEIRA, como no computador. Entao
+       a foto entra completa, sem corte, logo abaixo do cabecalho fixo (no
+       computador ele flutua sobre o ceu da imagem; aqui cobriria a letra).
+       A barra de tres tracos desce para baixo da imagem, pelo mesmo motivo.
+       O que na imagem fica miudo demais para ler -- subtitulo e paragrafo --
+       volta em HTML logo abaixo, em .quadros-texto, trocando junto com a
+       foto. A altura do cabecalho vem do script, em --alto-topo. */
+    .abertura { padding-top: calc(var(--alto-topo, 92px) + 10px); padding-bottom: clamp(22px, 3vh, 36px); }
+    .capa-palco { aspect-ratio: 1853 / 849; height: auto; min-height: 0; max-height: none; overflow: visible; }
+    .slide img { object-fit: contain; object-position: center center; }
+    .capa-palco::after { display: none; }   /* o veu do pe cobria a letra desenhada */
+    .marcadores { top: 100%; bottom: auto; margin-top: 12px; }
+    .abertura-conteudo { flex-direction: column; align-items: flex-start; gap: 0; padding-top: 60px; }
+    .quadros-texto { display: grid; }
+    .quadro-texto { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity 1.2s var(--ambiente), visibility 0s linear 1.2s; }
+    .quadro-texto.ativa { opacity: 1; visibility: visible; transition: opacity 1.2s var(--ambiente); }
+    .quadro-sub { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 7vw, 34px); line-height: 1.1; color: var(--marfim); text-wrap: balance; }
+    .quadro-sub em { font-style: italic; color: var(--travertino); }
+    .quadro-apoio { margin: 14px 0 0; font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--texto-fraco); max-width: 44ch; }
+    .abertura-texto .botao { margin-top: 28px; }
+    .rolar { display: none; }
     /* RESPIRO MENOR ENTRE SECOES (05/10): com 126px em cima e embaixo, sobravam
        telas quase vazias entre uma secao e outra no celular */
     :root { --secao: clamp(64px, 9vh, 92px); }
@@ -2410,62 +2382,42 @@
 <!-- ================================================================ abertura -->
 <section class="abertura" id="abertura">
   <!-- AS TRES IMAGENS DO CABECALHO, feitas pela cliente. O titulo esta
-       DESENHADO dentro delas. Por isso cada uma tem tres arquivos:
+       DESENHADO dentro delas. Arquivos:
 
-         capa-N.webp       inteira, para computador
-         capa-N-960.webp   a mesma, menor, para tela media
-         capa-N-cel.webp   um recorte SO DA CASA, sem letra, para celular
+         capa-N.webp       inteira, para computador (e -2x para tela densa)
+         capa-N-960.webp   a mesma, menor: tela media e CELULAR
+         capa-N-cel.webp   um recorte so da casa, sem letra -- SEM USO desde
+                           05/10/2026: ela quis o banner inteiro no celular,
+                           com a letra desenhada. Ficou no repositorio.
 
-       E por isso o elemento picture: nao e so tamanho diferente, e
-       ENQUADRAMENTO diferente, e so ele troca a imagem por largura de tela. -->
+       No celular a imagem entra INTEIRA, sem corte, abaixo do cabecalho; o
+       que nela fica miudo demais para ler (subtitulo e paragrafo) volta em
+       HTML logo abaixo, em .quadros-texto, trocando junto com a foto. -->
   <div class="capa-palco">
     <div class="slides" id="slides" aria-hidden="true">
       <div class="slide ativa">
         <picture>
-          <source media="(max-width: 900px)" srcset="fotos/capa-1-cel.webp" width="1400" height="875">
+          <source media="(max-width: 900px)" srcset="fotos/capa-1-960.webp" width="960" height="440">
           <img src="fotos/capa-1.webp"
                srcset="fotos/capa-1-960.webp 960w, fotos/capa-1.webp 1853w, fotos/capa-1-2x.webp 2800w" sizes="100vw"
                alt="" width="1853" height="849" fetchpriority="high" decoding="async">
         </picture>
-        <div class="slide-texto">
-          <p class="capa-titulo">Imóveis<br>extraordinários.</p>
-          <div class="capa-pe">
-            <span class="filete"></span>
-            <p class="capa-sub"><em>Visão global.</em></p>
-            <p class="capa-apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
-          </div>
-        </div>
       </div>
       <div class="slide">
         <picture>
-          <source media="(max-width: 900px)" srcset="fotos/capa-2-cel.webp" width="1400" height="875">
+          <source media="(max-width: 900px)" srcset="fotos/capa-2-960.webp" width="960" height="440">
           <img src="fotos/capa-2.webp"
                srcset="fotos/capa-2-960.webp 960w, fotos/capa-2.webp 1672w, fotos/capa-2-2x.webp 2800w" sizes="100vw"
                alt="" width="1672" height="766" loading="lazy" decoding="async">
         </picture>
-        <div class="slide-texto">
-          <p class="capa-titulo capa-titulo--caixa">Exclusivo.</p>
-          <div class="capa-pe">
-            <span class="filete"></span>
-            <p class="capa-sub">Imóveis raros. <em>Curadoria que atravessa fronteiras.</em></p>
-            <p class="capa-apoio">Selecionamos propriedades singulares para quem busca localização, arquitetura e discrição em escala internacional.</p>
-          </div>
-        </div>
       </div>
       <div class="slide">
         <picture>
-          <source media="(max-width: 900px)" srcset="fotos/capa-3-cel.webp" width="1400" height="875">
+          <source media="(max-width: 900px)" srcset="fotos/capa-3-960.webp" width="960" height="440">
           <img src="fotos/capa-3.webp"
                srcset="fotos/capa-3-960.webp 960w, fotos/capa-3.webp 1852w, fotos/capa-3-2x.webp 2800w" sizes="100vw"
                alt="" width="1852" height="849" loading="lazy" decoding="async">
         </picture>
-        <div class="slide-texto">
-          <p class="capa-titulo">Onde exclusividade encontra estratégia.</p>
-          <div class="capa-pe">
-            <span class="filete"></span>
-            <p class="capa-sub"><em>Assessoria personalizada para investimentos imobiliários em três continentes.</em></p>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -2477,11 +2429,6 @@
          Os botoes nao tem conteudo visivel nenhum: sao tres pedacos de fio
          desenhados no CSS. Entao o aria-label e a UNICA coisa que os anuncia,
          e nao pode sair daqui. -->
-    <!-- O BOTAO SOBRE A FOTO (05/10), so no celular: la a abertura e a tela
-         inteira e o botao de baixo da foto deixou de existir. No computador
-         este fica escondido e vale o de .abertura-conteudo. -->
-    <a class="botao capa-acao" href="#curadoria">Ver a curadoria</a>
-
     <div class="marcadores" id="marcadores">
       <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
       <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia"></button>
@@ -2490,11 +2437,10 @@
   </div>
 
   <!-- Este texto e o da primeira imagem. Fica invisivel em TODA largura, para
-       nao aparecer dobrado: no computador o titulo esta desenhado na
-       fotografia e no celular ele esta em HTML dentro de cada .slide (ver
-       .slide-texto). Continua aqui porque e o que o Google e o leitor de
-       tela leem. No computador sobram o botao e o "Rolar"; no celular nem
-       eles, porque o botao foi para cima da foto. -->
+       nao aparecer dobrado com o que esta desenhado na fotografia. Continua
+       aqui porque e o que o Google e o leitor de tela leem. No celular, o que
+       a imagem inteira nao deixa ler (subtitulo e paragrafo de cada quadro)
+       aparece em .quadros-texto, logo abaixo, trocando junto com a foto. -->
   <div class="abertura-conteudo">
     <div class="abertura-texto">
       <span class="filete"></span>
@@ -2503,6 +2449,26 @@
         <span class="linha"><span class="atrasa-2"><em>Visão global.</em></span></span>
       </h1>
       <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
+
+      <!-- O QUE CADA QUADRO DIZ, para o celular (05/10). No computador o texto
+           esta desenhado na imagem e este bloco fica escondido. No celular a
+           imagem inteira aparece, pequena, e o que nela e miudo demais para
+           ler -- subtitulo e paragrafo -- volta aqui, trocando junto com a
+           foto: o script poe .ativa no bloco do quadro que esta no ar. A
+           palavra grande nao se repete: na imagem ela le bem. -->
+      <div class="quadros-texto" aria-hidden="true">
+        <div class="quadro-texto ativa" data-slide="0">
+          <p class="quadro-sub"><em>Visão global.</em></p>
+          <p class="quadro-apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
+        </div>
+        <div class="quadro-texto" data-slide="1">
+          <p class="quadro-sub">Imóveis raros. <em>Curadoria que atravessa fronteiras.</em></p>
+          <p class="quadro-apoio">Selecionamos propriedades singulares para quem busca localização, arquitetura e discrição em escala internacional.</p>
+        </div>
+        <div class="quadro-texto" data-slide="2">
+          <p class="quadro-sub"><em>Assessoria personalizada para investimentos imobiliários em três continentes.</em></p>
+        </div>
+      </div>
       <a class="botao" href="#curadoria">Ver a curadoria</a>
     </div>
 
@@ -3123,6 +3089,17 @@
   /* 3. Cabecalho ganha fundo depois da abertura. */
   var topo = document.getElementById('topo');
 
+  /* A altura do cabecalho vira variavel de CSS (--alto-topo): no celular a
+     abertura comeca abaixo dele, para a imagem inteira aparecer. Medida com
+     o cabecalho no tamanho cheio, nao no encolhido da rolagem. */
+  function medirTopo() {
+    if (topo && !topo.classList.contains('encolhido')) {
+      document.documentElement.style.setProperty('--alto-topo', topo.offsetHeight + 'px');
+    }
+  }
+  medirTopo();
+  window.addEventListener('resize', medirTopo);
+
   var pedido = false;
   function aoRolar() {
     if (pedido) return;
@@ -3498,6 +3475,11 @@
 
       Array.prototype.forEach.call(telas, function (t, k) {
         t.classList.toggle('ativa', k === atual);
+      });
+
+      // no celular, o texto de cada quadro (abaixo da foto) troca junto
+      Array.prototype.forEach.call(document.querySelectorAll('.quadro-texto'), function (q, k) {
+        q.classList.toggle('ativa', k === atual);
       });
 
       Array.prototype.forEach.call(botoes, function (b, k) {
