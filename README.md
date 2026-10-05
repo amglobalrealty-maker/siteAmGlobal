@@ -375,10 +375,13 @@ Dois acertos sairam dela:
   entra a em pe, inteira, abaixo do cabecalho (que ali nao pode flutuar sobre
   a foto, porque cobriria a letra; a altura dele vem do script, em
   `--alto-topo`); de 601 a 900px, a deitada de 960. Os recortes
-  `capa-N-cel.webp` ficaram sem uso. A foto cabe INTEIRA na primeira tela,
-  com a barra de trocar o quadro a vista: a moldura e a altura que sobra
-  abaixo do cabecalho (`svh`), a foto se ajusta dentro e a sobra dos lados e
-  onix, igual ao fundo.
+  `capa-N-cel.webp` ficaram sem uso. No celular a foto vai DE BORDA A BORDA e
+  comeca no topo da tela, atras do cabecalho, que flutua sobre o ceu dela como
+  no computador (ela recusou a faixa onix acima da foto e a foto estreitada
+  para caber). A moldura e a altura da tela (`svh`) menos um respiro; o que
+  nao cabe e cortado so embaixo, no jardim, nunca na letra. Ate 600px o
+  cabecalho fica mais baixo (12px de respiro), para nao chegar na letra
+  desenhada, que comeca a 9% da altura da imagem.
 - **A barra do cabecalho e transparente.** No celular ela nao escurece ao
   rolar; so o menu, quando abre, e preto (o painel dele ja e onix). Para
   continuar legivel sobre as secoes claras, a tinta troca: o script poe

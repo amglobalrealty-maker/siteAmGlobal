@@ -2243,10 +2243,11 @@
     /* ---- A ABERTURA NO CELULAR (05/10): A IMAGEM INTEIRA ----
        As imagens trazem titulo, subtitulo e paragrafo DESENHADOS. No celular
        (ate 600px) entra a versao EM PE que ela fez, inteira, sem corte; no
-       tablet (601 a 900px) a deitada de 960, tambem inteira. A foto comeca
-       abaixo do cabecalho fixo (no computador ele flutua sobre o ceu da
-       imagem; aqui cobriria a letra): a altura do cabecalho vem do script,
-       em --alto-topo. A barra de tres tracos fica dentro da foto, embaixo, no
+       tablet (601 a 900px) a deitada de 960, tambem inteira. No TABLET a foto comeca
+       abaixo do cabecalho fixo (na deitada a letra comeca no alto, e ele a
+       cobriria): a altura do cabecalho vem do script, em --alto-topo. No
+       CELULAR (ate 600px) vale o bloco mais abaixo: a em pe vai de borda a
+       borda, atras do cabecalho, como no computador. A barra de tres tracos fica dentro da foto, embaixo, no
        escuro do jardim, como no computador. Uma primeira versao recortava a
        casa e recompunha as palavras em HTML; outra mostrava a deitada inteira
        com texto embaixo; ela fez as imagens em pe e pediu que fossem elas. */
@@ -2262,23 +2263,37 @@
     .linha-caida { --altura: clamp(56px, 16vw, 96px); }
   }
 
-  /* ATE 600PX A IMAGEM E A EM PE, e cabe INTEIRA NA PRIMEIRA TELA (05/10): ela
-     abriu no telefone e a barra de trocar o quadro ficava fora da tela. A
-     moldura passa a ser a altura que sobra abaixo do cabecalho (svh, que
-     desconta a barra do navegador), limitada a altura natural da foto na
-     largura cheia; a foto se ajusta dentro, centralizada, e o que sobra dos
-     lados e onix, igual ao fundo. A barra de tracos vai para o centro, para
-     ficar sobre a foto e nao sobre a sobra. */
+  /* ATE 600PX A IMAGEM E A EM PE, DE BORDA A BORDA, ATRAS DO CABECALHO (05/10).
+     Duas idas e vindas com ela: primeiro a foto ficava abaixo de uma faixa
+     onix com o cabecalho em cima ("o menu ainda ta com a faixa preta");
+     depois encolhia de largura para caber na tela ("nao diminua de largura").
+     Agora: LARGURA CHEIA, o cabecalho flutua sobre o ceu da foto como no
+     computador, e a moldura e a altura da tela (svh, que desconta a barra do
+     navegador) menos um respiro. O que nao cabe e cortado SO EMBAIXO
+     (object-position top), no jardim, nunca na letra; em telefone alto nao
+     corta nada (max-height e a altura natural da foto). O cabecalho fica mais
+     baixo aqui, 12px de respiro em vez de 26, para nao chegar na letra
+     desenhada, que comeca a 9% da altura da imagem. A barra de tracos volta
+     para a esquerda, como no computador. */
   @media (max-width: 600px) {
+    .abertura { padding-top: 0; }
+    .topo, .topo.encolhido { padding-top: 12px; padding-bottom: 12px; }
     .capa-palco {
       aspect-ratio: auto;
-      height: calc(100svh - var(--alto-topo, 92px) - 26px);
-      min-height: 440px;
+      height: calc(100svh - 26px);
+      min-height: 480px;
       max-height: calc(100vw * 1672 / 941);
       background: var(--onix);
     }
     .slides { background: var(--onix); }
-    .marcadores { left: 50%; transform: translateX(-50%); }
+    .slide img { object-fit: cover; object-position: center top; }
+  }
+
+  /* em telefone estreito a foto e mais baixa e o cabecalho de 65px chegava a
+     10% da altura dela, onde a letra comeca (9%): com 10px de respiro ele
+     fica em 60px e para antes */
+  @media (max-width: 400px) {
+    .topo, .topo.encolhido { padding-top: 10px; padding-bottom: 10px; }
   }
 
   /* Telas largas mas baixas, como notebook: quem encolhe e a fotografia, para
