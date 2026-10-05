@@ -101,8 +101,12 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
 3. **Imoveis.** A curadoria esta com doze imoveis DE TESTE, a pedido da
    cliente, para o filtro ter o que filtrar. Nome, area e suites sao
    inventados. Falta a lista real. Ver a secao "O filtro por pais e cidade".
-4. **Contato.** WhatsApp, e-mail, endereco do escritorio e numero do CRECI estao
-   como "A informar". O ano no rodape tambem precisa conferir.
+4. **Contato.** O formulario da secao 06 abre o WhatsApp com a mensagem
+   pronta. O numero esta na constante `WHATSAPP`, no fim do script do
+   `index.html` (so digitos, com 55 e DDD): hoje 11 95994-3705, que ela passou
+   em 05/10/2026 como provisorio ("por enquanto"). E-mail, endereco do
+   escritorio e numero do CRECI estao como "A informar". O ano no rodape
+   tambem precisa conferir.
 
 ## O simbolo
 
@@ -303,7 +307,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
 | 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
-| 06 | Contato | Fecho editorial e os canais |
+| 06 | Contato | Formulario que abre o WhatsApp com a mensagem pronta, e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
 A numeracao da tabela acima e organizacao interna deste documento. Ela **nao**
@@ -540,73 +544,45 @@ brilho segue a praca no ar, e os relogios batem.
 
 ## O atendimento guiado
 
-Um botao fixo no canto inferior direito abre um painel que **parece uma
-conversa**: a casa fala, a pessoa escolhe entre respostas prontas, e o que ela
-escolheu fica ecoado do outro lado. Voltar e Recomecar no pe do painel; fecha no
-Esc.
+Nao existe mais. Era um painel de respostas prontas, sem IA, e foi retirado
+da pagina. O caminho de contato agora e o formulario da secao 06, abaixo.
 
-### Nao ha IA aqui, e isso e de proposito
+## O formulario de contato (secao 06)
 
-**1. O site nao tem servidor.** E HTML estatico que a Vercel serve direto do
-repositorio. Chave de IA no navegador e chave vazada: quem abrir o codigo-fonte
-da pagina passa a gastar na conta da cliente.
+A secao 06 e um formulario que **abre o WhatsApp da casa com a mensagem
+pronta**. O site nao tem servidor, entao nada e enviado por tras: o script
+monta o texto com o que a pessoa escreveu e abre `https://wa.me/<numero>?text=...`.
+No celular abre o aplicativo; no computador, o WhatsApp Web. A pessoa ve a
+mensagem antes de mandar, e e o numero DELA que chega -- por isso nao ha campo
+de telefone.
 
-**2. Um modelo de linguagem inventa com seguranca.** Ele afirmaria metragem,
-preco ou condicao de um imovel que nao existe. Em imobiliaria isso e problema
-juridico, e nao constrangimento. Tambem usaria as palavras que o manual proibe.
+Campos: nome (obrigatorio), o que procura (Comprar, Vender, Investir ou
+Assessoria, obrigatorio), onde (as doze pracas do `dados.js`, ou "Ainda nao
+sei") e mensagem (opcional). O botao e "Agende uma visita privada", o CTA que
+o manual aprovou. A mensagem que chega fica assim:
 
-**3. A cliente nao tem OpenAI nem n8n neste projeto.** Perguntada, ela escolheu
-o caminho guiado.
+```
+Olá, AMGlobal. Sou Ana Lima.
+Quero comprar em Balneário Camboriú.
+Procuro frente mar, com 3 suítes, para morar.
+```
 
-Um modelo poderia entrar depois, mas so atras de um endpoint na Vercel, com
-chave em variavel de ambiente, limite por visitante e a trava de responder
-apenas a partir de um texto aprovado.
+**O numero fica numa constante so**, `WHATSAPP`, no fim do script do
+`index.html`: so digitos, com o 55 e o DDD. Hoje e `5511959943705`, que ela
+passou em 05/10/2026 como provisorio ("por enquanto"); para trocar, basta
+mudar ali. Se a constante ficar vazia, o WhatsApp abre com a mensagem e pede
+para escolher o contato, e a linha "WhatsApp" da secao volta a "A informar";
+com o numero, a linha e um link e o formulario abre direto a conversa.
 
-### Como mudar as perguntas e as respostas
+Os campos sao caixas de borda fina (ela pediu "boxes"; a primeira versao, so
+com um filete embaixo do texto, nao parecia formulario).
 
-**O roteiro inteiro esta num objeto chamado `ROTEIRO`, no topo do bloco 12 do
-script.** Para mudar uma fala, mexa so ali. O mecanismo nao sabe nada do
-assunto: ele le o roteiro e desenha, entao acrescentar uma parada nova nao pede
-nenhuma linha de codigo.
+Sem JavaScript o botao ainda abre o WhatsApp (e o `action` do formulario), so
+que sem o texto. Se o navegador bloquear a janela nova, a conversa abre na
+mesma aba.
 
-Cada parada tem:
-
-| Campo | O que e |
-|---|---|
-| `fala` | o que a casa diz |
-| `opcoes` | o que a pessoa pode responder |
-
-E cada opcao tem:
-
-| Campo | O que e |
-|---|---|
-| `texto` | o que aparece no botao |
-| `vai` | o nome de outra parada do roteiro |
-| `ir` | um endereco: leva para fora e fecha a conversa |
-
-Endereco que comeca com `#` rola ate a secao da propria pagina; o resto navega.
-
-### O roteiro de hoje
-
-Doze paradas: inicio, comprar (Brasil, Estados Unidos, Portugal, Dubai, e
-"ainda nao sei"), vender (e "quero entender antes como funciona"), investir,
-"moro fora do Brasil", e falar com um consultor.
-
-⚠️ **E um primeiro rascunho**, tirado do briefing e do texto que ja estava no
-site. Ele existe para ser reescrito pela casa — por isso esta em texto puro.
-
-Ha conferencia automatica de que toda parada tem fala e saida, que nenhuma
-opcao aponta para parada inexistente, que nenhuma parada ficou inalcancavel,
-que as cidades citadas existem no `dados.js` e que nenhuma palavra proibida
-pelo manual entrou no roteiro. Do inicio, falar com um consultor esta a **um
-toque**.
-
-### O WhatsApp
-
-Enquanto o numero estiver como "A informar", o fim do roteiro leva para a secao
-de contato. Quando o numero chegar, trocar o `ir` da parada `consultor` por um
-endereco `https://wa.me/...` com a mensagem ja escrita e uma linha.
-
+As paginas de cidade e de imovel continuam levando para `index.html#contato`,
+entao todo "Fale com um consultor" do site termina neste formulario.
 
 ## Detalhes tecnicos
 

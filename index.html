@@ -50,7 +50,10 @@
      3. Os doze imoveis da curadoria sao DE TESTE, so para o filtro de pais e
         cidade ter o que filtrar. Nome, area e suites foram inventados. Trocar
         pelo portfolio real, mantendo data-pais e data-cidade em cada linha.
-     4. Telefone, e-mail, endereco e CRECI estao como espaco reservado.
+     4. E-mail, endereco e CRECI estao como espaco reservado. O WhatsApp esta
+        na constante WHATSAPP, no fim do script (numero provisorio, passado em
+        05/10/2026): o formulario de contato abre o WhatsApp da casa com a
+        mensagem pronta.
      --------------------------------------------------------------------------- -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1980,7 +1983,7 @@
   .contato-grade {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: clamp(40px, 6vw, 110px);
+    gap: clamp(30px, 4vh, 48px) clamp(40px, 6vw, 110px);
     align-items: start;
   }
 
@@ -2007,6 +2010,76 @@
   }
 
   .pendente { color: rgba(245, 242, 236, 0.4); font-size: 14px; letter-spacing: 0.02em; }
+
+  /* ---- O FORMULARIO (05/10) ----
+     CAMPOS EM CAIXA, a pedido dela: a primeira versao era so um filete
+     embaixo do texto e ela disse que nao parecia formulario. Caixa de borda
+     fina marfim, fundo um fio mais claro que o onix, champagne no foco.
+     Corpo de 20px na serifa para o que a pessoa digita ler como o resto da
+     pagina -- e para o iPhone nao dar zoom ao tocar (abaixo de 16px ele da).
+     As opcoes de interesse sao pilulas: uma escolha so, visivel. */
+  /* tres itens na grade: texto (esquerda, em cima), formulario (direita, as
+     duas linhas) e as linhas de contato (esquerda, embaixo do texto). Na
+     marcacao o formulario vem antes das linhas, para o celular. */
+  .contato-grade .form-contato { grid-column: 2; grid-row: 1 / span 2; }
+  .contato-linhas { grid-column: 1; }
+  .form-contato { display: grid; gap: clamp(22px, 3vh, 30px); min-width: 0; }
+  .form-campo { display: grid; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
+  .form-contato .rotulo { margin-bottom: 0; }
+  .form-campo input[type="text"],
+  .form-campo select,
+  .form-campo textarea {
+    width: 100%;
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.3;
+    color: var(--marfim);
+    background: rgba(245, 242, 236, 0.045);
+    border: 1px solid rgba(245, 242, 236, 0.28);
+    border-radius: 0;
+    padding: 14px 16px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.4s var(--toque), background 0.4s var(--toque);
+  }
+  .form-campo input:hover, .form-campo select:hover, .form-campo textarea:hover { border-color: rgba(245, 242, 236, 0.5); }
+  .form-campo input:focus, .form-campo select:focus, .form-campo textarea:focus { border-color: var(--champagne); background: rgba(245, 242, 236, 0.07); }
+  .form-campo textarea { resize: vertical; min-height: 124px; }
+  .form-campo textarea::placeholder, .form-campo input::placeholder { color: rgba(245, 242, 236, 0.35); }
+  .form-campo select {
+    padding-right: 46px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%23F5F2EC' stroke-width='1'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  /* a lista que o navegador abre e dele: so garante que da para ler */
+  .form-campo select option, .form-campo select optgroup { color: var(--onix); background: var(--marfim); font-family: var(--sans); font-size: 15px; }
+  .form-opcoes { display: flex; flex-wrap: wrap; gap: 10px; }
+  .form-opcao { position: relative; }
+  .form-opcao input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+  .form-opcao span {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid rgba(245, 242, 236, 0.28);
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--marfim);
+    transition: border-color 0.4s var(--toque), background 0.4s var(--toque), color 0.4s var(--toque);
+  }
+  .form-opcao:hover span { border-color: var(--champagne); }
+  .form-opcao input:checked + span { border-color: var(--champagne); background: var(--champagne); color: var(--onix); }
+  .form-opcao input:focus-visible + span { outline: 1px solid var(--champagne); outline-offset: 3px; }
+  .form-opcional { text-transform: none; letter-spacing: 0.04em; color: rgba(245, 242, 236, 0.45); margin-left: 8px; }
+  .form-aviso { font-family: var(--sans); font-size: 13.5px; letter-spacing: 0.02em; color: var(--champagne); margin: -8px 0 0; }
+  .form-contato .contato-acao { margin-top: 4px; }
+  .form-nota { font-family: var(--sans); font-size: 12.5px; letter-spacing: 0.02em; color: rgba(245, 242, 236, 0.5); max-width: 42ch; margin: 0; }
+  .form-contato .botao:focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
   /* =============================================================== rodape == */
   footer { border-top: 1px solid var(--linha-clara); overflow: hidden; }
@@ -2136,6 +2209,9 @@
     .ficha-item dd { font-size: 19px; }
     .ficha-sobre { font-size: 13.5px; }
     .contato-grade { grid-template-columns: 1fr; }
+    /* uma coluna: a ordem e a da marcacao -- texto, formulario, linhas */
+    .contato-grade .form-contato { grid-column: auto; grid-row: auto; }
+    .contato-linhas { grid-column: auto; }
     /* sem largura para tres colunas, os principios empilham e o fio vertical
        vira uma linha entre um e o seguinte */
     .pilares { grid-template-columns: 1fr; gap: 0; }
@@ -2817,15 +2893,81 @@
       <span class="rotulo">06 — Contato</span>
       <h2>Comece por<br>uma conversa</h2>
       <p>Conte o que você procura, ou o que pretende vender. Respondemos com uma seleção objetiva, não com uma lista.</p>
-      <!-- CTA exatamente como o manual aprovou -->
-      <p class="contato-acao"><a class="botao" href="#contato">Agende uma visita privada</a></p>
+
     </div>
 
-    <!-- ATENCAO: dados a preencher quando a cliente informar. Ver README. -->
-    <div class="linhas sobe">
+    <!-- O FORMULARIO VAI PARA O WHATSAPP (05/10). O site nao tem servidor,
+         entao nada e "enviado": o script monta a mensagem com o que a pessoa
+         escreveu e abre o WhatsApp da casa com ela pronta. A pessoa ve a
+         mensagem antes de mandar, e e o numero DELA que chega -- por isso nao
+         ha campo de telefone. Sem script, o botao ainda abre o WhatsApp (o
+         "action" do formulario), so que sem o texto. O botao e o CTA que o
+         manual aprovou.
+         As pracas da lista sao as mesmas do filtro e do dados.js. -->
+    <form class="form-contato sobe" id="formContato" action="https://wa.me/" method="get" target="_blank" rel="noopener" novalidate>
+      <div class="form-campo">
+        <label class="rotulo" for="campoNome">Seu nome</label>
+        <input id="campoNome" name="nome" type="text" autocomplete="name" required>
+      </div>
+
+      <fieldset class="form-campo">
+        <legend class="rotulo">O que você procura</legend>
+        <div class="form-opcoes">
+          <label class="form-opcao"><input type="radio" name="interesse" value="Comprar" required><span>Comprar</span></label>
+          <label class="form-opcao"><input type="radio" name="interesse" value="Vender"><span>Vender</span></label>
+          <label class="form-opcao"><input type="radio" name="interesse" value="Investir"><span>Investir</span></label>
+          <label class="form-opcao"><input type="radio" name="interesse" value="Assessoria"><span>Assessoria</span></label>
+        </div>
+      </fieldset>
+
+      <div class="form-campo">
+        <label class="rotulo" for="campoPraca">Onde</label>
+        <select id="campoPraca" name="praca">
+          <option value="">Ainda não sei</option>
+            <optgroup label="Brasil">
+              <option value="São Paulo">São Paulo</option>
+              <option value="Rio de Janeiro">Rio de Janeiro</option>
+              <option value="Florianópolis">Florianópolis</option>
+              <option value="Balneário Camboriú">Balneário Camboriú</option>
+              <option value="Praia Brava">Praia Brava</option>
+              <option value="Curitiba">Curitiba</option>
+              <option value="Porto Alegre">Porto Alegre</option>
+              <option value="Goiânia">Goiânia</option>
+            </optgroup>
+            <optgroup label="Estados Unidos">
+              <option value="Flórida">Flórida</option>
+            </optgroup>
+            <optgroup label="Emirados">
+              <option value="Dubai">Dubai</option>
+            </optgroup>
+            <optgroup label="Portugal">
+              <option value="Lisboa">Lisboa</option>
+              <option value="Cascais">Cascais</option>
+            </optgroup>
+        </select>
+      </div>
+
+      <div class="form-campo">
+        <label class="rotulo" for="campoMensagem">Mensagem <span class="form-opcional">opcional</span></label>
+        <textarea id="campoMensagem" name="mensagem" rows="3" placeholder="O que você procura, prazo, o que importa."></textarea>
+      </div>
+
+      <p class="form-aviso" id="formAviso" role="alert" hidden></p>
+
+      <!-- CTA exatamente como o manual aprovou -->
+      <p class="contato-acao"><button class="botao" type="submit">Agende uma visita privada</button></p>
+      <p class="form-nota">Abre o seu WhatsApp com a mensagem pronta. Nada é enviado sem você ver.</p>
+    </form>
+
+    <!-- ATENCAO: e-mail e escritorio a preencher quando a cliente informar.
+         Ver README. O WhatsApp vem da constante WHATSAPP, no fim do script. As linhas vem DEPOIS do formulario na
+         marcacao, para no celular ele aparecer primeiro; no computador a
+         grade as poe embaixo do texto, na coluna da esquerda. -->
+    <div class="linhas contato-linhas sobe">
       <div class="linha-contato">
         <span class="rotulo">WhatsApp</span>
-        <span class="pendente">A informar</span>
+        <a id="contatoWhats" href="https://wa.me/" target="_blank" rel="noopener" hidden></a>
+        <span class="pendente" id="contatoWhatsPendente">A informar</span>
       </div>
       <div class="linha-contato">
         <span class="rotulo">E-mail</span>
@@ -3739,6 +3881,75 @@
         else agendarCartas();
       });
     }
+  }
+  /* 12. O formulario de contato vai para o WhatsApp.
+
+     O site nao tem servidor, entao nada e "enviado": o formulario monta a
+     mensagem com o que a pessoa escreveu e abre o WhatsApp da casa com ela
+     pronta (wa.me). No celular abre o aplicativo; no computador, o WhatsApp
+     Web. A pessoa ve a mensagem antes de mandar, e e o numero DELA que chega
+     -- por isso nao ha campo de telefone.
+
+     O NUMERO FICA AQUI, UMA VEZ SO: so digitos, com o 55 e o DDD, sem
+     espaco. Para trocar, muda-se so esta linha: a linha "WhatsApp" da secao
+     e o destino do formulario leem daqui. Se ficar vazio, o WhatsApp abre
+     com a mensagem pronta e pede para escolher o contato, e a secao volta a
+     mostrar "A informar". */
+  var WHATSAPP = '5511959943705';   // provisorio: ela passou em 05/10/2026 "por enquanto"
+
+  var contatoWhats = document.getElementById('contatoWhats');
+  var contatoWhatsPendente = document.getElementById('contatoWhatsPendente');
+  var formContato = document.getElementById('formContato');
+
+  function formatarWhats(n) {
+    // 5511999990000 -> +55 11 99999-0000; fora do padrao, mostra como esta
+    var m = n.match(/^55(\d{2})(\d{4,5})(\d{4})$/);
+    return m ? '+55 ' + m[1] + ' ' + m[2] + '-' + m[3] : '+' + n;
+  }
+
+  if (WHATSAPP && contatoWhats) {
+    contatoWhats.href = 'https://wa.me/' + WHATSAPP;
+    contatoWhats.textContent = formatarWhats(WHATSAPP);
+    contatoWhats.hidden = false;
+    if (contatoWhatsPendente) contatoWhatsPendente.hidden = true;
+  }
+
+  if (formContato) {
+    // sem script o botao ainda abre o WhatsApp, so que sem o texto
+    formContato.action = 'https://wa.me/' + WHATSAPP;
+    var formAviso = document.getElementById('formAviso');
+    var VERBO = { Comprar: 'comprar', Vender: 'vender', Investir: 'investir', Assessoria: 'assessoria' };
+
+    function avisar(texto, campo) {
+      if (formAviso) { formAviso.textContent = texto; formAviso.hidden = !texto; }
+      if (campo) campo.focus();
+    }
+
+    // o aviso some assim que a pessoa volta a digitar ou a escolher
+    formContato.addEventListener('input', function () { avisar(''); });
+    formContato.addEventListener('change', function () { avisar(''); });
+
+    formContato.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var campos = formContato.elements;
+      var nome = campos.nome.value.trim();
+      var interesse = formContato.querySelector('input[name="interesse"]:checked');
+      var praca = campos.praca.value;
+      var mensagem = campos.mensagem.value.trim();
+
+      if (!nome) { avisar('Falta o seu nome.', campos.nome); return; }
+      if (!interesse) { avisar('Falta dizer o que você procura.', formContato.querySelector('input[name="interesse"]')); return; }
+      avisar('');
+
+      var quero = 'Quero ' + (VERBO[interesse.value] || interesse.value.toLowerCase());
+      var linhas = ['Olá, AMGlobal. Sou ' + nome + '.'];
+      linhas.push(praca ? quero + ' em ' + praca + '.' : quero + ', ainda sem praça definida.');
+      if (mensagem) linhas.push(mensagem);
+
+      var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(linhas.join('\n'));
+      var janela = window.open(url, '_blank', 'noopener');
+      if (!janela) window.location.href = url;   // bloqueador de janela: vai na mesma aba
+    });
   }
 })();
 
