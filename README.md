@@ -302,7 +302,7 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Tres fotografias da cliente com o titulo DESENHADO nelas, em rodizio. No celular a imagem entra inteira, sem corte, abaixo do cabecalho, e o subtitulo e o paragrafo de cada quadro voltam em HTML logo abaixo, trocando junto (desde 05/10/2026); o h1 fica invisivel em toda largura, so para Google e leitor de tela |
+| 01 | Abertura | Tres fotografias da cliente com titulo, subtitulo e paragrafo DESENHADOS nelas, em rodizio. No celular (ate 600px) entram as versoes EM PE que ela fez, inteiras, abaixo do cabecalho; no tablet a deitada de 960 (desde 05/10/2026). O h1 fica invisivel em toda largura, so para Google e leitor de tela |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
@@ -366,17 +366,16 @@ banda e as cartas ganharam setas (02/10): antes so andavam com o dedo.
 Passada completa em 05/10/2026, tela por tela, em 390x844: nada vaza de lado.
 Dois acertos sairam dela:
 
-- **A abertura mostra a imagem inteira.** As tres imagens trazem o titulo
-  desenhado, e cada uma diz uma coisa; no celular o site mostrava so o recorte
-  da casa e um texto fixo embaixo. Uma primeira versao recompos as palavras em
-  HTML por cima do recorte, na tela inteira; ela pediu a IMAGEM INTEIRA, como
-  no computador. Entao a foto entra completa, sem corte, abaixo do cabecalho
-  (que ali nao pode flutuar sobre ela, porque cobriria a letra), a barra de
-  tres tracos desce para baixo da imagem, e o que fica miudo demais para ler
-  -- subtitulo e paragrafo de cada quadro -- volta em HTML logo abaixo, em
-  `.quadros-texto`, trocando junto com a foto. A altura do cabecalho vem do
-  script, na variavel `--alto-topo`. Os recortes `capa-N-cel.webp` ficaram
-  sem uso.
+- **A abertura mostra a imagem inteira, em pe.** As tres imagens trazem o
+  texto desenhado, e cada uma diz uma coisa; no celular o site mostrava so o
+  recorte da casa e um texto fixo embaixo. Uma primeira versao recompos as
+  palavras em HTML por cima do recorte; outra mostrou a imagem deitada inteira
+  com o texto embaixo; entao ela fez TRES IMAGENS EM PE (`fotos/capa-N-retrato.webp`,
+  941x1672, originais PNG em `fotos/origem/`) e pediu que fossem elas. Ate 600px
+  entra a em pe, inteira, abaixo do cabecalho (que ali nao pode flutuar sobre
+  a foto, porque cobriria a letra; a altura dele vem do script, em
+  `--alto-topo`); de 601 a 900px, a deitada de 960. Os recortes
+  `capa-N-cel.webp` ficaram sem uso.
 - **Respiro menor entre secoes.** Eram 126px em cima e embaixo de cada secao,
   e sobravam telas quase vazias entre uma e outra; no celular passou a
   `clamp(64px, 9vh, 92px)`.
