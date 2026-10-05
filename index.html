@@ -47,7 +47,7 @@
         cliente so para o site nao ficar vazio. O manual proibe banco de imagem
         em material de imovel: elas saem assim que chegar a fotografia propria.
         Enderecos e creditos no README.
-     3. Os oito imoveis da curadoria sao DE TESTE, so para o filtro de pais e
+     3. Os doze imoveis da curadoria sao DE TESTE, so para o filtro de pais e
         cidade ter o que filtrar. Nome, area e suites foram inventados. Trocar
         pelo portfolio real, mantendo data-pais e data-cidade em cada linha.
      4. Telefone, e-mail, endereco e CRECI estao como espaco reservado.
@@ -834,10 +834,10 @@
   .filtro-col { display: grid; align-content: start; }
   .filtro-col > .rotulo { margin-bottom: 18px; }
 
-  /* ---- AS OITO CIDADES, SEMPRE ----
+  /* ---- AS CIDADES, SEMPRE TODAS ----
 
      O PAINEL ABRIA VAZIO. Com "Todos os paises" selecionado -- que e o estado em
-     que ele nasce -- as oito cidades ficavam escondidas e sobrava so o rotulo:
+     que ele nasce -- as cidades ficavam escondidas e sobrava so o rotulo:
      sessenta por cento da largura em preto, mostrando uma linha. O vazio
      aparecia justamente na primeira coisa que a pessoa via.
 
@@ -855,7 +855,7 @@
   .filtro-cidade[data-cidade=""] { grid-column: 1 / -1; }
 
   /* O PAIS DE CADA CIDADE SAI DO PROPRIO ATRIBUTO, sem uma palavra a mais na
-     marcacao: acrescentar praca continua sendo acrescentar um botao. Com as oito
+     marcacao: acrescentar praca continua sendo acrescentar um botao. Com as doze
      juntas, sem isto nao se sabe onde fica Cascais. */
   .filtro-cidade[data-pais]::after {
     content: attr(data-pais);
@@ -1378,7 +1378,7 @@
 
      E O CARROSSEL PERDE A SANGRIA DA ESQUERDA E MANTEM A DA DIREITA. Ele corre
      para fora da pagina de um lado so, e e isso que diz que a fila continua:
-     sao dezesseis pracas, nao cinco. Sangrando dos dois lados ele voltaria a
+     sao doze pracas, nao cinco. Sangrando dos dois lados ele voltaria a
      ser uma faixa centrada, que e o que estava la.
 
      TUDO PRESO AO #global. O `.cabeca` e compartilhado com as outras secoes;
@@ -1490,7 +1490,7 @@
     filter: blur(26px);
   }
 
-  /* O ESTADO BASE E ESCONDIDO. Com oito cards, os que nao estao numa das tres
+  /* O ESTADO BASE E ESCONDIDO. Com doze cards, os que nao estao numa das cinco
      posicoes precisam sair da frente: sem isto ficariam empilhados no meio,
      por cima do card ativo. Com tres pracas isso nunca aconteceu porque nao
      sobrava nenhum. */
@@ -1767,6 +1767,11 @@
 
   .seta:hover { border-color: var(--champagne); background: var(--marfim); color: var(--grafite); }
 
+  /* as setas da banda so existem no celular: no computador apontar ja abre a
+     lamina. A banda e onix, entao elas usam a cor da secao, nao a do Global. */
+  .leque-setas { display: none; }
+  .leque-seta { border-color: rgba(245, 242, 236, 0.28); background: rgba(245, 242, 236, 0.08); color: var(--marfim); }
+
   /* ---- A FICHA DA PRACA ----
 
      QUALQUER CARD ABRE ISTO. Chegou a existir aqui uma regra em que so o card
@@ -1779,10 +1784,11 @@
      uma linha de texto inventada sobre nenhuma cidade -- o acervo nao tem isso,
      e inventar mercado imobiliario em site que vende imovel e mentira.
 
-     O BOTAO DE IMOVEIS SO APARECE EM OITO DAS DEZESSEIS. A curadoria tem oito
-     cidades; nas outras oito o botao nao existe, em vez de levar a pessoa para
-     uma lista vazia. Quando entrar o acervo real, o botao aparece sozinho: quem
-     decide e a existencia do filtro daquela cidade, e nao uma lista aqui. */
+     O BOTAO DE IMOVEIS APARECE EM TODAS (02/10): as doze cartas sao as doze
+     pracas do filtro. Quem decide continua sendo a existencia do botao de
+     filtro daquela cidade, e nao uma lista aqui -- se um dia uma carta nao
+     tiver filtro, o botao dela some sozinho em vez de levar a pessoa para uma
+     lista vazia. */
   .ficha {
     position: absolute;
     inset: 0;
@@ -2109,7 +2115,16 @@
     .carta[data-pos="2"], .carta[data-pos="-2"] { opacity: 0; pointer-events: none; }
     .carta[data-pos="1"]  { transform: translateX(58%) rotateY(-22deg) scale(0.74); }
     .carta[data-pos="-1"] { transform: translateX(-58%) rotateY(22deg) scale(0.74); }
-    .seta { display: none; }
+    /* (02/10) AS SETAS FICAM NO CELULAR. Antes sumiam, e o carrossel so andava
+       com o dedo -- ela abriu no telefone e nao achou como passar. Descem para
+       baixo dos cards, lado a lado, com area de toque de 44px. */
+    .palco-pracas { padding-bottom: 72px; }
+    .seta { top: auto; bottom: 10px; transform: none; width: 44px; height: 44px; }
+    .seta--esq { left: calc(50% - 52px); }
+    .seta--dir { right: auto; left: calc(50% + 8px); }
+    /* a banda tambem ganha setas: cada toque anda uma lamina */
+    .leque-setas { display: flex; justify-content: center; gap: 12px; margin-top: 14px; }
+    .leque-seta { position: static; transform: none; width: 44px; height: 44px; }
     /* sem largura para duas colunas, a ficha empilha: a foto em cima, os dados
        embaixo, e ela passa a rolar por dentro se nao couber */
     .ficha { grid-template-columns: 1fr; grid-template-rows: 34% auto; overflow-y: auto; }
@@ -2250,8 +2265,12 @@
         <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">São Paulo</button>
         <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">Rio de Janeiro</button>
         <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">Florianópolis</button>
-        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">Orlando</button>
-        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">Miami</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Balneário Camboriú" data-slug="balneario-camboriu">Balneário Camboriú</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Praia Brava" data-slug="praia-brava">Praia Brava</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Curitiba" data-slug="curitiba">Curitiba</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Porto Alegre" data-slug="porto-alegre">Porto Alegre</button>
+        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Goiânia" data-slug="goiania">Goiânia</button>
+        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Flórida" data-slug="florida">Flórida</button>
         <button type="button" class="filtro-cidade" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">Dubai</button>
         <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">Lisboa</button>
         <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">Cascais</button>
@@ -2357,8 +2376,9 @@
 
 
 
-  <!-- ATENCAO: OITO IMOVEIS DE TESTE, so para o filtro de pais e cidade ter o
-       que filtrar. Nome, area e suites sao inventados de proposito e a
+  <!-- ATENCAO: DOZE IMOVEIS DE TESTE, um por praca, so para o filtro de pais e
+       cidade ter o que filtrar. Cada lamina e o PRIMEIRO imovel da praca no
+       dados.js, com a mesma foto: mexer aqui a mao desencontra as duas listas. Nome, area e suites sao inventados de proposito e a
        fotografia e do Unsplash, que o manual proibe em material de imovel.
        Quando o portfolio real for cadastrado, troque lamina por lamina: o
        filtro le `data-pais` e `data-cidade` daqui. Entrar ou sair residencia
@@ -2401,25 +2421,73 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Orlando" data-slug="orlando">
-      <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Balneário Camboriú" data-slug="balneario-camboriu">
+      <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">04</span>
-      <span class="leque-vertical"><span>Orlando</span></span>
+      <span class="leque-vertical"><span>Balneário Camboriú</span></span>
       <span class="leque-ficha">
-        <span class="leque-nome">Residência Lakeside</span>
-        <span class="leque-lugar">Winter Park &middot; Orlando</span>
-        <span class="leque-dados"><span>390 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-nome">Cobertura Frente Mar</span>
+        <span class="leque-lugar">Barra Sul &middot; Balneário Camboriú</span>
+        <span class="leque-dados"><span>460 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
         <span class="leque-entrar">Ver o imóvel</span>
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Miami" data-slug="miami">
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Praia Brava" data-slug="praia-brava">
       <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">05</span>
-      <span class="leque-vertical"><span>Miami</span></span>
+      <span class="leque-vertical"><span>Praia Brava</span></span>
+      <span class="leque-ficha">
+        <span class="leque-nome">Casa Frente Mar</span>
+        <span class="leque-lugar">Praia Brava &middot; Praia Brava</span>
+        <span class="leque-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
+      </span>
+    </button>
+
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Curitiba" data-slug="curitiba">
+      <img src="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+      <span class="leque-num">06</span>
+      <span class="leque-vertical"><span>Curitiba</span></span>
+      <span class="leque-ficha">
+        <span class="leque-nome">Casa Batel</span>
+        <span class="leque-lugar">Batel &middot; Curitiba</span>
+        <span class="leque-dados"><span>480 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
+      </span>
+    </button>
+
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Porto Alegre" data-slug="porto-alegre">
+      <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+      <span class="leque-num">07</span>
+      <span class="leque-vertical"><span>Porto Alegre</span></span>
+      <span class="leque-ficha">
+        <span class="leque-nome">Apartamento Guaíba</span>
+        <span class="leque-lugar">Moinhos de Vento &middot; Porto Alegre</span>
+        <span class="leque-dados"><span>320 m&sup2;</span><span>3 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
+      </span>
+    </button>
+
+    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Goiânia" data-slug="goiania">
+      <img src="https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+      <span class="leque-num">08</span>
+      <span class="leque-vertical"><span>Goiânia</span></span>
+      <span class="leque-ficha">
+        <span class="leque-nome">Apartamento Marista</span>
+        <span class="leque-lugar">Setor Marista &middot; Goiânia</span>
+        <span class="leque-dados"><span>340 m&sup2;</span><span>4 suítes</span><span>Sob consulta</span></span>
+        <span class="leque-entrar">Ver o imóvel</span>
+      </span>
+    </button>
+
+    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Flórida" data-slug="florida">
+      <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
+      <span class="leque-num">09</span>
+      <span class="leque-vertical"><span>Flórida</span></span>
       <span class="leque-ficha">
         <span class="leque-nome">Villa Bayfront</span>
-        <span class="leque-lugar">Coconut Grove &middot; Miami</span>
+        <span class="leque-lugar">Coconut Grove, Miami &middot; Flórida</span>
         <span class="leque-dados"><span>560 m&sup2;</span><span>5 suítes</span><span>Sob consulta</span></span>
         <span class="leque-entrar">Ver o imóvel</span>
       </span>
@@ -2427,7 +2495,7 @@
 
     <button type="button" class="leque-item" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
       <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">06</span>
+      <span class="leque-num">10</span>
       <span class="leque-vertical"><span>Dubai</span></span>
       <span class="leque-ficha">
         <span class="leque-nome">Residência Dunas</span>
@@ -2439,7 +2507,7 @@
 
     <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
       <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">07</span>
+      <span class="leque-num">11</span>
       <span class="leque-vertical"><span>Lisboa</span></span>
       <span class="leque-ficha">
         <span class="leque-nome">Palacete Restaurado</span>
@@ -2451,7 +2519,7 @@
 
     <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
       <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
-      <span class="leque-num">08</span>
+      <span class="leque-num">12</span>
       <span class="leque-vertical"><span>Cascais</span></span>
       <span class="leque-ficha">
         <span class="leque-nome">Casa Atlântico</span>
@@ -2462,6 +2530,17 @@
     </button>
 
     <p class="leque-vazio" id="lequeVazio" hidden>Nenhuma residência nesta praça no momento. Fale com um consultor: parte do portfólio não é publicada.</p>
+  </div>
+
+  <!-- as setas da banda: so aparecem no celular (ver CSS). No computador
+       apontar a lamina ja a abre. -->
+  <div class="leque-setas">
+    <button type="button" class="seta leque-seta" id="lequeEsq" aria-label="Residência anterior">
+      <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M9.5 1 L1.5 8.5 L9.5 16"/></svg>
+    </button>
+    <button type="button" class="seta leque-seta" id="lequeDir" aria-label="Próxima residência">
+      <svg width="11" height="17" viewBox="0 0 11 17" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1.5 1 L9.5 8.5 L1.5 16"/></svg>
+    </button>
   </div>
 
   <p class="curadoria-conta" id="curadoriaConta"></p>
@@ -2566,31 +2645,25 @@
        sao BOTOES -- clicar num lateral traz ele para o meio, e isso precisa
        funcionar no teclado tambem.
 
-       QUATRO CIDADES POR PAIS, NO CICLO BRASIL / PORTUGAL / EMIRADOS /
-       ESTADOS UNIDOS, e isso nao e arbitrario. O acervo provisorio tem quatro
-       fotografias de lugar, uma por pais: com cinco cards na tela, duas
-       cidades do mesmo pais a dois passos apareceriam juntas com a MESMA
-       imagem. Em roda, a distancia entre itens do mesmo pais e o tamanho da
-       roda dividido pela quantidade dele -- para essa distancia ser sempre
-       maior que dois, a roda tem de ser multiplo de quatro e cada pais
-       precisa ter a mesma quantidade. Dai 4 x 4 = 16, e a distancia e sempre
-       quatro, inclusive na emenda. O script que gera este bloco ABORTA se a
-       conta nao fechar.
-
-       ATENCAO: O FILTRO DA CURADORIA SO TEM OITO CIDADES. Quem ler aqui uma
-       praca que nao esta la nao vai achar imovel nenhum dela. Quando entrar o
-       acervo real, as duas listas precisam casar -- e ai cada cidade tera a
-       sua fotografia e este equilibrio deixa de ser necessario.
+       (02/10) AS PRACAS SAO AS DOZE DO FILTRO, nem uma a mais. Ela passou a
+       lista de onde atua -- oito no Brasil, Florida, Lisboa, Cascais e Dubai
+       -- e as outras sairam. Este bloco, a banda da curadoria e o painel do
+       filtro foram gerados a partir do dados.js, entao as quatro listas
+       casam; praca nova entra la e nos tres lugares aqui, com o mesmo slug.
+       Cada carta traz a propria fotografia de capa, a mesma da pagina dela,
+       e a antiga conta de "quatro por pais" deixou de existir. A ordem e
+       intercalada para dois cards vizinhos nao serem do mesmo pais enquanto
+       da.
 
        As classes `mundo-hora` e `data-estado-texto` sao os ganchos do script
        do relogio e NAO podem ser renomeadas sem mexer nele.
 
-       PROVISORIO: fotografia do acervo temporario. Ver README. -->
+       PROVISORIO: fotografia do Unsplash, como o resto. Ver README. -->
   <div class="palco-pracas sobe" id="palcoPracas">
     <div class="luz" aria-hidden="true"></div>
     <div class="cartas" id="cartas">
       <button type="button" class="carta" data-carta="0" data-pos="0" data-estado="dia" aria-label="Ver São Paulo" data-lat="-23.5505" data-lon="-46.6333" data-moeda="Real (BRL)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <img src="https://images.unsplash.com/photo-1512531123205-560f5974e686?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
           <span class="carta-linha"><span class="carta-nome">São Paulo</span></span>
@@ -2599,7 +2672,7 @@
         </span>
       </button>
       <button type="button" class="carta" data-carta="1" data-pos="1" data-estado="dia" aria-label="Ver Lisboa" data-lat="38.7223" data-lon="-9.1393" data-moeda="Euro (EUR)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
           <span class="carta-linha"><span class="carta-nome">Lisboa</span></span>
@@ -2607,26 +2680,17 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Dubai" data-lat="25.2048" data-lon="55.2708" data-moeda="Dirham (AED)" data-idioma="Árabe">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
-          <span class="carta-linha"><span class="carta-nome">Dubai</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Orlando" data-lat="28.5383" data-lon="-81.3792" data-moeda="Dólar (USD)" data-idioma="Inglês">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="2" data-pos="2" data-estado="dia" aria-label="Ver Flórida" data-lat="25.7617" data-lon="-80.1918" data-moeda="Dólar (USD)" data-idioma="Inglês">
+        <img src="https://images.unsplash.com/photo-1589083130544-0d6a2926e519?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
-          <span class="carta-linha"><span class="carta-nome">Orlando</span></span>
+          <span class="carta-linha"><span class="carta-nome">Flórida</span></span>
           <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Rio de Janeiro" data-lat="-22.9068" data-lon="-43.1729" data-moeda="Real (BRL)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="3" data-pos="3" data-estado="dia" aria-label="Ver Rio de Janeiro" data-lat="-22.9068" data-lon="-43.1729" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1662673053425-924b45c185d0?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
           <span class="carta-linha"><span class="carta-nome">Rio de Janeiro</span></span>
@@ -2634,35 +2698,17 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Cascais" data-lat="38.6979" data-lon="-9.4215" data-moeda="Euro (EUR)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
-          <span class="carta-linha"><span class="carta-nome">Cascais</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Abu Dhabi" data-lat="24.4539" data-lon="54.3773" data-moeda="Dirham (AED)" data-idioma="Árabe">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Dubai" data-lat="25.2048" data-lon="55.2708" data-moeda="Dirham (AED)" data-idioma="Árabe">
+        <img src="https://images.unsplash.com/photo-1598737652403-6e0ee5bf5cf2?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
-          <span class="carta-linha"><span class="carta-nome">Abu Dhabi</span></span>
+          <span class="carta-linha"><span class="carta-nome">Dubai</span></span>
           <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Miami" data-lat="25.7617" data-lon="-80.1918" data-moeda="Dólar (USD)" data-idioma="Inglês">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
-          <span class="carta-linha"><span class="carta-nome">Miami</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Florianópolis" data-lat="-27.5954" data-lon="-48.548" data-moeda="Real (BRL)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="5" data-pos="5" data-estado="dia" aria-label="Ver Florianópolis" data-lat="-27.5954" data-lon="-48.548" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1559090336-72f0d1015545?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
           <span class="carta-linha"><span class="carta-nome">Florianópolis</span></span>
@@ -2670,35 +2716,17 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Porto" data-lat="41.1579" data-lon="-8.6291" data-moeda="Euro (EUR)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="6" data-pos="6" data-estado="dia" aria-label="Ver Cascais" data-lat="38.6979" data-lon="-9.4215" data-moeda="Euro (EUR)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1660361339436-ddd4b85372da?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
-          <span class="carta-linha"><span class="carta-nome">Porto</span></span>
+          <span class="carta-linha"><span class="carta-nome">Cascais</span></span>
           <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="10" data-pos="10" data-estado="dia" aria-label="Ver Ras Al Khaimah" data-lat="25.7895" data-lon="55.9432" data-moeda="Dirham (AED)" data-idioma="Árabe">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
-          <span class="carta-linha"><span class="carta-nome">Ras Al Khaimah</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="11" data-pos="11" data-estado="dia" aria-label="Ver Boca Raton" data-lat="26.3683" data-lon="-80.1289" data-moeda="Dólar (USD)" data-idioma="Inglês">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
-        <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
-          <span class="carta-linha"><span class="carta-nome">Boca Raton</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
-        </span>
-      </button>
-      <button type="button" class="carta" data-carta="12" data-pos="12" data-estado="dia" aria-label="Ver Balneário Camboriú" data-lat="-26.9906" data-lon="-48.6349" data-moeda="Real (BRL)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="7" data-pos="7" data-estado="dia" aria-label="Ver Balneário Camboriú" data-lat="-26.9906" data-lon="-48.6349" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1705608043776-f451470353e7?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
           <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
           <span class="carta-linha"><span class="carta-nome">Balneário Camboriú</span></span>
@@ -2706,31 +2734,40 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="13" data-pos="13" data-estado="dia" aria-label="Ver Algarve" data-lat="37.0194" data-lon="-7.9304" data-moeda="Euro (EUR)" data-idioma="Português">
-        <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="8" data-pos="8" data-estado="dia" aria-label="Ver Curitiba" data-lat="-25.4284" data-lon="-49.2733" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1590067927545-f130b33d4e4c?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Portugal</span></span>
-          <span class="carta-linha"><span class="carta-nome">Algarve</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Europe/Lisbon">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Europe/Lisbon"></span></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Curitiba</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="14" data-pos="-2" data-estado="dia" aria-label="Ver Sharjah" data-lat="25.3463" data-lon="55.4209" data-moeda="Dirham (AED)" data-idioma="Árabe">
-        <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="9" data-pos="9" data-estado="dia" aria-label="Ver Praia Brava" data-lat="-26.9497" data-lon="-48.6336" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1658108683864-c6382d98822f?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
-          <span class="carta-linha"><span class="carta-nome">Sharjah</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Praia Brava</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="15" data-pos="-1" data-estado="dia" aria-label="Ver Fort Lauderdale" data-lat="26.1224" data-lon="-80.1373" data-moeda="Dólar (USD)" data-idioma="Inglês">
-        <img src="https://images.unsplash.com/photo-1719887805632-de5be825f72b?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+      <button type="button" class="carta" data-carta="10" data-pos="-2" data-estado="dia" aria-label="Ver Porto Alegre" data-lat="-30.0346" data-lon="-51.2177" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1632516654640-adc4c3681255?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Estados Unidos</span></span>
-          <span class="carta-linha"><span class="carta-nome">Fort Lauderdale</span></span>
-          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/New_York">--:--</span></span>
-          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/New_York"></span></span>
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Porto Alegre</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
+        </span>
+      </button>
+      <button type="button" class="carta" data-carta="11" data-pos="-1" data-estado="dia" aria-label="Ver Goiânia" data-lat="-16.6869" data-lon="-49.2648" data-moeda="Real (BRL)" data-idioma="Português">
+        <img src="https://images.unsplash.com/photo-1716838607737-dae4efc6bf50?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
+        <span class="carta-texto">
+          <span class="carta-linha"><span class="carta-lugar">Brasil</span></span>
+          <span class="carta-linha"><span class="carta-nome">Goiânia</span></span>
+          <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="America/Sao_Paulo">--:--</span></span>
+          <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
     </div>
@@ -3118,6 +3155,22 @@
       });
     }
 
+    /* AS SETAS DA BANDA (02/10). No celular a banda corre de lado com encaixe
+       e so andava com o dedo: ela pediu seta. Cada toque anda UMA lamina -- a
+       largura da primeira visivel mais o vao -- e o encaixe termina de
+       centralizar. No computador as setas nem aparecem: apontar ja abre. */
+    var lequeEsq = document.getElementById('lequeEsq');
+    var lequeDir = document.getElementById('lequeDir');
+    function andarLeque(sentido) {
+      var primeira = null;
+      Array.prototype.forEach.call(linhasDossie, function (l) { if (!l.hidden && !primeira) primeira = l; });
+      if (!primeira) return;
+      var passo = primeira.getBoundingClientRect().width + 5;
+      leque.scrollBy({ left: sentido * passo, behavior: calmo ? 'auto' : 'smooth' });
+    }
+    if (lequeEsq) lequeEsq.addEventListener('click', function () { andarLeque(-1); });
+    if (lequeDir) lequeDir.addEventListener('click', function () { andarLeque(1); });
+
     /* NENHUMA CIDADE SOME MAIS.
 
        Antes era `if (!paisAtual) b.hidden = !!dePais;` -- sem pais escolhido,
@@ -3125,7 +3178,7 @@
        NASCE, entao ele abria com a coluna da direita vazia: sessenta por cento de
        preto mostrando uma linha so.
 
-       Agora as oito ficam sempre na tela, e escolher um pais APAGA as de fora em
+       Agora todas ficam sempre na tela, e escolher um pais APAGA as de fora em
        vez de esconde-las. Some o vazio, e de quebra a pessoa ve de onde sao as
        outras pracas -- o que uma lista que desaparece nunca contou.
 
@@ -3272,7 +3325,7 @@
        - a diferenca para Sao Paulo, em palavras.
 
      A diferenca e CALCULADA, nunca escrita a mao: ela muda sozinha quando um
-     dos dois lados entra ou sai do horario de verao. Orlando e Portugal mudam
+     dos dois lados entra ou sai do horario de verao. A Flórida e Portugal mudam
      em datas diferentes das nossas, e Dubai nao muda nunca — escrever "7
      horas a frente" no HTML daria informacao errada duas vezes por ano.
 
@@ -3401,7 +3454,10 @@
   if (fala && !calmo) {
     var texto = fala.textContent;
     var pedacos = texto.split(/(\s+)/);
-    var conta = 0;
+    /* `contaPalavra`, e nao `conta`: o script inteiro e uma funcao so, e
+       declarar `conta` aqui sobrescrevia o `conta` do filtro (o <p> da
+       contagem). Filtrar entao quebrava no meio. (02/10) */
+    var contaPalavra = 0;
 
     fala.textContent = '';
     pedacos.forEach(function (pedaco) {
@@ -3412,9 +3468,9 @@
       caixa.textContent = pedaco;
       // o atraso cresce com a palavra, mas para de crescer: com trinta
       // palavras a ultima entraria quase um segundo depois da primeira
-      caixa.style.transitionDelay = Math.min(conta * 0.026, 0.62).toFixed(3) + 's';
+      caixa.style.transitionDelay = Math.min(contaPalavra * 0.026, 0.62).toFixed(3) + 's';
       fala.appendChild(caixa);
-      conta = conta + 1;
+      contaPalavra = contaPalavra + 1;
     });
   }
   /* 11. A secao Global: o coverflow das pracas.
@@ -3430,7 +3486,8 @@
 
   if (cartas) {
     var listaCartas = cartas.querySelectorAll('.carta');
-    var quantas = listaCartas.length;
+    // `quantasCartas`, e nao `quantas`: o filtro ja tem uma funcao com esse nome na mesma funcao
+    var quantasCartas = listaCartas.length;
     var naCarta = 0;
     var relogioCartas = null;
     var DURACAO_CARTA = 5200;
@@ -3580,7 +3637,7 @@
 
       /* O BOTAO SO APARECE SE A CURADORIA TIVER A CIDADE. Quem decide e a
          existencia do botao de filtro la embaixo, e nao uma lista escrita aqui:
-         hoje sao oito das dezesseis, e no dia em que entrar praca nova no acervo
+         hoje sao todas as doze, e no dia em que entrar praca nova no acervo
          o botao dela aparece sozinho. Sem isso, metade dos cards levaria a
          pessoa para uma lista vazia. */
       var noFiltro = nome ? document.querySelector('.filtro-cidade[data-cidade="' + nome.replace(/"/g, '') + '"]') : null;
@@ -3629,13 +3686,13 @@
     }
 
     function posicaoRelativa(i) {
-      var d = (i - naCarta + quantas) % quantas;
+      var d = (i - naCarta + quantasCartas) % quantasCartas;
       // a metade de tras da roda aparece do lado esquerdo, com sinal negativo
-      return d > quantas / 2 ? d - quantas : d;
+      return d > quantasCartas / 2 ? d - quantasCartas : d;
     }
 
     function mostrarCarta(i) {
-      naCarta = (i + quantas) % quantas;
+      naCarta = (i + quantasCartas) % quantasCartas;
       Array.prototype.forEach.call(listaCartas, function (c, k) {
         c.setAttribute('data-pos', String(posicaoRelativa(k)));
       });

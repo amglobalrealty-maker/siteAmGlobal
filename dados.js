@@ -14,8 +14,11 @@
    1. Acrescente uma entrada em CIDADES com um apelido novo (so minusculas e
       hifens, sem acento).
    2. Ponha o apelido em ORDEM, na posicao que quiser.
-   3. No index.html, acrescente o botao dela no painel do filtro com o mesmo
-      apelido em `data-slug`.
+   3. No index.html a praca aparece em TRES lugares, sempre com o mesmo
+      apelido em `data-slug`: o botao no painel do filtro, a lamina na banda
+      da curadoria (com o primeiro imovel dela) e a carta no Global (com a
+      capa dela). Os tres blocos foram gerados a partir deste arquivo em
+      02/10/2026 e precisam continuar casando com ele.
 
    COMO INCLUIR UM IMOVEL
    Acrescente um objeto na lista `imoveis` da cidade. O primeiro da lista e o
@@ -72,7 +75,7 @@
   };
 
   window.AMGLOBAL = {
-    ORDEM: ['sao-paulo', 'rio-de-janeiro', 'florianopolis', 'orlando', 'miami', 'dubai', 'lisboa', 'cascais'],
+    ORDEM: ['sao-paulo', 'rio-de-janeiro', 'florianopolis', 'balneario-camboriu', 'praia-brava', 'curitiba', 'porto-alegre', 'goiania', 'florida', 'dubai', 'lisboa', 'cascais'],
 
     CIDADES: {
       'sao-paulo': {
@@ -207,63 +210,239 @@
         ]
       },
 
-      'orlando': {
-        nome: 'Orlando', pais: 'Estados Unidos',
-        capa: U + '1546447208-9d7b923c0204' + C,
-        retrato: U + '1776482128172-dd265ad0cb49' + G,
-        linha: 'O principal destino de brasileiros nos Estados Unidos, e a porta de entrada mais simples para comprar fora do país.',
+      'balneario-camboriu': {
+        nome: 'Balneário Camboriú', pais: 'Brasil',
+        capa: U + '1705608043776-f451470353e7' + C,
+        retrato: U + '1667577003772-ac13baccf418' + G,
+        linha: 'A cidade que verticalizou a praia e criou um mercado próprio: metro quadrado entre os mais altos do país e procura que não depende de temporada.',
         notas: [
-          ['Estrutura', 'A compra por estrangeiro é rotina aqui: cartório, seguro de título e financiamento local funcionam sem fricção.'],
-          ['Renda', 'Casas de temporada com gestão profissional formam um mercado maduro, com números públicos e comparáveis.'],
-          ['Tributação', 'A estrutura de titularidade decide quanto se paga depois. Ela se define antes da proposta, não depois.']
+          ['Vista', 'Frente para o mar e andar alto são o que define o preço. A mesma planta, dez andares abaixo e sem mar, vale outra coisa.'],
+          ['Prédio', 'Os lançamentos competem em serviço: piscina térmica, spa, garagem com manobrista. Vale ler o que o condomínio cobra por isso.'],
+          ['Compra', 'Boa parte das vendas é na planta, com a incorporadora. Prazo de entrega e histórico de obra pesam mais que o renderizado.']
         ],
         imoveis: [
           {
-            nome: 'Residência Lakeside', bairro: 'Winter Park',
-            area: '390 m²', terreno: '750 m²', suites: '4 suítes', vagas: '2 vagas',
-            ano: '2017', orientacao: 'Face oeste, para o lago', condominio: 'US$ 320 por mês', iptu: 'US$ 980 por mês',
-            situacao: 'Title insurance disponível, sem pendências',
-            texto: 'Casa de frente para o lago, com píer privativo e jardim maduro.\nBairro consolidado, de ruas arborizadas e escolas a pé.',
-            ambientes: ['Estar para o lago', 'Jantar formal', 'Cozinha com ilha', 'Quatro suítes', 'Píer privativo', 'Garagem para dois carros'],
-            perto: [['Park Avenue', '8 min a pé'], ['Rollins College', '10 min a pé'], ['Aeroporto internacional', '25 min de carro']],
-            fotos: [f.palmeiras, f.lareira, f.clara, f.jardim]
+            nome: 'Cobertura Frente Mar', bairro: 'Barra Sul',
+            area: '460 m²', terreno: 'Dois pavimentos', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2022', orientacao: 'Face leste, para o mar', condominio: 'R$ 6.900 por mês', iptu: 'R$ 2.100 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Cobertura duplex de frente para o mar, com o terraço inteiro no pavimento de cima.\nA piscina é térmica e a sala abre para a varanda sem degrau.',
+            ambientes: ['Estar para o mar', 'Jantar', 'Cozinha com ilha', 'Quatro suítes', 'Terraço com piscina térmica', 'Quatro vagas'],
+            perto: [['Praia Central', '2 min a pé'], ['Molhe da Barra Sul', '8 min a pé'], ['Aeroporto de Navegantes', '25 min de carro']],
+            fotos: [f.horizonte, f.salao, f.terraco, f.vidro]
           },
           {
-            nome: 'Casa do Lago', bairro: 'Windermere',
-            area: '460 m²', terreno: '1.200 m²', suites: '5 suítes', vagas: '3 vagas',
-            ano: '2021', orientacao: 'Face poente', condominio: 'US$ 410 por mês', iptu: 'US$ 1.150 por mês',
-            situacao: 'Title insurance disponível, sem pendências',
-            texto: 'Condomínio fechado com acesso ao conjunto de lagos.\nA área de lazer é voltada para o poente, e a casa é de 2021.',
-            ambientes: ['Estar de pé-direito alto', 'Jantar', 'Cozinha e cozinha de apoio', 'Cinco suítes', 'Home theater', 'Piscina aquecida'],
-            perto: [['Rampa para barcos', '5 min de carro'], ['Escolas particulares', '10 min de carro'], ['Disney Springs', '20 min de carro']],
-            fotos: [f.clara, f.salao, f.ampla, f.piscina]
+            nome: 'Apartamento Avenida', bairro: 'Centro',
+            area: '280 m²', terreno: 'Andar alto', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2019', orientacao: 'Face nordeste', condominio: 'R$ 3.800 por mês', iptu: 'R$ 1.400 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Andar alto na avenida, com vista aberta para a praia e para a serra ao mesmo tempo.\nO prédio tem lazer completo e portaria vinte e quatro horas.',
+            ambientes: ['Estar em dois ambientes', 'Varanda gourmet', 'Cozinha integrada', 'Três suítes', 'Lavabo', 'Depósito privativo'],
+            perto: [['Avenida Atlântica', '3 min a pé'], ['Parque Unipraias', '10 min de carro'], ['Aeroporto de Navegantes', '28 min de carro']],
+            fotos: [f.varandas, f.arco, f.vidro, f.lareira]
           },
           {
-            nome: 'Villa Reserva', bairro: 'Lake Nona',
-            area: '350 m²', terreno: '640 m²', suites: '4 suítes', vagas: '2 vagas',
-            ano: '2023', orientacao: 'Face sul', condominio: 'US$ 280 por mês', iptu: 'US$ 860 por mês',
-            situacao: 'Title insurance disponível, liberada para locação',
-            texto: 'Construção recente em bairro planejado, com piscina aquecida.\nA estrutura está pronta para locação por temporada, se for o caso.',
-            ambientes: ['Estar integrado', 'Jantar', 'Cozinha com despensa', 'Quatro suítes', 'Lanai coberto', 'Piscina aquecida'],
-            perto: [['Centro médico', '6 min de carro'], ['Campo de golfe', '9 min de carro'], ['Aeroporto internacional', '18 min de carro']],
-            fotos: [f.ampla, f.arco, f.piscina, f.entrada]
+            nome: 'Casa da Enseada', bairro: 'Praia dos Amores',
+            area: '520 m²', terreno: '900 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2020', orientacao: 'Face norte', condominio: 'R$ 1.600 por mês', iptu: 'R$ 1.900 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Casa em condomínio fechado na encosta, com vista para a enseada e mata preservada ao redor.\nA área de lazer fica no nível do jardim, abrigada do vento.',
+            ambientes: ['Estar integrado', 'Jantar para doze', 'Cozinha com churrasqueira', 'Quatro suítes', 'Piscina com deck', 'Garagem fechada'],
+            perto: [['Praia dos Amores', '5 min a pé'], ['Centro de Balneário', '12 min de carro'], ['Aeroporto de Navegantes', '30 min de carro']],
+            fotos: [f.entrada, f.jardim, f.piscina, f.escada]
           }
         ]
       },
 
-      'miami': {
-        nome: 'Miami', pais: 'Estados Unidos',
-        capa: U + '1611323340350-bdcc0e6cfae5' + C,
-        retrato: U + '1778731660244-b6e8f905107d' + G,
-        linha: 'A cidade onde a América Latina encontra o mercado americano. Preço em dólar, liquidez alta e concorrência internacional.',
+      'praia-brava': {
+        nome: 'Praia Brava', pais: 'Brasil',
+        capa: U + '1658108683864-c6382d98822f' + C,
+        retrato: U + '1648220540931-33e35e9fd62b' + G,
+        linha: 'Uma praia só, entre Itajaí e Balneário, que virou endereço de morar: baixa, de frente para o mar e com poucos terrenos sobrando.',
         notas: [
-          ['Água', 'Frente para a baía e acesso náutico criam uma faixa de preço própria, que não acompanha o resto da cidade.'],
-          ['Bairro', 'Coconut Grove, Coral Gables e Bal Harbour atraem perfis distintos. O mesmo orçamento compra coisas muito diferentes.'],
-          ['Concorrência', 'Bons ativos saem rápido e recebem mais de uma proposta. Chegar preparado é parte da estratégia.']
+          ['Frente', 'A primeira quadra é outro mercado. O que não tem vista direta compete com Balneário, e não com a praia.'],
+          ['Gabarito', 'A altura limitada é o que mantém o lugar como é. Isso segura a oferta e sustenta o preço.'],
+          ['Vizinhança', 'Restaurantes e o comércio da praia funcionam o ano inteiro, o que diferencia a praça de um balneário de verão.']
         ],
         imoveis: [
           {
-            nome: 'Villa Bayfront', bairro: 'Coconut Grove',
+            nome: 'Casa Frente Mar', bairro: 'Praia Brava',
+            area: '560 m²', terreno: '800 m²', suites: '5 suítes', vagas: '4 vagas',
+            ano: '2021', orientacao: 'Face leste, para o mar', condominio: 'Não há', iptu: 'R$ 2.600 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Casa na primeira quadra, com o estar aberto para a praia e a piscina no nível da areia.\nMateriais escolhidos para a maresia, com manutenção documentada.',
+            ambientes: ['Estar para o mar', 'Jantar', 'Cozinha com ilha', 'Cinco suítes', 'Piscina com deck', 'Espaço gourmet'],
+            perto: [['Praia Brava', 'saída direta'], ['Restaurantes da praia', '4 min a pé'], ['Aeroporto de Navegantes', '20 min de carro']],
+            fotos: [f.piscina, f.vidro, f.salao, f.terraco]
+          },
+          {
+            nome: 'Apartamento Jardim', bairro: 'Praia Brava',
+            area: '210 m²', terreno: 'Térreo com jardim', suites: '3 suítes', vagas: '2 vagas',
+            ano: '2018', orientacao: 'Face norte', condominio: 'R$ 2.400 por mês', iptu: 'R$ 1.100 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Térreo de prédio baixo, com jardim privativo e a praia a duas quadras.\nO condomínio é pequeno, de doze unidades, e tem piscina e portaria.',
+            ambientes: ['Estar e jantar contínuos', 'Jardim privativo', 'Cozinha integrada', 'Três suítes', 'Churrasqueira', 'Duas vagas cobertas'],
+            perto: [['Praia Brava', '3 min a pé'], ['Mercado e farmácia', '5 min a pé'], ['Balneário Camboriú', '12 min de carro']],
+            fotos: [f.jardim, f.lareira, f.clara, f.arco]
+          },
+          {
+            nome: 'Residência do Morro', bairro: 'Morro da Brava',
+            area: '430 m²', terreno: '700 m²', suites: '4 suítes', vagas: '3 vagas',
+            ano: '2023', orientacao: 'Face sudeste, para a enseada', condominio: 'R$ 1.200 por mês', iptu: 'R$ 1.500 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Na parte alta, com a enseada inteira na janela e o pôr do sol atrás da serra.\nProjeto de 2023, com pé-direito duplo na sala e deck com borda infinita.',
+            ambientes: ['Estar com pé-direito duplo', 'Jantar', 'Cozinha integrada', 'Quatro suítes', 'Deck com borda infinita', 'Garagem coberta'],
+            perto: [['Praia Brava', '6 min a pé'], ['Centro de Itajaí', '15 min de carro'], ['Aeroporto de Navegantes', '18 min de carro']],
+            fotos: [f.horizonte, f.escada, f.vidro, f.entrada]
+          }
+        ]
+      },
+
+      'curitiba': {
+        nome: 'Curitiba', pais: 'Brasil',
+        capa: U + '1590067927545-f130b33d4e4c' + C,
+        retrato: U + '1669308279799-29e105471c43' + G,
+        linha: 'Uma praça de bairros definidos e de comprador que mora, não que especula. O que se paga aqui é endereço e construção.',
+        notas: [
+          ['Bairro', 'Batel, Cabral e Juvevê têm preço, perfil e oferta diferentes. A escolha de bairro costuma vir antes da escolha da planta.'],
+          ['Clima', 'Inverno de verdade cobra isolamento, aquecimento e esquadria boa. Casa bem construída aqui se nota na conta de energia.'],
+          ['Ritmo', 'Mercado mais lento que São Paulo e mais estável. Imóvel bem posicionado não despenca, mas também não dispara.']
+        ],
+        imoveis: [
+          {
+            nome: 'Casa Batel', bairro: 'Batel',
+            area: '480 m²', terreno: '720 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2017, reformada em 2023', orientacao: 'Face norte', condominio: 'Não há', iptu: 'R$ 2.300 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Casa em rua arborizada do Batel, com jardim de inverno no centro da planta e aquecimento de piso.\nA reforma de 2023 trocou as esquadrias por vidro duplo.',
+            ambientes: ['Estar com lareira', 'Jantar', 'Cozinha com copa', 'Quatro suítes', 'Jardim de inverno', 'Garagem fechada'],
+            perto: [['Shopping Pátio Batel', '6 min a pé'], ['Praça da Espanha', '9 min a pé'], ['Aeroporto Afonso Pena', '30 min de carro']],
+            fotos: [f.lareira, f.concreto, f.escada, f.jardim]
+          },
+          {
+            nome: 'Apartamento Cabral', bairro: 'Cabral',
+            area: '260 m²', terreno: 'Andar alto', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2020', orientacao: 'Face leste', condominio: 'R$ 3.200 por mês', iptu: 'R$ 1.300 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Andar alto com vista para o verde do bairro, em prédio de poucas unidades por andar.\nSala e varanda formam um ambiente só, com aquecimento central.',
+            ambientes: ['Estar integrado', 'Varanda fechada em vidro', 'Cozinha com despensa', 'Três suítes', 'Lavabo', 'Três vagas'],
+            perto: [['Parque São Lourenço', '8 min a pé'], ['Colégios tradicionais', '10 min de carro'], ['Centro Cívico', '12 min de carro']],
+            fotos: [f.vidro, f.arco, f.varandas, f.salao]
+          },
+          {
+            nome: 'Residência Juvevê', bairro: 'Juvevê',
+            area: '390 m²', terreno: '600 m²', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2015, reformada em 2022', orientacao: 'Face noroeste', condominio: 'Não há', iptu: 'R$ 1.800 por mês',
+            situacao: 'Escritura registrada, averbação em dia',
+            texto: 'Casa térrea de implantação horizontal, com os quartos de um lado e a área social abrindo para o quintal.\nO escritório tem entrada independente.',
+            ambientes: ['Estar em dois ambientes', 'Jantar', 'Cozinha integrada', 'Três suítes', 'Escritório com entrada própria', 'Quintal com churrasqueira'],
+            perto: [['Mercado Municipal', '7 min de carro'], ['Parque Barigui', '12 min de carro'], ['Aeroporto Afonso Pena', '35 min de carro']],
+            fotos: [f.ampla, f.lareira, f.entrada, f.jardim]
+          }
+        ]
+      },
+
+      'porto-alegre': {
+        nome: 'Porto Alegre', pais: 'Brasil',
+        capa: U + '1632516654640-adc4c3681255' + C,
+        retrato: U + '1648073819207-ae3f8e6b4914' + G,
+        linha: 'O Guaíba é o ativo da cidade. Quem olha para a água, no Moinhos ou na orla, paga por uma vista que não se repete no resto do Sul.',
+        notas: [
+          ['Água', 'O pôr do sol sobre o Guaíba virou argumento de venda. Vista direta e vista parcial são mercados distintos.'],
+          ['Bairro', 'Moinhos de Vento, Bela Vista e Três Figueiras concentram a oferta de alto padrão. Fora deles o preço cai rápido.'],
+          ['Terreno', 'Depois das enchentes de 2024, cota do terreno e drenagem entraram na conversa. Vale perguntar antes de visitar.']
+        ],
+        imoveis: [
+          {
+            nome: 'Apartamento Guaíba', bairro: 'Moinhos de Vento',
+            area: '320 m²', terreno: 'Andar alto', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2018', orientacao: 'Face oeste, para o Guaíba', condominio: 'R$ 4.100 por mês', iptu: 'R$ 1.700 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Andar alto com o Guaíba inteiro na janela e o pôr do sol dentro da sala.\nPrédio de uma unidade por andar, com elevador privativo.',
+            ambientes: ['Estar para o Guaíba', 'Jantar', 'Cozinha com ilha', 'Três suítes', 'Varanda corrida', 'Elevador privativo'],
+            perto: [['Parcão', '4 min a pé'], ['Rua Padre Chagas', '6 min a pé'], ['Aeroporto Salgado Filho', '15 min de carro']],
+            fotos: [f.vidro, f.salao, f.varandas, f.lareira]
+          },
+          {
+            nome: 'Casa Três Figueiras', bairro: 'Três Figueiras',
+            area: '540 m²', terreno: '1.000 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2016, reformada em 2023', orientacao: 'Face norte', condominio: 'R$ 1.900 por mês', iptu: 'R$ 2.000 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Casa em condomínio fechado, com piscina coberta e aquecida para o inverno gaúcho.\nA reforma de 2023 refez a área social em vão livre.',
+            ambientes: ['Estar de vão livre', 'Jantar para doze', 'Cozinha com copa', 'Quatro suítes', 'Piscina coberta e aquecida', 'Casa de hóspedes'],
+            perto: [['Country Club', '5 min de carro'], ['Colégios internacionais', '8 min de carro'], ['Shopping Iguatemi', '10 min de carro']],
+            fotos: [f.piscina, f.lareira, f.ampla, f.escada]
+          },
+          {
+            nome: 'Cobertura Bela Vista', bairro: 'Bela Vista',
+            area: '380 m²', terreno: 'Dois pavimentos', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2012, reformada em 2021', orientacao: 'Face noroeste', condominio: 'R$ 3.600 por mês', iptu: 'R$ 1.500 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Cobertura em duplex com terraço coberto e vista para a cidade, com o Guaíba ao fundo.\nO pavimento de cima tem churrasqueira fechada em vidro para o inverno.',
+            ambientes: ['Estar em dois ambientes', 'Jantar', 'Cozinha integrada', 'Três suítes', 'Terraço coberto', 'Churrasqueira envidraçada'],
+            perto: [['Parque Moinhos de Vento', '10 min a pé'], ['Hospital Moinhos', '6 min de carro'], ['Aeroporto Salgado Filho', '18 min de carro']],
+            fotos: [f.terraco, f.arco, f.varandas, f.salao]
+          }
+        ]
+      },
+
+      'goiania': {
+        nome: 'Goiânia', pais: 'Brasil',
+        capa: U + '1716838607737-dae4efc6bf50' + C,
+        retrato: U + '1704913760470-366df41fe7ce' + G,
+        linha: 'Uma cidade planejada, arborizada e com um dos mercados verticais mais ativos do Centro-Oeste. Aqui se compra metro quadrado grande por preço de capital média.',
+        notas: [
+          ['Setor', 'Marista, Bueno e Jardim Goiás são os endereços. Em cada um, a quadra e o prédio pesam mais que o setor em si.'],
+          ['Planta', 'Apartamentos grandes são a regra, não a exceção. O que diferencia é acabamento, vaga e serviço do condomínio.'],
+          ['Ritmo', 'Lançamentos frequentes mantêm oferta nova no mercado. Imóvel de revenda bem localizado precisa de preço realista para sair.']
+        ],
+        imoveis: [
+          {
+            nome: 'Apartamento Marista', bairro: 'Setor Marista',
+            area: '340 m²', terreno: 'Andar alto', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2021', orientacao: 'Face nascente', condominio: 'R$ 3.400 por mês', iptu: 'R$ 900 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Andar alto com vista aberta para o Parque Areião e varanda que corre a fachada inteira.\nO prédio tem lazer completo e uma unidade por andar.',
+            ambientes: ['Estar integrado à varanda', 'Jantar', 'Cozinha com despensa', 'Quatro suítes', 'Lavabo', 'Quatro vagas'],
+            perto: [['Parque Areião', '5 min a pé'], ['Flamboyant Shopping', '10 min de carro'], ['Aeroporto Santa Genoveva', '20 min de carro']],
+            fotos: [f.varandas, f.salao, f.vidro, f.arco]
+          },
+          {
+            nome: 'Casa Jardim Goiás', bairro: 'Jardim Goiás',
+            area: '520 m²', terreno: '800 m²', suites: '4 suítes', vagas: '4 vagas',
+            ano: '2019', orientacao: 'Face sul', condominio: 'R$ 2.200 por mês', iptu: 'R$ 1.300 por mês',
+            situacao: 'Escritura registrada, habite-se em ordem',
+            texto: 'Casa em condomínio fechado, de pé-direito alto e piscina com raia.\nA cozinha é dupla, com uma de apoio para receber.',
+            ambientes: ['Estar de pé-direito alto', 'Jantar para catorze', 'Cozinha e cozinha de apoio', 'Quatro suítes', 'Piscina com raia', 'Espaço gourmet'],
+            perto: [['Parque Flamboyant', '6 min de carro'], ['Colégios particulares', '8 min de carro'], ['Aeroporto Santa Genoveva', '25 min de carro']],
+            fotos: [f.ampla, f.piscina, f.lareira, f.entrada]
+          },
+          {
+            nome: 'Cobertura Bueno', bairro: 'Setor Bueno',
+            area: '410 m²', terreno: 'Dois pavimentos', suites: '3 suítes', vagas: '3 vagas',
+            ano: '2015, reformada em 2024', orientacao: 'Face oeste', condominio: 'R$ 2.900 por mês', iptu: 'R$ 1.000 por mês',
+            situacao: 'Escritura registrada, sem ônus',
+            texto: 'Cobertura duplex com terraço coberto e piscina, voltada para o pôr do sol do cerrado.\nA reforma de 2024 refez a área social e as instalações.',
+            ambientes: ['Estar em dois ambientes', 'Jantar', 'Cozinha integrada', 'Três suítes', 'Terraço com piscina', 'Depósito privativo'],
+            perto: [['Parque Vaca Brava', '8 min a pé'], ['Avenida T-63', '5 min de carro'], ['Aeroporto Santa Genoveva', '22 min de carro']],
+            fotos: [f.terraco, f.arco, f.piscina, f.salao]
+          }
+        ]
+      },
+
+      'florida': {
+        nome: 'Flórida', pais: 'Estados Unidos',
+        capa: U + '1589083130544-0d6a2926e519' + C,
+        retrato: U + '1535498730771-e735b998cd64' + G,
+        linha: 'O principal destino de brasileiros nos Estados Unidos e a porta de entrada mais simples para comprar fora do país: preço em dólar, compra por estrangeiro como rotina e mercado maduro.',
+        notas: [
+          ['Estrutura', 'A compra por estrangeiro é rotina aqui: cartório, seguro de título e financiamento local funcionam sem fricção.'],
+          ['Praças', 'Miami, Orlando e Boca Raton atraem perfis diferentes: água e liquidez, renda de temporada, vida de família. O mesmo orçamento compra coisas muito diferentes.'],
+          ['Tributação', 'A estrutura de titularidade decide quanto se paga depois. Ela se define antes da proposta, não depois.']
+        ],
+        imoveis: [
+          {
+            nome: 'Villa Bayfront', bairro: 'Coconut Grove, Miami',
             area: '560 m²', terreno: '980 m²', suites: '5 suítes', vagas: '4 vagas',
             ano: '2008, reformada em 2023', orientacao: 'Face leste, para a baía', condominio: 'Não há', iptu: 'US$ 2.400 por mês',
             situacao: 'Title insurance disponível, janelas com certificação',
@@ -273,17 +452,17 @@
             fotos: [f.piscina, f.salao, f.agua, f.lareira]
           },
           {
-            nome: 'Residência Coral', bairro: 'Coral Gables',
-            area: '480 m²', terreno: '900 m²', suites: '4 suítes', vagas: '3 vagas',
-            ano: '1998, reformada em 2020', orientacao: 'Face norte', condominio: 'Não há', iptu: 'US$ 1.900 por mês',
+            nome: 'Residência Lakeside', bairro: 'Winter Park, Orlando',
+            area: '390 m²', terreno: '750 m²', suites: '4 suítes', vagas: '2 vagas',
+            ano: '2017', orientacao: 'Face oeste, para o lago', condominio: 'US$ 320 por mês', iptu: 'US$ 980 por mês',
             situacao: 'Title insurance disponível, sem pendências',
-            texto: 'Casa de linhas mediterrâneas em rua arborizada, com pátio interno sombreado.\nA piscina é longitudinal e acompanha o comprimento do jardim.',
-            ambientes: ['Estar com lareira', 'Jantar formal', 'Cozinha com copa', 'Quatro suítes', 'Pátio interno', 'Piscina longitudinal'],
-            perto: [['Miracle Mile', '7 min de carro'], ['Universidade de Miami', '10 min de carro'], ['Aeroporto internacional', '15 min de carro']],
-            fotos: [f.varandas, f.arco, f.jardim, f.escada]
+            texto: 'Casa de frente para o lago, com píer privativo e jardim maduro.\nBairro consolidado, de ruas arborizadas e escolas a pé.',
+            ambientes: ['Estar para o lago', 'Jantar formal', 'Cozinha com ilha', 'Quatro suítes', 'Píer privativo', 'Garagem para dois carros'],
+            perto: [['Park Avenue', '8 min a pé'], ['Rollins College', '10 min a pé'], ['Aeroporto internacional', '25 min de carro']],
+            fotos: [f.palmeiras, f.lareira, f.clara, f.jardim]
           },
           {
-            nome: 'Apartamento Oceano', bairro: 'Bal Harbour',
+            nome: 'Apartamento Oceano', bairro: 'Bal Harbour, Miami',
             area: '300 m²', terreno: 'Andar alto', suites: '3 suítes', vagas: '2 vagas',
             ano: '2015', orientacao: 'Face leste, para o mar', condominio: 'US$ 3.600 por mês', iptu: 'US$ 1.500 por mês',
             situacao: 'Title insurance disponível, sem pendências',

@@ -93,12 +93,12 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
    secao abaixo). Se o manual tiver um arquivo separado com a assinatura
    horizontal fechada, ela deve substituir o par simbolo mais nome em Jost que
    o cabecalho usa hoje.
-2. **Fotografia.** As oito fotos do site sao do Unsplash, de licenca livre, e
+2. **Fotografia.** As fotos do site sao do Unsplash, de licenca livre, e
    estao aqui a pedido da cliente so para o site nao ficar vazio. **O manual
    proibe banco de imagem em material de imovel**, entao elas sao temporarias e
    saem assim que chegar a fotografia propria. Enderecos na tabela abaixo.
    Todas entram dessaturadas por CSS, para nao brigarem com onix e travertino.
-3. **Imoveis.** A curadoria esta com oito imoveis DE TESTE, a pedido da
+3. **Imoveis.** A curadoria esta com doze imoveis DE TESTE, a pedido da
    cliente, para o filtro ter o que filtrar. Nome, area e suites sao
    inventados. Falta a lista real. Ver a secao "O filtro por pais e cidade".
 4. **Contato.** WhatsApp, e-mail, endereco do escritorio e numero do CRECI estao
@@ -163,8 +163,8 @@ Sao **dois modelos** que atendem todas as cidades e todos os imoveis.
 
 | Arquivo | Serve | Endereco |
 |---|---|---|
-| `cidade.html` | as oito cidades | `cidade.html?c=lisboa` |
-| `imovel.html` | as vinte e quatro residencias | `imovel.html?c=lisboa&i=0` |
+| `cidade.html` | as doze pracas | `cidade.html?c=lisboa` |
+| `imovel.html` | as trinta e seis residencias | `imovel.html?c=lisboa&i=0` |
 
 Em `imovel.html`, o `i` e a posicao do imovel na lista daquela cidade,
 comecando em zero. Endereco incompleto, cidade desconhecida ou posicao que nao
@@ -339,16 +339,23 @@ aberta, arrastando para o lado.
 
 ### Imoveis de teste
 
-Os oito imoveis da curadoria **sao de teste**, a pedido da cliente, so para o
+Os doze imoveis da curadoria **sao de teste**, a pedido da cliente, so para o
 filtro ter o que filtrar. Nome, area e numero de suites foram inventados; as
 fotos sao do Unsplash. Estao distribuidos assim:
 
-| Pais | Cidades |
+| Pais | Pracas |
 |---|---|
-| Brasil | Sao Paulo, Rio de Janeiro, Florianopolis |
-| Estados Unidos | Orlando, Miami |
+| Brasil | Sao Paulo, Rio de Janeiro, Florianopolis, Balneario Camboriu, Praia Brava, Curitiba, Porto Alegre, Goiania |
+| Estados Unidos | Florida (Orlando e Miami sao bairros dela) |
 | Emirados | Dubai |
 | Portugal | Lisboa, Cascais |
+
+**Essas doze sao as pracas em que ela atua, passadas por ela em 02/10/2026.**
+O painel do filtro, a banda da curadoria (o primeiro imovel de cada praca) e
+as cartas do Global (a capa de cada praca) foram gerados a partir do
+`dados.js`, entao as quatro listas casam. Praca nova entra no `dados.js` e
+nos tres lugares do `index.html`, com o mesmo `data-slug`. No celular, a
+banda e as cartas ganharam setas (02/10): antes so andavam com o dedo.
 
 ## Movimento
 
@@ -459,8 +466,8 @@ No celular nao ha largura para quatro estacoes lado a lado: **o trajeto vira
 vertical**, com a linha descendo pela esquerda e as estacoes descendo com ela.
 
 **A secao nao tem imagem nenhuma**, e e isso que da o respiro no meio da
-pagina: abertura (4 imagens), curadoria (8), A AMGlobal (1), **servicos
-(nenhuma)**, global (3), contato (nenhuma).
+pagina: abertura (4 imagens), curadoria (12), A AMGlobal (1), **servicos
+(nenhuma)**, global (12), contato (nenhuma).
 
 A linha caida que pousava sobre o palco desta secao foi removida junto com a
 fotografia: ela e um fio pousado na borda de cima de uma imagem, e sem imagem
@@ -496,7 +503,7 @@ Esta versao fala a lingua da 04, com uma composicao diferente para nao virar a
   — como no slideshow da abertura. Para quando a pessoa aponta e volta quando
   ela sai; para tambem com a aba escondida, para nao gastar bateria a toa.
 - **O brilho da fotografia segue a hora que e la**: Dubai a noite entra escura,
-  Orlando de tarde entra aberta. Sao os mesmos cinco estados do dia (madrugada,
+  a Florida de tarde entra aberta. Sao os mesmos cinco estados do dia (madrugada,
   amanhecer, dia, entardecer, noite), guardados em `data-estado-do-dia` no
   proprio elemento e lidos por quem troca de praca.
 
@@ -512,14 +519,13 @@ animacao.
 Com movimento reduzido no sistema a secao **nao anda sozinha**: fica na
 primeira e so troca se a pessoa pedir.
 
-⚠️ **PROVISORIO:** as tres fotografias sao as MESMAS que o slideshow da
-abertura usa para Orlando, Portugal e Dubai — sao as unicas do acervo
-provisorio que retratam estas tres pracas. Saem junto com o resto do banco de
-imagem quando chegar a fotografia propria.
+⚠️ **PROVISORIO:** as doze fotografias das cartas sao as capas das pracas no
+`dados.js`, as mesmas das paginas internas, e vem do Unsplash. Saem junto com
+o resto do banco de imagem quando chegar a fotografia propria.
 
 **A diferenca para Sao Paulo e CALCULADA, nunca escrita a mao.** Ela muda
 sozinha quando um dos dois lados entra ou sai do horario de verao: em janeiro
-Portugal esta 3 horas a frente, em julho esta 4. Orlando e Portugal mudam em
+Portugal esta 3 horas a frente, em julho esta 4. A Florida e Portugal mudam em
 datas diferentes das nossas, e Dubai nao muda nunca — escrever "7 horas a
 frente" no HTML daria informacao errada duas vezes por ano.
 
