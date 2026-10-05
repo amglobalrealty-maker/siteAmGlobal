@@ -2140,6 +2140,20 @@
   @media (max-width: 900px) {
     .topo .botao { display: none; }
     .menu-abrir { display: block; }
+    /* A BARRA TRANSPARENTE (05/10). No celular o cabecalho nao escurece ao
+       rolar: fica transparente o tempo todo, e so o menu, quando abre, e
+       preto (o painel dele ja e onix de borda a borda). Para a barra
+       continuar legivel sobre as secoes claras, a TINTA troca: o script poe
+       .sobre-claro quando o que esta embaixo do cabecalho e uma secao .claro
+       ou .pedra, e o simbolo, o "Onde" e o botao do menu ficam onix. */
+    .topo.encolhido { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom-color: transparent; }
+    .topo .marca img { transition: height 0.6s var(--curva), filter 0.4s var(--toque); }
+    .topo .filtro-abrir { transition: color 0.4s var(--toque), border-color 0.4s var(--toque); }
+    .topo .menu-abrir { transition: color 0.4s var(--toque); }
+    .topo.sobre-claro .marca img { filter: brightness(0.08); }
+    .topo.sobre-claro .filtro-abrir { color: var(--onix); border-bottom-color: rgba(11, 11, 12, 0.3); }
+    .topo.sobre-claro .filtro-abrir svg { color: var(--grafite); }
+    .topo.sobre-claro .menu-abrir { color: var(--onix); }
     .menu {
       position: fixed;
       inset: 0;
@@ -2248,9 +2262,23 @@
     .linha-caida { --altura: clamp(56px, 16vw, 96px); }
   }
 
-  /* ate 600px a imagem e a EM PE: a moldura segue a proporcao dela */
+  /* ATE 600PX A IMAGEM E A EM PE, e cabe INTEIRA NA PRIMEIRA TELA (05/10): ela
+     abriu no telefone e a barra de trocar o quadro ficava fora da tela. A
+     moldura passa a ser a altura que sobra abaixo do cabecalho (svh, que
+     desconta a barra do navegador), limitada a altura natural da foto na
+     largura cheia; a foto se ajusta dentro, centralizada, e o que sobra dos
+     lados e onix, igual ao fundo. A barra de tracos vai para o centro, para
+     ficar sobre a foto e nao sobre a sobra. */
   @media (max-width: 600px) {
-    .capa-palco { aspect-ratio: 941 / 1672; }
+    .capa-palco {
+      aspect-ratio: auto;
+      height: calc(100svh - var(--alto-topo, 92px) - 26px);
+      min-height: 440px;
+      max-height: calc(100vw * 1672 / 941);
+      background: var(--onix);
+    }
+    .slides { background: var(--onix); }
+    .marcadores { left: 50%; transform: translateX(-50%); }
   }
 
   /* Telas largas mas baixas, como notebook: quem encolhe e a fotografia, para
@@ -3086,6 +3114,21 @@
       barra.style.transform = 'scaleX(' + (total > 0 ? y / total : 0) + ')';
       if (y > 80) topo.classList.add('encolhido');
       else topo.classList.remove('encolhido');
+      /* No celular a barra e transparente (05/10): a tinta escurece quando o
+         que esta embaixo dela e uma secao clara. Olha o meio do cabecalho,
+         pula o proprio cabecalho na pilha de elementos e pergunta a secao.
+         Com o menu aberto o fundo e o painel onix dele: tinta clara. */
+      var sobreClaro = false;
+      if (window.innerWidth <= 900 && document.elementsFromPoint && !(menu && menu.classList.contains('aberto'))) {
+        var pilha = document.elementsFromPoint(Math.round(window.innerWidth / 2), Math.round(topo.offsetHeight / 2));
+        for (var p = 0; p < pilha.length; p++) {
+          if (topo.contains(pilha[p])) continue;
+          var secao = pilha[p].closest('section, footer, .filtro-painel');
+          sobreClaro = !!(secao && (secao.classList.contains('claro') || secao.classList.contains('pedra')));
+          break;
+        }
+      }
+      topo.classList.toggle('sobre-claro', sobreClaro);
       pedido = false;
     });
   }
@@ -3100,12 +3143,14 @@
     menu.classList.remove('aberto');
     abrir.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('travado');
+    aoRolar();   // a tinta do cabecalho volta a seguir a secao
   }
 
   abrir.addEventListener('click', function () {
     var aberto = menu.classList.toggle('aberto');
     abrir.setAttribute('aria-expanded', aberto ? 'true' : 'false');
     document.body.classList.toggle('travado', aberto);
+    aoRolar();   // menu aberto e painel onix: tinta clara na hora
   });
 
   menu.addEventListener('click', function (ev) {
