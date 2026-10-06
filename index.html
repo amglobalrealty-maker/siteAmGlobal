@@ -782,15 +782,6 @@
 
   .filtro-abrir:hover { border-bottom-color: var(--champagne); }
 
-  .filtro-rotulo {
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.42);
-  }
-
   .filtro-valor {
     font-family: var(--serif);
     font-style: italic;
@@ -836,30 +827,32 @@
   .filtro-col { display: grid; align-content: start; }
   .filtro-col > .rotulo { margin-bottom: 18px; }
 
-  /* ---- AS CIDADES, SEMPRE TODAS ----
+  /* ---- OS ESTADOS, SEMPRE TODOS; AS CIDADES, DENTRO DE CADA UM (06/10) ----
 
-     O PAINEL ABRIA VAZIO. Com "Todos os paises" selecionado -- que e o estado em
-     que ele nasce -- as cidades ficavam escondidas e sobrava so o rotulo:
-     sessenta por cento da largura em preto, mostrando uma linha. O vazio
-     aparecia justamente na primeira coisa que a pessoa via.
-
-     Agora elas aparecem todas, em DUAS COLUNAS, e escolher um pais passa a
-     APAGAR as outras em vez de sumir com elas. Nada nunca esvazia, e quem abre o
-     filtro ve o portfolio inteiro de uma vez. */
-  .filtro-cidades {
+     A coluna da direita era "Cidade", com as doze pracas soltas. A cliente
+     pediu ESTADOS, e dentro de cada estado as cidades dele. Os estados ficam
+     sempre todos na tela, em duas colunas, com o pais escrito ao lado de cada
+     um; escolher um pais APAGA os estados de fora em vez de sumir com eles
+     (nada nunca esvazia: a versao anterior escondia as cidades e o painel
+     nascia com a coluna da direita vazia). Tocar num estado abre as cidades
+     dele logo abaixo e ja filtra o indice; tocar de novo fecha e volta ao
+     pais. Um estado aberto por vez. */
+  .filtro-estados {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: clamp(20px, 3vw, 54px);
     align-content: start;
   }
 
-  /* "Todas as cidades" e o reajuste, nao uma cidade: atravessa as duas colunas */
-  .filtro-cidade[data-cidade=""] { grid-column: 1 / -1; }
+  /* "Todos os estados" e o reajuste, nao um estado: atravessa as duas colunas */
+  .filtro-estado[data-estado=""] { grid-column: 1 / -1; }
 
-  /* O PAIS DE CADA CIDADE SAI DO PROPRIO ATRIBUTO, sem uma palavra a mais na
-     marcacao: acrescentar praca continua sendo acrescentar um botao. Com as doze
-     juntas, sem isto nao se sabe onde fica Cascais. */
-  .filtro-cidade[data-pais]::after {
+  .filtro-grupo { min-width: 0; }
+
+  /* O PAIS DE CADA ESTADO SAI DO PROPRIO ATRIBUTO, sem uma palavra a mais na
+     marcacao: acrescentar estado continua sendo acrescentar um grupo. Com nove
+     estados de quatro paises juntos, sem isto nao se sabe onde fica Lisboa. */
+  .filtro-estado[data-pais]::after {
     content: attr(data-pais);
     font-family: var(--sans);
     font-weight: 400;
@@ -870,13 +863,14 @@
     transition: color 0.5s var(--toque);
   }
 
-  /* fora do pais escolhido: apaga, mas CONTINUA CLICAVEL -- clicar nela troca o
-     pais junto, que e o atalho que o filtro ja sabia fazer */
-  .filtro-cidade.fora { color: rgba(245, 242, 236, 0.2); }
-  .filtro-cidade.fora::after { color: rgba(245, 242, 236, 0.13); }
-  .filtro-cidade.fora:hover { color: rgba(245, 242, 236, 0.72); }
+  /* fora do pais escolhido: apaga, mas CONTINUA CLICAVEL -- tocar num estado
+     apagado troca o pais junto */
+  .filtro-grupo.fora .filtro-estado { color: rgba(245, 242, 236, 0.2); }
+  .filtro-grupo.fora .filtro-estado::after { color: rgba(245, 242, 236, 0.13); }
+  .filtro-grupo.fora .filtro-estado:hover { color: rgba(245, 242, 236, 0.72); }
 
   .filtro-pais,
+  .filtro-estado,
   .filtro-cidade {
     display: flex;
     align-items: baseline;
@@ -896,9 +890,11 @@
   }
 
   .filtro-pais:hover,
+  .filtro-estado:hover,
   .filtro-cidade:hover { color: var(--marfim); padding-left: 9px; }
 
   .filtro-pais.ativo,
+  .filtro-estado.ativo,
   .filtro-cidade.ativo { color: var(--marfim); }
 
   .filtro-conta {
@@ -910,10 +906,37 @@
   }
 
   .filtro-pais.ativo .filtro-conta,
-  .filtro-cidade.ativo .filtro-conta { color: var(--champagne); }
+  .filtro-estado.ativo .filtro-conta { color: var(--champagne); }
 
-  .filtro-cidades { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(18px, 3vw, 44px); }
-  .filtro-cidade[hidden] { display: none !important; }
+  /* AS CIDADES DE UM ESTADO abrem como uma gaveta: a grade vai de 0fr a 1fr,
+     que anima a altura sem medir nada. Fechadas, nao ocupam linha nem recebem
+     foco (visibility), e a visibilidade so vira depois que a gaveta fechou. */
+  .filtro-cidades {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows 0.55s var(--ambiente), opacity 0.35s var(--toque), visibility 0s 0.55s;
+  }
+  .filtro-cidades > div { min-height: 0; overflow: hidden; }
+  .filtro-grupo.aberto .filtro-cidades {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows 0.7s var(--ambiente), opacity 0.5s var(--toque) 0.15s, visibility 0s;
+  }
+
+  /* a cidade e menor que o estado e entra recuada, com um fio a esquerda que
+     a prende ao estado de cima */
+  .filtro-cidade {
+    font-size: clamp(17px, 1.6vw, 21px);
+    padding: 9px 0 9px 18px;   /* 37px de altura no celular: alvo de toque */
+    border-left: 1px solid rgba(180, 154, 110, 0.4);
+    color: rgba(245, 242, 236, 0.62);
+  }
+  .filtro-cidade:hover { padding-left: 26px; }
+  .filtro-cidades > div > .filtro-cidade:first-child { margin-top: 2px; }
+  .filtro-cidades > div > .filtro-cidade:last-child { margin-bottom: 12px; }
 
   /* ============================================================ curadoria ==
      Uma BANDA so, da largura da pagina e da altura de pouco mais de meia tela.
@@ -2145,7 +2168,7 @@
        preto (o painel dele ja e onix de borda a borda). Para a barra
        continuar legivel sobre as secoes claras, a TINTA troca: o script poe
        .sobre-claro quando o que esta embaixo do cabecalho e uma secao .claro
-       ou .pedra, e o simbolo, o "Onde" e o botao do menu ficam onix. */
+       ou .pedra, e o simbolo, o seletor de localizacoes e o botao do menu ficam onix. */
     .topo.encolhido { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom-color: transparent; }
     .topo .marca img { transition: height 0.6s var(--curva), filter 0.4s var(--toque); }
     .topo .filtro-abrir { transition: color 0.4s var(--toque), border-color 0.4s var(--toque); }
@@ -2174,10 +2197,9 @@
     .menu a::after { bottom: -4px; }
     /* a chapa sobe para cima da lista: e ela que a pessoa ve primeiro */
     /* no celular o painel ocupa a tela inteira e rola */
-    .filtro-rotulo { display: none; }
     .filtro-painel { bottom: 0; overflow-y: auto; }
     .filtro-grade { grid-template-columns: 1fr; gap: 30px; }
-    .filtro-cidades { grid-template-columns: 1fr; }
+    .filtro-estados { grid-template-columns: 1fr; }
     /* a banda passa a correr de lado, com encaixe: uma lamina por vez, aberta */
     .leque {
       height: clamp(380px, 62vh, 540px);
@@ -2352,11 +2374,12 @@
   </a>
 
   <div class="topo-direita">
-    <!-- Filtro por pais. Escolher o pais abre as cidades dele e filtra o
-         indice da curadoria, logo abaixo. -->
+    <!-- Localizacoes: pais, estado e cidade. Escolher o pais ou o estado filtra
+         o indice da curadoria, logo abaixo; escolher a cidade abre a pagina
+         dela. O seletor diz "Localizações" ate alguem escolher algo (pedido da
+         cliente em 06/10/2026; antes dizia "Onde" e "Todos os países"). -->
     <button type="button" class="filtro-abrir" id="filtroAbrir" aria-expanded="false" aria-controls="filtroPainel">
-      <span class="filtro-rotulo">Onde</span>
-      <span class="filtro-valor" id="filtroValor">Todos os países</span>
+      <span class="filtro-valor" id="filtroValor">Localizações</span>
       <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
         <path d="M1 1 L5.5 6 L10 1"/>
       </svg>
@@ -2379,7 +2402,7 @@
 </header>
 
 <!-- ========================================================== painel do filtro -->
-<div class="filtro-painel" id="filtroPainel" role="dialog" aria-label="Filtrar por país e cidade">
+<div class="filtro-painel" id="filtroPainel" role="dialog" aria-label="Filtrar por país, estado e cidade">
   <div class="filtro-grade">
     <div class="filtro-col">
       <span class="rotulo">País</span>
@@ -2391,23 +2414,85 @@
     </div>
 
     <div class="filtro-col">
-      <span class="rotulo">Cidade</span>
-      <!-- `data-slug` e o que leva a pagina da cidade (cidade.html?c=<slug>).
-           Cidade sem slug continua apenas filtrando a curadoria aqui. -->
-      <div class="filtro-cidades" id="filtroCidades">
-        <button type="button" class="filtro-cidade ativo" data-cidade="">Todas as cidades</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">São Paulo</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">Rio de Janeiro</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">Florianópolis</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Balneário Camboriú" data-slug="balneario-camboriu">Balneário Camboriú</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Praia Brava" data-slug="praia-brava">Praia Brava</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Curitiba" data-slug="curitiba">Curitiba</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Porto Alegre" data-slug="porto-alegre">Porto Alegre</button>
-        <button type="button" class="filtro-cidade" data-pais="Brasil" data-cidade="Goiânia" data-slug="goiania">Goiânia</button>
-        <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-cidade="Flórida" data-slug="florida">Flórida</button>
-        <button type="button" class="filtro-cidade" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">Dubai</button>
-        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">Lisboa</button>
-        <button type="button" class="filtro-cidade" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">Cascais</button>
+      <span class="rotulo">Estados</span>
+      <!-- Um grupo por estado: o botao do estado e, dentro, as cidades dele
+           (pedido da cliente em 06/10/2026; antes era uma lista de cidades).
+           `data-slug` e o que leva a pagina da cidade (cidade.html?c=<slug>);
+           cidade sem slug continua apenas filtrando a curadoria aqui. A
+           contagem de cada estado e somada das laminas, pelo data-estado. -->
+      <div class="filtro-estados" id="filtroEstados">
+        <button type="button" class="filtro-estado ativo" data-estado="">Todos os estados</button>
+
+        <div class="filtro-grupo" data-pais="Brasil" data-estado="São Paulo">
+          <button type="button" class="filtro-estado" data-pais="Brasil" data-estado="São Paulo" aria-expanded="false">São Paulo<span class="filtro-conta" data-conta-estado="São Paulo"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="São Paulo" data-cidade="São Paulo" data-slug="sao-paulo">São Paulo</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Brasil" data-estado="Rio de Janeiro">
+          <button type="button" class="filtro-estado" data-pais="Brasil" data-estado="Rio de Janeiro" aria-expanded="false">Rio de Janeiro<span class="filtro-conta" data-conta-estado="Rio de Janeiro"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Rio de Janeiro" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">Rio de Janeiro</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Brasil" data-estado="Santa Catarina">
+          <button type="button" class="filtro-estado" data-pais="Brasil" data-estado="Santa Catarina" aria-expanded="false">Santa Catarina<span class="filtro-conta" data-conta-estado="Santa Catarina"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Santa Catarina" data-cidade="Florianópolis" data-slug="florianopolis">Florianópolis</button>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Santa Catarina" data-cidade="Balneário Camboriú" data-slug="balneario-camboriu">Balneário Camboriú</button>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Santa Catarina" data-cidade="Praia Brava" data-slug="praia-brava">Praia Brava</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Brasil" data-estado="Paraná">
+          <button type="button" class="filtro-estado" data-pais="Brasil" data-estado="Paraná" aria-expanded="false">Paraná<span class="filtro-conta" data-conta-estado="Paraná"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Paraná" data-cidade="Curitiba" data-slug="curitiba">Curitiba</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Brasil" data-estado="Rio Grande do Sul">
+          <button type="button" class="filtro-estado" data-pais="Brasil" data-estado="Rio Grande do Sul" aria-expanded="false">Rio Grande do Sul<span class="filtro-conta" data-conta-estado="Rio Grande do Sul"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Rio Grande do Sul" data-cidade="Porto Alegre" data-slug="porto-alegre">Porto Alegre</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Brasil" data-estado="Goiás">
+          <button type="button" class="filtro-estado" data-pais="Brasil" data-estado="Goiás" aria-expanded="false">Goiás<span class="filtro-conta" data-conta-estado="Goiás"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Brasil" data-estado="Goiás" data-cidade="Goiânia" data-slug="goiania">Goiânia</button>
+          </div></div>
+        </div>
+
+        <!-- A praca no dados.js chama-se "Flórida" (a pagina cobre Miami, Orlando
+             e Boca Raton). Como Florida ja e o estado, a cidade listada embaixo
+             e Miami, onde estao os imoveis da home (decisao dela, 06/10/2026).
+             `data-cidade` continua "Flórida" para casar com a lamina da
+             curadoria e com a ficha do Global, que procuram por esse valor. -->
+        <div class="filtro-grupo" data-pais="Estados Unidos" data-estado="Flórida">
+          <button type="button" class="filtro-estado" data-pais="Estados Unidos" data-estado="Flórida" aria-expanded="false">Flórida<span class="filtro-conta" data-conta-estado="Flórida"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Estados Unidos" data-estado="Flórida" data-cidade="Flórida" data-slug="florida">Miami</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Emirados" data-estado="Dubai">
+          <button type="button" class="filtro-estado" data-pais="Emirados" data-estado="Dubai" aria-expanded="false">Dubai<span class="filtro-conta" data-conta-estado="Dubai"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Emirados" data-estado="Dubai" data-cidade="Dubai" data-slug="dubai">Dubai</button>
+          </div></div>
+        </div>
+
+        <div class="filtro-grupo" data-pais="Portugal" data-estado="Lisboa">
+          <button type="button" class="filtro-estado" data-pais="Portugal" data-estado="Lisboa" aria-expanded="false">Lisboa<span class="filtro-conta" data-conta-estado="Lisboa"></span></button>
+          <div class="filtro-cidades"><div>
+            <button type="button" class="filtro-cidade" data-pais="Portugal" data-estado="Lisboa" data-cidade="Lisboa" data-slug="lisboa">Lisboa</button>
+            <button type="button" class="filtro-cidade" data-pais="Portugal" data-estado="Lisboa" data-cidade="Cascais" data-slug="cascais">Cascais</button>
+          </div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -2517,16 +2602,16 @@
 
 
 
-  <!-- ATENCAO: DOZE IMOVEIS DE TESTE, um por praca, so para o filtro de pais e
-       cidade ter o que filtrar. Cada lamina e o PRIMEIRO imovel da praca no
+  <!-- ATENCAO: DOZE IMOVEIS DE TESTE, um por praca, so para o filtro de pais,
+       estado e cidade ter o que filtrar. Cada lamina e o PRIMEIRO imovel da praca no
        dados.js, com a mesma foto: mexer aqui a mao desencontra as duas listas. Nome, area e suites sao inventados de proposito e a
        fotografia e do Unsplash, que o manual proibe em material de imovel.
        Quando o portfolio real for cadastrado, troque lamina por lamina: o
-       filtro le `data-pais` e `data-cidade` daqui. Entrar ou sair residencia
+       filtro le `data-pais`, `data-estado` e `data-cidade` daqui. Entrar ou sair residencia
        nao muda a altura da secao: as laminas so ficam mais estreitas ou mais
        largas. -->
   <div class="leque sobe" id="leque">
-    <button type="button" class="leque-item aberto" data-pais="Brasil" data-cidade="São Paulo" data-slug="sao-paulo">
+    <button type="button" class="leque-item aberto" data-pais="Brasil" data-estado="São Paulo" data-cidade="São Paulo" data-slug="sao-paulo">
       <img src="https://images.unsplash.com/photo-1706808849780-7a04fbac83ef?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">01</span>
       <span class="leque-vertical"><span>São Paulo</span></span>
@@ -2538,7 +2623,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Rio de Janeiro" data-cidade="Rio de Janeiro" data-slug="rio-de-janeiro">
       <img src="https://images.unsplash.com/photo-1633354747567-e0682586f082?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">02</span>
       <span class="leque-vertical"><span>Rio de Janeiro</span></span>
@@ -2550,7 +2635,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Florianópolis" data-slug="florianopolis">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Santa Catarina" data-cidade="Florianópolis" data-slug="florianopolis">
       <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">03</span>
       <span class="leque-vertical"><span>Florianópolis</span></span>
@@ -2562,7 +2647,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Balneário Camboriú" data-slug="balneario-camboriu">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Santa Catarina" data-cidade="Balneário Camboriú" data-slug="balneario-camboriu">
       <img src="https://images.unsplash.com/photo-1745761320791-5ae142edee8c?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">04</span>
       <span class="leque-vertical"><span>Balneário Camboriú</span></span>
@@ -2574,7 +2659,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Praia Brava" data-slug="praia-brava">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Santa Catarina" data-cidade="Praia Brava" data-slug="praia-brava">
       <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">05</span>
       <span class="leque-vertical"><span>Praia Brava</span></span>
@@ -2586,7 +2671,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Curitiba" data-slug="curitiba">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Paraná" data-cidade="Curitiba" data-slug="curitiba">
       <img src="https://images.unsplash.com/photo-1776482128172-dd265ad0cb49?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">06</span>
       <span class="leque-vertical"><span>Curitiba</span></span>
@@ -2598,7 +2683,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Porto Alegre" data-slug="porto-alegre">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Rio Grande do Sul" data-cidade="Porto Alegre" data-slug="porto-alegre">
       <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">07</span>
       <span class="leque-vertical"><span>Porto Alegre</span></span>
@@ -2610,7 +2695,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Brasil" data-cidade="Goiânia" data-slug="goiania">
+    <button type="button" class="leque-item" data-pais="Brasil" data-estado="Goiás" data-cidade="Goiânia" data-slug="goiania">
       <img src="https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">08</span>
       <span class="leque-vertical"><span>Goiânia</span></span>
@@ -2622,7 +2707,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Estados Unidos" data-cidade="Flórida" data-slug="florida">
+    <button type="button" class="leque-item" data-pais="Estados Unidos" data-estado="Flórida" data-cidade="Flórida" data-slug="florida">
       <img src="https://images.unsplash.com/photo-1706164971302-e30c0640cc3b?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">09</span>
       <span class="leque-vertical"><span>Flórida</span></span>
@@ -2634,7 +2719,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Emirados" data-cidade="Dubai" data-slug="dubai">
+    <button type="button" class="leque-item" data-pais="Emirados" data-estado="Dubai" data-cidade="Dubai" data-slug="dubai">
       <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">10</span>
       <span class="leque-vertical"><span>Dubai</span></span>
@@ -2646,7 +2731,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Lisboa" data-slug="lisboa">
+    <button type="button" class="leque-item" data-pais="Portugal" data-estado="Lisboa" data-cidade="Lisboa" data-slug="lisboa">
       <img src="https://images.unsplash.com/photo-1685514823717-7e1ff6ee0563?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">11</span>
       <span class="leque-vertical"><span>Lisboa</span></span>
@@ -2658,7 +2743,7 @@
       </span>
     </button>
 
-    <button type="button" class="leque-item" data-pais="Portugal" data-cidade="Cascais" data-slug="cascais">
+    <button type="button" class="leque-item" data-pais="Portugal" data-estado="Lisboa" data-cidade="Cascais" data-slug="cascais">
       <img src="https://images.unsplash.com/photo-1748063578185-3d68121b11ff?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">12</span>
       <span class="leque-vertical"><span>Cascais</span></span>
@@ -3290,13 +3375,15 @@
     });
   }
 
-  /* 7. Filtro por pais e cidade.
+  /* 7. Filtro por pais, estado e cidade (estados desde 06/10/2026).
 
-     Escolher o pais abre as cidades DELE e ja filtra o indice. Escolher a
-     cidade fecha o painel e leva a pessoa ate a curadoria. A fonte da verdade
-     sao os atributos data-pais e data-cidade das proprias linhas do indice:
-     ate as contagens do painel saem de la, entao trocar o portfolio nao pede
-     nenhuma mudanca aqui. */
+     Tres niveis. Escolher o pais filtra o indice e apaga os estados de fora.
+     Escolher o estado abre as cidades DELE e filtra o indice; tocar de novo
+     fecha e volta ao pais. Escolher a cidade abre a pagina dela (ou, sem
+     pagina, fecha o painel e leva a pessoa ate a curadoria). A fonte da
+     verdade sao os atributos data-pais, data-estado e data-cidade das
+     proprias linhas do indice: ate as contagens do painel saem de la, entao
+     trocar o portfolio nao pede nenhuma mudanca aqui. */
   var abrirFiltro = document.getElementById('filtroAbrir');
   var painelFiltro = document.getElementById('filtroPainel');
   var valorFiltro = document.getElementById('filtroValor');
@@ -3307,29 +3394,43 @@
     var vazio = document.getElementById('lequeVazio');
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
+    var grupos = painelFiltro.querySelectorAll('.filtro-grupo');
+    var todosEstados = painelFiltro.querySelector('.filtro-estado[data-estado=""]');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
     var paisAtual = '';
+    var estadoAtual = '';
     var cidadeAtual = '';
 
-    function quantas(pais) {
+    // quantas residencias tem o valor dado num atributo (data-pais, data-estado)
+    function quantas(atributo, valor) {
       var n = 0;
       Array.prototype.forEach.call(linhasDossie, function (l) {
-        if (!pais || l.getAttribute('data-pais') === pais) n++;
+        if (!valor || l.getAttribute(atributo) === valor) n++;
       });
       return n;
     }
 
     // contagens do painel, uma vez, a partir das linhas que existem
     Array.prototype.forEach.call(painelFiltro.querySelectorAll('[data-conta-pais]'), function (span) {
-      span.textContent = quantas(span.getAttribute('data-conta-pais'));
+      span.textContent = quantas('data-pais', span.getAttribute('data-conta-pais'));
     });
+    Array.prototype.forEach.call(painelFiltro.querySelectorAll('[data-conta-estado]'), function (span) {
+      span.textContent = quantas('data-estado', span.getAttribute('data-conta-estado'));
+    });
+
+    function marcarPais() {
+      Array.prototype.forEach.call(botoesPais, function (b) {
+        b.classList.toggle('ativo', (b.getAttribute('data-pais') || '') === paisAtual);
+      });
+    }
 
     function aplicar() {
       var visiveis = 0;
       Array.prototype.forEach.call(linhasDossie, function (linha) {
         var casaPais = !paisAtual || linha.getAttribute('data-pais') === paisAtual;
+        var casaEstado = !estadoAtual || linha.getAttribute('data-estado') === estadoAtual;
         var casaCidade = !cidadeAtual || linha.getAttribute('data-cidade') === cidadeAtual;
-        var mostra = casaPais && casaCidade;
+        var mostra = casaPais && casaEstado && casaCidade;
         linha.hidden = !mostra;
         if (mostra) visiveis++;
       });
@@ -3337,13 +3438,13 @@
       if (vazio) vazio.hidden = visiveis > 0;
 
       if (conta) {
-        var onde = cidadeAtual || paisAtual || 'todas as praças';
+        var onde = cidadeAtual || estadoAtual || paisAtual || 'todas as praças';
         conta.textContent = visiveis === 1
           ? '1 residência em ' + onde
           : visiveis + ' residências em ' + onde;
       }
 
-      valorFiltro.textContent = cidadeAtual || paisAtual || 'Todos os países';
+      valorFiltro.textContent = cidadeAtual || estadoAtual || paisAtual || 'Localizações';
 
       // depois de filtrar, abre a primeira que sobrou
       var primeira = null;
@@ -3406,26 +3507,28 @@
     if (lequeEsq) lequeEsq.addEventListener('click', function () { andarLeque(-1); });
     if (lequeDir) lequeDir.addEventListener('click', function () { andarLeque(1); });
 
-    /* NENHUMA CIDADE SOME MAIS.
+    /* NENHUM ESTADO SOME. Todos ficam sempre na tela; escolher um pais APAGA
+       os de fora em vez de esconde-los (a versao anterior escondia as cidades
+       e o painel nascia com a coluna da direita vazia). Os apagados CONTINUAM
+       CLICAVEIS: tocar num deles troca o pais junto.
 
-       Antes era `if (!paisAtual) b.hidden = !!dePais;` -- sem pais escolhido,
-       TODAS as cidades sumiam. E "todos os paises" e o estado em que o painel
-       NASCE, entao ele abria com a coluna da direita vazia: sessenta por cento de
-       preto mostrando uma linha so.
-
-       Agora todas ficam sempre na tela, e escolher um pais APAGA as de fora em
-       vez de esconde-las. Some o vazio, e de quebra a pessoa ve de onde sao as
-       outras pracas -- o que uma lista que desaparece nunca contou.
-
-       As apagadas CONTINUAM CLICAVEIS: clicar numa delas troca o pais junto, que
-       e um atalho que este filtro ja sabia fazer e que, com as cidades
-       escondidas, ninguem conseguia usar. */
-    function mostrarCidades() {
+       As cidades ficam DENTRO do estado e so aparecem no estado aberto, que e
+       sempre um so: o escolhido. */
+    function mostrarEstados() {
+      Array.prototype.forEach.call(grupos, function (g) {
+        var dePais = g.getAttribute('data-pais');
+        var aberto = !!estadoAtual && g.getAttribute('data-estado') === estadoAtual;
+        g.classList.toggle('fora', !!paisAtual && dePais !== paisAtual);
+        g.classList.toggle('aberto', aberto);
+        var b = g.querySelector('.filtro-estado');
+        if (b) {
+          b.classList.toggle('ativo', aberto);
+          b.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+        }
+      });
+      if (todosEstados) todosEstados.classList.toggle('ativo', !estadoAtual);
       Array.prototype.forEach.call(botoesCidade, function (b) {
-        var dePais = b.getAttribute('data-pais');
-        b.hidden = false;
-        b.classList.toggle('fora', !!dePais && !!paisAtual && dePais !== paisAtual);
-        b.classList.toggle('ativo', (b.getAttribute('data-cidade') || '') === cidadeAtual);
+        b.classList.toggle('ativo', !!cidadeAtual && (b.getAttribute('data-cidade') || '') === cidadeAtual);
       });
     }
 
@@ -3443,11 +3546,31 @@
       var bPais = ev.target.closest('.filtro-pais');
       if (bPais) {
         paisAtual = bPais.getAttribute('data-pais') || '';
+        estadoAtual = '';
         cidadeAtual = '';
-        Array.prototype.forEach.call(botoesPais, function (b) {
-          b.classList.toggle('ativo', b === bPais);
-        });
-        mostrarCidades();
+        marcarPais();
+        mostrarEstados();
+        aplicar();
+        return;
+      }
+
+      // o estado: abre as cidades dele e filtra; tocar no aberto fecha e volta
+      // ao pais; escolher um estado de outro pais troca o pais junto
+      var bEstado = ev.target.closest('.filtro-estado');
+      if (bEstado) {
+        var estado = bEstado.getAttribute('data-estado') || '';
+        if (estado && estado === estadoAtual) {
+          estadoAtual = '';
+        } else {
+          estadoAtual = estado;
+          var paisDoEstado = bEstado.getAttribute('data-pais');
+          if (paisDoEstado && paisDoEstado !== paisAtual) {
+            paisAtual = paisDoEstado;
+            marcarPais();
+          }
+        }
+        cidadeAtual = '';
+        mostrarEstados();
         aplicar();
         return;
       }
@@ -3462,18 +3585,11 @@
         }
 
         cidadeAtual = bCidade.getAttribute('data-cidade') || '';
-        // escolher a cidade sem ter escolhido o pais assume o pais dela
-        var dePais = bCidade.getAttribute('data-pais');
-        if (dePais) {
-          paisAtual = dePais;
-          Array.prototype.forEach.call(botoesPais, function (b) {
-            b.classList.toggle('ativo', b.getAttribute('data-pais') === dePais);
-          });
-          mostrarCidades();
-        }
-        Array.prototype.forEach.call(botoesCidade, function (b) {
-          b.classList.toggle('ativo', b === bCidade);
-        });
+        // escolher a cidade assume o estado e o pais dela
+        paisAtual = bCidade.getAttribute('data-pais') || paisAtual;
+        estadoAtual = bCidade.getAttribute('data-estado') || estadoAtual;
+        marcarPais();
+        mostrarEstados();
         aplicar();
         fecharFiltro();
         var alvo = document.getElementById('curadoria');
@@ -3491,7 +3607,7 @@
       if (ev.key === 'Escape') fecharFiltro();
     });
 
-    mostrarCidades();
+    mostrarEstados();
     aplicar();
   }
 

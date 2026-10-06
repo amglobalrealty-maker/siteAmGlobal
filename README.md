@@ -100,7 +100,7 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
    Todas entram dessaturadas por CSS, para nao brigarem com onix e travertino.
 3. **Imoveis.** A curadoria esta com doze imoveis DE TESTE, a pedido da
    cliente, para o filtro ter o que filtrar. Nome, area e suites sao
-   inventados. Falta a lista real. Ver a secao "O filtro por pais e cidade".
+   inventados. Falta a lista real. Ver a secao "O filtro por pais, estado e cidade".
 4. **Contato.** O formulario da secao 06 abre o WhatsApp com a mensagem
    pronta. O numero esta na constante `WHATSAPP`, no fim do script do
    `index.html` (so digitos, com 55 e DDD): hoje 11 95994-3705, que ela passou
@@ -176,8 +176,9 @@ existe caem num recado com link para a curadoria, nunca em pagina em branco.
 
 ### Como se chega nelas
 
-- **Cidade do filtro do topo** abre a pagina da cidade. "Todas as cidades"
-  continua so filtrando a home.
+- **Cidade do filtro do topo** (dentro do estado dela) abre a pagina da
+  cidade. Os botoes de pais e de estado, e "Todos os estados", so filtram a
+  home.
 - **Lamina da curadoria**, tanto na home quanto na pagina da cidade, abre a
   ficha do imovel. No toque, o primeiro toque abre a lamina e o segundo entra,
   senao a pessoa sairia da pagina sem nunca ter visto a foto grande.
@@ -211,7 +212,8 @@ As fotos vem do objeto `f`, no topo do arquivo, e **cada uma ja carrega a
 propria legenda**. Para trocar a foto de um imovel, troque a chave.
 
 Para incluir uma cidade: uma entrada em `CIDADES`, o apelido em `ORDEM` e um
-botao no filtro do `index.html` com o mesmo apelido em `data-slug`. Para
+botao no filtro do `index.html`, dentro do grupo do estado dela (ou num grupo
+novo, se o estado ainda nao existir), com o mesmo apelido em `data-slug`. Para
 incluir um imovel: um objeto na lista `imoveis` da cidade. O primeiro da lista
 e o que aparece na home.
 
@@ -315,28 +317,57 @@ aparece mais na tela: o indice lateral com os numeros 01 a 06 foi retirado a
 pedido da cliente. Quem diz onde a pessoa esta e o menu do topo, que sublinha
 a secao atual, mais o filete de progresso.
 
-## O filtro por pais e cidade
+## O filtro por pais, estado e cidade
 
-No canto direito do cabecalho, ao lado do menu, fica o seletor **Onde**. Ele
-abre um painel de largura cheia com duas colunas: os paises a esquerda, com a
-quantidade de residencias de cada um, e as cidades a direita.
+No canto direito do cabecalho, ao lado do menu, fica o seletor
+**Localizacoes** (ate 06/10/2026 dizia "Onde" e "Todos os paises"; a cliente
+pediu a troca). Ele abre um painel de largura cheia com duas colunas: os
+paises a esquerda, com a quantidade de residencias de cada um, e os
+**estados** a direita, tambem com a quantidade e com o pais escrito ao lado.
+Dentro de cada estado ficam as cidades dele.
 
-- Escolher o **pais** abre as cidades dele e ja filtra a curadoria. O painel
-  fica aberto, para a pessoa poder afinar.
+- Escolher o **pais** filtra a curadoria e apaga os estados dos outros
+  paises (eles continuam clicaveis: tocar num deles troca o pais junto). O
+  painel fica aberto, para a pessoa poder afinar.
+- Escolher o **estado** abre as cidades dele logo abaixo, como uma gaveta, e
+  filtra a curadoria. Um estado aberto por vez; tocar de novo fecha e volta
+  ao pais. "Todos os estados" desfaz a escolha do estado.
 - Escolher a **cidade** abre a pagina daquela praca (ver "As paginas
-  internas"). "Todas as cidades" continua so filtrando a home.
-- O texto do seletor sempre mostra onde a pessoa esta: "Todos os paises", o
-  nome do pais ou o nome da cidade.
+  internas"). Cidade sem pagina so filtraria a home.
+- O texto do seletor sempre mostra onde a pessoa esta: "Localizacoes", o
+  nome do pais, do estado ou da cidade.
 - Abaixo do indice, uma linha diz quantas residencias aquele recorte tem.
 - Sem nenhum resultado, aparece um recado convidando a falar com um consultor.
 - Fecha no Esc ou clicando fora. No celular ocupa a tela inteira e rola.
 
 **A fonte da verdade sao as proprias residencias.** Cada uma carrega
-`data-pais` e `data-cidade`; ate as contagens do painel sao somadas a partir
-delas quando a pagina abre. Depois de filtrar, a primeira lamina que sobrou se
-abre sozinha. Para trocar o portfolio basta editar os blocos `leque-item`,
-mantendo esses dois atributos. So e preciso mexer no painel se entrar um pais
-ou uma cidade que ainda nao esteja listado la.
+`data-pais`, `data-estado` e `data-cidade`; ate as contagens do painel sao
+somadas a partir delas quando a pagina abre. Depois de filtrar, a primeira
+lamina que sobrou se abre sozinha. Para trocar o portfolio basta editar os
+blocos `leque-item`, mantendo esses tres atributos. So e preciso mexer no
+painel se entrar um pais, um estado ou uma cidade que ainda nao esteja
+listado la.
+
+Os estados que saem das doze pracas (06/10/2026):
+
+| Pais | Estado | Cidades no filtro |
+|---|---|---|
+| Brasil | Sao Paulo | Sao Paulo |
+| Brasil | Rio de Janeiro | Rio de Janeiro |
+| Brasil | Santa Catarina | Florianopolis, Balneario Camboriu, Praia Brava |
+| Brasil | Parana | Curitiba |
+| Brasil | Rio Grande do Sul | Porto Alegre |
+| Brasil | Goias | Goiania |
+| Estados Unidos | Florida | Miami |
+| Emirados | Dubai | Dubai |
+| Portugal | Lisboa | Lisboa, Cascais |
+
+Florida ja e o estado, entao a cidade listada embaixo dela e **Miami**, onde
+estao os imoveis da home (decisao da cliente, 06/10/2026). A praca no
+`dados.js` continua chamada "Flórida" e a pagina e a mesma; por isso o botao
+de Miami carrega `data-cidade="Flórida"`, para casar com a lamina e com a
+ficha do Global. Dubai e emirado e cidade ao mesmo tempo, e Lisboa aqui e o
+distrito, que abriga Lisboa e Cascais.
 
 No celular a banda corre de lado, com encaixe: uma residencia por vez, ja
 aberta, arrastando para o lado.
