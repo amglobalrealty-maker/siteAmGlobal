@@ -403,9 +403,13 @@
     white-space: nowrap;
   }
 
-  .topo-direita { display: flex; align-items: center; gap: clamp(24px, 3vw, 44px); }
+  /* Com Mercado no menu (07/10/2026) sao seis itens: os vaos encolhem um pouco
+     e nada quebra linha; abaixo de 1280px o botao "Fale com um consultor" sai
+     da barra (o contato continua no menu e na secao 07). */
+  .topo-direita { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 36px); }
 
-  .menu { display: flex; align-items: center; gap: clamp(22px, 2.6vw, 38px); }
+  .menu { display: flex; align-items: center; gap: clamp(16px, 2vw, 30px); }
+  .menu a, .topo .botao { white-space: nowrap; }
 
   .menu a {
     position: relative;
@@ -2130,6 +2134,161 @@
   }
 
   /* ======================================================= telas estreitas == */
+  /* ============================================================== mercado ==
+     O PAINEL DE MERCADO (07/10/2026). Onix, entre o Global (claro) e o
+     Contato. A mesma gramatica das outras secoes: cabeca em duas escalas,
+     filete de 24px sobre um fio fino em cada cartao (como as frentes de
+     Servicos), rotulos em Jost caixa alta e numeros em Cormorant grande.
+     Nada de grafico: o que a secao tem para dizer cabe em quatro numeros,
+     uma tabela por praca e um paragrafo. */
+  .mercado-fundo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: clamp(18px, 3vw, 48px);
+    padding: clamp(18px, 2.6vh, 28px) 0;
+    border-top: 1px solid var(--linha-clara);
+    border-bottom: 1px solid var(--linha-clara);
+    margin-bottom: clamp(36px, 5vh, 60px);
+  }
+  .mercado-fundo-rotulo {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.42);
+  }
+  .mercado-macro { display: flex; flex-wrap: wrap; gap: clamp(18px, 3vw, 48px); margin: 0; }
+  .mercado-macro > div { display: grid; gap: 5px; }
+  .mercado-macro dt {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.42);
+  }
+  .mercado-macro dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1;
+    color: var(--marfim);
+    font-variant-numeric: tabular-nums;
+  }
+  .mercado-macro span { font-family: var(--sans); font-size: 10px; letter-spacing: 0.06em; color: rgba(245, 242, 236, 0.3); }
+
+  /* as abas: um estado por vez, o pais escrito ao lado, como no filtro */
+  .mercado-estados { display: flex; flex-wrap: wrap; gap: 4px clamp(14px, 2vw, 30px); margin-bottom: clamp(28px, 4vh, 44px); }
+  .mercado-estado {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 10px 0 12px;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(19px, 1.7vw, 24px);
+    line-height: 1.1;
+    color: rgba(245, 242, 236, 0.44);
+    transition: color 0.5s var(--toque), border-color 0.5s var(--toque);
+  }
+  .mercado-estado::after {
+    content: attr(data-pais);
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.28);
+    transition: color 0.5s var(--toque);
+  }
+  .mercado-estado:hover { color: var(--marfim); }
+  .mercado-estado.ativo { color: var(--marfim); border-bottom-color: var(--champagne); }
+  .mercado-estado.ativo::after { color: var(--champagne); }
+  .mercado-tag {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--onix);
+    background: var(--champagne);
+    padding: 2px 6px;
+  }
+
+  .mercado-aviso {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--champagne);
+    border-left: 1px solid var(--champagne);
+    padding-left: 14px;
+    margin: 0 0 22px;
+    max-width: 70ch;
+  }
+
+  /* os cartoes: fio fino, filete champagne, rotulo, numero grande, variacao e fonte */
+  .mercado-cartoes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(18px, 2.6vw, 44px); }
+  .mercado-cartao { position: relative; display: grid; align-content: start; gap: 8px; padding-top: clamp(18px, 2.4vh, 26px); min-width: 0; }
+  .mercado-cartao::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--linha-clara); }
+  .mercado-cartao::after { content: ''; position: absolute; top: 0; left: 0; width: 24px; height: 1px; background: var(--champagne); }
+  .mercado-rotulo {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    line-height: 1.3;
+  }
+  .mercado-valor {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3vw, 44px);
+    line-height: 1;
+    color: var(--marfim);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+  }
+  .mercado-valor.vazio { color: rgba(245, 242, 236, 0.3); font-size: clamp(20px, 1.8vw, 26px); font-style: italic; }
+  .mercado-var { font-family: var(--sans); font-size: 13px; letter-spacing: 0.04em; color: rgba(245, 242, 236, 0.72); font-variant-numeric: tabular-nums; }
+  .mercado-var small { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245, 242, 236, 0.38); }
+  .mercado-var.alta { color: var(--champagne); }
+  .mercado-fonte { font-family: var(--sans); font-size: 10px; letter-spacing: 0.06em; color: rgba(245, 242, 236, 0.32); line-height: 1.5; }
+  .mercado-cartao.exemplo .mercado-valor { color: rgba(245, 242, 236, 0.55); }
+
+  /* a tabela por praca, so nos estados com mais de uma */
+  .mercado-cidades {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: clamp(30px, 4vh, 44px);
+    font-family: var(--sans);
+    font-size: 13px;
+    color: rgba(245, 242, 236, 0.72);
+    font-variant-numeric: tabular-nums;
+  }
+  .mercado-cidades caption { text-align: left; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); padding-bottom: 12px; font-weight: 500; }
+  .mercado-cidades th { text-align: left; font-weight: 400; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 242, 236, 0.38); padding: 0 16px 10px 0; border-bottom: 1px solid var(--linha-clara); }
+  .mercado-cidades td { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--linha-clara); vertical-align: baseline; }
+  .mercado-cidades td:first-child { font-family: var(--serif); font-size: 19px; font-weight: 300; color: var(--marfim); }
+  .mercado-cidades td.alta { color: var(--champagne); }
+
+  /* a leitura: um paragrafo em Cormorant, com as fontes embaixo */
+  .mercado-leitura { margin-top: clamp(34px, 5vh, 56px); max-width: 72ch; display: grid; gap: 14px; }
+  .mercado-leitura p { font-family: var(--serif); font-weight: 300; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.5; color: rgba(245, 242, 236, 0.78); margin: 0; }
+  .mercado-leitura p.mercado-fontes, .mercado-ressalva { font-family: var(--sans); font-size: 11px; line-height: 1.6; letter-spacing: 0.04em; color: rgba(245, 242, 236, 0.36); }
+  .mercado-ressalva { margin: clamp(34px, 5vh, 56px) 0 0; max-width: 80ch; }
+  .mercado-recado { font-family: var(--serif); font-weight: 300; font-size: 20px; color: rgba(245, 242, 236, 0.5); }
+
+  /* notebook estreito: a barra fica com simbolo, filtro e os seis itens do menu */
+  @media (max-width: 1280px) {
+    .topo .botao { display: none; }
+  }
+
   @media (max-width: 1100px) {
     /* o bloco continua corrido; so a diferenca entre as duas escalas encolhe,
        porque numa tela estreita ela ficaria exagerada */
@@ -2240,6 +2399,16 @@
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
     .frente-nome { font-size: clamp(22px, 5.6vw, 28px); }
+    /* mercado no celular: dois cartoes por linha, abas em mais linhas, macro em grade */
+    .mercado-cartoes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 18px; }
+    .mercado-valor { font-size: clamp(24px, 6.6vw, 32px); }
+    .mercado-estados { gap: 0 18px; }
+    .mercado-estado { font-size: 19px; }
+    .mercado-fundo { display: grid; gap: 14px; }
+    .mercado-macro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; }
+    .mercado-cidades { font-size: 12px; }
+    .mercado-cidades th, .mercado-cidades td { padding-right: 10px; }
+    .mercado-cidades td:first-child { font-size: 17px; }
     /* ---- A ABERTURA NO CELULAR (05/10): A IMAGEM INTEIRA ----
        As imagens trazem titulo, subtitulo e paragrafo DESENHADOS. No celular
        (ate 600px) entra a versao EM PE que ela fez, inteira, sem corte; no
@@ -2367,6 +2536,7 @@
       <a href="#manifesto">A AMGlobal</a>
       <a href="#servicos">Serviços</a>
       <a href="#global">Global</a>
+      <a href="#mercado">Mercado</a>
       <a href="#contato">Contato</a>
     </nav>
 
@@ -2950,12 +3120,49 @@
   </div>
 </section>
 
+<!-- ================================================================= mercado -->
+<!-- O PAINEL DE MERCADO (07/10/2026). A cliente pediu IA no site nao para
+     atendimento, e sim para trazer dados do mercado imobiliario das regioes
+     em que atua: preco por m2, oferta, variacoes, mostrados no proprio site.
+     Os numeros vem de ferramentas/coletar-mercado.js, que grava
+     mercado-dados.js a partir de fontes publicas e gratuitas (FipeZap, Banco
+     Central, Zillow, INE). A leitura de cada estado e escrita a partir desses
+     numeros e de mais nada: modelo fixo em codigo, ou Gemini no nivel gratuito
+     quando houver chave. Esta secao so monta o que esta no arquivo; sem
+     arquivo, mostra um recado e nao inventa numero. Estado marcado "exemplo"
+     (amostra: true) e layout, nao dado, e a tela diz isso. -->
+<section id="mercado">
+  <div class="cabeca sobe">
+    <div>
+      <span class="filete"></span>
+      <span class="rotulo">06 — Mercado</span>
+      <h2>O mercado, estado a estado.</h2>
+    </div>
+    <div class="cabeca-texto">
+      <p>Números de fontes públicas, atualizados todo mês, e uma leitura curta de cada praça em que atuamos. Cada número traz a fonte e a data. O que falta aparece como falta.</p>
+    </div>
+  </div>
+
+  <div class="mercado-fundo sobe" id="mercadoFundo" hidden>
+    <span class="mercado-fundo-rotulo">Brasil, pano de fundo</span>
+    <dl class="mercado-macro" id="mercadoMacro"></dl>
+  </div>
+
+  <div class="mercado-estados sobe" id="mercadoEstados" role="tablist" aria-label="Estados"></div>
+
+  <div class="mercado-painel sobe" id="mercadoPainel" aria-live="polite">
+    <p class="mercado-recado" id="mercadoRecado">Os dados do mercado ainda não foram carregados nesta publicação.</p>
+  </div>
+
+  <p class="mercado-ressalva" id="mercadoRessalva"></p>
+</section>
+
 <!-- ================================================================= contato -->
 <section id="contato">
   <div class="contato-grade">
     <div class="sobe">
       <span class="filete"></span>
-      <span class="rotulo">06 — Contato</span>
+      <span class="rotulo">07 — Contato</span>
       <h2>Comece por<br>uma conversa</h2>
       <p>Conte o que você procura, ou o que pretende vender. Respondemos com uma seleção objetiva, não com uma lista.</p>
 
@@ -3076,6 +3283,10 @@
   </div>
 </footer>
 
+<!-- Os numeros do painel de mercado. Gerado por ferramentas/coletar-mercado.js
+     (fontes publicas e gratuitas); nao editar a mao. Entra antes do script do
+     site porque ele le window.MERCADO ao montar a secao 06. -->
+<script src="mercado-dados.js"></script>
 <script>
 (function () {
   'use strict';
@@ -3270,7 +3481,7 @@
   }
 
   /* 6. Indice lateral e menu acompanham a secao visivel. */
-  var secoes = ['abertura', 'curadoria', 'manifesto', 'servicos', 'global', 'contato'];
+  var secoes = ['abertura', 'curadoria', 'manifesto', 'servicos', 'global', 'mercado', 'contato'];
   var itensMenu = document.querySelectorAll('.menu a');
 
   if ('IntersectionObserver' in window) {
@@ -3493,6 +3704,115 @@
 
     mostrarCidades();
     aplicar();
+  }
+
+  /* 7b. Painel de mercado (07/10/2026).
+
+     Monta a secao 06 a partir de window.MERCADO (mercado-dados.js, gerado pelo
+     coletor). Uma aba por estado; a primeira abre sozinha. Nada aqui calcula
+     indicador: so formata e mostra o que veio, com fonte e data, e marca o que
+     e exemplo. Sem o arquivo, fica o recado que ja esta no HTML. */
+  var painelMercado = document.getElementById('mercadoPainel');
+  var M = window.MERCADO;
+
+  if (painelMercado && M && M.estados && M.estados.length) {
+    var abasMercado = document.getElementById('mercadoEstados');
+    var fundoMercado = document.getElementById('mercadoFundo');
+    var macroMercado = document.getElementById('mercadoMacro');
+    var ressalvaMercado = document.getElementById('mercadoRessalva');
+
+    function escapar(s) {
+      return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+    }
+    function variacao(v) {
+      if (v == null) return '';
+      return (v > 0 ? '+' : '') + v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
+    }
+    function inteiro(v) { return Math.round(v).toLocaleString('pt-BR'); }
+
+    // o pano de fundo do Brasil
+    var htmlMacro = '';
+    [['Selic', M.brasil && M.brasil.selic], ['Inflação, 12 meses', M.brasil && M.brasil.ipca12], ['Imóveis financiados, 12 meses', M.brasil && M.brasil.ivgr12]].forEach(function (par) {
+      var d = par[1];
+      if (!d || d.texto == null) return;
+      htmlMacro += '<div><dt>' + escapar(par[0]) + '</dt><dd>' + escapar(d.texto) + '</dd><span>' + escapar(d.fonte) + (d.referencia ? ', ' + escapar(d.referencia) : '') + '</span></div>';
+    });
+    var nac = M.brasil && M.brasil.fipezapNacional;
+    if (nac && nac.vendaVar12 != null) {
+      htmlMacro += '<div><dt>Índice FipeZAP, venda, 12 meses</dt><dd>' + escapar(variacao(nac.vendaVar12)) + '</dd><span>FipeZap, ' + escapar(nac.referencia) + '</span></div>';
+    }
+    if (htmlMacro && macroMercado && fundoMercado) { macroMercado.innerHTML = htmlMacro; fundoMercado.hidden = false; }
+
+    // as abas
+    M.estados.forEach(function (e, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mercado-estado' + (i === 0 ? ' ativo' : '');
+      b.setAttribute('role', 'tab');
+      b.setAttribute('data-estado', e.id);
+      b.setAttribute('data-pais', e.pais);
+      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      b.textContent = e.nome;
+      if (e.amostra) { var tag = document.createElement('span'); tag.className = 'mercado-tag'; tag.textContent = 'exemplo'; b.appendChild(tag); }
+      abasMercado.appendChild(b);
+    });
+
+    function mostrarEstadoMercado(id) {
+      var e = null;
+      M.estados.forEach(function (x) { if (x.id === id) e = x; });
+      if (!e) return;
+      Array.prototype.forEach.call(abasMercado.querySelectorAll('.mercado-estado'), function (b) {
+        var sel = b.getAttribute('data-estado') === id;
+        b.classList.toggle('ativo', sel);
+        b.setAttribute('aria-selected', sel ? 'true' : 'false');
+      });
+
+      var h = '';
+      if (e.amostra) h += '<p class="mercado-aviso">' + escapar(e.aviso || 'Números de exemplo, só para mostrar o layout.') + '</p>';
+
+      h += '<div class="mercado-cartoes">';
+      (e.cartoes || []).forEach(function (c) {
+        // "alta"/"baixa", e nao "sobe": .sobe e a classe de revelacao ao rolar
+        // (opacidade 0 ate o observador marcar), e engoliria a variacao
+        var classe = c.variacao == null ? '' : c.variacao > 0 ? ' alta' : c.variacao < 0 ? ' baixa' : '';
+        h += '<div class="mercado-cartao' + (e.amostra ? ' exemplo' : '') + '">'
+          + '<span class="mercado-rotulo">' + escapar(c.rotulo) + '</span>'
+          + '<strong class="mercado-valor' + (c.valor == null ? ' vazio' : '') + '">' + (c.valor == null ? 'sem dado' : escapar(c.valor)) + '</strong>'
+          + (c.variacao == null ? '' : '<span class="mercado-var' + classe + '">' + escapar(variacao(c.variacao)) + ' <small>em 12 meses</small></span>')
+          + (c.nota ? '<span class="mercado-fonte">' + escapar(c.nota) + '</span>' : '')
+          + '</div>';
+      });
+      h += '</div>';
+
+      if (e.cidades && e.cidades.length > 1) {
+        var eBrasil = e.pais === 'Brasil', eFlorida = e.id === 'florida';
+        h += '<table class="mercado-cidades"><caption>Por praça</caption><thead><tr><th>Praça</th><th>Venda</th><th>12 meses</th>'
+          + (eBrasil ? '<th>Aluguel, por m²</th>' : '') + (eFlorida ? '<th>Imóveis à venda</th>' : '') + '</tr></thead><tbody>';
+        e.cidades.forEach(function (c) {
+          var venda = c.venda == null ? 'sem dado' : e.moeda + ' ' + inteiro(c.venda) + (c.unidade === 'residência' ? '' : ' por m²');
+          var cls = c.vendaVar12 > 0 ? ' class="alta"' : '';
+          h += '<tr><td>' + escapar(c.nome) + '</td><td>' + escapar(venda) + '</td><td' + cls + '>' + escapar(variacao(c.vendaVar12) || 'sem dado') + '</td>'
+            + (eBrasil ? '<td>' + (c.aluguel == null ? 'não publicado' : 'R$ ' + c.aluguel.toLocaleString('pt-BR', { maximumFractionDigits: 1 })) + '</td>' : '')
+            + (eFlorida ? '<td>' + (c.oferta == null ? 'sem dado' : inteiro(c.oferta) + ' (' + variacao(c.ofertaVar12) + ')') + '</td>' : '')
+            + '</tr>';
+        });
+        h += '</tbody></table>';
+      }
+
+      h += '<div class="mercado-leitura"><span class="rotulo">Leitura</span><p>' + escapar(e.leitura) + '</p>'
+        + '<p class="mercado-fontes">Fontes: ' + escapar((e.fontes || []).join('; ')) + '. Leitura '
+        + (e.leituraOrigem === 'gemini' ? 'redigida por IA a partir destes números, e só deles' : 'montada automaticamente a partir destes números') + '.</p></div>';
+
+      painelMercado.innerHTML = h;
+    }
+
+    abasMercado.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.mercado-estado');
+      if (b) mostrarEstadoMercado(b.getAttribute('data-estado'));
+    });
+
+    mostrarEstadoMercado(M.estados[0].id);
+    if (ressalvaMercado) ressalvaMercado.textContent = (M.ressalva || '') + (M.geradoEmTexto ? ' Atualizado em ' + M.geradoEmTexto + '.' : '');
   }
 
   /* 8. Slideshow da abertura: troca sozinho e aceita clique no marcador. */

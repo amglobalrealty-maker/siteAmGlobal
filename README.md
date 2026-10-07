@@ -298,6 +298,65 @@ residencias e as notas das pracas. As fotos sao do Unsplash. Enquanto for
 assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 **Tire essa linha do `<head>` das duas quando o portfolio real entrar.**
 
+## O painel de mercado
+
+A cliente pediu (07/10/2026) IA no site **nao para atendimento**, e sim para
+trazer dados do mercado imobiliario das regioes em que atua: preco por m2,
+oferta, variacoes e outros indicadores, mostrados no proprio site. E a secao
+06, "O mercado, estado a estado": um estado por vez (os nove em que ha venda),
+quatro cartoes com numero, variacao em 12 meses e fonte, uma tabela por praca
+quando o estado tem mais de uma, e uma leitura curta. Em cima, o pano de fundo
+do Brasil: Selic, inflacao e o indice de precos dos imoveis financiados.
+
+**Tudo em codigo, sem servidor e sem servico pago.** Tres pecas:
+
+| Peca | O que e |
+|---|---|
+| `ferramentas/coletar-mercado.js` | o coletor. Busca as fontes, monta os indicadores, escreve a leitura e grava o arquivo de dados. Node 18 ou mais novo e a biblioteca `xlsx` (so para abrir a planilha do FipeZap) |
+| `mercado-dados.js` | o resultado, versionado no git. Define `window.MERCADO`. **Nao editar a mao**: rodar o coletor |
+| secao `#mercado` do `index.html` | so monta o que esta no arquivo. Sem arquivo, mostra um recado; nunca inventa numero |
+
+Para atualizar, uma vez por mes:
+
+```
+cd ferramentas
+npm install
+node coletar-mercado.js
+```
+
+Depois, branch, preview e "sobe", como qualquer mudanca. O coletor imprime o
+que conseguiu e o que falhou; fonte fora do ar vira "sem dado" na tela, nunca
+um valor antigo ou inventado.
+
+### As fontes, todas publicas e gratuitas
+
+| Regiao | Fonte | O que traz | Frequencia |
+|---|---|---|---|
+| Sao Paulo, Rio, Florianopolis, Balneario Camboriu, Itajai (Praia Brava), Curitiba, Porto Alegre, Goiania | FipeZap (Fipe + ZAP), planilha publica | preco medio por m2 de venda e aluguel, variacao em 12 meses, rentabilidade do aluguel. Balneario Camboriu e Itajai so tem venda | mensal |
+| Brasil | Banco Central, API SGS | Selic (serie 432), IPCA 12 meses (13522), IVG-R, precos dos imoveis financiados (21340) | mensal |
+| Florida | Zillow Research, arquivos abertos | valor tipico de residencia (ZHVI) e imoveis a venda, regioes metropolitanas de Miami e Orlando | mensal |
+| Lisboa e Cascais | INE Portugal, API aberta, indicador 0012234 | preco mediano de venda por m2 nos ultimos 12 meses, por municipio, e a mediana de Portugal | trimestral |
+| Dubai | Dubai Land Department, dados abertos | **ainda nao ligada**: o portal exige conta. O bloco de Dubai e EXEMPLO (`amostra: true`) e a tela diz isso em tres lugares | — |
+
+### A IA
+
+A leitura de cada estado e escrita **a partir dos numeros coletados e de mais
+nada**. Por padrao, um modelo fixo em codigo monta as frases: sem custo, sem
+chave, nunca erra numero. Se existir a variavel de ambiente `GEMINI_API_KEY`
+(nivel gratuito do Google AI Studio, sem cartao), o Gemini reescreve a leitura
+com os mesmos numeros; o coletor confere que todo numero da resposta existia
+na leitura base e, se a IA inventar um, descarta e fica o modelo fixo. A tela
+diz qual das duas escreveu. Trocar de modelo (Groq, Ollama local) e mudar a
+funcao `leituraGemini`.
+
+### Regras que o painel segue
+
+- Numero sem fonte e data nao entra.
+- Variacao observada, nunca previsao.
+- Uma ressalva no fim: dados de terceiros, nao constituem recomendacao de
+  investimento.
+- Nada de cliente ou de imovel da carteira passa pela IA: so dado publico.
+
 ## Estrutura da pagina
 
 | Numero | Secao | O que faz |
@@ -307,7 +366,8 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
 | 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
-| 06 | Contato | Formulario que abre o WhatsApp com a mensagem pronta, e os canais |
+| 06 | Mercado | Painel por estado (07/10/2026): pano de fundo do Brasil, abas dos nove estados, quatro cartoes com numero, variacao e fonte, tabela por praca e uma leitura curta. Tudo vem de mercado-dados.js |
+| 07 | Contato | Formulario que abre o WhatsApp com a mensagem pronta, e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 
 A numeracao da tabela acima e organizacao interna deste documento. Ela **nao**
