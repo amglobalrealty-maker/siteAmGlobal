@@ -104,8 +104,9 @@ Todos estao marcados no `index.html` com um comentario `ATENCAO`.
 4. **Contato.** O formulario da secao 06 abre o WhatsApp com a mensagem
    pronta. O numero esta na constante `WHATSAPP`, no fim do script do
    `index.html` (so digitos, com 55 e DDD): hoje 11 95994-3705, que ela passou
-   em 05/10/2026 como provisorio ("por enquanto"). E-mail, endereco do
-   escritorio e numero do CRECI estao como "A informar". O ano no rodape
+   em 05/10/2026 como provisorio ("por enquanto"). E-mail e numero do
+   CRECI estao como "A informar". O item "Escritorio" saiu em 07/10/2026: a
+   principio o atendimento e so on-line (decisao dela). O ano no rodape
    tambem precisa conferir.
 
 ## O simbolo
