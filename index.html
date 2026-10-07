@@ -464,181 +464,37 @@
   .menu-abrir[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
 
   /* ============================================================= abertura ==
-     A FOTOGRAFIA TRAZ O TITULO DENTRO DELA.
+     A ABERTURA APRESENTA O ATENDIMENTO (07/10/2026).
 
-     A cliente mandou tres imagens prontas em que o titulo ja esta desenhado,
-     atravessando a casa. Entao o cabecalho virou uma faixa de fotografia de
-     borda a borda, e o texto da pagina vem LOGO ABAIXO dela, e nao por cima.
-     Isso dispensa posicionamento absoluto e faz o mesmo desenho servir no
-     computador e no celular: muda so o que aparece.
-
-     ATENCAO: O TITULO DESSAS IMAGENS E PIXEL, NAO E LETRA. Dai tres coisas:
-
-     1. No computador o titulo de verdade fica invisivel, senao apareceria
-        dobrado. Ele CONTINUA no HTML: e o que o Google le e o que o leitor
-        de tela anuncia.
-     2. No celular a imagem inteira nao serve, porque o titulo desenhado
-        ficaria com uns 4px de altura. Cortar so a faixa de cima tambem nao
-        resolve: exigiria uma moldura mais larga que a foto, ou seja, uma
-        tira de 130px de altura. Por isso cada foto tem um RECORTE so da
-        casa, sem letra nenhuma, e ai o titulo de verdade aparece.
-     3. A foto perdeu o filtro e a aproximacao lenta. Os dois mexiam no texto
-        desenhado: o filtro lavava, e o movimento cortava as pontas.
-
-     QUANDO CHEGAREM AS IMAGENS SEM TEXTO: apaga-se o bloco @media do item 1
-     e os recortes de celular deixam de ser necessarios.
+     Ate aqui era um slide de tres fotografias de pagina inteira, feitas pela
+     cliente, com o titulo desenhado dentro delas. O cliente final achou as
+     fotos grandes demais e pediu uma primeira tela que apresente o
+     atendimento e os servicos. Entao a abertura virou texto sobre onix: a
+     frase de marca como rotulo, a frase do cliente como titulo (a mesma do
+     manifesto), uma linha sobre o atendimento do inicio ao fim, os dois
+     botoes e, ao lado, os quatro servicos, que levam a secao 04. O cabecalho
+     fixo flutua sobre o onix como flutuava sobre o ceu da foto. Os arquivos
+     em fotos/ continuam no repositorio, sem uso.
      ------------------------------------------------------------------------ */
   .abertura {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    /* Sem margem lateral e SEM RESPIRO EM CIMA: a fotografia encosta no alto
-       da pagina. E isso que faz o cabecalho fixo voltar a flutuar sobre a
-       imagem, em vez de ficar sobre uma faixa de onix. */
-    padding: 0 0 clamp(26px, 4vh, 52px);
+    display: grid;
+    align-content: center;
+    min-height: 100svh;
+    padding: calc(var(--alto-topo, 92px) + clamp(36px, 7vh, 90px)) var(--margem) clamp(64px, 9vh, 110px);
+    background: var(--onix);
   }
 
-  /* A moldura da fotografia, na proporcao exata das tres imagens.
-
-     SEM TETO DE ALTURA. Havia um de 74vh, e ele cortava a imagem por cima e
-     por baixo -- foi o primeiro defeito que ela viu. Como as tres imagens
-     foram levadas a MESMA proporcao na hora de gerar os arquivos (a do
-     penhasco era mais alta e perdeu o rodape de piscina, sem nenhuma letra),
-     a moldura cai certa e nao sobra corte nenhum em tela nenhuma. */
-  .capa-palco {
-    position: relative;
-    flex: none;
-    width: 100%;
-    aspect-ratio: 1853 / 849;
-    overflow: hidden;
-    background: var(--onix-alto);
-  }
-
-  .slides { position: absolute; inset: 0; overflow: hidden; background: var(--onix-alto); }
-
-  .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.8s var(--ambiente);
-    will-change: opacity;
-  }
-
-  .slide.ativa { opacity: 1; }
-
-  .slide picture { display: block; width: 100%; height: 100%; }
-
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* As tres ja estao na proporcao da moldura, entao o cover aqui nao corta
-       nada: ele so garante o preenchimento se algum arquivo for trocado por
-       outro de proporcao diferente. */
-    object-position: center center;
-  }
-
-  /* OS BOTOES QUE TROCAM A FOTOGRAFIA: UMA BARRA EM TRES PEDACOS.
-
-     Duas tentativas anteriores foram recusadas. A primeira eram tres numeros
-     em Jost de 11px dentro de caixas de 124px -- quando o nome da cidade
-     saiu, o numero ficou perdido no vazio da caixa. A segunda eram
-     miniaturas das proprias fotografias, em monocromatico fora do ar.
-
-     Agora nao ha numero nem imagem: so tres pedacos de fio. O pedaco da foto
-     que esta no ar se enche de champagne no tempo exato da troca, e OS QUE JA
-     PASSARAM FICAM CHEIOS -- entao a barra e a linha do tempo do ciclo
-     inteiro, e esvazia quando volta a primeira.
-
-     O botao tem 24px de altura e o fio fica no meio dele: a area de toque
-     precisa ser pegavel no celular, e um alvo de 1px nao e. */
-  /* Um veu curto no pe da fotografia. Existe por um motivo so: o fio de 1px
-     da barra sumiria numa foto que tenha piscina clara ou ceu aceso bem ali. */
-  .capa-palco::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: clamp(110px, 17%, 190px);
-    background: linear-gradient(to top, rgba(11, 11, 12, 0.72) 0%, rgba(11, 11, 12, 0.3) 44%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* A barra fica DENTRO da fotografia. Ficava abaixo dela, e era isso que
-     incomodava: virava uma terceira fileira solta embaixo da imagem. */
-  .marcadores {
-    position: absolute;
-    z-index: 2;
-    left: var(--margem);
-    bottom: clamp(22px, 3.2vh, 42px);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .marcador {
-    position: relative;
-    display: block;
-    width: clamp(54px, 7.5vw, 96px);
-    height: 26px;
-    padding: 0;
-    background: none;
-    border: 0;
-    cursor: pointer;
-  }
-
-  /* O TRILHO. Ele tinha 1px e 22% de opacidade, e sumia: uma linha assim nao
-     sobrevive por cima de uma fotografia de casa iluminada. Passou a 3px, a
-     32%, e ganhou sombra -- e a sombra que garante a leitura sobre qualquer
-     imagem, clara ou escura, sem precisar escurecer a foto inteira. */
-  .marcador::before {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; top: 50%;
-    height: 3px;
-    margin-top: -1.5px;
-    background: rgba(245, 242, 236, 0.32);
-    box-shadow: 0 1px 3px rgba(11, 11, 12, 0.6);
-    transition: background 0.6s var(--curva);
-  }
-
-  .marcador:hover::before { background: rgba(245, 242, 236, 0.6); }
-
-  /* o champagne que se enche */
-  .marcador::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; top: 50%;
-    height: 3px;
-    margin-top: -1.5px;
-    background: var(--champagne);
-    transform: scaleX(0);
-    transform-origin: left;
-    /* a transicao so vale para o esvaziar do fim do ciclo: enquanto a foto
-       esta no ar, quem manda e a animacao */
-    transition: transform 0.6s var(--entra);
-  }
-
-  .marcador.andada::after { transform: scaleX(1); }
-  .marcador.ativo::after { animation: encher 6.6s linear forwards; }
-
-  .marcador:focus-visible { outline: 1px solid var(--champagne); outline-offset: 5px; }
-
-  @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-
-  /* Uma linha so abaixo da fotografia: o texto e o botao a esquerda, o
-     "Rolar" a direita. Eram duas fileiras, e a de baixo tinha um item so. */
-  .abertura-conteudo {
-    position: relative;
-    flex: none;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    padding: clamp(22px, 3vh, 38px) var(--margem) 0;
+  .abertura-grade {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 120px);
+    align-items: end;
+    max-width: 1360px;
   }
 
   .abertura-texto { min-width: 0; }
+  .abertura .rotulo { margin-bottom: clamp(18px, 2.4vh, 28px); }
 
   /* a abertura entra por linhas, uma depois da outra */
   .linha { display: block; overflow: hidden; }
@@ -651,35 +507,74 @@
   .pronto .abertura .atrasa-1 { transition-delay: 0.10s; }
   .pronto .abertura .atrasa-2 { transition-delay: 0.22s; }
 
-  .abertura h1 { font-size: clamp(30px, 3.6vw, 52px); margin-bottom: 20px; }
+  .abertura h1 {
+    font-size: clamp(36px, 4.4vw, 70px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin: 0 0 clamp(20px, 2.8vh, 32px);
+    max-width: 17ch;
+  }
   .abertura h1 em { font-style: italic; color: var(--travertino); }
 
   .abertura .apoio {
     color: var(--texto-fraco);
-    font-size: clamp(15px, 1.05vw, 17px);
-    margin-bottom: 26px;
-    max-width: 44ch;
+    font-size: clamp(16px, 1.15vw, 19px);
+    line-height: 1.6;
+    max-width: 48ch;
+    margin: 0 0 clamp(26px, 3.4vh, 40px);
   }
 
-  /* O TITULO SOME DAQUI EM TODA LARGURA, mas continua existindo no HTML,
-     para o Google e para quem usa leitor de tela. No computador ele ja vem
-     desenhado na fotografia; no celular (05/10) ele esta em HTML dentro de
-     cada .slide, por cima da foto. Era so no computador; passou a valer
-     sempre quando o celular ganhou o banner inteiro. */
-  .abertura-conteudo .filete,
-  .abertura-conteudo h1,
-  .abertura-conteudo .apoio {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  .abertura-acoes { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px 36px; }
+  .botao--fraco { color: var(--texto-fraco); }
+
+  /* OS QUATRO SERVICOS, em resumo. Fio fino entre eles, numero em champagne,
+     nome em Cormorant e uma linha em Jost. O texto completo esta na secao 04;
+     cada item leva para la. */
+  .abertura-servicos { list-style: none; margin: 0; padding: 0; }
+  .abertura-servicos li { border-top: 1px solid var(--linha-clara); }
+  .abertura-servicos li:last-child { border-bottom: 1px solid var(--linha-clara); }
+  .abertura-servicos a {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 14px;
+    padding: clamp(14px, 2vh, 22px) 0;
+    color: inherit;
+    text-decoration: none;
+    transition: padding-left 0.5s var(--toque);
+  }
+  .abertura-servicos a:hover { padding-left: 8px; }
+  .abertura-num {
+    grid-row: 1 / span 2;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--champagne);
+    padding-top: 9px;
+  }
+  .abertura-nome {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2vw, 30px);
+    line-height: 1.1;
+    color: var(--marfim);
+    transition: color 0.4s var(--toque);
+  }
+  .abertura-servicos a:hover .abertura-nome { color: var(--travertino); }
+  .abertura-linha {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--texto-fraco);
+    margin-top: 5px;
+    max-width: 40ch;
   }
 
+  /* o "Rolar", no canto de baixo a direita */
   .rolar {
+    position: absolute;
+    right: var(--margem);
+    bottom: clamp(22px, 3.5vh, 40px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2431,21 +2326,12 @@
     .mercado-cidades { font-size: 12px; }
     .mercado-cidades th, .mercado-cidades td { padding-right: 10px; }
     .mercado-cidades td:first-child { font-size: 17px; }
-    /* ---- A ABERTURA NO CELULAR (05/10): A IMAGEM INTEIRA ----
-       As imagens trazem titulo, subtitulo e paragrafo DESENHADOS. No celular
-       (ate 600px) entra a versao EM PE que ela fez, inteira, sem corte; no
-       tablet (601 a 900px) a deitada de 960, tambem inteira. No TABLET a foto comeca
-       abaixo do cabecalho fixo (na deitada a letra comeca no alto, e ele a
-       cobriria): a altura do cabecalho vem do script, em --alto-topo. No
-       CELULAR (ate 600px) vale o bloco mais abaixo: a em pe vai de borda a
-       borda, atras do cabecalho, como no computador. A barra de tres tracos fica dentro da foto, embaixo, no
-       escuro do jardim, como no computador. Uma primeira versao recortava a
-       casa e recompunha as palavras em HTML; outra mostrava a deitada inteira
-       com texto embaixo; ela fez as imagens em pe e pediu que fossem elas. */
-    .abertura { padding-top: calc(var(--alto-topo, 92px) + 10px); padding-bottom: clamp(22px, 3vh, 36px); }
-    .capa-palco { aspect-ratio: 1853 / 849; height: auto; min-height: 0; max-height: none; }
-    .slide img { object-fit: contain; object-position: center center; }
-    .abertura-conteudo { flex-direction: column; align-items: flex-start; gap: 0; padding-top: clamp(22px, 3vh, 34px); }
+    /* ---- A ABERTURA NO CELULAR (07/10): texto e servicos empilhados ---- */
+    .abertura { min-height: auto; padding: calc(var(--alto-topo, 72px) + clamp(28px, 5vh, 44px)) var(--margem) clamp(40px, 6vh, 56px); }
+    .abertura-grade { grid-template-columns: 1fr; gap: clamp(30px, 5vh, 44px); align-items: start; }
+    .abertura h1 { font-size: clamp(32px, 9vw, 44px); max-width: none; }
+    .abertura-servicos a { grid-template-columns: 30px minmax(0, 1fr); padding: 14px 0; }
+    .abertura-nome { font-size: 22px; }
     .rolar { display: none; }
     /* RESPIRO MENOR ENTRE SECOES (05/10): com 126px em cima e embaixo, sobravam
        telas quase vazias entre uma secao e outra no celular */
@@ -2454,45 +2340,16 @@
     .linha-caida { --altura: clamp(56px, 16vw, 96px); }
   }
 
-  /* ATE 600PX A IMAGEM E A EM PE, DE BORDA A BORDA, ATRAS DO CABECALHO (05/10).
-     Duas idas e vindas com ela: primeiro a foto ficava abaixo de uma faixa
-     onix com o cabecalho em cima ("o menu ainda ta com a faixa preta");
-     depois encolhia de largura para caber na tela ("nao diminua de largura").
-     Agora: LARGURA CHEIA, o cabecalho flutua sobre o ceu da foto como no
-     computador, e a moldura e a altura da tela (svh, que desconta a barra do
-     navegador) menos um respiro. O que nao cabe e cortado SO EMBAIXO
-     (object-position top), no jardim, nunca na letra; em telefone alto nao
-     corta nada (max-height e a altura natural da foto). O cabecalho fica mais
-     baixo aqui, 12px de respiro em vez de 26, para nao chegar na letra
-     desenhada, que comeca a 9% da altura da imagem. A barra de tracos volta
-     para a esquerda, como no computador. */
+  /* no celular o cabecalho e um pouco mais compacto (16px de respiro em vez de 26) */
   @media (max-width: 600px) {
-    .abertura { padding-top: 0; }
-    .topo, .topo.encolhido { padding-top: 12px; padding-bottom: 12px; }
-    .capa-palco {
-      aspect-ratio: auto;
-      height: calc(100svh - 26px);
-      min-height: 480px;
-      max-height: calc(100vw * 1672 / 941);
-      background: var(--onix);
-    }
-    .slides { background: var(--onix); }
-    .slide img { object-fit: cover; object-position: center top; }
+    .topo, .topo.encolhido { padding-top: 16px; padding-bottom: 16px; }
   }
 
-  /* em telefone estreito a foto e mais baixa e o cabecalho de 65px chegava a
-     10% da altura dela, onde a letra comeca (9%): com 10px de respiro ele
-     fica em 60px e para antes */
-  @media (max-width: 400px) {
-    .topo, .topo.encolhido { padding-top: 10px; padding-bottom: 10px; }
-  }
-
-  /* Telas largas mas baixas, como notebook: quem encolhe e a fotografia, para
-     a abertura inteira caber sem empurrar nada para debaixo do cabecalho. */
+  /* Telas largas mas baixas, como notebook: a abertura nao forca a altura da
+     tela, e o respiro em cima e embaixo encolhe. */
   @media (min-width: 901px) and (max-height: 880px) {
-    /* A FOTOGRAFIA NAO ENCOLHE AQUI. Encolher a moldura e cortar a imagem, e
-       o corte era justamente o defeito. Quem cede e o espaco abaixo dela. */
-    .abertura-conteudo { padding-top: clamp(16px, 2vh, 26px); }
+    .abertura { min-height: 0; padding-top: calc(var(--alto-topo, 92px) + 28px); padding-bottom: 56px; }
+    .abertura h1 { font-size: clamp(34px, 3.8vw, 56px); }
   }
 
   @media (max-width: 520px) {
@@ -2672,88 +2529,43 @@
 
 <!-- ================================================================ abertura -->
 <section class="abertura" id="abertura">
-  <!-- AS TRES IMAGENS DO CABECALHO, feitas pela cliente. O titulo, o
-       subtitulo e o paragrafo estao DESENHADOS dentro delas. Arquivos:
-
-         capa-N.webp           deitada, para computador (e -2x para tela densa)
-         capa-N-960.webp       a mesma, menor: tablet (601 a 900px)
-         capa-N-retrato.webp   EM PE, feita por ela para o celular (ate 600px);
-                               941x1672, originais PNG em fotos/origem/
-         capa-N-cel.webp       um recorte so da casa, sem letra -- SEM USO desde
-                               05/10/2026. Ficou no repositorio.
-
-       E por isso o elemento picture: nao e so tamanho diferente, e
-       COMPOSICAO diferente, e so ele troca a imagem por largura de tela. No
-       celular a imagem entra INTEIRA, sem corte, abaixo do cabecalho. -->
-  <div class="capa-palco">
-    <div class="slides" id="slides" aria-hidden="true">
-      <div class="slide ativa">
-        <picture>
-          <source media="(max-width: 600px)" srcset="fotos/capa-1-retrato.webp" width="941" height="1672">
-        <source media="(max-width: 900px)" srcset="fotos/capa-1-960.webp" width="960" height="440">
-          <img src="fotos/capa-1.webp"
-               srcset="fotos/capa-1-960.webp 960w, fotos/capa-1.webp 1853w, fotos/capa-1-2x.webp 2800w" sizes="100vw"
-               alt="" width="1853" height="849" fetchpriority="high" decoding="async">
-        </picture>
-      </div>
-      <div class="slide">
-        <picture>
-          <source media="(max-width: 600px)" srcset="fotos/capa-2-retrato.webp" width="941" height="1672">
-        <source media="(max-width: 900px)" srcset="fotos/capa-2-960.webp" width="960" height="440">
-          <img src="fotos/capa-2.webp"
-               srcset="fotos/capa-2-960.webp 960w, fotos/capa-2.webp 1672w, fotos/capa-2-2x.webp 2800w" sizes="100vw"
-               alt="" width="1672" height="766" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="slide">
-        <picture>
-          <source media="(max-width: 600px)" srcset="fotos/capa-3-retrato.webp" width="941" height="1672">
-        <source media="(max-width: 900px)" srcset="fotos/capa-3-960.webp" width="960" height="440">
-          <img src="fotos/capa-3.webp"
-               srcset="fotos/capa-3-960.webp 960w, fotos/capa-3.webp 1852w, fotos/capa-3-2x.webp 2800w" sizes="100vw"
-               alt="" width="1852" height="849" loading="lazy" decoding="async">
-        </picture>
-      </div>
-    </div>
-
-    <!-- A BARRA MORA DENTRO DA FOTOGRAFIA, no canto de baixo a esquerda. Ela
-         ficava abaixo da imagem e era isso que incomodava: virava uma terceira
-         fileira solta, e nas referencias dela esses controles sempre estiveram
-         sobre a foto.
-
-         Os botoes nao tem conteudo visivel nenhum: sao tres pedacos de fio
-         desenhados no CSS. Entao o aria-label e a UNICA coisa que os anuncia,
-         e nao pode sair daqui. -->
-    <div class="marcadores" id="marcadores">
-      <button type="button" class="marcador ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
-      <button type="button" class="marcador" data-slide="1" aria-label="Ver a segunda fotografia"></button>
-      <button type="button" class="marcador" data-slide="2" aria-label="Ver a terceira fotografia"></button>
-    </div>
-  </div>
-
-  <!-- Este texto e o da primeira imagem. Fica invisivel em TODA largura, para
-       nao aparecer dobrado com o que esta desenhado na fotografia (no celular
-       a imagem em pe traz titulo, subtitulo e paragrafo). Continua aqui
-       porque e o que o Google e o leitor de tela leem. -->
-  <div class="abertura-conteudo">
+  <!-- A ABERTURA APRESENTA O ATENDIMENTO (07/10/2026). As tres fotografias de
+       pagina inteira com o texto desenhado sairam: o cliente achou as fotos
+       grandes demais e pediu uma primeira tela que apresente o atendimento e
+       os servicos. A frase de marca vira rotulo; o titulo e a frase do
+       cliente, a mesma do manifesto; os quatro servicos levam a secao 04. Os
+       arquivos em fotos/ continuam no repositorio, sem uso. -->
+  <div class="abertura-grade">
     <div class="abertura-texto">
       <span class="filete"></span>
+      <span class="rotulo">Imóveis extraordinários. Visão global.</span>
       <h1>
-        <span class="linha"><span class="atrasa-1">Imóveis extraordinários.</span></span>
-        <span class="linha"><span class="atrasa-2"><em>Visão global.</em></span></span>
+        <span class="linha"><span class="atrasa-1">Consultoria imobiliária exclusiva,</span></span>
+        <span class="linha"><span class="atrasa-2"><em>com foco no objetivo de cada cliente.</em></span></span>
       </h1>
-      <p class="apoio">Selecionamos poucos imóveis e conduzimos cada negociação com precisão, discrição e uma rede que vai além do país.</p>
-      <a class="botao" href="#curadoria">Ver a curadoria</a>
+      <p class="apoio">Um consultor conduz a jornada inteira, da primeira conversa à entrega das chaves. Para quem compra, vende ou investe, no Brasil e fora dele.</p>
+      <div class="abertura-acoes">
+        <a class="botao" href="#contato">Fale com um consultor</a>
+        <a class="botao botao--fraco" href="#curadoria">Ver a curadoria</a>
+      </div>
     </div>
 
-    <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
-      <!-- triangulo aberto, vindo do A -->
-      <svg class="chevron" width="17" height="11" viewBox="0 0 17 11" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-        <path d="M1 1 L8.5 10 L16 1"/>
-      </svg>
-      <span>Rolar</span>
-    </a>
+    <!-- os quatro servicos, em resumo; o texto completo esta na secao 04 -->
+    <ul class="abertura-servicos sobe" aria-label="Serviços">
+      <li><a href="#servicos"><span class="abertura-num">01</span><span class="abertura-nome">Comprar</span><span class="abertura-linha">Uma seleção curta, com o porquê de cada imóvel estar nela.</span></a></li>
+      <li><a href="#servicos"><span class="abertura-num">02</span><span class="abertura-nome">Vender</span><span class="abertura-linha">Posicionamento certo, material à altura e interessados qualificados.</span></a></li>
+      <li><a href="#servicos"><span class="abertura-num">03</span><span class="abertura-nome">Investir</span><span class="abertura-linha">Rentabilidade, liquidez e horizonte, no Brasil e fora.</span></a></li>
+      <li><a href="#servicos"><span class="abertura-num">04</span><span class="abertura-nome">Assessorar do exterior</span><span class="abertura-linha">Documentação, remessa e representação até a escritura.</span></a></li>
+    </ul>
   </div>
+
+  <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
+    <!-- triangulo aberto, vindo do A -->
+    <svg class="chevron" width="17" height="11" viewBox="0 0 17 11" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+      <path d="M1 1 L8.5 10 L16 1"/>
+    </svg>
+    <span>Rolar</span>
+  </a>
 </section>
 
 <!-- =============================================================== curadoria -->
@@ -3979,59 +3791,8 @@
     if (ressalvaMercado) ressalvaMercado.textContent = (M.ressalva || '') + (M.geradoEmTexto ? ' Atualizado em ' + M.geradoEmTexto + '.' : '');
   }
 
-  /* 8. Slideshow da abertura: troca sozinho e aceita clique no marcador. */
-  var slides = document.getElementById('slides');
-  var marcadores = document.getElementById('marcadores');
-
-  if (slides && marcadores) {
-    var telas = slides.querySelectorAll('.slide');
-    var botoes = marcadores.querySelectorAll('.marcador');
-    var atual = 0;
-    var relogio = null;
-    var DURACAO = 6600;
-
-    function mostrar(i) {
-      atual = (i + telas.length) % telas.length;
-
-      Array.prototype.forEach.call(telas, function (t, k) {
-        t.classList.toggle('ativa', k === atual);
-      });
-
-      Array.prototype.forEach.call(botoes, function (b, k) {
-        // tira e recoloca a classe para a barra de tempo recomecar do zero
-        b.classList.remove('ativo');
-        // os pedacos que ja passaram ficam cheios: a barra vira a linha do
-        // tempo do ciclo inteiro, e esvazia sozinha ao voltar para a primeira
-        b.classList.toggle('andada', k < atual);
-        if (k === atual) {
-          void b.offsetWidth;
-          b.classList.add('ativo');
-        }
-      });
-    }
-
-    function agendar() {
-      window.clearInterval(relogio);
-      relogio = window.setInterval(function () { mostrar(atual + 1); }, DURACAO);
-    }
-
-    marcadores.addEventListener('click', function (ev) {
-      var botao = ev.target.closest('.marcador');
-      if (!botao) return;
-      mostrar(parseInt(botao.getAttribute('data-slide'), 10));
-      if (!calmo) agendar();
-    });
-
-    // com movimento reduzido fica so a primeira imagem, parada
-    if (!calmo) {
-      agendar();
-      // pausa quando a aba sai de foco, para nao gastar bateria a toa
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) window.clearInterval(relogio);
-        else agendar();
-      });
-    }
-  }
+  /* 8. (A abertura deixou de ser slide em 07/10/2026; o bloco do slideshow
+     saiu. A numeracao segue para nao renumerar os comentarios abaixo.) */
 
   /* 9. As tres horas.
 

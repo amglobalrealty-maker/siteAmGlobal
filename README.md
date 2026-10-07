@@ -393,7 +393,7 @@ funcao `leituraGemini`.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Tres fotografias da cliente com titulo, subtitulo e paragrafo DESENHADOS nelas, em rodizio. No celular (ate 600px) entram as versoes EM PE que ela fez, inteiras, abaixo do cabecalho; no tablet a deitada de 960 (desde 05/10/2026). O h1 fica invisivel em toda largura, so para Google e leitor de tela |
+| 01 | Abertura | Apresentacao do atendimento, em texto sobre onix (desde 07/10/2026): a frase de marca como rotulo, "Consultoria imobiliaria exclusiva, com foco no objetivo de cada cliente" como titulo, uma linha sobre o atendimento do inicio ao fim, os botoes Fale com um consultor e Ver a curadoria e, ao lado, os quatro servicos em resumo, que levam a secao 04. Ate 07/10 era um slide de tres fotografias da cliente com o texto desenhado; o cliente final achou as fotos grandes demais. Os arquivos ficaram em `fotos/`, sem uso |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
@@ -487,7 +487,9 @@ banda e as cartas ganharam setas (02/10): antes so andavam com o dedo.
 Passada completa em 05/10/2026, tela por tela, em 390x844: nada vaza de lado.
 Dois acertos sairam dela:
 
-- **A abertura mostra a imagem inteira, em pe.** As tres imagens trazem o
+- **(Historico, superado em 07/10/2026: a abertura deixou de ter fotografia e
+  passou a apresentar o atendimento e os servicos; no celular as duas colunas
+  empilham.) A abertura mostrava a imagem inteira, em pe.** As tres imagens trazem o
   texto desenhado, e cada uma diz uma coisa; no celular o site mostrava so o
   recorte da casa e um texto fixo embaixo. Uma primeira versao recompos as
   palavras em HTML por cima do recorte; outra mostrou a imagem deitada inteira
@@ -532,9 +534,10 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   bloquear o clique assim que comeca a abrir.
 
   Com movimento reduzido nao ha espera nenhuma: ela ja nasce aberta.
-- **Slideshow da abertura.** Quatro fotos, uma por praca, trocando a cada 6,6
-  segundos com fusao lenta e avanco continuo da imagem, que e o que da a
-  sensacao de video. O slideshow para sozinho quando a aba perde o foco.
+- **Abertura de apresentacao** (desde 07/10/2026). Sem fotografia: o titulo
+  entra por linhas, de dentro de uma mascara, e a lista dos quatro servicos
+  sobe com o `.sobe` do site. O slideshow de fotos que existia antes saiu do
+  HTML, do CSS e do script.
 - **Filtro das pracas.** Numero em Jost e nome em Cormorant italico, sempre no
   mesmo corpo, para nada saltar na troca. O que muda e a presenca: a praca no
   ar clareia, o numero vira champagne e um filete champagne corre sob o nome
@@ -622,8 +625,8 @@ No celular nao ha largura para quatro estacoes lado a lado: **o trajeto vira
 vertical**, com a linha descendo pela esquerda e as estacoes descendo com ela.
 
 **A secao nao tem imagem nenhuma**, e e isso que da o respiro no meio da
-pagina: abertura (4 imagens), curadoria (12), A AMGlobal (1), **servicos
-(nenhuma)**, global (12), contato (nenhuma).
+pagina: abertura (nenhuma, desde 07/10/2026), curadoria (12), A AMGlobal (1),
+**servicos (nenhuma)**, global (12), mercado (nenhuma), contato (nenhuma).
 
 A linha caida que pousava sobre o palco desta secao foi removida junto com a
 fotografia: ela e um fio pousado na borda de cima de uma imagem, e sem imagem
@@ -656,7 +659,7 @@ Esta versao fala a lingua da 04, com uma composicao diferente para nao virar a
   ESQUERDA do painel, que e justamente onde o nome cruza, para ele ler.
 - **A troca e a mesma varredura da 04** (o recorte indo de 100% a 0), e a secao
   ANDA SOZINHA a cada 7 segundos, com a barra de tempo correndo sob o marcador
-  — como no slideshow da abertura. Para quando a pessoa aponta e volta quando
+  — como fazia o antigo slideshow da abertura. Para quando a pessoa aponta e volta quando
   ela sai; para tambem com a aba escondida, para nao gastar bateria a toa.
 - **O brilho da fotografia segue a hora que e la**: Dubai a noite entra escura,
   a Florida de tarde entra aberta. Sao os mesmos cinco estados do dia (madrugada,
