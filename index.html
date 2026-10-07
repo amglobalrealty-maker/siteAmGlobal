@@ -2149,7 +2149,7 @@
     padding: clamp(18px, 2.6vh, 28px) 0;
     border-top: 1px solid var(--linha-clara);
     border-bottom: 1px solid var(--linha-clara);
-    margin-bottom: clamp(36px, 5vh, 60px);
+    margin: clamp(40px, 6vh, 72px) 0 0;
   }
   .mercado-fundo-rotulo {
     font-family: var(--sans);
@@ -2217,6 +2217,35 @@
     background: var(--champagne);
     padding: 2px 6px;
   }
+
+  /* o cabecalho do painel diz QUAL estado esta aberto: sem ele, quem nao viu a
+     aba acender acha que os numeros nao mudaram */
+  .mercado-cabeca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 18px;
+    margin-bottom: clamp(22px, 3vh, 34px);
+  }
+  .mercado-cabeca-nome {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 2.8vw, 40px);
+    line-height: 1;
+    color: var(--marfim);
+  }
+  .mercado-cabeca-meta {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.42);
+  }
+  .mercado-cabeca-meta b { font-weight: 500; color: var(--champagne); }
+
+  /* a troca de estado pisca de leve: e o sinal de que o conteudo mudou */
+  .mercado-painel { transition: opacity 0.35s var(--toque); }
+  .mercado-painel.trocando { opacity: 0; transition: opacity 0.12s var(--sai); }
 
   .mercado-aviso {
     font-family: var(--sans);
@@ -3126,7 +3155,7 @@
      em que atua: preco por m2, oferta, variacoes, mostrados no proprio site.
      Os numeros vem de ferramentas/coletar-mercado.js, que grava
      mercado-dados.js a partir de fontes publicas e gratuitas (FipeZap, Banco
-     Central, Zillow, INE). A leitura de cada estado e escrita a partir desses
+     Central, Zillow, INE, Dubai Land Department). A leitura de cada estado e escrita a partir desses
      numeros e de mais nada: modelo fixo em codigo, ou Gemini no nivel gratuito
      quando houver chave. Esta secao so monta o que esta no arquivo; sem
      arquivo, mostra um recado e nao inventa numero. Estado marcado "exemplo"
@@ -3143,15 +3172,17 @@
     </div>
   </div>
 
-  <div class="mercado-fundo sobe" id="mercadoFundo" hidden>
-    <span class="mercado-fundo-rotulo">Brasil, pano de fundo</span>
-    <dl class="mercado-macro" id="mercadoMacro"></dl>
-  </div>
-
   <div class="mercado-estados sobe" id="mercadoEstados" role="tablist" aria-label="Estados"></div>
 
   <div class="mercado-painel sobe" id="mercadoPainel" aria-live="polite">
     <p class="mercado-recado" id="mercadoRecado">Os dados do mercado ainda não foram carregados nesta publicação.</p>
+  </div>
+
+  <!-- O pano de fundo do Brasil vem DEPOIS do estado (07/10): no alto, ele
+       parecia ser "o numero" da secao e nao mudava ao trocar de aba. -->
+  <div class="mercado-fundo sobe" id="mercadoFundo" hidden>
+    <span class="mercado-fundo-rotulo">Pano de fundo, Brasil</span>
+    <dl class="mercado-macro" id="mercadoMacro"></dl>
   </div>
 
   <p class="mercado-ressalva" id="mercadoRessalva"></p>
@@ -3767,7 +3798,9 @@
         b.setAttribute('aria-selected', sel ? 'true' : 'false');
       });
 
-      var h = '';
+      var h = '<div class="mercado-cabeca"><span class="mercado-cabeca-nome">' + escapar(e.nome) + '</span>'
+        + '<span class="mercado-cabeca-meta"><b>' + escapar(e.pais) + '</b> · ' + e.cidades.length + (e.cidades.length === 1 ? ' praça' : ' praças')
+        + (e.referencia ? ' · ' + escapar((e.fontes && e.fontes[0]) || '') : '') + '</span></div>';
       if (e.amostra) h += '<p class="mercado-aviso">' + escapar(e.aviso || 'Números de exemplo, só para mostrar o layout.') + '</p>';
 
       h += '<div class="mercado-cartoes">';
@@ -3778,7 +3811,7 @@
         h += '<div class="mercado-cartao' + (e.amostra ? ' exemplo' : '') + '">'
           + '<span class="mercado-rotulo">' + escapar(c.rotulo) + '</span>'
           + '<strong class="mercado-valor' + (c.valor == null ? ' vazio' : '') + '">' + (c.valor == null ? 'sem dado' : escapar(c.valor)) + '</strong>'
-          + (c.variacao == null ? '' : '<span class="mercado-var' + classe + '">' + escapar(variacao(c.variacao)) + ' <small>em 12 meses</small></span>')
+          + (c.variacao == null ? '' : '<span class="mercado-var' + classe + '">' + escapar(variacao(c.variacao)) + ' <small>' + escapar(c.periodo || 'em 12 meses') + '</small></span>')
           + (c.nota ? '<span class="mercado-fonte">' + escapar(c.nota) + '</span>' : '')
           + '</div>';
       });
@@ -3808,7 +3841,18 @@
 
     abasMercado.addEventListener('click', function (ev) {
       var b = ev.target.closest('.mercado-estado');
-      if (b) mostrarEstadoMercado(b.getAttribute('data-estado'));
+      if (!b) return;
+      // pisca, troca, e se o painel estiver abaixo da dobra rola ate as abas
+      painelMercado.classList.add('trocando');
+      window.setTimeout(function () {
+        mostrarEstadoMercado(b.getAttribute('data-estado'));
+        painelMercado.classList.remove('trocando');
+        var topoPainel = painelMercado.getBoundingClientRect().top;
+        if (topoPainel > window.innerHeight * 0.55) {
+          var alvoAbas = abasMercado.getBoundingClientRect().top + window.scrollY - 96;
+          window.scrollTo({ top: alvoAbas, behavior: calmo ? 'auto' : 'smooth' });
+        }
+      }, calmo ? 0 : 130);
     });
 
     mostrarEstadoMercado(M.estados[0].id);

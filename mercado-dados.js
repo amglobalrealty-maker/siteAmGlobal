@@ -51,25 +51,29 @@ window.MERCADO = {
           "rotulo": "Venda, por m²",
           "valor": "R$ 12.206",
           "variacao": 3.6,
-          "nota": "FipeZap, set/2026"
+          "nota": "FipeZap, set/2026",
+          "periodo": null
         },
         {
           "rotulo": "Aluguel, por m²",
           "valor": "R$ 65,4",
           "variacao": 5.7,
-          "nota": "FipeZap, ago/2026"
+          "nota": "FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Rentabilidade do aluguel",
           "valor": "6,4% ao ano",
           "variacao": null,
-          "nota": "bruta, FipeZap, ago/2026"
+          "nota": "bruta, FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Frente à média nacional",
           "valor": "-1,9 p.p.",
           "variacao": null,
-          "nota": "Índice FipeZAP em 12 meses: +5,5%"
+          "nota": "Índice FipeZAP em 12 meses: +5,5%",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -102,25 +106,29 @@ window.MERCADO = {
           "rotulo": "Venda, por m²",
           "valor": "R$ 11.302",
           "variacao": 5.6,
-          "nota": "FipeZap, set/2026"
+          "nota": "FipeZap, set/2026",
+          "periodo": null
         },
         {
           "rotulo": "Aluguel, por m²",
           "valor": "R$ 61,4",
           "variacao": 14.2,
-          "nota": "FipeZap, ago/2026"
+          "nota": "FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Rentabilidade do aluguel",
           "valor": "6,3% ao ano",
           "variacao": null,
-          "nota": "bruta, FipeZap, ago/2026"
+          "nota": "bruta, FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Frente à média nacional",
           "valor": "+0,1 p.p.",
           "variacao": null,
-          "nota": "Índice FipeZAP em 12 meses: +5,5%"
+          "nota": "Índice FipeZAP em 12 meses: +5,5%",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -169,25 +177,29 @@ window.MERCADO = {
           "rotulo": "Venda, por m²",
           "valor": "R$ 13.607",
           "variacao": 8.3,
-          "nota": "FipeZap, set/2026"
+          "nota": "FipeZap, set/2026",
+          "periodo": null
         },
         {
           "rotulo": "Aluguel, por m²",
           "valor": "R$ 61,2",
           "variacao": 2.8,
-          "nota": "FipeZap, ago/2026"
+          "nota": "FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Rentabilidade do aluguel",
           "valor": "5,4% ao ano",
           "variacao": null,
-          "nota": "bruta, FipeZap, ago/2026"
+          "nota": "bruta, FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Frente à média nacional",
           "valor": "+2,8 p.p.",
           "variacao": null,
-          "nota": "Índice FipeZAP em 12 meses: +5,5%"
+          "nota": "Índice FipeZAP em 12 meses: +5,5%",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -220,25 +232,29 @@ window.MERCADO = {
           "rotulo": "Venda, por m²",
           "valor": "R$ 11.766",
           "variacao": 1.9,
-          "nota": "FipeZap, set/2026"
+          "nota": "FipeZap, set/2026",
+          "periodo": null
         },
         {
           "rotulo": "Aluguel, por m²",
           "valor": "R$ 49,1",
           "variacao": 9.5,
-          "nota": "FipeZap, ago/2026"
+          "nota": "FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Rentabilidade do aluguel",
           "valor": "4,9% ao ano",
           "variacao": null,
-          "nota": "bruta, FipeZap, ago/2026"
+          "nota": "bruta, FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Frente à média nacional",
           "valor": "-3,6 p.p.",
           "variacao": null,
-          "nota": "Índice FipeZAP em 12 meses: +5,5%"
+          "nota": "Índice FipeZAP em 12 meses: +5,5%",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -271,25 +287,29 @@ window.MERCADO = {
           "rotulo": "Venda, por m²",
           "valor": "R$ 7.545",
           "variacao": 0.9,
-          "nota": "FipeZap, set/2026"
+          "nota": "FipeZap, set/2026",
+          "periodo": null
         },
         {
           "rotulo": "Aluguel, por m²",
           "valor": "R$ 46,5",
           "variacao": 11,
-          "nota": "FipeZap, ago/2026"
+          "nota": "FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Rentabilidade do aluguel",
           "valor": "7,3% ao ano",
           "variacao": null,
-          "nota": "bruta, FipeZap, ago/2026"
+          "nota": "bruta, FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Frente à média nacional",
           "valor": "-4,6 p.p.",
           "variacao": null,
-          "nota": "Índice FipeZAP em 12 meses: +5,5%"
+          "nota": "Índice FipeZAP em 12 meses: +5,5%",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -322,25 +342,29 @@ window.MERCADO = {
           "rotulo": "Venda, por m²",
           "valor": "R$ 8.527",
           "variacao": 7.1,
-          "nota": "FipeZap, set/2026"
+          "nota": "FipeZap, set/2026",
+          "periodo": null
         },
         {
           "rotulo": "Aluguel, por m²",
           "valor": "R$ 43,4",
           "variacao": 2.4,
-          "nota": "FipeZap, ago/2026"
+          "nota": "FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Rentabilidade do aluguel",
           "valor": "6,0% ao ano",
           "variacao": null,
-          "nota": "bruta, FipeZap, ago/2026"
+          "nota": "bruta, FipeZap, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Frente à média nacional",
           "valor": "+1,6 p.p.",
           "variacao": null,
-          "nota": "Índice FipeZAP em 12 meses: +5,5%"
+          "nota": "Índice FipeZAP em 12 meses: +5,5%",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -381,25 +405,29 @@ window.MERCADO = {
           "rotulo": "Valor típico de residência, Miami",
           "valor": "US$ 475.830",
           "variacao": -0.5,
-          "nota": "Zillow ZHVI, ago/2026"
+          "nota": "Zillow ZHVI, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Valor típico de residência, Orlando",
           "valor": "US$ 383.445",
           "variacao": -1.8,
-          "nota": "Zillow ZHVI, ago/2026"
+          "nota": "Zillow ZHVI, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Imóveis à venda, Miami",
           "valor": "48.328",
           "variacao": -14.3,
-          "nota": "Zillow, ago/2026"
+          "nota": "Zillow, ago/2026",
+          "periodo": null
         },
         {
           "rotulo": "Imóveis à venda, Orlando",
           "valor": "16.599",
           "variacao": -4.2,
-          "nota": "Zillow, ago/2026"
+          "nota": "Zillow, ago/2026",
+          "periodo": null
         }
       ],
       "fontes": [
@@ -414,48 +442,62 @@ window.MERCADO = {
       "nome": "Dubai",
       "pais": "Emirados",
       "moeda": "AED",
-      "amostra": true,
+      "amostra": false,
       "principal": "Dubai",
       "cidades": [
         {
           "nome": "Dubai",
-          "venda": 16500,
-          "vendaVar12": 12,
+          "venda": 17892.225652539993,
+          "vendaVar12": null,
+          "vendaVarAno": -6.5,
           "unidade": "m²"
         }
       ],
       "cartoes": [
         {
-          "rotulo": "Venda, por m²",
-          "valor": "AED 16.500",
-          "variacao": 12,
-          "nota": "exemplo"
+          "rotulo": "Venda residencial mediana, por m²",
+          "valor": "AED 17.892",
+          "variacao": -6.5,
+          "nota": "unidades e vilas, DLD, set/2026",
+          "periodo": "desde janeiro"
         },
         {
-          "rotulo": "Transações no mês",
-          "valor": "15.200",
-          "variacao": 9.5,
-          "nota": "exemplo"
+          "rotulo": "Vendas residenciais no mês",
+          "valor": "11.134",
+          "variacao": -1.4,
+          "nota": "registradas no DLD, set/2026",
+          "periodo": "frente a agosto"
         },
         {
-          "rotulo": "Aluguel, por m² ao ano",
-          "valor": "AED 1.180",
-          "variacao": 8,
-          "nota": "exemplo"
-        },
-        {
-          "rotulo": "Rentabilidade do aluguel",
-          "valor": "7,1% ao ano",
+          "rotulo": "Valor mediano por venda",
+          "valor": "AED 1.157.664",
           "variacao": null,
-          "nota": "exemplo"
+          "nota": "unidades e vilas, DLD, set/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Vendas na planta",
+          "valor": "72%",
+          "variacao": null,
+          "nota": "das vendas de moradia, DLD, set/2026",
+          "periodo": null
         }
       ],
       "fontes": [
-        "Dubai Land Department (dados abertos), fonte em ligação"
+        "Dubai Land Department (API de dados abertos), set/2026"
       ],
-      "referencia": null,
-      "aviso": "Os números de Dubai são exemplo de layout. O portal de dados abertos do Dubai Land Department exige conta; a ligação está em avaliação.",
-      "leitura": "Números de exemplo, só para mostrar o layout. A fonte de Dubai ainda não está ligada; quando estiver, esta leitura passa a sair dos dados do Dubai Land Department.",
+      "referencia": "set/2026",
+      "detalhe": {
+        "m2": 17892.225652539993,
+        "varJan": -6.5,
+        "transacoes": 11134,
+        "varVendas": -1.4,
+        "ticket": 1157664,
+        "naPlantaPct": 72.37430472243429,
+        "referenciaLonga": "setembro de 2026",
+        "mesAntNome": "agosto"
+      },
+      "leitura": "Em Dubai, a venda residencial mediana saiu a AED 17.892 por m² em setembro de 2026 (Dubai Land Department, 11.134 vendas registradas no mês), caiu 6,5% desde janeiro. O valor mediano por negócio foi AED 1.157.664, e 72% das vendas de moradia foram na planta. Frente a agosto, o número de vendas caiu 1,4%.",
       "leituraOrigem": "modelo fixo"
     },
     {
@@ -484,25 +526,29 @@ window.MERCADO = {
           "rotulo": "Venda mediana, Lisboa, por m²",
           "valor": "€ 5.082",
           "variacao": 15.2,
-          "nota": "INE, 12 meses até o 1º trimestre de 2026"
+          "nota": "INE, 12 meses até o 1º trimestre de 2026",
+          "periodo": null
         },
         {
           "rotulo": "Venda mediana, Cascais, por m²",
           "valor": "€ 4.687",
           "variacao": 11.9,
-          "nota": "INE, 12 meses até o 1º trimestre de 2026"
+          "nota": "INE, 12 meses até o 1º trimestre de 2026",
+          "periodo": null
         },
         {
           "rotulo": "Portugal, por m²",
           "valor": "€ 2.168",
           "variacao": 17.5,
-          "nota": "INE, mediana nacional"
+          "nota": "INE, mediana nacional",
+          "periodo": null
         },
         {
           "rotulo": "Lisboa frente a Portugal",
           "valor": "2,3 vezes",
           "variacao": null,
-          "nota": "razão entre as medianas"
+          "nota": "razão entre as medianas",
+          "periodo": null
         }
       ],
       "fontes": [

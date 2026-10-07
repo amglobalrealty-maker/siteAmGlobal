@@ -21,9 +21,11 @@
      imoveis a venda, por regiao metropolitana da Florida. Mensal.
    - INE Portugal (API aberta, indicador 0012234): preco mediano de venda por
      m2 nos ultimos 12 meses, por municipio. Trimestral.
-   - Dubai: o portal de dados abertos do Dubai Land Department exige conta.
-     Enquanto nao houver fonte ligada, o bloco de Dubai e um EXEMPLO marcado
-     (amostra: true) e o site mostra isso na tela.
+   - Dubai Land Department (API aberta, sem chave, a mesma que a pagina "Real
+     Estate Data" do DLD usa): todas as vendas residenciais do ultimo mes
+     completo, de onde saem a mediana por m2, o numero de vendas, o valor
+     mediano por venda e a parcela na planta. So cobre o ano corrente, entao a
+     variacao e "desde janeiro" e "frente ao mes anterior", nunca 12 meses.
 
    A IA
    A leitura de cada estado e escrita a partir dos numeros coletados e de MAIS
@@ -207,10 +209,92 @@ async function ine() {
   });
 }
 
-/* ------------------------------------------------------------- 5. os estados */
-function cartao(rotulo, valor, variacao, nota) { return { rotulo, valor, variacao: variacao == null ? null : arred(variacao, 1), nota: nota || null }; }
+/* ------------------------------------------------------------------ 5. Dubai */
+// API aberta do Dubai Land Department: POST com TODOS os P_* presentes (vazios
+// quando nao usados), 2000 registros por pagina, sem chave. GROUP 1 = vendas,
+// USAGE 1 = residencial. Um mes inteiro sao 6 a 9 paginas.
+const DLD_URL = 'https://gateway.dubailand.gov.ae/open-data/transactions';
+async function dldMes(ano, mes) {
+  const ultimoDia = new Date(Date.UTC(ano, mes, 0)).getUTCDate();
+  const mm = String(mes).padStart(2, '0');
+  const corpo = (skip) => JSON.stringify({
+    P_FROM_DATE: mm + '/01/' + ano, P_TO_DATE: mm + '/' + ultimoDia + '/' + ano,
+    P_GROUP_ID: '1', P_IS_OFFPLAN: '', P_IS_FREE_HOLD: '', P_AREA_ID: '', P_USAGE_ID: '1', P_PROP_TYPE_ID: '',
+    P_TAKE: '2000', P_SKIP: String(skip), P_SORT: ''
+  });
+  const todos = [];
+  let total = null;
+  for (let skip = 0; total == null || skip < total; skip += 2000) {
+    let pagina = null;
+    for (let t = 1; t <= 3 && !pagina; t++) {
+      try {
+        const r = await fetch(DLD_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'User-Agent': UA, 'Referer': 'https://dubailand.gov.ae/en/open-data/real-estate-data/' },
+          body: corpo(skip)
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const j = await r.json();
+        pagina = (j.response && j.response.result) || [];
+      } catch (e) { if (t === 3) throw e; await new Promise(res => setTimeout(res, 2000 * t)); }
+    }
+    if (!pagina.length) break;
+    if (total == null) total = Number(pagina[0].TOTAL) || pagina.length;
+    for (const r of pagina) todos.push(r);
+    if (pagina.length < 2000) break;
+  }
+  return { total: total || todos.length, registros: todos };
+}
+function mediana(v) {
+  if (!v.length) return null;
+  const s = v.slice().sort((a, b) => a - b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+// so moradia de verdade: unidades e vilas, fora escritorio e loja (o DLD marca
+// alguns como "residencial"), fora areas e valores absurdos
+function resumoDld(mes) {
+  const moradia = mes.registros.filter(r =>
+    (r.PROP_TYPE_EN === 'Unit' || r.PROP_TYPE_EN === 'Villa')
+    && !/office|shop|warehouse|show ?room|clinic|workshop|labou?r|store/i.test(r.PROP_SB_TYPE_EN || '')
+    && Number(r.ACTUAL_AREA) > 15 && Number(r.TRANS_VALUE) > 100000);
+  const porM2 = moradia.map(r => Number(r.TRANS_VALUE) / Number(r.ACTUAL_AREA)).filter(x => x > 2000 && x < 150000);
+  const naPlanta = moradia.filter(r => Number(r.IS_OFFPLAN) === 1).length;
+  return {
+    transacoes: mes.total, moradias: moradia.length,
+    m2: mediana(porM2), ticket: mediana(moradia.map(r => Number(r.TRANS_VALUE))),
+    naPlantaPct: moradia.length ? naPlanta / moradia.length * 100 : null
+  };
+}
+async function dubai() {
+  return tentar('Dubai Land Department: vendas residenciais (API aberta)', async () => {
+    const ano = HOJE.getUTCFullYear(), mesAtual = HOJE.getUTCMonth() + 1;
+    const mesRef = mesAtual === 1 ? 12 : mesAtual - 1;            // ultimo mes completo
+    const anoRef = mesAtual === 1 ? ano - 1 : ano;
+    const mesAnt = mesRef === 1 ? 12 : mesRef - 1, anoAnt = mesRef === 1 ? anoRef - 1 : anoRef;
+    const ref = resumoDld(await dldMes(anoRef, mesRef));
+    if (ref.m2 == null) throw new Error('sem moradias no mes de referencia');
+    log('       Dubai ' + mesRef + '/' + anoRef + ': ' + ref.transacoes + ' vendas residenciais, ' + ref.moradias + ' moradias na mediana');
+    let ant = null, jan = null;
+    if (anoAnt === anoRef) ant = resumoDld(await dldMes(anoAnt, mesAnt));  // a API so tem o ano corrente
+    if (mesRef > 2) jan = resumoDld(await dldMes(anoRef, 1));
+    else if (mesRef === 2) jan = ant;
+    return {
+      ref, ant, jan,
+      referencia: MES_CURTO[mesRef - 1] + '/' + anoRef, referenciaLonga: MESES[mesRef - 1] + ' de ' + anoRef,
+      mesAntNome: MESES[mesAnt - 1], fonte: 'Dubai Land Department, dados abertos'
+    };
+  });
+}
 
-function montarEstados(bc, fz, zl, pt) {
+/* ------------------------------------------------------------- 6. os estados */
+// `periodo` e o rotulo da variacao ("em 12 meses" por padrao; Dubai usa "desde
+// janeiro" e "frente a agosto", porque a fonte so cobre o ano corrente)
+function cartao(rotulo, valor, variacao, nota, periodo) {
+  return { rotulo, valor, variacao: variacao == null ? null : arred(variacao, 1), nota: nota || null, periodo: periodo || null };
+}
+
+function montarEstados(bc, fz, zl, pt, db) {
   const nacional = fz && fz.cidades['Índice FipeZAP'];
   const refVenda = fz ? mesAnoCurto(fz.dataVenda) : null;
   const refAluguel = fz ? mesAnoCurto(fz.dataAluguel) : null;
@@ -264,17 +348,23 @@ function montarEstados(bc, fz, zl, pt) {
       cartoes, fontes: ['Zillow Research' + (refZ ? ', ' + refZ : '')], referencia: refZ });
   }
 
-  // Dubai: EXEMPLO marcado, ate ligar uma fonte
-  estados.push({ id: 'dubai', nome: 'Dubai', pais: 'Emirados', moeda: 'AED', amostra: true, principal: 'Dubai',
-    cidades: [{ nome: 'Dubai', venda: 16500, vendaVar12: 12.0, unidade: 'm²' }],
-    cartoes: [
-      cartao('Venda, por m²', 'AED 16.500', 12.0, 'exemplo'),
-      cartao('Transações no mês', '15.200', 9.5, 'exemplo'),
-      cartao('Aluguel, por m² ao ano', 'AED 1.180', 8.0, 'exemplo'),
-      cartao('Rentabilidade do aluguel', '7,1% ao ano', null, 'exemplo')
-    ],
-    fontes: ['Dubai Land Department (dados abertos), fonte em ligação'], referencia: null,
-    aviso: 'Os números de Dubai são exemplo de layout. O portal de dados abertos do Dubai Land Department exige conta; a ligação está em avaliação.' });
+  // Dubai: Dubai Land Department, todas as vendas residenciais do ultimo mes completo
+  {
+    const d = db, r = d && d.ref;
+    const aed = (x) => x == null ? null : 'AED ' + fmtBR(Math.round(x), 0);
+    const varJan = r && d.jan && d.jan.m2 ? arred(pct(r.m2, d.jan.m2), 1) : null;
+    const varVendas = r && d.ant ? arred(pct(r.transacoes, d.ant.transacoes), 1) : null;
+    const cartoes = [
+      cartao('Venda residencial mediana, por m²', aed(r && r.m2), varJan, d ? 'unidades e vilas, DLD, ' + d.referencia : 'sem dado', 'desde janeiro'),
+      cartao('Vendas residenciais no mês', r ? fmtBR(r.transacoes, 0) : null, varVendas, d ? 'registradas no DLD, ' + d.referencia : 'sem dado', d ? 'frente a ' + d.mesAntNome : null),
+      cartao('Valor mediano por venda', aed(r && r.ticket), null, d ? 'unidades e vilas, DLD, ' + d.referencia : 'sem dado'),
+      cartao('Vendas na planta', r && r.naPlantaPct != null ? fmtBR(r.naPlantaPct, 0) + '%' : null, null, d ? 'das vendas de moradia, DLD, ' + d.referencia : 'sem dado')
+    ];
+    estados.push({ id: 'dubai', nome: 'Dubai', pais: 'Emirados', moeda: 'AED', amostra: false, principal: 'Dubai',
+      cidades: [{ nome: 'Dubai', venda: r ? r.m2 : null, vendaVar12: null, vendaVarAno: varJan, unidade: 'm²' }],
+      cartoes, fontes: ['Dubai Land Department (API de dados abertos)' + (d ? ', ' + d.referencia : '')], referencia: d ? d.referencia : null,
+      detalhe: d ? { m2: r.m2, varJan, transacoes: r.transacoes, varVendas, ticket: r.ticket, naPlantaPct: r.naPlantaPct, referenciaLonga: d.referenciaLonga, mesAntNome: d.mesAntNome } : null });
+  }
 
   // Lisboa (distrito): INE, municipios de Lisboa e Cascais
   {
@@ -318,6 +408,15 @@ function leituraFixa(e, bc, nacional) {
     if (mi.oferta != null) t += ' A oferta à venda em Miami ' + subiuCaiu(mi.ofertaVar12) + ' em um ano, para ' + fmtBR(Math.round(mi.oferta), 0) + ' imóveis; em Orlando, ' + subiuCaiu(or.ofertaVar12) + ', para ' + fmtBR(Math.round(or.oferta), 0) + '.';
     return t;
   }
+  if (e.id === 'dubai') {
+    const d = e.detalhe;
+    if (!d) return 'Sem dado do Dubai Land Department nesta rodada.';
+    let t = 'Em Dubai, a venda residencial mediana saiu a AED ' + fmtBR(Math.round(d.m2), 0) + ' por m² em ' + d.referenciaLonga + ' (Dubai Land Department, ' + fmtBR(d.transacoes, 0) + ' vendas registradas no mês)';
+    t += d.varJan != null ? ', ' + subiuCaiu(d.varJan) + ' desde janeiro.' : '.';
+    t += ' O valor mediano por negócio foi AED ' + fmtBR(Math.round(d.ticket), 0) + (d.naPlantaPct != null ? ', e ' + fmtBR(d.naPlantaPct, 0) + '% das vendas de moradia foram na planta.' : '.');
+    if (d.varVendas != null) t += ' Frente a ' + d.mesAntNome + ', o número de vendas ' + subiuCaiu(d.varVendas) + '.';
+    return t;
+  }
   if (e.id === 'lisboa') {
     const [li, ca] = e.cidades;
     if (li.venda == null) return 'Sem dado do INE para Lisboa nesta rodada.';
@@ -355,8 +454,8 @@ async function leituraGemini(e, fixa) {
 /* -------------------------------------------------------------------- main --- */
 (async () => {
   console.log('=== coletando (' + HOJE.toISOString().slice(0, 10) + ') ===');
-  const [bc, fz, zl, pt] = await Promise.all([bancoCentral(), fipezap(), zillow(), ine()]);
-  const estados = montarEstados(bc, fz, zl, pt);
+  const [bc, fz, zl, pt, db] = await Promise.all([bancoCentral(), fipezap(), zillow(), ine(), dubai()]);
+  const estados = montarEstados(bc, fz, zl, pt, db);
   const nacional = fz && fz.cidades['Índice FipeZAP'];
 
   console.log('=== leituras ===');

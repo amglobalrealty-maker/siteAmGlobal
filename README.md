@@ -305,8 +305,10 @@ trazer dados do mercado imobiliario das regioes em que atua: preco por m2,
 oferta, variacoes e outros indicadores, mostrados no proprio site. E a secao
 06, "O mercado, estado a estado": um estado por vez (os nove em que ha venda),
 quatro cartoes com numero, variacao em 12 meses e fonte, uma tabela por praca
-quando o estado tem mais de uma, e uma leitura curta. Em cima, o pano de fundo
-do Brasil: Selic, inflacao e o indice de precos dos imoveis financiados.
+quando o estado tem mais de uma, e uma leitura curta. No fim, o pano de fundo
+do Brasil: Selic, inflacao e o indice de precos dos imoveis financiados (ele
+ficava em cima e parecia "o numero" da secao, que nao mudava ao trocar de
+estado; desceu em 07/10/2026 depois do preview).
 
 **Tudo em codigo, sem servidor e sem servico pago.** Tres pecas:
 
@@ -336,7 +338,7 @@ um valor antigo ou inventado.
 | Brasil | Banco Central, API SGS | Selic (serie 432), IPCA 12 meses (13522), IVG-R, precos dos imoveis financiados (21340) | mensal |
 | Florida | Zillow Research, arquivos abertos | valor tipico de residencia (ZHVI) e imoveis a venda, regioes metropolitanas de Miami e Orlando | mensal |
 | Lisboa e Cascais | INE Portugal, API aberta, indicador 0012234 | preco mediano de venda por m2 nos ultimos 12 meses, por municipio, e a mediana de Portugal | trimestral |
-| Dubai | Dubai Land Department, dados abertos | **ainda nao ligada**: o portal exige conta. O bloco de Dubai e EXEMPLO (`amostra: true`) e a tela diz isso em tres lugares | — |
+| Dubai | Dubai Land Department, API aberta (a mesma que a pagina "Real Estate Data" do DLD usa), sem chave | todas as vendas residenciais do ultimo mes completo: preco mediano por m2 (unidades e vilas), numero de vendas, valor mediano por venda, parcela na planta. A API so cobre o ano corrente, entao a variacao e "desde janeiro" e "frente ao mes anterior", nunca 12 meses | mensal |
 
 ### A IA
 
