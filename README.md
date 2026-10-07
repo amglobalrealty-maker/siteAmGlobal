@@ -393,7 +393,7 @@ funcao `leituraGemini`.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Apresentacao do atendimento, em texto sobre onix (desde 07/10/2026): a frase de marca como rotulo, "Consultoria imobiliaria exclusiva, com foco no objetivo de cada cliente" como titulo, uma linha sobre o atendimento do inicio ao fim, os botoes Fale com um consultor e Ver a curadoria e, ao lado, os quatro servicos em resumo, que levam a secao 04. Ate 07/10 era um slide de tres fotografias da cliente com o texto desenhado; o cliente final achou as fotos grandes demais. Os arquivos ficaram em `fotos/`, sem uso |
+| 01 | Abertura | Apresentacao do atendimento (desde 07/10/2026): a esquerda a frase de marca como rotulo, "Consultoria imobiliaria exclusiva, com foco no objetivo de cada cliente" como titulo, UMA linha sobre o atendimento do inicio ao fim e os botoes Fale com um consultor e Ver a curadoria; a direita UMA foto da casa sem letra (`fotos/capa-2-cel.webp`), emoldurada, com menos da metade da tela; embaixo, os quatro servicos so pelo nome, levando a secao 04. Ate 07/10 era um slide de tres fotografias de pagina inteira com o texto desenhado; o cliente final achou as fotos grandes demais, e a versao so de texto que veio depois ficou "com muito texto" para ela. As outras fotos ficaram em `fotos/`, sem uso |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
@@ -534,10 +534,11 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   bloquear o clique assim que comeca a abrir.
 
   Com movimento reduzido nao ha espera nenhuma: ela ja nasce aberta.
-- **Abertura de apresentacao** (desde 07/10/2026). Sem fotografia: o titulo
-  entra por linhas, de dentro de uma mascara, e a lista dos quatro servicos
-  sobe com o `.sobe` do site. O slideshow de fotos que existia antes saiu do
-  HTML, do CSS e do script.
+- **Abertura de apresentacao** (desde 07/10/2026). O titulo entra por linhas,
+  de dentro de uma mascara; a foto emoldurada e a linha dos quatro servicos
+  sobem com o `.sobe` do site. A moldura e um fio claro recuado 14px por
+  dentro da foto, como um passe-partout. O slideshow de fotos que existia
+  antes saiu do HTML, do CSS e do script.
 - **Filtro das pracas.** Numero em Jost e nome em Cormorant italico, sempre no
   mesmo corpo, para nada saltar na troca. O que muda e a presenca: a praca no
   ar clareia, o numero vira champagne e um filete champagne corre sob o nome

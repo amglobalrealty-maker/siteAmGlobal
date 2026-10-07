@@ -487,10 +487,28 @@
 
   .abertura-grade {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: clamp(40px, 6vw, 120px);
-    align-items: end;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(36px, 5vw, 96px);
+    align-items: center;
     max-width: 1360px;
+  }
+
+  /* A FOTO, EMOLDURADA. Menos da metade da tela, com um fio claro recuado
+     por dentro, como uma passe-partout. O recorte e a casa sem letra. */
+  .abertura-foto {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--onix-alto);
+  }
+  .abertura-foto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .abertura-foto::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(245, 242, 236, 0.22);
+    pointer-events: none;
   }
 
   .abertura-texto { min-width: 0; }
@@ -527,48 +545,40 @@
   .abertura-acoes { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px 36px; }
   .botao--fraco { color: var(--texto-fraco); }
 
-  /* OS QUATRO SERVICOS, em resumo. Fio fino entre eles, numero em champagne,
-     nome em Cormorant e uma linha em Jost. O texto completo esta na secao 04;
-     cada item leva para la. */
-  .abertura-servicos { list-style: none; margin: 0; padding: 0; }
-  .abertura-servicos li { border-top: 1px solid var(--linha-clara); }
-  .abertura-servicos li:last-child { border-bottom: 1px solid var(--linha-clara); }
+  /* OS QUATRO SERVICOS, SO PELO NOME, numa linha sob a grade: numero em
+     champagne e nome em Cormorant. O texto de cada um esta na secao 04. */
+  .abertura-servicos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 clamp(28px, 4vw, 64px);
+    max-width: 1360px;
+    margin-top: clamp(36px, 6vh, 64px);
+    padding-top: clamp(16px, 2.4vh, 24px);
+    border-top: 1px solid var(--linha-clara);
+  }
   .abertura-servicos a {
-    display: grid;
-    grid-template-columns: 36px minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 14px;
-    padding: clamp(14px, 2vh, 22px) 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 8px 0;
     color: inherit;
     text-decoration: none;
-    transition: padding-left 0.5s var(--toque);
   }
-  .abertura-servicos a:hover { padding-left: 8px; }
   .abertura-num {
-    grid-row: 1 / span 2;
     font-family: var(--sans);
     font-size: 10px;
     letter-spacing: 0.18em;
     color: var(--champagne);
-    padding-top: 9px;
   }
   .abertura-nome {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(22px, 2vw, 30px);
+    font-size: clamp(20px, 1.7vw, 26px);
     line-height: 1.1;
-    color: var(--marfim);
+    color: rgba(245, 242, 236, 0.78);
     transition: color 0.4s var(--toque);
   }
-  .abertura-servicos a:hover .abertura-nome { color: var(--travertino); }
-  .abertura-linha {
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--texto-fraco);
-    margin-top: 5px;
-    max-width: 40ch;
-  }
+  .abertura-servicos a:hover .abertura-nome { color: var(--marfim); }
 
   /* o "Rolar", no canto de baixo a direita */
   .rolar {
@@ -2328,10 +2338,11 @@
     .mercado-cidades td:first-child { font-size: 17px; }
     /* ---- A ABERTURA NO CELULAR (07/10): texto e servicos empilhados ---- */
     .abertura { min-height: auto; padding: calc(var(--alto-topo, 72px) + clamp(28px, 5vh, 44px)) var(--margem) clamp(40px, 6vh, 56px); }
-    .abertura-grade { grid-template-columns: 1fr; gap: clamp(30px, 5vh, 44px); align-items: start; }
+    .abertura-grade { grid-template-columns: 1fr; gap: clamp(28px, 4.5vh, 40px); align-items: start; }
     .abertura h1 { font-size: clamp(32px, 9vw, 44px); max-width: none; }
-    .abertura-servicos a { grid-template-columns: 30px minmax(0, 1fr); padding: 14px 0; }
-    .abertura-nome { font-size: 22px; }
+    .abertura-foto { aspect-ratio: 16 / 10; }
+    .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }
+    .abertura-nome { font-size: 20px; }
     .rolar { display: none; }
     /* RESPIRO MENOR ENTRE SECOES (05/10): com 126px em cima e embaixo, sobravam
        telas quase vazias entre uma secao e outra no celular */
@@ -2543,21 +2554,29 @@
         <span class="linha"><span class="atrasa-1">Consultoria imobiliária exclusiva,</span></span>
         <span class="linha"><span class="atrasa-2"><em>com foco no objetivo de cada cliente.</em></span></span>
       </h1>
-      <p class="apoio">Um consultor conduz a jornada inteira, da primeira conversa à entrega das chaves. Para quem compra, vende ou investe, no Brasil e fora dele.</p>
+      <p class="apoio">Um consultor conduz a jornada inteira, da primeira conversa à entrega das chaves.</p>
       <div class="abertura-acoes">
         <a class="botao" href="#contato">Fale com um consultor</a>
         <a class="botao botao--fraco" href="#curadoria">Ver a curadoria</a>
       </div>
     </div>
 
-    <!-- os quatro servicos, em resumo; o texto completo esta na secao 04 -->
-    <ul class="abertura-servicos sobe" aria-label="Serviços">
-      <li><a href="#servicos"><span class="abertura-num">01</span><span class="abertura-nome">Comprar</span><span class="abertura-linha">Uma seleção curta, com o porquê de cada imóvel estar nela.</span></a></li>
-      <li><a href="#servicos"><span class="abertura-num">02</span><span class="abertura-nome">Vender</span><span class="abertura-linha">Posicionamento certo, material à altura e interessados qualificados.</span></a></li>
-      <li><a href="#servicos"><span class="abertura-num">03</span><span class="abertura-nome">Investir</span><span class="abertura-linha">Rentabilidade, liquidez e horizonte, no Brasil e fora.</span></a></li>
-      <li><a href="#servicos"><span class="abertura-num">04</span><span class="abertura-nome">Assessorar do exterior</span><span class="abertura-linha">Documentação, remessa e representação até a escritura.</span></a></li>
-    </ul>
+    <!-- A FOTO VOLTOU, EMOLDURADA (07/10, segunda rodada): ela achou a versao
+         so de texto carregada demais e quis uma foto. E o recorte da casa sem
+         letra que ja existia (capa-2-cel), numa moldura de menos da metade da
+         tela, nunca de ponta a ponta. -->
+    <figure class="abertura-foto sobe">
+      <img src="fotos/capa-2-cel.webp" alt="Casa de dois pavimentos ao entardecer, com piscina de borda infinita e vista para as montanhas" width="1400" height="875" fetchpriority="high" decoding="async">
+    </figure>
   </div>
+
+  <!-- os quatro servicos, so pelo nome; o texto completo esta na secao 04 -->
+  <nav class="abertura-servicos sobe" aria-label="Serviços">
+    <a href="#servicos"><span class="abertura-num">01</span><span class="abertura-nome">Comprar</span></a>
+    <a href="#servicos"><span class="abertura-num">02</span><span class="abertura-nome">Vender</span></a>
+    <a href="#servicos"><span class="abertura-num">03</span><span class="abertura-nome">Investir</span></a>
+    <a href="#servicos"><span class="abertura-num">04</span><span class="abertura-nome">Assessorar do exterior</span></a>
+  </nav>
 
   <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
     <!-- triangulo aberto, vindo do A -->
