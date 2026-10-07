@@ -174,7 +174,7 @@ async function zillow() {
       const atual = vals[fim], antes = vals[fim - 12];
       return { valor: atual, var12: arred(pct(atual, antes), 1), data: cab[iData + fim] };
     };
-    return { miami: pegar('Miami, FL'), orlando: pegar('Orlando, FL') };
+    return { miami: pegar('Miami, FL'), orlando: pegar('Orlando, FL'), eua: pegar('United States') };
   };
   const zhvi = await tentar('Zillow: valor típico de residência (ZHVI), Miami e Orlando', () =>
     metro('https://files.zillowstatic.com/research/public_csvs/zhvi/Metro_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv', 'ZHVI'));
@@ -385,6 +385,105 @@ function montarEstados(bc, fz, zl, pt, db) {
   return estados;
 }
 
+/* ------------------------------------------------------------ 6b. os paises
+   O painel funciona como o filtro do topo (pedido dela em 07/10/2026): escolhe
+   o pais e ve o mercado do pais; escolhe o estado e ve o do estado. O nivel
+   pais usa o que cada fonte tem de nacional: Indice FipeZAP + Banco Central
+   para o Brasil, a linha "United States" do Zillow, a mediana "PT" do INE e,
+   nos Emirados, o proprio Dubai (o DLD cobre o emirado). */
+function montarPaises(bc, fz, zl, pt, db, estados) {
+  const nacional = fz && fz.cidades['Índice FipeZAP'];
+  const refVenda = fz ? mesAnoCurto(fz.dataVenda) : null;
+  const refAluguel = fz ? mesAnoCurto(fz.dataAluguel) : null;
+  const dosEstados = (nome) => estados.filter(e => e.pais === nome).map(e => e.id);
+  const razao = (a, b) => a != null && b ? (a / b).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' vezes' : null;
+  const paises = [];
+
+  paises.push({
+    id: 'brasil', nome: 'Brasil', moeda: 'R$', estados: dosEstados('Brasil'),
+    cartoes: [
+      cartao('Venda, por m² (média das cidades)', nacional && nacional.venda != null ? 'R$ ' + fmtBR(Math.round(nacional.venda), 0) : null, nacional ? nacional.vendaVar12 : null, fz ? 'Índice FipeZAP, ' + refVenda : 'sem dado'),
+      cartao('Aluguel, por m² (média das cidades)', nacional && nacional.aluguel != null ? 'R$ ' + fmtBR(nacional.aluguel, 1) : null, nacional ? nacional.aluguelVar12 : null, fz ? 'Índice FipeZAP, ' + refAluguel : 'sem dado'),
+      cartao('Preços dos imóveis financiados', bc && bc.ivgr ? fmtPct(bc.ivgr.valor) : null, null, bc && bc.ivgr ? 'em 12 meses, IVG-R, Banco Central, ' + bc.ivgr.referencia : 'sem dado'),
+      cartao('Selic', bc && bc.selic ? fmtBR(bc.selic.valor, 2) + '% ao ano' : null, null, bc && bc.selic ? 'Banco Central, ' + bc.selic.referencia : 'sem dado')
+    ],
+    detalhe: { nacional, bc, refVenda, refAluguel },
+    fontes: ['Índice FipeZAP (Fipe e ZAP)' + (refVenda ? ', ' + refVenda : ''), 'Banco Central (Selic, IPCA, IVG-R)'], referencia: refVenda
+  });
+
+  {
+    const z = zl && zl.zhvi, o = zl && zl.oferta;
+    const refZ = z ? mesAnoCurto(new Date(z.eua.data)) : null;
+    paises.push({
+      id: 'estados-unidos', nome: 'Estados Unidos', moeda: 'US$', estados: dosEstados('Estados Unidos'),
+      cartoes: [
+        cartao('Valor típico de residência, país', z ? 'US$ ' + fmtBR(Math.round(z.eua.valor), 0) : null, z ? z.eua.var12 : null, z ? 'Zillow ZHVI, ' + refZ : 'sem dado'),
+        cartao('Imóveis à venda, país', o ? fmtBR(Math.round(o.eua.valor), 0) : null, o ? o.eua.var12 : null, o ? 'Zillow, ' + mesAnoCurto(new Date(o.eua.data)) : 'sem dado'),
+        cartao('Miami frente ao país', z ? razao(z.miami.valor, z.eua.valor) : null, null, z ? 'valor típico, Zillow' : 'sem dado'),
+        cartao('Orlando frente ao país', z ? razao(z.orlando.valor, z.eua.valor) : null, null, z ? 'valor típico, Zillow' : 'sem dado')
+      ],
+      detalhe: z ? { eua: z.eua, oferta: o ? o.eua : null, miami: z.miami, orlando: z.orlando, refZ } : null,
+      fontes: ['Zillow Research' + (refZ ? ', ' + refZ : '')], referencia: refZ
+    });
+  }
+
+  {
+    const dubai = estados.find(e => e.id === 'dubai');
+    paises.push({
+      id: 'emirados', nome: 'Emirados', moeda: 'AED', estados: dosEstados('Emirados'),
+      cartoes: dubai ? dubai.cartoes : [], detalhe: dubai ? dubai.detalhe : null,
+      fontes: dubai ? dubai.fontes : [], referencia: dubai ? dubai.referencia : null,
+      nota: 'O Dubai Land Department cobre o emirado de Dubai, a praça da AMGlobal nos Emirados.'
+    });
+  }
+
+  {
+    const p = pt;
+    paises.push({
+      id: 'portugal', nome: 'Portugal', moeda: '€', estados: dosEstados('Portugal'),
+      cartoes: [
+        cartao('Venda mediana, país, por m²', p ? '€ ' + fmtBR(p.portugal.valor, 0) : null, p ? p.portugal.var12 : null, p ? 'INE, 12 meses até o ' + p.referencia : 'sem dado'),
+        cartao('Lisboa frente ao país', p ? razao(p.lisboa.valor, p.portugal.valor) : null, null, p ? 'medianas, INE' : 'sem dado'),
+        cartao('Cascais frente ao país', p ? razao(p.cascais.valor, p.portugal.valor) : null, null, p ? 'medianas, INE' : 'sem dado'),
+        cartao('Lisboa, por m²', p ? '€ ' + fmtBR(p.lisboa.valor, 0) : null, p ? p.lisboa.var12 : null, p ? 'INE, 12 meses até o ' + p.referencia : 'sem dado')
+      ],
+      detalhe: p || null,
+      fontes: ['INE Portugal, indicador 0012234' + (p ? ', ' + p.referencia : '')], referencia: p ? p.referencia : null
+    });
+  }
+  return paises;
+}
+
+function leituraPais(p, estados) {
+  const d = p.detalhe;
+  if (p.id === 'brasil') {
+    const n = d && d.nacional, bc = d && d.bc;
+    if (!n) return 'Sem dado do Índice FipeZAP nesta rodada.';
+    let t = 'No Brasil, o Índice FipeZAP de venda ' + subiuCaiu(n.vendaVar12) + ' em 12 meses (' + d.refVenda + '), com preço médio de R$ ' + fmtBR(Math.round(n.venda), 0) + ' por m² nas cidades acompanhadas';
+    if (n.aluguel != null) t += '; o aluguel ' + subiuCaiu(n.aluguelVar12) + ' e rende ' + fmtBR(n.rentabilidadeAno, 1) + '% ao ano, antes de custos';
+    t += '.';
+    if (bc && bc.ivgr) t += ' Os preços dos imóveis financiados (IVG-R, Banco Central) ' + subiuCaiu(bc.ivgr.valor) + ' em 12 meses até ' + bc.ivgr.referencia + '.';
+    if (bc && bc.selic) t += ' Selic em ' + fmtBR(bc.selic.valor, 2) + '% ao ano' + (bc.ipca ? ' e inflação de ' + fmtBR(bc.ipca.valor, 2) + '% em 12 meses' : '') + '.';
+    return t;
+  }
+  if (p.id === 'estados-unidos') {
+    if (!d) return 'Sem dado do Zillow nesta rodada.';
+    let t = 'Nos Estados Unidos, o valor típico de uma residência está em US$ ' + fmtBR(Math.round(d.eua.valor), 0) + ' (Zillow, ' + d.refZ + '), ' + subiuCaiu(d.eua.var12) + ' em 12 meses.';
+    if (d.oferta) t += ' A oferta à venda no país ' + subiuCaiu(d.oferta.var12) + ' em um ano, para ' + fmtBR(Math.round(d.oferta.valor), 0) + ' imóveis.';
+    t += ' Na Flórida, Miami vale ' + (d.miami.valor / d.eua.valor).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + ' vez o país e Orlando, ' + (d.orlando.valor / d.eua.valor).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '.';
+    return t;
+  }
+  if (p.id === 'emirados') {
+    const dubai = estados.find(e => e.id === 'dubai');
+    return 'Nos Emirados, a praça da AMGlobal é Dubai, e o Dubai Land Department cobre o emirado inteiro. ' + (dubai ? dubai.leitura : 'Sem dado do DLD nesta rodada.');
+  }
+  if (p.id === 'portugal') {
+    if (!d) return 'Sem dado do INE nesta rodada.';
+    return 'Em Portugal, o preço mediano de venda foi de € ' + fmtBR(d.portugal.valor, 0) + ' por m² nos 12 meses até o ' + d.referencia + ' (INE), ' + subiuCaiu(d.portugal.var12) + ' frente ao mesmo período do ano anterior. Lisboa (€ ' + fmtBR(d.lisboa.valor, 0) + ') vale ' + (d.lisboa.valor / d.portugal.valor).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + ' vezes a mediana nacional; Cascais (€ ' + fmtBR(d.cascais.valor, 0) + '), ' + (d.cascais.valor / d.portugal.valor).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '.';
+  }
+  return 'Sem leitura para este país.';
+}
+
 /* ---------------------------------------------------- 6. a leitura (modelo fixo) */
 function leituraFixa(e, bc, nacional) {
   const fundo = bc && bc.selic ? ' Pano de fundo no Brasil: Selic em ' + fmtBR(bc.selic.valor, 2) + '% ao ano' + (bc.ipca ? ' e inflação de ' + fmtBR(bc.ipca.valor, 2) + '% em 12 meses' : '') + '.' : '';
@@ -469,8 +568,21 @@ async function leituraGemini(e, fixa) {
     log(e.nome + ': ' + e.leituraOrigem + (e.amostra ? ' (EXEMPLO)' : ''));
   }
 
+  // os paises, depois dos estados (Emirados reaproveita a leitura de Dubai)
+  const paises = montarPaises(bc, fz, zl, pt, db, estados);
+  for (const p of paises) {
+    const fixa = leituraPais(p, estados);
+    const ia = await leituraGemini(p, fixa);
+    p.leitura = ia || fixa;
+    p.leituraOrigem = ia ? 'gemini' : 'modelo fixo';
+    if (ia) viaGemini++;
+    log(p.nome + ' (país): ' + p.leituraOrigem);
+  }
+  for (const e of estados) e.paisId = (paises.find(p => p.nome === e.pais) || {}).id || null;
+
   const dados = {
     geradoEm: HOJE.toISOString().slice(0, 10),
+    paises,
     geradoEmTexto: HOJE.getUTCDate() + ' de ' + mesAno(HOJE),
     brasil: {
       selic: bc && bc.selic, ipca12: bc && bc.ipca, ivgr12: bc && bc.ivgr,
@@ -484,5 +596,5 @@ async function leituraGemini(e, fixa) {
   const corpo = '/* GERADO por ferramentas/coletar-mercado.js em ' + dados.geradoEm + '. Nao edite a mao: rode o coletor. */\nwindow.MERCADO = ' + JSON.stringify(dados, null, 2) + ';\n';
   fs.writeFileSync(SAIDA, corpo, 'utf8');
   const reais = estados.filter(e => !e.amostra && e.cartoes.some(c => c.valor != null)).length;
-  console.log('=== gravado ' + path.relative(process.cwd(), SAIDA) + ': ' + estados.length + ' estados, ' + reais + ' com dado real, ' + estados.filter(e => e.amostra).length + ' de exemplo; IA: ' + dados.ia + ' ===');
+  console.log('=== gravado ' + path.relative(process.cwd(), SAIDA) + ': ' + paises.length + ' países, ' + estados.length + ' estados, ' + reais + ' com dado real, ' + estados.filter(e => e.amostra).length + ' de exemplo; IA: ' + dados.ia + ' ===');
 })().catch(e => { console.error('ERRO: ' + e.message); process.exit(1); });

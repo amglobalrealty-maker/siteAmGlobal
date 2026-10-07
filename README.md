@@ -306,12 +306,21 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 A cliente pediu (07/10/2026) IA no site **nao para atendimento**, e sim para
 trazer dados do mercado imobiliario das regioes em que atua: preco por m2,
 oferta, variacoes e outros indicadores, mostrados no proprio site. E a secao
-06, "O mercado, estado a estado": um estado por vez (os nove em que ha venda),
-quatro cartoes com numero, variacao em 12 meses e fonte, uma tabela por praca
-quando o estado tem mais de uma, e uma leitura curta. No fim, o pano de fundo
-do Brasil: Selic, inflacao e o indice de precos dos imoveis financiados (ele
-ficava em cima e parecia "o numero" da secao, que nao mudava ao trocar de
-estado; desceu em 07/10/2026 depois do preview).
+06, "O mercado, pais a pais, estado a estado", **no formato do filtro do
+topo** (pedido dela depois do primeiro preview): coluna Pais a esquerda,
+coluna Estado a direita, e embaixo o painel do que esta escolhido. O primeiro
+item da coluna Estado e "Todo o pais": escolher o pais mostra o mercado do
+pais; escolher o estado desce ao detalhe. Cada painel tem cabecalho (o que
+esta aberto, quantas pracas, fonte), quatro cartoes com numero, variacao e
+fonte, tabela por praca quando ha mais de uma, e uma leitura curta.
+
+O nivel pais usa o que cada fonte tem de nacional: para o Brasil, o Indice
+FipeZAP (media das cidades acompanhadas) e o Banco Central (Selic, IPCA,
+IVG-R); para os Estados Unidos, a linha "United States" do Zillow; para
+Portugal, a mediana "PT" do INE; para os Emirados, o proprio Dubai, porque o
+DLD cobre o emirado. A primeira versao tinha um "pano de fundo do Brasil" no
+alto da secao e abas de estado: parecia que o numero nao mudava ao trocar de
+estado, e saiu.
 
 **Tudo em codigo, sem servidor e sem servico pago.** Tres pecas:
 
@@ -371,7 +380,7 @@ funcao `leituraGemini`.
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
 | 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
-| 06 | Mercado | Painel por estado (07/10/2026): pano de fundo do Brasil, abas dos nove estados, quatro cartoes com numero, variacao e fonte, tabela por praca e uma leitura curta. Tudo vem de mercado-dados.js |
+| 06 | Mercado | Painel no formato do filtro (07/10/2026): coluna Pais, coluna Estado (com "Todo o pais" primeiro) e, embaixo, o painel do que esta escolhido: cabecalho, quatro cartoes com numero, variacao e fonte, tabela por praca e uma leitura curta. Tudo vem de mercado-dados.js |
 | 07 | Contato | Formulario que abre o WhatsApp com a mensagem pronta, e os canais |
 | — | Rodape | Faixa com as frases da marca e a assinatura |
 

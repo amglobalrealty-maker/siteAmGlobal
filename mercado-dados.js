@@ -1,6 +1,272 @@
 /* GERADO por ferramentas/coletar-mercado.js em 2026-10-07. Nao edite a mao: rode o coletor. */
 window.MERCADO = {
   "geradoEm": "2026-10-07",
+  "paises": [
+    {
+      "id": "brasil",
+      "nome": "Brasil",
+      "moeda": "R$",
+      "estados": [
+        "sao-paulo",
+        "rio-de-janeiro",
+        "santa-catarina",
+        "parana",
+        "rio-grande-do-sul",
+        "goias"
+      ],
+      "cartoes": [
+        {
+          "rotulo": "Venda, por m² (média das cidades)",
+          "valor": "R$ 10.015",
+          "variacao": 5.5,
+          "nota": "Índice FipeZAP, set/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Aluguel, por m² (média das cidades)",
+          "valor": "R$ 54,5",
+          "variacao": 9.2,
+          "nota": "Índice FipeZAP, ago/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Preços dos imóveis financiados",
+          "valor": "+5,3%",
+          "variacao": null,
+          "nota": "em 12 meses, IVG-R, Banco Central, jul/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Selic",
+          "valor": "13,75% ao ano",
+          "variacao": null,
+          "nota": "Banco Central, vigente em outubro de 2026",
+          "periodo": null
+        }
+      ],
+      "detalhe": {
+        "nacional": {
+          "venda": 10015.101269667004,
+          "vendaVarMes": 0.58,
+          "vendaVar12": 5.5,
+          "aluguel": 54.4866114202957,
+          "aluguelVar12": 9.2,
+          "rentabilidadeAno": 6.1
+        },
+        "bc": {
+          "selic": {
+            "valor": 13.75,
+            "texto": "13,75% ao ano",
+            "referencia": "vigente em outubro de 2026",
+            "fonte": "Banco Central, série 432"
+          },
+          "ipca": {
+            "valor": 4.22,
+            "texto": "4,22%",
+            "referencia": "ago/2026",
+            "fonte": "IBGE via Banco Central, série 13522"
+          },
+          "ivgr": {
+            "valor": 5.3,
+            "texto": "+5,3% em 12 meses",
+            "referencia": "jul/2026",
+            "fonte": "Banco Central, IVG-R (série 21340)"
+          }
+        },
+        "refVenda": "set/2026",
+        "refAluguel": "ago/2026"
+      },
+      "fontes": [
+        "Índice FipeZAP (Fipe e ZAP), set/2026",
+        "Banco Central (Selic, IPCA, IVG-R)"
+      ],
+      "referencia": "set/2026",
+      "leitura": "No Brasil, o Índice FipeZAP de venda subiu 5,5% em 12 meses (set/2026), com preço médio de R$ 10.015 por m² nas cidades acompanhadas; o aluguel subiu 9,2% e rende 6,1% ao ano, antes de custos. Os preços dos imóveis financiados (IVG-R, Banco Central) subiu 5,3% em 12 meses até jul/2026. Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
+      "leituraOrigem": "modelo fixo"
+    },
+    {
+      "id": "estados-unidos",
+      "nome": "Estados Unidos",
+      "moeda": "US$",
+      "estados": [
+        "florida"
+      ],
+      "cartoes": [
+        {
+          "rotulo": "Valor típico de residência, país",
+          "valor": "US$ 368.697",
+          "variacao": 1.2,
+          "nota": "Zillow ZHVI, ago/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Imóveis à venda, país",
+          "valor": "1.406.231",
+          "variacao": 1.9,
+          "nota": "Zillow, ago/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Miami frente ao país",
+          "valor": "1,3 vezes",
+          "variacao": null,
+          "nota": "valor típico, Zillow",
+          "periodo": null
+        },
+        {
+          "rotulo": "Orlando frente ao país",
+          "valor": "1,0 vezes",
+          "variacao": null,
+          "nota": "valor típico, Zillow",
+          "periodo": null
+        }
+      ],
+      "detalhe": {
+        "eua": {
+          "valor": 368696.68474913173,
+          "var12": 1.2,
+          "data": "2026-08-31"
+        },
+        "oferta": {
+          "valor": 1406231,
+          "var12": 1.9,
+          "data": "2026-08-31"
+        },
+        "miami": {
+          "valor": 475829.62549971975,
+          "var12": -0.5,
+          "data": "2026-08-31"
+        },
+        "orlando": {
+          "valor": 383445.4629870343,
+          "var12": -1.8,
+          "data": "2026-08-31"
+        },
+        "refZ": "ago/2026"
+      },
+      "fontes": [
+        "Zillow Research, ago/2026"
+      ],
+      "referencia": "ago/2026",
+      "leitura": "Nos Estados Unidos, o valor típico de uma residência está em US$ 368.697 (Zillow, ago/2026), subiu 1,2% em 12 meses. A oferta à venda no país subiu 1,9% em um ano, para 1.406.231 imóveis. Na Flórida, Miami vale 1,3 vez o país e Orlando, 1.",
+      "leituraOrigem": "modelo fixo"
+    },
+    {
+      "id": "emirados",
+      "nome": "Emirados",
+      "moeda": "AED",
+      "estados": [
+        "dubai"
+      ],
+      "cartoes": [
+        {
+          "rotulo": "Venda residencial mediana, por m²",
+          "valor": "AED 17.882",
+          "variacao": -6.6,
+          "nota": "unidades e vilas, DLD, set/2026",
+          "periodo": "desde janeiro"
+        },
+        {
+          "rotulo": "Vendas residenciais no mês",
+          "valor": "11.134",
+          "variacao": -1.4,
+          "nota": "registradas no DLD, set/2026",
+          "periodo": "frente a agosto"
+        },
+        {
+          "rotulo": "Valor mediano por venda",
+          "valor": "AED 1.156.682",
+          "variacao": null,
+          "nota": "unidades e vilas, DLD, set/2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Vendas na planta",
+          "valor": "72%",
+          "variacao": null,
+          "nota": "das vendas de moradia, DLD, set/2026",
+          "periodo": null
+        }
+      ],
+      "detalhe": {
+        "m2": 17881.999367288834,
+        "varJan": -6.6,
+        "transacoes": 11134,
+        "varVendas": -1.4,
+        "ticket": 1156682.36,
+        "naPlantaPct": 72.36827751718118,
+        "referenciaLonga": "setembro de 2026",
+        "mesAntNome": "agosto"
+      },
+      "fontes": [
+        "Dubai Land Department (API de dados abertos), set/2026"
+      ],
+      "referencia": "set/2026",
+      "nota": "O Dubai Land Department cobre o emirado de Dubai, a praça da AMGlobal nos Emirados.",
+      "leitura": "Nos Emirados, a praça da AMGlobal é Dubai, e o Dubai Land Department cobre o emirado inteiro. Em Dubai, a venda residencial mediana saiu a AED 17.882 por m² em setembro de 2026 (Dubai Land Department, 11.134 vendas registradas no mês), caiu 6,6% desde janeiro. O valor mediano por negócio foi AED 1.156.682, e 72% das vendas de moradia foram na planta. Frente a agosto, o número de vendas caiu 1,4%.",
+      "leituraOrigem": "modelo fixo"
+    },
+    {
+      "id": "portugal",
+      "nome": "Portugal",
+      "moeda": "€",
+      "estados": [
+        "lisboa"
+      ],
+      "cartoes": [
+        {
+          "rotulo": "Venda mediana, país, por m²",
+          "valor": "€ 2.168",
+          "variacao": 17.5,
+          "nota": "INE, 12 meses até o 1º trimestre de 2026",
+          "periodo": null
+        },
+        {
+          "rotulo": "Lisboa frente ao país",
+          "valor": "2,3 vezes",
+          "variacao": null,
+          "nota": "medianas, INE",
+          "periodo": null
+        },
+        {
+          "rotulo": "Cascais frente ao país",
+          "valor": "2,2 vezes",
+          "variacao": null,
+          "nota": "medianas, INE",
+          "periodo": null
+        },
+        {
+          "rotulo": "Lisboa, por m²",
+          "valor": "€ 5.082",
+          "variacao": 15.2,
+          "nota": "INE, 12 meses até o 1º trimestre de 2026",
+          "periodo": null
+        }
+      ],
+      "detalhe": {
+        "lisboa": {
+          "valor": 5082,
+          "var12": 15.2
+        },
+        "cascais": {
+          "valor": 4687,
+          "var12": 11.9
+        },
+        "portugal": {
+          "valor": 2168,
+          "var12": 17.5
+        },
+        "referencia": "1º trimestre de 2026",
+        "fonte": "INE Portugal, indicador 0012234"
+      },
+      "fontes": [
+        "INE Portugal, indicador 0012234, 1º trimestre de 2026"
+      ],
+      "referencia": "1º trimestre de 2026",
+      "leitura": "Em Portugal, o preço mediano de venda foi de € 2.168 por m² nos 12 meses até o 1º trimestre de 2026 (INE), subiu 17,5% frente ao mesmo período do ano anterior. Lisboa (€ 5.082) vale 2,3 vezes a mediana nacional; Cascais (€ 4.687), 2,2.",
+      "leituraOrigem": "modelo fixo"
+    }
+  ],
   "geradoEmTexto": "7 de outubro de 2026",
   "brasil": {
     "selic": {
@@ -82,7 +348,8 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "leitura": "Em São Paulo, o metro quadrado de venda está em R$ 12.206 (FipeZap, set/2026), subiu 3,6% em 12 meses, abaixo da média nacional do Índice FipeZAP (+5,5%). O aluguel subiu 5,7% no mesmo período e rende 6,4% ao ano, antes de custos. Pano de fundo no Brasil: Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "brasil"
     },
     {
       "id": "rio-de-janeiro",
@@ -137,7 +404,8 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "leitura": "Em Rio de Janeiro, o metro quadrado de venda está em R$ 11.302 (FipeZap, set/2026), subiu 5,6% em 12 meses, acima da média nacional do Índice FipeZAP (+5,5%). O aluguel subiu 14,2% no mesmo período e rende 6,3% ao ano, antes de custos. Pano de fundo no Brasil: Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "brasil"
     },
     {
       "id": "santa-catarina",
@@ -208,7 +476,8 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "leitura": "Em Florianópolis, o metro quadrado de venda está em R$ 13.607 (FipeZap, set/2026), subiu 8,3% em 12 meses, acima da média nacional do Índice FipeZAP (+5,5%). O aluguel subiu 2,8% no mesmo período e rende 5,4% ao ano, antes de custos. Em Balneário Camboriú, R$ 15.369 por m² (+3,4% em 12 meses); Em Itajaí (Praia Brava), R$ 13.453 por m² (+5,3% em 12 meses). Pano de fundo no Brasil: Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "brasil"
     },
     {
       "id": "parana",
@@ -263,7 +532,8 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "leitura": "Em Curitiba, o metro quadrado de venda está em R$ 11.766 (FipeZap, set/2026), subiu 1,9% em 12 meses, abaixo da média nacional do Índice FipeZAP (+5,5%). O aluguel subiu 9,5% no mesmo período e rende 4,9% ao ano, antes de custos. Pano de fundo no Brasil: Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "brasil"
     },
     {
       "id": "rio-grande-do-sul",
@@ -318,7 +588,8 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "leitura": "Em Porto Alegre, o metro quadrado de venda está em R$ 7.545 (FipeZap, set/2026), subiu 0,9% em 12 meses, abaixo da média nacional do Índice FipeZAP (+5,5%). O aluguel subiu 11,0% no mesmo período e rende 7,3% ao ano, antes de custos. Pano de fundo no Brasil: Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "brasil"
     },
     {
       "id": "goias",
@@ -373,7 +644,8 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "leitura": "Em Goiânia, o metro quadrado de venda está em R$ 8.527 (FipeZap, set/2026), subiu 7,1% em 12 meses, acima da média nacional do Índice FipeZAP (+5,5%). O aluguel subiu 2,4% no mesmo período e rende 6,0% ao ano, antes de custos. Pano de fundo no Brasil: Selic em 13,75% ao ano e inflação de 4,22% em 12 meses.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "brasil"
     },
     {
       "id": "florida",
@@ -435,7 +707,8 @@ window.MERCADO = {
       ],
       "referencia": "ago/2026",
       "leitura": "Na região de Miami, o valor típico de uma residência está em US$ 475.830 (Zillow, ago/2026), caiu 0,5% em 12 meses; em Orlando, US$ 383.445 (-1,8%). A oferta à venda em Miami caiu 14,3% em um ano, para 48.328 imóveis; em Orlando, caiu 4,2%, para 16.599.",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "estados-unidos"
     },
     {
       "id": "dubai",
@@ -447,17 +720,17 @@ window.MERCADO = {
       "cidades": [
         {
           "nome": "Dubai",
-          "venda": 17892.225652539993,
+          "venda": 17881.999367288834,
           "vendaVar12": null,
-          "vendaVarAno": -6.5,
+          "vendaVarAno": -6.6,
           "unidade": "m²"
         }
       ],
       "cartoes": [
         {
           "rotulo": "Venda residencial mediana, por m²",
-          "valor": "AED 17.892",
-          "variacao": -6.5,
+          "valor": "AED 17.882",
+          "variacao": -6.6,
           "nota": "unidades e vilas, DLD, set/2026",
           "periodo": "desde janeiro"
         },
@@ -470,7 +743,7 @@ window.MERCADO = {
         },
         {
           "rotulo": "Valor mediano por venda",
-          "valor": "AED 1.157.664",
+          "valor": "AED 1.156.682",
           "variacao": null,
           "nota": "unidades e vilas, DLD, set/2026",
           "periodo": null
@@ -488,17 +761,18 @@ window.MERCADO = {
       ],
       "referencia": "set/2026",
       "detalhe": {
-        "m2": 17892.225652539993,
-        "varJan": -6.5,
+        "m2": 17881.999367288834,
+        "varJan": -6.6,
         "transacoes": 11134,
         "varVendas": -1.4,
-        "ticket": 1157664,
-        "naPlantaPct": 72.37430472243429,
+        "ticket": 1156682.36,
+        "naPlantaPct": 72.36827751718118,
         "referenciaLonga": "setembro de 2026",
         "mesAntNome": "agosto"
       },
-      "leitura": "Em Dubai, a venda residencial mediana saiu a AED 17.892 por m² em setembro de 2026 (Dubai Land Department, 11.134 vendas registradas no mês), caiu 6,5% desde janeiro. O valor mediano por negócio foi AED 1.157.664, e 72% das vendas de moradia foram na planta. Frente a agosto, o número de vendas caiu 1,4%.",
-      "leituraOrigem": "modelo fixo"
+      "leitura": "Em Dubai, a venda residencial mediana saiu a AED 17.882 por m² em setembro de 2026 (Dubai Land Department, 11.134 vendas registradas no mês), caiu 6,6% desde janeiro. O valor mediano por negócio foi AED 1.156.682, e 72% das vendas de moradia foram na planta. Frente a agosto, o número de vendas caiu 1,4%.",
+      "leituraOrigem": "modelo fixo",
+      "paisId": "emirados"
     },
     {
       "id": "lisboa",
@@ -556,7 +830,8 @@ window.MERCADO = {
       ],
       "referencia": "1º trimestre de 2026",
       "leitura": "No município de Lisboa, o preço mediano de venda foi de € 5.082 por m² nos 12 meses até o 1º trimestre de 2026 (INE), subiu 15,2% frente ao mesmo período do ano anterior. Em Cascais, € 4.687 por m² (+11,9%). A mediana de Portugal está em € 2.168 por m² (+17,5%).",
-      "leituraOrigem": "modelo fixo"
+      "leituraOrigem": "modelo fixo",
+      "paisId": "portugal"
     }
   ],
   "ia": "modelo fixo (sem GEMINI_API_KEY)",
