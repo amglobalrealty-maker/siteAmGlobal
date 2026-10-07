@@ -326,9 +326,9 @@ paises a esquerda, com a quantidade de residencias de cada um, e os
 **estados** a direita, tambem com a quantidade e com o pais escrito ao lado.
 Dentro de cada estado ficam as cidades dele.
 
-- Escolher o **pais** filtra a curadoria e apaga os estados dos outros
-  paises (eles continuam clicaveis: tocar num deles troca o pais junto). O
-  painel fica aberto, para a pessoa poder afinar.
+- Escolher o **pais** filtra a curadoria, acende os estados dele e apaga os
+  dos outros paises (eles continuam clicaveis: tocar num deles troca o pais
+  junto). O painel fica aberto, para a pessoa poder afinar.
 - Escolher o **estado** abre as cidades dele logo abaixo, como uma gaveta, e
   filtra a curadoria. Um estado aberto por vez; tocar de novo fecha e volta
   ao pais. "Todos os estados" desfaz a escolha do estado.

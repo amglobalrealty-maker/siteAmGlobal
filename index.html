@@ -865,9 +865,16 @@
 
   /* fora do pais escolhido: apaga, mas CONTINUA CLICAVEL -- tocar num estado
      apagado troca o pais junto */
-  .filtro-grupo.fora .filtro-estado { color: rgba(245, 242, 236, 0.2); }
-  .filtro-grupo.fora .filtro-estado::after { color: rgba(245, 242, 236, 0.13); }
+  .filtro-grupo.fora .filtro-estado { color: rgba(245, 242, 236, 0.16); }
+  .filtro-grupo.fora .filtro-estado::after { color: rgba(245, 242, 236, 0.1); }
   .filtro-grupo.fora .filtro-estado:hover { color: rgba(245, 242, 236, 0.72); }
+
+  /* COM UM PAIS ESCOLHIDO, OS ESTADOS DELE ACENDEM. Entre 0.44 (dentro) e 0.2
+     (fora) a diferenca era pouca: ela pediu mais destaque (06/10). O script
+     poe .com-pais na caixa dos estados enquanto houver pais escolhido. */
+  .filtro-estados.com-pais .filtro-grupo:not(.fora) .filtro-estado { color: rgba(245, 242, 236, 0.94); }
+  .filtro-estados.com-pais .filtro-grupo:not(.fora) .filtro-estado::after { color: rgba(245, 242, 236, 0.55); }
+  .filtro-estados.com-pais .filtro-grupo:not(.fora) .filtro-estado .filtro-conta { color: var(--champagne); }
 
   .filtro-pais,
   .filtro-estado,
@@ -3395,6 +3402,7 @@
     var conta = document.getElementById('curadoriaConta');
     var botoesPais = painelFiltro.querySelectorAll('.filtro-pais');
     var grupos = painelFiltro.querySelectorAll('.filtro-grupo');
+    var caixaEstados = document.getElementById('filtroEstados');
     var todosEstados = painelFiltro.querySelector('.filtro-estado[data-estado=""]');
     var botoesCidade = painelFiltro.querySelectorAll('.filtro-cidade');
     var paisAtual = '';
@@ -3515,6 +3523,8 @@
        As cidades ficam DENTRO do estado e so aparecem no estado aberto, que e
        sempre um so: o escolhido. */
     function mostrarEstados() {
+      // com pais escolhido, os estados dele acendem (css .com-pais)
+      if (caixaEstados) caixaEstados.classList.toggle('com-pais', !!paisAtual);
       Array.prototype.forEach.call(grupos, function (g) {
         var dePais = g.getAttribute('data-pais');
         var aberto = !!estadoAtual && g.getAttribute('data-estado') === estadoAtual;
