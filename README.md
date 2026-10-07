@@ -330,17 +330,35 @@ estado, e saiu.
 | `mercado-dados.js` | o resultado, versionado no git. Define `window.MERCADO`. **Nao editar a mao**: rodar o coletor |
 | secao `#mercado` do `index.html` | so monta o que esta no arquivo. Sem arquivo, mostra um recado; nunca inventa numero |
 
-Para atualizar, uma vez por mes:
+**A atualizacao e automatica e publica sem revisao** (decisao da cliente em
+07/10/2026). A rotina `.github/workflows/mercado.yml` roda no GitHub Actions
+todo dia 20, de madrugada: instala o `xlsx`, roda o coletor, passa pela trava
+`ferramentas/conferir-mercado.js` e, se a coleta veio boa, faz o commit de
+`mercado-dados.js` na propria branch; o push dispara o deploy da Vercel. O
+GitHub so agenda rotinas na branch padrao do repositorio, que e a de producao,
+entao o agendamento vale depois que esta mudanca chegar la. Tambem roda a mao
+em Actions > "Dados de mercado" > "Run workflow", em qualquer branch que
+tenha o arquivo (publica na branch escolhida: bom para testar no preview).
+
+A trava: publica se pelo menos 7 dos 9 estados e 3 dos 4 paises vieram com
+dado e nenhum e exemplo. Fonte fora do ar vira "sem dado" naquele cartao e o
+resto atualiza. Coleta inteira ruim nao publica: o site segue com o ultimo
+dado bom, com a data antiga visivel, e a rotina abre um aviso (issue) no
+repositorio dizendo o que falhou. Um segredo `GEMINI_API_KEY` no repositorio
+(Settings > Secrets and variables > Actions) faz a leitura ser redigida pelo
+Gemini; sem ele, vale o modelo fixo.
+
+Para rodar na mao, no computador:
 
 ```
 cd ferramentas
 npm install
 node coletar-mercado.js
+node conferir-mercado.js
 ```
 
-Depois, branch, preview e "sobe", como qualquer mudanca. O coletor imprime o
-que conseguiu e o que falhou; fonte fora do ar vira "sem dado" na tela, nunca
-um valor antigo ou inventado.
+O coletor imprime o que conseguiu e o que falhou; nunca grava valor antigo
+nem inventado.
 
 ### As fontes, todas publicas e gratuitas
 

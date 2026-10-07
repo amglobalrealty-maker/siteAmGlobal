@@ -1,0 +1,82 @@
+# ROTINA MENSAL DO PAINEL DE MERCADO (07/10/2026)
+#
+# Todo dia 20, de madrugada, roda o coletor (ferramentas/coletar-mercado.js),
+# confere se a coleta veio boa e publica mercado-dados.js na propria branch em
+# que roda. Agendamento so vale na branch padrao do repositorio (regra do
+# GitHub), que e a de producao: o push dispara o deploy da Vercel, e o site
+# atualiza sem ninguem olhar (decisao da cliente, 07/10/2026).
+#
+# Tambem roda a mao: Actions > "Dados de mercado" > "Run workflow", em qualquer
+# branch que tenha este arquivo. Nesse caso publica na branch escolhida.
+#
+# Se uma fonte falhar, aquele numero vira "sem dado" e o resto atualiza. Se a
+# coleta inteira vier ruim (menos de 7 dos 9 estados, ou menos de 3 dos 4
+# paises), NADA e publicado: o site segue com o ultimo dado bom, a data antiga
+# fica visivel, e abre um aviso (issue) no repositorio.
+#
+# Opcional: um segredo GEMINI_API_KEY (Settings > Secrets and variables >
+# Actions) faz a leitura ser redigida pelo Gemini no nivel gratuito. Sem ele,
+# vale o modelo fixo em codigo. Nenhuma outra chave e necessaria.
+
+name: Dados de mercado
+
+on:
+  schedule:
+    - cron: '0 6 20 * *'   # dia 20, 06:00 UTC = 03:00 em Brasilia
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: dados-de-mercado
+  cancel-in-progress: false
+
+jobs:
+  coletar-e-publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
+
+      - name: Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar o leitor de planilha (xlsx)
+        working-directory: ferramentas
+        run: npm ci --no-audit --no-fund
+
+      - name: Coletar as fontes
+        working-directory: ferramentas
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node coletar-mercado.js
+
+      - name: Conferir a coleta antes de publicar
+        run: node ferramentas/conferir-mercado.js
+
+      - name: Publicar na branch
+        run: |
+          if git diff --quiet -- mercado-dados.js; then
+            echo "mercado-dados.js nao mudou; nada a publicar"
+            exit 0
+          fi
+          git config user.name "amglobal-mercado"
+          git config user.email "actions@users.noreply.github.com"
+          git add mercado-dados.js
+          git commit -m "chore: dados de mercado atualizados em $(date -u +%Y-%m-%d) pela rotina mensal"
+          git push
+
+      - name: Avisar no repositorio se falhou
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Painel de mercado: a coleta de $(date -u +%Y-%m-%d) falhou" \
+            --body "A rotina mensal do painel de mercado falhou e nada foi publicado: o site segue com o ultimo dado bom, com a data antiga visivel. Veja o que deu errado em ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} . Em geral e uma fonte que mudou de endereco ou formato; o ajuste e em ferramentas/coletar-mercado.js." \
+            || echo "nao consegui abrir o aviso"
