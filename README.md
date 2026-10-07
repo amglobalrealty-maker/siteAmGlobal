@@ -393,7 +393,7 @@ funcao `leituraGemini`.
 
 | Numero | Secao | O que faz |
 |---|---|---|
-| 01 | Abertura | Apresentacao do atendimento (desde 07/10/2026): a esquerda a frase de marca como rotulo, "Consultoria imobiliaria exclusiva, com foco no objetivo de cada cliente" como titulo, UMA linha sobre o atendimento do inicio ao fim e os botoes Fale com um consultor e Ver a curadoria; a direita UMA foto da casa sem letra (`fotos/capa-2-cel.webp`), emoldurada, com menos da metade da tela; embaixo, os quatro servicos so pelo nome, levando a secao 04. Ate 07/10 era um slide de tres fotografias de pagina inteira com o texto desenhado; o cliente final achou as fotos grandes demais, e a versao so de texto que veio depois ficou "com muito texto" para ela. As outras fotos ficaram em `fotos/`, sem uso |
+| 01 | Abertura | Apresentacao do atendimento (desde 07/10/2026): a esquerda a frase de marca como rotulo, "Consultoria imobiliaria exclusiva, com foco no objetivo de cada cliente" como titulo, UMA linha sobre o atendimento do inicio ao fim e os botoes Fale com um consultor e Ver a curadoria; a direita a MOLDURA VIVA: as tres fotos da casa sem letra (`fotos/capa-N-cel.webp`) trocando dentro da mesma moldura, com menos da metade da tela, cada uma com uma legenda do manifesto ("Para quem compra, o lugar da vida", "Para quem vende, o comprador certo", "Para quem investe, o ativo certo"), avanco lento de camera, cantoneiras champagne e a barra de tres pedacos que se enche; embaixo, os quatro servicos so pelo nome, levando a secao 04, e o servico da foto no ar acende (apontar um servico traz a foto dele). Ate 07/10 era um slide de tres fotografias de pagina inteira com o texto desenhado; o cliente final achou as fotos grandes demais, e a versao so de texto que veio depois ficou "com muito texto" para ela. As outras fotos ficaram em `fotos/`, sem uso |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
 | 03 | A AMGlobal | Citacao grande em italico e os tres pilares |
 | 04 | Servicos | Um percurso: os quatro oficios sao estacoes, e a linha champagne avanca ate onde a pessoa esta. Sem imagem |
@@ -534,11 +534,17 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   bloquear o clique assim que comeca a abrir.
 
   Com movimento reduzido nao ha espera nenhuma: ela ja nasce aberta.
-- **Abertura de apresentacao** (desde 07/10/2026). O titulo entra por linhas,
-  de dentro de uma mascara; a foto emoldurada e a linha dos quatro servicos
-  sobem com o `.sobe` do site. A moldura e um fio claro recuado 14px por
-  dentro da foto, como um passe-partout. O slideshow de fotos que existia
-  antes saiu do HTML, do CSS e do script.
+- **Abertura de apresentacao, com a moldura viva** (desde 07/10/2026). O
+  titulo entra por linhas, de dentro de uma mascara; a moldura e a linha dos
+  quatro servicos sobem com o `.sobe` do site. Dentro da moldura, tres fotos
+  trocam a cada 6,6 segundos por fusao de 1,6 s, e a foto no ar avanca de
+  escala 1.04 a 1.12 (so a imagem se move; o fio claro recuado 14px e as
+  cantoneiras ficam parados, e e isso que da profundidade). A legenda entra
+  de baixo 0,3 s depois da foto. A barra de tres pedacos (fora da foto, para
+  nao brigar com a legenda) e a mesma da abertura antiga: o pedaco no ar se
+  enche em 6,6 s, os que passaram ficam cheios. Para com a aba escondida; com
+  movimento reduzido fica a primeira foto, parada. O slide antigo de pagina
+  inteira saiu; este vive dentro da moldura.
 - **Filtro das pracas.** Numero em Jost e nome em Cormorant italico, sempre no
   mesmo corpo, para nada saltar na troca. O que muda e a presenca: a praca no
   ar clareia, o numero vira champagne e um filete champagne corre sob o nome

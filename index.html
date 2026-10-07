@@ -493,23 +493,116 @@
     max-width: 1360px;
   }
 
-  /* A FOTO, EMOLDURADA. Menos da metade da tela, com um fio claro recuado
-     por dentro, como uma passe-partout. O recorte e a casa sem letra. */
-  .abertura-foto {
+  /* A MOLDURA VIVA. Menos da metade da tela. Dentro do quadro as tres fotos
+     trocam por fusao e avancam devagar (escala); a moldura, o fio claro
+     recuado e as duas cantoneiras champagne ficam paradas, e e esse contraste
+     que da profundidade. A legenda entra de baixo, de dentro de uma mascara,
+     um pouco depois da foto. */
+  .abertura-foto { position: relative; margin: 0; }
+  .abertura-quadro {
     position: relative;
-    margin: 0;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     background: var(--onix-alto);
   }
-  .abertura-foto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-  .abertura-foto::after {
+  .abertura-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s var(--ambiente);
+    will-change: opacity;
+  }
+  .abertura-slide.ativa { opacity: 1; }
+  .abertura-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.04);
+    transition: transform 7.4s linear;
+  }
+  .abertura-slide.ativa img { transform: scale(1.12); }
+  /* veu no pe, so onde a legenda pousa */
+  .abertura-slide::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 48%;
+    background: linear-gradient(to top, rgba(11, 11, 12, 0.8) 0%, rgba(11, 11, 12, 0.35) 55%, transparent 100%);
+    pointer-events: none;
+  }
+  .abertura-legenda {
+    position: absolute;
+    z-index: 1;
+    left: clamp(28px, 3.2vw, 44px);
+    right: clamp(28px, 3.2vw, 44px);
+    bottom: clamp(28px, 3.6vh, 46px);
+    margin: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(19px, 1.65vw, 27px);
+    line-height: 1.25;
+    color: var(--marfim);
+  }
+  .abertura-legenda .linha > span { transform: translateY(110%); transition: transform 1.1s var(--ambiente) 0.3s; }
+  .abertura-slide.ativa .abertura-legenda .linha > span { transform: none; }
+  /* o fio claro recuado, como um passe-partout, e as cantoneiras */
+  .abertura-quadro::after {
     content: '';
     position: absolute;
     inset: 14px;
     border: 1px solid rgba(245, 242, 236, 0.22);
     pointer-events: none;
+    z-index: 2;
   }
+  .abertura-canto {
+    position: absolute;
+    z-index: 3;
+    width: 26px;
+    height: 26px;
+    border: 0 solid var(--champagne);
+    pointer-events: none;
+  }
+  .abertura-canto--a { top: 14px; left: 14px; border-top-width: 1px; border-left-width: 1px; }
+  .abertura-canto--b { right: 14px; bottom: 14px; border-right-width: 1px; border-bottom-width: 1px; }
+
+  /* A BARRA DE TRES PEDACOS, abaixo da moldura: o pedaco da foto no ar se
+     enche de champagne no tempo exato da troca, os que passaram ficam cheios,
+     e tudo esvazia ao voltar a primeira. E a mesma barra que ela aprovou na
+     abertura antiga, agora fora da foto, para nao brigar com a legenda. */
+  .abertura-marcas { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+  .abertura-marca {
+    position: relative;
+    display: block;
+    width: clamp(44px, 6vw, 84px);
+    height: 22px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .abertura-marca::before,
+  .abertura-marca::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 1px;
+    margin-top: -0.5px;
+  }
+  .abertura-marca::before { background: rgba(245, 242, 236, 0.22); transition: background 0.5s var(--toque); }
+  .abertura-marca:hover::before { background: rgba(245, 242, 236, 0.5); }
+  .abertura-marca::after {
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--entra);
+  }
+  .abertura-marca.andada::after { transform: scaleX(1); }
+  .abertura-marca.ativo::after { animation: encher 6.6s linear forwards; }
+  .abertura-marca:focus-visible { outline: 1px solid var(--champagne); outline-offset: 5px; }
+  @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
   .abertura-texto { min-width: 0; }
   .abertura .rotulo { margin-bottom: clamp(18px, 2.4vh, 28px); }
@@ -579,6 +672,14 @@
     transition: color 0.4s var(--toque);
   }
   .abertura-servicos a:hover .abertura-nome { color: var(--marfim); }
+  /* o servico da foto que esta no ar acende: nome em marfim com um fio champagne embaixo */
+  .abertura-servicos a.ativo .abertura-nome {
+    color: var(--marfim);
+    text-decoration: underline;
+    text-decoration-color: var(--champagne);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 9px;
+  }
 
   /* o "Rolar", no canto de baixo a direita */
   .rolar {
@@ -2340,7 +2441,8 @@
     .abertura { min-height: auto; padding: calc(var(--alto-topo, 72px) + clamp(28px, 5vh, 44px)) var(--margem) clamp(40px, 6vh, 56px); }
     .abertura-grade { grid-template-columns: 1fr; gap: clamp(28px, 4.5vh, 40px); align-items: start; }
     .abertura h1 { font-size: clamp(32px, 9vw, 44px); max-width: none; }
-    .abertura-foto { aspect-ratio: 16 / 10; }
+    .abertura-quadro { aspect-ratio: 16 / 10; }
+    .abertura-legenda { font-size: 18px; left: 24px; right: 24px; bottom: 26px; }
     .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }
     .abertura-nome { font-size: 20px; }
     .rolar { display: none; }
@@ -2561,20 +2663,46 @@
       </div>
     </div>
 
-    <!-- A FOTO VOLTOU, EMOLDURADA (07/10, segunda rodada): ela achou a versao
-         so de texto carregada demais e quis uma foto. E o recorte da casa sem
-         letra que ja existia (capa-2-cel), numa moldura de menos da metade da
-         tela, nunca de ponta a ponta. -->
-    <figure class="abertura-foto sobe">
-      <img src="fotos/capa-2-cel.webp" alt="Casa de dois pavimentos ao entardecer, com piscina de borda infinita e vista para as montanhas" width="1400" height="875" fetchpriority="high" decoding="async">
+    <!-- A MOLDURA VIVA (07/10, terceira rodada: "mais criativo, com um slide").
+         Tres fotografias da casa, os recortes sem letra que ja existiam,
+         trocando dentro da MESMA moldura: fusao lenta, avanco de camera
+         (escala 1.04 -> 1.12 enquanto a foto esta no ar), uma legenda da
+         propria marca em cada uma (as tres frases do manifesto) e a barra de
+         tres pedacos que se enche, igual a que ela aprovou na versao antiga.
+         Cada slide carrega data-servico: o servico correspondente, na linha
+         de baixo, acende junto; passar o mouse num servico traz a foto dele.
+         A moldura continua com menos da metade da tela, nunca de ponta a
+         ponta. Com movimento reduzido fica a primeira foto, parada. -->
+    <figure class="abertura-foto sobe" id="aberturaFoto">
+      <div class="abertura-quadro">
+        <div class="abertura-slide ativa" data-servico="comprar">
+          <img src="fotos/capa-2-cel.webp" alt="" width="1400" height="875" fetchpriority="high" decoding="async">
+          <p class="abertura-legenda"><span class="linha"><span>Para quem compra, o lugar da vida.</span></span></p>
+        </div>
+        <div class="abertura-slide" data-servico="vender">
+          <img src="fotos/capa-1-cel.webp" alt="" width="1400" height="875" loading="lazy" decoding="async">
+          <p class="abertura-legenda"><span class="linha"><span>Para quem vende, o comprador certo.</span></span></p>
+        </div>
+        <div class="abertura-slide" data-servico="investir">
+          <img src="fotos/capa-3-cel.webp" alt="" width="1400" height="875" loading="lazy" decoding="async">
+          <p class="abertura-legenda"><span class="linha"><span>Para quem investe, o ativo certo.</span></span></p>
+        </div>
+        <span class="abertura-canto abertura-canto--a" aria-hidden="true"></span>
+        <span class="abertura-canto abertura-canto--b" aria-hidden="true"></span>
+      </div>
+      <div class="abertura-marcas" role="tablist" aria-label="Fotografias">
+        <button type="button" class="abertura-marca ativo" data-slide="0" aria-label="Ver a primeira fotografia"></button>
+        <button type="button" class="abertura-marca" data-slide="1" aria-label="Ver a segunda fotografia"></button>
+        <button type="button" class="abertura-marca" data-slide="2" aria-label="Ver a terceira fotografia"></button>
+      </div>
     </figure>
   </div>
 
   <!-- os quatro servicos, so pelo nome; o texto completo esta na secao 04 -->
   <nav class="abertura-servicos sobe" aria-label="Serviços">
-    <a href="#servicos"><span class="abertura-num">01</span><span class="abertura-nome">Comprar</span></a>
-    <a href="#servicos"><span class="abertura-num">02</span><span class="abertura-nome">Vender</span></a>
-    <a href="#servicos"><span class="abertura-num">03</span><span class="abertura-nome">Investir</span></a>
+    <a href="#servicos" data-servico="comprar"><span class="abertura-num">01</span><span class="abertura-nome">Comprar</span></a>
+    <a href="#servicos" data-servico="vender"><span class="abertura-num">02</span><span class="abertura-nome">Vender</span></a>
+    <a href="#servicos" data-servico="investir"><span class="abertura-num">03</span><span class="abertura-nome">Investir</span></a>
     <a href="#servicos"><span class="abertura-num">04</span><span class="abertura-nome">Assessorar do exterior</span></a>
   </nav>
 
@@ -3810,8 +3938,71 @@
     if (ressalvaMercado) ressalvaMercado.textContent = (M.ressalva || '') + (M.geradoEmTexto ? ' Atualizado em ' + M.geradoEmTexto + '.' : '');
   }
 
-  /* 8. (A abertura deixou de ser slide em 07/10/2026; o bloco do slideshow
-     saiu. A numeracao segue para nao renumerar os comentarios abaixo.) */
+  /* 8. A moldura viva da abertura (07/10/2026).
+
+     Tres fotografias trocando dentro da moldura a cada 6,6 segundos; a barra
+     de tres pedacos marca o tempo e aceita clique; o servico da foto no ar
+     acende na linha de baixo, e apontar um servico (so com mouse) traz a
+     foto dele. Com movimento reduzido fica a primeira, parada. Para quando a
+     aba sai de foco, para nao gastar bateria a toa. */
+  var quadroAbertura = document.getElementById('aberturaFoto');
+
+  if (quadroAbertura) {
+    var slidesAb = quadroAbertura.querySelectorAll('.abertura-slide');
+    var marcasAb = quadroAbertura.querySelectorAll('.abertura-marca');
+    var servicosAb = document.querySelectorAll('.abertura-servicos a[data-servico]');
+    var atualAb = 0;
+    var relogioAb = null;
+    var DURACAO_AB = 6600;
+
+    function mostrarAb(i) {
+      atualAb = (i + slidesAb.length) % slidesAb.length;
+      var servicoNoAr = slidesAb[atualAb].getAttribute('data-servico');
+      Array.prototype.forEach.call(slidesAb, function (s, k) { s.classList.toggle('ativa', k === atualAb); });
+      Array.prototype.forEach.call(marcasAb, function (b, k) {
+        b.classList.remove('ativo');
+        b.classList.toggle('andada', k < atualAb);
+        b.setAttribute('aria-selected', k === atualAb ? 'true' : 'false');
+        if (k === atualAb) { void b.offsetWidth; b.classList.add('ativo'); }
+      });
+      Array.prototype.forEach.call(servicosAb, function (a) {
+        a.classList.toggle('ativo', a.getAttribute('data-servico') === servicoNoAr);
+      });
+    }
+
+    function agendarAb() {
+      window.clearInterval(relogioAb);
+      relogioAb = window.setInterval(function () { mostrarAb(atualAb + 1); }, DURACAO_AB);
+    }
+
+    quadroAbertura.addEventListener('click', function (ev) {
+      var b = ev.target.closest('.abertura-marca');
+      if (!b) return;
+      mostrarAb(parseInt(b.getAttribute('data-slide'), 10));
+      if (!calmo) agendarAb();
+    });
+
+    // apontar um servico traz a foto dele (so onde ha mouse)
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      Array.prototype.forEach.call(servicosAb, function (a) {
+        a.addEventListener('mouseenter', function () {
+          var alvo = a.getAttribute('data-servico');
+          Array.prototype.forEach.call(slidesAb, function (s, k) {
+            if (s.getAttribute('data-servico') === alvo && k !== atualAb) { mostrarAb(k); if (!calmo) agendarAb(); }
+          });
+        });
+      });
+    }
+
+    mostrarAb(0);
+    if (!calmo) {
+      agendarAb();
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) window.clearInterval(relogioAb);
+        else agendarAb();
+      });
+    }
+  }
 
   /* 9. As tres horas.
 
