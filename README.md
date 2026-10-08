@@ -303,6 +303,20 @@ assim, as duas paginas levam `noindex`, para nao aparecerem em buscador.
 
 ## O painel de mercado
 
+**Guardado fora da producao desde 08/10/2026.** A cliente mandou subir tudo
+de outubro para a producao menos este painel, que espera a aprovacao do
+cliente final. Na branch de producao (`feat/site-inicial`, via
+`feat/producao-outubro`) o commit "mercado fica guardado" tirou do
+`index.html` a secao 06, o link "Mercado" do menu, o `<script>` de
+`mercado-dados.js` e a entrada `'mercado'` da lista de secoes, renumerou o
+Contato para 06 e desligou o agendamento mensal do workflow (so
+`workflow_dispatch`). O CSS e o bloco 7b do script continuam no arquivo,
+sem uso; `mercado-dados.js`, `ferramentas/` e o workflow continuam no
+repositorio. A branch `feat/preview-outubro` segue com o painel ligado, para
+mostrar ao cliente. **Para religar:** `git revert` desse commit na branch de
+producao, e depois `ferramentas/coletar-mercado.js` ou "Run workflow" para
+os dados voltarem a ser do mes.
+
 A cliente pediu (07/10/2026) IA no site **nao para atendimento**, e sim para
 trazer dados do mercado imobiliario das regioes em que atua: preco por m2,
 oferta, variacoes e outros indicadores, mostrados no proprio site. E a secao

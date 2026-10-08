@@ -21,8 +21,11 @@
 name: Dados de mercado
 
 on:
-  schedule:
-    - cron: '0 6 20 * *'   # dia 20, 06:00 UTC = 03:00 em Brasilia
+  # AGENDAMENTO DESLIGADO (08/10/2026): o painel de mercado esta guardado fora
+  # da producao ate o cliente aprovar. Ao religar o painel (git revert do
+  # commit "mercado fica guardado"), as duas linhas abaixo voltam:
+  #   schedule:
+  #     - cron: '0 6 20 * *'   # dia 20, 06:00 UTC = 03:00 em Brasilia
   workflow_dispatch:
 
 permissions:

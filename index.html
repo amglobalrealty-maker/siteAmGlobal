@@ -2541,7 +2541,7 @@
       <a href="#manifesto">A AMGlobal</a>
       <a href="#servicos">Serviços</a>
       <a href="#global">Global</a>
-      <a href="#mercado">Mercado</a>
+      <!-- "Mercado" volta aqui quando o painel de mercado for religado (ver a secao guardada, abaixo do Global) -->
       <a href="#contato">Contato</a>
     </nav>
 
@@ -3177,55 +3177,22 @@
 </section>
 
 <!-- ================================================================= mercado -->
-<!-- O PAINEL DE MERCADO (07/10/2026). A cliente pediu IA no site nao para
-     atendimento, e sim para trazer dados do mercado imobiliario das regioes
-     em que atua: preco por m2, oferta, variacoes, mostrados no proprio site.
-     Os numeros vem de ferramentas/coletar-mercado.js, que grava
-     mercado-dados.js a partir de fontes publicas e gratuitas (FipeZap, Banco
-     Central, Zillow, INE, Dubai Land Department). A leitura de cada estado e escrita a partir desses
-     numeros e de mais nada: modelo fixo em codigo, ou Gemini no nivel gratuito
-     quando houver chave. Esta secao so monta o que esta no arquivo; sem
-     arquivo, mostra um recado e nao inventa numero. Estado marcado "exemplo"
-     (amostra: true) e layout, nao dado, e a tela diz isso. -->
-<section id="mercado">
-  <div class="cabeca sobe">
-    <div>
-      <span class="filete"></span>
-      <span class="rotulo">06 — Mercado</span>
-      <h2>O mercado, país a país, estado a estado.</h2>
-    </div>
-    <div class="cabeca-texto">
-      <p>Números de fontes públicas, atualizados todo mês, e uma leitura curta de cada lugar em que atuamos. Escolha o país para ver o mercado dele; escolha o estado para descer ao detalhe. Cada número traz a fonte e a data.</p>
-    </div>
-  </div>
-
-  <!-- A MESMA GRAMATICA DO FILTRO DO TOPO (07/10): pais a esquerda, estados do
-       pais a direita, e o painel embaixo mostra o que esta escolhido. O
-       primeiro item da coluna de estados e "Todo o pais". -->
-  <div class="mercado-grade sobe">
-    <div class="mercado-col">
-      <span class="rotulo">País</span>
-      <div class="mercado-lista" id="mercadoPaises" role="tablist" aria-label="País"></div>
-    </div>
-    <div class="mercado-col">
-      <span class="rotulo">Estado</span>
-      <div class="mercado-lista mercado-lista--estados" id="mercadoEstados" role="tablist" aria-label="Estado"></div>
-    </div>
-  </div>
-
-  <div class="mercado-painel sobe" id="mercadoPainel" aria-live="polite">
-    <p class="mercado-recado" id="mercadoRecado">Os dados do mercado ainda não foram carregados nesta publicação.</p>
-  </div>
-
-  <p class="mercado-ressalva" id="mercadoRessalva"></p>
-</section>
+<!-- O PAINEL DE MERCADO ESTA GUARDADO (08/10/2026). A cliente mandou subir
+     tudo para a producao MENOS o painel de mercado (secao 06, "O mercado,
+     pais a pais, estado a estado"), que espera a aprovacao do cliente final.
+     O painel inteiro continua no repositorio: a secao, o CSS e o script
+     (bloco 7b) vivem na branch feat/preview-outubro, e os dados e as
+     ferramentas (mercado-dados.js, ferramentas/, .github/workflows/mercado.yml)
+     continuam aqui. Para religar: git revert do commit "mercado fica
+     guardado" devolve a secao, o link do menu, o script dos dados, a
+     numeracao 07 do Contato e o agendamento mensal. -->
 
 <!-- ================================================================= contato -->
 <section id="contato">
   <div class="contato-grade">
     <div class="sobe">
       <span class="filete"></span>
-      <span class="rotulo">07 — Contato</span>
+      <span class="rotulo">06 — Contato</span>
       <h2>Comece por<br>uma conversa</h2>
       <p>Conte o que você procura, ou o que pretende vender. Respondemos com uma seleção objetiva, não com uma lista.</p>
 
@@ -3348,7 +3315,7 @@
 <!-- Os numeros do painel de mercado. Gerado por ferramentas/coletar-mercado.js
      (fontes publicas e gratuitas); nao editar a mao. Entra antes do script do
      site porque ele le window.MERCADO ao montar a secao 06. -->
-<script src="mercado-dados.js"></script>
+<!-- <script src="mercado-dados.js"></script> volta quando o painel de mercado for religado -->
 <script>
 (function () {
   'use strict';
@@ -3543,7 +3510,7 @@
   }
 
   /* 6. Indice lateral e menu acompanham a secao visivel. */
-  var secoes = ['abertura', 'curadoria', 'manifesto', 'servicos', 'global', 'mercado', 'contato'];
+  var secoes = ['abertura', 'curadoria', 'manifesto', 'servicos', 'global', 'contato'];   // 'mercado' volta com o painel
   var itensMenu = document.querySelectorAll('.menu a');
 
   if ('IntersectionObserver' in window) {
