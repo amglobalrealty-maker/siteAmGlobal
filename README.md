@@ -537,14 +537,17 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 - **Abertura de apresentacao sobre um video** (desde 08/10/2026). Nada em
   caixa: um video ocupa a primeira tela inteira, atras de tudo, e o texto
   (rotulo, titulo por linhas, uma frase, dois botoes) fica por cima, a
-  esquerda; a linha dos quatro servicos, no pe. O video e uma casa moderna
-  ao crepusculo vista de cima, luzes quentes no deck e o resto escuro
-  (Pexels 39024336, "Aerial View of Modern Luxury Home at Twilight", Alef
-  Morais; licenca Pexels, uso livre, sem atribuicao obrigatoria). Foi
-  reduzido do 1440p original para `fotos/abertura-1080.mp4` (computador) e
-  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, e montado em **8,6
-  s de ida mais os mesmos 8,6 s de volta**, para o loop nao ter corte; a
-  capa `fotos/abertura-poster.webp` e o quadro de 2 s. A capa entra primeiro
+  esquerda; a linha dos quatro servicos, no pe. O video e a varanda de uma
+  casa de praia sobre a piscina, com coqueiros e a lagoa e o mar ao fundo,
+  na luz dourada do fim de tarde (Pexels 39576530, "Luxurious Coastal Home
+  with Private Pool View", Alef Morais, fotografo imobiliario de Salvador;
+  licenca Pexels, uso livre, sem atribuicao obrigatoria). Ela pediu "praia,
+  casa chique" depois de ver a primeira escolha, uma casa ao crepusculo
+  vista de cima (Pexels 39024336, mesmo autor). Foi reduzido do 1440p
+  original para `fotos/abertura-1080.mp4` (computador) e
+  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, e montado em **5,7
+  s de ida mais os mesmos 5,7 s de volta**, para o loop nao ter corte; a
+  capa `fotos/abertura-poster.webp` e o quadro de 1,5 s. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
