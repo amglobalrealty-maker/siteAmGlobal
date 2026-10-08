@@ -1289,6 +1289,90 @@
      e o escalonamento e feito com nth-child, em CSS. Sairam 68 linhas de
      JavaScript.
      ------------------------------------------------------------------------ */
+  /* A JORNADA (08/10/2026): cinco passos sobre um trilho apagado; por cima,
+     a linha champagne se traca da esquerda para a direita em 2,2 s quando a
+     lista entra na tela, e cada passo aparece e acende o seu ponto no momento
+     em que a linha passa por ele. No celular o trilho fica em pe, a esquerda,
+     e se traca de cima para baixo. */
+  .jornada {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 32px);
+    margin: 0 0 clamp(44px, 7vh, 80px);
+    padding: clamp(26px, 3.6vh, 40px) 0 0;
+    list-style: none;
+  }
+  .jornada.sobe { opacity: 1; transform: none; }
+  .jornada::before,
+  .jornada::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+  }
+  .jornada::before { background: var(--linha-clara); }
+  .jornada::after {
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 2.2s var(--ambiente) 0.2s;
+  }
+  .jornada.visivel::after { transform: scaleX(1); }
+  .passo {
+    position: relative;
+    padding-top: 14px;   /* o numero nao encosta no ponto da linha */
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.8s var(--curva), transform 0.8s var(--entra);
+  }
+  .jornada.visivel .passo { opacity: 1; transform: none; }
+  .passo-ponto {
+    position: absolute;
+    top: -4.5px;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 1px solid var(--champagne);
+    background: var(--onix);
+    transition: background 0.5s var(--toque), box-shadow 0.6s var(--toque);
+  }
+  .jornada.visivel .passo-ponto { background: var(--champagne); box-shadow: 0 0 0 5px rgba(180, 154, 110, 0.16); }
+  .passo:last-child .passo-ponto { width: 11px; height: 11px; top: -5.5px; }
+  /* cada passo no tempo em que a linha chega nele */
+  .jornada.visivel .passo:nth-child(1), .jornada.visivel .passo:nth-child(1) .passo-ponto { transition-delay: 0.25s; }
+  .jornada.visivel .passo:nth-child(2), .jornada.visivel .passo:nth-child(2) .passo-ponto { transition-delay: 0.65s; }
+  .jornada.visivel .passo:nth-child(3), .jornada.visivel .passo:nth-child(3) .passo-ponto { transition-delay: 1.05s; }
+  .jornada.visivel .passo:nth-child(4), .jornada.visivel .passo:nth-child(4) .passo-ponto { transition-delay: 1.45s; }
+  .jornada.visivel .passo:nth-child(5), .jornada.visivel .passo:nth-child(5) .passo-ponto { transition-delay: 1.85s; }
+  .passo-num {
+    display: block;
+    font-family: var(--sans);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    color: var(--champagne);
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 10px;
+  }
+  .passo-nome {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(19px, 1.5vw, 24px);
+    line-height: 1.1;
+    color: var(--marfim);
+    margin: 0 0 8px;
+    transition: color 0.5s var(--toque);
+  }
+  .passo:hover .passo-nome { color: var(--champagne); }
+  .passo p { font-size: 13.5px; line-height: 1.6; color: rgba(245, 242, 236, 0.58); max-width: 24ch; }
+  @media (prefers-reduced-motion: reduce) {
+    .jornada::after, .jornada.visivel::after { transform: none; transition: none; }
+    .passo, .jornada.visivel .passo { opacity: 1; transform: none; transition: none; }
+    .passo-ponto { background: var(--champagne); transition: none; }
+  }
+
   .frentes {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1339,14 +1423,16 @@
 
   .frente:hover::after { width: 100%; }
 
+  /* o numero de cada frente, grande e em champagne, no serifado (08/10) */
   .frente-num {
     display: block;
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(34px, 3vw, 48px);
+    line-height: 1;
+    letter-spacing: 0.02em;
     color: var(--champagne);
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums lining-nums;
     margin-bottom: clamp(12px, 1.8vh, 18px);
   }
 
@@ -2420,6 +2506,15 @@
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
+    /* a jornada em pe: trilho a esquerda, se tracando de cima para baixo */
+    .jornada { grid-template-columns: 1fr; gap: 22px; padding: 0 0 0 28px; margin-bottom: clamp(40px, 6vh, 56px); }
+    .jornada::before, .jornada::after { top: 0; bottom: 0; left: 4px; right: auto; width: 1px; height: auto; }
+    .jornada::after { transform: scaleY(0); transform-origin: top; }
+    .jornada.visivel::after { transform: scaleY(1); }
+    .passo { padding-top: 0; }
+    .passo-ponto { top: 5px; left: -28px; }
+    .passo:last-child .passo-ponto { top: 4px; left: -29px; }
+    .passo p { max-width: 44ch; }
     .frente-nome { font-size: clamp(22px, 5.6vw, 28px); }
     /* mercado no celular: as duas colunas empilham, como no filtro; dois cartoes por linha */
     .mercado-grade { grid-template-columns: 1fr; gap: 26px; }
@@ -2956,6 +3051,19 @@
       <p>Um consultor conduz a jornada inteira. Sem transferências, sem repetir o que você já explicou.</p>
     </div>
   </div>
+
+  <!-- A JORNADA (08/10/2026, "deixar o site mais bonito": ela escolheu esta).
+       O titulo da secao diz "do primeiro contato a escritura"; agora o
+       percurso aparece desenhado: cinco passos numa linha que se traca ao
+       entrar na tela, com os pontos acendendo um a um. E uma lista COM ordem,
+       diferente das quatro frentes abaixo. -->
+  <ol class="jornada sobe" aria-label="A jornada, do primeiro contato à escritura">
+    <li class="passo"><span class="passo-ponto" aria-hidden="true"></span><span class="passo-num">01</span><h3 class="passo-nome">Conversa</h3><p>Objetivo, prazo e o que não é negociável.</p></li>
+    <li class="passo"><span class="passo-ponto" aria-hidden="true"></span><span class="passo-num">02</span><h3 class="passo-nome">Seleção</h3><p>Uma seleção curta, com o porquê de cada imóvel.</p></li>
+    <li class="passo"><span class="passo-ponto" aria-hidden="true"></span><span class="passo-num">03</span><h3 class="passo-nome">Visitas</h3><p>Presenciais ou à distância, no seu ritmo.</p></li>
+    <li class="passo"><span class="passo-ponto" aria-hidden="true"></span><span class="passo-num">04</span><h3 class="passo-nome">Negociação</h3><p>Proposta, condições e documentos sem surpresa.</p></li>
+    <li class="passo"><span class="passo-ponto" aria-hidden="true"></span><span class="passo-num">05</span><h3 class="passo-nome">Escritura</h3><p>Da assinatura à entrega das chaves.</p></li>
+  </ol>
 
   <!-- QUATRO FRENTES. Nao e um percurso: sao quatro servicos, e por isso
        esta numa lista SEM ORDEM. Os numeros sao indice, para referencia, e
