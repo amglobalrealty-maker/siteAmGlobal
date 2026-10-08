@@ -528,11 +528,17 @@
     position: absolute;
     inset: 0;
     z-index: 1;
+    /* a oval (primeira camada) escurece so atras do bloco de texto, a esquerda:
+       sem ela o titulo em cima do ceu dava 2,2:1 no pior ponto (medido em
+       08/10 com win/ver-amglobal-legivel.cjs); a casa, a direita, fica fora. */
     background:
+      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.66) 0%, rgba(11, 11, 12, 0.42) 55%, rgba(11, 11, 12, 0) 100%),
       linear-gradient(90deg, rgba(11, 11, 12, 0.84) 0%, rgba(11, 11, 12, 0.62) 38%, rgba(11, 11, 12, 0.22) 72%, rgba(11, 11, 12, 0.34) 100%),
       linear-gradient(180deg, rgba(11, 11, 12, 0.6) 0%, rgba(11, 11, 12, 0) 28%, rgba(11, 11, 12, 0.18) 62%, rgba(11, 11, 12, 0.92) 100%);
     pointer-events: none;
   }
+  /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
+  .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
   .abertura-texto { max-width: 700px; }
   .abertura-servicos { position: relative; z-index: 2; }
@@ -541,6 +547,11 @@
 
   .abertura-texto { min-width: 0; }
   .abertura .rotulo { margin-bottom: clamp(18px, 2.4vh, 28px); }
+  /* o rotulo em cima do video: champagne de 10,5px dava 2,7:1 no computador e
+     1:1 a 2:1 no celular contra o fundo fotografado (medido em 08/10). Aqui,
+     e so aqui, ele fica travertino (mais claro) com uma sombra suave; o filete
+     acima continua champagne. */
+  .abertura .rotulo { color: var(--travertino); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 14px rgba(0, 0, 0, 0.45); }
 
   /* a abertura entra por linhas, uma depois da outra */
   .linha { display: block; overflow: hidden; }
@@ -2542,9 +2553,22 @@
        onde o veu e mais escuro */
     .abertura { min-height: 100svh; align-content: end; padding-bottom: clamp(28px, 5vh, 44px); }
     .abertura-poster, .abertura-filme { object-position: 50% 50%; }
+    /* LEGIBILIDADE NO CELULAR (08/10, "nao ta dando pra ler direito os textos em
+       cima do video no mobile"): o texto ocupa dos 38% aos 95% da tela, bem em
+       cima da casa e dos coqueiros, e o veu antigo so escurecia de verdade a
+       partir dos 72%. Agora o veu fecha dos 26% para baixo (0,8 ja aos 38%) e
+       o ceu e o mar do terco de cima continuam vivos. O texto ainda ganha uma
+       sombra suave para o que sobra de video atras dele. Medido com
+       win/ver-amglobal-legivel.cjs (contraste contra o fundo fotografado). */
     .abertura-veu {
+      /* a faixa escura e medida DO PE DA TELA, em pixels: o texto e alinhado
+         embaixo e tem sempre a mesma altura (uns 520px ate o rotulo), entao
+         num celular baixo (664px) ele comeca em 27% da tela e num alto (844px)
+         em 38%; com a faixa em porcentagem o rotulo do celular baixo ficava
+         em 3,5:1. A camada de cima so escurece atras do cabecalho. */
       background:
-        linear-gradient(180deg, rgba(11, 11, 12, 0.62) 0%, rgba(11, 11, 12, 0.12) 26%, rgba(11, 11, 12, 0.3) 48%, rgba(11, 11, 12, 0.88) 72%, rgba(11, 11, 12, 0.96) 100%);
+        linear-gradient(180deg, rgba(11, 11, 12, 0.6) 0, rgba(11, 11, 12, 0.12) 120px, rgba(11, 11, 12, 0) 170px),
+        linear-gradient(0deg, rgba(11, 11, 12, 0.97) 0, rgba(11, 11, 12, 0.92) 280px, rgba(11, 11, 12, 0.85) 500px, rgba(11, 11, 12, 0.6) 570px, rgba(11, 11, 12, 0.22) 650px, rgba(11, 11, 12, 0) 720px);
     }
     .abertura-servicos { margin-top: clamp(22px, 4vh, 36px); }
     /* o rotulo no celular: cada frase inteira, o fio entre elas, quebrando so entre as duas */

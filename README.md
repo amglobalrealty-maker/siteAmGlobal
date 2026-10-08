@@ -574,7 +574,20 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   a capa `fotos/abertura-poster.webp` e o quadro de 6 s. Os tres arquivos
   tem sempre o mesmo nome, entao as URLs no `index.html` levam `?v=N`, e o
   N muda a cada troca de video: sem isso quem ja abriu o site continua vendo
-  o anterior, do cache. A capa entra primeiro
+  o anterior, do cache. **Legibilidade em cima do video** (08/10/2026, "nao
+  ta dando pra ler direito os textos em cima do video no mobile"): medido
+  com `scratchpad/win/ver-amglobal-legivel.cjs`, que esconde o texto,
+  fotografa o fundo real (capa + veu) e calcula o contraste de cada texto
+  contra a media e contra o tile mais claro atras dele. Antes, no celular, o
+  titulo dava 2:1 a 4:1 e o rotulo 1:1 a 2:1. Agora: no celular o veu tem
+  uma faixa escura medida do pe da tela em pixels (o texto e alinhado
+  embaixo e tem sempre a mesma altura, entao a faixa cobre o texto em
+  qualquer altura de celular) e o ceu do terco de cima continua vivo; no
+  computador uma oval escura fica so atras do bloco de texto, a esquerda; o
+  rotulo da abertura e travertino (champagne de 10,5px nao le sobre video)
+  e todo o texto da abertura tem uma sombra suave. Resultado: tudo acima de
+  9:1 no pior tile, menos o rotulo no computador (3,6:1 no pior tile, 7,3:1
+  na media, e com sombra). A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
