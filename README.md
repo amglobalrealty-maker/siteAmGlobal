@@ -563,25 +563,31 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   (bloco 8b do script); o servico correspondente acende na linha de baixo
   e apontar um servico (so com mouse) traz a frase dele. Com movimento
   reduzido tudo nasce parado e a frase nao gira. O titulo diz "Consultoria
-  imobiliaria global, do Brasil para o mundo, do mundo para o Brasil" (o
-  cliente final pediu a palavra global em 08/10/2026, antes era "exclusiva";
-  mais tarde no mesmo dia ela pediu que o header "falasse mais de
-  consultoria global", e a segunda linha virou essa). A frase da cliente,
-  "com foco no objetivo de cada cliente", foi para a quarta frase que gira,
-  junto com os quatro paises onde a AMGlobal atua. O video e uma casa de
-  alto padrao toda em vidro, com a piscina a frente e um coqueiro contra o
-  ceu na luz dourada do fim de tarde (Pexels 39576513, "Luxurious modern
-  home with pool and palm view", Alef Morais, fotografo imobiliario de
-  Salvador; licenca Pexels, uso livre, sem atribuicao obrigatoria). Foi a
-  quarta escolha de 08/10/2026: antes vieram a casa ao crepusculo vista de
-  cima (39024336), a varanda da casa de praia (39576530) e a piscina
-  infinita ao por do sol (8642874, Peggy Anke); esta ultima caiu porque o
-  video "tem que ter a ver com imobiliaria de luxo", nao paisagem. O clipe
-  original tem 7,4 s em 1440p; o site usa 7 s a partir de 0,2 s, gravados em
-  `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
-  900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
-  volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
-  o quadro de 3 s. A capa entra primeiro
+  imobiliaria global, presente onde o mundo escolhe morar" (o cliente final
+  pediu a palavra global em 08/10/2026, antes era "exclusiva"; mais tarde
+  no mesmo dia ela pediu que o header "falasse mais de consultoria global":
+  a segunda linha foi primeiro "do Brasil para o mundo, do mundo para o
+  Brasil", que ela achou que falava "muito do Brasil", e virou a chamada da
+  secao 05). A frase da cliente, "com foco no objetivo de cada cliente", e
+  a quarta frase que gira, fechando com "em qualquer pais". O video e uma
+  casa de alto padrao a beira-mar, com piscina e coqueiros, o drone chegando
+  por cima do mar azul com uma ilha no horizonte (Pexels 15506688, "Drone
+  footage of a luxury home by the blue sea"; licenca Pexels, uso livre, sem
+  atribuicao obrigatoria). Foi a quinta escolha de 08/10/2026: antes vieram
+  a casa ao crepusculo vista de cima (39024336), a varanda da casa de praia
+  (39576530), a piscina infinita ao por do sol (8642874, Peggy Anke; caiu
+  porque "tem que ter a ver com imobiliaria de luxo") e a casa de vidro com
+  piscina (39576513, Alef Morais; caiu porque o cliente final pediu "algo
+  mais vivo, de fundo a paisagem"). Esta junta o imovel e o mar. O clipe
+  original tem 21 s em 1440p e o drone se afasta da casa depois dos 7 s; o
+  site usa 5,8 s a partir de 1,2 s, com a cor um pouco mais viva (saturacao
+  1,12), gravados em `fotos/abertura-1080.mp4` (computador) e
+  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, montados em
+  **5,8 s de ida mais os mesmos 5,8 s de volta**, para o loop nao ter corte;
+  a capa `fotos/abertura-poster.webp` e o quadro de 6 s. Os tres arquivos
+  tem sempre o mesmo nome, entao as URLs no `index.html` levam `?v=N`, e o
+  N muda a cada troca de video: sem isso quem ja abriu o site continua vendo
+  o anterior, do cache. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
