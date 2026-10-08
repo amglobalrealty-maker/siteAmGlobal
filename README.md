@@ -541,9 +541,9 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   extraordinários. Visão global." tem um fio champagne que se desenha entre
   as duas frases; o titulo (a frase da cliente, sem mudar uma palavra)
   entra palavra por palavra, cada uma dentro da propria mascara com um
-  atraso crescente (`--i`), e o italico tem um brilho champagne que passa
-  devagar (gradiente recortado pelo texto, `background-clip: text`); no
-  lugar da frase de apoio fixa, **a frase que gira**: as tres do manifesto
+  atraso crescente (`--i`); o italico fica numa cor so, travertino (o
+  brilho em degrade palavra por palavra deixava cada palavra de um tom e
+  saiu no mesmo dia, a pedido dela); no lugar da frase de apoio fixa, **a frase que gira**: as tres do manifesto
   ("Para quem compra, o lugar da vida." etc.) e a do atendimento, uma por
   vez a cada 4,2 s, entrando por baixo e saindo por cima de uma mascara
   (bloco 8b do script); o servico correspondente acende na linha de baixo

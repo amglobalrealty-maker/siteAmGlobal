@@ -590,15 +590,9 @@
     transition-delay: calc(0.12s + var(--i, 0) * 0.07s);
   }
   .pronto .abertura h1 .p > span { transform: none; }
-  .abertura h1 em .p > span {
-    background: linear-gradient(100deg, var(--travertino) 0%, #ede3d0 38%, var(--champagne) 60%, var(--travertino) 100%);
-    background-size: 240% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: brilho-texto 10s ease-in-out infinite alternate;
-  }
-  @keyframes brilho-texto { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+  /* o italico fica numa cor so (travertino, em .abertura h1 em). O brilho em
+     degrade, palavra por palavra, deixava cada palavra de um tom; ela nao
+     quis ("nao deixe essas letras uma de cada cor", 08/10). */
 
   .abertura-giro {
     margin: 0 0 clamp(26px, 3.4vh, 40px);
@@ -630,7 +624,6 @@
   .giro-frase.saindo { transform: translateY(-110%); opacity: 0; }
   @media (prefers-reduced-motion: reduce) {
     .abertura h1 .p > span, .pronto .abertura h1 .p > span { transform: none; transition: none; }
-    .abertura h1 em .p > span { animation: none; }
     .rotulo--vivo i, .pronto .rotulo--vivo i { transform: none; transition: none; }
     .giro-frase { transition: none; }
   }
