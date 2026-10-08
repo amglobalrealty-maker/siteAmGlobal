@@ -551,9 +551,7 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
 - **Abertura de apresentacao sobre um video** (desde 08/10/2026). Nada em
   caixa: um video ocupa a primeira tela inteira, atras de tudo, e o texto
   fica por cima, a esquerda; a linha dos quatro servicos, no pe. **O texto
-  e vivo** (pedido dela: "mais criativo, bonito"): o rotulo "Imóveis
-  extraordinários. Visão global." tem um fio champagne que se desenha entre
-  as duas frases; o titulo
+  e vivo** (pedido dela: "mais criativo, bonito"): o titulo
   entra palavra por palavra, cada uma dentro da propria mascara com um
   atraso crescente (`--i`); o italico fica numa cor so, travertino (o
   brilho em degrade palavra por palavra deixava cada palavra de um tom e
@@ -562,14 +560,17 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   vez a cada 4,2 s, entrando por baixo e saindo por cima de uma mascara
   (bloco 8b do script); o servico correspondente acende na linha de baixo
   e apontar um servico (so com mouse) traz a frase dele. Com movimento
-  reduzido tudo nasce parado e a frase nao gira. O titulo diz "Consultoria
-  imobiliaria global, presente onde o mundo escolhe morar" (o cliente final
-  pediu a palavra global em 08/10/2026, antes era "exclusiva"; mais tarde
-  no mesmo dia ela pediu que o header "falasse mais de consultoria global":
-  a segunda linha foi primeiro "do Brasil para o mundo, do mundo para o
-  Brasil", que ela achou que falava "muito do Brasil", e virou a chamada da
-  secao 05). A frase da cliente, "com foco no objetivo de cada cliente", e
-  a quarta frase que gira, fechando com "em qualquer pais". O video e uma
+  reduzido tudo nasce parado e a frase nao gira. A chamada (escolhida por
+  ela em 08/10/2026, depois de quatro rodadas): o rotulo diz "Consultoria
+  imobiliaria exclusiva" (a palavra do lede do manifesto) e o titulo usa a
+  frase da marca, "Imoveis extraordinarios, em qualquer lugar do mundo".
+  Antes vieram "Consultoria imobiliaria global, com foco no objetivo de
+  cada cliente" (pedido do cliente final), "...do Brasil para o mundo, do
+  mundo para o Brasil" (falava "muito do Brasil") e "...presente onde o
+  mundo escolhe morar" (ela nao gostou). O rotulo de duas frases com o fio
+  champagne entre elas saiu junto. A frase da cliente, "com foco no
+  objetivo de cada cliente", e a quarta frase que gira, fechando com "do
+  primeiro contato a escritura". O video e uma
   casa de alto padrao a beira-mar, com piscina e coqueiros, o drone chegando
   por cima do mar azul com uma ilha no horizonte (Pexels 15506688, "Drone
   footage of a luxury home by the blue sea"; licenca Pexels, uso livre, sem
