@@ -585,9 +585,12 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   qualquer altura de celular) e o ceu do terco de cima continua vivo; no
   computador uma oval escura fica so atras do bloco de texto, a esquerda; o
   rotulo da abertura e travertino (champagne de 10,5px nao le sobre video)
-  e todo o texto da abertura tem uma sombra suave. Resultado: tudo acima de
-  9:1 no pior tile, menos o rotulo no computador (3,6:1 no pior tile, 7,3:1
-  na media, e com sombra). A capa entra primeiro
+  e todo o texto da abertura tem uma sombra suave. A primeira faixa (0,85 a
+  0,97) ela achou pesada ("nao da pra ver o video direito") e abriu para
+  0,68 atras do titulo e 0,8 atras dos botoes, com a oval do computador em
+  0,52. Resultado medido: titulo acima de 6:1 no pior tile em todas as
+  telas; rotulo do celular 5,2:1 no pior tile; rotulo do computador 3,3:1
+  no pior tile (6,6:1 na media, e com sombra). A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
