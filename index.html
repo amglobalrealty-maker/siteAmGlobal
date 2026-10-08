@@ -532,7 +532,7 @@
        sem ela o titulo em cima do ceu dava 2,2:1 no pior ponto (medido em
        08/10 com win/ver-amglobal-legivel.cjs); a casa, a direita, fica fora. */
     background:
-      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.66) 0%, rgba(11, 11, 12, 0.42) 55%, rgba(11, 11, 12, 0) 100%),
+      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.52) 0%, rgba(11, 11, 12, 0.3) 55%, rgba(11, 11, 12, 0) 100%),
       linear-gradient(90deg, rgba(11, 11, 12, 0.84) 0%, rgba(11, 11, 12, 0.62) 38%, rgba(11, 11, 12, 0.22) 72%, rgba(11, 11, 12, 0.34) 100%),
       linear-gradient(180deg, rgba(11, 11, 12, 0.6) 0%, rgba(11, 11, 12, 0) 28%, rgba(11, 11, 12, 0.18) 62%, rgba(11, 11, 12, 0.92) 100%);
     pointer-events: none;
@@ -2566,9 +2566,13 @@
          num celular baixo (664px) ele comeca em 27% da tela e num alto (844px)
          em 38%; com a faixa em porcentagem o rotulo do celular baixo ficava
          em 3,5:1. A camada de cima so escurece atras do cabecalho. */
+      /* (08/10, mais tarde, "deixe um pouco mais claro, nao da pra ver o video
+         direito"): a faixa abriu, 0,68 onde esta o titulo e 0,8 nos botoes, e
+         a casa volta a aparecer atras do texto; a sombra das letras segura o
+         resto. Medido de novo: titulo acima de 6:1 no pior tile. */
       background:
-        linear-gradient(180deg, rgba(11, 11, 12, 0.6) 0, rgba(11, 11, 12, 0.12) 120px, rgba(11, 11, 12, 0) 170px),
-        linear-gradient(0deg, rgba(11, 11, 12, 0.97) 0, rgba(11, 11, 12, 0.92) 280px, rgba(11, 11, 12, 0.85) 500px, rgba(11, 11, 12, 0.6) 570px, rgba(11, 11, 12, 0.22) 650px, rgba(11, 11, 12, 0) 720px);
+        linear-gradient(180deg, rgba(11, 11, 12, 0.5) 0, rgba(11, 11, 12, 0.1) 120px, rgba(11, 11, 12, 0) 170px),
+        linear-gradient(0deg, rgba(11, 11, 12, 0.9) 0, rgba(11, 11, 12, 0.8) 280px, rgba(11, 11, 12, 0.68) 500px, rgba(11, 11, 12, 0.45) 570px, rgba(11, 11, 12, 0.15) 650px, rgba(11, 11, 12, 0) 720px);
     }
     .abertura-servicos { margin-top: clamp(22px, 4vh, 36px); }
     /* o rotulo no celular: cada frase inteira, o fio entre elas, quebrando so entre as duas */
