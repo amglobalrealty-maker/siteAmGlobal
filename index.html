@@ -555,12 +555,84 @@
   }
   .abertura h1 em { font-style: italic; color: var(--travertino); }
 
-  .abertura .apoio {
-    color: var(--texto-fraco);
-    font-size: clamp(16px, 1.15vw, 19px);
-    line-height: 1.6;
-    max-width: 48ch;
+  /* O TEXTO VIVO (08/10/2026, "os textos do header mais criativos, bonitos").
+
+     O rotulo: as duas frases da marca com um fio champagne que se desenha
+     entre elas. O titulo: cada palavra dentro da propria mascara, entrando
+     de baixo com um atraso crescente (--i), e o italico com um brilho
+     champagne que passa devagar (gradiente recortado pelo texto). A frase
+     que gira: as tres do manifesto e a do atendimento, uma por vez, dentro
+     de uma mascara, entrando por baixo e saindo por cima; a linha dos
+     servicos acende em sincronia. Com movimento reduzido tudo nasce parado. */
+  .rotulo--vivo { display: inline-flex; align-items: center; gap: 14px; }
+  .rotulo--vivo i {
+    display: block;
+    width: 34px;
+    height: 1px;
+    background: var(--champagne);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s var(--ambiente) 0.9s;
+  }
+  .pronto .rotulo--vivo i { transform: scaleX(1); }
+  .linha-h1 { display: block; }
+  .abertura h1 .p {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.16em;   /* respiro para os descendentes nao serem cortados pela mascara */
+    margin-bottom: -0.16em;
+  }
+  .abertura h1 .p > span {
+    display: inline-block;
+    transform: translateY(112%);
+    transition: transform 1.15s var(--ambiente);
+    transition-delay: calc(0.12s + var(--i, 0) * 0.07s);
+  }
+  .pronto .abertura h1 .p > span { transform: none; }
+  .abertura h1 em .p > span {
+    background: linear-gradient(100deg, var(--travertino) 0%, #ede3d0 38%, var(--champagne) 60%, var(--travertino) 100%);
+    background-size: 240% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brilho-texto 10s ease-in-out infinite alternate;
+  }
+  @keyframes brilho-texto { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+  .abertura-giro {
     margin: 0 0 clamp(26px, 3.4vh, 40px);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(19px, 1.6vw, 26px);
+    line-height: 1.3;
+    color: var(--marfim);
+    max-width: 34ch;
+  }
+  .giro-mascara { display: grid; overflow: hidden; }
+  .giro-frase {
+    grid-area: 1 / 1;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 1s var(--ambiente), opacity 0.7s var(--toque);
+  }
+  .giro-frase::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    margin: 0 12px 0.28em 0;
+    background: var(--champagne);
+    vertical-align: middle;
+  }
+  .giro-frase.ativa { transform: none; opacity: 1; }
+  .giro-frase.saindo { transform: translateY(-110%); opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .abertura h1 .p > span, .pronto .abertura h1 .p > span { transform: none; transition: none; }
+    .abertura h1 em .p > span { animation: none; }
+    .rotulo--vivo i, .pronto .rotulo--vivo i { transform: none; transition: none; }
+    .giro-frase { transition: none; }
   }
 
   .abertura-acoes { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px 36px; }
@@ -2378,6 +2450,11 @@
         linear-gradient(180deg, rgba(11, 11, 12, 0.62) 0%, rgba(11, 11, 12, 0.12) 26%, rgba(11, 11, 12, 0.3) 48%, rgba(11, 11, 12, 0.88) 72%, rgba(11, 11, 12, 0.96) 100%);
     }
     .abertura-servicos { margin-top: clamp(22px, 4vh, 36px); }
+    /* o rotulo no celular: cada frase inteira, o fio entre elas, quebrando so entre as duas */
+    .rotulo--vivo { display: block; }
+    .rotulo--vivo > span { white-space: nowrap; }
+    .rotulo--vivo i { display: inline-block; width: 22px; margin: 0 10px; vertical-align: middle; }
+    .abertura-giro { font-size: 19px; max-width: none; }
     .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }
     .abertura-nome { font-size: 20px; }
     .rolar { display: none; }
@@ -2596,15 +2673,29 @@
     <div class="abertura-veu"></div>
   </div>
 
+  <!-- O TEXTO (08/10, "mais criativo, bonito"): o rotulo com um fio champagne
+       que se desenha entre as duas frases; o titulo (a frase da cliente, sem
+       mudar uma palavra) entrando palavra por palavra, cada uma de dentro da
+       propria mascara, e o italico com um brilho champagne que passa devagar;
+       e, no lugar da frase de apoio fixa, a frase que gira: as tres do
+       manifesto e a do atendimento, uma por vez, com o servico correspondente
+       acendendo na linha de baixo. -->
   <div class="abertura-conteudo">
     <div class="abertura-texto">
       <span class="filete"></span>
-      <span class="rotulo">Imóveis extraordinários. Visão global.</span>
+      <span class="rotulo rotulo--vivo"><span>Imóveis extraordinários.</span><i aria-hidden="true"></i><span>Visão global.</span></span>
       <h1>
-        <span class="linha"><span class="atrasa-1">Consultoria imobiliária exclusiva,</span></span>
-        <span class="linha"><span class="atrasa-2"><em>com foco no objetivo de cada cliente.</em></span></span>
+        <span class="linha-h1"><span class="p" style="--i: 0"><span>Consultoria</span></span> <span class="p" style="--i: 1"><span>imobiliária</span></span> <span class="p" style="--i: 2"><span>exclusiva,</span></span></span>
+        <span class="linha-h1"><em><span class="p" style="--i: 3"><span>com</span></span> <span class="p" style="--i: 4"><span>foco</span></span> <span class="p" style="--i: 5"><span>no</span></span> <span class="p" style="--i: 6"><span>objetivo</span></span> <span class="p" style="--i: 7"><span>de</span></span> <span class="p" style="--i: 8"><span>cada</span></span> <span class="p" style="--i: 9"><span>cliente.</span></span></em></span>
       </h1>
-      <p class="apoio">Um consultor conduz a jornada inteira, da primeira conversa à entrega das chaves.</p>
+      <p class="abertura-giro" aria-live="polite">
+        <span class="giro-mascara">
+          <span class="giro-frase ativa" data-servico="comprar">Para quem compra, o lugar da vida.</span>
+          <span class="giro-frase" data-servico="vender">Para quem vende, o comprador certo.</span>
+          <span class="giro-frase" data-servico="investir">Para quem investe, o ativo certo.</span>
+          <span class="giro-frase">E um consultor conduz tudo, da primeira conversa à entrega das chaves.</span>
+        </span>
+      </p>
       <div class="abertura-acoes">
         <a class="botao" href="#contato">Fale com um consultor</a>
         <a class="botao botao--fraco" href="#curadoria">Ver a curadoria</a>
@@ -3907,6 +3998,65 @@
     }
     window.AMG = window.AMG || {};
     window.AMG.filmeAbertura = filmeAbertura;
+  }
+
+  /* 8b. A frase que gira (08/10/2026).
+
+     As tres frases do manifesto e a do atendimento, uma por vez a cada 4,2 s,
+     entrando por baixo e saindo por cima da mascara; o servico correspondente
+     acende na linha de baixo, e apontar um servico (so com mouse) traz a
+     frase dele. Com movimento reduzido fica a primeira, parada. Para quando a
+     aba sai de foco. */
+  var giroAbertura = document.querySelector('.abertura-giro');
+
+  if (giroAbertura) {
+    var frasesGiro = giroAbertura.querySelectorAll('.giro-frase');
+    var servicosGiro = document.querySelectorAll('.abertura-servicos a[data-servico]');
+    var atualGiro = 0;
+    var relogioGiro = null;
+    var DURACAO_GIRO = 4200;
+
+    function mostrarGiro(i) {
+      var anterior = atualGiro;
+      atualGiro = (i + frasesGiro.length) % frasesGiro.length;
+      if (anterior !== atualGiro) {
+        var saindo = frasesGiro[anterior];
+        saindo.classList.remove('ativa');
+        saindo.classList.add('saindo');
+        window.setTimeout(function () { saindo.classList.remove('saindo'); }, 1000);
+      }
+      frasesGiro[atualGiro].classList.add('ativa');
+      var servicoNoAr = frasesGiro[atualGiro].getAttribute('data-servico');
+      Array.prototype.forEach.call(servicosGiro, function (a) {
+        a.classList.toggle('ativo', !!servicoNoAr && a.getAttribute('data-servico') === servicoNoAr);
+      });
+    }
+    function agendarGiro() {
+      window.clearInterval(relogioGiro);
+      relogioGiro = window.setInterval(function () { mostrarGiro(atualGiro + 1); }, DURACAO_GIRO);
+    }
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      Array.prototype.forEach.call(servicosGiro, function (a) {
+        a.addEventListener('mouseenter', function () {
+          var alvo = a.getAttribute('data-servico');
+          Array.prototype.forEach.call(frasesGiro, function (f, k) {
+            if (f.getAttribute('data-servico') === alvo && k !== atualGiro) { mostrarGiro(k); if (!calmo) agendarGiro(); }
+          });
+        });
+      });
+    }
+
+    mostrarGiro(0);
+    if (!calmo) {
+      agendarGiro();
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) window.clearInterval(relogioGiro);
+        else agendarGiro();
+      });
+    }
+    window.AMG = window.AMG || {};
+    window.AMG.mostrarGiro = mostrarGiro;
   }
 
   /* 9. As tres horas.

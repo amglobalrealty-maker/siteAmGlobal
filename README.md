@@ -536,8 +536,19 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   Com movimento reduzido nao ha espera nenhuma: ela ja nasce aberta.
 - **Abertura de apresentacao sobre um video** (desde 08/10/2026). Nada em
   caixa: um video ocupa a primeira tela inteira, atras de tudo, e o texto
-  (rotulo, titulo por linhas, uma frase, dois botoes) fica por cima, a
-  esquerda; a linha dos quatro servicos, no pe. O video e a varanda de uma
+  fica por cima, a esquerda; a linha dos quatro servicos, no pe. **O texto
+  e vivo** (pedido dela: "mais criativo, bonito"): o rotulo "Imóveis
+  extraordinários. Visão global." tem um fio champagne que se desenha entre
+  as duas frases; o titulo (a frase da cliente, sem mudar uma palavra)
+  entra palavra por palavra, cada uma dentro da propria mascara com um
+  atraso crescente (`--i`), e o italico tem um brilho champagne que passa
+  devagar (gradiente recortado pelo texto, `background-clip: text`); no
+  lugar da frase de apoio fixa, **a frase que gira**: as tres do manifesto
+  ("Para quem compra, o lugar da vida." etc.) e a do atendimento, uma por
+  vez a cada 4,2 s, entrando por baixo e saindo por cima de uma mascara
+  (bloco 8b do script); o servico correspondente acende na linha de baixo
+  e apontar um servico (so com mouse) traz a frase dele. Com movimento
+  reduzido tudo nasce parado e a frase nao gira. O video e a varanda de uma
   casa de praia sobre a piscina, com coqueiros e a lagoa e o mar ao fundo,
   na luz dourada do fim de tarde (Pexels 39576530, "Luxurious Coastal Home
   with Private Pool View", Alef Morais, fotografo imobiliario de Salvador;
