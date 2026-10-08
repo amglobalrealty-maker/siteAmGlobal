@@ -534,17 +534,35 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   bloquear o clique assim que comeca a abrir.
 
   Com movimento reduzido nao ha espera nenhuma: ela ja nasce aberta.
-- **Abertura de apresentacao, com a moldura viva** (desde 07/10/2026). O
-  titulo entra por linhas, de dentro de uma mascara; a moldura e a linha dos
-  quatro servicos sobem com o `.sobe` do site. Dentro da moldura, tres fotos
-  trocam a cada 6,6 segundos por fusao de 1,6 s, e a foto no ar avanca de
-  escala 1.04 a 1.12 (so a imagem se move; o fio claro recuado 14px e as
-  cantoneiras ficam parados, e e isso que da profundidade). A legenda entra
-  de baixo 0,3 s depois da foto. A barra de tres pedacos (fora da foto, para
-  nao brigar com a legenda) e a mesma da abertura antiga: o pedaco no ar se
-  enche em 6,6 s, os que passaram ficam cheios. Para com a aba escondida; com
-  movimento reduzido fica a primeira foto, parada. O slide antigo de pagina
-  inteira saiu; este vive dentro da moldura.
+- **Abertura de apresentacao sobre um video** (desde 08/10/2026). Nada em
+  caixa: um video ocupa a primeira tela inteira, atras de tudo, e o texto
+  (rotulo, titulo por linhas, uma frase, dois botoes) fica por cima, a
+  esquerda; a linha dos quatro servicos, no pe. O video e uma casa moderna
+  ao crepusculo vista de cima, luzes quentes no deck e o resto escuro
+  (Pexels 39024336, "Aerial View of Modern Luxury Home at Twilight", Alef
+  Morais; licenca Pexels, uso livre, sem atribuicao obrigatoria). Foi
+  reduzido do 1440p original para `fotos/abertura-1080.mp4` (computador) e
+  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, e montado em **8,6
+  s de ida mais os mesmos 8,6 s de volta**, para o loop nao ter corte; a
+  capa `fotos/abertura-poster.webp` e o quadro de 2 s. A capa entra primeiro
+  (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
+  (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
+  a fonte pela largura e **nao carrega video** com movimento reduzido nem
+  com economia de dados; pausa fora da tela e com a aba escondida. Por cima
+  do video, um veu de onix mais escuro a esquerda e no pe (`.abertura-veu`);
+  `object-fit: cover` faz o video caber em qualquer largura, cortando as
+  bordas e nunca a casa. No celular a abertura volta a ter a tela inteira,
+  com o texto no terco de baixo, onde o veu e mais denso. As fotografias em
+  `fotos/capa-*` continuam no repositorio, sem uso.
+- **(Historico, superado em 08/10/2026, sem ir ao preview.) O mapa vivo**:
+  o mundo em pontinhos com as nove localizacoes acendendo e a legenda com o
+  numero do mercado; ela preferiu video. A ponte `window.AMG.mostrarMercado`
+  ficou no bloco 7b, para quem quiser abrir o mercado de um estado por
+  script. Gerador e SVG guardados fora do repositorio.
+- **(Historico, superado em 08/10/2026.) A moldura viva** (07/10/2026):
+  tres fotos trocando a cada 6,6 s dentro de uma moldura com fio recuado e
+  cantoneiras, legenda da marca em cada uma e a barra de tres pedacos. Ela
+  nao gostou da "foto quadradona" e pediu video, responsivo, "da internet".
 - **Filtro das pracas.** Numero em Jost e nome em Cormorant italico, sempre no
   mesmo corpo, para nada saltar na troca. O que muda e a presenca: a praca no
   ar clareia, o numero vira champagne e um filete champagne corre sob o nome
