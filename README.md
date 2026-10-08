@@ -539,7 +539,7 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   fica por cima, a esquerda; a linha dos quatro servicos, no pe. **O texto
   e vivo** (pedido dela: "mais criativo, bonito"): o rotulo "Imóveis
   extraordinários. Visão global." tem um fio champagne que se desenha entre
-  as duas frases; o titulo (a frase da cliente, sem mudar uma palavra)
+  as duas frases; o titulo
   entra palavra por palavra, cada uma dentro da propria mascara com um
   atraso crescente (`--i`); o italico fica numa cor so, travertino (o
   brilho em degrade palavra por palavra deixava cada palavra de um tom e
@@ -549,19 +549,25 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   (bloco 8b do script); o servico correspondente acende na linha de baixo
   e apontar um servico (so com mouse) traz a frase dele. Com movimento
   reduzido tudo nasce parado e a frase nao gira. O titulo diz "Consultoria
-  imobiliaria global, com foco no objetivo de cada cliente" (o cliente final
-  pediu a palavra global em 08/10/2026; antes era "exclusiva"). O video e
-  uma piscina infinita sobre o mar ao por do sol, com o ceu inteiro refletido
-  na agua (Pexels 8642874, "A beautiful sunset view from an infinity pool",
-  Peggy Anke; licenca Pexels, uso livre, sem atribuicao obrigatoria). Foi a
-  terceira escolha de 08/10/2026: antes vieram a casa ao crepusculo vista de
-  cima (39024336) e a varanda da casa de praia (39576530, Alef Morais); o
-  cliente final pediu "uma foto de fundo mais bonita". Usa o trecho dos 6 s
-  aos 15,5 s do original de 1080p (antes disso a camera mostra o fundo da
-  piscina), gravado em `fotos/abertura-1080.mp4` (computador) e
-  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, montado em **9,5 s
-  de ida mais os mesmos 9,5 s de volta**, para o loop nao ter corte; a capa
-  `fotos/abertura-poster.webp` e o quadro de 11 s. A capa entra primeiro
+  imobiliaria global, do Brasil para o mundo, do mundo para o Brasil" (o
+  cliente final pediu a palavra global em 08/10/2026, antes era "exclusiva";
+  mais tarde no mesmo dia ela pediu que o header "falasse mais de
+  consultoria global", e a segunda linha virou essa). A frase da cliente,
+  "com foco no objetivo de cada cliente", foi para a quarta frase que gira,
+  junto com os quatro paises onde a AMGlobal atua. O video e uma casa de
+  alto padrao toda em vidro, com a piscina a frente e um coqueiro contra o
+  ceu na luz dourada do fim de tarde (Pexels 39576513, "Luxurious modern
+  home with pool and palm view", Alef Morais, fotografo imobiliario de
+  Salvador; licenca Pexels, uso livre, sem atribuicao obrigatoria). Foi a
+  quarta escolha de 08/10/2026: antes vieram a casa ao crepusculo vista de
+  cima (39024336), a varanda da casa de praia (39576530) e a piscina
+  infinita ao por do sol (8642874, Peggy Anke); esta ultima caiu porque o
+  video "tem que ter a ver com imobiliaria de luxo", nao paisagem. O clipe
+  original tem 7,4 s em 1440p; o site usa 7 s a partir de 0,2 s, gravados em
+  `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
+  900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
+  volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
+  o quadro de 3 s. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
