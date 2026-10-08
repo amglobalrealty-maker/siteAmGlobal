@@ -548,17 +548,20 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   vez a cada 4,2 s, entrando por baixo e saindo por cima de uma mascara
   (bloco 8b do script); o servico correspondente acende na linha de baixo
   e apontar um servico (so com mouse) traz a frase dele. Com movimento
-  reduzido tudo nasce parado e a frase nao gira. O video e a varanda de uma
-  casa de praia sobre a piscina, com coqueiros e a lagoa e o mar ao fundo,
-  na luz dourada do fim de tarde (Pexels 39576530, "Luxurious Coastal Home
-  with Private Pool View", Alef Morais, fotografo imobiliario de Salvador;
-  licenca Pexels, uso livre, sem atribuicao obrigatoria). Ela pediu "praia,
-  casa chique" depois de ver a primeira escolha, uma casa ao crepusculo
-  vista de cima (Pexels 39024336, mesmo autor). Foi reduzido do 1440p
-  original para `fotos/abertura-1080.mp4` (computador) e
-  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, e montado em **5,7
-  s de ida mais os mesmos 5,7 s de volta**, para o loop nao ter corte; a
-  capa `fotos/abertura-poster.webp` e o quadro de 1,5 s. A capa entra primeiro
+  reduzido tudo nasce parado e a frase nao gira. O titulo diz "Consultoria
+  imobiliaria global, com foco no objetivo de cada cliente" (o cliente final
+  pediu a palavra global em 08/10/2026; antes era "exclusiva"). O video e
+  uma piscina infinita sobre o mar ao por do sol, com o ceu inteiro refletido
+  na agua (Pexels 8642874, "A beautiful sunset view from an infinity pool",
+  Peggy Anke; licenca Pexels, uso livre, sem atribuicao obrigatoria). Foi a
+  terceira escolha de 08/10/2026: antes vieram a casa ao crepusculo vista de
+  cima (39024336) e a varanda da casa de praia (39576530, Alef Morais); o
+  cliente final pediu "uma foto de fundo mais bonita". Usa o trecho dos 6 s
+  aos 15,5 s do original de 1080p (antes disso a camera mostra o fundo da
+  piscina), gravado em `fotos/abertura-1080.mp4` (computador) e
+  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, montado em **9,5 s
+  de ida mais os mesmos 9,5 s de volta**, para o loop nao ter corte; a capa
+  `fotos/abertura-poster.webp` e o quadro de 11 s. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
