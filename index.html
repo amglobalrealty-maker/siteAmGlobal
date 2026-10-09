@@ -530,19 +530,51 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    /* a oval (primeira camada) escurece so atras do bloco de texto, a esquerda:
-       sem ela o titulo em cima do ceu dava 2,2:1 no pior ponto (medido em
-       08/10 com win/ver-amglobal-legivel.cjs); a casa, a direita, fica fora. */
-    background:
-      /* (09/10, "deixe o video com mais cor, a vinheta forte esta atrapalhando"):
-         tudo mais leve; a leitura fica por conta do texto claro com sombra */
-      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.36) 0%, rgba(11, 11, 12, 0.2) 55%, rgba(11, 11, 12, 0) 100%),
-      linear-gradient(90deg, rgba(11, 11, 12, 0.68) 0%, rgba(11, 11, 12, 0.44) 38%, rgba(11, 11, 12, 0.1) 72%, rgba(11, 11, 12, 0.2) 100%),
-      linear-gradient(180deg, rgba(11, 11, 12, 0.5) 0%, rgba(11, 11, 12, 0) 28%, rgba(11, 11, 12, 0.1) 62%, rgba(11, 11, 12, 0.86) 100%);
+    /* O VEU SAIU DE VEZ (09/10, "deixar o video totalmente com cor, sem
+       vinheta, mas o texto aparecer no header de algum outro jeito"). O
+       elemento fica no HTML, vazio, para o script e os testes nao mudarem;
+       a leitura agora e do painel de vidro em .abertura-texto, abaixo. Antes
+       era uma oval atras do texto mais duas faixas (esquerda e pe). */
+    background: none;
     pointer-events: none;
   }
+  /* O PAINEL DE VIDRO (09/10): o bloco de texto fica num painel translucido
+     com desfoque do que esta atras (backdrop-filter). O video em volta fica
+     com a cor inteira; dentro do painel o fundo vira uma mancha escura e
+     suave, e o texto le em qualquer trecho do video. Os quatro servicos
+     ganham uma tira igual. Sem backdrop-filter (navegador antigo), o fundo
+     do painel fica mais fechado. */
+  .abertura-texto {
+    padding: clamp(26px, 3vw, 42px) clamp(26px, 3vw, 42px) clamp(22px, 2.6vw, 36px);
+    border-radius: 20px;
+    /* no computador o painel fica sobre o ceu claro: a 40% o titulo dava
+       2,6:1; a 64% passa do minimo. No celular (fundo escuro atras) e mais
+       aberto, na regra do celular. */
+    background: rgba(11, 11, 12, 0.64);
+    -webkit-backdrop-filter: blur(22px) saturate(1.2);
+    backdrop-filter: blur(22px) saturate(1.2);
+    border: 1px solid rgba(245, 242, 236, 0.12);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+  }
+  .abertura-servicos {
+    display: inline-flex;
+    justify-self: start;   /* a tira abraca so o conteudo; como item da grade da abertura, senao esticava na largura toda */
+    padding: 12px clamp(20px, 2.4vw, 32px);
+    border-radius: 16px;
+    border: 1px solid rgba(245, 242, 236, 0.12);
+    background: rgba(11, 11, 12, 0.64);
+    -webkit-backdrop-filter: blur(22px) saturate(1.2);
+    backdrop-filter: blur(22px) saturate(1.2);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .abertura-texto, .abertura-servicos { background: rgba(11, 11, 12, 0.74); }
+  }
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
-  .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
+  .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45); }
+  /* o cabecalho fica sobre o ceu claro do video, sem veu nenhum: sombra nos
+     links e no simbolo (que e desenho, nao texto), em todas as telas */
+  .topo a { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 2px 18px rgba(0, 0, 0, 0.5); }
+  .topo .marca { filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 12px rgba(0, 0, 0, 0.45)); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
   .abertura-texto { max-width: 700px; }
   .abertura-servicos { position: relative; z-index: 2; }
@@ -669,13 +701,11 @@
   /* OS QUATRO SERVICOS, SO PELO NOME, numa linha sob a grade: numero em
      champagne e nome em Cormorant. O texto de cada um esta na secao 04. */
   .abertura-servicos {
-    display: flex;
     flex-wrap: wrap;
     gap: 0 clamp(28px, 4vw, 64px);
     max-width: 1360px;
-    margin-top: clamp(36px, 6vh, 64px);
-    padding-top: clamp(16px, 2.4vh, 24px);
-    border-top: 1px solid var(--linha-clara);
+    margin-top: clamp(22px, 3.6vh, 36px);
+    /* display, padding, borda e fundo: na tira de vidro, acima */
   }
   .abertura-servicos a {
     display: inline-flex;
@@ -2575,42 +2605,24 @@
        o ceu e o mar do terco de cima continuam vivos. O texto ainda ganha uma
        sombra suave para o que sobra de video atras dele. Medido com
        win/ver-amglobal-legivel.cjs (contraste contra o fundo fotografado). */
-    .abertura-veu {
-      /* a faixa escura e medida DO PE DA TELA, em pixels: o texto e alinhado
-         embaixo e tem sempre a mesma altura (uns 520px ate o rotulo), entao
-         num celular baixo (664px) ele comeca em 27% da tela e num alto (844px)
-         em 38%; com a faixa em porcentagem o rotulo do celular baixo ficava
-         em 3,5:1. A camada de cima so escurece atras do cabecalho. */
-      /* (08/10, mais tarde, "deixe um pouco mais claro, nao da pra ver o video
-         direito"): a faixa abriu, 0,68 onde esta o titulo e 0,8 nos botoes, e
-         a casa volta a aparecer atras do texto; a sombra das letras segura o
-         resto. Medido de novo: titulo acima de 6:1 no pior tile. */
-      /* (ideia dela, 09/10: "em mobile deixar o texto embaixo e embaixo so a
-         vinheta, e em cima o video com toda cor, sem vinheta"): a camada de
-         cima SAIU; so existe a faixa do pe, que comeca logo acima do rotulo
-         (uns 470px do pe, com os espacos apertados abaixo) e fecha ate o pe.
-         Em cima, o ceu e a casa ficam com a cor inteira. */
-      background:
-        linear-gradient(0deg, rgba(11, 11, 12, 0.86) 0, rgba(11, 11, 12, 0.78) 220px, rgba(11, 11, 12, 0.66) 340px, rgba(11, 11, 12, 0.48) 430px, rgba(11, 11, 12, 0.22) 500px, rgba(11, 11, 12, 0) 570px);
-    }
-    /* espacos apertados no celular, para o bloco de texto ocupar menos altura e
-       a faixa escura poder ser mais curta */
+    /* O VEU NO CELULAR tambem saiu (09/10): houve uma faixa do pe em
+       porcentagem, depois em pixels, depois so atras do texto; agora a
+       leitura e do painel de vidro, e o video fica inteiro em cima. */
+    /* espacos apertados no celular, para o painel ocupar menos altura */
     .abertura .rotulo { margin-bottom: 12px; }
     .abertura h1 { margin-bottom: 14px; }
     .abertura-apoio { margin-bottom: 18px; }
-    .abertura-servicos { margin-top: 18px; }
     .abertura { padding-bottom: 22px; }
-    /* a sombra das letras e o que segura a leitura onde a faixa e leve; o
-       cabecalho ganha a mesma, porque em cima nao ha mais veu nenhum */
-    .abertura-texto, .abertura-servicos, .topo a, .topo .marca { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 2px 26px rgba(0, 0, 0, 0.6); }
-    .abertura-servicos { margin-top: clamp(22px, 4vh, 36px); }
+    .abertura-texto { padding: 22px 20px 18px; border-radius: 16px; background: rgba(11, 11, 12, 0.46); }
+    .abertura-servicos { margin-top: 12px; padding: 12px 16px; border-radius: 14px; background: rgba(11, 11, 12, 0.46); }
+    /* (a sombra do cabecalho sobre o ceu claro esta na regra geral, acima) */
     /* o rotulo no celular: cada frase inteira, o fio entre elas, quebrando so entre as duas */
     .rotulo--vivo { display: block; }
     .rotulo--vivo > span { white-space: nowrap; }
     .rotulo--vivo i { display: inline-block; width: 22px; margin: 0 10px; vertical-align: middle; }
     .abertura-giro { font-size: 19px; max-width: none; }
     .abertura-apoio { font-size: 18px; max-width: none; }
-    .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }
+    .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }   /* a tira de vidro vira grade de 2 colunas */
     .abertura-nome { font-size: 20px; }
     .rolar { display: none; }
     /* RESPIRO MENOR ENTRE SECOES (05/10): com 126px em cima e embaixo, sobravam
