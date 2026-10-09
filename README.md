@@ -556,25 +556,26 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   "...presente onde o mundo escolhe morar" (ela nao gostou) e "Imoveis
   extraordinarios, em qualquer lugar do mundo" (escolha dela, que o cliente
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
-  entre elas saiu em 08/10. O video e um
-  drone sobre vilas brancas de frente para um mar turquesa, sol pleno, a
-  camera subindo das casas para o mar (Pexels 37856049, "Aerial view of
-  beachfront villas and turquoise sea"; licenca Pexels, uso livre, sem
-  atribuicao obrigatoria). Foi a sexta escolha: em 08/10 vieram a casa ao
+  entre elas saiu em 08/10. O video e uma
+  casa de praia moderna vista **de frente**, de vidro e madeira, com
+  coqueiros contra um ceu azul, a camera passeando devagar (Pexels
+  39576524, "Modern beachfront house with palm trees", Alef Morais,
+  fotografo imobiliario de Salvador; licenca Pexels, uso livre, sem
+  atribuicao obrigatoria). Foi a setima escolha: em 08/10 vieram a casa ao
   crepusculo vista de cima (39024336), a varanda da casa de praia
   (39576530), a piscina infinita ao por do sol (8642874, Peggy Anke; caiu
   porque "tem que ter a ver com imobiliaria de luxo"), a casa de vidro com
   piscina (39576513, Alef Morais; caiu porque o cliente final pediu "algo
   mais vivo, de fundo a paisagem") e a casa a beira-mar em Maui (15506688;
   caiu em 09/10 porque o cliente achou "as cores apagadas, o ceu nublado,
-  meio morto"). Esta e a mais viva: turquesa, areia e branco. O clipe
-  original tem 15,6 s em 1440p e, depois dos 7 s, o drone ve so o mar; o
-  site usa 6 s a partir de 0,3 s, com mais saturacao (1,2: ela pediu "mais
-  cor, a vinheta forte esta atrapalhando", e o veu abriu junto), gravados
+  meio morto"); em 09/10 as vilas vistas de cima sobre o mar turquesa
+  (37856049) duraram uma hora, ate ela pedir "um video que apareca as
+  casas de frente". O clipe original tem 12,5 s em 1440p; o site usa 7 s a
+  partir de 0,5 s, com a cor um pouco mais viva (saturacao 1,15), gravados
   em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
-  900px), sem audio, H.264, montados em **6 s de ida mais os mesmos 6 s de
+  900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
   volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
-  o quadro de 2,5 s. Os tres arquivos
+  o quadro de 4 s. Os tres arquivos
   tem sempre o mesmo nome, entao as URLs no `index.html` levam `?v=N`, e o
   N muda a cada troca de video: sem isso quem ja abriu o site continua vendo
   o anterior, do cache. **Legibilidade em cima do video** (08/10/2026, "nao
@@ -593,9 +594,11 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   0,68 atras do titulo e 0,8 atras dos botoes, com a oval do computador em
   0,52. Com o video turquesa de 09/10 (mais claro que o de Maui) o veu abriu
   mais um degrau e, no mesmo dia ("deixe o video com mais cor, a vinheta
-  forte esta atrapalhando"), mais outro: 0,52 atras do titulo e 0,72 nos
-  botoes no celular, oval em 0,36 e faixa da esquerda em 0,68 no
-  computador; o rotulo da abertura virou marfim para compensar. A capa entra primeiro
+  forte esta atrapalhando"), mais outro: oval em 0,36 e faixa da esquerda
+  em 0,68 no computador; o rotulo da abertura virou marfim para compensar.
+  No celular ela ainda achou "muito escuro", e a faixa ficou em 0,78 no
+  pe, 0,42 atras do titulo e 0,35 atras do cabecalho, com a sombra das
+  letras mais firme (0,7 e 0,6). A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
