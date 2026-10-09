@@ -500,7 +500,8 @@
      de fundo a paisagem") e a casa a beira-mar em Maui (15506688; em 09/10
      o cliente achou "as cores apagadas, o ceu nublado, meio morto"). Esta e
      a mais viva. O trecho e dos 0,3 s aos 6,3 s do original (depois dos 7 s
-     o drone ve so o mar), com um toque de saturacao (1,06), 6 s de ida e os
+     o drone ve so o mar), com mais saturacao (1,2; ela pediu "mais cor" e
+     um veu mais leve em 09/10), 6 s de ida e os
      mesmos 6 s de volta, para o loop nao ter corte; 1080p no computador e
      720p
      no celular, sem audio. Por cima, um veu de onix que escurece mais a esquerda, onde esta
@@ -532,9 +533,11 @@
        sem ela o titulo em cima do ceu dava 2,2:1 no pior ponto (medido em
        08/10 com win/ver-amglobal-legivel.cjs); a casa, a direita, fica fora. */
     background:
-      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.46) 0%, rgba(11, 11, 12, 0.26) 55%, rgba(11, 11, 12, 0) 100%),
-      linear-gradient(90deg, rgba(11, 11, 12, 0.8) 0%, rgba(11, 11, 12, 0.56) 38%, rgba(11, 11, 12, 0.18) 72%, rgba(11, 11, 12, 0.3) 100%),
-      linear-gradient(180deg, rgba(11, 11, 12, 0.6) 0%, rgba(11, 11, 12, 0) 28%, rgba(11, 11, 12, 0.18) 62%, rgba(11, 11, 12, 0.92) 100%);
+      /* (09/10, "deixe o video com mais cor, a vinheta forte esta atrapalhando"):
+         tudo mais leve; a leitura fica por conta do texto claro com sombra */
+      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.36) 0%, rgba(11, 11, 12, 0.2) 55%, rgba(11, 11, 12, 0) 100%),
+      linear-gradient(90deg, rgba(11, 11, 12, 0.68) 0%, rgba(11, 11, 12, 0.44) 38%, rgba(11, 11, 12, 0.1) 72%, rgba(11, 11, 12, 0.2) 100%),
+      linear-gradient(180deg, rgba(11, 11, 12, 0.5) 0%, rgba(11, 11, 12, 0) 28%, rgba(11, 11, 12, 0.1) 62%, rgba(11, 11, 12, 0.86) 100%);
     pointer-events: none;
   }
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
@@ -551,7 +554,7 @@
      1:1 a 2:1 no celular contra o fundo fotografado (medido em 08/10). Aqui,
      e so aqui, ele fica travertino (mais claro) com uma sombra suave; o filete
      acima continua champagne. */
-  .abertura .rotulo { color: var(--travertino); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 14px rgba(0, 0, 0, 0.45); }
+  .abertura .rotulo { color: var(--marfim); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 14px rgba(0, 0, 0, 0.45); }   /* marfim desde 09/10, com o veu mais leve */
 
   /* a abertura entra por linhas, uma depois da outra */
   .linha { display: block; overflow: hidden; }
@@ -2582,8 +2585,8 @@
          a casa volta a aparecer atras do texto; a sombra das letras segura o
          resto. Medido de novo: titulo acima de 6:1 no pior tile. */
       background:
-        linear-gradient(180deg, rgba(11, 11, 12, 0.5) 0, rgba(11, 11, 12, 0.1) 120px, rgba(11, 11, 12, 0) 170px),
-        linear-gradient(0deg, rgba(11, 11, 12, 0.9) 0, rgba(11, 11, 12, 0.78) 280px, rgba(11, 11, 12, 0.62) 500px, rgba(11, 11, 12, 0.4) 570px, rgba(11, 11, 12, 0.12) 650px, rgba(11, 11, 12, 0) 720px);
+        linear-gradient(180deg, rgba(11, 11, 12, 0.45) 0, rgba(11, 11, 12, 0.08) 120px, rgba(11, 11, 12, 0) 170px),
+        linear-gradient(0deg, rgba(11, 11, 12, 0.88) 0, rgba(11, 11, 12, 0.72) 280px, rgba(11, 11, 12, 0.52) 500px, rgba(11, 11, 12, 0.3) 570px, rgba(11, 11, 12, 0.08) 650px, rgba(11, 11, 12, 0) 720px);
     }
     .abertura-servicos { margin-top: clamp(22px, 4vh, 36px); }
     /* o rotulo no celular: cada frase inteira, o fio entre elas, quebrando so entre as duas */
@@ -2808,8 +2811,8 @@
     <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
-    <img class="abertura-poster" src="fotos/abertura-poster.webp?v=6" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=6" data-src-cel="fotos/abertura-720.mp4?v=6"></video>
+    <img class="abertura-poster" src="fotos/abertura-poster.webp?v=7" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=7" data-src-cel="fotos/abertura-720.mp4?v=7"></video>
     <div class="abertura-veu"></div>
   </div>
 
