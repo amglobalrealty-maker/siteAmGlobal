@@ -610,9 +610,14 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   mais um degrau e, no mesmo dia ("deixe o video com mais cor, a vinheta
   forte esta atrapalhando"), mais outro: oval em 0,36 e faixa da esquerda
   em 0,68 no computador; o rotulo da abertura virou marfim para compensar.
-  No celular ela ainda achou "muito escuro", e a faixa ficou em 0,78 no
-  pe, 0,42 atras do titulo e 0,35 atras do cabecalho, com a sombra das
-  letras mais firme (0,7 e 0,6). A capa entra primeiro
+  No celular ela ainda achou "muito escuro" e deu a ideia final: "o texto
+  embaixo e embaixo so a vinheta; em cima o video com toda cor, sem
+  vinheta". E assim que esta: no celular nao ha veu no topo (ceu e casa
+  com a cor inteira, o cabecalho com a mesma sombra de letra do texto), e
+  a faixa escura comeca logo acima do rotulo (0,22 a 500px do pe, 0,48 a
+  430px, 0,66 a 340px, 0,78 a 220px, 0,86 no pe), com os espacos entre
+  rotulo, titulo, frase, botoes e servicos apertados para o bloco ocupar
+  menos altura. Sombra das letras 0,7 e 0,6. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem

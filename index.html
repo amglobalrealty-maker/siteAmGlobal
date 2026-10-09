@@ -2585,14 +2585,24 @@
          direito"): a faixa abriu, 0,68 onde esta o titulo e 0,8 nos botoes, e
          a casa volta a aparecer atras do texto; a sombra das letras segura o
          resto. Medido de novo: titulo acima de 6:1 no pior tile. */
+      /* (ideia dela, 09/10: "em mobile deixar o texto embaixo e embaixo so a
+         vinheta, e em cima o video com toda cor, sem vinheta"): a camada de
+         cima SAIU; so existe a faixa do pe, que comeca logo acima do rotulo
+         (uns 470px do pe, com os espacos apertados abaixo) e fecha ate o pe.
+         Em cima, o ceu e a casa ficam com a cor inteira. */
       background:
-        linear-gradient(180deg, rgba(11, 11, 12, 0.35) 0, rgba(11, 11, 12, 0.05) 120px, rgba(11, 11, 12, 0) 170px),
-        linear-gradient(0deg, rgba(11, 11, 12, 0.78) 0, rgba(11, 11, 12, 0.6) 280px, rgba(11, 11, 12, 0.42) 500px, rgba(11, 11, 12, 0.22) 570px, rgba(11, 11, 12, 0.05) 650px, rgba(11, 11, 12, 0) 720px);
+        linear-gradient(0deg, rgba(11, 11, 12, 0.86) 0, rgba(11, 11, 12, 0.78) 220px, rgba(11, 11, 12, 0.66) 340px, rgba(11, 11, 12, 0.48) 430px, rgba(11, 11, 12, 0.22) 500px, rgba(11, 11, 12, 0) 570px);
     }
-    /* ("mas no mobile ainda esta muito escuro", 09/10): a faixa abriu de novo
-       (0,78 no pe, 0,42 atras do titulo) e a sombra das letras ficou mais
-       firme, que e o que segura a leitura com o veu leve */
-    .abertura-texto, .abertura-servicos { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 2px 26px rgba(0, 0, 0, 0.6); }
+    /* espacos apertados no celular, para o bloco de texto ocupar menos altura e
+       a faixa escura poder ser mais curta */
+    .abertura .rotulo { margin-bottom: 12px; }
+    .abertura h1 { margin-bottom: 14px; }
+    .abertura-apoio { margin-bottom: 18px; }
+    .abertura-servicos { margin-top: 18px; }
+    .abertura { padding-bottom: 22px; }
+    /* a sombra das letras e o que segura a leitura onde a faixa e leve; o
+       cabecalho ganha a mesma, porque em cima nao ha mais veu nenhum */
+    .abertura-texto, .abertura-servicos, .topo a, .topo .marca { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 2px 26px rgba(0, 0, 0, 0.6); }
     .abertura-servicos { margin-top: clamp(22px, 4vh, 36px); }
     /* o rotulo no celular: cada frase inteira, o fio entre elas, quebrando so entre as duas */
     .rotulo--vivo { display: block; }
