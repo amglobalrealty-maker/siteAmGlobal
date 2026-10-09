@@ -569,7 +569,8 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   caiu em 09/10 porque o cliente achou "as cores apagadas, o ceu nublado,
   meio morto"). Esta e a mais viva: turquesa, areia e branco. O clipe
   original tem 15,6 s em 1440p e, depois dos 7 s, o drone ve so o mar; o
-  site usa 6 s a partir de 0,3 s, com um toque de saturacao (1,06), gravados
+  site usa 6 s a partir de 0,3 s, com mais saturacao (1,2: ela pediu "mais
+  cor, a vinheta forte esta atrapalhando", e o veu abriu junto), gravados
   em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
   900px), sem audio, H.264, montados em **6 s de ida mais os mesmos 6 s de
   volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
@@ -591,9 +592,10 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   0,97) ela achou pesada ("nao da pra ver o video direito") e abriu para
   0,68 atras do titulo e 0,8 atras dos botoes, com a oval do computador em
   0,52. Com o video turquesa de 09/10 (mais claro que o de Maui) o veu abriu
-  mais um degrau: 0,62 atras do titulo e 0,78 nos botoes no celular, oval
-  em 0,46 e faixa da esquerda em 0,8 no computador. Resultado medido com
-  esse video: titulo acima de 6:1 no pior tile em todas as telas. A capa entra primeiro
+  mais um degrau e, no mesmo dia ("deixe o video com mais cor, a vinheta
+  forte esta atrapalhando"), mais outro: 0,52 atras do titulo e 0,72 nos
+  botoes no celular, oval em 0,36 e faixa da esquerda em 0,68 no
+  computador; o rotulo da abertura virou marfim para compensar. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
