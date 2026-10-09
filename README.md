@@ -557,23 +557,22 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   extraordinarios, em qualquer lugar do mundo" (escolha dela, que o cliente
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
   entre elas saiu em 08/10. O video e uma
-  casa de praia moderna vista **de frente**, de vidro e madeira, com
-  coqueiros contra um ceu azul, a camera passeando devagar (Pexels
-  39576524, "Modern beachfront house with palm trees", Alef Morais,
+  vila moderna vista **de frente**, branca com madeira, gramado e arvores,
+  num dia de sol com o ceu azul limpo, a camera passeando devagar (Pexels
+  38675652, "Modern luxury villa with spacious front yard", Alef Morais,
   fotografo imobiliario de Salvador; licenca Pexels, uso livre, sem
-  atribuicao obrigatoria). Foi a setima escolha: em 08/10 vieram a casa ao
+  atribuicao obrigatoria). Foi a oitava escolha: em 08/10 vieram a casa ao
   crepusculo vista de cima (39024336), a varanda da casa de praia
   (39576530), a piscina infinita ao por do sol (8642874, Peggy Anke; caiu
   porque "tem que ter a ver com imobiliaria de luxo"), a casa de vidro com
   piscina (39576513, Alef Morais; caiu porque o cliente final pediu "algo
   mais vivo, de fundo a paisagem") e a casa a beira-mar em Maui (15506688;
   caiu em 09/10 porque o cliente achou "as cores apagadas, o ceu nublado,
-  meio morto"); em 09/10 as vilas vistas de cima sobre o mar turquesa
-  (37856049) duraram uma hora, ate ela pedir "um video que apareca as
-  casas de frente". O clipe original tem 12,5 s em 1440p; o site usa 7 s a
-  partir de 0,5 s, com a cor bem mais viva (saturacao 1,32 e contraste
-  1,05: "so deixe um video mais colorido", 09/10, depois de ela recusar o
-  painel de vidro e pedir a versao anterior de volta), gravados
+  meio morto"); em 09/10 vieram as vilas vistas de cima sobre o mar
+  turquesa (37856049; ela pediu "as casas de frente") e a casa de praia de
+  frente no fim da tarde (39576524; ela pediu "ceu nao nublado, com sol
+  bonito"). O clipe original tem 13,2 s em 1440p; o site usa 7 s a partir
+  de 0,5 s, com a cor mais viva (saturacao 1,25 e contraste 1,04), gravados
   em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
   900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
   volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
