@@ -490,21 +490,21 @@
      colocar um video, da internet mesmo").
 
      Nada em caixa. Um video ocupa a primeira tela inteira, atras de tudo:
-     uma casa de praia moderna vista DE FRENTE, de vidro e madeira, com
-     coqueiros contra um ceu azul, a camera passeando devagar (Pexels
-     39576524, "Modern beachfront house with palm trees", Alef Morais;
-     licenca Pexels, uso livre). E a setima escolha: em 08/10 vieram a casa
-     ao crepusculo vista de cima (39024336), a varanda da casa de praia
-     (39576530), a piscina infinita ao por do sol (8642874; "tem que ter a
-     ver com imobiliaria de luxo"), a casa de vidro com piscina (39576513; o
-     cliente pediu "algo mais vivo, de fundo a paisagem") e a casa a
-     beira-mar em Maui (15506688; em 09/10 o cliente achou "as cores
-     apagadas, o ceu nublado, meio morto"); em 09/10 as vilas vistas de cima
-     sobre o mar turquesa (37856049) duraram uma hora: ela pediu "um video
-     que apareca as casas de frente". O trecho e dos 0,5 s aos 7,5 s do
-     original, com a cor bem mais viva (saturacao 1,32 e contraste 1,05; em
-     09/10 ela pediu "so um video mais colorido", depois de recusar o painel
-     de vidro e voltar para esta versao do veu), 7 s de ida e
+     uma vila moderna vista DE FRENTE, branca com madeira, gramado e
+     arvores, num dia de sol com o ceu azul limpo, a camera passeando
+     devagar (Pexels 38675652, "Modern luxury villa with spacious front
+     yard", Alef Morais; licenca Pexels, uso livre). E a oitava escolha: em
+     08/10 vieram a casa ao crepusculo vista de cima (39024336), a varanda
+     da casa de praia (39576530), a piscina infinita ao por do sol (8642874;
+     "tem que ter a ver com imobiliaria de luxo"), a casa de vidro com
+     piscina (39576513; o cliente pediu "algo mais vivo, de fundo a
+     paisagem") e a casa a beira-mar em Maui (15506688; em 09/10 o cliente
+     achou "as cores apagadas, o ceu nublado, meio morto"); em 09/10 as
+     vilas vistas de cima sobre o mar turquesa (37856049; ela pediu "as
+     casas de frente") e a casa de praia de frente no fim da tarde
+     (39576524; ela pediu "ceu nao nublado, com sol bonito"). O trecho e dos
+     0,5 s aos 7,5 s do original, com a cor mais viva (saturacao 1,25 e
+     contraste 1,04), 7 s de ida e
      os mesmos 7 s de volta, para o loop nao ter corte; 1080p no computador
      e 720p
      no celular, sem audio. Por cima, um veu de onix que escurece mais a esquerda, onde esta
@@ -2593,7 +2593,8 @@
          (uns 470px do pe, com os espacos apertados abaixo) e fecha ate o pe.
          Em cima, o ceu e a casa ficam com a cor inteira. */
       background:
-        linear-gradient(0deg, rgba(11, 11, 12, 0.86) 0, rgba(11, 11, 12, 0.78) 220px, rgba(11, 11, 12, 0.66) 340px, rgba(11, 11, 12, 0.48) 430px, rgba(11, 11, 12, 0.22) 500px, rgba(11, 11, 12, 0) 570px);
+        /* (09/10, video da vila branca com gramado, mais claro atras do texto: a faixa fechou um pouco, de 0,48 para 0,56 atras do titulo) */
+        linear-gradient(0deg, rgba(11, 11, 12, 0.88) 0, rgba(11, 11, 12, 0.8) 220px, rgba(11, 11, 12, 0.7) 340px, rgba(11, 11, 12, 0.56) 430px, rgba(11, 11, 12, 0.3) 500px, rgba(11, 11, 12, 0) 570px);
     }
     /* espacos apertados no celular, para o bloco de texto ocupar menos altura e
        a faixa escura poder ser mais curta */
@@ -2820,16 +2821,16 @@
   <!-- O VIDEO (08/10): atras de tudo, a capa em webp entra primeiro e o video
        aparece por fusao quando toca. O script escolhe 1080p ou 720p pela
        largura e nao carrega video com movimento reduzido ou economia de dados.
-       Fonte: Pexels 39576524 "Modern beachfront house with palm trees", Alef
-       Morais (licenca Pexels, uso livre, sem atribuicao obrigatoria).
+       Fonte: Pexels 38675652 "Modern luxury villa with spacious front yard",
+       Alef Morais (licenca Pexels, uso livre, sem atribuicao obrigatoria).
        O arquivo foi reduzido e montado em ida e volta (ferramenta no
-       scratchpad, videos_final7.sh). -->
+       scratchpad, videos_final8.sh). -->
   <div class="abertura-video" aria-hidden="true">
     <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
-    <img class="abertura-poster" src="fotos/abertura-poster.webp?v=9" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=9" data-src-cel="fotos/abertura-720.mp4?v=9"></video>
+    <img class="abertura-poster" src="fotos/abertura-poster.webp?v=10" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=10" data-src-cel="fotos/abertura-720.mp4?v=10"></video>
     <div class="abertura-veu"></div>
   </div>
 
