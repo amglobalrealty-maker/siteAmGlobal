@@ -541,37 +541,39 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   entra palavra por palavra, cada uma dentro da propria mascara com um
   atraso crescente (`--i`); o italico fica numa cor so, travertino (o
   brilho em degrade palavra por palavra deixava cada palavra de um tom e
-  saiu no mesmo dia, a pedido dela); no lugar da frase de apoio fixa, **a frase que gira**: as tres do manifesto
-  ("Para quem compra, o lugar da vida." etc.) e a do atendimento, uma por
-  vez a cada 4,2 s, entrando por baixo e saindo por cima de uma mascara
-  (bloco 8b do script); o servico correspondente acende na linha de baixo
-  e apontar um servico (so com mouse) traz a frase dele. Com movimento
-  reduzido tudo nasce parado e a frase nao gira. A chamada (escolhida por
-  ela em 08/10/2026, depois de quatro rodadas): o rotulo diz "Consultoria
-  imobiliaria exclusiva" (a palavra do lede do manifesto) e o titulo usa a
-  frase da marca, "Imoveis extraordinarios, em qualquer lugar do mundo".
-  Antes vieram "Consultoria imobiliaria global, com foco no objetivo de
-  cada cliente" (pedido do cliente final), "...do Brasil para o mundo, do
-  mundo para o Brasil" (falava "muito do Brasil") e "...presente onde o
-  mundo escolhe morar" (ela nao gostou). O rotulo de duas frases com o fio
-  champagne entre elas saiu junto. A frase da cliente, "com foco no
-  objetivo de cada cliente", e a quarta frase que gira, fechando com "do
-  primeiro contato a escritura". O video e uma
-  casa de alto padrao a beira-mar, com piscina e coqueiros, o drone chegando
-  por cima do mar azul com uma ilha no horizonte (Pexels 15506688, "Drone
-  footage of a luxury home by the blue sea"; licenca Pexels, uso livre, sem
-  atribuicao obrigatoria). Foi a quinta escolha de 08/10/2026: antes vieram
-  a casa ao crepusculo vista de cima (39024336), a varanda da casa de praia
+  saiu no mesmo dia, a pedido dela); a frase de apoio e **fixa**. (De
+  08/10 a 09/10 havia uma frase que girava, as tres do manifesto e a do
+  atendimento a cada 4,2 s, bloco 8b do script; saiu quando o cliente
+  final mandou o texto pronto. O bloco continua no script e nao faz nada
+  sem o `.abertura-giro`.) Com movimento reduzido tudo nasce parado.
+  **A chamada e a do cliente final, palavra por palavra (09/10/2026)**:
+  rotulo "Consultoria imobiliaria exclusiva", titulo "O imovel certo para
+  voce, com uma visao global." e a frase de apoio "Uma busca personalizada
+  para morar, investir e construir patrimonio, conectando oportunidades e
+  parcerias estrategicas pelo mundo." Antes vieram, em 08/10: "Consultoria
+  imobiliaria global, com foco no objetivo de cada cliente", "...do Brasil
+  para o mundo, do mundo para o Brasil" (falava "muito do Brasil"),
+  "...presente onde o mundo escolhe morar" (ela nao gostou) e "Imoveis
+  extraordinarios, em qualquer lugar do mundo" (escolha dela, que o cliente
+  trocou pelo texto dele). O rotulo de duas frases com o fio champagne
+  entre elas saiu em 08/10. O video e um
+  drone sobre vilas brancas de frente para um mar turquesa, sol pleno, a
+  camera subindo das casas para o mar (Pexels 37856049, "Aerial view of
+  beachfront villas and turquoise sea"; licenca Pexels, uso livre, sem
+  atribuicao obrigatoria). Foi a sexta escolha: em 08/10 vieram a casa ao
+  crepusculo vista de cima (39024336), a varanda da casa de praia
   (39576530), a piscina infinita ao por do sol (8642874, Peggy Anke; caiu
-  porque "tem que ter a ver com imobiliaria de luxo") e a casa de vidro com
+  porque "tem que ter a ver com imobiliaria de luxo"), a casa de vidro com
   piscina (39576513, Alef Morais; caiu porque o cliente final pediu "algo
-  mais vivo, de fundo a paisagem"). Esta junta o imovel e o mar. O clipe
-  original tem 21 s em 1440p e o drone se afasta da casa depois dos 7 s; o
-  site usa 5,8 s a partir de 1,2 s, com a cor um pouco mais viva (saturacao
-  1,12), gravados em `fotos/abertura-1080.mp4` (computador) e
-  `fotos/abertura-720.mp4` (ate 900px), sem audio, H.264, montados em
-  **5,8 s de ida mais os mesmos 5,8 s de volta**, para o loop nao ter corte;
-  a capa `fotos/abertura-poster.webp` e o quadro de 6 s. Os tres arquivos
+  mais vivo, de fundo a paisagem") e a casa a beira-mar em Maui (15506688;
+  caiu em 09/10 porque o cliente achou "as cores apagadas, o ceu nublado,
+  meio morto"). Esta e a mais viva: turquesa, areia e branco. O clipe
+  original tem 15,6 s em 1440p e, depois dos 7 s, o drone ve so o mar; o
+  site usa 6 s a partir de 0,3 s, com um toque de saturacao (1,06), gravados
+  em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
+  900px), sem audio, H.264, montados em **6 s de ida mais os mesmos 6 s de
+  volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
+  o quadro de 2,5 s. Os tres arquivos
   tem sempre o mesmo nome, entao as URLs no `index.html` levam `?v=N`, e o
   N muda a cada troca de video: sem isso quem ja abriu o site continua vendo
   o anterior, do cache. **Legibilidade em cima do video** (08/10/2026, "nao
@@ -588,9 +590,10 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   e todo o texto da abertura tem uma sombra suave. A primeira faixa (0,85 a
   0,97) ela achou pesada ("nao da pra ver o video direito") e abriu para
   0,68 atras do titulo e 0,8 atras dos botoes, com a oval do computador em
-  0,52. Resultado medido: titulo acima de 6:1 no pior tile em todas as
-  telas; rotulo do celular 5,2:1 no pior tile; rotulo do computador 3,3:1
-  no pior tile (6,6:1 na media, e com sombra). A capa entra primeiro
+  0,52. Com o video turquesa de 09/10 (mais claro que o de Maui) o veu abriu
+  mais um degrau: 0,62 atras do titulo e 0,78 nos botoes no celular, oval
+  em 0,46 e faixa da esquerda em 0,8 no computador. Resultado medido com
+  esse video: titulo acima de 6:1 no pior tile em todas as telas. A capa entra primeiro
   (com o `.pronto`) e o video aparece por fusao quando comeca a tocar
   (classe `.no-ar`); se o navegador nao tocar, fica a capa. O script escolhe
   a fonte pela largura e **nao carrega video** com movimento reduzido nem
