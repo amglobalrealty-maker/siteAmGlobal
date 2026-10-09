@@ -585,7 +585,9 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   meio morto"); em 09/10 as vilas vistas de cima sobre o mar turquesa
   (37856049) duraram uma hora, ate ela pedir "um video que apareca as
   casas de frente". O clipe original tem 12,5 s em 1440p; o site usa 7 s a
-  partir de 0,5 s, com a cor um pouco mais viva (saturacao 1,15), gravados
+  partir de 0,5 s, com a cor bem mais viva (saturacao 1,32 e contraste
+  1,05: "so deixe um video mais colorido", 09/10, depois de ela recusar o
+  painel de vidro e pedir a versao anterior de volta), gravados
   em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
   900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
   volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
