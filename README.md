@@ -601,8 +601,14 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   escondido e os 170 pontos mais claros e dourados da Terra viram brilhos
   que pulsam cada um no seu ritmo) e o sol respirando. As coordenadas sao
   do print; a conta print -> arquivo (recorte conhecido) -> tela (object-fit
-  cover) esta no script. Custa 0,4 ms por quadro; 30 quadros por segundo
-  no celular; nada com movimento reduzido. Teste
+  cover) esta no script (o tamanho da tela vem de offsetWidth/Height, que
+  ignora a escala da respiracao). Ela achou a primeira versao "igual a
+  foto": agora a camera anda de verdade (escala 1,02 -> 1,12 e desliza 3%
+  de lado em 26 s, ida e volta), sao dois cometas por arco com cauda longa,
+  as luzes piscam de 0,1 a 0,6, uma luz passa sobre o planeta a cada 14 s e
+  o sol respira mais. Os brilhos rodam mesmo com movimento reduzido no
+  aparelho (sao pequenos); so a camera, que e a cena inteira, para. Custa
+  ate 2,5 ms por quadro; 30 quadros por segundo no celular. Teste
   `scratchpad/win/ver-amglobal-vida.cjs`. O que segue e a historia do
   video da NASA, que ficou no repositorio.
 
