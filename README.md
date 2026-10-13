@@ -558,6 +558,25 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
   entre elas saiu em 08/10.
 
+  **Desde 13/10 a tarde o video e da NASA ("troque o video, coloque um que
+  pareca mais com o do print").** "Lights of Human Activity Shine in NASA's
+  Image of Earth at Night" (GSFC Scientific Visualization Studio, abril de
+  2017; `images.nasa.gov`, id `GSFC_20170412_Lights_m12573_EarthAtNight`,
+  original 1920x1080 a 29,97 fps, 83 s; dominio publico): a Terra a noite
+  com as luzes de verdade (Black Marble), a camera indo do Atlantico as
+  Americas. O site usa o trecho limpo de 68,5 s a 79 s (antes ha legenda,
+  depois o cartao final da NASA), com o logo da NASA do canto removido por
+  recorte (`crop=1760:990:0:90`, depois 1920x1080), graduacao escura e
+  dourada (`curves` 0,5 -> 0,4, `colorbalance` com luzes para o ambar,
+  saturacao 1,05), 10,5 s de ida e volta (`fotos/abertura-1080.mp4`);
+  celular: corte em pe do centro-direita (`crop=557:990:1000:90` ->
+  720x1280). `?v=20`. Ferramenta `scratchpad/videos_final16.sh`. Os videos
+  da NASA sao dominio publico; o que nao pode e usar a insignia da NASA
+  (por isso o recorte). Candidato testado e descartado: Pexels 30683869
+  (horizonte com as luzes dos EUA, so 2,8 s de noite, oceano preto chapado,
+  ficava laranja; `videos_final15.sh`, com desaceleracao por
+  `minterpolate`). O paragrafo abaixo e a historia do video anterior.
+
   **O video e a Terra vista do espaco a noite (13/10/2026).** Ela mandou
   uma referencia ("queria uma coisa mais assim, mas nao identico"): a
   Terra a noite, as luzes das cidades, arcos dourados ligando continentes,
