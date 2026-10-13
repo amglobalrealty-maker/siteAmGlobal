@@ -592,6 +592,24 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   sem sol, o video da NASA de 2017 com legendas e logo, os do Pixabay
   27168, 44350 e 188442 com o sol tambem a esquerda e menos luz).
 
+  **Opcao 2, uma segunda pagina publica (13/10/2026):** ela pediu "outro
+  link que outras pessoas consigam ver sem estar logadas na Vercel, sem
+  mudar o video que esta em producao, para a pessoa ter opcoes". Os
+  previews da Vercel ficam atras do login, entao a opcao mora na propria
+  producao: `opcao-2.html` (www.amglobalrealty.com/opcao-2.html) e uma copia
+  do `index.html` gerada por `scratchpad/opcao2_gerar.cjs` (cada troca
+  precisa casar uma vez, senao o script para), com `noindex, nofollow`,
+  aviso de pagina temporaria no alto e OUTRO video de fundo: Pexels 854225
+  "Rotation of the Planet Earth" (o globo noturno com as luzes das cidades
+  girando uma volta completa em 30 s sobre fundo preto; o loop fecha
+  sozinho, sem ida e volta), em `fotos/opcao-2-1080.mp4` (globo deslocado
+  340px para a direita, 1,5 MB; o texto volta para a esquerda e a oval do
+  veu tambem), `fotos/opcao-2-720.mp4` (globo inteiro centrado num quadro
+  em pe com faixas pretas, 0,8 MB) e as capas `fotos/opcao-2-poster*.webp`
+  (`scratchpad/videos_opcao2.sh`). Nao e para editar a mao: muda o index,
+  roda o gerador de novo. Apagar a pagina e os arquivos quando o cliente
+  escolher.
+
   Antes do planeta, de 08/10 a 13/10, a abertura teve onze videos de casas
   de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
   15506688, 37856049, 39576524, 38675652, 15768401, 31931883 e 30698669;
