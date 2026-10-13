@@ -573,8 +573,11 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   vila branca com gramado e ceu azul (38675652; "mansao tipo em praia") e
   a mansao de Miami na agua (15768401; em 13/10 ela pediu "um cenario mais
   bonito, tempo aberto, colorido, na praia"). O clipe original tem 13,4 s
-  em 1440p; o site usa 7 s a partir do 1 s, com a cor mais viva (saturacao
-  1,2 e contraste 1,04), gravados
+  em 1440p; o site usa 7 s a partir do 1 s, **recortados para focar na
+  vila** com a piscina e o gazebo ("quero mais foco na casa", 13/10: um
+  recorte de 1920x1080 do original de 2560x1440, sem ampliar, com o ceu em
+  cima e o mar so no terco de baixo), com a cor mais viva (saturacao 1,2 e
+  contraste 1,04), gravados
   em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
   900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
   volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
