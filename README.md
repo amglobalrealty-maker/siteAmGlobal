@@ -586,11 +586,19 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   `?v=N` (agora 15), e o N muda a cada troca de video: sem isso quem ja
   abriu o site continua vendo o anterior, do cache. **Cores quentes
   (13/10/2026, a cliente: "quer o video com cores mais alaranjadas,
-  amarelas")**: o mesmo video regravado com temperatura de cor 3400K
-  (`colortemperature` do ffmpeg) e saturacao 1,25; o sol fica laranja, as
-  luzes das cidades douradas e o azul do planeta mais esverdeado (`?v=17`;
-  testadas 4200K e um `colorbalance` para o ambar, que deixava o planeta
-  amarelado e o sol azul). Ferramenta:
+  amarelas"; depois ela mandou a referencia de novo: "quero mais assim,
+  nesses tons", planeta escuro, luzes douradas, sol como brilho dourado
+  suave, atmosfera azul)**: o mesmo video regravado com temperatura de cor
+  5200K (`colortemperature` do ffmpeg, suave), meios-tons escurecidos
+  (`curves` 0,5 -> 0,36), meios-tons e altas luzes puxados de leve para o
+  dourado sem tirar o azul das altas luzes (`colorbalance`
+  `rh=0.12:gh=0.06:bh=-0.04:rm=0.08:gm=0.02:bm=-0.08:bs=0.04`; e o azul das
+  altas luzes que faz a borda do planeta) e saturacao 1,08 (`?v=18`).
+  Tentativas anteriores: 3400K e saturacao 1,25 (`?v=17`, sol laranja e
+  planeta esverdeado demais), 4300K (a borda azul virava verde),
+  `colorbalance` tirando azul das altas luzes (borda esverdeada), 4200K
+  puro e um `colorbalance` para o ambar (planeta amarelado e sol azul). Os
+  quadros de teste estao em `scratchpad/videos/quente-teste*.jpg`. Ferramenta:
   `scratchpad/videos_final13.sh` (`COR=...`); candidatos vistos e descartados em
   `scratchpad/videos/terra-*.jpg` (854913 com luzes artificiais, 4156415
   com um coracao desenhado nas luzes, 30683869 com so 2,5 s de noite e tom
