@@ -598,8 +598,14 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   linha das pracas ("Brasil | Estados Unidos | Portugal | Dubai"). Os
   arquivos tem sempre o mesmo nome, entao as URLs no `index.html` levam
   `?v=N` (agora 15), e o N muda a cada troca de video: sem isso quem ja
-  abriu o site continua vendo o anterior, do cache. Ferramenta:
-  `scratchpad/videos_final13.sh`; candidatos vistos e descartados em
+  abriu o site continua vendo o anterior, do cache. **Cores quentes
+  (13/10/2026, a cliente: "quer o video com cores mais alaranjadas,
+  amarelas")**: o mesmo video regravado com temperatura de cor 3400K
+  (`colortemperature` do ffmpeg) e saturacao 1,25; o sol fica laranja, as
+  luzes das cidades douradas e o azul do planeta mais esverdeado (`?v=17`;
+  testadas 4200K e um `colorbalance` para o ambar, que deixava o planeta
+  amarelado e o sol azul). Ferramenta:
+  `scratchpad/videos_final13.sh` (`COR=...`); candidatos vistos e descartados em
   `scratchpad/videos/terra-*.jpg` (854913 com luzes artificiais, 4156415
   com um coracao desenhado nas luzes, 30683869 com so 2,5 s de noite e tom
   esverdeado, 35997575 escuro e esverdeado, 854225 globo noturno da NASA
