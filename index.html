@@ -546,6 +546,34 @@
   /* (13/10) o bloco de texto, os servicos e as pracas ficam a esquerda; de
      13/10 de manha ate 13/10 a tarde ficaram a direita (justify-self: end),
      enquanto o video tinha o sol a esquerda */
+
+  /* O HORIZONTE DESENHADO (13/10, "queria uma luz de horizonte amarela igual
+     a do print"). O arco e uma elipse com o centro abaixo da tela (35% da
+     largura, 82% da altura; raios 120% da largura e 70% da altura): o alto
+     do arco fica a 12% da altura, a ponta esquerda a 15% e a direita a 23%,
+     onde esta o sol (inclinado como no print; a primeira versao, com as
+     pontas a 37% e 27%, passava atras do rotulo e do titulo: 2,1:1).
+     .abertura-espaco: fora da elipse, onix quase opaco (o espaco acima do
+     planeta); dentro, nada. .abertura-horizonte, em screen: a faixa dourada
+     ao longo do arco (a atmosfera iluminada) e o brilho amarelo do sol no
+     canto direito, onde o arco toca a borda. */
+  .abertura-espaco {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse 120% 70% at 35% 82%, rgba(8, 10, 16, 0) 0%, rgba(8, 10, 16, 0) 98.5%, rgba(8, 10, 16, 0.97) 100.5%, #080a10 102%);
+    pointer-events: none;
+  }
+  .abertura-horizonte {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse 46% 40% at 97% 23%, rgba(255, 232, 184, 0.9) 0%, rgba(255, 204, 128, 0.5) 28%, rgba(255, 176, 96, 0.18) 55%, rgba(255, 170, 90, 0) 76%),
+      radial-gradient(ellipse 120% 70% at 35% 82%, rgba(255, 220, 160, 0) 95.5%, rgba(255, 224, 168, 0.45) 99%, rgba(255, 214, 140, 0.75) 100%, rgba(255, 200, 120, 0.38) 102.5%, rgba(255, 190, 110, 0.12) 107%, rgba(255, 190, 110, 0) 114%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
   .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
@@ -2619,6 +2647,15 @@
            continuam inteiros) */
         linear-gradient(0deg, rgba(8, 10, 16, 0.94) 0, rgba(8, 10, 16, 0.88) 220px, rgba(8, 10, 16, 0.82) 340px, rgba(8, 10, 16, 0.74) 440px, rgba(8, 10, 16, 0.45) 540px, rgba(8, 10, 16, 0) 640px);
     }
+    /* o horizonte no celular: arco mais alto e mais fechado (centro em 55% x
+       110%, raios 120% x 100%: alto a 10%, pontas a 21% e 17%), sol no canto
+       superior direito */
+    .abertura-espaco { background: radial-gradient(ellipse 120% 100% at 55% 110%, rgba(8, 10, 16, 0) 0%, rgba(8, 10, 16, 0) 98%, rgba(8, 10, 16, 0.97) 100.5%, #080a10 102.5%); }
+    .abertura-horizonte {
+      background:
+        radial-gradient(ellipse 70% 26% at 100% 15%, rgba(255, 232, 184, 0.9) 0%, rgba(255, 204, 128, 0.5) 30%, rgba(255, 176, 96, 0.18) 58%, rgba(255, 170, 90, 0) 78%),
+        radial-gradient(ellipse 120% 100% at 55% 110%, rgba(255, 220, 160, 0) 95%, rgba(255, 224, 168, 0.5) 98.5%, rgba(255, 214, 140, 0.8) 100%, rgba(255, 200, 120, 0.4) 103%, rgba(255, 190, 110, 0.12) 108%, rgba(255, 190, 110, 0) 116%);
+    }
     /* espacos apertados no celular, para o bloco de texto ocupar menos altura e
        a faixa escura poder ser mais curta */
     .abertura .rotulo { margin-bottom: 12px; }
@@ -2877,6 +2914,17 @@
       <img class="abertura-poster" src="fotos/abertura-poster.webp?v=21" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
     <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=21" data-src-cel="fotos/abertura-720.mp4?v=21"></video>
+    <!-- O HORIZONTE (13/10, "queria uma luz de horizonte amarela igual a do
+         print"): o trecho da NASA olha o planeta de cima, sem borda. Entao a
+         borda e desenhada por cima, em CSS: .abertura-espaco escurece tudo
+         acima de um arco (o espaco), e .abertura-horizonte poe a faixa
+         dourada da atmosfera ao longo do arco e o brilho amarelo do sol no
+         canto direito, misturados por cima da imagem (mix-blend-mode: screen).
+         Tudo em porcentagem, para seguir qualquer tela; o celular tem o seu
+         arco no CSS do celular. O veu vem DEPOIS, para assentar o texto
+         tambem sobre o brilho. -->
+    <div class="abertura-espaco"></div>
+    <div class="abertura-horizonte"></div>
     <div class="abertura-veu"></div>
   </div>
 

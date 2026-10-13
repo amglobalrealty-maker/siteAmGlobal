@@ -594,7 +594,17 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   reconvertida com tempo continuo (`scratchpad/videos_nasa_cfr.sh`, que
   tambem varre o trecho a cada 0,5 s), e o arquivo de saida e conferido
   quadro a quadro (`scratchpad/videos_saida_quadros.sh`). Ferramenta
-  `scratchpad/videos_final16.sh`. Os videos
+  `scratchpad/videos_final16.sh`. **O horizonte e desenhado em CSS** (13/10,
+  "queria uma luz de horizonte amarela igual a do print"): o trecho da NASA
+  olha o planeta de cima, sem borda; entao `.abertura-espaco` escurece tudo
+  acima de um arco (uma elipse com o centro abaixo da tela: no computador
+  centro em 35% x 82% e raios 120% x 70%, alto do arco a 12% da altura,
+  pontas a 15% e 23%; no celular 55% x 110% e 120% x 100%) e
+  `.abertura-horizonte`, em `mix-blend-mode: screen`, poe a faixa dourada da
+  atmosfera ao longo do arco e o brilho amarelo do sol no canto direito.
+  O veu vem por cima, para assentar o texto. A primeira versao do arco
+  (pontas a 37% e 27%) passava atras do rotulo e do titulo (2,1:1 medido);
+  a atual e mais alta e inclinada, como no print. Os videos
   da NASA sao dominio publico; o que nao pode e usar a insignia da NASA
   (por isso o recorte). Candidato testado e descartado: Pexels 30683869
   (horizonte com as luzes dos EUA, so 2,8 s de noite, oceano preto chapado,
