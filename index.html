@@ -2855,17 +2855,20 @@
        <picture>; no computador, o quadro inteiro. O corte do celular comeca
        na BORDA ESQUERDA do quadro (pedido dela, 13/10: "que aparecesse mais
        o lado esquerdo do video"): o sol e a borda do planeta inteiros, e
-       menos do miolo com as luzes. Ferramenta no scratchpad,
-       videos_final13.sh. -->
+       menos do miolo com as luzes. CORES QUENTES (13/10, a cliente: "quer o
+       video com cores mais alaranjadas, amarelas"): temperatura de cor
+       3400K e saturacao 1,25 no ffmpeg; o sol fica laranja, as luzes das
+       cidades douradas e o azul do planeta mais esverdeado. Ferramenta no
+       scratchpad, videos_final13.sh (COR=...). -->
   <div class="abertura-video" aria-hidden="true">
     <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=16" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=15" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=17" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=17" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=15" data-src-cel="fotos/abertura-720.mp4?v=16"></video>
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=17" data-src-cel="fotos/abertura-720.mp4?v=17"></video>
     <div class="abertura-veu"></div>
   </div>
 
