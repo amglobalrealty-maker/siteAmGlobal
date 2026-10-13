@@ -572,6 +572,26 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
   entre elas saiu em 08/10.
 
+  **Desde 13/10 no fim da tarde o fundo e A PROPRIA IMAGEM DO PRINT ("queria
+  igualzinho da imagem").** A imagem de referencia (gerada por IA, enviada
+  pelo cliente; a captura esta em `scratchpad/videos/print-referencia.png`,
+  1290x1150) vira o fundo: `scratchpad/imagem_print.sh` recorta a faixa da
+  Terra (x 230..1240, y 330..700: horizonte, arcos, sol), apaga por
+  `delogo` o botao de compartilhar do app e os textos gravados ("BRASIL |
+  EUA | ..." e "CONSULTORIA IMOBILIARIA EXCLUSIVA"), esfuma o remendo do
+  botao com bordas em degrade, estende o ceu para cima (as primeiras
+  linhas esticadas e desfocadas) e, no celular, o oceano para baixo, e
+  grava `fotos/abertura-print.webp` (1920x1080) e
+  `fotos/abertura-print-cel.webp` (720x1280). Sem video: `.abertura-poster`
+  respira (`abertura-respira`, escala 1 -> 1,06 em 40 s, ida e volta; parada
+  com movimento reduzido); o `<video>` saiu do HTML (o bloco 8 do script
+  nao faz nada sem ele) e o horizonte desenhado em CSS fica `display: none`.
+  Limite: a faixa util da captura tem 1010px de largura, entao em telas
+  grandes a imagem fica macia; com o arquivo original em alta (pedir ao
+  cliente) ou com creditos no Kairogen (gerar uma versao em alta a partir
+  da referencia) e so regravar os dois webp. O que segue e a historia do
+  video da NASA, que ficou no repositorio.
+
   **Desde 13/10 a tarde o video e da NASA ("troque o video, coloque um que
   pareca mais com o do print").** "Lights of Human Activity Shine in NASA's
   Image of Earth at Night" (GSFC Scientific Visualization Studio, abril de
