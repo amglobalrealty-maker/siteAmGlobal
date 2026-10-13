@@ -578,13 +578,21 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   2017; `images.nasa.gov`, id `GSFC_20170412_Lights_m12573_EarthAtNight`,
   original 1920x1080 a 29,97 fps, 83 s; dominio publico): a Terra a noite
   com as luzes de verdade (Black Marble), a camera indo do Atlantico as
-  Americas. O site usa o trecho limpo de 68,5 s a 79 s (antes ha legenda,
-  depois o cartao final da NASA), com o logo da NASA do canto removido por
-  recorte (`crop=1760:990:0:90`, depois 1920x1080), graduacao escura e
-  dourada (`curves` 0,5 -> 0,4, `colorbalance` com luzes para o ambar,
-  saturacao 1,05), 10,5 s de ida e volta (`fotos/abertura-1080.mp4`);
-  celular: corte em pe do centro-direita (`crop=557:990:1000:90` ->
-  720x1280). `?v=20`. Ferramenta `scratchpad/videos_final16.sh`. Os videos
+  Americas. O site usa o trecho limpo da America do Norte, de 76 s a
+  79,2 s (as legendas vao de 64 a 66,5 s e de 70,5 a 75,5 s; o cartao final
+  entra em 79,5 s), desacelerado 1,5x com interpolacao de quadros
+  (`minterpolate`) e montado em ida e volta (uns 10 s de loop), com o logo
+  da NASA do canto removido por recorte (`crop=1760:990:0:90`, depois
+  1920x1080), graduacao escura e dourada (`curves` 0,5 -> 0,4,
+  `colorbalance` com luzes para o ambar, saturacao 1,05)
+  (`fotos/abertura-1080.mp4`); celular: corte em pe do centro-direita
+  (`crop=557:990:850:90` -> 720x1280). `?v=20`. ATENCAO: o arquivo
+  original da NASA tem marcacoes de tempo que enganam o corte (um corte em
+  68,5 s saiu com a legenda de 71 s dentro); o corte parte de uma copia
+  reconvertida com tempo continuo (`scratchpad/videos_nasa_cfr.sh`, que
+  tambem varre o trecho a cada 0,5 s), e o arquivo de saida e conferido
+  quadro a quadro (`scratchpad/videos_saida_quadros.sh`). Ferramenta
+  `scratchpad/videos_final16.sh`. Os videos
   da NASA sao dominio publico; o que nao pode e usar a insignia da NASA
   (por isso o recorte). Candidato testado e descartado: Pexels 30683869
   (horizonte com as luzes dos EUA, so 2,8 s de noite, oceano preto chapado,
