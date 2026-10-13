@@ -572,7 +572,9 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   1920x1080), graduacao escura e dourada (`curves` 0,5 -> 0,4,
   `colorbalance` com luzes para o ambar, saturacao 1,05)
   (`fotos/abertura-1080.mp4`); celular: corte em pe do centro-direita
-  (`crop=557:990:850:90` -> 720x1280). `?v=20`. ATENCAO: o arquivo
+  (`crop=557:990:850:90` -> 720x1280). `?v=21` (a primeira versao, com a
+  legenda, e a corrigida sairam as duas como `?v=20`; o 21 fura o cache de
+  quem abriu o site naqueles minutos). ATENCAO: o arquivo
   original da NASA tem marcacoes de tempo que enganam o corte (um corte em
   68,5 s saiu com a legenda de 71 s dentro); o corte parte de uma copia
   reconvertida com tempo continuo (`scratchpad/videos_nasa_cfr.sh`, que
