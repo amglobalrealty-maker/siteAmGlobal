@@ -761,26 +761,30 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     mesmo recorte da opcao 6: `crop=3200:1800:0:180` no computador e
     `crop=2160:2160:917:0` + faixa preta no celular);
     `scratchpad/videos_opcao_dia.sh`.
-  - **Opcao 8** (`opcao-8.html`, `fotos/opcao-8-*`): a **Terra vista da
-    orbita a noite**, como da ISS, com as luzes das cidades e o horizonte
-    azulado (Pixabay 339335, 3872x2160, 5 s, 3D; ida e volta de 5,1 s; no
-    computador o recorte `crop=2560:1440:1312:0` tira o painel solar do
-    canto; celular: corte em pe `crop=1215:2160:1900:0`; cor levemente
-    aquecida com `colorbalance`). O brilho do horizonte passava atras de
-    "global." (4:1 no pior tile): o lado esquerdo do video de computador e
-    escurecido em rampa no proprio arquivo (`geq` na luma, 65% ate 45% da
-    largura subindo a 100% em 75%), como um veu a mais; passou a >= 7:1.
-  - **Opcao 9** (`opcao-9.html`, `fotos/opcao-9-*`): **filmagem real da
-    ISS**, a mais realista de todas: as luzes das cidades e o nascer do sol
-    no horizonte (Pexels 854913, 1080p, 60 s; o site usa 14 s a partir de
-    24 s em loop por fusao, 12 s, `scratchpad/videos_opcao_loop.sh` com
-    `INICIO=24`; computador: `crop=1680:945:0:0` para o horizonte descer e
-    o sol ficar no quadro; celular: `crop=608:1080:800:0` com a metade de
-    baixo escurecida em rampa por `geq`, porque as nuvens claras atras da
-    segunda linha do titulo davam 6,9:1 na media, abaixo do minimo de 7;
-    cor aquecida). Nota: na primeira rodada esse video tinha sido
-    descartado por "luzes artificiais"; e filmagem real da NASA publicada
-    no Pexels.
+  - **Opcao 8** (`opcao-8.html`, `fotos/opcao-8-*`, `?v=2`): primeiro foi a
+    Terra vista da orbita a noite, como da ISS (Pixabay 339335; o brilho do
+    horizonte passava atras de "global." e o lado esquerdo do video foi
+    escurecido em rampa por `geq`); ela: "coloque video mais claro, um
+    pouco mais amarelado". Agora e **o sol alaranjado nascendo sobre a
+    Terra clara** (Pixabay 62778, 1080p, 20 s, 3D; o site usa 11 s a partir
+    de 8 s, quando ja e dia, em ida e volta; cor um pouco mais clara e
+    amarela por `eq` + `colorbalance`). O sol fica no alto a esquerda,
+    entao o **texto vai para a direita** (gerador no modo "direita") e o
+    lado direito do video de computador e escurecido em rampa por `geq`;
+    celular: `crop=608:1080:200:0` com o sol no quadro e a metade de baixo
+    escurecida em rampa.
+  - **Opcao 9** (`opcao-9.html`, `fotos/opcao-9-*`, `?v=2`): primeiro foi a
+    filmagem real da ISS (Pexels 854913, luzes e nascer do sol, loop por
+    fusao com `INICIO=24`; celular escurecido por `geq`); ela pediu mais
+    claro e amarelado. Agora e **a Terra de dia, clara**, com a cor puxada
+    para o amarelo (Pexels 44350, 4K, 60 s; o site usa os 12 s iniciais, em
+    que o lado do dia esta de frente, em ida e volta; `eq` mais claro e
+    `colorbalance` para o amarelo nas sombras, meios e altas luzes); mesmo
+    recorte da opcao 6 (`crop=3200:1800:0:180` no computador, esfera a
+    direita e texto a esquerda; celular `crop=2160:2160:840:0` + faixa
+    preta). Na legibilidade, o rotulo de 11px deu 3,6:1 num unico tile (uma
+    estrela do fundo atras de uma letra; media 11:1), aceito como nos
+    casos anteriores de um ponto de luz atras do texto pequeno.
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
