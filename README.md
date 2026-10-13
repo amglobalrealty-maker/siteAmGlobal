@@ -613,11 +613,20 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     250px para a direita no computador (4,4 MB, crf 33: particula comprime
     mal) e inteiro no alto de um quadro em pe no celular (2,1 MB);
     `scratchpad/videos_opcao2b.sh`.
-  - **Opcao 3** (`opcao-3.html`, `fotos/opcao-3-*`): a **Terra realista com
-    arcos de conexao e marcadores** entre pontos do mundo, inclusive no
-    Brasil, a camera girando da India ate o Caribe (Pexels 3125396, 4K,
-    10 s; a referencia dela ao pe da letra), em 10 s de ida e volta (4,0 MB;
-    celular: corte em pe do centro, 1,4 MB); `scratchpad/videos_opcao3.sh`.
+  - **Opcao 3** (`opcao-3.html`, `fotos/opcao-3-*`): primeiro foi a Terra
+    com arcos de conexao (Pexels 3125396; ela: "nao gostei, coloque outro
+    mais realista, mais claro, mais colorido"); agora e a **Terra de dia,
+    realista e clara**, a esfera a esquerda girando da Africa a Asia e o
+    espaco escuro a direita, onde fica o texto, como na home (Pexels
+    31271016, 4K, 34 s; o site usa 13 s a partir de 0,3 s em ida e volta,
+    3,2 MB; celular: corte em pe `crop=1215:2160:400:0`, 1,4 MB);
+    `scratchpad/videos_opcao_dia.sh`.
+  - **Opcao 4** (`opcao-4.html`, `fotos/opcao-4-*`): a **Terra em luz quente
+    de sol**, grande, no trecho em que a America do Sul aparece (Pexels
+    16497612, 1080p, 2 min; o site usa 13 s a partir de 78 s em ida e
+    volta, 2,1 MB); neste trecho a esfera esta a direita, entao o texto fica
+    a esquerda; celular: corte em pe do centro do planeta
+    (`crop=608:1080:1000:0`); `scratchpad/videos_opcao_dia.sh`.
 
   Antes do planeta, de 08/10 a 13/10, a abertura teve onze videos de casas
   de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
