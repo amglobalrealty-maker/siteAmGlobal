@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- OPCAO-3 DA ABERTURA (13/10/2026): copia temporaria do index.html com outro video de fundo
-     (Pexels 3125396, a Terra com arcos de conexao entre as pracas), para o cliente comparar sem login da Vercel.
+     (Pexels 31271016, a Terra de dia girando da Africa a Asia), para o cliente comparar sem login da Vercel.
      Gerada por scratchpad/opcao2_gerar.cjs; nao editar a mao. Apagar quando a escolha for feita. -->
 <html lang="pt-BR">
 <head>
@@ -542,15 +542,17 @@
     background:
       /* as luzes da India passam atras da frase de apoio: sem a faixa da direita o
          pior ponto dava 2,2:1 (medido com win/ver-amglobal-legivel.cjs) */
-      radial-gradient(ellipse 50% 70% at 18% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 55%, rgba(8, 10, 16, 0) 100%),
-      linear-gradient(90deg, rgba(8, 10, 16, 0.6) 0%, rgba(8, 10, 16, 0.45) 38%, rgba(8, 10, 16, 0) 58%),
+      radial-gradient(ellipse 50% 70% at 82% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 55%, rgba(8, 10, 16, 0) 100%),
+      linear-gradient(90deg, rgba(8, 10, 16, 0) 42%, rgba(8, 10, 16, 0.45) 62%, rgba(8, 10, 16, 0.6) 100%),
       linear-gradient(180deg, rgba(8, 10, 16, 0.35) 0%, rgba(8, 10, 16, 0) 22%, rgba(8, 10, 16, 0) 70%, rgba(8, 10, 16, 0.6) 100%);
     pointer-events: none;
   }
   /* (13/10) no computador o bloco de texto, os servicos e as pracas vao para
      a DIREITA, todos com a mesma largura, alinhados pela esquerda entre si;
      o planeta e o sol ficam a esquerda, sem nada por cima */
-  /* (opcao-3) o texto fica a esquerda, como sempre */
+  @media (min-width: 901px) {
+    .abertura-conteudo, .abertura-servicos, .abertura-pracas { width: min(100%, 760px); justify-self: end; }
+  }
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
   .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
@@ -2864,10 +2866,10 @@
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/opcao-3-poster-cel.webp?v=1" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/opcao-3-poster.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/opcao-3-poster-cel.webp?v=2" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/opcao-3-poster.webp?v=2" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/opcao-3-1080.mp4?v=1" data-src-cel="fotos/opcao-3-720.mp4?v=1"></video>
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/opcao-3-1080.mp4?v=2" data-src-cel="fotos/opcao-3-720.mp4?v=2"></video>
     <div class="abertura-veu"></div>
   </div>
 
