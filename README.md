@@ -556,35 +556,47 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   "...presente onde o mundo escolhe morar" (ela nao gostou) e "Imoveis
   extraordinarios, em qualquer lugar do mundo" (escolha dela, que o cliente
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
-  entre elas saiu em 08/10. O video e uma
-  **vila palaciana sobre o mar em Malibu**, com uma palmeira alta, o ceu
-  azul de sol e a costa ao fundo, o drone subindo de lado (Pexels 30698669,
-  "Luxurious villa overlooking Malibu coastline"; licenca Pexels, uso
-  livre, sem atribuicao obrigatoria). Foi a decima primeira escolha: em
-  08/10 vieram a casa ao crepusculo vista de cima (39024336), a varanda da
-  casa de praia (39576530), a piscina infinita ao por do sol (8642874,
-  Peggy Anke; caiu porque "tem que ter a ver com imobiliaria de luxo"), a
-  casa de vidro com piscina (39576513, Alef Morais; caiu porque o cliente
-  final pediu "algo mais vivo, de fundo a paisagem") e a casa a beira-mar
-  em Maui (15506688; caiu em 09/10 porque o cliente achou "as cores
-  apagadas, o ceu nublado, meio morto"); em 09/10 vieram as vilas vistas de
-  cima sobre o mar turquesa (37856049; ela pediu "as casas de frente"), a
-  casa de praia de frente no fim da tarde (39576524; "ceu nao nublado, com
-  sol bonito"), a vila branca com gramado e ceu azul (38675652; "mansao
-  tipo em praia") e a mansao de Miami na agua (15768401; "um cenario mais
-  bonito, tempo aberto, colorido, na praia"); em 13/10, a vila caribenha
-  de frente para o mar (31931883, inteira e depois recortada para focar na
-  casa; "ta o mesmo video, nao quero esse"). O clipe original tem 24,8 s
-  em 1080p, mas so os 9 s aos 12,4 s sao limpos (antes ha cones de transito
-  na rua; depois so o telhado): o site usa esses 3,4 s, com a cor um pouco
-  mais viva (saturacao 1,15 e contraste 1,04), gravados
-  em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
-  900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
-  volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
-  o quadro de 4 s. Os tres arquivos
-  tem sempre o mesmo nome, entao as URLs no `index.html` levam `?v=N`, e o
-  N muda a cada troca de video: sem isso quem ja abriu o site continua vendo
-  o anterior, do cache. **Legibilidade em cima do video** (08/10/2026, "nao
+  entre elas saiu em 08/10.
+
+  **O video e a Terra vista do espaco a noite (13/10/2026).** Ela mandou
+  uma referencia ("queria uma coisa mais assim, mas nao identico"): a
+  Terra a noite, as luzes das cidades, arcos dourados ligando continentes,
+  o sol nascendo na borda, o logo e a chamada sobre o escuro. Primeiro veio
+  um globo desenhado em codigo (branch `feat/globo`, canvas com os pontos
+  do GeoJSON e as luzes da NASA); ela pediu "um video mais realista". E o
+  **Pexels 1851190 "The Sun Illuminating Earth's Surface"** (4K, 16 s;
+  licenca Pexels, uso livre, sem atribuicao obrigatoria): a borda azul do
+  planeta e o sol nascendo a esquerda, as luzes da Arabia e da India no
+  centro, o espaco escuro a direita. Por isso, no computador, **o bloco de
+  texto, os servicos e a linha das pracas ficam a direita** (como na
+  referencia, que tem a chamada a direita), todos com 760px e alinhados
+  entre si pela esquerda; a oval do veu acompanha. O site usa 12 s a partir
+  de 0,2 s, saturacao 1,1, em **12 s de ida mais os mesmos 12 s de volta**
+  (a rotacao e lenta e a inversao nao se nota), em
+  `fotos/abertura-1080.mp4` (computador, 3,7 MB) e, no celular, um **corte
+  em pe** do mesmo video (`crop=1215:2160:280:0` do 4K, com o sol, a borda
+  e as luzes no alto) em `fotos/abertura-720.mp4` (720x1280, 1,8 MB), com a
+  capa em pe `fotos/abertura-poster-cel.webp` escolhida pelo `<picture>`
+  ate 900px e `fotos/abertura-poster.webp` acima. Sob os servicos entrou a
+  linha das pracas ("Brasil | Estados Unidos | Portugal | Dubai"). Os
+  arquivos tem sempre o mesmo nome, entao as URLs no `index.html` levam
+  `?v=N` (agora 15), e o N muda a cada troca de video: sem isso quem ja
+  abriu o site continua vendo o anterior, do cache. Ferramenta:
+  `scratchpad/videos_final13.sh`; candidatos vistos e descartados em
+  `scratchpad/videos/terra-*.jpg` (854913 com luzes artificiais, 4156415
+  com um coracao desenhado nas luzes, 30683869 com so 2,5 s de noite e tom
+  esverdeado, 35997575 escuro e esverdeado, 854225 globo noturno da NASA
+  sem sol, o video da NASA de 2017 com legendas e logo, os do Pixabay
+  27168, 44350 e 188442 com o sol tambem a esquerda e menos luz).
+
+  Antes do planeta, de 08/10 a 13/10, a abertura teve onze videos de casas
+  de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
+  15506688, 37856049, 39576524, 38675652, 15768401, 31931883 e 30698669;
+  "tem que ter a ver com imobiliaria de luxo", "algo mais vivo", "o ceu
+  nublado, meio morto", "as casas de frente", "mansao tipo em praia", "ta o
+  mesmo video, nao quero esse"). O que segue abaixo sobre legibilidade e
+  veu e desse periodo; o veu atual e a oval a direita no computador e a
+  faixa do pe no celular. **Legibilidade em cima do video** (08/10/2026, "nao
   ta dando pra ler direito os textos em cima do video no mobile"): medido
   com `scratchpad/win/ver-amglobal-legivel.cjs`, que esconde o texto,
   fotografa o fundo real (capa + veu) e calcula o contraste de cada texto
