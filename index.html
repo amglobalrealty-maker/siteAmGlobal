@@ -532,23 +532,20 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    /* (13/10, video da Terra) o fundo ja e escuro onde esta o texto, a
-       DIREITA; a oval so assenta o bloco e a faixa do pe segura a linha dos
-       servicos. O sol e a borda azul, a esquerda, ficam livres. */
+    /* (13/10, video da Terra) o texto fica A ESQUERDA, como sempre ("no
+       desktop quero que o texto fique a esquerda, nao centralizado"): o
+       arquivo do computador ja vem com o sol e o planeta deslocados para a
+       metade direita (videos_final14.sh), entao a esquerda e espaco escuro;
+       a oval so assenta o bloco e a faixa do pe segura a linha dos servicos. */
     background:
-      /* as luzes da India passam atras da frase de apoio: sem a faixa da direita o
-         pior ponto dava 2,2:1 (medido com win/ver-amglobal-legivel.cjs) */
-      radial-gradient(ellipse 50% 70% at 82% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 55%, rgba(8, 10, 16, 0) 100%),
-      linear-gradient(90deg, rgba(8, 10, 16, 0) 42%, rgba(8, 10, 16, 0.45) 62%, rgba(8, 10, 16, 0.6) 100%),
+      radial-gradient(ellipse 50% 70% at 18% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 55%, rgba(8, 10, 16, 0) 100%),
+      linear-gradient(90deg, rgba(8, 10, 16, 0.6) 0%, rgba(8, 10, 16, 0.45) 38%, rgba(8, 10, 16, 0) 58%),
       linear-gradient(180deg, rgba(8, 10, 16, 0.35) 0%, rgba(8, 10, 16, 0) 22%, rgba(8, 10, 16, 0) 70%, rgba(8, 10, 16, 0.6) 100%);
     pointer-events: none;
   }
-  /* (13/10) no computador o bloco de texto, os servicos e as pracas vao para
-     a DIREITA, todos com a mesma largura, alinhados pela esquerda entre si;
-     o planeta e o sol ficam a esquerda, sem nada por cima */
-  @media (min-width: 901px) {
-    .abertura-conteudo, .abertura-servicos, .abertura-pracas { width: min(100%, 760px); justify-self: end; }
-  }
+  /* (13/10) o bloco de texto, os servicos e as pracas ficam a esquerda; de
+     13/10 de manha ate 13/10 a tarde ficaram a direita (justify-self: end),
+     enquanto o video tinha o sol a esquerda */
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
   .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
@@ -2852,10 +2849,19 @@
        "The Sun Illuminating Earth's Surface" (licenca Pexels, uso livre, sem
        atribuicao obrigatoria), 12 s de ida e volta. No celular entra um
        corte EM PE do mesmo video (720x1280) e uma capa em pe igual, pelo
-       <picture>; no computador, o quadro inteiro. O corte do celular comeca
+       <picture>. O corte do celular comeca
        na BORDA ESQUERDA do quadro (pedido dela, 13/10: "que aparecesse mais
        o lado esquerdo do video"): o sol e a borda do planeta inteiros, e
-       menos do miolo com as luzes. CORES QUENTES (13/10, a cliente: "quer o
+       menos do miolo com as luzes. NO COMPUTADOR ("no desktop quero que o
+       texto fique a esquerda, nao centralizado", 13/10 a tarde) o arquivo
+       ja vem com o sol e o planeta na METADE DIREITA: os 1800px da esquerda
+       do 4K (espaco, sol, borda, luzes da Arabia) reduzidos e colados a
+       direita; a metade esquerda e o espaco escuro do proprio recorte,
+       esticado e desfocado (preto chapado deixava uma emenda reta), e e
+       onde fica o texto. O
+       SOL E DOURADO ("essa luz branca azul ainda esta no tom errado"): uma
+       mascara em volta do sol (posicao x brilho) troca branco e azul por
+       dourado, sem mexer no resto. CORES QUENTES (13/10, a cliente: "quer o
        video com cores mais alaranjadas, amarelas"; depois ela mandou a
        referencia de novo, "quero mais assim, nesses tons": planeta escuro,
        luzes douradas, sol como um brilho dourado suave, atmosfera azul):
@@ -2872,10 +2878,10 @@
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=18" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=18" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=19" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=19" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=18" data-src-cel="fotos/abertura-720.mp4?v=18"></video>
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=19" data-src-cel="fotos/abertura-720.mp4?v=19"></video>
     <div class="abertura-veu"></div>
   </div>
 

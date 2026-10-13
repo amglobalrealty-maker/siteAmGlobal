@@ -612,7 +612,23 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   planeta esverdeado demais), 4300K (a borda azul virava verde),
   `colorbalance` tirando azul das altas luzes (borda esverdeada), 4200K
   puro e um `colorbalance` para o ambar (planeta amarelado e sol azul). Os
-  quadros de teste estao em `scratchpad/videos/quente-teste*.jpg`. Ferramenta:
+  quadros de teste estao em `scratchpad/videos/quente-teste*.jpg`.
+  **Depois (13/10 a tarde), dois pedidos dela:** "essa luz branca azul
+  ainda esta no tom errado" (o sol, branco com raios azuis, que a graduacao
+  geral nao alcanca) e "no desktop quero que o texto fique a esquerda, nao
+  centralizado". Entao (`?v=19`, `scratchpad/videos_final14.sh`): (1) o
+  **sol dourado** por mascara: so em volta do sol (raio em torno da posicao
+  dele vezes o brilho do pixel, `geq`) uma mistura de canais
+  (`colorchannelmixer`) leva branco e azul para o dourado e o `maskedmerge`
+  cola isso sobre o quadro graduado; o resto, inclusive a borda azul, nao
+  muda; (2) **no computador o texto voltou para a esquerda** e o arquivo
+  passou a trazer o sol e o planeta na metade direita: os 1800px da
+  esquerda do 4K (espaco, sol, borda, luzes da Arabia; a India fica de
+  fora) reduzidos para 900x1080 e colados a direita; a metade esquerda e a
+  faixa de espaco do proprio recorte esticada e desfocada (`gblur`), porque
+  preto chapado deixava uma emenda reta onde as estrelas comecavam; a oval
+  do veu voltou para a esquerda. O celular continua o corte
+  em pe da borda esquerda, agora com o sol dourado. Ferramenta:
   `scratchpad/videos_final13.sh` (`COR=...`); candidatos vistos e descartados em
   `scratchpad/videos/terra-*.jpg` (854913 com luzes artificiais, 4156415
   com um coracao desenhado nas luzes, 30683869 com so 2,5 s de noite e tom
