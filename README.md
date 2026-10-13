@@ -789,6 +789,19 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     entao o lado esquerdo e escurecido em rampa por `geq` para o texto ler;
     celular: `crop=1215:2160:1300:0` com a metade de baixo escurecida;
     5,6 MB no 1080p, abaixo do limite do teste).
+  - **Opcao 10** (`opcao-10.html`, `fotos/opcao-10.webp` e `-cel.webp`): uma
+    **imagem** no lugar do video, enviada por ela em 13/10 ("coloque essa
+    imagem no lugar do video como outra opcao, ja coloque ela no git"): o
+    globo de fotos de cidades ao por do sol. Gerada da home por
+    `scratchpad/opcao_imagem_gerar.cjs` (troca as duas imagens, tira o canvas
+    da vida e deixa a camera que respira). A imagem original tem 1672x940:
+    `scratchpad/imagem_opcao10.sh` monta o 1920x1080 (cover, lanczos) com o
+    lado esquerdo escurecido em rampa por `geq` (fator 0,28 no canto subindo
+    a 1 em 80% da largura, mais um escurecimento do canto superior esquerdo),
+    porque o sol e o ceu claro ficam onde esta o texto; e o 720x1280 com o
+    globo inteiro no alto e faixa escura embaixo. Legibilidade: tudo >= 7:1
+    na media; o rotulo de 11px ficou em 3,9:1 no pior tile (uma nuvem clara
+    atras de uma letra), aceito como nos casos anteriores.
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
