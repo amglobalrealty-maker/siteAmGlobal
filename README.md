@@ -589,7 +589,21 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   Limite: a faixa util da captura tem 1010px de largura, entao em telas
   grandes a imagem fica macia; com o arquivo original em alta (pedir ao
   cliente) ou com creditos no Kairogen (gerar uma versao em alta a partir
-  da referencia) e so regravar os dois webp. O que segue e a historia do
+  da referencia) e so regravar os dois webp.
+  **A vida da imagem (13/10, "isso, mas queria um video")**: sem creditos
+  para video por IA, a imagem e animada em codigo (bloco 8c do script,
+  `#aberturaVida`, canvas por cima da imagem; os dois dentro de
+  `.abertura-video`, que e o que respira): pulsos de luz percorrendo os sete
+  arcos do print (tracados a mao em coordenadas do print com a grade de
+  `scratchpad/imagem_grade.sh`, como curvas de Bezier entre os polos Nova
+  York, Europa, Oriente Medio, Sao Paulo e Africa; ciclo de 6 s, defasados),
+  as luzes das cidades cintilando (ao carregar, a imagem e lida num canvas
+  escondido e os 170 pontos mais claros e dourados da Terra viram brilhos
+  que pulsam cada um no seu ritmo) e o sol respirando. As coordenadas sao
+  do print; a conta print -> arquivo (recorte conhecido) -> tela (object-fit
+  cover) esta no script. Custa 0,4 ms por quadro; 30 quadros por segundo
+  no celular; nada com movimento reduzido. Teste
+  `scratchpad/win/ver-amglobal-vida.cjs`. O que segue e a historia do
   video da NASA, que ficou no repositorio.
 
   **Desde 13/10 a tarde o video e da NASA ("troque o video, coloque um que

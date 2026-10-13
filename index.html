@@ -526,11 +526,13 @@
   }
   .abertura-poster { opacity: 0; transition: opacity 1.4s var(--ambiente); }
   .pronto .abertura-poster { opacity: 1; }
-  /* (13/10, a imagem do print no lugar do video) a imagem respira: aproxima
-     6% em 40 s e volta, sem parar; com movimento reduzido fica parada */
-  .abertura-poster { transform-origin: 62% 58%; animation: abertura-respira 40s ease-in-out infinite alternate; }
+  /* (13/10, a imagem do print no lugar do video) a cena respira: a imagem e
+     o canvas da vida (dentro de .abertura-video) aproximam 6% em 40 s e
+     voltam, sem parar; com movimento reduzido fica parada */
+  .abertura-video { transform-origin: 62% 58%; animation: abertura-respira 40s ease-in-out infinite alternate; }
   @keyframes abertura-respira { from { transform: scale(1); } to { transform: scale(1.06); } }
-  @media (prefers-reduced-motion: reduce) { .abertura-poster { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .abertura-video { animation: none; } }
+  .abertura-vida { position: absolute; inset: 0; z-index: 1; display: block; width: 100%; height: 100%; pointer-events: none; }
   .abertura-filme { opacity: 0; transition: opacity 1.8s var(--ambiente); }
   .abertura-filme.no-ar { opacity: 1; }
   .abertura-veu {
@@ -2933,6 +2935,13 @@
       <source media="(max-width: 900px)" srcset="fotos/abertura-print-cel.webp?v=1" width="720" height="1280">
       <img class="abertura-poster" src="fotos/abertura-print.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
+    <!-- A VIDA DA IMAGEM (13/10, "isso, mas queria um video"): sem creditos
+         para gerar um video por IA, a imagem ganha movimento em codigo
+         (bloco 8c do script): pulsos de luz percorrendo os sete arcos do
+         print, as luzes das cidades cintilando (achadas na propria imagem) e
+         o sol respirando, tudo no canvas por cima da imagem, que junto com
+         ela se aproxima devagar (.abertura-video). -->
+    <canvas id="aberturaVida" class="abertura-vida"></canvas>
     <!-- O HORIZONTE (13/10, "queria uma luz de horizonte amarela igual a do
          print"): o trecho da NASA olha o planeta de cima, sem borda. Entao a
          borda e desenhada por cima, em CSS: .abertura-espaco escurece tudo
@@ -4268,6 +4277,184 @@
     }
     window.AMG = window.AMG || {};
     window.AMG.filmeAbertura = filmeAbertura;
+  }
+
+  /* 8c. A VIDA DA IMAGEM (13/10/2026, "isso, mas queria um video").
+
+     O fundo e a imagem do print; este bloco a anima num canvas por cima:
+       - pulsos de luz percorrendo os sete arcos do print (tracados a mao
+         em coordenadas do print, com uma grade, como curvas de Bezier);
+       - as luzes das cidades cintilando: ao carregar, a imagem e lida num
+         canvas escondido e os pontos mais claros e dourados da Terra viram
+         pequenos brilhos que pulsam cada um no seu ritmo;
+       - o brilho do sol respirando devagar.
+     As coordenadas sao do PRINT (a captura de 1290x1150): cada arquivo de
+     fundo (computador 1920x1080, celular 720x1280) e um recorte conhecido
+     dele, e a imagem entra na tela por object-fit: cover, entao a conta
+     print -> arquivo -> tela e feita aqui. Com movimento reduzido, nada e
+     desenhado. Para fora da tela e com a aba escondida. */
+  var vidaTela = document.getElementById('aberturaVida');
+  var vidaImagem = document.querySelector('.abertura-poster');
+
+  if (vidaTela && vidaTela.getContext && vidaImagem && !calmo) {
+    var vctx = vidaTela.getContext('2d');
+    // recortes dos dois arquivos, em coordenadas do print (scratchpad/imagem_print.sh)
+    var RECORTES = {
+      pc:  { largura: 1920, altura: 1080, x0: 230, y0: 330, escala: 1920 / 1010, topo: 376, posX: 0.5, posY: 0.42 },
+      cel: { largura: 720,  altura: 1280, x0: 685, y0: 330, escala: 720 / 555,   topo: 200, posX: 0.5, posY: 0 }
+    };
+    // os polos de luz e os arcos (print): Nova York, Europa, Oriente Medio, Sao Paulo, Africa ocidental
+    var POLOS = { ny: [522, 487], eu: [917, 462], om: [1132, 490], sp: [657, 622], af: [1025, 565], leste: [1240, 440] };
+    var ARCOS = [
+      { de: 'ny', para: 'eu', c: [720, 305], def: 0 },
+      { de: 'ny', para: 'om', c: [830, 231], def: 0.45 },
+      { de: 'sp', para: 'eu', c: [790, 330], def: 0.2 },
+      { de: 'sp', para: 'af', c: [840, 400], def: 0.7 },
+      { de: 'eu', para: 'om', c: [1025, 324], def: 0.55 },
+      { de: 'om', para: 'leste', c: [1200, 420], def: 0.85 },
+      { de: 'ny', para: 'sp', c: [700, 505], def: 0.3 }
+    ];
+    var SOL = [1185, 372];
+    var V = { w: 0, h: 0, dpr: 1, rec: null, s: 1, dx: 0, dy: 0, luzes: [], halo: null, fonte: '' };
+
+    function paraTela(px, py) {   // print -> tela
+      var r = V.rec;
+      var xi = (px - r.x0) * r.escala, yi = r.topo + (py - r.y0) * r.escala;
+      return [V.dx + xi * V.s, V.dy + yi * V.s];
+    }
+    function bezier(a, c, b, t) {
+      var u = 1 - t;
+      return [u * u * a[0] + 2 * u * t * c[0] + t * t * b[0], u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]];
+    }
+
+    // acha as luzes das cidades na propria imagem: pontos claros e dourados, um por celula de 14px
+    function acharLuzes() {
+      var r = V.rec;
+      var c = document.createElement('canvas'); c.width = r.largura; c.height = r.altura;
+      var x = c.getContext('2d', { willReadFrequently: true });
+      try { x.drawImage(vidaImagem, 0, 0, r.largura, r.altura); } catch (e) { return []; }
+      var d;
+      try { d = x.getImageData(0, 0, r.largura, r.altura).data; } catch (e) { return []; }
+      var cel = 14, melhores = {}, lista = [];
+      var yMin = r.topo + 24;   // so a Terra, abaixo do horizonte
+      for (var y = yMin; y < r.altura; y += 2) {
+        for (var xx = 0; xx < r.largura; xx += 2) {
+          var i = (y * r.largura + xx) * 4, R = d[i], G = d[i + 1], B = d[i + 2];
+          if (R < 190 || G < 140 || B > 200 || R - B < 40) continue;
+          var brilho = R + G - B;
+          var chave = ((xx / cel) | 0) + '_' + ((y / cel) | 0);
+          if (!melhores[chave] || melhores[chave].b < brilho) melhores[chave] = { x: xx, y: y, b: brilho };
+        }
+      }
+      for (var k in melhores) lista.push(melhores[k]);
+      lista.sort(function (a, b) { return b.b - a.b; });
+      lista = lista.slice(0, 170);
+      return lista.map(function (p, n) {
+        var sx = V.dx + p.x * V.s, sy = V.dy + p.y * V.s;
+        return { x: sx, y: sy, fase: (n * 2.399) % 6.283, vel: 0.6 + ((n * 7) % 10) / 7, tam: 3 + ((n * 3) % 4) };
+      });
+    }
+
+    function medirVida() {
+      var r = vidaTela.getBoundingClientRect();
+      var w = Math.round(r.width), h = Math.round(r.height);
+      if (!w || !h) return;
+      var movel = window.matchMedia('(max-width: 900px)').matches;
+      V.rec = movel ? RECORTES.cel : RECORTES.pc;
+      V.w = w; V.h = h; V.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      vidaTela.width = Math.round(w * V.dpr); vidaTela.height = Math.round(h * V.dpr);
+      // object-fit: cover da imagem dentro da secao
+      V.s = Math.max(w / V.rec.largura, h / V.rec.altura);
+      V.dx = (w - V.rec.largura * V.s) * V.rec.posX;
+      V.dy = (h - V.rec.altura * V.s) * V.rec.posY;
+      if (!V.halo) {
+        var hl = document.createElement('canvas'); hl.width = hl.height = 32;
+        var hx = hl.getContext('2d'), gh = hx.createRadialGradient(16, 16, 0, 16, 16, 16);
+        gh.addColorStop(0, 'rgba(255, 236, 200, 1)'); gh.addColorStop(0.3, 'rgba(255, 214, 150, 0.6)'); gh.addColorStop(1, 'rgba(255, 196, 120, 0)');
+        hx.fillStyle = gh; hx.fillRect(0, 0, 32, 32); V.halo = hl;
+      }
+      V.luzes = vidaImagem.complete && vidaImagem.naturalWidth ? acharLuzes() : [];
+      V.fonte = vidaImagem.currentSrc;
+    }
+
+    function desenharVida(t) {
+      var c = vctx, w = V.w, h = V.h;
+      c.setTransform(V.dpr, 0, 0, V.dpr, 0, 0);
+      c.clearRect(0, 0, w, h);
+      c.globalCompositeOperation = 'lighter';
+      // as luzes das cidades cintilam
+      var i;
+      for (i = 0; i < V.luzes.length; i++) {
+        var L = V.luzes[i];
+        var a = 0.18 + 0.22 * (0.5 + 0.5 * Math.sin(t / 1000 * L.vel + L.fase));
+        c.globalAlpha = a;
+        c.drawImage(V.halo, L.x - L.tam, L.y - L.tam, L.tam * 2, L.tam * 2);
+      }
+      // os pulsos nos arcos
+      c.lineCap = 'round';
+      for (i = 0; i < ARCOS.length; i++) {
+        var A = ARCOS[i], p0 = POLOS[A.de], p1 = POLOS[A.para];
+        var ciclo = 6000, u = ((t + A.def * ciclo) % ciclo) / ciclo;
+        var cabeca = Math.min(1, u / 0.8), apaga = u > 0.8 ? 1 - (u - 0.8) / 0.2 : 1;
+        var cauda = Math.max(0, cabeca - 0.22);
+        var passos = 14;
+        for (var k = 1; k <= passos; k++) {
+          var ta = cauda + (cabeca - cauda) * (k - 1) / passos, tb = cauda + (cabeca - cauda) * k / passos;
+          var pa = paraTela.apply(null, bezier(p0, A.c, p1, ta)), pb = paraTela.apply(null, bezier(p0, A.c, p1, tb));
+          var fr = k / passos;
+          c.strokeStyle = 'rgba(255, 226, 170, ' + (apaga * fr * fr * 0.9).toFixed(3) + ')';
+          c.lineWidth = 0.8 + 1.8 * fr;
+          c.beginPath(); c.moveTo(pa[0], pa[1]); c.lineTo(pb[0], pb[1]); c.stroke();
+        }
+        var pc = paraTela.apply(null, bezier(p0, A.c, p1, cabeca));
+        c.globalAlpha = apaga * 0.9; c.drawImage(V.halo, pc[0] - 9, pc[1] - 9, 18, 18);
+      }
+      // o sol respira
+      var ps = paraTela(SOL[0], SOL[1]);
+      var raio = (V.rec === RECORTES.cel ? 160 : 230) * (0.9 + 0.1 * Math.sin(t / 3500));
+      var gs = c.createRadialGradient(ps[0], ps[1], 0, ps[0], ps[1], raio);
+      var alfa = 0.1 + 0.07 * (0.5 + 0.5 * Math.sin(t / 3500));
+      gs.addColorStop(0, 'rgba(255, 230, 180, ' + alfa.toFixed(3) + ')'); gs.addColorStop(0.5, 'rgba(255, 200, 130, ' + (alfa * 0.4).toFixed(3) + ')'); gs.addColorStop(1, 'rgba(255, 190, 120, 0)');
+      c.globalAlpha = 1; c.fillStyle = gs; c.fillRect(ps[0] - raio, ps[1] - raio, raio * 2, raio * 2);
+      c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
+    }
+
+    var vidaRodando = false, vidaNaTela = true, vidaUltimo = 0;
+    function quadroVida(t) {
+      if (!vidaRodando) return;
+      if (V.rec !== RECORTES.cel || t - vidaUltimo >= 30) { vidaUltimo = t; desenharVida(t); }
+      window.requestAnimationFrame(quadroVida);
+    }
+    function ligarVida() { if (vidaRodando || !vidaNaTela || document.hidden) return; vidaRodando = true; window.requestAnimationFrame(quadroVida); }
+    function desligarVida() { vidaRodando = false; }
+    function prepararVida() { medirVida(); ligarVida(); }
+
+    if (vidaImagem.complete && vidaImagem.naturalWidth) prepararVida();
+    else vidaImagem.addEventListener('load', prepararVida);
+    var relogioVida = null;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(relogioVida);
+      relogioVida = window.setTimeout(function () {
+        var r = vidaTela.getBoundingClientRect();
+        if (Math.round(r.width) === V.w && Math.abs(Math.round(r.height) - V.h) < 120 && vidaImagem.currentSrc === V.fonte) return;
+        medirVida();
+      }, 160);
+    });
+    window.addEventListener('load', function () { window.setTimeout(function () { if (vidaImagem.currentSrc !== V.fonte || !V.luzes.length) medirVida(); }, 1500); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) { vidaNaTela = e.isIntersecting; if (vidaNaTela) ligarVida(); else desligarVida(); });
+      }, { threshold: 0.02 }).observe(vidaTela);
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) desligarVida(); else ligarVida(); });
+
+    window.AMG = window.AMG || {};
+    window.AMG.vida = {
+      ativo: function () { return vidaRodando; },
+      luzes: function () { return V.luzes.length; },
+      geometria: function () { return { w: V.w, h: V.h, s: V.s, dx: Math.round(V.dx), dy: Math.round(V.dy), cel: V.rec === RECORTES.cel }; },
+      medir: function (n) { n = n || 30; var t0 = performance.now(); for (var i = 0; i < n; i++) desenharVida(t0 + i * 33); return (performance.now() - t0) / n; }
+    };
   }
 
   /* 8b. A frase que gira (08/10/2026).
