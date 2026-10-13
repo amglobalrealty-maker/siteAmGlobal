@@ -570,35 +570,52 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   "...presente onde o mundo escolhe morar" (ela nao gostou) e "Imoveis
   extraordinarios, em qualquer lugar do mundo" (escolha dela, que o cliente
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
-  entre elas saiu em 08/10. O video e uma
-  **vila palaciana sobre o mar em Malibu**, com uma palmeira alta, o ceu
-  azul de sol e a costa ao fundo, o drone subindo de lado (Pexels 30698669,
-  "Luxurious villa overlooking Malibu coastline"; licenca Pexels, uso
-  livre, sem atribuicao obrigatoria). Foi a decima primeira escolha: em
-  08/10 vieram a casa ao crepusculo vista de cima (39024336), a varanda da
-  casa de praia (39576530), a piscina infinita ao por do sol (8642874,
-  Peggy Anke; caiu porque "tem que ter a ver com imobiliaria de luxo"), a
-  casa de vidro com piscina (39576513, Alef Morais; caiu porque o cliente
-  final pediu "algo mais vivo, de fundo a paisagem") e a casa a beira-mar
-  em Maui (15506688; caiu em 09/10 porque o cliente achou "as cores
-  apagadas, o ceu nublado, meio morto"); em 09/10 vieram as vilas vistas de
-  cima sobre o mar turquesa (37856049; ela pediu "as casas de frente"), a
-  casa de praia de frente no fim da tarde (39576524; "ceu nao nublado, com
-  sol bonito"), a vila branca com gramado e ceu azul (38675652; "mansao
-  tipo em praia") e a mansao de Miami na agua (15768401; "um cenario mais
-  bonito, tempo aberto, colorido, na praia"); em 13/10, a vila caribenha
-  de frente para o mar (31931883, inteira e depois recortada para focar na
-  casa; "ta o mesmo video, nao quero esse"). O clipe original tem 24,8 s
-  em 1080p, mas so os 9 s aos 12,4 s sao limpos (antes ha cones de transito
-  na rua; depois so o telhado): o site usa esses 3,4 s, com a cor um pouco
-  mais viva (saturacao 1,15 e contraste 1,04), gravados
-  em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
-  900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
-  volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
-  o quadro de 4 s. Os tres arquivos
-  tem sempre o mesmo nome, entao as URLs no `index.html` levam `?v=N`, e o
-  N muda a cada troca de video: sem isso quem ja abriu o site continua vendo
-  o anterior, do cache. **Legibilidade em cima do video** (08/10/2026, "nao
+  entre elas saiu em 08/10.
+
+  **O fundo e um globo desenhado em codigo (13/10/2026).** Ela mandou uma
+  referencia ("queria uma coisa mais assim, mas nao identico"): a Terra
+  vista do espaco a noite, as luzes das cidades, arcos dourados ligando os
+  continentes, o sol nascendo na borda, o logo e o texto sobre o escuro. A
+  versao da AM Global e um canvas atras do texto (bloco 8 do script), sem
+  video, foto nem biblioteca: os pontos vem de `globo-pontos.js` (93 KB;
+  `[lon*10, lat*10, brilho 0..9]`, 7.541 pontos), gerado por
+  `scratchpad/globo/gerar_globo.js` a partir do GeoJSON de paises
+  (world.geo.json, dominio publico; trama de area igual, passo 1,3 grau,
+  sem a Antartida) e da imagem noturna da NASA (Black Marble 2016, 0,1
+  grau por pixel, dominio publico), que da o brilho de cada ponto e uma
+  trama mais fina (0,45 grau) onde ha luz forte, para as cidades virarem
+  manchas. Na tela: projecao ortografica numa esfera grande cujo centro
+  fica abaixo da tela (no computador, raio 0,68 da largura, alto do disco
+  em 40% da altura, a direita; no celular, raio 1,1 da largura, o disco
+  logo abaixo do cabecalho e o texto no terco de baixo sobre um degrade
+  escuro), com o ponto (24N, 40W) no alto do disco e o que esta ao sul
+  dele vindo para a frente: a borda do planeta cruza a tela em arco, com
+  a America do Sul perto e a Europa ao fundo; a esfera balanca 14 graus
+  num vaivem de 100 s. Terra em pontos azulados discretos, luz em pontos
+  dourados maiores e com halo quanto mais brilho, tudo escurecendo perto
+  da borda; arcos entre as pracas (Sao Paulo-Miami, Sao Paulo-Lisboa,
+  Lisboa-Dubai, Miami-Lisboa), cada um com um pulso de luz que o percorre
+  a cada 5,2 s; marcadores nas nove pracas, os quatro dos arcos pulsando;
+  a atmosfera (um fio azul na borda) e o sol nascendo a direita numa camada
+  montada uma vez. Custa 1 a 2 ms por quadro; 30 quadros por segundo no
+  celular; para fora da tela e com a aba escondida; com movimento
+  reduzido, um quadro parado. Sob os servicos entrou a linha das pracas
+  ("Brasil | Estados Unidos | Portugal | Dubai", como na referencia). O
+  veu virou so a oval atras do texto no computador e o degrade do pe no
+  celular; a legibilidade medida ficou acima de 7:1 em todos os textos.
+  Teste: `scratchpad/win/ver-amglobal-globo.cjs` (pontos carregados, canvas
+  cobrindo a secao, luzes douradas no planeta e espaco escuro acima, custo
+  do quadro, texto do cliente inteiro, movimento reduzido parado).
+
+  Antes do globo, de 08/10 a 13/10, a abertura teve onze videos de casas
+  de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
+  15506688, 37856049, 39576524, 38675652, 15768401, 31931883 e 30698669;
+  "tem que ter a ver com imobiliaria de luxo", "algo mais vivo", "o ceu
+  nublado, meio morto", "as casas de frente", "mansao tipo em praia", "ta o
+  mesmo video, nao quero esse"), montados em ida e volta com o ffmpeg do
+  scratchpad (`videos_final*.sh`), com capa webp e `?v=N` nas URLs para
+  furar o cache. Os arquivos `fotos/abertura-*` continuam no repositorio,
+  sem uso. O que segue abaixo sobre legibilidade e veu e desse periodo. **Legibilidade em cima do video** (08/10/2026, "nao
   ta dando pra ler direito os textos em cima do video no mobile"): medido
   com `scratchpad/win/ver-amglobal-legivel.cjs`, que esconde o texto,
   fotografa o fundo real (capa + veu) e calcula o contraste de cada texto

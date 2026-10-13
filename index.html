@@ -485,66 +485,41 @@
     background: var(--onix);
   }
 
-  /* O VIDEO DE FUNDO (08/10/2026, quinta rodada da abertura: "nao gostei da
-     foto quadradona; queria responsiva de um jeito mais criativo; pode
-     colocar um video, da internet mesmo").
+  /* O GLOBO DE FUNDO (13/10/2026). Ela mandou uma referencia ("queria uma
+     coisa mais assim, mas nao identico"): a Terra vista do espaco a noite,
+     as luzes das cidades, arcos dourados ligando os continentes e o sol
+     nascendo na borda, com o logo e o texto sobre o escuro. Esta e a versao
+     da AM Global: um globo desenhado em codigo (canvas, bloco 8 do script),
+     com os pontos de terra do GeoJSON de paises e as luzes das cidades de
+     verdade (imagem noturna da NASA), os arcos entre as pracas (Sao Paulo,
+     Miami, Lisboa, Dubai), a atmosfera e o sol na borda. O planeta e grande
+     e o centro fica abaixo da tela: o que aparece e a borda, em arco, com a
+     America do Sul perto e a Europa ao fundo. Nada de foto nem de video.
 
-     Nada em caixa. Um video ocupa a primeira tela inteira, atras de tudo:
-     uma vila palaciana sobre o mar em Malibu, com uma palmeira alta, o
-     ceu azul de sol e a costa ao fundo, o drone subindo de lado (Pexels
-     30698669, "Luxurious villa overlooking Malibu coastline"; licenca
-     Pexels, uso livre). E a decima primeira escolha: em 08/10 vieram a
-     casa ao crepusculo vista de cima (39024336), a varanda da casa de
-     praia (39576530), a piscina infinita ao por do sol (8642874; "tem que
-     ter a ver com imobiliaria de luxo"), a casa de vidro com piscina
-     (39576513; o cliente pediu "algo mais vivo, de fundo a paisagem") e a
-     casa a beira-mar em Maui (15506688; em 09/10 o cliente achou "as cores
-     apagadas, o ceu nublado, meio morto"); em 09/10 as vilas vistas de
-     cima sobre o mar turquesa (37856049; "as casas de frente"), a casa de
-     praia de frente no fim da tarde (39576524; "ceu nao nublado, com sol
-     bonito"), a vila branca com gramado e ceu azul (38675652; "mansao tipo
-     em praia") e a mansao de Miami na agua (15768401; "um cenario mais
-     bonito, tempo aberto, colorido, na praia"); em 13/10 a vila caribenha
-     de frente para o mar (31931883, inteira e depois recortada para focar
-     na casa; "ta o mesmo video, nao quero esse"). So os 9 s aos 12,4 s do
-     original sao limpos (antes ha cones de transito na rua; depois so o
-     telhado): 3,4 s de ida e os mesmos 3,4 s de volta, para o loop nao ter
-     corte, com a cor um pouco mais viva (saturacao 1,15 e contraste 1,04);
-     1080p no computador e 720p
-     no celular, sem audio. Por cima, um veu de onix que escurece mais a esquerda, onde esta
-     o texto, e no pe, onde esta a linha dos servicos. A capa (poster) entra
-     primeiro, em webp, e o video aparece por fusao quando comeca a tocar;
-     se o navegador nao tocar, fica a capa. Com movimento reduzido ou
-     economia de dados, so a capa. `object-fit: cover` faz o video caber em
-     qualquer largura, cortando as bordas e nunca a casa. */
+     Antes disso (08/10 a 13/10) a abertura teve onze videos de casas de
+     luxo (Pexels 39024336, 39576530, 8642874, 39576513, 15506688, 37856049,
+     39576524, 38675652, 15768401, 31931883 e 30698669), um atras do outro,
+     ate a referencia do globo; os arquivos em fotos/ continuam no
+     repositorio, sem uso. */
   .abertura { overflow: hidden; }
-  .abertura-video { position: absolute; inset: 0; z-index: 0; background: var(--onix); }
-  .abertura-poster,
-  .abertura-filme {
+  .abertura-globo { position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, #07090f 0%, #0a0d17 100%); }
+  .abertura-globo-tela {
     position: absolute;
     inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: 50% 42%;
+    opacity: 0;
+    transition: opacity 1.6s var(--ambiente);
   }
-  .abertura-poster { opacity: 0; transition: opacity 1.4s var(--ambiente); }
-  .pronto .abertura-poster { opacity: 1; }
-  .abertura-filme { opacity: 0; transition: opacity 1.8s var(--ambiente); }
-  .abertura-filme.no-ar { opacity: 1; }
+  .abertura-globo-tela.no-ar { opacity: 1; }
   .abertura-veu {
     position: absolute;
     inset: 0;
     z-index: 1;
-    /* a oval (primeira camada) escurece so atras do bloco de texto, a esquerda:
-       sem ela o titulo em cima do ceu dava 2,2:1 no pior ponto (medido em
-       08/10 com win/ver-amglobal-legivel.cjs); a casa, a direita, fica fora. */
-    background:
-      /* (09/10, "deixe o video com mais cor, a vinheta forte esta atrapalhando"):
-         tudo mais leve; a leitura fica por conta do texto claro com sombra */
-      radial-gradient(ellipse 48% 66% at 16% 42%, rgba(11, 11, 12, 0.36) 0%, rgba(11, 11, 12, 0.2) 55%, rgba(11, 11, 12, 0) 100%),
-      linear-gradient(90deg, rgba(11, 11, 12, 0.68) 0%, rgba(11, 11, 12, 0.44) 38%, rgba(11, 11, 12, 0.1) 72%, rgba(11, 11, 12, 0.2) 100%),
-      linear-gradient(180deg, rgba(11, 11, 12, 0.5) 0%, rgba(11, 11, 12, 0) 28%, rgba(11, 11, 12, 0.1) 62%, rgba(11, 11, 12, 0.86) 100%);
+    /* o fundo ja e escuro; a oval so assenta o bloco de texto, a esquerda,
+       onde a borda do planeta passa por baixo das ultimas linhas */
+    background: radial-gradient(ellipse 52% 72% at 18% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 50%, rgba(8, 10, 16, 0) 100%);
     pointer-events: none;
   }
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
@@ -677,8 +652,8 @@
   .abertura-servicos {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 clamp(28px, 4vw, 64px);
-    max-width: 1360px;
+    gap: 0 clamp(24px, 2.8vw, 44px);
+    max-width: 820px;   /* (13/10) fica na coluna do texto, a esquerda; o globo, a direita, sem nada por cima */
     margin-top: clamp(36px, 6vh, 64px);
     padding-top: clamp(16px, 2.4vh, 24px);
     border-top: 1px solid var(--linha-clara);
@@ -706,6 +681,21 @@
     transition: color 0.4s var(--toque);
   }
   .abertura-servicos a:hover .abertura-nome { color: var(--marfim); }
+  /* as pracas dos arcos, numa linha miuda sob os servicos (13/10) */
+  .abertura-pracas {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 18px 0 0;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(214, 186, 132, 0.85);
+  }
+  .abertura-pracas span + span::before { content: ''; display: inline-block; width: 1px; height: 9px; margin: 0 18px; background: rgba(214, 186, 132, 0.45); vertical-align: -1px; }
   /* o servico da foto que esta no ar acende: nome em marfim com um fio champagne embaixo */
   .abertura-servicos a.ativo .abertura-nome {
     color: var(--marfim);
@@ -2569,36 +2559,16 @@
     /* ---- A ABERTURA NO CELULAR (07/10): texto e servicos empilhados ---- */
     .abertura { padding: calc(var(--alto-topo, 72px) + clamp(28px, 5vh, 44px)) var(--margem) clamp(40px, 6vh, 56px); }
     .abertura h1 { font-size: clamp(32px, 9vw, 44px); max-width: none; }
-    /* o video no celular: a primeira tela inteira, largura cheia (regra dela),
-       a casa centralizada no corte em pe; o texto fica no terco de baixo,
-       onde o veu e mais escuro */
+    /* o globo no celular (13/10): a primeira tela inteira; o planeta ocupa o
+       alto da tela, logo abaixo do cabecalho, e some num degrade escuro onde
+       comeca o texto, que fica no terco de baixo (o jeito que ela aprovou em
+       09/10: imagem inteira em cima, texto embaixo sobre o escuro) */
     .abertura { min-height: 100svh; align-content: end; padding-bottom: clamp(28px, 5vh, 44px); }
-    .abertura-poster, .abertura-filme { object-position: 50% 50%; }
-    /* LEGIBILIDADE NO CELULAR (08/10, "nao ta dando pra ler direito os textos em
-       cima do video no mobile"): o texto ocupa dos 38% aos 95% da tela, bem em
-       cima da casa e dos coqueiros, e o veu antigo so escurecia de verdade a
-       partir dos 72%. Agora o veu fecha dos 26% para baixo (0,8 ja aos 38%) e
-       o ceu e o mar do terco de cima continuam vivos. O texto ainda ganha uma
-       sombra suave para o que sobra de video atras dele. Medido com
-       win/ver-amglobal-legivel.cjs (contraste contra o fundo fotografado). */
     .abertura-veu {
-      /* a faixa escura e medida DO PE DA TELA, em pixels: o texto e alinhado
-         embaixo e tem sempre a mesma altura (uns 520px ate o rotulo), entao
-         num celular baixo (664px) ele comeca em 27% da tela e num alto (844px)
-         em 38%; com a faixa em porcentagem o rotulo do celular baixo ficava
-         em 3,5:1. A camada de cima so escurece atras do cabecalho. */
-      /* (08/10, mais tarde, "deixe um pouco mais claro, nao da pra ver o video
-         direito"): a faixa abriu, 0,68 onde esta o titulo e 0,8 nos botoes, e
-         a casa volta a aparecer atras do texto; a sombra das letras segura o
-         resto. Medido de novo: titulo acima de 6:1 no pior tile. */
-      /* (ideia dela, 09/10: "em mobile deixar o texto embaixo e embaixo so a
-         vinheta, e em cima o video com toda cor, sem vinheta"): a camada de
-         cima SAIU; so existe a faixa do pe, que comeca logo acima do rotulo
-         (uns 470px do pe, com os espacos apertados abaixo) e fecha ate o pe.
-         Em cima, o ceu e a casa ficam com a cor inteira. */
-      background:
-        /* (09/10, video da vila branca com gramado, mais claro atras do texto: a faixa fechou um pouco, de 0,48 para 0,56 atras do titulo) */
-        linear-gradient(0deg, rgba(11, 11, 12, 0.88) 0, rgba(11, 11, 12, 0.8) 220px, rgba(11, 11, 12, 0.7) 340px, rgba(11, 11, 12, 0.56) 430px, rgba(11, 11, 12, 0.3) 500px, rgba(11, 11, 12, 0) 570px);
+      /* a faixa e medida DO PE DA TELA, em pixels, porque o bloco de texto tem
+         sempre a mesma altura (uns 470px ate o rotulo); em porcentagem falhava
+         no celular baixo (licao de 08/10) */
+      background: linear-gradient(0deg, #080a10 0, #080a10 300px, rgba(8, 10, 16, 0.84) 400px, rgba(8, 10, 16, 0.4) 500px, rgba(8, 10, 16, 0) 600px);
     }
     /* espacos apertados no celular, para o bloco de texto ocupar menos altura e
        a faixa escura poder ser mais curta */
@@ -2619,6 +2589,8 @@
     .abertura-apoio { font-size: 18px; max-width: none; }
     .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }
     .abertura-nome { font-size: 20px; }
+    .abertura-pracas { margin-top: 14px; font-size: 9px; }
+    .abertura-pracas span + span::before { margin: 0 10px; }
     .rolar { display: none; }
     /* RESPIRO MENOR ENTRE SECOES (05/10): com 126px em cima e embaixo, sobravam
        telas quase vazias entre uma secao e outra no celular */
@@ -2822,19 +2794,14 @@
        os servicos. A frase de marca vira rotulo; o titulo e a frase do
        cliente, a mesma do manifesto; os quatro servicos levam a secao 04. Os
        arquivos em fotos/ continuam no repositorio, sem uso. -->
-  <!-- O VIDEO (08/10): atras de tudo, a capa em webp entra primeiro e o video
-       aparece por fusao quando toca. O script escolhe 1080p ou 720p pela
-       largura e nao carrega video com movimento reduzido ou economia de dados.
-       Fonte: Pexels 30698669 "Luxurious villa overlooking Malibu coastline"
-       (licenca Pexels, uso livre, sem atribuicao obrigatoria).
-       O arquivo foi reduzido e montado em ida e volta (ferramenta no
-       scratchpad, videos_final12.sh). -->
-  <div class="abertura-video" aria-hidden="true">
-    <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
-         sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
-         do cache ("esta igual o video", 08/10). -->
-    <img class="abertura-poster" src="fotos/abertura-poster.webp?v=14" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=14" data-src-cel="fotos/abertura-720.mp4?v=14"></video>
+  <!-- O GLOBO (13/10): atras de tudo, a Terra a noite desenhada em codigo no
+       canvas (bloco 8 do script): pontos de terra, luzes das cidades (dados
+       da NASA, em globo-pontos.js), arcos entre as pracas, atmosfera e o sol
+       na borda. Entra por fusao no primeiro quadro; com movimento reduzido
+       fica um quadro parado. Substituiu os videos de casas de luxo (08/10 a
+       13/10) depois da referencia que ela mandou. -->
+  <div class="abertura-globo" aria-hidden="true">
+    <canvas id="aberturaGlobo" class="abertura-globo-tela"></canvas>
     <div class="abertura-veu"></div>
   </div>
 
@@ -2884,6 +2851,8 @@
     <a href="#servicos" data-servico="investir"><span class="abertura-num">03</span><span class="abertura-nome">Investir</span></a>
     <a href="#servicos"><span class="abertura-num">04</span><span class="abertura-nome">Assessoria no exterior</span></a>
   </nav>
+  <!-- as pracas que os arcos do globo ligam (13/10, como na referencia dela) -->
+  <p class="abertura-pracas"><span>Brasil</span><span>Estados Unidos</span><span>Portugal</span><span>Dubai</span></p>
 
   <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
     <!-- triangulo aberto, vindo do A -->
@@ -3502,6 +3471,8 @@
      (fontes publicas e gratuitas); nao editar a mao. Entra antes do script do
      site porque ele le window.MERCADO ao montar a secao 06. -->
 <!-- <script src="mercado-dados.js"></script> volta quando o painel de mercado for religado -->
+<!-- os pontos do globo da abertura (terra + luzes das cidades), gerados por scratchpad/globo/gerar_globo.js -->
+<script src="globo-pontos.js?v=1"></script>
 <script>
 (function () {
   'use strict';
@@ -4113,50 +4084,275 @@
     };
   }
 
-  /* 8. O video da abertura (08/10/2026).
+  /* 8. O GLOBO DA ABERTURA (13/10/2026).
 
-     A capa (webp) ja esta no HTML e aparece com o .pronto; o video so recebe
-     a fonte aqui: 720p ate 900px de largura, 1080p acima. Nao carrega nada
-     com movimento reduzido (calmo) nem com economia de dados ligada. Quando
-     comeca a tocar, ganha .no-ar e entra por fusao sobre a capa; se o
-     navegador nao conseguir tocar (codec, bloqueio de autoplay), fica a capa
-     e nada quebra. Pausa fora da tela e com a aba escondida, para nao gastar
-     bateria a toa. */
-  var filmeAbertura = document.getElementById('aberturaFilme');
+     Ela mandou uma referencia ("queria uma coisa mais assim, mas nao
+     identico"): a Terra vista do espaco a noite, as luzes das cidades, arcos
+     dourados ligando os continentes, o sol nascendo na borda. Esta e a
+     versao da AM Global, desenhada em codigo num canvas atras do texto, sem
+     video nem biblioteca:
+       - os pontos vem de globo-pontos.js ([lon*10, lat*10, brilho 0..9]):
+         terra do GeoJSON de paises, brilho da imagem noturna da NASA;
+       - projecao ortografica numa esfera grande cujo centro fica abaixo da
+         tela: o que aparece e a borda do planeta, em arco, com a America do
+         Sul perto e a Europa ao fundo; a esfera balanca 14 graus, devagar;
+       - terra em pontos azulados discretos; luz em pontos dourados, maiores
+         e com halo quanto mais brilho; tudo escurece perto da borda;
+       - arcos entre as pracas (Sao Paulo, Miami, Lisboa, Dubai), cada um com
+         um pulso de luz que o percorre; marcadores nas nove pracas;
+       - a atmosfera (um fio azul na borda) e o sol nascendo a direita, numa
+         camada montada uma vez e desenhada por cima.
+     Com movimento reduzido, um quadro parado. Para fora da tela e com a aba
+     escondida; no celular, 30 quadros por segundo. Os videos de casas
+     (08/10 a 13/10) sairam daqui; os arquivos ficaram em fotos/. */
+  var globoTela = document.getElementById('aberturaGlobo');
+  var globoDados = window.GLOBO_PONTOS;
 
-  if (filmeAbertura) {
-    var ligacao = navigator.connection || {};
-    var economizar = !!ligacao.saveData;
-    var estreito = window.matchMedia('(max-width: 900px)').matches;
+  if (globoTela && globoTela.getContext && globoDados && globoDados.length) {
+    var gctx = globoTela.getContext('2d');
+    var RAD = Math.PI / 180;
+    var G = { w: 0, h: 0, dpr: 1, cx: 0, cy: 0, R: 1, topLat: 28, topLon: -40, movel: false, fundo: null, luz: null, halo: null };
 
-    function tocarFilme() {
-      var p = filmeAbertura.play();
-      if (p && typeof p.catch === 'function') p.catch(function () {});
+    // os pontos como vetores unitarios, uma vez
+    var NP = globoDados.length;
+    var PX = new Float32Array(NP), PY = new Float32Array(NP), PZ = new Float32Array(NP), PB = new Uint8Array(NP);
+    var sementeP = 11;
+    function aleatorioP() { sementeP = (sementeP * 16807) % 2147483647; return sementeP / 2147483647; }
+    for (var ip = 0; ip < NP; ip++) {
+      // um desalinhamento de ate 0,35 grau em cada ponto, para a trama nao virar listras
+      var lo = (globoDados[ip][0] / 10 + (aleatorioP() - 0.5) * 0.7) * RAD, la = (globoDados[ip][1] / 10 + (aleatorioP() - 0.5) * 0.7) * RAD;
+      PX[ip] = Math.cos(la) * Math.sin(lo); PY[ip] = Math.sin(la); PZ[ip] = Math.cos(la) * Math.cos(lo); PB[ip] = globoDados[ip][2];
     }
+    function vetorDe(lon, lat) { lon *= RAD; lat *= RAD; return [Math.cos(lat) * Math.sin(lon), Math.sin(lat), Math.cos(lat) * Math.cos(lon)]; }
 
-    if (!calmo && !economizar) {
-      filmeAbertura.muted = true;
-      var fonte = document.createElement('source');
-      fonte.src = filmeAbertura.getAttribute(estreito ? 'data-src-cel' : 'data-src');
-      fonte.type = 'video/mp4';
-      filmeAbertura.appendChild(fonte);
-      filmeAbertura.addEventListener('playing', function () { filmeAbertura.classList.add('no-ar'); });
-      filmeAbertura.addEventListener('error', function () { filmeAbertura.classList.remove('no-ar'); }, true);
-      filmeAbertura.load();
-      tocarFilme();
-
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (entradas) {
-          entradas.forEach(function (e) { if (e.isIntersecting) tocarFilme(); else filmeAbertura.pause(); });
-        }, { threshold: 0.05 }).observe(filmeAbertura);
+    var PRACAS = { sp: [-46.63, -23.55], rio: [-43.17, -22.91], floripa: [-48.55, -27.6], curitiba: [-49.27, -25.43], poa: [-51.23, -30.03], goiania: [-49.25, -16.68], miami: [-80.19, 25.76], lisboa: [-9.14, 38.72], dubai: [55.27, 25.2] };
+    var PULSAM = ['sp', 'miami', 'lisboa', 'dubai'];
+    var ROTAS = [['sp', 'miami', 0], ['sp', 'lisboa', 0.37], ['lisboa', 'dubai', 0.62], ['miami', 'lisboa', 0.82]];   // [de, para, defasagem do pulso]
+    var AMOSTRAS = 48;
+    var arcos = ROTAS.map(function (r) {
+      var a = vetorDe(PRACAS[r[0]][0], PRACAS[r[0]][1]), b = vetorDe(PRACAS[r[1]][0], PRACAS[r[1]][1]);
+      var omega = Math.acos(Math.max(-1, Math.min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2])));
+      var alto = 0.08 + 0.16 * (omega / Math.PI);   // arco mais longo sobe mais
+      var pts = [];
+      for (var k = 0; k <= AMOSTRAS; k++) {
+        var t = k / AMOSTRAS, s1 = Math.sin((1 - t) * omega) / Math.sin(omega), s2 = Math.sin(t * omega) / Math.sin(omega);
+        // direcao unitaria e a altura separada: no celular o arco sobe menos, para nao entrar no cabecalho
+        pts.push([s1 * a[0] + s2 * b[0], s1 * a[1] + s2 * b[1], s1 * a[2] + s2 * b[2], alto * Math.sin(Math.PI * t)]);
       }
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) filmeAbertura.pause();
-        else tocarFilme();
-      });
+      return { pts: pts, def: r[2], tela: new Float32Array((AMOSTRAS + 1) * 3) };
+    });
+    var pracasV = Object.keys(PRACAS).map(function (id) { return { id: id, v: vetorDe(PRACAS[id][0], PRACAS[id][1]), pulsa: PULSAM.indexOf(id) }; });
+
+    // cores prontas [brilho][sombra em 6 degraus], para nao montar string a cada ponto
+    var CORES = [];
+    for (var cb = 0; cb <= 9; cb++) {
+      CORES[cb] = [];
+      for (var cq = 0; cq < 6; cq++) {
+        var sombraQ = 0.3 + 0.7 * ((cq + 0.5) / 6);
+        CORES[cb][cq] = cb === 0 ? 'rgba(160, 182, 220, ' + (0.5 * sombraQ).toFixed(3) + ')' : 'rgba(242, 214, 158, ' + ((0.45 + 0.55 * cb / 9) * sombraQ).toFixed(3) + ')';
+      }
     }
+
+    function telaNova(w, h) { var c = document.createElement('canvas'); c.width = Math.round(w * G.dpr); c.height = Math.round(h * G.dpr); var x = c.getContext('2d'); x.setTransform(G.dpr, 0, 0, G.dpr, 0, 0); return { c: c, x: x }; }
+
+    function montarCamadas() {
+      var w = G.w, h = G.h, R = G.R, cx = G.cx, cy = G.cy;
+      // o halo dourado (sprite) das luzes fortes e da cabeca dos pulsos
+      var hl = document.createElement('canvas'); hl.width = hl.height = 32;
+      var hx = hl.getContext('2d'), gh = hx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      gh.addColorStop(0, 'rgba(255, 226, 170, 1)'); gh.addColorStop(0.35, 'rgba(250, 205, 140, 0.55)'); gh.addColorStop(1, 'rgba(240, 190, 120, 0)');
+      hx.fillStyle = gh; hx.fillRect(0, 0, 32, 32); G.halo = hl;
+
+      // o fundo: o espaco, as estrelas e o disco escuro do planeta
+      var f = telaNova(w, h), x = f.x;
+      var gf = x.createLinearGradient(0, 0, 0, h); gf.addColorStop(0, '#07090f'); gf.addColorStop(1, '#0a0d17');
+      x.fillStyle = gf; x.fillRect(0, 0, w, h);
+      var semente = 7;
+      function aleatorio() { semente = (semente * 16807) % 2147483647; return semente / 2147483647; }
+      var n = G.movel ? 110 : 230;
+      for (var i = 0; i < n; i++) {
+        var ex = aleatorio() * w, ey = aleatorio() * h, er = 0.4 + aleatorio() * 0.9, ea = 0.15 + aleatorio() * 0.5;
+        x.fillStyle = 'rgba(220, 228, 245, ' + ea.toFixed(2) + ')'; x.beginPath(); x.arc(ex, ey, er, 0, 6.2832); x.fill();
+      }
+      var gd = x.createRadialGradient(cx, cy - R * 0.55, 0, cx, cy - R * 0.2, R * 1.15);
+      gd.addColorStop(0, '#13223e'); gd.addColorStop(0.5, '#0b172c'); gd.addColorStop(1, '#050912');
+      x.fillStyle = gd; x.beginPath(); x.arc(cx, cy, R, 0, 6.2832); x.fill();
+      G.fundo = f.c;
+
+      // a luz: a atmosfera na borda e o sol nascendo a direita
+      var l = telaNova(w, h); x = l.x;
+      var ga = x.createRadialGradient(cx, cy, R * 0.975, cx, cy, R * 1.07);
+      ga.addColorStop(0, 'rgba(110, 160, 255, 0)'); ga.addColorStop(0.24, 'rgba(120, 172, 255, 0.34)'); ga.addColorStop(0.45, 'rgba(140, 185, 255, 0.14)'); ga.addColorStop(1, 'rgba(140, 185, 255, 0)');
+      x.fillStyle = ga; x.fillRect(0, 0, w, h);
+      var ang = G.movel ? 26 : 20;   // graus a partir do topo do disco, para a direita
+      var sxol = cx + R * Math.sin(ang * RAD), syol = cy - R * Math.cos(ang * RAD);
+      x.globalCompositeOperation = 'lighter';
+      var gs = x.createRadialGradient(sxol, syol, 0, sxol, syol, R * (G.movel ? 0.7 : 0.5));
+      gs.addColorStop(0, 'rgba(255, 240, 210, 0.95)'); gs.addColorStop(0.05, 'rgba(255, 218, 160, 0.6)'); gs.addColorStop(0.18, 'rgba(240, 182, 112, 0.2)'); gs.addColorStop(0.45, 'rgba(200, 140, 90, 0.06)'); gs.addColorStop(1, 'rgba(200, 140, 90, 0)');
+      x.fillStyle = gs; x.fillRect(0, 0, w, h);
+      // o fio claro da borda perto do sol
+      var gl = x.createLinearGradient(sxol - R * 0.55, 0, sxol + R * 0.55, 0);
+      gl.addColorStop(0, 'rgba(255, 228, 190, 0)'); gl.addColorStop(0.5, 'rgba(255, 232, 196, 0.85)'); gl.addColorStop(1, 'rgba(255, 228, 190, 0)');
+      x.strokeStyle = gl; x.lineWidth = 1.6; x.shadowColor = 'rgba(255, 210, 150, 0.9)'; x.shadowBlur = 16;
+      x.beginPath(); x.arc(cx, cy, R, (ang - 40) * RAD - Math.PI / 2, (ang + 40) * RAD - Math.PI / 2); x.stroke();
+      G.luz = l.c;
+    }
+
+    function desenharGlobo(t) {
+      var c = gctx, w = G.w, h = G.h, R = G.R, cx = G.cx, cy = G.cy;
+      c.setTransform(G.dpr, 0, 0, G.dpr, 0, 0);
+      c.drawImage(G.fundo, 0, 0, w, h);
+      var lon0 = G.topLon + (calmo ? 0 : 14 * Math.sin(t * 6.2832 / 100000));
+      // gira em Y por -lon0 (a longitude escolhida vem para a frente), em X por +lat0 (a
+      // latitude escolhida vem para o centro) e em X por -90 (o centro vai para o topo):
+      // o ponto (topLat, topLon) fica no alto do disco, na borda, e o que esta ao sul
+      // dele vem para a frente, para o espectador
+      var c1 = Math.cos(-lon0 * RAD), s1 = Math.sin(-lon0 * RAD), c2 = Math.cos(G.topLat * RAD), s2 = Math.sin(G.topLat * RAD);
+      var yMin = (cy - h - 16) / R;   // abaixo disso ja saiu da tela
+      var tam = G.movel ? 1.15 : 1.5;
+      var i, j, k;
+
+      // os pontos
+      for (i = 0; i < NP; i++) {
+        var x = PX[i], y = PY[i], z = PZ[i];
+        var x1 = x * c1 + z * s1, z1 = -x * s1 + z * c1;
+        var y2 = y * c2 - z1 * s2;
+        if (y2 >= 0) continue;                       // do outro lado do planeta
+        var Y = y * s2 + z1 * c2;
+        if (Y < yMin) continue;
+        var sx = cx + R * x1, sy = cy - R * Y;
+        if (sx < -4 || sx > w + 4 || sy < -4) continue;
+        var Z = -y2;
+        var q = Math.min(5, (Math.pow(Z, 0.4) * 6) | 0);   // escurece so bem perto da borda
+        var b = PB[i];
+        c.fillStyle = CORES[b][q];
+        if (b === 0) { c.fillRect(sx, sy, tam, tam); }
+        else {
+          var s = tam + b * 0.3;
+          c.fillRect(sx - s / 2, sy - s / 2, s, s);
+          if (b >= 6) { var gsz = 5 + b * 1.6; c.globalAlpha = 0.16 * (b - 5) / 4 * (0.3 + 0.7 * Z); c.drawImage(G.halo, sx - gsz / 2, sy - gsz / 2, gsz, gsz); c.globalAlpha = 1; }
+        }
+      }
+
+      // os arcos: projeta as amostras (ja com a altura) e esconde as tampadas pelo planeta
+      c.lineCap = 'round'; c.lineJoin = 'round';
+      var subida = G.movel ? 0.5 : 1;
+      for (k = 0; k < arcos.length; k++) {
+        var A = arcos[k], P = A.pts, T = A.tela;
+        for (j = 0; j <= AMOSTRAS; j++) {
+          var p = P[j], e = 1 + p[3] * subida;
+          var px1 = (p[0] * c1 + p[2] * s1) * e, pz1 = (-p[0] * s1 + p[2] * c1) * e;
+          var py2 = (p[1] * c2 - pz1 * s2) * e, pY = (p[1] * s2 + pz1 * c2) * e, pZ = -py2;
+          var tampado = pZ < 0 && (px1 * px1 + pY * pY) < 1;
+          T[j * 3] = cx + R * px1; T[j * 3 + 1] = cy - R * pY; T[j * 3 + 2] = tampado ? 0 : 1;
+        }
+        c.strokeStyle = 'rgba(214, 186, 132, 0.26)'; c.lineWidth = 1;
+        c.beginPath();
+        var aberto = false;
+        for (j = 0; j <= AMOSTRAS; j++) {
+          if (!T[j * 3 + 2]) { aberto = false; continue; }
+          if (!aberto) { c.moveTo(T[j * 3], T[j * 3 + 1]); aberto = true; } else c.lineTo(T[j * 3], T[j * 3 + 1]);
+        }
+        c.stroke();
+        // o pulso percorre o arco em 78% do ciclo e some no resto
+        var ciclo = 5200, u = ((t + A.def * ciclo) % ciclo) / ciclo;
+        var cabeca = Math.min(1, u / 0.78) * AMOSTRAS, apaga = u > 0.78 ? 1 - (u - 0.78) / 0.22 : 1;
+        var cauda = Math.max(0, cabeca - AMOSTRAS * 0.3), ic = Math.floor(cabeca);
+        for (j = Math.max(1, Math.ceil(cauda)); j <= ic; j++) {
+          if (!T[j * 3 + 2] || !T[(j - 1) * 3 + 2]) continue;
+          var fr = cabeca > cauda ? (j - cauda) / (cabeca - cauda) : 1;
+          c.strokeStyle = 'rgba(255, 224, 170, ' + (apaga * fr * fr * 0.95).toFixed(3) + ')'; c.lineWidth = 0.8 + 1.6 * fr;
+          c.beginPath(); c.moveTo(T[(j - 1) * 3], T[(j - 1) * 3 + 1]); c.lineTo(T[j * 3], T[j * 3 + 1]); c.stroke();
+        }
+        var i0 = Math.min(AMOSTRAS - 1, ic), fh = Math.min(1, cabeca - i0);
+        if (T[i0 * 3 + 2] && T[(i0 + 1) * 3 + 2]) {
+          var hx1 = T[i0 * 3] + (T[(i0 + 1) * 3] - T[i0 * 3]) * fh, hy1 = T[i0 * 3 + 1] + (T[(i0 + 1) * 3 + 1] - T[i0 * 3 + 1]) * fh;
+          c.globalAlpha = apaga * 0.85; c.drawImage(G.halo, hx1 - 9, hy1 - 9, 18, 18); c.globalAlpha = 1;
+          c.fillStyle = 'rgba(255, 246, 225, ' + apaga.toFixed(2) + ')'; c.beginPath(); c.arc(hx1, hy1, 1.6, 0, 6.2832); c.fill();
+        }
+      }
+
+      // as nove pracas: ponto marfim com um anel champagne; as quatro dos arcos pulsam
+      for (k = 0; k < pracasV.length; k++) {
+        var pr = pracasV[k], v = pr.v;
+        var vx1 = v[0] * c1 + v[2] * s1, vz1 = -v[0] * s1 + v[2] * c1;
+        var vy2 = v[1] * c2 - vz1 * s2, vY = v[1] * s2 + vz1 * c2, vZ = -vy2;
+        if (vZ < 0.03 || vY < yMin) continue;
+        var mx = cx + R * vx1, my = cy - R * vY;
+        var al = 0.35 + 0.65 * Math.sqrt(vZ);
+        c.fillStyle = 'rgba(245, 242, 236, ' + (0.9 * al).toFixed(2) + ')'; c.beginPath(); c.arc(mx, my, 1.7, 0, 6.2832); c.fill();
+        c.strokeStyle = 'rgba(214, 186, 132, ' + (0.6 * al).toFixed(2) + ')'; c.lineWidth = 1; c.beginPath(); c.arc(mx, my, 4.5, 0, 6.2832); c.stroke();
+        if (pr.pulsa >= 0) {
+          var ph = ((t / 3200) + pr.pulsa * 0.25) % 1;
+          c.strokeStyle = 'rgba(214, 186, 132, ' + (0.55 * (1 - ph) * al).toFixed(2) + ')'; c.beginPath(); c.arc(mx, my, 4 + 18 * ph, 0, 6.2832); c.stroke();
+        }
+      }
+
+      c.drawImage(G.luz, 0, 0, w, h);
+    }
+
+    var globoRodando = false, globoUltimo = 0, globoNaTela = true;
+    function quadroGlobo(t) {
+      if (!globoRodando) return;
+      if (!G.movel || t - globoUltimo >= 30) { globoUltimo = t; desenharGlobo(t); }
+      window.requestAnimationFrame(quadroGlobo);
+    }
+    function ligarGlobo() { if (globoRodando || calmo || !globoNaTela || document.hidden) return; globoRodando = true; window.requestAnimationFrame(quadroGlobo); }
+    function desligarGlobo() { globoRodando = false; }
+
+    function medirGlobo() {
+      var r = globoTela.getBoundingClientRect();
+      var w = Math.round(r.width), h = Math.round(r.height);
+      if (!w || !h) return;
+      G.movel = window.matchMedia('(max-width: 900px)').matches;
+      G.w = w; G.h = h; G.dpr = Math.min(window.devicePixelRatio || 1, G.movel ? 2 : 1.5);
+      globoTela.width = Math.round(w * G.dpr); globoTela.height = Math.round(h * G.dpr);
+      if (G.movel) {
+        // o planeta no alto da tela, logo abaixo do cabecalho; o texto fica no terco de baixo
+        var topo = document.querySelector('.topo'), altoTopo = topo ? topo.getBoundingClientRect().height : 70;
+        G.R = w * 1.1; G.cx = w * 0.6; G.cy = altoTopo + 52 + G.R; G.topLat = 10; G.topLon = -45;
+      } else {
+        // a borda do planeta cruza a tela em arco, com o alto em 40% da altura, a direita
+        G.R = Math.max(w * 0.68, h * 0.9); G.cx = w * 0.68; G.cy = h * 0.4 + G.R; G.topLat = 24; G.topLon = -40;
+      }
+      montarCamadas();
+      desenharGlobo(calmo ? 1300 : (window.performance && performance.now ? performance.now() : 0));
+    }
+    function conferirMedida() {
+      var r = globoTela.getBoundingClientRect();
+      if (Math.round(r.width) !== G.w || Math.round(r.height) !== G.h) medirGlobo();
+    }
+    medirGlobo();
+    globoTela.classList.add('no-ar');
+    // a secao pode mudar de altura quando as fontes chegam: confere no load e um pouco depois
+    window.addEventListener('load', conferirMedida);
+    window.setTimeout(conferirMedida, 1800);
+    var relogioGlobo = null, larguraGlobo = window.innerWidth;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(relogioGlobo);
+      relogioGlobo = window.setTimeout(function () {
+        // no celular a barra de endereco muda a altura o tempo todo: so remonta se a
+        // largura mudou ou a altura mudou bastante
+        var r = globoTela.getBoundingClientRect();
+        if (window.innerWidth === larguraGlobo && Math.abs(Math.round(r.height) - G.h) < 120) return;
+        larguraGlobo = window.innerWidth; medirGlobo();
+      }, 160);
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) { globoNaTela = e.isIntersecting; if (globoNaTela) ligarGlobo(); else desligarGlobo(); });
+      }, { threshold: 0.02 }).observe(globoTela);
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) desligarGlobo(); else ligarGlobo(); });
+    ligarGlobo();
+
     window.AMG = window.AMG || {};
-    window.AMG.filmeAbertura = filmeAbertura;
+    window.AMG.globo = {
+      pontos: NP,
+      ativo: function () { return globoRodando; },
+      geometria: function () { return { w: G.w, h: G.h, R: Math.round(G.R), cx: Math.round(G.cx), cy: Math.round(G.cy), movel: G.movel, dpr: G.dpr }; },
+      medir: function (n) { n = n || 30; var t0 = performance.now(); for (var i = 0; i < n; i++) desenharGlobo(t0 + i * 33); return (performance.now() - t0) / n; }
+    };
   }
 
   /* 8b. A frase que gira (08/10/2026).
