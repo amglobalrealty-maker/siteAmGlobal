@@ -526,6 +526,11 @@
   }
   .abertura-poster { opacity: 0; transition: opacity 1.4s var(--ambiente); }
   .pronto .abertura-poster { opacity: 1; }
+  /* (13/10, a imagem do print no lugar do video) a imagem respira: aproxima
+     6% em 40 s e volta, sem parar; com movimento reduzido fica parada */
+  .abertura-poster { transform-origin: 62% 58%; animation: abertura-respira 40s ease-in-out infinite alternate; }
+  @keyframes abertura-respira { from { transform: scale(1); } to { transform: scale(1.06); } }
+  @media (prefers-reduced-motion: reduce) { .abertura-poster { animation: none; } }
   .abertura-filme { opacity: 0; transition: opacity 1.8s var(--ambiente); }
   .abertura-filme.no-ar { opacity: 1; }
   .abertura-veu {
@@ -574,6 +579,10 @@
     mix-blend-mode: screen;
     pointer-events: none;
   }
+  /* (13/10, a imagem do print no lugar do video) a imagem ja traz o seu
+     horizonte e o seu sol: o horizonte desenhado fica desligado, guardado
+     para quando o fundo voltar a ser um video sem borda */
+  .abertura-espaco, .abertura-horizonte { display: none; }
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
   .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
@@ -2909,11 +2918,21 @@
     <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
+    <!-- A IMAGEM DO PRINT (13/10, "queria igualzinho da imagem"): o fundo e a
+         propria imagem de referencia que ela mandou (gerada por IA, enviada
+         pelo cliente), recortada na faixa da Terra (horizonte, arcos, sol),
+         com o botao de compartilhar e os textos gravados apagados, o ceu
+         estendido para cima e, no celular, o oceano para baixo
+         (scratchpad/imagem_print.sh). Sem video: a imagem ganha um movimento
+         lento de aproximacao em CSS (.abertura-poster, animacao
+         abertura-respira). A resolucao da captura e baixa (1010px de
+         largura na faixa): fica macia em telas grandes; trocar pelo
+         arquivo original em alta quando o cliente mandar. Os videos
+         (fotos/abertura-*.mp4) continuam no repositorio, sem uso. -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=21" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=21" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/abertura-print-cel.webp?v=1" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/abertura-print.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=21" data-src-cel="fotos/abertura-720.mp4?v=21"></video>
     <!-- O HORIZONTE (13/10, "queria uma luz de horizonte amarela igual a do
          print"): o trecho da NASA olha o planeta de cima, sem borda. Entao a
          borda e desenhada por cima, em CSS: .abertura-espaco escurece tudo
