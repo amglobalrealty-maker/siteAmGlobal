@@ -557,27 +557,27 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   extraordinarios, em qualquer lugar do mundo" (escolha dela, que o cliente
   trocou pelo texto dele). O rotulo de duas frases com o fio champagne
   entre elas saiu em 08/10. O video e uma
-  **vila caribenha de frente para o mar**, com piscina, gazebo e
-  palmeiras, ceu azul de dia e as ondas na pedra (Pexels 31931883, "Aerial
-  view of Caribbean villa by the ocean"; licenca Pexels, uso livre, sem
-  atribuicao obrigatoria). Foi a decima escolha: em 08/10 vieram a casa ao
-  crepusculo vista de cima (39024336), a varanda da casa de praia
-  (39576530), a piscina infinita ao por do sol (8642874, Peggy Anke; caiu
-  porque "tem que ter a ver com imobiliaria de luxo"), a casa de vidro com
-  piscina (39576513, Alef Morais; caiu porque o cliente final pediu "algo
-  mais vivo, de fundo a paisagem") e a casa a beira-mar em Maui (15506688;
-  caiu em 09/10 porque o cliente achou "as cores apagadas, o ceu nublado,
-  meio morto"); em 09/10 vieram as vilas vistas de cima sobre o mar
-  turquesa (37856049; ela pediu "as casas de frente"), a casa de praia de
-  frente no fim da tarde (39576524; "ceu nao nublado, com sol bonito"), a
-  vila branca com gramado e ceu azul (38675652; "mansao tipo em praia") e
-  a mansao de Miami na agua (15768401; em 13/10 ela pediu "um cenario mais
-  bonito, tempo aberto, colorido, na praia"). O clipe original tem 13,4 s
-  em 1440p; o site usa 7 s a partir do 1 s, **recortados para focar na
-  vila** com a piscina e o gazebo ("quero mais foco na casa", 13/10: um
-  recorte de 1920x1080 do original de 2560x1440, sem ampliar, com o ceu em
-  cima e o mar so no terco de baixo), com a cor mais viva (saturacao 1,2 e
-  contraste 1,04), gravados
+  **vila palaciana sobre o mar em Malibu**, com uma palmeira alta, o ceu
+  azul de sol e a costa ao fundo, o drone subindo de lado (Pexels 30698669,
+  "Luxurious villa overlooking Malibu coastline"; licenca Pexels, uso
+  livre, sem atribuicao obrigatoria). Foi a decima primeira escolha: em
+  08/10 vieram a casa ao crepusculo vista de cima (39024336), a varanda da
+  casa de praia (39576530), a piscina infinita ao por do sol (8642874,
+  Peggy Anke; caiu porque "tem que ter a ver com imobiliaria de luxo"), a
+  casa de vidro com piscina (39576513, Alef Morais; caiu porque o cliente
+  final pediu "algo mais vivo, de fundo a paisagem") e a casa a beira-mar
+  em Maui (15506688; caiu em 09/10 porque o cliente achou "as cores
+  apagadas, o ceu nublado, meio morto"); em 09/10 vieram as vilas vistas de
+  cima sobre o mar turquesa (37856049; ela pediu "as casas de frente"), a
+  casa de praia de frente no fim da tarde (39576524; "ceu nao nublado, com
+  sol bonito"), a vila branca com gramado e ceu azul (38675652; "mansao
+  tipo em praia") e a mansao de Miami na agua (15768401; "um cenario mais
+  bonito, tempo aberto, colorido, na praia"); em 13/10, a vila caribenha
+  de frente para o mar (31931883, inteira e depois recortada para focar na
+  casa; "ta o mesmo video, nao quero esse"). O clipe original tem 24,8 s
+  em 1080p, mas so os 9 s aos 12,4 s sao limpos (antes ha cones de transito
+  na rua; depois so o telhado): o site usa esses 3,4 s, com a cor um pouco
+  mais viva (saturacao 1,15 e contraste 1,04), gravados
   em `fotos/abertura-1080.mp4` (computador) e `fotos/abertura-720.mp4` (ate
   900px), sem audio, H.264, montados em **7 s de ida mais os mesmos 7 s de
   volta**, para o loop nao ter corte; a capa `fotos/abertura-poster.webp` e
