@@ -613,16 +613,25 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   producao: `opcao-2.html` (www.amglobalrealty.com/opcao-2.html) e uma copia
   do `index.html` gerada por `scratchpad/opcao2_gerar.cjs` (cada troca
   precisa casar uma vez, senao o script para), com `noindex, nofollow`,
-  aviso de pagina temporaria no alto e OUTRO video de fundo: Pexels 854225
-  "Rotation of the Planet Earth" (o globo noturno com as luzes das cidades
-  girando uma volta completa em 30 s sobre fundo preto; o loop fecha
-  sozinho, sem ida e volta), em `fotos/opcao-2-1080.mp4` (globo deslocado
-  340px para a direita, 1,5 MB; o texto volta para a esquerda e a oval do
-  veu tambem), `fotos/opcao-2-720.mp4` (globo inteiro centrado num quadro
-  em pe com faixas pretas, 0,8 MB) e as capas `fotos/opcao-2-poster*.webp`
-  (`scratchpad/videos_opcao2.sh`). Nao e para editar a mao: muda o index,
-  roda o gerador de novo. Apagar a pagina e os arquivos quando o cliente
-  escolher.
+  aviso de pagina temporaria no alto e OUTRO video de fundo; o texto volta
+  para a esquerda e a oval do veu tambem. O gerador recebe o nome da
+  pagina, o prefixo dos arquivos, a versao do `?v=` e a descricao. Nao e
+  para editar a mao: muda o index, roda o gerador de novo. Apagar as
+  paginas e os arquivos quando o cliente escolher.
+  - **Opcao 2** (`opcao-2.html`, `fotos/opcao-2-*`): primeiro foi o globo
+    noturno da NASA girando (Pexels 854225; ela: "nao gostei desse video,
+    coloque um criativo bem bonito"); agora e o **globo de particulas
+    douradas** girando sobre preto (Pexels 3129902, 4K, 30 s; o loop nao
+    fecha sozinho, entao os 2 s finais se fundem nos 2 s iniciais por
+    `xfade` e o video de 28 s comeca e termina no mesmo quadro), deslocado
+    250px para a direita no computador (4,4 MB, crf 33: particula comprime
+    mal) e inteiro no alto de um quadro em pe no celular (2,1 MB);
+    `scratchpad/videos_opcao2b.sh`.
+  - **Opcao 3** (`opcao-3.html`, `fotos/opcao-3-*`): a **Terra realista com
+    arcos de conexao e marcadores** entre pontos do mundo, inclusive no
+    Brasil, a camera girando da India ate o Caribe (Pexels 3125396, 4K,
+    10 s; a referencia dela ao pe da letra), em 10 s de ida e volta (4,0 MB;
+    celular: corte em pe do centro, 1,4 MB); `scratchpad/videos_opcao3.sh`.
 
   Antes do planeta, de 08/10 a 13/10, a abertura teve onze videos de casas
   de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
