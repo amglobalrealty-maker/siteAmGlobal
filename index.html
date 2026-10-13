@@ -533,10 +533,10 @@
     inset: 0;
     z-index: 1;
     /* (13/10, video da Terra) o texto fica A ESQUERDA, como sempre ("no
-       desktop quero que o texto fique a esquerda, nao centralizado"): o
-       arquivo do computador ja vem com o sol e o planeta deslocados para a
-       metade direita (videos_final14.sh), entao a esquerda e espaco escuro;
-       a oval so assenta o bloco e a faixa do pe segura a linha dos servicos. */
+       desktop quero que o texto fique a esquerda, nao centralizado"): no
+       video da NASA (videos_final16.sh) a esquerda e o oceano escuro e as
+       luzes ficam no centro e a direita; a oval so assenta o bloco e a faixa
+       do pe segura a linha dos servicos. */
     background:
       radial-gradient(ellipse 50% 70% at 18% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 55%, rgba(8, 10, 16, 0) 100%),
       linear-gradient(90deg, rgba(8, 10, 16, 0.6) 0%, rgba(8, 10, 16, 0.45) 38%, rgba(8, 10, 16, 0) 58%),
@@ -2845,43 +2845,33 @@
        aparece por fusao quando toca. O script escolhe 1080p ou 720p pela
        largura e nao carrega video com movimento reduzido ou economia de dados.
        Desde 13/10 o video e A TERRA VISTA DO ESPACO A NOITE (referencia que
-       ela mandou: planeta, luzes das cidades, sol na borda): Pexels 1851190
-       "The Sun Illuminating Earth's Surface" (licenca Pexels, uso livre, sem
-       atribuicao obrigatoria), 12 s de ida e volta. No celular entra um
-       corte EM PE do mesmo video (720x1280) e uma capa em pe igual, pelo
-       <picture>. O corte do celular comeca
-       na BORDA ESQUERDA do quadro (pedido dela, 13/10: "que aparecesse mais
-       o lado esquerdo do video"): o sol e a borda do planeta inteiros, e
-       menos do miolo com as luzes. NO COMPUTADOR ("no desktop quero que o
-       texto fique a esquerda, nao centralizado", 13/10 a tarde) o arquivo
-       ja vem com o sol e o planeta na METADE DIREITA: os 1800px da esquerda
-       do 4K (espaco, sol, borda, luzes da Arabia) reduzidos e colados a
-       direita; a metade esquerda e o espaco escuro do proprio recorte,
-       esticado e desfocado (preto chapado deixava uma emenda reta), e e
-       onde fica o texto. O
-       SOL E DOURADO ("essa luz branca azul ainda esta no tom errado"): uma
-       mascara em volta do sol (posicao x brilho) troca branco e azul por
-       dourado, sem mexer no resto. CORES QUENTES (13/10, a cliente: "quer o
-       video com cores mais alaranjadas, amarelas"; depois ela mandou a
-       referencia de novo, "quero mais assim, nesses tons": planeta escuro,
-       luzes douradas, sol como um brilho dourado suave, atmosfera azul):
-       temperatura de cor 5200K (suave), meios-tons escurecidos (curva
-       0,5 -> 0,36), meios-tons e altas luzes puxados de leve para o dourado
-       sem tirar o azul das altas luzes (colorbalance; e o azul das altas
-       luzes que faz a borda do planeta) e saturacao 1,08 no ffmpeg.
-       Tentativas anteriores: 3400K e saturacao 1,25 (sol laranja, planeta
-       esverdeado demais), 4300K (a borda azul virava verde) e colorbalance
-       tirando azul das altas luzes (borda esverdeada). Ferramenta no
-       scratchpad, videos_final13.sh (COR=...). -->
+       ela mandou: planeta escuro, luzes douradas das cidades, brilho quente
+       no horizonte). DESDE 13/10 A TARDE ("troque o video, coloque um que
+       pareca mais com o do print") a fonte e a NASA: "Lights of Human
+       Activity Shine in NASA's Image of Earth at Night" (GSFC Scientific
+       Visualization Studio, abril de 2017, images.nasa.gov
+       GSFC_20170412_Lights_m12573_EarthAtNight; dominio publico, sem o logo
+       da NASA, que saiu por recorte): a Terra a noite com as luzes de
+       verdade (Black Marble), a camera indo do Atlantico as Americas, no
+       trecho limpo de 68,5 s a 79 s, 10,5 s de ida e volta, com graduacao
+       escura e dourada (luzes para o ambar, planeta azul-marinho). No
+       celular entra um corte EM PE do centro-direita (720x1280) e uma capa
+       em pe igual, pelo <picture>; no computador, o quadro inteiro, com o
+       oceano escuro a esquerda, onde fica o texto. Antes, no mesmo dia, o
+       Pexels 1851190 (sol e planeta) passou por: corte do celular na borda
+       esquerda, cores quentes (3400K, depois 5200K com meios-tons escuros),
+       sol dourado por mascara e, no computador, o planeta deslocado para a
+       direita com o texto a esquerda (videos_final13.sh e
+       videos_final14.sh). Ferramenta atual: videos_final16.sh. -->
   <div class="abertura-video" aria-hidden="true">
     <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=19" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=19" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/abertura-poster-cel.webp?v=20" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/abertura-poster.webp?v=20" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=19" data-src-cel="fotos/abertura-720.mp4?v=19"></video>
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/abertura-1080.mp4?v=20" data-src-cel="fotos/abertura-720.mp4?v=20"></video>
     <div class="abertura-veu"></div>
   </div>
 
