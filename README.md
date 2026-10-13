@@ -588,8 +588,11 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   de 0,2 s, saturacao 1,1, em **12 s de ida mais os mesmos 12 s de volta**
   (a rotacao e lenta e a inversao nao se nota), em
   `fotos/abertura-1080.mp4` (computador, 3,7 MB) e, no celular, um **corte
-  em pe** do mesmo video (`crop=1215:2160:280:0` do 4K, com o sol, a borda
-  e as luzes no alto) em `fotos/abertura-720.mp4` (720x1280, 1,8 MB), com a
+  em pe** do mesmo video (`crop=1215:2160:0:0` do 4K: a borda esquerda do
+  quadro, com o sol e a borda do planeta inteiros e menos do miolo com as
+  luzes; ela pediu "que aparecesse mais o lado esquerdo do video", e o
+  primeiro corte comecava em 280px) em `fotos/abertura-720.mp4` (720x1280,
+  1,3 MB), com a
   capa em pe `fotos/abertura-poster-cel.webp` escolhida pelo `<picture>`
   ate 900px e `fotos/abertura-poster.webp` acima. Sob os servicos entrou a
   linha das pracas ("Brasil | Estados Unidos | Portugal | Dubai"). Os
