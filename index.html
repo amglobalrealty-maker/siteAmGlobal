@@ -529,8 +529,10 @@
   /* (13/10, a imagem do print no lugar do video) a cena respira: a imagem e
      o canvas da vida (dentro de .abertura-video) aproximam 6% em 40 s e
      voltam, sem parar; com movimento reduzido fica parada */
-  .abertura-video { transform-origin: 62% 58%; animation: abertura-respira 40s ease-in-out infinite alternate; }
-  @keyframes abertura-respira { from { transform: scale(1); } to { transform: scale(1.06); } }
+  /* (13/10, "continua igual a foto, nao video"): a camera anda de verdade,
+     aproxima 12% e desliza 3% de lado em 26 s, ida e volta */
+  .abertura-video { transform-origin: 60% 60%; animation: abertura-respira 26s ease-in-out infinite alternate; will-change: transform; }
+  @keyframes abertura-respira { from { transform: scale(1.02) translate(1.5%, 0.6%); } to { transform: scale(1.12) translate(-1.8%, -1.6%); } }
   @media (prefers-reduced-motion: reduce) { .abertura-video { animation: none; } }
   .abertura-vida { position: absolute; inset: 0; z-index: 1; display: block; width: 100%; height: 100%; pointer-events: none; }
   .abertura-filme { opacity: 0; transition: opacity 1.8s var(--ambiente); }
@@ -4329,7 +4331,9 @@
   var vidaTela = document.getElementById('aberturaVida');
   var vidaImagem = document.querySelector('.abertura-poster');
 
-  if (vidaTela && vidaTela.getContext && vidaImagem && !calmo) {
+  // (13/10, "continua igual a foto") a camada roda mesmo com movimento reduzido: sao brilhos
+  // pequenos, nao a tela inteira se mexendo (a camera, que e a cena inteira, essa para)
+  if (vidaTela && vidaTela.getContext && vidaImagem) {
     var vctx = vidaTela.getContext('2d');
     // recortes dos dois arquivos, em coordenadas do print (scratchpad/imagem_print.sh)
     var RECORTES = {
@@ -4389,8 +4393,8 @@
     }
 
     function medirVida() {
-      var r = vidaTela.getBoundingClientRect();
-      var w = Math.round(r.width), h = Math.round(r.height);
+      // offsetWidth/Height: o tamanho de layout, sem a escala da respiracao (getBoundingClientRect vem escalado)
+      var w = vidaTela.offsetWidth, h = vidaTela.offsetHeight;
       if (!w || !h) return;
       var movel = window.matchMedia('(max-width: 900px)').matches;
       V.rec = movel ? RECORTES.cel : RECORTES.pc;
@@ -4415,38 +4419,46 @@
       c.setTransform(V.dpr, 0, 0, V.dpr, 0, 0);
       c.clearRect(0, 0, w, h);
       c.globalCompositeOperation = 'lighter';
-      // as luzes das cidades cintilam
+      // as luzes das cidades cintilam (forte o bastante para se ver: 0,1 a 0,6)
       var i;
       for (i = 0; i < V.luzes.length; i++) {
         var L = V.luzes[i];
-        var a = 0.18 + 0.22 * (0.5 + 0.5 * Math.sin(t / 1000 * L.vel + L.fase));
+        var a = 0.1 + 0.5 * (0.5 + 0.5 * Math.sin(t / 1000 * L.vel + L.fase));
         c.globalAlpha = a;
-        c.drawImage(V.halo, L.x - L.tam, L.y - L.tam, L.tam * 2, L.tam * 2);
+        c.drawImage(V.halo, L.x - L.tam * 1.4, L.y - L.tam * 1.4, L.tam * 2.8, L.tam * 2.8);
       }
-      // os pulsos nos arcos
+      // uma luz passa devagar sobre o planeta, da esquerda para a direita, a cada 14 s
+      var vp = ((t / 14000) % 1), px0 = paraTela(230 + 1010 * vp, 520);
+      var rv = V.rec === RECORTES.cel ? 170 : 300;
+      var gv = c.createRadialGradient(px0[0], px0[1], 0, px0[0], px0[1], rv);
+      gv.addColorStop(0, 'rgba(255, 220, 170, 0.11)'); gv.addColorStop(1, 'rgba(255, 220, 170, 0)');
+      c.globalAlpha = 1; c.fillStyle = gv; c.fillRect(px0[0] - rv, px0[1] - rv, rv * 2, rv * 2);
+      // os pulsos nos arcos: dois por arco, como cometas, com cauda longa
       c.lineCap = 'round';
       for (i = 0; i < ARCOS.length; i++) {
         var A = ARCOS[i], p0 = POLOS[A.de], p1 = POLOS[A.para];
-        var ciclo = 6000, u = ((t + A.def * ciclo) % ciclo) / ciclo;
-        var cabeca = Math.min(1, u / 0.8), apaga = u > 0.8 ? 1 - (u - 0.8) / 0.2 : 1;
-        var cauda = Math.max(0, cabeca - 0.22);
-        var passos = 14;
-        for (var k = 1; k <= passos; k++) {
-          var ta = cauda + (cabeca - cauda) * (k - 1) / passos, tb = cauda + (cabeca - cauda) * k / passos;
-          var pa = paraTela.apply(null, bezier(p0, A.c, p1, ta)), pb = paraTela.apply(null, bezier(p0, A.c, p1, tb));
-          var fr = k / passos;
-          c.strokeStyle = 'rgba(255, 226, 170, ' + (apaga * fr * fr * 0.9).toFixed(3) + ')';
-          c.lineWidth = 0.8 + 1.8 * fr;
-          c.beginPath(); c.moveTo(pa[0], pa[1]); c.lineTo(pb[0], pb[1]); c.stroke();
+        for (var n2 = 0; n2 < 2; n2++) {
+          var ciclo = 5200, u = ((t + (A.def + n2 * 0.5) * ciclo) % ciclo) / ciclo;
+          var cabeca = Math.min(1, u / 0.82), apaga = u > 0.82 ? 1 - (u - 0.82) / 0.18 : 1;
+          var cauda = Math.max(0, cabeca - 0.32);
+          var passos = 18;
+          for (var k = 1; k <= passos; k++) {
+            var ta = cauda + (cabeca - cauda) * (k - 1) / passos, tb = cauda + (cabeca - cauda) * k / passos;
+            var pa = paraTela.apply(null, bezier(p0, A.c, p1, ta)), pb = paraTela.apply(null, bezier(p0, A.c, p1, tb));
+            var fr = k / passos;
+            c.strokeStyle = 'rgba(255, 230, 180, ' + (apaga * fr * fr).toFixed(3) + ')';
+            c.lineWidth = 1 + 2.6 * fr;
+            c.beginPath(); c.moveTo(pa[0], pa[1]); c.lineTo(pb[0], pb[1]); c.stroke();
+          }
+          var pc = paraTela.apply(null, bezier(p0, A.c, p1, cabeca));
+          c.globalAlpha = apaga; c.drawImage(V.halo, pc[0] - 14, pc[1] - 14, 28, 28);
         }
-        var pc = paraTela.apply(null, bezier(p0, A.c, p1, cabeca));
-        c.globalAlpha = apaga * 0.9; c.drawImage(V.halo, pc[0] - 9, pc[1] - 9, 18, 18);
       }
       // o sol respira
       var ps = paraTela(SOL[0], SOL[1]);
-      var raio = (V.rec === RECORTES.cel ? 160 : 230) * (0.9 + 0.1 * Math.sin(t / 3500));
+      var raio = (V.rec === RECORTES.cel ? 180 : 260) * (0.85 + 0.15 * Math.sin(t / 3000));
       var gs = c.createRadialGradient(ps[0], ps[1], 0, ps[0], ps[1], raio);
-      var alfa = 0.1 + 0.07 * (0.5 + 0.5 * Math.sin(t / 3500));
+      var alfa = 0.12 + 0.14 * (0.5 + 0.5 * Math.sin(t / 3000));
       gs.addColorStop(0, 'rgba(255, 230, 180, ' + alfa.toFixed(3) + ')'); gs.addColorStop(0.5, 'rgba(255, 200, 130, ' + (alfa * 0.4).toFixed(3) + ')'); gs.addColorStop(1, 'rgba(255, 190, 120, 0)');
       c.globalAlpha = 1; c.fillStyle = gs; c.fillRect(ps[0] - raio, ps[1] - raio, raio * 2, raio * 2);
       c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
@@ -4468,8 +4480,7 @@
     window.addEventListener('resize', function () {
       window.clearTimeout(relogioVida);
       relogioVida = window.setTimeout(function () {
-        var r = vidaTela.getBoundingClientRect();
-        if (Math.round(r.width) === V.w && Math.abs(Math.round(r.height) - V.h) < 120 && vidaImagem.currentSrc === V.fonte) return;
+        if (vidaTela.offsetWidth === V.w && Math.abs(vidaTela.offsetHeight - V.h) < 120 && vidaImagem.currentSrc === V.fonte) return;
         medirVida();
       }, 160);
     });
