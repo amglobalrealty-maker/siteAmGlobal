@@ -808,6 +808,14 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     cidades. Mesmo caminho da opcao 10, agora com o script generico
     `scratchpad/imagem_opcao.sh <prefixo> <arquivo> [ESQ] [X1] [BAIXO] [CENTRO]`
     (CENTRO = onde esta o assunto, para o recorte do celular; aqui 0,72).
+  - **Opcoes 12 e 13** (`opcao-12.html`, `opcao-13.html`, `fotos/opcao-12*`,
+    `fotos/opcao-13*`): as mesmas fotos das opcoes 10 e 11, com a mesma
+    versao de computador, mas **no celular a foto aparece inteira** ("faca
+    opcao 12 e 13, com as mesmas fotos mas aparecendo inteiras em mobile"):
+    a foto com 600px de largura dentro do quadro de 720x1280, no alto
+    (margem para o `object-fit: cover` do celular nao cortar as pontas) e o
+    fundo escuro embaixo, onde fica o texto; sem escurecer a foto. E o modo
+    `inteira` do `imagem_opcao.sh` (setimo parametro).
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
