@@ -589,7 +589,20 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   Limite: a faixa util da captura tem 1010px de largura, entao em telas
   grandes a imagem fica macia; com o arquivo original em alta (pedir ao
   cliente) ou com creditos no Kairogen (gerar uma versao em alta a partir
-  da referencia) e so regravar os dois webp.
+  da referencia) e so regravar os dois webp. **Ampliacao por IA (13/10,
+  "consegue melhorar a qualidade?")**: a faixa limpa
+  (`scratchpad/videos/print-faixa-limpa.png`, gravada pelo
+  `imagem_print.sh`) e ampliada 2x por ESRGAN com o UpscalerJS rodando no
+  Chrome do puppeteer (`scratchpad/win/upscale_print.cjs [medium|thick]`,
+  TensorFlow.js em WebGL por software, 2,5 min no medium; o `protocolTimeout`
+  do puppeteer precisa ser alto), e `scratchpad/imagem_print2x.sh` monta
+  `fotos/abertura-print-2x.webp` e `-2x-cel.webp` a partir da faixa de
+  2020x740: menos ruido de compressao, arcos mais limpos e luzes mais
+  definidas. E um ganho moderado: a informacao que nao existe na captura a
+  IA nao cria. Ela pediu que isso NAO fosse para a home ("coloque em um dos
+  links preview que a pessoa nao precise estar logada"): e a **Opcao 5**
+  (`opcao-5.html`, gerada por `scratchpad/opcao5_gerar.cjs`), a mesma home
+  com a imagem ampliada; a home segue com a imagem de antes.
   **A vida da imagem (13/10, "isso, mas queria um video")**: sem creditos
   para video por IA, a imagem e animada em codigo (bloco 8c do script,
   `#aberturaVida`, canvas por cima da imagem; os dois dentro de
@@ -750,6 +763,30 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     volta, 2,1 MB); neste trecho a esfera esta a direita, entao o texto fica
     a esquerda; celular: corte em pe do centro do planeta
     (`crop=608:1080:1000:0`); `scratchpad/videos_opcao_dia.sh`.
+  - **Opcao 5** (`opcao-5.html`, `fotos/abertura-print-2x*`): a home como
+    esta (imagem do print com a camada de vida), so que com a imagem
+    **ampliada 2x por IA**, mais nitida; gerada por
+    `scratchpad/opcao5_gerar.cjs` (ver "Ampliacao por IA" acima).
+  - **Opcao 6** (`opcao-6.html`, `fotos/opcao-6-*`): a **Terra a noite com
+    as luzes douradas das Americas** e o sol por tras, a mais parecida com
+    a referencia do cliente (Pixabay 74926, 4K, 5 s; ida e volta de 4,9 s;
+    computador: recorte `crop=3200:1800:0:180` do 4K para a esfera ficar a
+    direita e o texto a esquerda; celular: a esfera inteira no alto de um
+    quadro em pe, `crop=2160:2160:917:0` + faixa preta embaixo);
+    `scratchpad/videos_opcao_dia.sh` com o parametro novo `PRE_PC`.
+  - **Opcao 7** (`opcao-7.html`, `fotos/opcao-7-*`): a **Terra realista
+    girando do dia para a noite**, com as luzes das cidades no lado escuro
+    (Pixabay 28049, 4K, 32 s). Como o globo gira, ida e volta faria a Terra
+    girar ao contrario: o loop e por fusao (os 2 s finais se fundem nos 2 s
+    iniciais, 28 s), `scratchpad/videos_opcao_loop.sh`; mesmo recorte da
+    opcao 6 no computador e no celular. Com crf 28 o 1080p deu 6,3 MB e o
+    teste reclamou; ficou em crf 32 (3,8 MB) e o 720p em crf 30 (1,7 MB).
+    O ESRGAN "thick" da opcao 5 (33 min) saiu igual ao "medium" (2,5 min);
+    a opcao 5 usa o medium.
+
+  As opcoes 6 e 7 sao geradas por `scratchpad/opcao_video_gerar.cjs`, que
+  parte da `opcao-4.html` (texto a esquerda) ou da `opcao-3.html` (texto a
+  direita), porque a home nao tem mais `<video>`.
 
   Antes do planeta, de 08/10 a 13/10, a abertura teve onze videos de casas
   de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
