@@ -755,40 +755,45 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     direita e o texto a esquerda; celular: a esfera inteira no alto de um
     quadro em pe, `crop=2160:2160:917:0` + faixa preta embaixo);
     `scratchpad/videos_opcao_dia.sh` com o parametro novo `PRE_PC`.
-  - **Opcao 7** (`opcao-7.html`, `fotos/opcao-7-*`, `?v=2`): a **Terra
-    fotorrealista em tons quentes**, a Asia a noite com as luzes e o dia
-    chegando pela direita (Pexels 8125427, 4K, 5 s; ida e volta de 4,9 s;
-    mesmo recorte da opcao 6: `crop=3200:1800:0:180` no computador e
-    `crop=2160:2160:917:0` + faixa preta no celular);
-    `scratchpad/videos_opcao_dia.sh`.
-  - **Opcao 8** (`opcao-8.html`, `fotos/opcao-8-*`, `?v=2`): primeiro foi a
-    Terra vista da orbita a noite, como da ISS (Pixabay 339335; o brilho do
-    horizonte passava atras de "global." e o lado esquerdo do video foi
-    escurecido em rampa por `geq`); ela: "coloque video mais claro, um
-    pouco mais amarelado". Agora e **o sol alaranjado nascendo sobre a
-    Terra clara** (Pixabay 62778, 1080p, 20 s, 3D; o site usa 11 s a partir
-    de 8 s, quando ja e dia, em ida e volta; cor um pouco mais clara e
-    amarela por `eq` + `colorbalance`). O sol fica no alto a esquerda,
-    entao o **texto vai para a direita** (gerador no modo "direita") e o
-    lado direito do video de computador e escurecido em rampa por `geq`;
-    celular: `crop=608:1080:200:0` com o sol no quadro e a metade de baixo
-    escurecida em rampa.
-  - **Opcao 9** (`opcao-9.html`, `fotos/opcao-9-*`, `?v=2`): primeiro foi a
-    filmagem real da ISS (Pexels 854913, luzes e nascer do sol, loop por
-    fusao com `INICIO=24`; celular escurecido por `geq`); ela pediu mais
-    claro e amarelado. Agora e **a Terra de dia, clara**, com a cor puxada
-    para o amarelo (Pexels 44350, 4K, 60 s; o site usa os 12 s iniciais, em
-    que o lado do dia esta de frente, em ida e volta; `eq` mais claro e
-    `colorbalance` para o amarelo nas sombras, meios e altas luzes); mesmo
-    recorte da opcao 6 (`crop=3200:1800:0:180` no computador, esfera a
-    direita e texto a esquerda; celular `crop=2160:2160:840:0` + faixa
-    preta). Na legibilidade, o rotulo de 11px deu 3,6:1 num unico tile (uma
-    estrela do fundo atras de uma letra; media 11:1), aceito como nos
-    casos anteriores de um ponto de luz atras do texto pequeno.
+  As opcoes 7, 8 e 9 ja tiveram tres rodadas em 13/10: (1) "mais realistas":
+  Pexels 8125427 (Terra fotorrealista em tons quentes), Pixabay 339335
+  (vista da orbita a noite, lado esquerdo escurecido em rampa por `geq`) e
+  Pexels 854913 (filmagem real da ISS, loop por fusao com `INICIO=24`);
+  (2) "mais claro, um pouco mais amarelado": Pixabay 62778 (sol alaranjado
+  nascendo, texto a direita) e Pexels 44350 (Terra de dia, cor puxada para
+  o amarelo); (3) "ainda nao gostei, queria videos que dessem ideia que e
+  global, o 6 deixe como esta", que e o que esta no ar:
+  - **Opcao 7** (`opcao-7.html`, usa os arquivos `fotos/opcao-6-*`): **a
+    opcao 6 com conexoes douradas**: por cima do mesmo video, um canvas
+    (`scratchpad/amglobal_conexoes.js`, embutido pelo gerador com o
+    argumento `conexoes`) desenha arcos finos ligando Nova York, Miami,
+    Mexico, Caribe, Lima, Sao Paulo e Buenos Aires entre si e saindo pela
+    direita rumo a Europa e ao Oriente Medio (fora do quadro), com pulsos
+    de luz como cometas (dois por arco no computador, um no celular) e
+    aneis pulsando nas cidades. As coordenadas sao do arquivo de video
+    (1920x1080 e 720x1280, object-fit cover centrado). O globo gira um
+    pouco durante a ida de 4,9 s (medido em `scratchpad/videos_op6_deriva.sh`
+    com grade: a Florida anda 90px, a costa do Brasil 45px), entao cada
+    ponto acompanha como numa esfera: desloca `giro * profundidade * fase`,
+    com profundidade = sqrt(1 - x^2 - y^2) no disco do globo (centro 1188,
+    540, raio 452 no computador). Sem arquivo novo de video.
+  - **Opcao 8** (`opcao-8.html`, `fotos/opcao-8-*`, `?v=3`): **o mundo
+    inteiro girando**, uma volta completa com todos os continentes (Pixabay
+    84589, 1080p, 40 s, loop por fusao de 2 s = 38 s, `videos_opcao_loop.sh`;
+    a esfera e levada para a direita ampliando 1,2x e recortando,
+    `scale=2304:1296,crop=1920:1080:0:108`; celular: a esfera no alto,
+    `crop=1080:1080:420:0` + faixa preta; cor levemente aquecida).
+  - **Opcao 9** (`opcao-9.html`, `fotos/opcao-9-*`, `?v=3`): **o globo com
+    arcos de conexao** entre os continentes, de um banco de video (Pexels
+    3125427, 4K, 10 s, ida e volta de 9,9 s; o globo ocupa o quadro todo,
+    entao o lado esquerdo e escurecido em rampa por `geq` para o texto ler;
+    celular: `crop=1215:2160:1300:0` com a metade de baixo escurecida;
+    5,6 MB no 1080p, abaixo do limite do teste).
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
-  para a direita e o veu e espelhado), porque a home nao tem mais `<video>`.
+  para a direita e o veu e espelhado; com `conexoes` embute a camada da
+  opcao 7), porque a home nao tem mais `<video>`.
   Sobre o peso: o teste `ver-amglobal-video.cjs` reclama acima de uns 5 MB
   no 1080p; a primeira opcao 7 (28 s) precisou de crf 32. O ESRGAN "thick"
   da antiga opcao 5 (33 min) saiu igual ao "medium" (2,5 min).

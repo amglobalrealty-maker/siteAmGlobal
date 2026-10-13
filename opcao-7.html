@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- OPCAO-7 DA ABERTURA (13/10/2026): copia temporaria da home com outro video de fundo
-     (Pexels 8125427, a Terra fotorrealista em tons quentes, a Asia a noite), para o cliente comparar sem login da Vercel.
+     (a opcao 6 (Pixabay 74926) com conexoes douradas ligando as Americas a Europa e ao Oriente Medio, desenhadas num canvas por cima do video), para o cliente comparar sem login da Vercel.
      Gerada por scratchpad/opcao_video_gerar.cjs (modelo opcao-6.html); nao editar a mao. Apagar quando a escolha for feita. -->
 <html lang="pt-BR">
 <head>
@@ -2688,6 +2688,10 @@
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
+<style>
+  /* (opcao-7) a camada de conexoes por cima do video, abaixo do veu e do texto */
+  #aberturaConexoes { position: absolute; inset: 0; z-index: 1; display: block; width: 100%; height: 100%; pointer-events: none; }
+</style>
 </head>
 <body>
 
@@ -2864,10 +2868,11 @@
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/opcao-7-poster-cel.webp?v=2" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/opcao-7-poster.webp?v=2" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/opcao-6-poster-cel.webp?v=1" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/opcao-6-poster.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/opcao-7-1080.mp4?v=2" data-src-cel="fotos/opcao-7-720.mp4?v=2"></video>
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/opcao-6-1080.mp4?v=1" data-src-cel="fotos/opcao-6-720.mp4?v=1"></video>
+    <canvas id="aberturaConexoes" aria-hidden="true"></canvas>
     <div class="abertura-veu"></div>
   </div>
 
@@ -4752,5 +4757,158 @@
 
 </script>
 
+<script>
+  /* CONEXOES GLOBAIS (opcao 7, 13/10/2026, "queria videos que dessem ideia que e global").
+
+     O fundo e o video da opcao 6 (a Terra a noite, as Americas com as luzes douradas, Pixabay 74926);
+     este bloco desenha por cima, num canvas, arcos dourados ligando as cidades das Americas entre si e
+     saindo pela direita, rumo a Europa e ao Oriente Medio (fora do quadro), com pulsos de luz como cometas
+     e aneis pulsando nas cidades. As coordenadas sao do ARQUIVO de video (computador 1920x1080, celular
+     720x1280), que entra na tela por object-fit: cover centrado; a conta arquivo -> tela e feita aqui.
+     O globo GIRA um pouco durante a ida (4,9 s; medido em scratchpad/videos_op6_deriva.sh: a Florida anda
+     90px para a esquerda, a costa do Brasil 45px): os pontos acompanham como numa esfera, cada um
+     proporcional a sua profundidade (centro, raio e giro em ARQ). Nao roda fora da tela nem com a aba
+     escondida. */
+  (function () {
+    var tela = document.getElementById('aberturaConexoes');
+    var filme = document.getElementById('aberturaFilme');
+    var capa = document.querySelector('.abertura-poster');
+    if (!tela || !tela.getContext || !capa) return;
+    var ctx = tela.getContext('2d');
+    var ARQ = {
+      // computador: recorte crop=3200:1800:0:180 do 4K reduzido a 0,6; celular: crop=2160:2160:917:0 reduzido a 1/3
+      // (cel = pc * 0,5556 - 305,7 em x; pc * 0,5556 + 60 em y). Os pontos pt/dxb/eu ficam fora do quadro, a direita.
+      pc:  { largura: 1920, altura: 1080, ida: 4.9, centro: [1188, 540], raio: 452, giro: -104,
+             pontos: { ny: [1315, 210], mia: [1262, 320], mex: [1130, 355], car: [1370, 390], lim: [1295, 650], sp: [1510, 730], ba: [1420, 830], pt: [1985, 240], dxb: [1985, 430], eu: [1985, 120] },
+             arcos: [
+               { de: 'ny',  para: 'eu',  c: [1640, 40],  def: 0 },
+               { de: 'sp',  para: 'pt',  c: [1800, 330], def: 0.45 },
+               { de: 'ny',  para: 'sp',  c: [1230, 470], def: 0.2 },
+               { de: 'mia', para: 'ba',  c: [1280, 620], def: 0.7 },
+               { de: 'mex', para: 'sp',  c: [1230, 580], def: 0.55 },
+               { de: 'car', para: 'dxb', c: [1690, 330], def: 0.85 },
+               { de: 'ny',  para: 'mex', c: [1140, 225], def: 0.3 },
+               { de: 'lim', para: 'pt',  c: [1750, 420], def: 0.1 }
+             ] },
+      cel: { largura: 720, altura: 1280, ida: 4.9, centro: [354, 360], raio: 251, giro: -58,
+             pontos: { ny: [425, 177], mia: [395, 238], mex: [322, 257], car: [455, 277], lim: [414, 421], sp: [533, 466], ba: [483, 521], pt: [797, 193], dxb: [797, 299], eu: [797, 127] },
+             arcos: [
+               { de: 'ny',  para: 'eu',  c: [605, 82],  def: 0 },
+               { de: 'sp',  para: 'pt',  c: [694, 243], def: 0.45 },
+               { de: 'ny',  para: 'sp',  c: [378, 321], def: 0.2 },
+               { de: 'mia', para: 'ba',  c: [405, 404], def: 0.7 },
+               { de: 'mex', para: 'sp',  c: [378, 382], def: 0.55 },
+               { de: 'car', para: 'dxb', c: [633, 243], def: 0.85 },
+               { de: 'ny',  para: 'mex', c: [328, 185], def: 0.3 },
+               { de: 'lim', para: 'pt',  c: [666, 293], def: 0.1 }
+             ] }
+    };
+    var V = { w: 0, h: 0, dpr: 1, arq: null, s: 1, dx: 0, dy: 0, halo: null };
+
+    function fase() {   // 0 no inicio da ida, 1 no fim da ida, de volta a 0 no fim da volta
+      var t = filme && !filme.paused && filme.currentTime ? filme.currentTime : 0;
+      var ida = V.arq.ida;
+      return t <= ida ? t / ida : Math.max(0, (2 * ida - t) / ida);
+    }
+    function paraTela(p, f) {   // arquivo -> tela, com o giro do globo: um ponto na esfera anda giro * profundidade * fase
+      var A = V.arq, xr = (p[0] - A.centro[0]) / A.raio, yr = (p[1] - A.centro[1]) / A.raio;
+      var prof = Math.sqrt(Math.max(0, 1 - xr * xr - yr * yr));   // 1 no centro do disco, 0 na borda e fora
+      return [V.dx + (p[0] + A.giro * prof * f) * V.s, V.dy + p[1] * V.s];
+    }
+    function bezier(a, c, b, t) {
+      var u = 1 - t;
+      return [u * u * a[0] + 2 * u * t * c[0] + t * t * b[0], u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]];
+    }
+    function medir() {
+      var w = tela.offsetWidth, h = tela.offsetHeight;
+      if (!w || !h) return;
+      V.arq = window.matchMedia('(max-width: 900px)').matches ? ARQ.cel : ARQ.pc;
+      V.w = w; V.h = h; V.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      tela.width = Math.round(w * V.dpr); tela.height = Math.round(h * V.dpr);
+      V.s = Math.max(w / V.arq.largura, h / V.arq.altura);   // object-fit: cover, centrado
+      V.dx = (w - V.arq.largura * V.s) / 2;
+      V.dy = (h - V.arq.altura * V.s) / 2;
+      if (!V.halo) {
+        var hl = document.createElement('canvas'); hl.width = hl.height = 32;
+        var hx = hl.getContext('2d'), gh = hx.createRadialGradient(16, 16, 0, 16, 16, 16);
+        gh.addColorStop(0, 'rgba(255, 236, 200, 1)'); gh.addColorStop(0.3, 'rgba(255, 214, 150, 0.6)'); gh.addColorStop(1, 'rgba(255, 196, 120, 0)');
+        hx.fillStyle = gh; hx.fillRect(0, 0, 32, 32); V.halo = hl;
+      }
+    }
+    function desenhar(t) {
+      var c = ctx, w = V.w, h = V.h, A = V.arq, f = fase(), i, k;
+      c.setTransform(V.dpr, 0, 0, V.dpr, 0, 0);
+      c.clearRect(0, 0, w, h);
+      c.globalCompositeOperation = 'lighter';
+      c.lineCap = 'round';
+      var fino = A === ARQ.cel ? 0.8 : 1.1;
+      // os arcos, finos e discretos, sempre visiveis
+      for (i = 0; i < A.arcos.length; i++) {
+        var R = A.arcos[i], p0 = A.pontos[R.de], p1 = A.pontos[R.para];
+        c.strokeStyle = 'rgba(255, 220, 160, 0.16)'; c.lineWidth = fino;
+        c.beginPath();
+        var q0 = paraTela(p0, f); c.moveTo(q0[0], q0[1]);
+        for (k = 1; k <= 24; k++) { var q = paraTela(bezier(p0, R.c, p1, k / 24), f); c.lineTo(q[0], q[1]); }
+        c.stroke();
+      }
+      // os pulsos: dois por arco no computador (um no celular, que e menor), como cometas, com cauda longa
+      var nCometas = A === ARQ.cel ? 1 : 2, hs = A === ARQ.cel ? 9 : 13;
+      for (i = 0; i < A.arcos.length; i++) {
+        var B = A.arcos[i], a0 = A.pontos[B.de], a1 = A.pontos[B.para];
+        for (var n2 = 0; n2 < nCometas; n2++) {
+          var ciclo = 5600, u = ((t + (B.def + n2 * 0.5) * ciclo) % ciclo) / ciclo;
+          var cabeca = Math.min(1, u / 0.82), apaga = u > 0.82 ? 1 - (u - 0.82) / 0.18 : 1;
+          var cauda = Math.max(0, cabeca - 0.3), passos = 18;
+          for (k = 1; k <= passos; k++) {
+            var ta = cauda + (cabeca - cauda) * (k - 1) / passos, tb = cauda + (cabeca - cauda) * k / passos;
+            var pa = paraTela(bezier(a0, B.c, a1, ta), f), pb = paraTela(bezier(a0, B.c, a1, tb), f), fr = k / passos;
+            c.strokeStyle = 'rgba(255, 230, 180, ' + (apaga * fr * fr).toFixed(3) + ')';
+            c.lineWidth = fino + 2.4 * fr;
+            c.beginPath(); c.moveTo(pa[0], pa[1]); c.lineTo(pb[0], pb[1]); c.stroke();
+          }
+          var pc = paraTela(bezier(a0, B.c, a1, cabeca), f);
+          c.globalAlpha = apaga; c.drawImage(V.halo, pc[0] - hs, pc[1] - hs, hs * 2, hs * 2);
+          c.globalAlpha = 1;
+        }
+      }
+      // as cidades: um brilho fixo e um anel que se abre e some, cada uma no seu tempo
+      var nomes = ['ny', 'mia', 'mex', 'car', 'lim', 'sp', 'ba'];
+      for (i = 0; i < nomes.length; i++) {
+        var P = paraTela(A.pontos[nomes[i]], f);
+        c.globalAlpha = 0.85; c.drawImage(V.halo, P[0] - 7, P[1] - 7, 14, 14);
+        var ua = ((t / 2600) + i * 0.37) % 1, raio = 3 + 16 * ua;
+        c.globalAlpha = (1 - ua) * 0.6; c.strokeStyle = 'rgba(255, 225, 170, 1)'; c.lineWidth = 1.2;
+        c.beginPath(); c.arc(P[0], P[1], raio, 0, 6.2832); c.stroke();
+      }
+      c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
+    }
+
+    var rodando = false, naTela = true, ultimo = 0;
+    function quadro(t) {
+      if (!rodando) return;
+      if (V.arq !== ARQ.cel || t - ultimo >= 30) { ultimo = t; desenhar(t); }
+      window.requestAnimationFrame(quadro);
+    }
+    function ligar() { if (rodando || !naTela || document.hidden) return; rodando = true; window.requestAnimationFrame(quadro); }
+    function desligar() { rodando = false; }
+    medir(); ligar();
+    var relogio = null;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(relogio);
+      relogio = window.setTimeout(function () { if (tela.offsetWidth === V.w && Math.abs(tela.offsetHeight - V.h) < 120) return; medir(); }, 160);
+    });
+    window.addEventListener('load', function () { window.setTimeout(medir, 1500); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { naTela = e.isIntersecting; if (naTela) ligar(); else desligar(); }); }, { threshold: 0.02 }).observe(tela);
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) desligar(); else ligar(); });
+    window.AMG = window.AMG || {};
+    window.AMG.conexoes = {
+      ativo: function () { return rodando; },
+      geometria: function () { return { w: V.w, h: V.h, s: V.s, dx: Math.round(V.dx), dy: Math.round(V.dy), cel: V.arq === ARQ.cel, fase: fase() }; },
+      medir: function (n) { n = n || 30; var t0 = performance.now(); for (var i = 0; i < n; i++) desenhar(t0 + i * 33); return (performance.now() - t0) / n; }
+    };
+  })();
+</script>
 </body>
 </html>
