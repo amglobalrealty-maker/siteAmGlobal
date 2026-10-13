@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!-- OPCAO-5 DA ABERTURA (13/10/2026): copia temporaria do index.html com a imagem do print
-     AMPLIADA 2x por IA (ESRGAN; fotos/abertura-print-2x*.webp), mais nitida, para o cliente comparar sem login
-     da Vercel. Gerada por scratchpad/opcao5_gerar.cjs; nao editar a mao. Apagar quando a escolha for feita. -->
+<!-- OPCAO-9 DA ABERTURA (13/10/2026): copia temporaria da home com outro video de fundo
+     (Pexels 854913, filmagem real da ISS: as luzes das cidades e o nascer do sol), para o cliente comparar sem login da Vercel.
+     Gerada por scratchpad/opcao_video_gerar.cjs (modelo opcao-6.html); nao editar a mao. Apagar quando a escolha for feita. -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AMGlobal Realty — Imóveis extraordinários. Visão global. (opcao 5)</title>
+<title>AMGlobal Realty — Imóveis extraordinários. Visão global. (opcao 9)</title>
 <meta name="description" content="Consultoria imobiliária exclusiva: o imóvel certo para você, com uma visão global. Uma busca personalizada para morar, investir e construir patrimônio, conectando oportunidades e parcerias estratégicas pelo mundo.">
 <meta name="theme-color" content="#0B0B0C">
 
@@ -530,67 +530,27 @@
   }
   .abertura-poster { opacity: 0; transition: opacity 1.4s var(--ambiente); }
   .pronto .abertura-poster { opacity: 1; }
-  /* (13/10, a imagem do print no lugar do video) a cena respira: a imagem e
-     o canvas da vida (dentro de .abertura-video) aproximam 6% em 40 s e
-     voltam, sem parar; com movimento reduzido fica parada */
-  /* (13/10, "continua igual a foto, nao video"): a camera anda de verdade,
-     aproxima 12% e desliza 3% de lado em 26 s, ida e volta */
-  .abertura-video { transform-origin: 60% 60%; animation: abertura-respira 26s ease-in-out infinite alternate; will-change: transform; }
-  @keyframes abertura-respira { from { transform: scale(1.02) translate(1.5%, 0.6%); } to { transform: scale(1.12) translate(-1.8%, -1.6%); } }
-  @media (prefers-reduced-motion: reduce) { .abertura-video { animation: none; } }
-  .abertura-vida { position: absolute; inset: 0; z-index: 1; display: block; width: 100%; height: 100%; pointer-events: none; }
   .abertura-filme { opacity: 0; transition: opacity 1.8s var(--ambiente); }
   .abertura-filme.no-ar { opacity: 1; }
   .abertura-veu {
     position: absolute;
     inset: 0;
     z-index: 1;
-    /* (13/10, video da Terra) o texto fica A ESQUERDA, como sempre ("no
-       desktop quero que o texto fique a esquerda, nao centralizado"): no
-       video da NASA (videos_final16.sh) a esquerda e o oceano escuro e as
-       luzes ficam no centro e a direita; a oval so assenta o bloco e a faixa
-       do pe segura a linha dos servicos. */
+    /* (13/10, video da Terra) o fundo ja e escuro onde esta o texto, a
+       DIREITA; a oval so assenta o bloco e a faixa do pe segura a linha dos
+       servicos. O sol e a borda azul, a esquerda, ficam livres. */
     background:
+      /* as luzes da India passam atras da frase de apoio: sem a faixa da direita o
+         pior ponto dava 2,2:1 (medido com win/ver-amglobal-legivel.cjs) */
       radial-gradient(ellipse 50% 70% at 18% 46%, rgba(8, 10, 16, 0.62) 0%, rgba(8, 10, 16, 0.3) 55%, rgba(8, 10, 16, 0) 100%),
       linear-gradient(90deg, rgba(8, 10, 16, 0.6) 0%, rgba(8, 10, 16, 0.45) 38%, rgba(8, 10, 16, 0) 58%),
       linear-gradient(180deg, rgba(8, 10, 16, 0.35) 0%, rgba(8, 10, 16, 0) 22%, rgba(8, 10, 16, 0) 70%, rgba(8, 10, 16, 0.6) 100%);
     pointer-events: none;
   }
-  /* (13/10) o bloco de texto, os servicos e as pracas ficam a esquerda; de
-     13/10 de manha ate 13/10 a tarde ficaram a direita (justify-self: end),
-     enquanto o video tinha o sol a esquerda */
-
-  /* O HORIZONTE DESENHADO (13/10, "queria uma luz de horizonte amarela igual
-     a do print"). O arco e uma elipse com o centro abaixo da tela (35% da
-     largura, 82% da altura; raios 120% da largura e 70% da altura): o alto
-     do arco fica a 12% da altura, a ponta esquerda a 15% e a direita a 23%,
-     onde esta o sol (inclinado como no print; a primeira versao, com as
-     pontas a 37% e 27%, passava atras do rotulo e do titulo: 2,1:1).
-     .abertura-espaco: fora da elipse, onix quase opaco (o espaco acima do
-     planeta); dentro, nada. .abertura-horizonte, em screen: a faixa dourada
-     ao longo do arco (a atmosfera iluminada) e o brilho amarelo do sol no
-     canto direito, onde o arco toca a borda. */
-  .abertura-espaco {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: radial-gradient(ellipse 120% 70% at 35% 82%, rgba(8, 10, 16, 0) 0%, rgba(8, 10, 16, 0) 98.5%, rgba(8, 10, 16, 0.97) 100.5%, #080a10 102%);
-    pointer-events: none;
-  }
-  .abertura-horizonte {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background:
-      radial-gradient(ellipse 46% 40% at 97% 23%, rgba(255, 232, 184, 0.9) 0%, rgba(255, 204, 128, 0.5) 28%, rgba(255, 176, 96, 0.18) 55%, rgba(255, 170, 90, 0) 76%),
-      radial-gradient(ellipse 120% 70% at 35% 82%, rgba(255, 220, 160, 0) 95.5%, rgba(255, 224, 168, 0.45) 99%, rgba(255, 214, 140, 0.75) 100%, rgba(255, 200, 120, 0.38) 102.5%, rgba(255, 190, 110, 0.12) 107%, rgba(255, 190, 110, 0) 114%);
-    mix-blend-mode: screen;
-    pointer-events: none;
-  }
-  /* (13/10, a imagem do print no lugar do video) a imagem ja traz o seu
-     horizonte e o seu sol: o horizonte desenhado fica desligado, guardado
-     para quando o fundo voltar a ser um video sem borda */
-  .abertura-espaco, .abertura-horizonte { display: none; }
+  /* (13/10) no computador o bloco de texto, os servicos e as pracas vao para
+     a DIREITA, todos com a mesma largura, alinhados pela esquerda entre si;
+     o planeta e o sol ficam a esquerda, sem nada por cima */
+  /* (opcao-9) o texto fica a esquerda, como sempre */
   /* sombra suave em todo o texto da abertura, para o que sobra de video atras das letras */
   .abertura-texto, .abertura-servicos { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 22px rgba(0, 0, 0, 0.5); }
   .abertura-conteudo { position: relative; z-index: 2; max-width: 1360px; }
@@ -2633,7 +2593,7 @@
        sol e a borda do planeta no alto; o texto fica no terco de baixo,
        onde o veu e mais escuro */
     .abertura { min-height: 100svh; align-content: end; padding-bottom: clamp(28px, 5vh, 44px); }
-    .abertura-poster, .abertura-filme { object-position: 50% 0%; }
+    .abertura-poster, .abertura-filme { object-position: 50% 50%; }
     .abertura-pracas { margin-top: 14px; font-size: 9px; }
     .abertura-pracas span + span::before { margin: 0 10px; }
     /* LEGIBILIDADE NO CELULAR (08/10, "nao ta dando pra ler direito os textos em
@@ -2663,15 +2623,6 @@
            titulo e do rotulo; a faixa fechou mais, e o sol e a borda, no alto,
            continuam inteiros) */
         linear-gradient(0deg, rgba(8, 10, 16, 0.94) 0, rgba(8, 10, 16, 0.88) 220px, rgba(8, 10, 16, 0.82) 340px, rgba(8, 10, 16, 0.74) 440px, rgba(8, 10, 16, 0.45) 540px, rgba(8, 10, 16, 0) 640px);
-    }
-    /* o horizonte no celular: arco mais alto e mais fechado (centro em 55% x
-       110%, raios 120% x 100%: alto a 10%, pontas a 21% e 17%), sol no canto
-       superior direito */
-    .abertura-espaco { background: radial-gradient(ellipse 120% 100% at 55% 110%, rgba(8, 10, 16, 0) 0%, rgba(8, 10, 16, 0) 98%, rgba(8, 10, 16, 0.97) 100.5%, #080a10 102.5%); }
-    .abertura-horizonte {
-      background:
-        radial-gradient(ellipse 70% 26% at 100% 15%, rgba(255, 232, 184, 0.9) 0%, rgba(255, 204, 128, 0.5) 30%, rgba(255, 176, 96, 0.18) 58%, rgba(255, 170, 90, 0) 78%),
-        radial-gradient(ellipse 120% 100% at 55% 110%, rgba(255, 220, 160, 0) 95%, rgba(255, 224, 168, 0.5) 98.5%, rgba(255, 214, 140, 0.8) 100%, rgba(255, 200, 120, 0.4) 103%, rgba(255, 190, 110, 0.12) 108%, rgba(255, 190, 110, 0) 116%);
     }
     /* espacos apertados no celular, para o bloco de texto ocupar menos altura e
        a faixa escura poder ser mais curta */
@@ -2899,66 +2850,24 @@
        aparece por fusao quando toca. O script escolhe 1080p ou 720p pela
        largura e nao carrega video com movimento reduzido ou economia de dados.
        Desde 13/10 o video e A TERRA VISTA DO ESPACO A NOITE (referencia que
-       ela mandou: planeta escuro, luzes douradas das cidades, brilho quente
-       no horizonte). DESDE 13/10 A TARDE ("troque o video, coloque um que
-       pareca mais com o do print") a fonte e a NASA: "Lights of Human
-       Activity Shine in NASA's Image of Earth at Night" (GSFC Scientific
-       Visualization Studio, abril de 2017, images.nasa.gov
-       GSFC_20170412_Lights_m12573_EarthAtNight; dominio publico, sem o logo
-       da NASA, que saiu por recorte): a Terra a noite com as luzes de
-       verdade (Black Marble): a America do Norte a noite, no trecho limpo
-       de 76 s a 79,2 s (o resto do video tem legendas e o cartao final),
-       desacelerado 1,5x com interpolacao de quadros e montado em ida e
-       volta (uns 10 s de loop), com graduacao escura e dourada (luzes para
-       o ambar, planeta azul-marinho). O corte parte de uma copia do
-       original reconvertida com tempo continuo: as marcacoes de tempo do
-       arquivo da NASA enganavam o corte e uma legenda entrou na primeira
-       versao. No
-       celular entra um corte EM PE do centro-direita (720x1280) e uma capa
-       em pe igual, pelo <picture>; no computador, o quadro inteiro, com o
-       oceano escuro a esquerda, onde fica o texto. Antes, no mesmo dia, o
-       Pexels 1851190 (sol e planeta) passou por: corte do celular na borda
-       esquerda, cores quentes (3400K, depois 5200K com meios-tons escuros),
-       sol dourado por mascara e, no computador, o planeta deslocado para a
-       direita com o texto a esquerda (videos_final13.sh e
-       videos_final14.sh). Ferramenta atual: videos_final16.sh. -->
+       ela mandou: planeta, luzes das cidades, sol na borda): Pexels 1851190
+       "The Sun Illuminating Earth's Surface" (licenca Pexels, uso livre, sem
+       atribuicao obrigatoria), 12 s de ida e volta. No celular entra um
+       corte EM PE do mesmo video (720x1280) e uma capa em pe igual, pelo
+       <picture>; no computador, o quadro inteiro. O corte do celular comeca
+       na BORDA ESQUERDA do quadro (pedido dela, 13/10: "que aparecesse mais
+       o lado esquerdo do video"): o sol e a borda do planeta inteiros, e
+       menos do miolo com as luzes. Ferramenta no scratchpad,
+       videos_final13.sh. -->
   <div class="abertura-video" aria-hidden="true">
     <!-- o ?v= muda a cada troca de video: os arquivos tem sempre o mesmo nome e,
          sem isso, quem ja abriu o site antes pode continuar vendo o video antigo
          do cache ("esta igual o video", 08/10). -->
-    <!-- A IMAGEM DO PRINT (13/10, "queria igualzinho da imagem"): o fundo e a
-         propria imagem de referencia que ela mandou (gerada por IA, enviada
-         pelo cliente), recortada na faixa da Terra (horizonte, arcos, sol),
-         com o botao de compartilhar e os textos gravados apagados, o ceu
-         estendido para cima e, no celular, o oceano para baixo
-         (scratchpad/imagem_print.sh). Sem video: a imagem ganha um movimento
-         lento de aproximacao em CSS (.abertura-poster, animacao
-         abertura-respira). A resolucao da captura e baixa (1010px de
-         largura na faixa): fica macia em telas grandes; trocar pelo
-         arquivo original em alta quando o cliente mandar. Os videos
-         (fotos/abertura-*.mp4) continuam no repositorio, sem uso. -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/abertura-print-2x-cel.webp?v=1" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/abertura-print-2x.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/opcao-9-poster-cel.webp?v=1" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/opcao-9-poster.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <!-- A VIDA DA IMAGEM (13/10, "isso, mas queria um video"): sem creditos
-         para gerar um video por IA, a imagem ganha movimento em codigo
-         (bloco 8c do script): pulsos de luz percorrendo os sete arcos do
-         print, as luzes das cidades cintilando (achadas na propria imagem) e
-         o sol respirando, tudo no canvas por cima da imagem, que junto com
-         ela se aproxima devagar (.abertura-video). -->
-    <canvas id="aberturaVida" class="abertura-vida"></canvas>
-    <!-- O HORIZONTE (13/10, "queria uma luz de horizonte amarela igual a do
-         print"): o trecho da NASA olha o planeta de cima, sem borda. Entao a
-         borda e desenhada por cima, em CSS: .abertura-espaco escurece tudo
-         acima de um arco (o espaco), e .abertura-horizonte poe a faixa
-         dourada da atmosfera ao longo do arco e o brilho amarelo do sol no
-         canto direito, misturados por cima da imagem (mix-blend-mode: screen).
-         Tudo em porcentagem, para seguir qualquer tela; o celular tem o seu
-         arco no CSS do celular. O veu vem DEPOIS, para assentar o texto
-         tambem sobre o brilho. -->
-    <div class="abertura-espaco"></div>
-    <div class="abertura-horizonte"></div>
+    <video id="aberturaFilme" class="abertura-filme" muted loop playsinline preload="metadata" tabindex="-1" data-src="fotos/opcao-9-1080.mp4?v=1" data-src-cel="fotos/opcao-9-720.mp4?v=1"></video>
     <div class="abertura-veu"></div>
   </div>
 
@@ -4283,193 +4192,6 @@
     }
     window.AMG = window.AMG || {};
     window.AMG.filmeAbertura = filmeAbertura;
-  }
-
-  /* 8c. A VIDA DA IMAGEM (13/10/2026, "isso, mas queria um video").
-
-     O fundo e a imagem do print; este bloco a anima num canvas por cima:
-       - pulsos de luz percorrendo os sete arcos do print (tracados a mao
-         em coordenadas do print, com uma grade, como curvas de Bezier);
-       - as luzes das cidades cintilando: ao carregar, a imagem e lida num
-         canvas escondido e os pontos mais claros e dourados da Terra viram
-         pequenos brilhos que pulsam cada um no seu ritmo;
-       - o brilho do sol respirando devagar.
-     As coordenadas sao do PRINT (a captura de 1290x1150): cada arquivo de
-     fundo (computador 1920x1080, celular 720x1280) e um recorte conhecido
-     dele, e a imagem entra na tela por object-fit: cover, entao a conta
-     print -> arquivo -> tela e feita aqui. Com movimento reduzido, nada e
-     desenhado. Para fora da tela e com a aba escondida. */
-  var vidaTela = document.getElementById('aberturaVida');
-  var vidaImagem = document.querySelector('.abertura-poster');
-
-  // (13/10, "continua igual a foto") a camada roda mesmo com movimento reduzido: sao brilhos
-  // pequenos, nao a tela inteira se mexendo (a camera, que e a cena inteira, essa para)
-  if (vidaTela && vidaTela.getContext && vidaImagem) {
-    var vctx = vidaTela.getContext('2d');
-    // recortes dos dois arquivos, em coordenadas do print (scratchpad/imagem_print.sh)
-    var RECORTES = {
-      pc:  { largura: 1920, altura: 1080, x0: 230, y0: 330, escala: 1920 / 1010, topo: 376, posX: 0.5, posY: 0.42 },
-      cel: { largura: 720,  altura: 1280, x0: 685, y0: 330, escala: 720 / 555,   topo: 200, posX: 0.5, posY: 0 }
-    };
-    // os polos de luz e os arcos (print): Nova York, Europa, Oriente Medio, Sao Paulo, Africa ocidental
-    var POLOS = { ny: [522, 487], eu: [917, 462], om: [1132, 490], sp: [657, 622], af: [1025, 565], leste: [1240, 440] };
-    var ARCOS = [
-      { de: 'ny', para: 'eu', c: [720, 305], def: 0 },
-      { de: 'ny', para: 'om', c: [830, 231], def: 0.45 },
-      { de: 'sp', para: 'eu', c: [790, 330], def: 0.2 },
-      { de: 'sp', para: 'af', c: [840, 400], def: 0.7 },
-      { de: 'eu', para: 'om', c: [1025, 324], def: 0.55 },
-      { de: 'om', para: 'leste', c: [1200, 420], def: 0.85 },
-      { de: 'ny', para: 'sp', c: [700, 505], def: 0.3 }
-    ];
-    var SOL = [1185, 372];
-    var V = { w: 0, h: 0, dpr: 1, rec: null, s: 1, dx: 0, dy: 0, luzes: [], halo: null, fonte: '' };
-
-    function paraTela(px, py) {   // print -> tela
-      var r = V.rec;
-      var xi = (px - r.x0) * r.escala, yi = r.topo + (py - r.y0) * r.escala;
-      return [V.dx + xi * V.s, V.dy + yi * V.s];
-    }
-    function bezier(a, c, b, t) {
-      var u = 1 - t;
-      return [u * u * a[0] + 2 * u * t * c[0] + t * t * b[0], u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]];
-    }
-
-    // acha as luzes das cidades na propria imagem: pontos claros e dourados, um por celula de 14px
-    function acharLuzes() {
-      var r = V.rec;
-      var c = document.createElement('canvas'); c.width = r.largura; c.height = r.altura;
-      var x = c.getContext('2d', { willReadFrequently: true });
-      try { x.drawImage(vidaImagem, 0, 0, r.largura, r.altura); } catch (e) { return []; }
-      var d;
-      try { d = x.getImageData(0, 0, r.largura, r.altura).data; } catch (e) { return []; }
-      var cel = 14, melhores = {}, lista = [];
-      var yMin = r.topo + 24;   // so a Terra, abaixo do horizonte
-      for (var y = yMin; y < r.altura; y += 2) {
-        for (var xx = 0; xx < r.largura; xx += 2) {
-          var i = (y * r.largura + xx) * 4, R = d[i], G = d[i + 1], B = d[i + 2];
-          if (R < 190 || G < 140 || B > 200 || R - B < 40) continue;
-          var brilho = R + G - B;
-          var chave = ((xx / cel) | 0) + '_' + ((y / cel) | 0);
-          if (!melhores[chave] || melhores[chave].b < brilho) melhores[chave] = { x: xx, y: y, b: brilho };
-        }
-      }
-      for (var k in melhores) lista.push(melhores[k]);
-      lista.sort(function (a, b) { return b.b - a.b; });
-      lista = lista.slice(0, 170);
-      return lista.map(function (p, n) {
-        var sx = V.dx + p.x * V.s, sy = V.dy + p.y * V.s;
-        return { x: sx, y: sy, fase: (n * 2.399) % 6.283, vel: 0.6 + ((n * 7) % 10) / 7, tam: 3 + ((n * 3) % 4) };
-      });
-    }
-
-    function medirVida() {
-      // offsetWidth/Height: o tamanho de layout, sem a escala da respiracao (getBoundingClientRect vem escalado)
-      var w = vidaTela.offsetWidth, h = vidaTela.offsetHeight;
-      if (!w || !h) return;
-      var movel = window.matchMedia('(max-width: 900px)').matches;
-      V.rec = movel ? RECORTES.cel : RECORTES.pc;
-      V.w = w; V.h = h; V.dpr = Math.min(window.devicePixelRatio || 1, 2);
-      vidaTela.width = Math.round(w * V.dpr); vidaTela.height = Math.round(h * V.dpr);
-      // object-fit: cover da imagem dentro da secao
-      V.s = Math.max(w / V.rec.largura, h / V.rec.altura);
-      V.dx = (w - V.rec.largura * V.s) * V.rec.posX;
-      V.dy = (h - V.rec.altura * V.s) * V.rec.posY;
-      if (!V.halo) {
-        var hl = document.createElement('canvas'); hl.width = hl.height = 32;
-        var hx = hl.getContext('2d'), gh = hx.createRadialGradient(16, 16, 0, 16, 16, 16);
-        gh.addColorStop(0, 'rgba(255, 236, 200, 1)'); gh.addColorStop(0.3, 'rgba(255, 214, 150, 0.6)'); gh.addColorStop(1, 'rgba(255, 196, 120, 0)');
-        hx.fillStyle = gh; hx.fillRect(0, 0, 32, 32); V.halo = hl;
-      }
-      V.luzes = vidaImagem.complete && vidaImagem.naturalWidth ? acharLuzes() : [];
-      V.fonte = vidaImagem.currentSrc;
-    }
-
-    function desenharVida(t) {
-      var c = vctx, w = V.w, h = V.h;
-      c.setTransform(V.dpr, 0, 0, V.dpr, 0, 0);
-      c.clearRect(0, 0, w, h);
-      c.globalCompositeOperation = 'lighter';
-      // as luzes das cidades cintilam (forte o bastante para se ver: 0,1 a 0,6)
-      var i;
-      for (i = 0; i < V.luzes.length; i++) {
-        var L = V.luzes[i];
-        var a = 0.1 + 0.5 * (0.5 + 0.5 * Math.sin(t / 1000 * L.vel + L.fase));
-        c.globalAlpha = a;
-        c.drawImage(V.halo, L.x - L.tam * 1.4, L.y - L.tam * 1.4, L.tam * 2.8, L.tam * 2.8);
-      }
-      // uma luz passa devagar sobre o planeta, da esquerda para a direita, a cada 14 s
-      var vp = ((t / 14000) % 1), px0 = paraTela(230 + 1010 * vp, 520);
-      var rv = V.rec === RECORTES.cel ? 170 : 300;
-      var gv = c.createRadialGradient(px0[0], px0[1], 0, px0[0], px0[1], rv);
-      gv.addColorStop(0, 'rgba(255, 220, 170, 0.11)'); gv.addColorStop(1, 'rgba(255, 220, 170, 0)');
-      c.globalAlpha = 1; c.fillStyle = gv; c.fillRect(px0[0] - rv, px0[1] - rv, rv * 2, rv * 2);
-      // os pulsos nos arcos: dois por arco, como cometas, com cauda longa
-      c.lineCap = 'round';
-      for (i = 0; i < ARCOS.length; i++) {
-        var A = ARCOS[i], p0 = POLOS[A.de], p1 = POLOS[A.para];
-        for (var n2 = 0; n2 < 2; n2++) {
-          var ciclo = 5200, u = ((t + (A.def + n2 * 0.5) * ciclo) % ciclo) / ciclo;
-          var cabeca = Math.min(1, u / 0.82), apaga = u > 0.82 ? 1 - (u - 0.82) / 0.18 : 1;
-          var cauda = Math.max(0, cabeca - 0.32);
-          var passos = 18;
-          for (var k = 1; k <= passos; k++) {
-            var ta = cauda + (cabeca - cauda) * (k - 1) / passos, tb = cauda + (cabeca - cauda) * k / passos;
-            var pa = paraTela.apply(null, bezier(p0, A.c, p1, ta)), pb = paraTela.apply(null, bezier(p0, A.c, p1, tb));
-            var fr = k / passos;
-            c.strokeStyle = 'rgba(255, 230, 180, ' + (apaga * fr * fr).toFixed(3) + ')';
-            c.lineWidth = 1 + 2.6 * fr;
-            c.beginPath(); c.moveTo(pa[0], pa[1]); c.lineTo(pb[0], pb[1]); c.stroke();
-          }
-          var pc = paraTela.apply(null, bezier(p0, A.c, p1, cabeca));
-          c.globalAlpha = apaga; c.drawImage(V.halo, pc[0] - 14, pc[1] - 14, 28, 28);
-        }
-      }
-      // o sol respira
-      var ps = paraTela(SOL[0], SOL[1]);
-      var raio = (V.rec === RECORTES.cel ? 180 : 260) * (0.85 + 0.15 * Math.sin(t / 3000));
-      var gs = c.createRadialGradient(ps[0], ps[1], 0, ps[0], ps[1], raio);
-      var alfa = 0.12 + 0.14 * (0.5 + 0.5 * Math.sin(t / 3000));
-      gs.addColorStop(0, 'rgba(255, 230, 180, ' + alfa.toFixed(3) + ')'); gs.addColorStop(0.5, 'rgba(255, 200, 130, ' + (alfa * 0.4).toFixed(3) + ')'); gs.addColorStop(1, 'rgba(255, 190, 120, 0)');
-      c.globalAlpha = 1; c.fillStyle = gs; c.fillRect(ps[0] - raio, ps[1] - raio, raio * 2, raio * 2);
-      c.globalAlpha = 1; c.globalCompositeOperation = 'source-over';
-    }
-
-    var vidaRodando = false, vidaNaTela = true, vidaUltimo = 0;
-    function quadroVida(t) {
-      if (!vidaRodando) return;
-      if (V.rec !== RECORTES.cel || t - vidaUltimo >= 30) { vidaUltimo = t; desenharVida(t); }
-      window.requestAnimationFrame(quadroVida);
-    }
-    function ligarVida() { if (vidaRodando || !vidaNaTela || document.hidden) return; vidaRodando = true; window.requestAnimationFrame(quadroVida); }
-    function desligarVida() { vidaRodando = false; }
-    function prepararVida() { medirVida(); ligarVida(); }
-
-    if (vidaImagem.complete && vidaImagem.naturalWidth) prepararVida();
-    else vidaImagem.addEventListener('load', prepararVida);
-    var relogioVida = null;
-    window.addEventListener('resize', function () {
-      window.clearTimeout(relogioVida);
-      relogioVida = window.setTimeout(function () {
-        if (vidaTela.offsetWidth === V.w && Math.abs(vidaTela.offsetHeight - V.h) < 120 && vidaImagem.currentSrc === V.fonte) return;
-        medirVida();
-      }, 160);
-    });
-    window.addEventListener('load', function () { window.setTimeout(function () { if (vidaImagem.currentSrc !== V.fonte || !V.luzes.length) medirVida(); }, 1500); });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) { vidaNaTela = e.isIntersecting; if (vidaNaTela) ligarVida(); else desligarVida(); });
-      }, { threshold: 0.02 }).observe(vidaTela);
-    }
-    document.addEventListener('visibilitychange', function () { if (document.hidden) desligarVida(); else ligarVida(); });
-
-    window.AMG = window.AMG || {};
-    window.AMG.vida = {
-      ativo: function () { return vidaRodando; },
-      luzes: function () { return V.luzes.length; },
-      geometria: function () { return { w: V.w, h: V.h, s: V.s, dx: Math.round(V.dx), dy: Math.round(V.dy), cel: V.rec === RECORTES.cel }; },
-      medir: function (n) { n = n || 30; var t0 = performance.now(); for (var i = 0; i < n; i++) desenharVida(t0 + i * 33); return (performance.now() - t0) / n; }
-    };
   }
 
   /* 8b. A frase que gira (08/10/2026).
