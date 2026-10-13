@@ -714,45 +714,26 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   sem sol, o video da NASA de 2017 com legendas e logo, os do Pixabay
   27168, 44350 e 188442 com o sol tambem a esquerda e menos luz).
 
-  **Opcao 2, uma segunda pagina publica (13/10/2026):** ela pediu "outro
-  link que outras pessoas consigam ver sem estar logadas na Vercel, sem
-  mudar o video que esta em producao, para a pessoa ter opcoes". Os
-  previews da Vercel ficam atras do login, entao a opcao mora na propria
-  producao: `opcao-2.html` (www.amglobalrealty.com/opcao-2.html) e uma copia
-  do `index.html` gerada por `scratchpad/opcao2_gerar.cjs` (cada troca
-  precisa casar uma vez, senao o script para), com `noindex, nofollow`,
-  aviso de pagina temporaria no alto e OUTRO video de fundo; o texto volta
-  para a esquerda e a oval do veu tambem. O gerador recebe o nome da
-  pagina, o prefixo dos arquivos, a versao do `?v=` e a descricao. Nao e
-  para editar a mao: muda o index, roda o gerador de novo. Apagar as
-  paginas e os arquivos quando o cliente escolher.
-  - **Opcao 2** (`opcao-2.html`, `fotos/opcao-2-*`): primeiro foi o globo
-    noturno da NASA girando (Pexels 854225; ela: "nao gostei desse video,
-    coloque um criativo bem bonito"); agora e o **globo de particulas
-    douradas** girando sobre preto (Pexels 3129902, 4K, 30 s; o loop nao
-    fecha sozinho, entao os 2 s finais se fundem nos 2 s iniciais por
-    `xfade` e o video de 28 s comeca e termina no mesmo quadro), deslocado
-    250px para a direita no computador (4,4 MB, crf 33: particula comprime
-    mal) e inteiro no alto de um quadro em pe no celular (2,1 MB);
-    `scratchpad/videos_opcao2b.sh`.
-  - **Opcao 3** (`opcao-3.html`, `fotos/opcao-3-*`): primeiro foi a Terra
-    com arcos de conexao (Pexels 3125396; ela: "nao gostei, coloque outro
-    mais realista, mais claro, mais colorido"); agora e a **Terra de dia,
-    realista e clara**, a esfera a esquerda girando da Africa a Asia e o
-    espaco escuro a direita, onde fica o texto, como na home (Pexels
-    31271016, 4K, 34 s; o site usa 13 s a partir de 0,3 s em ida e volta,
-    3,2 MB; celular: corte em pe `crop=1215:2160:400:0`, 1,4 MB);
-    `scratchpad/videos_opcao_dia.sh`.
-  - **Opcao 4** (`opcao-4.html`, `fotos/opcao-4-*`): a **Terra em luz quente
-    de sol**, grande, no trecho em que a America do Sul aparece (Pexels
-    16497612, 1080p, 2 min; o site usa 13 s a partir de 78 s em ida e
-    volta, 2,1 MB); neste trecho a esfera esta a direita, entao o texto fica
-    a esquerda; celular: corte em pe do centro do planeta
-    (`crop=608:1080:1000:0`); `scratchpad/videos_opcao_dia.sh`.
-  - **Opcao 5** (`opcao-5.html`, `fotos/abertura-print-2x*`): a home como
-    esta (imagem do print com a camada de vida), so que com a imagem
-    **ampliada 2x por IA**, mais nitida; gerada por
-    `scratchpad/opcao5_gerar.cjs` (ver "Ampliacao por IA" acima).
+  **Opcoes em paginas publicas (13/10/2026):** ela pediu "outro link que
+  outras pessoas consigam ver sem estar logadas na Vercel, sem mudar o
+  video que esta em producao, para a pessoa ter opcoes". Os previews da
+  Vercel ficam atras do login, entao as opcoes moram na propria producao:
+  cada `opcao-N.html` (www.amglobalrealty.com/opcao-N.html) e uma copia da
+  abertura com `noindex, nofollow`, aviso de pagina temporaria no alto e
+  OUTRO video de fundo. Nao e para editar a mao: muda a origem, roda o
+  gerador de novo. Apagar as paginas e os arquivos quando o cliente
+  escolher.
+
+  Ja passaram por aqui e foram apagadas em 13/10 a tarde ("deixe so a
+  opcao 6, as outras nao gostei"): a opcao 2 (globo noturno da NASA, depois
+  globo de particulas douradas, Pexels 854225 e 3129902), a opcao 3 (Terra
+  com arcos, depois Terra de dia, Pexels 3125396 e 31271016), a opcao 4
+  (Terra em luz quente, Pexels 16497612), a opcao 5 (a home com a imagem do
+  print ampliada 2x por IA, ver "Ampliacao por IA" acima; os webp
+  `abertura-print-2x*` sairam do repo, a faixa ampliada continua no
+  scratchpad) e a primeira opcao 7 (Terra girando do dia para a noite,
+  Pixabay 28049, loop por fusao). Os scripts delas seguem no scratchpad
+  (`videos_opcao2b.sh`, `videos_opcao_dia.sh`, `opcao5_gerar.cjs`).
   - **Opcao 6** (`opcao-6.html`, `fotos/opcao-6-*`): a **Terra a noite com
     as luzes douradas das Americas** e o sol por tras, a mais parecida com
     a referencia do cliente (Pixabay 74926, 4K, 5 s; ida e volta de 4,9 s;
@@ -760,19 +741,39 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     direita e o texto a esquerda; celular: a esfera inteira no alto de um
     quadro em pe, `crop=2160:2160:917:0` + faixa preta embaixo);
     `scratchpad/videos_opcao_dia.sh` com o parametro novo `PRE_PC`.
-  - **Opcao 7** (`opcao-7.html`, `fotos/opcao-7-*`): a **Terra realista
-    girando do dia para a noite**, com as luzes das cidades no lado escuro
-    (Pixabay 28049, 4K, 32 s). Como o globo gira, ida e volta faria a Terra
-    girar ao contrario: o loop e por fusao (os 2 s finais se fundem nos 2 s
-    iniciais, 28 s), `scratchpad/videos_opcao_loop.sh`; mesmo recorte da
-    opcao 6 no computador e no celular. Com crf 28 o 1080p deu 6,3 MB e o
-    teste reclamou; ficou em crf 32 (3,8 MB) e o 720p em crf 30 (1,7 MB).
-    O ESRGAN "thick" da opcao 5 (33 min) saiu igual ao "medium" (2,5 min);
-    a opcao 5 usa o medium.
+  - **Opcao 7** (`opcao-7.html`, `fotos/opcao-7-*`, `?v=2`): a **Terra
+    fotorrealista em tons quentes**, a Asia a noite com as luzes e o dia
+    chegando pela direita (Pexels 8125427, 4K, 5 s; ida e volta de 4,9 s;
+    mesmo recorte da opcao 6: `crop=3200:1800:0:180` no computador e
+    `crop=2160:2160:917:0` + faixa preta no celular);
+    `scratchpad/videos_opcao_dia.sh`.
+  - **Opcao 8** (`opcao-8.html`, `fotos/opcao-8-*`): a **Terra vista da
+    orbita a noite**, como da ISS, com as luzes das cidades e o horizonte
+    azulado (Pixabay 339335, 3872x2160, 5 s, 3D; ida e volta de 5,1 s; no
+    computador o recorte `crop=2560:1440:1312:0` tira o painel solar do
+    canto; celular: corte em pe `crop=1215:2160:1900:0`; cor levemente
+    aquecida com `colorbalance`). O brilho do horizonte passava atras de
+    "global." (4:1 no pior tile): o lado esquerdo do video de computador e
+    escurecido em rampa no proprio arquivo (`geq` na luma, 65% ate 45% da
+    largura subindo a 100% em 75%), como um veu a mais; passou a >= 7:1.
+  - **Opcao 9** (`opcao-9.html`, `fotos/opcao-9-*`): **filmagem real da
+    ISS**, a mais realista de todas: as luzes das cidades e o nascer do sol
+    no horizonte (Pexels 854913, 1080p, 60 s; o site usa 14 s a partir de
+    24 s em loop por fusao, 12 s, `scratchpad/videos_opcao_loop.sh` com
+    `INICIO=24`; computador: `crop=1680:945:0:0` para o horizonte descer e
+    o sol ficar no quadro; celular: `crop=608:1080:800:0` com a metade de
+    baixo escurecida em rampa por `geq`, porque as nuvens claras atras da
+    segunda linha do titulo davam 6,9:1 na media, abaixo do minimo de 7;
+    cor aquecida). Nota: na primeira rodada esse video tinha sido
+    descartado por "luzes artificiais"; e filmagem real da NASA publicada
+    no Pexels.
 
-  As opcoes 6 e 7 sao geradas por `scratchpad/opcao_video_gerar.cjs`, que
-  parte da `opcao-4.html` (texto a esquerda) ou da `opcao-3.html` (texto a
-  direita), porque a home nao tem mais `<video>`.
+  As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
+  que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
+  para a direita e o veu e espelhado), porque a home nao tem mais `<video>`.
+  Sobre o peso: o teste `ver-amglobal-video.cjs` reclama acima de uns 5 MB
+  no 1080p; a primeira opcao 7 (28 s) precisou de crf 32. O ESRGAN "thick"
+  da antiga opcao 5 (33 min) saiu igual ao "medium" (2,5 min).
 
   Antes do planeta, de 08/10 a 13/10, a abertura teve onze videos de casas
   de luxo, um atras do outro (Pexels 39024336, 39576530, 8642874, 39576513,
