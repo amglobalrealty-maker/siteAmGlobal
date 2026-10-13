@@ -788,6 +788,12 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     globo inteiro no alto e faixa escura embaixo. Legibilidade: tudo >= 7:1
     na media; o rotulo de 11px ficou em 3,9:1 no pior tile (uma nuvem clara
     atras de uma letra), aceito como nos casos anteriores.
+  - **Opcao 11** (`opcao-11.html`, `fotos/opcao-11.webp` e `-cel.webp`): a
+    segunda imagem enviada por ela em 13/10 ("faca outra opcao com essa foto
+    tambem"): o terraco ao por do sol com os paineis de vidro mostrando
+    cidades. Mesmo caminho da opcao 10, agora com o script generico
+    `scratchpad/imagem_opcao.sh <prefixo> <arquivo> [ESQ] [X1] [BAIXO] [CENTRO]`
+    (CENTRO = onde esta o assunto, para o recorte do celular; aqui 0,72).
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
