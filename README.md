@@ -843,6 +843,12 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     com `PCX` 0,3 e 0,35. Geradas depois da home de 14/10, entao ja trazem
     o titulo "Seu patrimonio sem fronteiras" e a frase de apoio no estilo
     do rotulo. Legibilidade toda >= 4,5:1.
+  - **Opcao 18** (`opcao-18.html`, `fotos/opcao-18*`): setima foto dela
+    (14/10, "deixe o 16 e 17 e faca outra opcao com esse"): o globo de
+    vidro com a casa de vidro e a cidade ao fundo, em luz clara. Como as
+    opcoes 16 e 17, mas com o ceu ainda mais branco: `ESQ` 0,1 subindo a 1
+    em 90% da largura (com 0,15 o rotulo ficava em 4,3:1), `PCX` 0,25 e
+    `CENTRO` 0,55.
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
