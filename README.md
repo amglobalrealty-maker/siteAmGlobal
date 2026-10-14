@@ -816,6 +816,17 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     (margem para o `object-fit: cover` do celular nao cortar as pontas) e o
     fundo escuro embaixo, onde fica o texto; sem escurecer a foto. E o modo
     `inteira` do `imagem_opcao.sh` (setimo parametro).
+  - **Opcao 14** (`opcao-14.html`, `fotos/opcao-14*`): terceira foto dela
+    (14/10, "crie o 14 com essa foto"): a cobertura com piscina ao por do
+    sol e o globo de luz no ceu, a direita. Mesmo caminho das opcoes 10 e
+    11 (lado esquerdo escurecido em rampa; celular com recorte no globo,
+    CENTRO 0,78).
+  - **Opcao 15** (`opcao-15.html`, `fotos/opcao-15*`): quarta foto dela: a
+    sala envidracada com o globo de luz sobre a cidade ao anoitecer. A foto
+    e panoramica (1983x795, 2,5:1): no computador o recorte 16:9 sai mais
+    para a esquerda (`PCX` 0,2, oitavo parametro do `imagem_opcao.sh`) para
+    o globo ficar a direita, fora da coluna do texto, e o sol sair do
+    quadro; celular com recorte no globo (CENTRO 0,52).
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
