@@ -1102,9 +1102,11 @@ Procuro frente mar, com 3 suítes, para morar.
 ```
 
 **O numero fica numa constante so**, `WHATSAPP`, no fim do script do
-`index.html`: so digitos, com o 55 e o DDD. Hoje e `5511959943705`, que ela
-passou em 05/10/2026 como provisorio ("por enquanto"); para trocar, basta
-mudar ali. Se a constante ficar vazia, o WhatsApp abre com a mensagem e pede
+`index.html`: so digitos, com o 55 e o DDD. Hoje e `5511999888647`
+(+55 11 99988-8647), que ela passou em 14/10/2026 ("coloque esse contato e o
+que preencherem no form tambem vai pra ele"); antes era o provisorio
+`5511959943705`, de 05/10. Para trocar, basta mudar ali (e nas paginas de
+opcao, que sao copias; `scratchpad/amglobal_whats_opcoes.sh` troca em todas). Se a constante ficar vazia, o WhatsApp abre com a mensagem e pede
 para escolher o contato, e a linha "WhatsApp" da secao volta a "A informar";
 com o numero, a linha e um link e o formulario abre direto a conversa.
 
