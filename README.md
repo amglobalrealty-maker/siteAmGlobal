@@ -853,8 +853,10 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     (14/10, "faca mais uma opcao com esta imagem mas nao mude a do site
     que esta em producao"): a Terra a noite vista do espaco, com as luzes
     das cidades e o sol no horizonte. Foto escura: rampa leve (`ESQ` 0,35
-    ate 70%), `PCX` 0,3, `CENTRO` 0,5, celular escurecido de baixo a
-    partir de 28% como a home.
+    ate 70%), `PCX` 0,3, celular escurecido de baixo a partir de 28% como
+    a home. Primeiro o celular recortava o centro (`CENTRO` 0,5, as
+    Americas); ela: "em mobile faca pegar mais o lado direito da imagem"
+    -> `CENTRO` 0,82 (Europa, Africa e o sol), `?v=2`.
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
