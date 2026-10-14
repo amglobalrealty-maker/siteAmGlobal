@@ -863,6 +863,12 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     opcoes 16 e 17, mas com o ceu ainda mais branco: `ESQ` 0,1 subindo a 1
     em 90% da largura (com 0,15 o rotulo ficava em 4,3:1), `PCX` 0,25 e
     `CENTRO` 0,55.
+  - **Opcao 19** (`opcao-19.html`, `fotos/opcao-19*`): oitava foto dela
+    (14/10, "faca mais uma opcao com esta imagem mas nao mude a do site
+    que esta em producao"): a Terra a noite vista do espaco, com as luzes
+    das cidades e o sol no horizonte. Foto escura: rampa leve (`ESQ` 0,35
+    ate 70%), `PCX` 0,3, `CENTRO` 0,5, celular escurecido de baixo a
+    partir de 28% como a home.
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
