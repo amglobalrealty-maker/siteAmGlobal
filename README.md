@@ -832,6 +832,17 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
     para a esquerda (`PCX` 0,2, oitavo parametro do `imagem_opcao.sh`) para
     o globo ficar a direita, fora da coluna do texto, e o sol sair do
     quadro; celular com recorte no globo (CENTRO 0,52).
+  - **Opcoes 16 e 17** (`opcao-16.html`, `opcao-17.html`, `fotos/opcao-16*`,
+    `fotos/opcao-17*`): quinta e sexta fotos dela (14/10, "deixe o atual
+    como esta mas faca um link com essas 2 opcoes de header tambem"): o
+    globo de vidro com predios e guindaste em luz clara, e a piscina
+    infinita ao por do sol com o mapa de luz no ceu. As duas sao CLARAS
+    (ceu quase branco), entao o escurecimento do lado do texto e bem mais
+    forte (`ESQ` 0,15 subindo a 1 em 85% da largura; celular com `BAIXO`
+    0,75 a partir de 25% da altura); panoramicas, recorte de computador
+    com `PCX` 0,3 e 0,35. Geradas depois da home de 14/10, entao ja trazem
+    o titulo "Seu patrimonio sem fronteiras" e a frase de apoio no estilo
+    do rotulo. Legibilidade toda >= 4,5:1.
 
   As opcoes 7, 8 e 9 sao geradas por `scratchpad/opcao_video_gerar.cjs`,
   que parte da `opcao-6.html` (texto a esquerda; com "direita" o bloco vai
