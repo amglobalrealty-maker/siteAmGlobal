@@ -728,6 +728,19 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   sem sol, o video da NASA de 2017 com legendas e logo, os do Pixabay
   27168, 44350 e 188442 com o sol tambem a esquerda e menos luz).
 
+  **14/10/2026, a home passou a ser a opcao 15** ("vamos usar o 15 por
+  enquanto"): a sala envidracada com o globo de luz sobre a cidade, em
+  `fotos/abertura-sala.webp` e `abertura-sala-cel.webp` (copias dos
+  `fotos/opcao-15*.webp`, para a home nao depender das paginas de opcao);
+  a camada de vida (canvas dos arcos, bloco 8c) saiu junto, porque os arcos
+  eram tracados nas coordenadas do print; a camera que respira continua.
+  No mesmo pedido, o titulo virou **"Seu patrimonio / sem fronteiras"**
+  (segunda parte em italico, como antes; a descricao da pagina acompanhou)
+  e a frase de apoio ganhou **a fonte do rotulo** (`var(--sans)`, caixa
+  normal, 15 a 17px). Para gerar opcoes novas a partir da home, o
+  `opcao_imagem_gerar.cjs` passou a aceitar `abertura-<nome>*.webp` e a
+  home sem o canvas.
+
   **Opcoes em paginas publicas (13/10/2026):** ela pediu "outro link que
   outras pessoas consigam ver sem estar logadas na Vercel, sem mudar o
   video que esta em producao, para a pessoa ter opcoes". Os previews da

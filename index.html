@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AMGlobal Realty — Imóveis extraordinários. Visão global.</title>
-<meta name="description" content="Consultoria imobiliária exclusiva: o imóvel certo para você, com uma visão global. Uma busca personalizada para morar, investir e construir patrimônio, conectando oportunidades e parcerias estratégicas pelo mundo.">
+<meta name="description" content="Consultoria imobiliária exclusiva: seu patrimônio sem fronteiras. Uma busca personalizada para morar, investir e construir patrimônio, conectando oportunidades e parcerias estratégicas pelo mundo.">
 <meta name="theme-color" content="#0B0B0C">
 
 <meta property="og:type" content="website">
@@ -674,16 +674,21 @@
     color: var(--marfim);
     max-width: 34ch;
   }
-  /* a frase de apoio fixa do cliente (09/10/2026), no lugar da que girava */
+  /* a frase de apoio fixa do cliente (09/10/2026), no lugar da que girava.
+     14/10/2026, ela: "deixe a mesma fonte do Consultoria imobiliaria
+     exclusiva": a mesma familia do rotulo (.rotulo, var(--sans)), em
+     caixa normal e num corpo de leitura, nao nas maiusculas espacadas de
+     10,5px do rotulo, que numa frase de duas linhas cansariam. */
   .abertura-apoio {
     margin: 0 0 clamp(26px, 3.4vh, 40px);
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(19px, 1.5vw, 24px);
-    line-height: 1.42;
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(15px, 1.1vw, 17px);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
     color: var(--marfim);
-    max-width: 46ch;
+    max-width: 52ch;
   }
   .giro-mascara { display: grid; overflow: hidden; }
   .giro-frase {
@@ -2933,17 +2938,19 @@
          largura na faixa): fica macia em telas grandes; trocar pelo
          arquivo original em alta quando o cliente mandar. Os videos
          (fotos/abertura-*.mp4) continuam no repositorio, sem uso. -->
+    <!-- 14/10/2026, "vamos usar o 15 por enquanto": a imagem passou a ser a da
+         opcao 15, a sala envidracada com o globo de luz sobre a cidade ao
+         anoitecer (foto enviada por ela; fotos/abertura-sala*.webp, copias
+         dos fotos/opcao-15*.webp, para a home nao depender das paginas de
+         opcao). O lado esquerdo vem escurecido em rampa no proprio arquivo
+         (scratchpad/imagem_opcao.sh) para o texto ler; no celular, o globo
+         no alto e o texto embaixo. A camada de vida (canvas) saiu junto: os
+         arcos eram tracados nas coordenadas do print; a camera que respira
+         (.abertura-respira) continua. -->
     <picture>
-      <source media="(max-width: 900px)" srcset="fotos/abertura-print-cel.webp?v=1" width="720" height="1280">
-      <img class="abertura-poster" src="fotos/abertura-print.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <source media="(max-width: 900px)" srcset="fotos/abertura-sala-cel.webp?v=1" width="720" height="1280">
+      <img class="abertura-poster" src="fotos/abertura-sala.webp?v=1" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
     </picture>
-    <!-- A VIDA DA IMAGEM (13/10, "isso, mas queria um video"): sem creditos
-         para gerar um video por IA, a imagem ganha movimento em codigo
-         (bloco 8c do script): pulsos de luz percorrendo os sete arcos do
-         print, as luzes das cidades cintilando (achadas na propria imagem) e
-         o sol respirando, tudo no canvas por cima da imagem, que junto com
-         ela se aproxima devagar (.abertura-video). -->
-    <canvas id="aberturaVida" class="abertura-vida"></canvas>
     <!-- O HORIZONTE (13/10, "queria uma luz de horizonte amarela igual a do
          print"): o trecho da NASA olha o planeta de cima, sem borda. Entao a
          borda e desenhada por cima, em CSS: .abertura-espaco escurece tudo
@@ -2980,9 +2987,12 @@
     <div class="abertura-texto">
       <span class="filete"></span>
       <span class="rotulo">Consultoria imobiliária exclusiva</span>
+      <!-- 14/10/2026, ela: 'troque por "seu patrimonio sem fronteiras"'. Fica
+           na mesma forma do titulo anterior: a primeira parte reta, a segunda
+           em italico, palavra por palavra. -->
       <h1>
-        <span class="linha-h1"><span class="p" style="--i: 0"><span>O</span></span> <span class="p" style="--i: 1"><span>imóvel</span></span> <span class="p" style="--i: 2"><span>certo</span></span> <span class="p" style="--i: 3"><span>para</span></span> <span class="p" style="--i: 4"><span>você,</span></span></span>
-        <span class="linha-h1"><em><span class="p" style="--i: 5"><span>com</span></span> <span class="p" style="--i: 6"><span>uma</span></span> <span class="p" style="--i: 7"><span>visão</span></span> <span class="p" style="--i: 8"><span>global.</span></span></em></span>
+        <span class="linha-h1"><span class="p" style="--i: 0"><span>Seu</span></span> <span class="p" style="--i: 1"><span>patrimônio</span></span></span>
+        <span class="linha-h1"><em><span class="p" style="--i: 2"><span>sem</span></span> <span class="p" style="--i: 3"><span>fronteiras</span></span></em></span>
       </h1>
       <!-- A FRASE DE APOIO E FIXA, a do cliente final (09/10/2026, "o texto algo
            igual o da segunda [imagem]"). A frase que girava (as tres do
