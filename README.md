@@ -722,10 +722,16 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   eram tracados nas coordenadas do print; a camera que respira continua.
   No mesmo pedido, o titulo virou **"Seu patrimonio / sem fronteiras"**
   (segunda parte em italico, como antes; a descricao da pagina acompanhou)
-  e a frase de apoio ganhou **a fonte do rotulo** (`var(--sans)`, caixa
-  normal, 15 a 17px). Para gerar opcoes novas a partir da home, o
-  `opcao_imagem_gerar.cjs` passou a aceitar `abertura-<nome>*.webp` e a
-  home sem o canvas.
+  e a frase de apoio ganhou **a fonte do rotulo**: primeiro so a familia
+  (`var(--sans)`, caixa normal), e com "quero essa fonte no textinho, nao
+  ta essa" o estilo inteiro do rotulo, maiusculas espacadas (0,18em), peso
+  500, 11,5 a 13px, entrelinha 1,95. Com o bloco de texto mais alto, no
+  celular o titulo subiu para cima das luzes da cidade (rotulo 3,6:1,
+  "patrimonio" 4,1:1): a imagem do celular passou a escurecer de baixo a
+  partir de 28% da altura (parametros `YB` e `LARG` do `imagem_opcao.sh`,
+  9o e 10o), e tudo voltou a >= 4,5:1. Para gerar opcoes novas a partir
+  da home, o `opcao_imagem_gerar.cjs` passou a aceitar
+  `abertura-<nome>*.webp` e a home sem o canvas.
 
   **Opcoes em paginas publicas (13/10/2026):** ela pediu "outro link que
   outras pessoas consigam ver sem estar logadas na Vercel, sem mudar o

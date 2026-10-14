@@ -676,19 +676,22 @@
   }
   /* a frase de apoio fixa do cliente (09/10/2026), no lugar da que girava.
      14/10/2026, ela: "deixe a mesma fonte do Consultoria imobiliaria
-     exclusiva": a mesma familia do rotulo (.rotulo, var(--sans)), em
-     caixa normal e num corpo de leitura, nao nas maiusculas espacadas de
-     10,5px do rotulo, que numa frase de duas linhas cansariam. */
+     exclusiva" e, quando veio so a familia em caixa normal, "quero essa
+     fonte no textinho, nao ta essa": e o estilo inteiro do rotulo (.rotulo),
+     maiusculas espacadas, peso 500; um pouco maior que os 10,5px do rotulo e
+     com a entrelinha aberta, porque sao duas ou tres linhas. A cor segue
+     marfim, que e a do texto; o rotulo e champagne por ser o fio de cima. */
   .abertura-apoio {
     margin: 0 0 clamp(26px, 3.4vh, 40px);
     font-family: var(--sans);
     font-style: normal;
-    font-weight: 400;
-    font-size: clamp(15px, 1.1vw, 17px);
-    letter-spacing: 0.02em;
-    line-height: 1.6;
+    font-weight: 500;
+    font-size: clamp(11.5px, 0.85vw, 13px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.95;
     color: var(--marfim);
-    max-width: 52ch;
+    max-width: 56ch;
   }
   .giro-mascara { display: grid; overflow: hidden; }
   .giro-frase {
@@ -2690,7 +2693,10 @@
     .rotulo--vivo > span { white-space: nowrap; }
     .rotulo--vivo i { display: inline-block; width: 22px; margin: 0 10px; vertical-align: middle; }
     .abertura-giro { font-size: 19px; max-width: none; }
-    .abertura-apoio { font-size: 18px; max-width: none; }
+    /* (14/10) a frase de apoio em maiusculas espacadas: no celular, 12px e
+       entrelinha 1,9 (18px virava sete linhas e empurrava o titulo para
+       cima das luzes do globo) */
+    .abertura-apoio { font-size: 12px; letter-spacing: 0.16em; line-height: 1.9; max-width: none; }
     .abertura-servicos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; }
     .abertura-nome { font-size: 20px; }
     .rolar { display: none; }
