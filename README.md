@@ -170,6 +170,7 @@ Sao **dois modelos** que atendem todas as cidades e todos os imoveis.
 |---|---|---|
 | `cidade.html` | as doze pracas | `cidade.html?c=lisboa` |
 | `imovel.html` | as trinta e seis residencias | `imovel.html?c=lisboa&i=0` |
+| `parcerias.html` | (15/10) os estados onde a AMGlobal atua com parcerias no Brasil, as cidades e as construtoras de cada um, num acordeao; cada construtora abre o seu projeto numa janela; no fim, Florida, Portugal e Dubai. A lista mora em `PARCERIAS`, no script da pagina; os projetos sao DE EXEMPLO (gerados pelo nome, marcados como ilustrativos) ate o real entrar em `PROJETOS[nome]`. Noindex e sem link no menu ate ela aprovar | `parcerias.html#sc` |
 
 Em `imovel.html`, o `i` e a posicao do imovel na lista daquela cidade,
 comecando em zero. Endereco incompleto, cidade desconhecida ou posicao que nao
