@@ -170,7 +170,7 @@ Sao **dois modelos** que atendem todas as cidades e todos os imoveis.
 |---|---|---|
 | `cidade.html` | as doze pracas | `cidade.html?c=lisboa` |
 | `imovel.html` | as trinta e seis residencias | `imovel.html?c=lisboa&i=0` |
-| `parcerias.html` | (15/10) os estados onde a AMGlobal atua com parcerias no Brasil, as cidades e as construtoras de cada um, num acordeao; cada construtora abre o seu projeto numa janela; no fim, Florida, Portugal e Dubai. A lista mora em `PARCERIAS`, no script da pagina; os projetos sao DE EXEMPLO (gerados pelo nome, marcados como ilustrativos) ate o real entrar em `PROJETOS[nome]`. Noindex e sem link no menu ate ela aprovar | `parcerias.html#sc` |
+| `parcerias.html` | (15/10) os estados onde a AMGlobal atua com parcerias no Brasil, as cidades e as construtoras de cada um. Fundo claro, estilo revista (terceira versao no mesmo dia: a lista em acordeao e os cartoes com foto foram rejeitados, "muito poluido"): os estados sao abas, um por vez; dentro, as cidades e as construtoras numa lista em colunas; cada nome abre o projeto num painel claro com uma foto so; no fim, Florida, Portugal e Dubai, so em texto. A lista mora em `PARCERIAS`, no script da pagina; os projetos sao DE EXEMPLO (gerados pelo nome, marcados) ate o real entrar em `PROJETOS[nome]`. As `fotos/capa-N.webp` tem texto gravado, por isso o painel usa as `fotos/opcao-N.webp`. Noindex e sem link no menu ate ela aprovar | `parcerias.html#sc` |
 
 Em `imovel.html`, o `i` e a posicao do imovel na lista daquela cidade,
 comecando em zero. Endereco incompleto, cidade desconhecida ou posicao que nao
