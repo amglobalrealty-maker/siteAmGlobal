@@ -5,32 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AMGlobal Realty — Parcerias</title>
 <meta name="description" content="Incorporadoras e construtoras com quem a AMGlobal Realty atua, por estado e cidade no Brasil, e no exterior.">
-<meta name="theme-color" content="#0B0B0C">
+<meta name="theme-color" content="#F5F2EC">
 
 <!-- PROVISORIO: enquanto os projetos forem de exemplo, esta pagina fica fora dos
      buscadores. Tire esta linha quando os projetos reais das parceiras entrarem. -->
 <meta name="robots" content="noindex, nofollow">
 
 <!-- ---------------------------------------------------------------------------
-     PARCERIAS (15/10/2026, segunda versao no mesmo dia)
+     PARCERIAS (15/10/2026, terceira versao)
 
      Pedido da cliente: "abrindo os estados aparecer as construtoras, ai clicando
-     abre o projeto de cada; coloque os projetos testes". A primeira versao era
-     uma lista em acordeao, so texto e fios ("odiei esse design"). Esta e feita
-     de imagem: os estados sao cartoes grandes com foto, cada estado tem a sua
-     faixa de abertura, as construtoras sao placas com monograma que revelam a
-     foto do projeto ao passar o mouse, e cada placa abre o projeto numa janela
-     de tela cheia. Os projetos sao DE EXEMPLO, marcados como tal.
+     abre o projeto de cada; coloque os projetos testes". As duas primeiras
+     versoes (lista em acordeao; cartoes com foto e placas com monograma) ela
+     achou "muito poluido visualmente" e pediu "fundo claro, estilo revista".
 
-     A LISTA MORA EM `PARCERIAS`, no script no fim deste arquivo: para incluir,
-     tirar ou renomear uma construtora, e so mexer la. Os projetos de exemplo
-     sao gerados pelo nome (`projetoExemplo`); quando o projeto real chegar,
-     entra em `PROJETOS[nome da construtora]` e passa na frente do exemplo.
+     Esta e feita de pouco: fundo marfim, tipografia grande, muito respiro. Os
+     estados sao ABAS, um por vez; dentro, as cidades e as construtoras numa
+     lista em colunas, como o indice de uma revista; cada nome abre o projeto
+     num painel claro com uma foto so. Os projetos sao DE EXEMPLO, marcados.
+
+     A LISTA MORA EM `PARCERIAS`, no script no fim deste arquivo. Os projetos
+     de exemplo sao gerados pelo nome (`projetoExemplo`); o projeto real entra
+     em `PROJETOS[nome da construtora]` e passa na frente.
      --------------------------------------------------------------------------- -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <style>
@@ -40,13 +41,14 @@
     --travertino: #D8CFC0;
     --grafite: #3A3A3C;
     --champagne: #B49A6E;
-    --onix-alto: #131316;
-    --linha-clara: rgba(245, 242, 236, 0.11);
-    --texto-fraco: rgba(245, 242, 236, 0.58);
+    --linha-escura: rgba(11, 11, 12, 0.14);
+    --linha-leve: rgba(11, 11, 12, 0.08);
+    --texto-medio: rgba(11, 11, 12, 0.62);
+    --texto-fraco: rgba(11, 11, 12, 0.42);
     --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
     --margem: clamp(22px, 6.5vw, 130px);
-    --secao: clamp(84px, 13vh, 160px);
+    --secao: clamp(72px, 11vh, 140px);
     --curva: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -54,8 +56,8 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--onix);
-    color: var(--marfim);
+    background: var(--marfim);
+    color: var(--onix);
     font-family: var(--sans);
     font-weight: 300;
     font-size: 17px;
@@ -66,17 +68,16 @@
 
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
-  button { font: inherit; color: inherit; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
   ::selection { background: var(--champagne); color: var(--onix); }
   :focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
 
-  .filete { display: block; width: 24px; height: 1px; background: var(--champagne); margin-bottom: 22px; }
-  .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); }
+  .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); }
 
   h1, h2, h3 { font-family: var(--serif); font-weight: 300; line-height: 1.02; text-wrap: balance; }
-  p { max-width: 66ch; }
+  p { max-width: 62ch; }
 
-  .botao { position: relative; display: inline-block; font-family: var(--sans); font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: inherit; padding-bottom: 10px; background: none; border: 0; cursor: pointer; }
+  .botao { position: relative; display: inline-block; font-family: var(--sans); font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: inherit; padding-bottom: 10px; }
   .botao::before, .botao::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; }
   .botao::before { width: 100%; background: currentColor; opacity: 0.28; }
   .botao::after { width: 100%; background: var(--champagne); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--curva); }
@@ -84,207 +85,127 @@
 
   /* ------------------------------------------------------------- cabecalho */
   .topo { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px var(--margem); border-bottom: 1px solid transparent; transition: background 0.6s var(--curva), padding 0.6s var(--curva), border-color 0.6s var(--curva); }
-  .topo.encolhido { background: rgba(11, 11, 12, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding-top: 14px; padding-bottom: 14px; border-bottom-color: var(--linha-clara); }
+  .topo.encolhido { background: rgba(245, 242, 236, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding-top: 14px; padding-bottom: 14px; border-bottom-color: var(--linha-leve); }
   .marca { display: flex; align-items: center; gap: 16px; }
   .marca img { height: 40px; width: auto; transition: height 0.6s var(--curva); }
   .topo.encolhido .marca img { height: 32px; }
-  .marca-nome { font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--marfim); white-space: nowrap; }
+  .marca-nome { font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.3em; text-transform: uppercase; white-space: nowrap; }
   .topo-direita { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
-  .voltar { display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--marfim); opacity: 0.8; transition: opacity 0.4s var(--curva); }
+  .voltar { display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.4s var(--curva); }
   .voltar:hover { opacity: 1; }
   .voltar svg { color: var(--champagne); }
 
-  /* ---------------------------------------------------------------- capa -- */
-  .capa { position: relative; min-height: 100vh; display: flex; align-items: flex-end; padding: clamp(120px, 17vh, 190px) var(--margem) clamp(40px, 7vh, 80px); overflow: hidden; background: var(--onix-alto); }
-  .capa-foto { position: absolute; inset: 0; }
-  .capa-foto img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.2) contrast(1.05) brightness(0.62) saturate(0.8); animation: crescer 18s ease-out both; }
-  @keyframes crescer { from { transform: scale(1.02); } to { transform: scale(1.1); } }
-  .capa::after { content: ''; position: absolute; z-index: 2; inset: 0; background: linear-gradient(to top, rgba(11, 11, 12, 0.98) 0%, rgba(11, 11, 12, 0.35) 48%, rgba(11, 11, 12, 0.5) 100%); }
-  .capa-corpo { position: relative; z-index: 3; width: 100%; }
-  .capa h1 { font-size: clamp(56px, 11vw, 150px); letter-spacing: -0.02em; margin: 14px 0 22px; }
-  .capa-linha { color: rgba(245, 242, 236, 0.85); font-size: clamp(17px, 1.4vw, 21px); max-width: 48ch; }
-  /* os estados como atalhos, na propria capa */
-  .capa-estados { display: flex; flex-wrap: wrap; gap: 8px 0; margin-top: clamp(30px, 5vh, 52px); padding-top: 24px; border-top: 1px solid var(--linha-clara); }
-  .capa-estados a { display: inline-flex; align-items: baseline; gap: 10px; padding: 10px 22px 10px 0; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.75); transition: color 0.4s var(--curva); }
-  .capa-estados a:hover { color: var(--marfim); }
-  .capa-estados a b { font-family: var(--serif); font-weight: 300; font-size: 24px; letter-spacing: 0; text-transform: none; color: var(--champagne); line-height: 1; }
-  .capa-estados a i { font-style: normal; opacity: 0.55; letter-spacing: 0.1em; }
+  /* ------------------------------------------------------------------ capa */
+  .capa { padding: clamp(150px, 24vh, 240px) var(--margem) clamp(40px, 7vh, 80px); }
+  .capa h1 { font-size: clamp(54px, 9vw, 132px); letter-spacing: -0.02em; margin: 18px 0 26px; }
+  .capa h1 em { font-style: italic; font-weight: 300; color: var(--texto-medio); }
+  .capa-linha { font-family: var(--serif); font-size: clamp(21px, 2.1vw, 30px); line-height: 1.35; color: var(--texto-medio); max-width: 30ch; }
+  .capa-meta { display: flex; flex-wrap: wrap; gap: 8px clamp(22px, 3vw, 44px); margin-top: clamp(36px, 6vh, 64px); padding-top: 22px; border-top: 1px solid var(--linha-escura); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
 
-  /* --------------------------------------------------------------- secoes -- */
+  /* ----------------------------------------------------------------- secoes */
   section { padding: var(--secao) var(--margem); }
-  .cabeca { display: block; max-width: min(100%, 1060px); margin-bottom: clamp(44px, 7vh, 80px); }
-  .cabeca .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
-  .cabeca h2 { display: inline; font-size: clamp(34px, 5.2vw, 68px); line-height: 1.06; }
-  .cabeca-texto p { display: inline; font-family: var(--serif); font-weight: 300; font-size: clamp(19px, 2.1vw, 30px); line-height: 1.38; color: rgba(245, 242, 236, 0.6); max-width: none; }
-  .cabeca-texto p::before { content: '— '; color: var(--champagne); }
 
-  /* ----------------------------------------------- os estados: cartoes -- */
-  .cartoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .cartao {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: var(--onix-alto);
+  /* as abas dos estados: texto, uma linha embaixo da ativa, nada mais */
+  .abas { display: flex; gap: 0 clamp(26px, 3.4vw, 54px); border-bottom: 1px solid var(--linha-escura); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .abas::-webkit-scrollbar { display: none; }
+  .aba { position: relative; flex: 0 0 auto; padding: 0 0 18px; font-family: var(--serif); font-size: clamp(22px, 2.1vw, 30px); font-weight: 300; line-height: 1; color: var(--texto-fraco); white-space: nowrap; transition: color 0.5s var(--curva); }
+  .aba::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--onix); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--curva); }
+  .aba:hover { color: var(--onix); }
+  .aba[aria-selected="true"] { color: var(--onix); }
+  .aba[aria-selected="true"]::after { transform: scaleX(1); }
+
+  /* o estado escolhido */
+  .painel { padding-top: clamp(44px, 7vh, 84px); }
+  .painel-cabeca { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px clamp(30px, 5vw, 90px); align-items: end; margin-bottom: clamp(44px, 7vh, 84px); }
+  .painel-cabeca h2 { font-size: clamp(44px, 6.4vw, 100px); letter-spacing: -0.02em; line-height: 0.98; }
+  .painel-cabeca h2 small { display: block; font-size: 0.36em; letter-spacing: 0.02em; color: var(--champagne); margin-bottom: 10px; }
+  .painel-cidades { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 27px); line-height: 1.4; color: var(--texto-medio); }
+  .painel-cidades b { font-style: normal; font-weight: 300; color: var(--onix); }
+
+  .cidade + .cidade { margin-top: clamp(44px, 7vh, 80px); }
+  .cidade-nome { display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(18px, 3vh, 28px); padding-bottom: 14px; border-bottom: 1px solid var(--linha-leve); }
+  .cidade-nome h3 { font-size: clamp(24px, 2.4vw, 34px); font-weight: 300; }
+  .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+
+  /* a lista, como o indice de uma revista: em colunas, um nome por linha */
+  .lista { list-style: none; columns: 3; column-gap: clamp(30px, 4vw, 70px); }
+  .lista li { break-inside: avoid; }
+  .nome {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: clamp(22px, 2.6vw, 38px);
-    color: var(--marfim);
-  }
-  .cartao:nth-child(1), .cartao:nth-child(6) { aspect-ratio: auto; }
-  .cartao:nth-child(1) { grid-column: span 2; }
-  .cartao:nth-child(6) { grid-column: span 2; }
-  .cartao img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.45) contrast(1.05) brightness(0.55) saturate(0.7); transition: transform 1.6s var(--curva), filter 1.2s var(--curva); }
-  .cartao:hover img, .cartao:focus-visible img { transform: scale(1.05); filter: grayscale(0.05) contrast(1.02) brightness(0.85) saturate(0.95); }
-  .cartao::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 11, 12, 0.92) 0%, rgba(11, 11, 12, 0.25) 55%, rgba(11, 11, 12, 0.1) 100%); transition: opacity 0.8s var(--curva); }
-  .cartao > * { position: relative; z-index: 2; }
-  .cartao-uf { position: absolute; top: clamp(18px, 2vw, 30px); left: clamp(22px, 2.6vw, 38px); font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 5vw, 76px); line-height: 1; color: var(--champagne); letter-spacing: -0.02em; opacity: 0.9; }
-  .cartao-conta { position: absolute; top: clamp(24px, 2.4vw, 36px); right: clamp(22px, 2.6vw, 38px); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.7); font-variant-numeric: tabular-nums; }
-  .cartao-nome { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 3.6vw, 56px); line-height: 1; letter-spacing: -0.01em; }
-  .cartao:nth-child(1) .cartao-nome, .cartao:nth-child(6) .cartao-nome { font-size: clamp(40px, 5vw, 80px); }
-  .cartao-cidades { margin-top: 12px; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245, 242, 236, 0.62); }
-  .cartao-ver { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); opacity: 0.8; transition: gap 0.5s var(--curva), opacity 0.4s var(--curva); }
-  .cartao:hover .cartao-ver { gap: 16px; opacity: 1; }
-  .cartao-ver svg { width: 16px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1; }
-
-  /* ---------------------------------------------- cada estado: a faixa -- */
-  .estado { padding: 0; }
-  .estado-faixa { position: relative; min-height: clamp(420px, 58vh, 640px); display: grid; grid-template-columns: 1.05fr 1fr; overflow: hidden; background: var(--onix-alto); }
-  .estado-foto { position: relative; overflow: hidden; }
-  .estado-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.25) contrast(1.05) brightness(0.7) saturate(0.85); }
-  .estado-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(19, 19, 22, 0) 55%, rgba(19, 19, 22, 1) 100%), linear-gradient(to top, rgba(19, 19, 22, 0.5), transparent 40%); }
-  .estado-texto { position: relative; display: flex; flex-direction: column; justify-content: center; padding: clamp(44px, 7vh, 90px) var(--margem) clamp(44px, 7vh, 90px) clamp(30px, 4vw, 70px); }
-  .estado-texto .rotulo { margin-bottom: 18px; }
-  .estado-texto h2 { font-size: clamp(48px, 6.4vw, 108px); line-height: 0.96; letter-spacing: -0.02em; margin-bottom: 22px; }
-  .estado-texto h2 b { display: block; font-weight: 300; color: var(--champagne); font-size: 0.42em; letter-spacing: 0.02em; margin-bottom: 10px; }
-  .estado-cidades { display: flex; flex-wrap: wrap; gap: 8px 14px; font-family: var(--serif); font-size: clamp(19px, 1.7vw, 24px); color: rgba(245, 242, 236, 0.72); }
-  .estado-cidades span + span::before { content: '·'; margin-right: 14px; color: var(--champagne); }
-  .estado-conta { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--linha-clara); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.6); font-variant-numeric: tabular-nums; }
-  .estado:nth-of-type(even) .estado-faixa { grid-template-columns: 1fr 1.05fr; }
-  .estado:nth-of-type(even) .estado-foto { order: 2; }
-  .estado:nth-of-type(even) .estado-foto::after { background: linear-gradient(to left, rgba(19, 19, 22, 0) 55%, rgba(19, 19, 22, 1) 100%), linear-gradient(to top, rgba(19, 19, 22, 0.5), transparent 40%); }
-  .estado:nth-of-type(even) .estado-texto { padding: clamp(44px, 7vh, 90px) clamp(30px, 4vw, 70px) clamp(44px, 7vh, 90px) var(--margem); }
-
-  /* -------------------------------------- as cidades e as placas -- */
-  .estado-corpo { padding: clamp(50px, 8vh, 100px) var(--margem) clamp(60px, 9vh, 120px); }
-  .cidade-bloco + .cidade-bloco { margin-top: clamp(50px, 7vh, 90px); }
-  .cidade-nome { display: flex; align-items: baseline; gap: 18px; margin-bottom: clamp(20px, 3vh, 30px); }
-  .cidade-nome h3 { font-size: clamp(28px, 3vw, 44px); font-weight: 300; }
-  .cidade-nome h3::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--champagne); vertical-align: middle; margin-right: 16px; }
-  .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.5); }
-
-  .placas { display: grid; grid-template-columns: repeat(auto-fill, minmax(218px, 1fr)); gap: 6px; }
-  .placa {
-    position: relative;
-    aspect-ratio: 1 / 1.08;
-    overflow: hidden;
-    background: var(--onix-alto);
-    border: 0;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--linha-leve);
     text-align: left;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 22px 22px 20px;
-    color: var(--marfim);
-    isolation: isolate;
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.6vw, 24px);
+    font-weight: 300;
+    line-height: 1.2;
+    transition: color 0.4s var(--curva), padding-left 0.6s var(--curva);
   }
-  .placa img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); filter: grayscale(0.2) brightness(0.55) saturate(0.85); transition: opacity 0.8s var(--curva), transform 1.4s var(--curva); }
-  .placa::before { content: ''; position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 0%, rgba(180, 154, 110, 0.14), transparent 60%); transition: opacity 0.6s var(--curva); }
-  .placa::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 11, 12, 0.9) 0%, rgba(11, 11, 12, 0.2) 60%, transparent 100%); opacity: 0; transition: opacity 0.6s var(--curva); }
-  .placa:hover img, .placa:focus-visible img { opacity: 1; transform: scale(1); }
-  .placa:hover::after, .placa:focus-visible::after { opacity: 1; }
-  .placa:hover::before { opacity: 0; }
-  .placa > * { position: relative; z-index: 2; }
-  .placa-mono { position: absolute; top: 18px; left: 22px; font-family: var(--serif); font-weight: 300; font-size: clamp(46px, 3.6vw, 64px); line-height: 1; color: var(--champagne); letter-spacing: -0.02em; transition: transform 0.8s var(--curva), opacity 0.6s var(--curva); }
-  .placa:hover .placa-mono { transform: translateY(-6px) scale(0.78); transform-origin: left top; opacity: 0.85; }
-  .placa-nome { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 1.7vw, 27px); line-height: 1.1; }
-  .placa-cidade { margin-top: 6px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.5); }
-  .placa-ver { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); opacity: 0.6; transition: opacity 0.4s var(--curva), gap 0.4s var(--curva); }
-  .placa:hover .placa-ver, .placa:focus-visible .placa-ver { opacity: 1; gap: 12px; }
-  .placa-ver svg { width: 14px; height: 8px; fill: none; stroke: currentColor; stroke-width: 1; }
-  .placa-selo { position: absolute; top: 20px; right: 18px; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.45); }
+  .nome:hover, .nome:focus-visible { color: var(--champagne); padding-left: 6px; outline: none; }
+  .nome svg { flex: 0 0 auto; width: 14px; height: 8px; fill: none; stroke: currentColor; stroke-width: 1; opacity: 0; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
+  .nome:hover svg, .nome:focus-visible svg { opacity: 1; transform: none; }
 
-  /* -------------------------------------------------------- o exterior -- */
-  .paises { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .pais { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--onix-alto); display: flex; align-items: flex-end; padding: clamp(22px, 3vw, 40px); }
-  .pais img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.4) contrast(1.05) brightness(0.6) saturate(0.7); transition: transform 1.6s var(--curva), filter 1.2s var(--curva); }
-  .pais:hover img { transform: scale(1.04); filter: grayscale(0.06) contrast(1.02) brightness(0.9) saturate(0.96); }
-  .pais::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 11, 12, 0.9) 0%, rgba(11, 11, 12, 0.1) 50%, transparent 100%); }
-  .pais-corpo { position: relative; z-index: 2; }
-  .pais-nome { display: block; font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4vw, 60px); line-height: 1; }
-  .pais-onde { display: block; margin-top: 8px; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245, 242, 236, 0.62); }
+  .nota-exemplo { margin-top: clamp(40px, 6vh, 70px); font-size: 12px; letter-spacing: 0.04em; color: var(--texto-fraco); }
 
-  /* ---------------------------------------------------------- o projeto -- */
-  .projeto { border: 0; padding: 0; max-width: none; width: 100vw; height: 100vh; max-height: 100vh; background: var(--onix); color: var(--marfim); }
-  .projeto::backdrop { background: rgba(11, 11, 12, 0.9); }
-  .projeto-grade { display: grid; grid-template-columns: 1.25fr 1fr; height: 100vh; }
-  .projeto-foto { position: relative; overflow: hidden; background: var(--onix-alto); }
-  .projeto-foto img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.1) contrast(1.04) brightness(0.9) saturate(0.92); animation: crescer 18s ease-out both; }
-  .projeto-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 65%, rgba(11, 11, 12, 0.75) 100%), linear-gradient(to top, rgba(11, 11, 12, 0.55), transparent 35%); pointer-events: none; }
-  .projeto-selo { position: absolute; z-index: 2; top: 26px; left: 26px; padding: 9px 14px; border: 1px solid rgba(245, 242, 236, 0.3); background: rgba(11, 11, 12, 0.55); backdrop-filter: blur(6px); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; }
-  .projeto-corpo { position: relative; padding: clamp(60px, 9vh, 110px) clamp(30px, 4.5vw, 80px) clamp(32px, 5vh, 60px); display: flex; flex-direction: column; overflow: auto; }
+  /* ------------------------------------------------------------- exterior */
+  .exterior { border-top: 1px solid var(--linha-escura); }
+  .exterior-cabeca { margin-bottom: clamp(36px, 6vh, 64px); }
+  .exterior-cabeca h2 { font-size: clamp(36px, 5vw, 72px); letter-spacing: -0.02em; margin-top: 16px; }
+  .paises { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 3vw, 48px); }
+  .pais { padding-top: 22px; border-top: 1px solid var(--linha-escura); }
+  .pais-nome { display: block; font-family: var(--serif); font-size: clamp(34px, 3.8vw, 56px); line-height: 1; }
+  .pais-onde { display: block; margin-top: 10px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+
+  /* ----------------------------------------------------------- o projeto */
+  .projeto { border: 0; padding: 0; max-width: min(1120px, calc(100vw - 32px)); width: 100%; background: var(--marfim); color: var(--onix); box-shadow: 0 40px 120px rgba(11, 11, 12, 0.3); }
+  .projeto::backdrop { background: rgba(11, 11, 12, 0.55); }
+  .projeto-grade { display: grid; grid-template-columns: 1fr 1fr; min-height: min(620px, 84vh); }
+  .projeto-foto { overflow: hidden; background: var(--travertino); }
+  .projeto-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) contrast(0.96) brightness(1.02); }
+  .projeto-corpo { padding: clamp(36px, 6vh, 64px) clamp(28px, 4vw, 60px) clamp(28px, 4vh, 44px); display: flex; flex-direction: column; }
   .projeto-corpo .rotulo { margin-bottom: 18px; }
-  .projeto-corpo h2 { font-size: clamp(40px, 4.6vw, 76px); line-height: 0.98; letter-spacing: -0.02em; margin-bottom: 18px; }
-  .projeto-lugar { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 25px); color: rgba(245, 242, 236, 0.62); margin-bottom: 26px; }
-  .projeto-texto { color: rgba(245, 242, 236, 0.8); font-size: 15.5px; margin-bottom: 30px; }
-  .projeto-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; padding: 24px 0; border-top: 1px solid var(--linha-clara); border-bottom: 1px solid var(--linha-clara); margin-bottom: auto; }
-  .projeto-ficha dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 242, 236, 0.5); margin-bottom: 4px; }
-  .projeto-ficha dd { font-family: var(--serif); font-size: 21px; line-height: 1.15; }
-  .projeto-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 32px; margin-top: 34px; }
-  .projeto-fechar { position: absolute; top: 22px; right: 22px; z-index: 3; width: 46px; height: 46px; border: 1px solid rgba(245, 242, 236, 0.3); border-radius: 50%; background: rgba(11, 11, 12, 0.6); color: var(--marfim); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.4s var(--curva), border-color 0.4s var(--curva); }
-  .projeto-fechar:hover { background: var(--marfim); color: var(--onix); border-color: var(--marfim); }
-  .projeto-fechar svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; }
+  .projeto-corpo h2 { font-size: clamp(34px, 3.8vw, 58px); letter-spacing: -0.02em; margin-bottom: 14px; }
+  .projeto-lugar { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.6vw, 22px); color: var(--texto-medio); margin-bottom: 22px; }
+  .projeto-texto { font-size: 15px; color: var(--texto-medio); margin-bottom: 28px; }
+  .projeto-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; padding: 22px 0; border-top: 1px solid var(--linha-escura); border-bottom: 1px solid var(--linha-escura); margin-bottom: auto; }
+  .projeto-ficha dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); margin-bottom: 4px; }
+  .projeto-ficha dd { font-family: var(--serif); font-size: 20px; line-height: 1.15; }
+  .projeto-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 32px; margin-top: 30px; }
+  .projeto-fechar { position: absolute; top: 16px; right: 16px; z-index: 3; width: 42px; height: 42px; border: 1px solid var(--linha-escura); border-radius: 50%; background: var(--marfim); display: flex; align-items: center; justify-content: center; transition: background 0.4s var(--curva), color 0.4s var(--curva); }
+  .projeto-fechar:hover { background: var(--onix); color: var(--marfim); }
+  .projeto-fechar svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.2; }
   .projeto-nav { display: flex; gap: 10px; margin-left: auto; }
-  .projeto-nav button { width: 44px; height: 44px; border: 1px solid var(--linha-clara); border-radius: 50%; background: none; color: var(--champagne); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.4s var(--curva); }
-  .projeto-nav button:hover { border-color: var(--champagne); }
+  .projeto-nav button { width: 42px; height: 42px; border: 1px solid var(--linha-escura); border-radius: 50%; color: var(--onix); display: flex; align-items: center; justify-content: center; transition: border-color 0.4s var(--curva), color 0.4s var(--curva); }
+  .projeto-nav button:hover { border-color: var(--champagne); color: var(--champagne); }
   .projeto-nav svg { width: 16px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1; }
 
-  /* ---------------------------------------------------------------- rodape -- */
-  footer { border-top: 1px solid var(--linha-clara); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(34px, 5vh, 56px) var(--margem); }
-  footer img { height: 40px; width: auto; opacity: 0.8; }
-  .rodape-texto { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 242, 236, 0.4); }
+  /* --------------------------------------------------------------- rodape */
+  footer { border-top: 1px solid var(--linha-escura); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(34px, 5vh, 56px) var(--margem); }
+  footer img { height: 40px; width: auto; }
+  .rodape-texto { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-fraco); }
 
-  /* ------------------------------------------------------- telas estreitas -- */
+  /* ------------------------------------------------------ telas estreitas */
   @media (max-width: 1100px) {
-    .cabeca-texto p { font-size: clamp(17px, 4.4vw, 22px); }
-    .projeto-grade { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
-    .projeto { overflow: auto; }
-    .projeto-foto { aspect-ratio: 16 / 11; }
-    .projeto-foto img { animation: none; }
-    .projeto-foto::after { background: linear-gradient(to top, rgba(11, 11, 12, 0.85) 0%, transparent 50%); }
-    .projeto-corpo { padding-top: 34px; overflow: visible; }
+    .lista { columns: 2; }
+    .projeto-grade { grid-template-columns: 1fr; min-height: 0; }
+    .projeto { max-height: calc(100vh - 32px); overflow: auto; }
+    .projeto-foto { aspect-ratio: 16 / 10; }
   }
   @media (max-width: 900px) {
     .marca-nome { display: none; }
-    .capa { min-height: 88vh; }
-    .capa-estados a { padding-right: 18px; }
-    .cartoes { grid-template-columns: 1fr 1fr; gap: 4px; }
-    .cartao, .cartao:nth-child(1), .cartao:nth-child(6) { aspect-ratio: 4 / 5; grid-column: auto; }
-    .cartao:nth-child(1) { grid-column: span 2; aspect-ratio: 16 / 11; }
-    .cartao:nth-child(1) .cartao-nome, .cartao:nth-child(6) .cartao-nome { font-size: clamp(30px, 8vw, 44px); }
-    .cartao-nome { font-size: clamp(24px, 6.5vw, 34px); }
-    .cartao-cidades { display: none; }
-    /* nos cartoes estreitos a contagem batia na sigla: desce para baixo do nome */
-    .cartao:not(:nth-child(1)) .cartao-conta { position: static; display: block; margin-top: 8px; font-size: 10px; }
-    .cartao:not(:nth-child(1)) .cartao-ver { margin-top: 14px; }
-    .estado-faixa, .estado:nth-of-type(even) .estado-faixa { grid-template-columns: 1fr; min-height: 0; }
-    .estado-foto, .estado:nth-of-type(even) .estado-foto { order: 0; aspect-ratio: 16 / 10; }
-    .estado-foto::after, .estado:nth-of-type(even) .estado-foto::after { background: linear-gradient(to top, rgba(19, 19, 22, 1) 0%, rgba(19, 19, 22, 0.1) 45%, transparent 100%); }
-    .estado-texto, .estado:nth-of-type(even) .estado-texto { padding: 0 var(--margem) clamp(36px, 6vh, 56px); margin-top: -40px; }
-    .estado-texto h2 { font-size: clamp(42px, 12vw, 64px); }
-    .placas { grid-template-columns: 1fr 1fr; gap: 4px; }
-    .placa { aspect-ratio: 1 / 1; padding: 16px 16px 14px; }
-    .placa-mono { font-size: 38px; top: 14px; left: 16px; }
-    .placa-nome { font-size: 19px; }
-    .placa-selo { display: none; }
-    .paises { grid-template-columns: 1fr; gap: 4px; }
-    .pais { aspect-ratio: 16 / 10; }
+    .capa { padding-top: clamp(120px, 20vh, 170px); }
+    .painel-cabeca { grid-template-columns: 1fr; }
+    .lista { columns: 1; }
+    .paises { grid-template-columns: 1fr; gap: 18px; }
+    .abas { margin: 0 calc(-1 * var(--margem)); padding: 0 var(--margem); }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .capa-foto img, .projeto-foto img { animation: none; }
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
@@ -293,7 +214,7 @@
 
 <header class="topo" id="topo">
   <a class="marca" href="index.html" aria-label="AMGlobal Realty, ir para o início">
-    <img src="marca.svg" alt="AMGlobal Realty" width="200" height="176">
+    <img src="marca-onix.svg" alt="AMGlobal Realty" width="200" height="176">
     <span class="marca-nome">AMGlobal Realty</span>
   </a>
   <div class="topo-direita">
@@ -307,46 +228,34 @@
 
 <main>
   <section class="capa">
-    <!-- as fotos capa-1/2/3 tem texto gravado na imagem (sao as artes da home): aqui
-         entram as das opcoes de abertura, limpas -->
-    <div class="capa-foto"><img src="fotos/opcao-17.webp" alt="" fetchpriority="high" decoding="async"></div>
-    <div class="capa-corpo">
-      <span class="rotulo">AMGlobal Realty</span>
-      <h1>Parcerias</h1>
-      <p class="capa-linha">As incorporadoras e construtoras com quem atuamos, por estado e cidade no Brasil, e os mercados onde a AMGlobal chega fora do país.</p>
-      <nav class="capa-estados" id="capaEstados" aria-label="Ir para um estado"></nav>
-    </div>
+    <span class="rotulo">AMGlobal Realty · Parcerias</span>
+    <h1>Com quem <em>construímos.</em></h1>
+    <p class="capa-linha">As incorporadoras e construtoras com quem atuamos, por estado e cidade no Brasil, e os mercados fora do país.</p>
+    <div class="capa-meta" id="capaMeta"></div>
   </section>
 
   <section id="brasil">
-    <div class="cabeca">
-      <span class="rotulo">Brasil · <span id="capaMeta"></span></span>
-      <div><h2>Onde atuamos.</h2> <div class="cabeca-texto"><p>Escolha um estado. Em cada cidade, as parceiras; em cada parceira, o seu projeto.</p></div></div>
-    </div>
-    <div class="cartoes" id="cartoes"></div>
+    <div class="abas" id="abas" role="tablist" aria-label="Estados"></div>
+    <div class="painel" id="painel" role="tabpanel"></div>
+    <p class="nota-exemplo">Os projetos abertos ao clicar são exemplos ilustrativos, até cada parceira enviar o material oficial.</p>
   </section>
 
-  <div id="estados"></div>
-
-  <section id="exterior">
-    <div class="cabeca">
+  <section class="exterior" id="exterior">
+    <div class="exterior-cabeca">
       <span class="rotulo">Exterior</span>
-      <div><h2>Parcerias fora do país.</h2> <div class="cabeca-texto"><p>Os mercados onde a visão global da AMGlobal se traduz em parceiros locais.</p></div></div>
+      <h2>Fora do país.</h2>
     </div>
     <div class="paises" id="paises"></div>
   </section>
 </main>
 
-<!-- o projeto da parceira, em tela cheia -->
+<!-- o projeto da parceira, num painel claro -->
 <dialog class="projeto" id="projeto" aria-labelledby="projetoTitulo">
   <button type="button" class="projeto-fechar" id="projetoFechar" aria-label="Fechar">
     <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg>
   </button>
   <div class="projeto-grade">
-    <div class="projeto-foto">
-      <span class="projeto-selo" id="projetoSelo">Projeto de exemplo</span>
-      <img id="projetoImagem" src="" alt="">
-    </div>
+    <div class="projeto-foto"><img id="projetoImagem" src="" alt=""></div>
     <div class="projeto-corpo">
       <span class="rotulo" id="projetoParceira"></span>
       <h2 id="projetoTitulo"></h2>
@@ -365,7 +274,7 @@
 </dialog>
 
 <footer>
-  <img src="marca.svg" alt="AMGlobal Realty" width="200" height="176">
+  <img src="marca-onix.svg" alt="AMGlobal Realty" width="200" height="176">
   <span class="rodape-texto">Imóveis extraordinários. Visão global.</span>
   <span class="rodape-texto">CRECI a informar &middot; 2026</span>
 </footer>
@@ -379,36 +288,34 @@
   /* ===================================================================== A LISTA
      A lista da cliente (15/10/2026), do jeito que ela mandou. Para incluir ou
      tirar uma construtora, e so mexer aqui. "Brava" e a Praia Brava (Itajai);
-     no Parana ela listou tres cidades e uma lista so de construtoras.
-     `foto` e a imagem do cartao e da faixa do estado (as das opcoes de abertura,
-     sem texto gravado). */
+     no Parana ela listou tres cidades e uma lista so de construtoras. */
   var PARCERIAS = [
-    { uf: 'RS', nome: 'Rio Grande do Sul', foto: 'fotos/opcao-18.webp', cidades: [
+    { uf: 'RS', nome: 'Rio Grande do Sul', cidades: [
       { nome: 'Porto Alegre', construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
     ] },
-    { uf: 'SC', nome: 'Santa Catarina', foto: 'fotos/opcao-17.webp', cidades: [
+    { uf: 'SC', nome: 'Santa Catarina', cidades: [
       { nome: 'Florianópolis', construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
       { nome: 'Balneário Camboriú', construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
       { nome: 'Praia Brava', construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
     ] },
-    { uf: 'PR', nome: 'Paraná', foto: 'fotos/opcao-11.webp', cidades: [
+    { uf: 'PR', nome: 'Paraná', cidades: [
       { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
     ] },
-    { uf: 'SP', nome: 'São Paulo', foto: 'fotos/opcao-14.webp', cidades: [
+    { uf: 'SP', nome: 'São Paulo', cidades: [
       { nome: 'São Paulo, capital', curta: 'São Paulo', construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
     ] },
-    { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/opcao-15.webp', cidades: [
+    { uf: 'RJ', nome: 'Rio de Janeiro', cidades: [
       { nome: 'Rio de Janeiro', construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
     ] },
-    { uf: 'GO', nome: 'Goiás', foto: 'fotos/opcao-10.webp', cidades: [
+    { uf: 'GO', nome: 'Goiás', cidades: [
       { nome: 'Goiânia', construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
     ] }
   ];
 
   var EXTERIOR = [
-    { nome: 'Flórida', onde: 'Estados Unidos', foto: 'fotos/opcao-14.webp' },
-    { nome: 'Portugal', onde: 'Europa', foto: 'fotos/opcao-18.webp' },
-    { nome: 'Dubai', onde: 'Emirados Árabes Unidos', foto: 'fotos/opcao-19.webp' }
+    { nome: 'Flórida', onde: 'Estados Unidos' },
+    { nome: 'Portugal', onde: 'Europa' },
+    { nome: 'Dubai', onde: 'Emirados Árabes Unidos' }
   ];
 
   /* Os projetos REAIS entram aqui, pelo nome exato da construtora, e passam na
@@ -418,12 +325,12 @@
 
   /* ---------------------------------------------- os projetos de exemplo
      Gerados pelo nome da construtora, sempre iguais para o mesmo nome (a soma
-     das letras escolhe), e marcados como exemplo na placa e na janela. */
+     das letras escolhe), e marcados como exemplo no painel. As fotos sao as das
+     opcoes de abertura (as capa-N tem texto gravado na imagem). */
   var NOMES = ['Residencial Horizonte', 'Jardins do Parque', 'Torre Mirante', 'Casa do Lago', 'Praça das Águas', 'Alameda Reserva', 'Vista Brava', 'Boulevard Central', 'Quinta das Palmeiras', 'Edifício Aurora'];
   var TIPOLOGIAS = ['3 e 4 suítes', '2 a 4 dormitórios', 'Coberturas duplex', 'Casas em condomínio', 'Studios e 2 suítes', 'Apartamentos garden'];
   var AREAS = ['142 a 310 m²', '98 a 220 m²', '260 a 480 m²', '180 a 390 m²', '68 a 150 m²', '120 a 260 m²'];
   var ENTREGAS = ['2027', '2028', 'Pronto para morar', '2029', 'Em obras'];
-  // sem texto gravado (as capa-N tem): a cobertura com piscina, a casa com o globo, o terraco, a sala, a piscina com o mapa
   var FOTOS = ['fotos/opcao-14.webp', 'fotos/opcao-18.webp', 'fotos/opcao-11.webp', 'fotos/opcao-15.webp', 'fotos/opcao-17.webp'];
 
   function soma(texto) { var s = 0; for (var i = 0; i < texto.length; i++) s = (s + texto.charCodeAt(i) * (i + 1)) % 9973; return s; }
@@ -437,88 +344,76 @@
       tipologia: TIPOLOGIAS[n % TIPOLOGIAS.length],
       area: AREAS[(n >> 2) % AREAS.length],
       entrega: ENTREGAS[(n >> 4) % ENTREGAS.length],
-      foto: FOTOS[n % FOTOS.length],
-      selo: 'Projeto de exemplo'
+      foto: FOTOS[n % FOTOS.length]
     };
   }
   function projetoDe(construtora, cidade) { return PROJETOS[construtora] || projetoExemplo(construtora, cidade); }
-  // o monograma da placa: as iniciais das duas primeiras palavras com letra ("A. Yoshii Engenharia" -> "AY")
-  function monograma(nome) {
-    var partes = String(nome).split(/[\s.&]+/).filter(function (p) { return /^[A-Za-zÀ-ÿ]/.test(p); });
-    return partes.slice(0, 2).map(function (p) { return p.charAt(0).toUpperCase(); }).join('') || nome.charAt(0).toUpperCase();
-  }
 
   // ----------------------------------------------------------------- utilidades
   var $ = function (id) { return document.getElementById(id); };
   function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function plural(n, um, varios) { return n + ' ' + (n === 1 ? um : varios); }
   function total(e) { return e.cidades.reduce(function (s, c) { return s + c.construtoras.length; }, 0); }
+  function cidadesDe(e) { return e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []); }
 
-  // ----------------------------------------------------------- capa e cabeca
+  // ----------------------------------------------------------------- a capa
   (function () {
     var cidades = 0, parceiras = 0;
     PARCERIAS.forEach(function (e) { e.cidades.forEach(function (c) { cidades += (c.quantas || 1); parceiras += c.construtoras.length; }); });
-    $('capaMeta').textContent = plural(PARCERIAS.length, 'estado', 'estados') + ' · ' + plural(cidades, 'cidade', 'cidades') + ' · ' + plural(parceiras, 'parceira', 'parceiras');
-    $('capaEstados').innerHTML = PARCERIAS.map(function (e) {
-      return '<a href="#' + e.uf.toLowerCase() + '"><b>' + e.uf + '</b>' + esc(e.nome) + '<i>' + total(e) + '</i></a>';
-    }).join('');
+    $('capaMeta').innerHTML = '<span>' + plural(PARCERIAS.length, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceira', 'parceiras') + '</span><span>' + plural(EXTERIOR.length, 'país', 'países') + '</span>';
   })();
 
-  // ------------------------------------------------------- os cartoes
-  $('cartoes').innerHTML = PARCERIAS.map(function (e) {
-    var cidades = e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []);
-    return '<a class="cartao" href="#' + e.uf.toLowerCase() + '" data-uf="' + e.uf + '">'
-      + '<img src="' + esc(e.foto) + '" alt="" loading="lazy" decoding="async">'
-      + '<span class="cartao-uf" aria-hidden="true">' + e.uf + '</span>'
-      + '<span class="cartao-conta">' + plural(total(e), 'parceira', 'parceiras') + '</span>'
-      + '<span class="cartao-nome">' + esc(e.nome) + '</span>'
-      + '<span class="cartao-cidades">' + cidades.map(esc).join(' · ') + '</span>'
-      + '<span class="cartao-ver">Ver as parceiras <svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></span>'
-      + '</a>';
+  // ------------------------------------------------------- as abas e o painel
+  var ativo = 0;
+  $('abas').innerHTML = PARCERIAS.map(function (e, i) {
+    return '<button type="button" class="aba" role="tab" id="aba-' + e.uf.toLowerCase() + '" data-i="' + i + '" aria-selected="false" aria-controls="painel">' + esc(e.nome) + '</button>';
   }).join('');
 
-  // ------------------------------------------------------- os estados
-  $('estados').innerHTML = PARCERIAS.map(function (e, ei) {
-    var cidades = e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []);
-    var corpo = e.cidades.map(function (c, ci) {
-      return '<div class="cidade-bloco">'
-        + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + plural(c.construtoras.length, 'parceira', 'parceiras') + '</span></div>'
-        + '<div class="placas">'
-        + c.construtoras.map(function (n, ni) {
-          var p = projetoDe(n, c);
-          return '<button type="button" class="placa" data-e="' + ei + '" data-c="' + ci + '" data-n="' + ni + '" aria-label="' + esc(n) + ': abrir o projeto">'
-            + '<img src="' + esc(p.foto) + '" alt="" loading="lazy" decoding="async">'
-            + '<span class="placa-mono" aria-hidden="true">' + esc(monograma(n)) + '</span>'
-            + (p.exemplo ? '<span class="placa-selo">Exemplo</span>' : '<span class="placa-selo">' + esc(p.selo || 'Projeto') + '</span>')
-            + '<span class="placa-nome">' + esc(n) + '</span>'
-            + '<span class="placa-cidade">' + esc(c.curta || c.nome) + '</span>'
-            + '<span class="placa-ver">Ver o projeto <svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></span>'
-            + '</button>';
-        }).join('')
-        + '</div></div>';
-    }).join('');
-    return '<section class="estado" id="' + e.uf.toLowerCase() + '">'
-      + '<div class="estado-faixa">'
-      +   '<div class="estado-foto"><img src="' + esc(e.foto) + '" alt="" loading="lazy" decoding="async"></div>'
-      +   '<div class="estado-texto">'
-      +     '<span class="rotulo">Brasil · ' + e.uf + '</span>'
-      +     '<h2><b>' + e.uf + '</b>' + esc(e.nome) + '</h2>'
-      +     '<div class="estado-cidades">' + cidades.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>'
-      +     '<div class="estado-conta">' + plural(total(e), 'parceira', 'parceiras') + ' · ' + plural(cidades.length, 'cidade', 'cidades') + '</div>'
-      +   '</div>'
+  function mostrarEstado(i, rolar) {
+    ativo = i;
+    var e = PARCERIAS[i];
+    document.querySelectorAll('.aba').forEach(function (a, k) { a.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    var cidades = cidadesDe(e);
+    $('painel').innerHTML = ''
+      + '<div class="painel-cabeca">'
+      +   '<h2><small>' + e.uf + '</small>' + esc(e.nome) + '</h2>'
+      +   '<p class="painel-cidades"><b>' + plural(total(e), 'parceira', 'parceiras') + '</b> em ' + cidades.map(esc).join(', ').replace(/, ([^,]*)$/, ' e $1') + '.</p>'
       + '</div>'
-      + '<div class="estado-corpo">' + corpo + '</div>'
-      + '</section>';
-  }).join('');
-
-  $('estados').addEventListener('click', function (ev) {
-    var bt = ev.target.closest('.placa');
-    if (bt) abrirProjeto(Number(bt.getAttribute('data-e')), Number(bt.getAttribute('data-c')), Number(bt.getAttribute('data-n')), bt);
+      + e.cidades.map(function (c, ci) {
+        return '<div class="cidade">'
+          + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + plural(c.construtoras.length, 'parceira', 'parceiras') + '</span></div>'
+          + '<ol class="lista">'
+          + c.construtoras.map(function (n, ni) {
+            return '<li><button type="button" class="nome" data-c="' + ci + '" data-n="' + ni + '">' + esc(n) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
+          }).join('')
+          + '</ol></div>';
+      }).join('');
+    var ativa = document.getElementById('aba-' + e.uf.toLowerCase());
+    if (ativa && ativa.scrollIntoView) ativa.scrollIntoView({ block: 'nearest', inline: 'center' });
+    if (rolar) $('brasil').scrollIntoView({ block: 'start' });
+  }
+  $('abas').addEventListener('click', function (ev) {
+    var a = ev.target.closest('.aba');
+    if (!a) return;
+    var i = Number(a.getAttribute('data-i'));
+    mostrarEstado(i, false);
+    window.history.replaceState(null, '', '#' + PARCERIAS[i].uf.toLowerCase());
   });
+  $('painel').addEventListener('click', function (ev) {
+    var bt = ev.target.closest('.nome');
+    if (bt) abrirProjeto(ativo, Number(bt.getAttribute('data-c')), Number(bt.getAttribute('data-n')), bt);
+  });
+  // chegou com #sc: a aba de Santa Catarina ja vem escolhida, e a pagina desce ate ela
+  (function () {
+    var h = (window.location.hash || '').slice(1).toLowerCase();
+    var i = PARCERIAS.findIndex(function (e) { return e.uf.toLowerCase() === h; });
+    if (i >= 0) { mostrarEstado(i, false); setTimeout(function () { $('brasil').scrollIntoView({ block: 'start' }); }, 50); }
+    else mostrarEstado(0, false);
+  })();
 
   // --------------------------------------------------------------- o exterior
   $('paises').innerHTML = EXTERIOR.map(function (p) {
-    return '<div class="pais"><img src="' + esc(p.foto) + '" alt="" loading="lazy" decoding="async"><div class="pais-corpo"><span class="pais-nome">' + esc(p.nome) + '</span><span class="pais-onde">' + esc(p.onde) + '</span></div></div>';
+    return '<div class="pais"><span class="pais-nome">' + esc(p.nome) + '</span><span class="pais-onde">' + esc(p.onde) + '</span></div>';
   }).join('');
 
   // --------------------------------------------------------------- o projeto
@@ -528,10 +423,9 @@
     var estado = PARCERIAS[e], cidade = estado.cidades[c], construtora = cidade.construtoras[n];
     var p = projetoDe(construtora, cidade);
     atual = { e: e, c: c, n: n, botao: botao || (atual && atual.botao) };
-    $('projetoSelo').textContent = p.selo || (p.exemplo ? 'Projeto de exemplo' : 'Projeto');
     $('projetoImagem').src = p.foto;
     $('projetoImagem').alt = p.nome;
-    $('projetoParceira').textContent = construtora + (p.exemplo ? ' · exemplo ilustrativo' : '');
+    $('projetoParceira').textContent = construtora + (p.exemplo ? ' · projeto de exemplo' : (p.selo ? ' · ' + p.selo : ''));
     $('projetoTitulo').textContent = p.nome;
     $('projetoLugar').textContent = p.bairro + ', ' + estado.nome;
     $('projetoTexto').textContent = p.texto;
@@ -545,7 +439,7 @@
     if (!atual) return;
     var lista = PARCERIAS[atual.e].cidades[atual.c].construtoras;
     var n = (atual.n + passo + lista.length) % lista.length;
-    abrirProjeto(atual.e, atual.c, n, document.querySelector('.placa[data-e="' + atual.e + '"][data-c="' + atual.c + '"][data-n="' + n + '"]'));
+    abrirProjeto(atual.e, atual.c, n, document.querySelector('.nome[data-c="' + atual.c + '"][data-n="' + n + '"]'));
   }
   $('projetoAnterior').addEventListener('click', function () { andar(-1); });
   $('projetoProxima').addEventListener('click', function () { andar(1); });
