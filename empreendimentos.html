@@ -259,6 +259,14 @@
   @media (max-width: 900px) {
     .marca-nome { display: none; }
     .capa { padding-top: clamp(120px, 20vh, 170px); }
+    .capa h1 { font-size: clamp(38px, 11.5vw, 54px); }   /* "Empreendimentos" cabia cortado em 390 e 360px */
+    /* alvos de toque: botoes com texto pequeno ganham altura (>= 38px) */
+    .botao { padding-top: 9px; }
+    .trilha button { padding: 11px 2px; margin: -6px 0; }
+    /* miniaturas da galeria: fixas em 76px e rolando de lado, em vez de 6 espremidas (28px de altura) */
+    .galeria-minis { grid-auto-columns: 76px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding-bottom: 2px; }
+    .galeria-minis::-webkit-scrollbar { display: none; }
+    .galeria-minis button { scroll-snap-align: start; }
     .nivel-cabeca { grid-template-columns: 1fr; }
     .faixa-foto { height: clamp(160px, 44vw, 240px); margin-top: 0; }
     .escolhas-com-foto { grid-template-columns: 1fr; }
