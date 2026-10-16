@@ -154,14 +154,13 @@
   .escolhas-foto figcaption b { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; }
   .escolhas-foto figcaption span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
 
-  /* o cabecalho do estado com a foto da cidade */
-  .nivel-cabeca.com-foto { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); align-items: end; }
-  .nivel-cabeca.com-foto > div p { margin-top: 18px; }
-  .cabeca-foto { margin: 0; }
-  .cabeca-foto .quadro { aspect-ratio: 3 / 2; overflow: hidden; background: var(--travertino); }
-  .cabeca-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.86) contrast(0.98); animation: foto-assenta 7s linear both; }
+  /* a foto da cidade no estado: uma faixa panoramica na largura toda, entre o titulo e as cidades
+     (a foto ao lado do titulo ficou "deslocada, solta", ela, 16/10) */
+  .faixa-foto { position: relative; margin: calc(-1 * clamp(10px, 2vh, 26px)) 0 clamp(40px, 6vh, 70px); height: clamp(200px, 28vw, 380px); overflow: hidden; background: var(--travertino); }
+  .faixa-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; filter: saturate(0.86) contrast(0.98); animation: foto-assenta 7s linear both; }
   @keyframes foto-assenta { from { transform: scale(1.05); } to { transform: scale(1); } }
-  .cabeca-foto figcaption { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-top: 10px; }
+  .faixa-foto::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(to top, rgba(11, 11, 12, 0.5), rgba(11, 11, 12, 0)); pointer-events: none; }
+  .faixa-foto figcaption { position: absolute; left: 20px; bottom: 16px; z-index: 1; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--marfim); }
 
   /* as cidades e as parceiras */
   .cidade + .cidade { margin-top: clamp(44px, 7vh, 80px); }
@@ -260,8 +259,8 @@
   @media (max-width: 900px) {
     .marca-nome { display: none; }
     .capa { padding-top: clamp(120px, 20vh, 170px); }
-    .nivel-cabeca, .nivel-cabeca.com-foto { grid-template-columns: 1fr; }
-    .cabeca-foto .quadro { aspect-ratio: 16 / 9; }
+    .nivel-cabeca { grid-template-columns: 1fr; }
+    .faixa-foto { height: clamp(160px, 44vw, 240px); margin-top: 0; }
     .escolhas-com-foto { grid-template-columns: 1fr; }
     .escolhas-foto { display: none; }
     .escolha, .escolhas-com-foto .escolha { grid-template-columns: 64px 1fr; gap: 4px 14px; align-items: center; }
@@ -500,12 +499,12 @@
   }
   function nivelEstado() {
     var p = PAISES[onde.p], e = p.estados[onde.e], cidades = cidadesDe(e), parceiras = totalEstado(e);
-    // a foto no cabecalho so onde ja ha parceiras (ela, 16/10: "os que nao temos parceria ainda,
+    // a faixa de foto so onde ja ha parceiras (ela, 16/10: "os que nao temos parceria ainda,
     // quando abre o pais, nao precisa aparecer foto")
     var comFoto = !!e.foto && parceiras > 0;
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca' + (comFoto ? ' com-foto' : '') + '"><div><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
-      + (comFoto ? '<figure class="cabeca-foto"><div class="quadro"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"></div><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '') + '</div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '')
       + e.cidades.map(function (c, ci) {
         return '<div class="cidade">'
           + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceira', 'parceiras') : 'em breve') + '</span></div>'
