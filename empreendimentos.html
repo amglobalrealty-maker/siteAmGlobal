@@ -149,26 +149,30 @@
   .nome:hover svg, .nome:focus-visible svg { opacity: 1; transform: none; }
   .em-breve { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 26px); color: var(--texto-medio); padding: 8px 0 20px; }
 
-  /* a parceira: os empreendimentos a esquerda, o aberto a direita */
-  .parceira { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(30px, 4vw, 70px); align-items: start; }
-  .empreendimentos { list-style: none; border-top: 1px solid var(--linha-escura); }
+  /* a parceira: os empreendimentos numa fileira de cartoes no alto; embaixo, o aberto
+     com a galeria na largura toda e a ficha em duas colunas (sem coluna sobrando;
+     ela, 16/10: "nao gostei desse espaco a esquerda em branco") */
   .empreendimentos-rotulo { margin-bottom: 14px; }
-  .empreendimento { display: grid; grid-template-columns: 78px 1fr auto; gap: 4px 16px; align-items: center; width: 100%; padding: 16px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; transition: padding-left 0.6s var(--curva); }
-  .empreendimento:hover, .empreendimento[aria-pressed="true"] { padding-left: 10px; }
-  .empreendimento-foto { grid-column: 1; grid-row: 1 / span 2; display: block; width: 78px; height: 58px; overflow: hidden; background: var(--travertino); }
-  .empreendimento-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); opacity: 0.85; transition: opacity 0.4s var(--curva); }
-  .empreendimento[aria-pressed="true"] .empreendimento-foto img, .empreendimento:hover .empreendimento-foto img { opacity: 1; }
-  .empreendimento-nome { grid-column: 2; align-self: end; font-family: var(--serif); font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; transition: color 0.4s var(--curva); }
-  .empreendimento[aria-pressed="true"] .empreendimento-nome { color: var(--champagne); }
-  .empreendimento-meta { grid-column: 2; align-self: start; font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
-  .empreendimento-entrega { grid-column: 3; grid-row: 1 / span 2; align-self: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
+  .empreendimentos { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(14px, 2vw, 28px); margin-bottom: clamp(30px, 5vh, 52px); }
+  .empreendimento { display: grid; gap: 5px; width: 100%; padding-bottom: 14px; border-bottom: 1px solid var(--linha-leve); text-align: left; align-content: start; transition: border-color 0.5s var(--curva); }
+  .empreendimento[aria-pressed="true"] { border-bottom-color: var(--champagne); }
+  .empreendimento-foto { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); margin-bottom: 8px; }
+  .empreendimento-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); opacity: 0.78; transition: opacity 0.5s var(--curva), transform 1.4s var(--curva); }
+  .empreendimento[aria-pressed="true"] .empreendimento-foto img, .empreendimento:hover .empreendimento-foto img { opacity: 1; transform: scale(1.04); }
+  .empreendimento-nome { font-family: var(--serif); font-size: clamp(21px, 1.6vw, 26px); line-height: 1.1; transition: color 0.4s var(--curva); }
+  .empreendimento[aria-pressed="true"] .empreendimento-nome, .empreendimento:hover .empreendimento-nome { color: var(--champagne); }
+  .empreendimento-meta { font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
+  .empreendimento-entrega { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
 
   .aberto { animation: aparece 0.6s var(--curva) both; }
-  .aberto-corpo { padding-top: clamp(22px, 3.4vh, 36px); }
+  .aberto-corpo { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 72px); align-items: start; padding-top: clamp(24px, 3.6vh, 40px); }
+  .aberto-lado .aberto-bloco:first-child { margin-top: 0; }
+  .aberto-corpo .aberto-acoes { grid-column: 1 / -1; }
 
   /* a galeria em slides: trilho que desliza por --i; setas, contador e miniaturas */
   .galeria { --i: 0; }
-  .galeria-palco { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); touch-action: pan-y; }
+  /* altura calculada (nao aspect-ratio + max-height: o limite de altura virava limite de largura) */
+  .galeria-palco { position: relative; height: clamp(260px, 52vw, 70vh); overflow: hidden; background: var(--travertino); touch-action: pan-y; }
   .galeria-trilho { display: flex; height: 100%; transform: translateX(calc(var(--i) * -100%)); transition: transform 0.9s var(--curva); }
   .galeria-slide { flex: 0 0 100%; position: relative; margin: 0; height: 100%; }
   .galeria-slide img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82) contrast(0.98); -webkit-user-drag: none; user-select: none; }
@@ -222,8 +226,8 @@
   /* ------------------------------------------------------ telas estreitas */
   @media (max-width: 1100px) {
     .lista { columns: 2; }
-    .parceira { grid-template-columns: 1fr; }
-    .parceira .aberto { order: -1; }   /* no celular, o empreendimento aberto vem antes da lista */
+    .aberto-corpo { grid-template-columns: 1fr; }
+    .aberto-lado .aberto-bloco:first-child { margin-top: 28px; }
     .ficha { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 900px) {
@@ -234,9 +238,10 @@
     .escolha-num, .escolha-seta { display: none; }
     .escolha-nome { font-size: clamp(26px, 7vw, 34px); }
     .lista { columns: 1; }
-    .empreendimento { grid-template-columns: 64px 1fr; }
-    .empreendimento-foto { width: 64px; height: 48px; grid-row: 1 / span 3; }
-    .empreendimento-entrega { grid-column: 2; grid-row: auto; }
+    /* no celular os cartoes viram uma faixa que rola de lado, de borda a borda */
+    .empreendimentos { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 68%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); padding: 0 var(--margem) 6px; }
+    .empreendimentos::-webkit-scrollbar { display: none; }
+    .empreendimento { scroll-snap-align: start; }
     .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
     .galeria-seta { width: 38px; height: 38px; }
   }
@@ -513,16 +518,19 @@
     return '<dl class="ficha">' + itens.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') + '</dl>';
   }
   function aberto(em, parceira, c, e) {
+    var lado = (em.lazer && em.lazer.length ? '<div class="aberto-bloco"><span class="rotulo">Lazer e conveniência</span><ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
+      + (em.diferenciais && em.diferenciais.length ? '<div class="aberto-bloco"><span class="rotulo">Diferenciais</span><ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
+      + (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da parceira.</small>' : '') + '</p></div>' : '');
     return galeria(em)
       + '<div class="aberto-corpo">'
-      +   '<span class="rotulo">' + esc(parceira) + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
-      +   '<h3>' + esc(em.nome) + '</h3>'
-      +   '<p class="aberto-lugar">' + esc(em.bairro) + ', ' + esc(e.nome) + '</p>'
-      +   (em.texto ? '<p class="aberto-texto">' + esc(em.texto) + '</p>' : '')
-      +   ficha(em)
-      +   (em.lazer && em.lazer.length ? '<div class="aberto-bloco"><span class="rotulo">Lazer e conveniência</span><ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
-      +   (em.diferenciais && em.diferenciais.length ? '<div class="aberto-bloco"><span class="rotulo">Diferenciais</span><ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
-      +   (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da parceira.</small>' : '') + '</p></div>' : '')
+      +   '<div class="aberto-principal">'
+      +     '<span class="rotulo">' + esc(parceira) + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
+      +     '<h3>' + esc(em.nome) + '</h3>'
+      +     '<p class="aberto-lugar">' + esc(em.bairro) + ', ' + esc(e.nome) + '</p>'
+      +     (em.texto ? '<p class="aberto-texto">' + esc(em.texto) + '</p>' : '')
+      +     ficha(em)
+      +   '</div>'
+      +   (lado ? '<div class="aberto-lado">' + lado + '</div>' : '')
       +   '<div class="aberto-acoes"><a class="botao" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + parceira + ' (' + (c.curta || c.nome) + '), no site da AMGlobal e quero saber mais.') + '">Falar com um consultor</a>'
       +   '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceira anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceira"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div></div>'
       + '</div>';
