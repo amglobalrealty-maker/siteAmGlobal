@@ -25,13 +25,22 @@
        2. os estados do pais escolhido;
        3. as cidades do estado, com as parceiras em lista;
        4. a parceira: os empreendimentos dela, com o PRIMEIRO JA ABERTO na
-          propria pagina (foto, ficha, WhatsApp); clicar em outro troca.
+          propria pagina; clicar em outro troca. O empreendimento aberto tem
+          GALERIA EM SLIDES (setas, miniaturas, contador, deslize no celular,
+          troca sozinha a cada 6 s ate a pessoa mexer), ficha (status da obra,
+          entrega, tipologia, area, torres, unidades, vagas, pe-direito,
+          valores sob consulta), lazer, diferenciais, endereco e WhatsApp.
+          Pedido dela em 16/10: "fotos de empreendimentos ficticios, galeria
+          de slide, mais infos, esta muito basico".
      Fundo claro, estilo revista, pouca coisa de cada vez.
 
      A LISTA MORA EM `PAISES`, no script no fim deste arquivo. Os empreendimentos
      sao DE EXEMPLO, gerados pelo nome da parceira (`empreendimentosExemplo`),
      marcados como tal; os reais entram em `EMPREENDIMENTOS[nome da parceira]`
-     (uma lista) e passam na frente.
+     (uma lista) e passam na frente. As fotos de exemplo estao em
+     `fotos/exemplo/<categoria>-<1..4>.webp` (fachada, piscina, living, suite,
+     cozinha, varanda; fotos livres do Pexels, 16/10/2026), e cada
+     empreendimento monta a galeria com uma de cada categoria.
      --------------------------------------------------------------------------- -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,17 +153,52 @@
   .parceira { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(30px, 4vw, 70px); align-items: start; }
   .empreendimentos { list-style: none; border-top: 1px solid var(--linha-escura); }
   .empreendimentos-rotulo { margin-bottom: 14px; }
-  .empreendimento { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; width: 100%; padding: 18px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; transition: padding-left 0.6s var(--curva); }
+  .empreendimento { display: grid; grid-template-columns: 78px 1fr auto; gap: 4px 16px; align-items: center; width: 100%; padding: 16px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; transition: padding-left 0.6s var(--curva); }
   .empreendimento:hover, .empreendimento[aria-pressed="true"] { padding-left: 10px; }
-  .empreendimento-nome { font-family: var(--serif); font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; transition: color 0.4s var(--curva); }
+  .empreendimento-foto { grid-column: 1; grid-row: 1 / span 2; display: block; width: 78px; height: 58px; overflow: hidden; background: var(--travertino); }
+  .empreendimento-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); opacity: 0.85; transition: opacity 0.4s var(--curva); }
+  .empreendimento[aria-pressed="true"] .empreendimento-foto img, .empreendimento:hover .empreendimento-foto img { opacity: 1; }
+  .empreendimento-nome { grid-column: 2; align-self: end; font-family: var(--serif); font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; transition: color 0.4s var(--curva); }
   .empreendimento[aria-pressed="true"] .empreendimento-nome { color: var(--champagne); }
-  .empreendimento-meta { grid-column: 1; font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
-  .empreendimento-entrega { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
+  .empreendimento-meta { grid-column: 2; align-self: start; font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
+  .empreendimento-entrega { grid-column: 3; grid-row: 1 / span 2; align-self: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
 
   .aberto { animation: aparece 0.6s var(--curva) both; }
-  .aberto-foto { aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); }
-  .aberto-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) contrast(0.96) brightness(1.02); }
   .aberto-corpo { padding-top: clamp(22px, 3.4vh, 36px); }
+
+  /* a galeria em slides: trilho que desliza por --i; setas, contador e miniaturas */
+  .galeria { --i: 0; }
+  .galeria-palco { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); touch-action: pan-y; }
+  .galeria-trilho { display: flex; height: 100%; transform: translateX(calc(var(--i) * -100%)); transition: transform 0.9s var(--curva); }
+  .galeria-slide { flex: 0 0 100%; position: relative; margin: 0; height: 100%; }
+  .galeria-slide img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82) contrast(0.98); -webkit-user-drag: none; user-select: none; }
+  .galeria-slide figcaption { position: absolute; left: 18px; bottom: 16px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--marfim); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55); }
+  .galeria-conta { position: absolute; right: 18px; bottom: 15px; font-size: 10.5px; letter-spacing: 0.2em; color: var(--marfim); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55); font-variant-numeric: tabular-nums; }
+  .galeria-seta { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(245, 242, 236, 0.88); color: var(--onix); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s var(--curva), background 0.4s var(--curva); }
+  .galeria-seta.ant { left: 14px; }
+  .galeria-seta.prox { right: 14px; }
+  .galeria-palco:hover .galeria-seta, .galeria-seta:focus-visible { opacity: 1; }
+  .galeria-seta:hover { background: var(--marfim); }
+  .galeria-seta svg { width: 16px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.2; }
+  .galeria-minis { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; margin-top: 8px; }
+  .galeria-minis button { display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); opacity: 0.5; transition: opacity 0.4s var(--curva); }
+  .galeria-minis button[aria-pressed="true"], .galeria-minis button:hover { opacity: 1; }
+  .galeria-minis button[aria-pressed="true"] { outline: 1px solid var(--champagne); outline-offset: 2px; }
+  .galeria-minis img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); }
+  @media (hover: none) { .galeria-seta { opacity: 1; } }
+
+  /* os blocos da ficha: lazer em etiquetas, diferenciais com fio, endereco */
+  .aberto-bloco { margin-top: 28px; }
+  .aberto-bloco .rotulo { margin-bottom: 12px; }
+  .lazer { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .lazer li { font-size: 12.5px; letter-spacing: 0.02em; padding: 7px 12px; border: 1px solid var(--linha-escura); color: var(--grafite); }
+  .diferenciais { list-style: none; display: grid; gap: 8px; }
+  .diferenciais li { position: relative; padding-left: 22px; font-size: 15px; color: var(--texto-medio); }
+  .diferenciais li::before { content: ''; position: absolute; left: 0; top: 0.78em; width: 10px; height: 1px; background: var(--champagne); }
+  .endereco { font-family: var(--serif); font-size: 19px; line-height: 1.3; }
+  .endereco small { display: block; font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; color: var(--texto-fraco); margin-top: 4px; }
+  .barra { display: block; height: 2px; max-width: 120px; background: var(--linha-escura); margin-top: 8px; }
+  .barra i { display: block; height: 100%; background: var(--champagne); }
   .aberto-corpo .rotulo { margin-bottom: 12px; }
   .aberto-corpo h3 { font-size: clamp(32px, 3.4vw, 52px); letter-spacing: -0.02em; margin-bottom: 10px; }
   .aberto-lugar { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.6vw, 22px); color: var(--texto-medio); margin-bottom: 20px; }
@@ -190,8 +234,11 @@
     .escolha-num, .escolha-seta { display: none; }
     .escolha-nome { font-size: clamp(26px, 7vw, 34px); }
     .lista { columns: 1; }
-    .empreendimento { grid-template-columns: 1fr; }
-    .empreendimento-entrega { grid-column: 1; grid-row: auto; }
+    .empreendimento { grid-template-columns: 64px 1fr; }
+    .empreendimento-foto { width: 64px; height: 48px; grid-row: 1 / span 3; }
+    .empreendimento-entrega { grid-column: 2; grid-row: auto; }
+    .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
+    .galeria-seta { width: 38px; height: 38px; }
   }
   @media (max-width: 600px) {
     .voltar span { display: none; }   /* so a seta: o botao de consultor precisa caber numa linha */
@@ -289,8 +336,11 @@
     ] }
   ];
 
-  /* Os empreendimentos REAIS entram aqui, pelo nome exato da parceira: uma lista
-     de { nome, bairro, texto, tipologia, area, entrega, foto }. Passa na frente do exemplo. */
+  /* Os empreendimentos REAIS entram aqui, pelo nome exato da parceira: uma lista de
+     { nome, bairro, texto, status, obraPct, entrega, tipologia, area, torres, unidades,
+       vagas, peDireito, valores, lazer: [], diferenciais: [], endereco,
+       fotos: [{ src, legenda }] }. So nome, tipologia, area e entrega sao obrigatorios;
+     o resto aparece quando existe. Passa na frente do exemplo. */
   var EMPREENDIMENTOS = {};
 
   /* ---------------------------------------- os empreendimentos de exemplo
@@ -300,29 +350,56 @@
   var NOMES = ['Residencial Horizonte', 'Jardins do Parque', 'Torre Mirante', 'Casa do Lago', 'Praça das Águas', 'Alameda Reserva', 'Vista Brava', 'Boulevard Central', 'Quinta das Palmeiras', 'Edifício Aurora', 'Reserva do Bosque', 'Mirante da Baía'];
   var TIPOLOGIAS = ['3 e 4 suítes', '2 a 4 dormitórios', 'Coberturas duplex', 'Casas em condomínio', 'Studios e 2 suítes', 'Apartamentos garden'];
   var AREAS = ['142 a 310 m²', '98 a 220 m²', '260 a 480 m²', '180 a 390 m²', '68 a 150 m²', '120 a 260 m²'];
-  var ENTREGAS = ['2027', '2028', 'Pronto para morar', '2029', 'Em obras'];
-  var FOTOS = ['fotos/opcao-14.webp', 'fotos/opcao-18.webp', 'fotos/opcao-11.webp', 'fotos/opcao-15.webp', 'fotos/opcao-17.webp'];
+  var ENTREGAS = ['2027', '2028', 'Pronto para morar', '2029', 'Dezembro de 2027'];
+  var CATEGORIAS = [{ id: 'fachada', nome: 'Fachada' }, { id: 'piscina', nome: 'Piscina e lazer' }, { id: 'living', nome: 'Living' }, { id: 'suite', nome: 'Suíte master' }, { id: 'cozinha', nome: 'Cozinha' }, { id: 'varanda', nome: 'Varanda e vista' }];
+  var LAZER = ['Piscina com raia de 25 m', 'Piscina aquecida coberta', 'Academia com vista', 'Spa com sauna seca e úmida', 'Rooftop com lounge e fire pit', 'Salão de festas gourmet', 'Espaço kids', 'Brinquedoteca', 'Coworking', 'Quadra de beach tennis', 'Pet place', 'Sala de cinema', 'Adega coletiva', 'Praça central com paisagismo', 'Bicicletário', 'Salão de jogos', 'Quadra poliesportiva', 'Lavanderia compartilhada'];
+  var DIFERENCIAIS = ['Elevador com acesso privativo às unidades', 'Vista permanente, sem prédios à frente', 'Fachada ativa, com café no térreo', 'Infraestrutura para carro elétrico em todas as vagas', 'Automação residencial de série', 'Gerador para áreas comuns e unidades', 'Energia solar nas áreas comuns', 'Reúso de água da chuva', 'Plantas flexíveis, com opção de 3 ou 4 suítes', 'Varandas gourmet com churrasqueira', 'Portaria com reconhecimento facial', 'Paisagismo com espécies nativas'];
+  var RUAS = ['Avenida das Palmeiras', 'Rua do Mirante', 'Alameda dos Jacarandás', 'Rua da Enseada', 'Avenida Beira-Rio', 'Rua das Acácias', 'Alameda do Bosque', 'Rua do Horizonte'];
+  var PE_DIREITO = ['2,80 m', '3,00 m', '3,20 m no living', '2,90 m'];
 
   function soma(texto) { var s = 0; for (var i = 0; i < texto.length; i++) s = (s + texto.charCodeAt(i) * (i + 1)) % 9973; return s; }
+  function pegar(lista, m, quantos) { var saida = []; for (var j = 0; j < quantos; j++) saida.push(lista[(m + j * 7) % lista.length]); return saida; }
+  function milhar(n) { return String(n).replace(/(\d)(?=(\d{3})$)/, '$1.'); }
   function empreendimentosExemplo(parceira, cidade) {
-    var n = soma(parceira), quantos = 2 + (n % 2), saida = [];
+    var n = soma(parceira), quantos = 3 + (n % 2), saida = [];
     for (var k = 0; k < quantos; k++) {
       var m = n + k * 7;
       var bairro = cidade.lista ? cidade.lista[k % cidade.lista.length] : (cidade.curta || cidade.nome);
+      // a area anda junto com a tipologia (mesmo indice nas duas listas), para nao sair studio de 400 m2
+      var tipologia = TIPOLOGIAS[m % TIPOLOGIAS.length], area = AREAS[m % TIPOLOGIAS.length], casas = /Casas/.test(tipologia), studios = /Studios/.test(tipologia), coberturas = /Coberturas/.test(tipologia);
+      var entrega = ENTREGAS[(m >> 4) % ENTREGAS.length];
+      var status, obraPct = 0;
+      if (entrega === 'Pronto para morar') status = 'Pronto';
+      else if (entrega === '2029') status = 'Lançamento';
+      else { obraPct = /2027/.test(entrega) ? 55 + (m % 30) : 20 + (m % 35); status = 'Em obras · ' + obraPct + '% concluída'; }
+      var torres = 1 + ((m >> 1) % 2), andares = 12 + ((m >> 3) % 21), porAndar = coberturas ? 1 : studios ? 4 + (m % 3) : 2 + (m % 2);
+      var unidades = casas ? 24 + ((m >> 2) % 25) : torres * andares * porAndar;
+      var lazer = pegar(LAZER, m, 7);
       saida.push({
         exemplo: true,
         nome: NOMES[m % NOMES.length],
         bairro: bairro,
-        texto: 'Exemplo ilustrativo de um lançamento da ' + parceira + ' em ' + bairro + ': poucas unidades por andar, lazer completo e vista livre. Quando a parceira enviar o material oficial, o empreendimento real entra aqui, com fotos, plantas e valores.',
-        tipologia: TIPOLOGIAS[m % TIPOLOGIAS.length],
-        area: AREAS[(m >> 2) % AREAS.length],
-        entrega: ENTREGAS[(m >> 4) % ENTREGAS.length],
-        foto: FOTOS[m % FOTOS.length]
+        texto: 'Exemplo ilustrativo de um lançamento da ' + parceira + ' em ' + bairro + ': ' + tipologia.toLowerCase() + ' de ' + area + (casas ? ', em ' + unidades + ' lotes' : ', ' + porAndar + ' por andar, em ' + (torres === 1 ? 'torre única' : 'duas torres') + ' de ' + andares + ' andares') + '. Lazer no térreo e na cobertura, com ' + lazer[0].toLowerCase() + ' e ' + lazer[1].toLowerCase() + '. Quando a parceira enviar o material oficial, o empreendimento real entra aqui, com fotos, plantas e valores.',
+        status: status,
+        obraPct: obraPct,
+        entrega: entrega,
+        tipologia: tipologia,
+        area: area,
+        torres: casas ? '' : (torres === 1 ? 'Torre única de ' + andares + ' andares' : '2 torres de ' + andares + ' andares'),
+        unidades: casas ? unidades + ' casas em lotes de ' + (450 + (m % 5) * 90) + ' m²' : unidades + ' unidades, ' + porAndar + ' por andar',
+        vagas: casas ? '4 vagas cobertas' : studios ? '1 vaga' : coberturas ? '4 vagas e depósito' : '2 a 3 vagas',
+        peDireito: PE_DIREITO[m % PE_DIREITO.length],
+        valores: 'Sob consulta',
+        lazer: lazer,
+        diferenciais: pegar(DIFERENCIAIS, m >> 1, 3),
+        endereco: RUAS[m % RUAS.length] + ', ' + milhar(100 + (m * 37) % 2400) + ' · ' + bairro,
+        fotos: CATEGORIAS.map(function (cat, i) { return { src: 'fotos/exemplo/' + cat.id + '-' + (1 + ((m >> i) % 4)) + '.webp', legenda: cat.nome }; })
       });
     }
     return saida;
   }
   function empreendimentosDe(parceira, cidade) { return EMPREENDIMENTOS[parceira] || empreendimentosExemplo(parceira, cidade); }
+  function fotosDe(em) { return em.fotos && em.fotos.length ? em.fotos : (em.foto ? [{ src: em.foto, legenda: '' }] : []); }
 
   // ----------------------------------------------------------------- utilidades
   var $ = function (id) { return document.getElementById(id); };
@@ -396,7 +473,9 @@
       + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small>' + esc(parceira) + '</h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. O primeiro já está aberto; toque em outro para trocar.</p></div>'
       + '<div class="parceira">'
       +   '<div><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span><ol class="empreendimentos">' + lista.map(function (x, k) {
+            var capa = fotosDe(x)[0];
             return '<li><button type="button" class="empreendimento" data-k="' + k + '" aria-pressed="' + (k === onde.k ? 'true' : 'false') + '">'
+              + '<span class="empreendimento-foto">' + (capa ? '<img src="' + esc(capa.src) + '" alt="">' : '') + '</span>'
               + '<span class="empreendimento-nome">' + esc(x.nome) + '</span>'
               + '<span class="empreendimento-meta">' + esc(x.bairro) + ' · ' + esc(x.tipologia) + ' · ' + esc(x.area) + '</span>'
               + '<span class="empreendimento-entrega">' + esc(x.entrega) + '</span>'
@@ -405,14 +484,45 @@
       +   '<article class="aberto" id="aberto">' + aberto(em, parceira, c, e) + '</article>'
       + '</div></div>';
   }
+  function galeria(em) {
+    var fotos = fotosDe(em);
+    if (!fotos.length) return '';
+    var varias = fotos.length > 1;
+    return '<div class="galeria" id="galeria" data-n="' + fotos.length + '" data-i="0" tabindex="0" aria-label="Fotos de ' + esc(em.nome) + '">'
+      +   '<div class="galeria-palco"><div class="galeria-trilho">' + fotos.map(function (f) {
+            return '<figure class="galeria-slide"><img src="' + esc(f.src) + '" alt="' + esc(em.nome + (f.legenda ? ': ' + f.legenda : '')) + '" draggable="false">' + (f.legenda ? '<figcaption>' + esc(f.legenda) + '</figcaption>' : '') + '</figure>';
+          }).join('') + '</div>'
+      +     (varias ? '<button type="button" class="galeria-seta ant" data-galeria="-1" aria-label="Foto anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" class="galeria-seta prox" data-galeria="1" aria-label="Próxima foto"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button><span class="galeria-conta"><b id="galeriaAtual">1</b> / ' + fotos.length + '</span>' : '')
+      +   '</div>'
+      +   (varias ? '<ol class="galeria-minis">' + fotos.map(function (f, i) {
+            return '<li><button type="button" data-foto="' + i + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '" aria-label="' + esc(f.legenda || ('Foto ' + (i + 1))) + '"><img src="' + esc(f.src) + '" alt="" draggable="false"></button></li>';
+          }).join('') + '</ol>' : '')
+      + '</div>';
+  }
+  function ficha(em) {
+    var itens = [];
+    if (em.status) itens.push(['Status', esc(em.status) + (em.obraPct ? '<span class="barra"><i style="width:' + Math.min(100, Number(em.obraPct)) + '%"></i></span>' : '')]);
+    itens.push(['Entrega', esc(em.entrega)]);
+    itens.push(['Tipologia', esc(em.tipologia)]);
+    itens.push(['Área privativa', esc(em.area)]);
+    if (em.torres) itens.push(['Torres e andares', esc(em.torres)]);
+    if (em.unidades) itens.push(['Unidades', esc(em.unidades)]);
+    if (em.vagas) itens.push(['Vagas', esc(em.vagas)]);
+    if (em.peDireito) itens.push(['Pé-direito', esc(em.peDireito)]);
+    if (em.valores) itens.push(['Valores', esc(em.valores)]);
+    return '<dl class="ficha">' + itens.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') + '</dl>';
+  }
   function aberto(em, parceira, c, e) {
-    return '<div class="aberto-foto"><img src="' + esc(em.foto) + '" alt="' + esc(em.nome) + '"></div>'
+    return galeria(em)
       + '<div class="aberto-corpo">'
       +   '<span class="rotulo">' + esc(parceira) + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
       +   '<h3>' + esc(em.nome) + '</h3>'
       +   '<p class="aberto-lugar">' + esc(em.bairro) + ', ' + esc(e.nome) + '</p>'
       +   (em.texto ? '<p class="aberto-texto">' + esc(em.texto) + '</p>' : '')
-      +   '<dl class="ficha"><div><dt>Tipologia</dt><dd>' + esc(em.tipologia) + '</dd></div><div><dt>Área</dt><dd>' + esc(em.area) + '</dd></div><div><dt>Entrega</dt><dd>' + esc(em.entrega) + '</dd></div></dl>'
+      +   ficha(em)
+      +   (em.lazer && em.lazer.length ? '<div class="aberto-bloco"><span class="rotulo">Lazer e conveniência</span><ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
+      +   (em.diferenciais && em.diferenciais.length ? '<div class="aberto-bloco"><span class="rotulo">Diferenciais</span><ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
+      +   (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da parceira.</small>' : '') + '</p></div>' : '')
       +   '<div class="aberto-acoes"><a class="botao" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + parceira + ' (' + (c.curta || c.nome) + '), no site da AMGlobal e quero saber mais.') + '">Falar com um consultor</a>'
       +   '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceira anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceira"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div></div>'
       + '</div>';
@@ -422,6 +532,7 @@
     trilha();
     var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
     $('nivel').innerHTML = html;
+    if (onde.n !== null) montarGaleria();
     $('notaExemplo').hidden = onde.n === null;
     var hash = onde.p === null ? '' : '#' + PAISES[onde.p].id
       + (onde.e !== null ? '/' + PAISES[onde.p].estados[onde.e].uf.toLowerCase() : '')
@@ -446,6 +557,8 @@
     if ((b = ev.target.closest('.escolha[data-estado]'))) { onde.e = Number(b.getAttribute('data-estado')); onde.c = null; onde.n = null; onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.nome'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); return; }
+    if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
+    if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
     if ((b = ev.target.closest('[data-parceira]'))) {
       var lista = PAISES[onde.p].estados[onde.e].cidades[onde.c].construtoras;
       onde.n = (onde.n + Number(b.getAttribute('data-parceira')) + lista.length) % lista.length; onde.k = 0; mostrar(false); return;
@@ -459,7 +572,53 @@
     var el = $('aberto');
     el.innerHTML = aberto(lista[onde.k], parceira, c, e);
     el.classList.remove('aberto'); void el.offsetWidth; el.classList.add('aberto');
+    montarGaleria();
     window.history.replaceState(null, '', '#' + p.id + '/' + e.uf.toLowerCase() + '/' + onde.c + '/' + onde.n + (onde.k ? '/' + onde.k : ''));
+  }
+
+  /* ------------------------------------------------------------ a galeria
+     O trilho desliza pela variavel --i. Setas e miniaturas (cliques tratados no
+     listener de #nivel), deslize com o dedo (pointerdown/up no palco), setas do
+     teclado com a galeria em foco, e troca sozinha a cada 6 s ate a pessoa
+     mexer (ou parar o mouse em cima); nao troca sozinha com "reduzir movimento". */
+  var galeriaTimer = null, galeriaManual = false;
+  function galeriaIndice() { var g = $('galeria'); return g ? Number(g.getAttribute('data-i')) || 0 : 0; }
+  function galeriaIr(k, manual) {
+    var g = $('galeria'); if (!g) return;
+    var n = Number(g.getAttribute('data-n')) || 1;
+    k = ((k % n) + n) % n;
+    g.style.setProperty('--i', k);
+    g.setAttribute('data-i', k);
+    var atual = $('galeriaAtual'); if (atual) atual.textContent = k + 1;
+    g.querySelectorAll('.galeria-minis button').forEach(function (b, j) { b.setAttribute('aria-pressed', j === k ? 'true' : 'false'); });
+    if (manual) { galeriaManual = true; galeriaParar(); }
+  }
+  function galeriaParar() { if (galeriaTimer) { clearInterval(galeriaTimer); galeriaTimer = null; } }
+  function galeriaSozinha() {
+    galeriaParar();
+    if (galeriaManual || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    galeriaTimer = setInterval(function () { galeriaIr(galeriaIndice() + 1, false); }, 6000);
+  }
+  function montarGaleria() {
+    galeriaParar(); galeriaManual = false;
+    var g = $('galeria'); if (!g) return;
+    g.style.setProperty('--i', 0); g.setAttribute('data-i', 0);
+    if ((Number(g.getAttribute('data-n')) || 1) < 2) return;
+    var palco = g.querySelector('.galeria-palco'), x0 = null;
+    palco.addEventListener('pointerdown', function (ev) { x0 = ev.clientX; });
+    palco.addEventListener('pointerup', function (ev) {
+      if (x0 === null) return;
+      var dx = ev.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) galeriaIr(galeriaIndice() + (dx < 0 ? 1 : -1), true);
+    });
+    palco.addEventListener('pointercancel', function () { x0 = null; });
+    g.addEventListener('keydown', function (ev) {
+      if (ev.key === 'ArrowRight') { galeriaIr(galeriaIndice() + 1, true); ev.preventDefault(); }
+      else if (ev.key === 'ArrowLeft') { galeriaIr(galeriaIndice() - 1, true); ev.preventDefault(); }
+    });
+    g.addEventListener('pointerenter', galeriaParar);
+    g.addEventListener('pointerleave', galeriaSozinha);
+    galeriaSozinha();
   }
 
   // chegou com #brasil/sc/1/1 (pais/estado/cidade/parceira[/empreendimento]) ou o antigo #sc
