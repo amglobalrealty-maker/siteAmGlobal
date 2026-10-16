@@ -500,9 +500,12 @@
   }
   function nivelEstado() {
     var p = PAISES[onde.p], e = p.estados[onde.e], cidades = cidadesDe(e), parceiras = totalEstado(e);
+    // a foto no cabecalho so onde ja ha parceiras (ela, 16/10: "os que nao temos parceria ainda,
+    // quando abre o pais, nao precisa aparecer foto")
+    var comFoto = !!e.foto && parceiras > 0;
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca' + (e.foto ? ' com-foto' : '') + '"><div><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
-      + (e.foto ? '<figure class="cabeca-foto"><div class="quadro"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"></div><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '') + '</div>'
+      + '<div class="nivel-cabeca' + (comFoto ? ' com-foto' : '') + '"><div><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + (comFoto ? '<figure class="cabeca-foto"><div class="quadro"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"></div><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '') + '</div>'
       + e.cidades.map(function (c, ci) {
         return '<div class="cidade">'
           + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceira', 'parceiras') : 'em breve') + '</span></div>'
