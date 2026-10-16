@@ -135,6 +135,27 @@
   .escolha-onde { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
   .escolha-seta { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; opacity: 0.5; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
   .escolha:hover .escolha-seta { opacity: 1; transform: none; }
+  .escolha-mini { display: none; }
+
+  /* a lista com um painel de foto ao lado: a foto troca conforme o mouse passa pelas linhas
+     (ela, 16/10: "to achando essa pagina muito simples"); no celular, miniatura em cada linha */
+  .escolhas-com-foto { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(30px, 5vw, 90px); align-items: start; }
+  .escolhas-foto { position: sticky; top: 104px; margin: 0; }
+  .escolhas-foto .quadro { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--travertino); }
+  .escolhas-foto .quadro img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); filter: saturate(0.86) contrast(0.98); transition: opacity 0.9s var(--curva), transform 7s linear; }
+  .escolhas-foto .quadro img.atual { opacity: 1; transform: scale(1); }
+  .escolhas-foto figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; padding-top: 14px; }
+  .escolhas-foto figcaption b { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; }
+  .escolhas-foto figcaption span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+
+  /* o cabecalho do estado com a foto da cidade */
+  .nivel-cabeca.com-foto { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); align-items: end; }
+  .nivel-cabeca.com-foto > div p { margin-top: 18px; }
+  .cabeca-foto { margin: 0; }
+  .cabeca-foto .quadro { aspect-ratio: 3 / 2; overflow: hidden; background: var(--travertino); }
+  .cabeca-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.86) contrast(0.98); animation: foto-assenta 7s linear both; }
+  @keyframes foto-assenta { from { transform: scale(1.05); } to { transform: scale(1); } }
+  .cabeca-foto figcaption { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-top: 10px; }
 
   /* as cidades e as parceiras */
   .cidade + .cidade { margin-top: clamp(44px, 7vh, 80px); }
@@ -233,10 +254,16 @@
   @media (max-width: 900px) {
     .marca-nome { display: none; }
     .capa { padding-top: clamp(120px, 20vh, 170px); }
-    .nivel-cabeca { grid-template-columns: 1fr; }
-    .escolha { grid-template-columns: 1fr auto; }
+    .nivel-cabeca, .nivel-cabeca.com-foto { grid-template-columns: 1fr; }
+    .cabeca-foto .quadro { aspect-ratio: 16 / 9; }
+    .escolhas-com-foto { grid-template-columns: 1fr; }
+    .escolhas-foto { display: none; }
+    .escolha { grid-template-columns: 64px 1fr; gap: 4px 14px; align-items: center; }
     .escolha-num, .escolha-seta { display: none; }
-    .escolha-nome { font-size: clamp(26px, 7vw, 34px); }
+    .escolha-mini { display: block; grid-row: 1 / span 2; width: 64px; height: 48px; overflow: hidden; background: var(--travertino); }
+    .escolha-mini img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.86); }
+    .escolha-nome { grid-column: 2; font-size: clamp(24px, 6.4vw, 32px); }
+    .escolha-onde { grid-column: 2; white-space: normal; }
     .lista { columns: 1; }
     /* no celular os cartoes viram uma faixa que rola de lado, de borda a borda */
     .empreendimentos { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 68%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); padding: 0 var(--margem) 6px; }
@@ -307,37 +334,37 @@
      ela deu os lugares (Florida, Portugal, Dubai); as parceiras de la entram
      quando ela mandar (cidade com `construtoras: []` mostra "a anunciar"). */
   var BRASIL = [
-    { uf: 'RS', nome: 'Rio Grande do Sul', cidades: [
+    { uf: 'RS', nome: 'Rio Grande do Sul', foto: 'fotos/lugares/rs.webp', cidades: [
       { nome: 'Porto Alegre', construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
     ] },
-    { uf: 'SC', nome: 'Santa Catarina', cidades: [
+    { uf: 'SC', nome: 'Santa Catarina', foto: 'fotos/lugares/sc.webp', cidades: [
       { nome: 'Florianópolis', construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
       { nome: 'Balneário Camboriú', construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
       { nome: 'Praia Brava', construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
     ] },
-    { uf: 'PR', nome: 'Paraná', cidades: [
+    { uf: 'PR', nome: 'Paraná', foto: 'fotos/lugares/pr.webp', cidades: [
       { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
     ] },
-    { uf: 'SP', nome: 'São Paulo', cidades: [
+    { uf: 'SP', nome: 'São Paulo', foto: 'fotos/lugares/sp.webp', cidades: [
       { nome: 'São Paulo, capital', curta: 'São Paulo', construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
     ] },
-    { uf: 'RJ', nome: 'Rio de Janeiro', cidades: [
+    { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/lugares/rj.webp', cidades: [
       { nome: 'Rio de Janeiro', construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
     ] },
-    { uf: 'GO', nome: 'Goiás', cidades: [
+    { uf: 'GO', nome: 'Goiás', foto: 'fotos/lugares/go.webp', cidades: [
       { nome: 'Goiânia', construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
     ] }
   ];
   var PAISES = [
-    { id: 'brasil', nome: 'Brasil', estados: BRASIL },
-    { id: 'eua', nome: 'Estados Unidos', estados: [
-      { uf: 'FL', nome: 'Flórida', cidades: [{ nome: 'Miami', construtoras: [] }, { nome: 'Orlando', construtoras: [] }] }
+    { id: 'brasil', nome: 'Brasil', foto: 'fotos/lugares/brasil.webp', estados: BRASIL },
+    { id: 'eua', nome: 'Estados Unidos', foto: 'fotos/lugares/eua.webp', estados: [
+      { uf: 'FL', nome: 'Flórida', foto: 'fotos/lugares/eua.webp', cidades: [{ nome: 'Miami', construtoras: [] }, { nome: 'Orlando', construtoras: [] }] }
     ] },
-    { id: 'portugal', nome: 'Portugal', estados: [
-      { uf: 'PT', nome: 'Lisboa', cidades: [{ nome: 'Lisboa', construtoras: [] }, { nome: 'Cascais', construtoras: [] }] }
+    { id: 'portugal', nome: 'Portugal', foto: 'fotos/lugares/portugal.webp', estados: [
+      { uf: 'PT', nome: 'Lisboa', foto: 'fotos/lugares/portugal.webp', cidades: [{ nome: 'Lisboa', construtoras: [] }, { nome: 'Cascais', construtoras: [] }] }
     ] },
-    { id: 'emirados', nome: 'Emirados Árabes Unidos', estados: [
-      { uf: 'AE', nome: 'Dubai', cidades: [{ nome: 'Dubai', construtoras: [] }] }
+    { id: 'emirados', nome: 'Emirados Árabes Unidos', foto: 'fotos/lugares/emirados.webp', estados: [
+      { uf: 'AE', nome: 'Dubai', foto: 'fotos/lugares/emirados.webp', cidades: [{ nome: 'Dubai', construtoras: [] }] }
     ] }
   ];
 
@@ -413,7 +440,13 @@
   function totalEstado(e) { return e.cidades.reduce(function (s, c) { return s + c.construtoras.length; }, 0); }
   function totalPais(p) { return p.estados.reduce(function (s, e) { return s + totalEstado(e); }, 0); }
   function cidadesDe(e) { return e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []); }
-  function listaEm(nomes) { return nomes.map(esc).join(', ').replace(/, ([^,]*)$/, ' e $1'); }
+  function listaTexto(nomes) { return nomes.join(', ').replace(/, ([^,]*)$/, ' e $1'); }
+  function listaEm(nomes) { return esc(listaTexto(nomes)); }
+  function miniatura(foto) { return foto ? '<span class="escolha-mini"><img src="' + esc(foto) + '" alt="" loading="lazy"></span>' : '<span class="escolha-mini"></span>'; }
+  function painelFoto(primeiro) {
+    return '<figure class="escolhas-foto" id="escolhasFoto"><div class="quadro"><img id="fotoA" class="atual" src="' + esc(primeiro.foto) + '" alt=""><img id="fotoB" alt=""></div>'
+      + '<figcaption><b id="fotoTitulo">' + esc(primeiro.titulo) + '</b><span id="fotoSub">' + esc(primeiro.sub) + '</span></figcaption></figure>';
+  }
   var SETA = '<svg viewBox="0 0 20 10" aria-hidden="true"><path d="M1 5h18M14 1l5 4-5 4"/></svg>';
 
   // ----------------------------------------------------------------- a capa
@@ -437,27 +470,33 @@
     $('trilha').innerHTML = partes.join('');
   }
 
+  function subPais(p) {
+    var n = totalPais(p), cidades = p.estados.reduce(function (s, e) { return s + e.cidades.reduce(function (t, c) { return t + (c.quantas || 1); }, 0); }, 0);
+    return n ? plural(n, 'parceira', 'parceiras') + ' · ' + plural(p.estados.length, 'estado', 'estados') + ' · ' + plural(cidades, 'cidade', 'cidades') : 'Parceiras a anunciar · ' + listaTexto(p.estados.reduce(function (s, e) { return s.concat(cidadesDe(e)); }, []));
+  }
+  function subEstado(e) { var n = totalEstado(e); return (n ? plural(n, 'parceira', 'parceiras') : 'A anunciar') + ' · ' + listaTexto(cidadesDe(e)); }
   function nivelPaises() {
     return '<div class="nivel">'
       + '<div class="nivel-cabeca"><h2><small>Onde atuamos</small>Escolha o país.</h2><p>As parceiras estão em <b>' + plural(PAISES.length, 'país', 'países') + '</b>. Dentro de cada um, os estados, as cidades e as parceiras.</p></div>'
-      + '<ol class="escolhas">' + PAISES.map(function (p, i) {
+      + '<div class="escolhas-com-foto"><ol class="escolhas">' + PAISES.map(function (p, i) {
         var n = totalPais(p);
-        return '<li><button type="button" class="escolha" data-pais="' + i + '"><span class="escolha-num">0' + (i + 1) + '</span><span class="escolha-nome">' + esc(p.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceira', 'parceiras') : 'a anunciar') + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
-      }).join('') + '</ol></div>';
+        return '<li><button type="button" class="escolha" data-pais="' + i + '" data-foto="' + esc(p.foto || '') + '" data-titulo="' + esc(p.nome) + '" data-sub="' + esc(subPais(p)) + '">' + miniatura(p.foto) + '<span class="escolha-num">0' + (i + 1) + '</span><span class="escolha-nome">' + esc(p.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceira', 'parceiras') : 'a anunciar') + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
+      }).join('') + '</ol>' + painelFoto({ foto: PAISES[0].foto, titulo: PAISES[0].nome, sub: subPais(PAISES[0]) }) + '</div></div>';
   }
   function nivelEstados() {
     var p = PAISES[onde.p];
     return '<div class="nivel">'
       + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + '</small>Escolha o estado.</h2><p>' + (p.estados.length === 1 ? 'Um lugar, por enquanto.' : '<b>' + plural(p.estados.length, 'estado', 'estados') + '</b> com parceiras.') + '</p></div>'
-      + '<ol class="escolhas">' + p.estados.map(function (e, i) {
+      + '<div class="escolhas-com-foto"><ol class="escolhas">' + p.estados.map(function (e, i) {
         var n = totalEstado(e);
-        return '<li><button type="button" class="escolha" data-estado="' + i + '"><span class="escolha-num">' + e.uf + '</span><span class="escolha-nome">' + esc(e.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceira', 'parceiras') : 'a anunciar') + ' · ' + listaEm(cidadesDe(e)) + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
-      }).join('') + '</ol></div>';
+        return '<li><button type="button" class="escolha" data-estado="' + i + '" data-foto="' + esc(e.foto || '') + '" data-titulo="' + esc(e.nome) + '" data-sub="' + esc(subEstado(e)) + '">' + miniatura(e.foto) + '<span class="escolha-num">' + e.uf + '</span><span class="escolha-nome">' + esc(e.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceira', 'parceiras') : 'a anunciar') + ' · ' + listaEm(cidadesDe(e)) + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
+      }).join('') + '</ol>' + painelFoto({ foto: p.estados[0].foto, titulo: p.estados[0].nome, sub: subEstado(p.estados[0]) }) + '</div></div>';
   }
   function nivelEstado() {
     var p = PAISES[onde.p], e = p.estados[onde.e], cidades = cidadesDe(e), parceiras = totalEstado(e);
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + '<div class="nivel-cabeca' + (e.foto ? ' com-foto' : '') + '"><div><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + (e.foto ? '<figure class="cabeca-foto"><div class="quadro"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"></div><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '') + '</div>'
       + e.cidades.map(function (c, ci) {
         return '<div class="cidade">'
           + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceira', 'parceiras') : 'em breve') + '</span></div>'
@@ -559,6 +598,22 @@
     else if (v === 'estado') onde = { p: onde.p, e: onde.e, c: null, n: null, k: 0 };
     mostrar(true);
   });
+  // o painel de foto segue o mouse (ou o foco do teclado) pelas linhas de pais/estado
+  function mostrarFoto(botao) {
+    var f = botao.getAttribute('data-foto'), a = $('fotoA'), b = $('fotoB');
+    if (!f || !a || !b) return;
+    var atual = a.classList.contains('atual') ? a : b, prox = atual === a ? b : a;
+    $('fotoTitulo').textContent = botao.getAttribute('data-titulo') || '';
+    $('fotoSub').textContent = botao.getAttribute('data-sub') || '';
+    if (atual.getAttribute('src') === f) return;
+    var trocar = function () { prox.classList.add('atual'); atual.classList.remove('atual'); };
+    prox.onload = trocar;
+    prox.src = f;
+    if (prox.complete && prox.naturalWidth) { prox.onload = null; trocar(); }
+  }
+  $('nivel').addEventListener('mouseover', function (ev) { var b = ev.target.closest('.escolha[data-foto]'); if (b) mostrarFoto(b); });
+  $('nivel').addEventListener('focusin', function (ev) { var b = ev.target.closest('.escolha[data-foto]'); if (b) mostrarFoto(b); });
+
   $('nivel').addEventListener('click', function (ev) {
     var b;
     if ((b = ev.target.closest('.escolha[data-pais]'))) { onde = { p: Number(b.getAttribute('data-pais')), e: null, c: null, n: null, k: 0 }; var p = PAISES[onde.p]; if (p.estados.length === 1) onde.e = 0; mostrar(true); return; }
