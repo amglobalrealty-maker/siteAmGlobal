@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMGlobal Realty — Empreendimentos</title>
+<meta name="description" content="Os empreendimentos das parceiras da AMGlobal Realty, por país, estado e cidade.">
+<meta name="theme-color" content="#F5F2EC">
+
+<!-- PROVISORIO: enquanto os empreendimentos forem de exemplo, esta pagina fica fora
+     dos buscadores. Tire esta linha quando os reais das parceiras entrarem. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- ---------------------------------------------------------------------------
+     EMPREENDIMENTOS (15/10/2026; antes chamava parcerias.html, que agora redireciona)
+
+     Pedido da cliente: "tem que ter no menu uma pagina Empreendimentos; la
+     aparecer paises, estados, cidades e ai as parceiras, e clicando, os
+     empreendimentos de cada uma". Fundo claro, estilo revista, pouca coisa na
+     tela (as versoes com foto e placas ela achou "muito poluido").
+
+     A hierarquia e: PAIS (abas) > ESTADO (abas) > CIDADE > PARCEIRAS (lista em
+     colunas) > os EMPREENDIMENTOS da parceira (painel claro: a lista deles, e
+     clicando num empreendimento a foto e o WhatsApp mudam para ele).
+
+     A LISTA MORA EM `PAISES`, no script no fim deste arquivo. Os empreendimentos
+     sao DE EXEMPLO, gerados pelo nome da parceira (`empreendimentosExemplo`),
+     marcados como tal; os reais entram em `EMPREENDIMENTOS[nome da parceira]`
+     (uma lista) e passam na frente.
+     --------------------------------------------------------------------------- -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style>
+  :root {
+    --onix: #0B0B0C;
+    --marfim: #F5F2EC;
+    --travertino: #D8CFC0;
+    --grafite: #3A3A3C;
+    --champagne: #B49A6E;
+    --linha-escura: rgba(11, 11, 12, 0.14);
+    --linha-leve: rgba(11, 11, 12, 0.08);
+    --texto-medio: rgba(11, 11, 12, 0.62);
+    --texto-fraco: rgba(11, 11, 12, 0.42);
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
+    --margem: clamp(22px, 6.5vw, 130px);
+    --secao: clamp(72px, 11vh, 140px);
+    --curva: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body { background: var(--marfim); color: var(--onix); font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  ::selection { background: var(--champagne); color: var(--onix); }
+  :focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
+
+  .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 300; line-height: 1.02; text-wrap: balance; }
+  p { max-width: 62ch; }
+
+  .botao { position: relative; display: inline-block; font-family: var(--sans); font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: inherit; padding-bottom: 10px; }
+  .botao::before, .botao::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; }
+  .botao::before { width: 100%; background: currentColor; opacity: 0.28; }
+  .botao::after { width: 100%; background: var(--champagne); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--curva); }
+  .botao:hover::after, .botao:focus-visible::after { transform: scaleX(1); }
+
+  /* ------------------------------------------------------------- cabecalho */
+  .topo { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px var(--margem); border-bottom: 1px solid transparent; transition: background 0.6s var(--curva), padding 0.6s var(--curva), border-color 0.6s var(--curva); }
+  .topo.encolhido { background: rgba(245, 242, 236, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding-top: 14px; padding-bottom: 14px; border-bottom-color: var(--linha-leve); }
+  .marca { display: flex; align-items: center; gap: 16px; }
+  .marca img { height: 40px; width: auto; transition: height 0.6s var(--curva); }
+  .topo.encolhido .marca img { height: 32px; }
+  .marca-nome { font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.3em; text-transform: uppercase; white-space: nowrap; }
+  .topo-direita { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
+  .voltar { display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.4s var(--curva); }
+  .voltar:hover { opacity: 1; }
+  .voltar svg { color: var(--champagne); }
+
+  /* ------------------------------------------------------------------ capa */
+  .capa { padding: clamp(150px, 24vh, 240px) var(--margem) clamp(40px, 7vh, 80px); }
+  .capa h1 { font-size: clamp(54px, 9vw, 132px); letter-spacing: -0.02em; margin: 18px 0 26px; }
+  .capa-linha { font-family: var(--serif); font-size: clamp(21px, 2.1vw, 30px); line-height: 1.35; color: var(--texto-medio); max-width: 32ch; }
+  .capa-meta { display: flex; flex-wrap: wrap; gap: 8px clamp(22px, 3vw, 44px); margin-top: clamp(36px, 6vh, 64px); padding-top: 22px; border-top: 1px solid var(--linha-escura); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+
+  /* ----------------------------------------------------------------- secoes */
+  section { padding: 0 var(--margem) var(--secao); }
+  /* pelo menos uma janela de altura: a ancora (#brasil/go) sempre consegue levar as
+     abas ao topo, mesmo num estado com poucas parceiras */
+  #mapa { min-height: 100vh; }
+
+  /* os paises: abas grandes; os estados: abas menores logo abaixo */
+  .abas { display: flex; gap: 0 clamp(26px, 3.4vw, 54px); border-bottom: 1px solid var(--linha-escura); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .abas::-webkit-scrollbar { display: none; }
+  .aba { position: relative; flex: 0 0 auto; padding: 0 0 18px; font-family: var(--serif); font-weight: 300; line-height: 1; color: var(--texto-fraco); white-space: nowrap; transition: color 0.5s var(--curva); }
+  .aba::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--onix); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--curva); }
+  .aba:hover { color: var(--onix); }
+  .aba[aria-selected="true"] { color: var(--onix); }
+  .aba[aria-selected="true"]::after { transform: scaleX(1); }
+  .abas-paises .aba { font-size: clamp(26px, 2.6vw, 38px); }
+  .abas-estados { margin-top: 26px; border-bottom-color: var(--linha-leve); }
+  .abas-estados .aba { font-size: clamp(18px, 1.6vw, 23px); padding-bottom: 14px; }
+  .abas-estados .aba::after { background: var(--champagne); }
+
+  /* o estado escolhido */
+  .painel { padding-top: clamp(44px, 7vh, 84px); }
+  .painel-cabeca { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px clamp(30px, 5vw, 90px); align-items: end; margin-bottom: clamp(44px, 7vh, 84px); }
+  .painel-cabeca h2 { font-size: clamp(44px, 6.4vw, 100px); letter-spacing: -0.02em; line-height: 0.98; }
+  .painel-cabeca h2 small { display: block; font-size: 0.36em; letter-spacing: 0.02em; color: var(--champagne); margin-bottom: 10px; }
+  .painel-cidades { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 27px); line-height: 1.4; color: var(--texto-medio); }
+  .painel-cidades b { font-style: normal; font-weight: 300; color: var(--onix); }
+
+  .cidade + .cidade { margin-top: clamp(44px, 7vh, 80px); }
+  .cidade-nome { display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(18px, 3vh, 28px); padding-bottom: 14px; border-bottom: 1px solid var(--linha-leve); }
+  .cidade-nome h3 { font-size: clamp(24px, 2.4vw, 34px); font-weight: 300; }
+  .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+
+  /* as parceiras, como o indice de uma revista: em colunas, um nome por linha */
+  .lista { list-style: none; columns: 3; column-gap: clamp(30px, 4vw, 70px); }
+  .lista li { break-inside: avoid; }
+  .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif); font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
+  .nome:hover, .nome:focus-visible { color: var(--champagne); padding-left: 6px; outline: none; }
+  .nome svg { flex: 0 0 auto; width: 14px; height: 8px; fill: none; stroke: currentColor; stroke-width: 1; opacity: 0; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
+  .nome:hover svg, .nome:focus-visible svg { opacity: 1; transform: none; }
+
+  .em-breve { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 26px); color: var(--texto-medio); padding: 8px 0 20px; }
+  .nota-exemplo { margin-top: clamp(40px, 6vh, 70px); font-size: 12px; letter-spacing: 0.04em; color: var(--texto-fraco); }
+
+  /* -------------------------------------------- a parceira e os empreendimentos */
+  .parceira { border: 0; padding: 0; max-width: min(1180px, calc(100vw - 32px)); width: 100%; background: var(--marfim); color: var(--onix); box-shadow: 0 40px 120px rgba(11, 11, 12, 0.3); }
+  .parceira::backdrop { background: rgba(11, 11, 12, 0.55); }
+  .parceira-grade { display: grid; grid-template-columns: 1fr 1.1fr; min-height: min(640px, 86vh); }
+  .parceira-foto { overflow: hidden; background: var(--travertino); }
+  .parceira-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) contrast(0.96) brightness(1.02); transition: opacity 0.6s var(--curva); }
+  .parceira-corpo { padding: clamp(36px, 6vh, 64px) clamp(28px, 4vw, 60px) clamp(28px, 4vh, 44px); display: flex; flex-direction: column; }
+  .parceira-corpo .rotulo { margin-bottom: 16px; }
+  .parceira-corpo h2 { font-size: clamp(34px, 3.6vw, 56px); letter-spacing: -0.02em; margin-bottom: 10px; }
+  .parceira-lugar { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.6vw, 22px); color: var(--texto-medio); margin-bottom: 28px; }
+  .empreendimentos { list-style: none; border-top: 1px solid var(--linha-escura); margin-bottom: auto; }
+  .empreendimento { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; width: 100%; padding: 18px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; transition: padding-left 0.6s var(--curva); }
+  .empreendimento:hover, .empreendimento[aria-pressed="true"] { padding-left: 10px; }
+  .empreendimento-nome { font-family: var(--serif); font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; transition: color 0.4s var(--curva); }
+  .empreendimento[aria-pressed="true"] .empreendimento-nome { color: var(--champagne); }
+  .empreendimento-meta { grid-column: 1; font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
+  .empreendimento-entrega { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
+  .parceira-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 32px; margin-top: 30px; }
+  .parceira-fechar { position: absolute; top: 16px; right: 16px; z-index: 3; width: 42px; height: 42px; border: 1px solid var(--linha-escura); border-radius: 50%; background: var(--marfim); display: flex; align-items: center; justify-content: center; transition: background 0.4s var(--curva), color 0.4s var(--curva); }
+  .parceira-fechar:hover { background: var(--onix); color: var(--marfim); }
+  .parceira-fechar svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.2; }
+  .parceira-nav { display: flex; gap: 10px; margin-left: auto; }
+  .parceira-nav button { width: 42px; height: 42px; border: 1px solid var(--linha-escura); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.4s var(--curva), color 0.4s var(--curva); }
+  .parceira-nav button:hover { border-color: var(--champagne); color: var(--champagne); }
+  .parceira-nav svg { width: 16px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1; }
+
+  /* --------------------------------------------------------------- rodape */
+  footer { border-top: 1px solid var(--linha-escura); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(34px, 5vh, 56px) var(--margem); }
+  footer img { height: 40px; width: auto; }
+  .rodape-texto { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-fraco); }
+
+  /* ------------------------------------------------------ telas estreitas */
+  @media (max-width: 1100px) {
+    .lista { columns: 2; }
+    .parceira-grade { grid-template-columns: 1fr; min-height: 0; }
+    .parceira { max-height: calc(100vh - 32px); overflow: auto; }
+    .parceira-foto { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 900px) {
+    .marca-nome { display: none; }
+    .capa { padding-top: clamp(120px, 20vh, 170px); }
+    .painel-cabeca { grid-template-columns: 1fr; }
+    .lista { columns: 1; }
+    .abas { margin: 0 calc(-1 * var(--margem)); padding: 0 var(--margem); }
+    .empreendimento { grid-template-columns: 1fr; }
+    .empreendimento-entrega { grid-column: 1; grid-row: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <a class="marca" href="index.html" aria-label="AMGlobal Realty, ir para o início">
+    <img src="marca-onix.svg" alt="AMGlobal Realty" width="200" height="176">
+    <span class="marca-nome">AMGlobal Realty</span>
+  </a>
+  <div class="topo-direita">
+    <a class="voltar" href="index.html">
+      <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M15 5 H1 M5 1 L1 5 L5 9"/></svg>
+      <span>Início</span>
+    </a>
+    <a class="botao" href="index.html#contato">Fale com um consultor</a>
+  </div>
+</header>
+
+<main>
+  <section class="capa">
+    <span class="rotulo">AMGlobal Realty</span>
+    <h1>Empreendimentos</h1>
+    <p class="capa-linha">Por país, estado e cidade: as parceiras com quem atuamos e os empreendimentos de cada uma.</p>
+    <div class="capa-meta" id="capaMeta"></div>
+  </section>
+
+  <section id="mapa">
+    <div class="abas abas-paises" id="abasPaises" role="tablist" aria-label="Países"></div>
+    <div class="abas abas-estados" id="abasEstados" role="tablist" aria-label="Estados"></div>
+    <div class="painel" id="painel" role="tabpanel"></div>
+    <p class="nota-exemplo">Os empreendimentos abertos ao clicar são exemplos ilustrativos, até cada parceira enviar o material oficial.</p>
+  </section>
+</main>
+
+<!-- a parceira e os empreendimentos dela, num painel claro -->
+<dialog class="parceira" id="parceira" aria-labelledby="parceiraTitulo">
+  <button type="button" class="parceira-fechar" id="parceiraFechar" aria-label="Fechar">
+    <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg>
+  </button>
+  <div class="parceira-grade">
+    <div class="parceira-foto"><img id="parceiraImagem" src="" alt=""></div>
+    <div class="parceira-corpo">
+      <span class="rotulo" id="parceiraRotulo"></span>
+      <h2 id="parceiraTitulo"></h2>
+      <p class="parceira-lugar" id="parceiraLugar"></p>
+      <ol class="empreendimentos" id="empreendimentos"></ol>
+      <div class="parceira-acoes">
+        <a class="botao" id="parceiraWhats" href="#" target="_blank" rel="noopener">Falar com um consultor</a>
+        <div class="parceira-nav">
+          <button type="button" id="parceiraAnterior" aria-label="Parceira anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button>
+          <button type="button" id="parceiraProxima" aria-label="Próxima parceira"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<footer>
+  <img src="marca-onix.svg" alt="AMGlobal Realty" width="200" height="176">
+  <span class="rodape-texto">Imóveis extraordinários. Visão global.</span>
+  <span class="rodape-texto">CRECI a informar &middot; 2026</span>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var WHATSAPP = '5511999888647';   // +55 (11) 99988-8647, o mesmo da home
+
+  /* ===================================================================== A LISTA
+     A lista da cliente (15/10/2026), do jeito que ela mandou. Para incluir ou
+     tirar uma parceira, e so mexer aqui. "Brava" e a Praia Brava (Itajai); no
+     Parana ela listou tres cidades e uma lista so de construtoras. No exterior
+     ela deu os lugares (Florida, Portugal, Dubai); as parceiras de la entram
+     quando ela mandar (cidade com `construtoras: []` mostra "a anunciar"). */
+  var BRASIL = [
+    { uf: 'RS', nome: 'Rio Grande do Sul', cidades: [
+      { nome: 'Porto Alegre', construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
+    ] },
+    { uf: 'SC', nome: 'Santa Catarina', cidades: [
+      { nome: 'Florianópolis', construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
+      { nome: 'Balneário Camboriú', construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
+      { nome: 'Praia Brava', construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
+    ] },
+    { uf: 'PR', nome: 'Paraná', cidades: [
+      { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
+    ] },
+    { uf: 'SP', nome: 'São Paulo', cidades: [
+      { nome: 'São Paulo, capital', curta: 'São Paulo', construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
+    ] },
+    { uf: 'RJ', nome: 'Rio de Janeiro', cidades: [
+      { nome: 'Rio de Janeiro', construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
+    ] },
+    { uf: 'GO', nome: 'Goiás', cidades: [
+      { nome: 'Goiânia', construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
+    ] }
+  ];
+  var PAISES = [
+    { id: 'brasil', nome: 'Brasil', estados: BRASIL },
+    { id: 'eua', nome: 'Estados Unidos', estados: [
+      { uf: 'FL', nome: 'Flórida', cidades: [{ nome: 'Miami', construtoras: [] }, { nome: 'Orlando', construtoras: [] }] }
+    ] },
+    { id: 'portugal', nome: 'Portugal', estados: [
+      { uf: 'PT', nome: 'Lisboa', cidades: [{ nome: 'Lisboa', construtoras: [] }, { nome: 'Cascais', construtoras: [] }] }
+    ] },
+    { id: 'emirados', nome: 'Emirados Árabes Unidos', estados: [
+      { uf: 'AE', nome: 'Dubai', cidades: [{ nome: 'Dubai', construtoras: [] }] }
+    ] }
+  ];
+
+  /* Os empreendimentos REAIS entram aqui, pelo nome exato da parceira: uma lista
+     de { nome, bairro, tipologia, area, entrega, foto }. Passa na frente do exemplo. */
+  var EMPREENDIMENTOS = {};
+
+  /* ---------------------------------------- os empreendimentos de exemplo
+     Dois ou tres por parceira, gerados pelo nome dela (sempre iguais para o
+     mesmo nome), marcados como exemplo. As fotos sao as das opcoes de abertura
+     (as capa-N tem texto gravado na imagem). */
+  var NOMES = ['Residencial Horizonte', 'Jardins do Parque', 'Torre Mirante', 'Casa do Lago', 'Praça das Águas', 'Alameda Reserva', 'Vista Brava', 'Boulevard Central', 'Quinta das Palmeiras', 'Edifício Aurora', 'Reserva do Bosque', 'Mirante da Baía'];
+  var TIPOLOGIAS = ['3 e 4 suítes', '2 a 4 dormitórios', 'Coberturas duplex', 'Casas em condomínio', 'Studios e 2 suítes', 'Apartamentos garden'];
+  var AREAS = ['142 a 310 m²', '98 a 220 m²', '260 a 480 m²', '180 a 390 m²', '68 a 150 m²', '120 a 260 m²'];
+  var ENTREGAS = ['2027', '2028', 'Pronto para morar', '2029', 'Em obras'];
+  var FOTOS = ['fotos/opcao-14.webp', 'fotos/opcao-18.webp', 'fotos/opcao-11.webp', 'fotos/opcao-15.webp', 'fotos/opcao-17.webp'];
+
+  function soma(texto) { var s = 0; for (var i = 0; i < texto.length; i++) s = (s + texto.charCodeAt(i) * (i + 1)) % 9973; return s; }
+  function empreendimentosExemplo(parceira, cidade) {
+    var n = soma(parceira), quantos = 2 + (n % 2), saida = [];
+    for (var k = 0; k < quantos; k++) {
+      var m = n + k * 7;
+      saida.push({
+        exemplo: true,
+        nome: NOMES[m % NOMES.length],
+        bairro: cidade.lista ? cidade.lista[k % cidade.lista.length] : (cidade.curta || cidade.nome),
+        tipologia: TIPOLOGIAS[m % TIPOLOGIAS.length],
+        area: AREAS[(m >> 2) % AREAS.length],
+        entrega: ENTREGAS[(m >> 4) % ENTREGAS.length],
+        foto: FOTOS[m % FOTOS.length]
+      });
+    }
+    return saida;
+  }
+  function empreendimentosDe(parceira, cidade) { return EMPREENDIMENTOS[parceira] || empreendimentosExemplo(parceira, cidade); }
+
+  // ----------------------------------------------------------------- utilidades
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function plural(n, um, varios) { return n + ' ' + (n === 1 ? um : varios); }
+  function total(e) { return e.cidades.reduce(function (s, c) { return s + c.construtoras.length; }, 0); }
+  function cidadesDe(e) { return e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []); }
+  function listaEm(nomes) { return nomes.map(esc).join(', ').replace(/, ([^,]*)$/, ' e $1'); }
+
+  // ----------------------------------------------------------------- a capa
+  (function () {
+    var estados = 0, cidades = 0, parceiras = 0;
+    PAISES.forEach(function (p) { p.estados.forEach(function (e) { estados++; e.cidades.forEach(function (c) { cidades += (c.quantas || 1); parceiras += c.construtoras.length; }); }); });
+    $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceira', 'parceiras') + '</span>';
+  })();
+
+  // ------------------------------------------------- as abas: pais e estado
+  var paisAtivo = 0, estadoAtivo = 0;
+  $('abasPaises').innerHTML = PAISES.map(function (p, i) {
+    return '<button type="button" class="aba" role="tab" id="pais-' + p.id + '" data-i="' + i + '" aria-selected="false">' + esc(p.nome) + '</button>';
+  }).join('');
+
+  function mostrarPais(i, estadoInicial) {
+    paisAtivo = i;
+    var p = PAISES[i];
+    document.querySelectorAll('#abasPaises .aba').forEach(function (a, k) { a.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    $('abasEstados').innerHTML = p.estados.map(function (e, k) {
+      return '<button type="button" class="aba" role="tab" id="estado-' + e.uf.toLowerCase() + '" data-i="' + k + '" aria-selected="false">' + esc(e.nome) + '</button>';
+    }).join('');
+    mostrarEstado(estadoInicial || 0);
+  }
+  function mostrarEstado(k) {
+    estadoAtivo = k;
+    var p = PAISES[paisAtivo], e = p.estados[k];
+    document.querySelectorAll('#abasEstados .aba').forEach(function (a, j) { a.setAttribute('aria-selected', j === k ? 'true' : 'false'); });
+    var cidades = cidadesDe(e), parceiras = total(e);
+    $('painel').innerHTML = ''
+      + '<div class="painel-cabeca">'
+      +   '<h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2>'
+      +   '<p class="painel-cidades">' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p>'
+      + '</div>'
+      + e.cidades.map(function (c, ci) {
+        return '<div class="cidade">'
+          + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceira', 'parceiras') : 'em breve') + '</span></div>'
+          + (c.construtoras.length
+            ? '<ol class="lista">' + c.construtoras.map(function (n, ni) {
+                return '<li><button type="button" class="nome" data-c="' + ci + '" data-n="' + ni + '">' + esc(n) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
+              }).join('') + '</ol>'
+            : '<p class="em-breve">As parceiras de ' + esc(c.nome) + ' serão anunciadas em breve.</p>')
+          + '</div>';
+      }).join('');
+    var ativa = document.getElementById('estado-' + e.uf.toLowerCase());
+    if (ativa && ativa.scrollIntoView) ativa.scrollIntoView({ block: 'nearest', inline: 'center' });
+    window.history.replaceState(null, '', '#' + p.id + '/' + e.uf.toLowerCase());
+  }
+  $('abasPaises').addEventListener('click', function (ev) { var a = ev.target.closest('.aba'); if (a) mostrarPais(Number(a.getAttribute('data-i')), 0); });
+  $('abasEstados').addEventListener('click', function (ev) { var a = ev.target.closest('.aba'); if (a) mostrarEstado(Number(a.getAttribute('data-i'))); });
+  $('painel').addEventListener('click', function (ev) {
+    var bt = ev.target.closest('.nome');
+    if (bt) abrirParceira(Number(bt.getAttribute('data-c')), Number(bt.getAttribute('data-n')), bt);
+  });
+  // chegou com #brasil/sc (ou so #sc): o pais e o estado ja vem escolhidos, e a pagina desce
+  (function () {
+    var h = (window.location.hash || '').slice(1).toLowerCase().split('/');
+    var pi = PAISES.findIndex(function (p) { return p.id === h[0]; });
+    var uf = pi >= 0 ? h[1] : h[0];
+    if (pi < 0) pi = 0;
+    var ei = Math.max(0, PAISES[pi].estados.findIndex(function (e) { return e.uf.toLowerCase() === uf; }));
+    mostrarPais(pi, ei);
+    if (h[0]) {
+      // desce ate as abas; de novo quando as fontes chegarem, porque a capa muda
+      // de altura quando a Cormorant entra no lugar da fonte de espera
+      var descer = function () { $('mapa').scrollIntoView({ block: 'start' }); };
+      // mais de uma vez nos primeiros instantes: a capa ainda muda de altura depois que
+      // as fontes se dao por carregadas (medido em 15/10: 41px, uns 200 ms depois)
+      [50, 200, 350].forEach(function (ms) { setTimeout(descer, ms); });
+      window.addEventListener('load', function () { setTimeout(descer, 120); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(descer, 60); });
+    }
+  })();
+
+  // ------------------------------------------- a parceira e os empreendimentos
+  var atual = null;   // { c, n, botao, lista, k }
+  var dialogo = $('parceira');
+  function abrirParceira(c, n, botao) {
+    var p = PAISES[paisAtivo], e = p.estados[estadoAtivo], cidade = e.cidades[c], parceira = cidade.construtoras[n];
+    var lista = empreendimentosDe(parceira, cidade);
+    atual = { c: c, n: n, botao: botao || (atual && atual.botao), lista: lista, parceira: parceira, cidade: cidade, estado: e, k: 0 };
+    $('parceiraRotulo').textContent = 'Parceira · ' + (lista[0] && lista[0].exemplo ? 'empreendimentos de exemplo' : plural(lista.length, 'empreendimento', 'empreendimentos'));
+    $('parceiraTitulo').textContent = parceira;
+    $('parceiraLugar').textContent = (cidade.curta || cidade.nome) + ', ' + e.nome;
+    $('empreendimentos').innerHTML = lista.map(function (em, k) {
+      return '<li><button type="button" class="empreendimento" data-k="' + k + '" aria-pressed="' + (k === 0 ? 'true' : 'false') + '">'
+        + '<span class="empreendimento-nome">' + esc(em.nome) + '</span>'
+        + '<span class="empreendimento-meta">' + esc(em.bairro) + ' · ' + esc(em.tipologia) + ' · ' + esc(em.area) + '</span>'
+        + '<span class="empreendimento-entrega">' + esc(em.entrega) + '</span>'
+        + '</button></li>';
+    }).join('');
+    escolherEmpreendimento(0);
+    if (!dialogo.open) { dialogo.showModal(); document.body.style.overflow = 'hidden'; }
+    $('parceiraFechar').focus();
+  }
+  // clicar num empreendimento: a foto e o WhatsApp passam a ser dele
+  function escolherEmpreendimento(k) {
+    if (!atual) return;
+    var em = atual.lista[k];
+    if (!em) return;
+    atual.k = k;
+    document.querySelectorAll('.empreendimento').forEach(function (b, j) { b.setAttribute('aria-pressed', j === k ? 'true' : 'false'); });
+    $('parceiraImagem').src = em.foto;
+    $('parceiraImagem').alt = em.nome;
+    $('parceiraWhats').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + atual.parceira + ' (' + (atual.cidade.curta || atual.cidade.nome) + '), no site da AMGlobal e quero saber mais.');
+  }
+  $('empreendimentos').addEventListener('click', function (ev) { var b = ev.target.closest('.empreendimento'); if (b) escolherEmpreendimento(Number(b.getAttribute('data-k'))); });
+  function andar(passo) {
+    if (!atual) return;
+    var lista = atual.cidade.construtoras;
+    var n = (atual.n + passo + lista.length) % lista.length;
+    abrirParceira(atual.c, n, document.querySelector('.nome[data-c="' + atual.c + '"][data-n="' + n + '"]'));
+  }
+  $('parceiraAnterior').addEventListener('click', function () { andar(-1); });
+  $('parceiraProxima').addEventListener('click', function () { andar(1); });
+  $('parceiraFechar').addEventListener('click', function () { dialogo.close(); });
+  dialogo.addEventListener('click', function (ev) { if (ev.target === dialogo) dialogo.close(); });
+  dialogo.addEventListener('close', function () { document.body.style.overflow = ''; if (atual && atual.botao) atual.botao.focus({ preventScroll: true }); });
+  document.addEventListener('keydown', function (ev) {
+    if (!dialogo.open) return;
+    if (ev.key === 'ArrowLeft') andar(-1);
+    if (ev.key === 'ArrowRight') andar(1);
+  });
+
+  // ------------------------------------------------------ o topo encolhe
+  var topo = $('topo');
+  function medirTopo() { topo.classList.toggle('encolhido', window.scrollY > 40); }
+  window.addEventListener('scroll', medirTopo, { passive: true });
+  medirTopo();
+})();
+</script>
+</body>
+</html>
