@@ -1,9 +1,13 @@
-/* AMGlobal Realty: PT / EN / ES no cabecalho (19/10/2026, pedido da cliente: "botao para traduzir
-   o site para ingles, espanhol e portugues"). Tradutor automatico do Google por baixo: este arquivo
-   carrega o widget escondido, desenha os tres botoes dentro de .topo-direita (e, na home, tambem
-   dentro do menu do celular), guarda a escolha no cookie googtrans (que o proprio Google le ao abrir
-   qualquer pagina do site) e esconde a faixa do Google. Marcas e nomes proprios ficam sem traduzir
-   pela classe notranslate. Uma copia deste script em cada pagina: <script src="idioma.js" defer>. */
+/* AMGlobal Realty: seletor de idioma no cabecalho (19/10/2026, pedido da cliente: "botao para traduzir
+   o site para ingles, espanhol e portugues"; depois: "um menu que desce com as linguas, nao um do lado
+   do outro, senao ocupa muito espaco", e "o menu nao pode mudar de lugar quando traduz").
+   Tradutor automatico do Google por baixo: este arquivo carrega o widget escondido, desenha um seletor
+   compacto (a sigla do idioma atual e uma setinha; ao tocar, desce a lista Portugues / English /
+   Espanol) dentro de .topo-direita (e, na home, tambem dentro do menu do celular), guarda a escolha
+   no cookie googtrans (que o proprio Google le ao abrir qualquer pagina do site) e esconde a faixa do
+   Google. Marcas e nomes proprios ficam sem traduzir pela classe notranslate. Nada da barra muda de
+   tamanho ou de lugar por causa do idioma: o seletor tem a mesma largura em qualquer lingua.
+   Uma copia deste script em cada pagina: <script src="idioma.js" defer>. */
 (function () {
   'use strict';
   var IDIOMAS = [['pt', 'Português'], ['en', 'English'], ['es', 'Español']];
@@ -25,12 +29,22 @@
     });
   }
   function marcar(idioma) {
-    document.querySelectorAll('.idiomas button').forEach(function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-idioma') === idioma ? 'true' : 'false');
+    document.querySelectorAll('.idiomas').forEach(function (caixa) {
+      caixa.querySelector('.idiomas-sigla').textContent = idioma.toUpperCase();
+      caixa.querySelectorAll('.idiomas-lista button').forEach(function (b) {
+        b.setAttribute('aria-selected', b.getAttribute('data-idioma') === idioma ? 'true' : 'false');
+      });
     });
     document.documentElement.setAttribute('data-idioma', idioma);
   }
+  function fecharTodos() {
+    document.querySelectorAll('.idiomas.aberto').forEach(function (c) {
+      c.classList.remove('aberto');
+      c.querySelector('.idiomas-atual').setAttribute('aria-expanded', 'false');
+    });
+  }
   function trocar(idioma) {
+    fecharTodos();
     if (idioma === 'pt') { gravarCookie(null); location.reload(); return; }
     gravarCookie('/pt/' + idioma);
     var combo = document.querySelector('.goog-te-combo');
@@ -40,22 +54,23 @@
 
   function estilo() {
     var css = ''
-      + '.idiomas{display:flex;align-items:center;gap:2px;font-family:var(--sans,"Jost",sans-serif);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:inherit}'
+      + '.idiomas{position:relative;display:inline-block;font-family:var(--sans,"Jost",sans-serif);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:inherit}'
       + '.idiomas.escuro{color:var(--marfim,#F5F2EC)}'
-      + '.topo.sobre-claro .idiomas{color:var(--onix,#0B0B0C)}'
-      + '.idiomas button{position:relative;background:none;border:0;padding:8px 5px;margin:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;opacity:.55;cursor:pointer;transition:opacity .4s ease}'
-      + '.idiomas button:hover,.idiomas button:focus-visible{opacity:1;outline:none}'
-      + '.idiomas button[aria-pressed="true"]{opacity:1}'
-      + '.idiomas button[aria-pressed="true"]::after{content:"";position:absolute;left:5px;right:5px;bottom:4px;height:1px;background:var(--champagne,#B49A6E)}'
-      + '.idiomas i{font-style:normal;opacity:.3}'
+      + '.topo.sobre-claro .idiomas-topo{color:var(--onix,#0B0B0C)}'
+      + '.idiomas-atual{display:inline-flex;align-items:center;gap:6px;background:none;border:0;border-bottom:1px solid currentColor;padding:6px 1px 7px;margin:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;opacity:.78;cursor:pointer;transition:opacity .4s ease;min-width:38px;justify-content:space-between}'
+      + '.idiomas-atual:hover,.idiomas-atual:focus-visible,.idiomas.aberto .idiomas-atual{opacity:1;outline:none}'
+      + '.idiomas-atual svg{width:9px;height:6px;flex:0 0 auto;transition:transform .4s ease}'
+      + '.idiomas.aberto .idiomas-atual svg{transform:rotate(180deg)}'
+      + '.idiomas-lista{position:absolute;top:calc(100% + 10px);right:0;min-width:150px;margin:0;padding:6px 0;list-style:none;border:1px solid rgba(11,11,12,.14);background:var(--marfim,#F5F2EC);color:var(--onix,#0B0B0C);box-shadow:0 14px 34px rgba(0,0,0,.18);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:130;text-transform:none;letter-spacing:.04em;font-size:13px}'
+      + '.idiomas.escuro .idiomas-lista{background:var(--onix,#0B0B0C);color:var(--marfim,#F5F2EC);border-color:rgba(245,242,236,.16)}'
+      + '.idiomas.aberto .idiomas-lista{opacity:1;transform:none;pointer-events:auto}'
+      + '.idiomas-lista button{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;background:none;border:0;padding:9px 16px;margin:0;color:inherit;font:inherit;letter-spacing:inherit;text-align:left;cursor:pointer;opacity:.72;transition:opacity .3s ease}'
+      + '.idiomas-lista button:hover,.idiomas-lista button:focus-visible{opacity:1;outline:none}'
+      + '.idiomas-lista button[aria-selected="true"]{opacity:1}'
+      + '.idiomas-lista button small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.55}'
+      + '.idiomas-lista button[aria-selected="true"] small{color:var(--champagne,#B49A6E);opacity:1}'
       + '.idiomas-menu{display:none}'
-      + '@media (max-width:900px){.idiomas-topo.na-home{display:none}.idiomas-menu{display:flex;margin-top:28px;font-size:12px}.idiomas-menu button{padding:10px 8px}}'
-      /* paginas internas no celular estreito: so os outros dois idiomas, para caber ao lado do botao */
-      + '@media (max-width:600px){.idiomas-topo:not(.na-home) button[aria-pressed="true"],.idiomas-topo:not(.na-home) i{display:none}.idiomas-topo:not(.na-home){gap:0}}'
-      /* traduzida, a barra da home fica mais longa (Curatorship, Developments, Speak to a consultant):
-         o menu aperta, o nome da marca sai e, em telas medias, o botao tambem; em portugues nada muda */
-      + '@media (max-width:1700px){html.translated-ltr .topo .marca-nome{display:none}html.translated-ltr .topo-direita{gap:14px}html.translated-ltr .menu{gap:14px}html.translated-ltr .menu a{letter-spacing:.12em}html.translated-ltr .topo .filtro-abrir{letter-spacing:0}}'
-      + '@media (max-width:1500px){html.translated-ltr .topo .botao{display:none}}'
+      + '@media (max-width:900px){.idiomas-topo.na-home{display:none}.idiomas-menu{display:inline-block;margin-top:30px;font-size:12px}.idiomas-menu .idiomas-lista{right:auto;left:0}}'
       + '#' + ALVO + '{display:none}'
       /* a faixa e os baloes do Google */
       + '.goog-te-banner-frame,.skiptranslate iframe,#goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip,.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,.VIpgJd-ZVi9od-ORHb-OEVmcd{display:none!important}'
@@ -67,23 +82,41 @@
     document.head.appendChild(s);
   }
 
-  function botoes(classe) {
+  function seletor(classe) {
     var caixa = document.createElement('div');
-    caixa.className = 'idiomas ' + classe;
-    caixa.setAttribute('role', 'group');
-    caixa.setAttribute('aria-label', 'Idioma');
-    caixa.classList.add('notranslate');
-    IDIOMAS.forEach(function (par, i) {
-      if (i) { var sep = document.createElement('i'); sep.textContent = '·'; sep.setAttribute('aria-hidden', 'true'); caixa.appendChild(sep); }
+    caixa.className = 'idiomas ' + classe + ' notranslate';
+    var atual = document.createElement('button');
+    atual.type = 'button';
+    atual.className = 'idiomas-atual';
+    atual.setAttribute('aria-haspopup', 'listbox');
+    atual.setAttribute('aria-expanded', 'false');
+    atual.setAttribute('aria-label', 'Idioma');
+    atual.innerHTML = '<span class="idiomas-sigla">PT</span><svg viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1 1 L5.5 6 L10 1"/></svg>';
+    var lista = document.createElement('ul');
+    lista.className = 'idiomas-lista';
+    lista.setAttribute('role', 'listbox');
+    lista.setAttribute('aria-label', 'Idiomas');
+    IDIOMAS.forEach(function (par) {
+      var li = document.createElement('li');
       var b = document.createElement('button');
       b.type = 'button';
+      b.setAttribute('role', 'option');
       b.setAttribute('data-idioma', par[0]);
-      b.setAttribute('aria-label', par[1]);
       b.setAttribute('lang', par[0]);
-      b.textContent = par[0].toUpperCase();
+      b.setAttribute('aria-selected', 'false');
+      b.innerHTML = '<span>' + par[1] + '</span><small>' + par[0].toUpperCase() + '</small>';
       b.addEventListener('click', function () { trocar(par[0]); });
-      caixa.appendChild(b);
+      li.appendChild(b);
+      lista.appendChild(li);
     });
+    atual.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      var abrir = !caixa.classList.contains('aberto');
+      fecharTodos();
+      if (abrir) { caixa.classList.add('aberto'); atual.setAttribute('aria-expanded', 'true'); }
+    });
+    caixa.appendChild(atual);
+    caixa.appendChild(lista);
     return caixa;
   }
 
@@ -92,11 +125,13 @@
     var direita = document.querySelector('.topo-direita');
     if (!direita) return;
     var naHome = !!document.querySelector('.topo .menu');
-    var topo = botoes('idiomas-topo' + (naHome ? ' na-home escuro' : ''));
+    var topo = seletor('idiomas-topo' + (naHome ? ' na-home escuro' : ''));
     var ancora = direita.querySelector('.botao') || direita.querySelector('.menu-abrir');
     if (ancora) direita.insertBefore(topo, ancora); else direita.appendChild(topo);
     var menu = document.querySelector('.topo .menu');
-    if (menu) menu.appendChild(botoes('idiomas-menu escuro'));
+    if (menu) menu.appendChild(seletor('idiomas-menu escuro'));
+    document.addEventListener('click', fecharTodos);
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') fecharTodos(); });
     // o que nunca se traduz: a marca e o que a pagina marcar
     document.querySelectorAll('.marca, .marca-nome, .janela-endereco, .endereco').forEach(function (el) { el.classList.add('notranslate'); });
     var alvo = document.createElement('div');
