@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AMGlobal Realty — Empreendimentos</title>
-<meta name="description" content="Os empreendimentos das parceiras da AMGlobal Realty, por país, estado e cidade.">
+<meta name="description" content="Os empreendimentos das parcerias da AMGlobal Realty, por país, estado e cidade.">
 <meta name="theme-color" content="#F5F2EC">
 
 <!-- PROVISORIO: enquanto os empreendimentos forem de exemplo, esta pagina fica fora
@@ -317,14 +317,14 @@
   <section class="capa">
     <span class="rotulo">AMGlobal Realty</span>
     <h1>Empreendimentos</h1>
-    <p class="capa-linha">Por país, estado e cidade: as parceiras com quem atuamos e os empreendimentos de cada uma.</p>
+    <p class="capa-linha">Por país, estado e cidade: as parcerias com quem atuamos e os empreendimentos de cada uma.</p>
     <div class="capa-meta" id="capaMeta"></div>
   </section>
 
   <section id="mapa" aria-live="polite">
     <nav class="trilha" id="trilha" aria-label="Onde você está"></nav>
     <div id="nivel"></div>
-    <p class="nota-exemplo" id="notaExemplo" hidden>Os empreendimentos mostrados são exemplos ilustrativos, até cada parceira enviar o material oficial.</p>
+    <p class="nota-exemplo" id="notaExemplo" hidden>Os empreendimentos mostrados são exemplos ilustrativos, até cada construtora enviar o material oficial.</p>
   </section>
 </main>
 
@@ -424,7 +424,7 @@
         exemplo: true,
         nome: NOMES[m % NOMES.length],
         bairro: bairro,
-        texto: 'Exemplo ilustrativo de um lançamento da ' + parceira + ' em ' + bairro + ': ' + tipologia.toLowerCase() + ' de ' + area + (casas ? ', em ' + unidades + ' lotes' : ', ' + porAndar + ' por andar, em ' + (torres === 1 ? 'torre única' : 'duas torres') + ' de ' + andares + ' andares') + '. Lazer no térreo e na cobertura, com ' + lazer[0].toLowerCase() + ' e ' + lazer[1].toLowerCase() + '. Quando a parceira enviar o material oficial, o empreendimento real entra aqui, com fotos, plantas e valores.',
+        texto: 'Exemplo ilustrativo de um lançamento da ' + parceira + ' em ' + bairro + ': ' + tipologia.toLowerCase() + ' de ' + area + (casas ? ', em ' + unidades + ' lotes' : ', ' + porAndar + ' por andar, em ' + (torres === 1 ? 'torre única' : 'duas torres') + ' de ' + andares + ' andares') + '. Lazer no térreo e na cobertura, com ' + lazer[0].toLowerCase() + ' e ' + lazer[1].toLowerCase() + '. Quando a construtora enviar o material oficial, o empreendimento real entra aqui, com fotos, plantas e valores.',
         status: status,
         obraPct: obraPct,
         entrega: entrega,
@@ -466,7 +466,7 @@
   (function () {
     var estados = 0, cidades = 0, parceiras = 0;
     PAISES.forEach(function (p) { p.estados.forEach(function (e) { estados++; e.cidades.forEach(function (c) { cidades += (c.quantas || 1); parceiras += c.construtoras.length; }); }); });
-    $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceira', 'parceiras') + '</span>';
+    $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceria', 'parcerias') + '</span>';
   })();
 
   /* ======================================================= UM NIVEL POR VEZ
@@ -485,24 +485,24 @@
 
   function subPais(p) {
     var n = totalPais(p), cidades = p.estados.reduce(function (s, e) { return s + e.cidades.reduce(function (t, c) { return t + (c.quantas || 1); }, 0); }, 0);
-    return n ? plural(n, 'parceira', 'parceiras') + ' · ' + plural(p.estados.length, 'estado', 'estados') + ' · ' + plural(cidades, 'cidade', 'cidades') : 'Parceiras a anunciar · ' + listaTexto(p.estados.reduce(function (s, e) { return s.concat(cidadesDe(e)); }, []));
+    return n ? plural(n, 'parceria', 'parcerias') + ' · ' + plural(p.estados.length, 'estado', 'estados') + ' · ' + plural(cidades, 'cidade', 'cidades') : 'Parcerias a anunciar · ' + listaTexto(p.estados.reduce(function (s, e) { return s.concat(cidadesDe(e)); }, []));
   }
-  function subEstado(e) { var n = totalEstado(e); return (n ? plural(n, 'parceira', 'parceiras') : 'A anunciar') + ' · ' + listaTexto(cidadesDe(e)); }
+  function subEstado(e) { var n = totalEstado(e); return (n ? plural(n, 'parceria', 'parcerias') : 'A anunciar') + ' · ' + listaTexto(cidadesDe(e)); }
   function nivelPaises() {
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>Onde atuamos</small>Escolha o país.</h2><p>As parceiras estão em <b>' + plural(PAISES.length, 'país', 'países') + '</b>. Dentro de cada um, os estados, as cidades e as parceiras.</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>Onde atuamos</small>Escolha o país.</h2><p>As parcerias estão em <b>' + plural(PAISES.length, 'país', 'países') + '</b>. Dentro de cada um, os estados, as cidades e as parcerias.</p></div>'
       + '<div class="escolhas-com-foto"><ol class="escolhas">' + PAISES.map(function (p, i) {
         var n = totalPais(p);
-        return '<li><button type="button" class="escolha" data-pais="' + i + '" data-foto="' + esc(p.foto || '') + '" data-titulo="' + esc(p.nome) + '" data-sub="' + esc(subPais(p)) + '">' + miniatura(p.foto) + '<span class="escolha-num">0' + (i + 1) + '</span><span class="escolha-nome">' + esc(p.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceira', 'parceiras') : 'a anunciar') + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
+        return '<li><button type="button" class="escolha" data-pais="' + i + '" data-foto="' + esc(p.foto || '') + '" data-titulo="' + esc(p.nome) + '" data-sub="' + esc(subPais(p)) + '">' + miniatura(p.foto) + '<span class="escolha-num">0' + (i + 1) + '</span><span class="escolha-nome">' + esc(p.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceria', 'parcerias') : 'a anunciar') + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
       }).join('') + '</ol>' + painelFoto({ foto: PAISES[0].foto, titulo: PAISES[0].nome, sub: subPais(PAISES[0]) }) + '</div></div>';
   }
   function nivelEstados() {
     var p = PAISES[onde.p];
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + '</small>Escolha o estado.</h2><p>' + (p.estados.length === 1 ? 'Um lugar, por enquanto.' : '<b>' + plural(p.estados.length, 'estado', 'estados') + '</b> com parceiras.') + '</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + '</small>Escolha o estado.</h2><p>' + (p.estados.length === 1 ? 'Um lugar, por enquanto.' : '<b>' + plural(p.estados.length, 'estado', 'estados') + '</b> com parcerias.') + '</p></div>'
       + '<div class="escolhas-com-foto"><ol class="escolhas">' + p.estados.map(function (e, i) {
         var n = totalEstado(e);
-        return '<li><button type="button" class="escolha" data-estado="' + i + '" data-foto="' + esc(e.foto || '') + '" data-titulo="' + esc(e.nome) + '" data-sub="' + esc(subEstado(e)) + '">' + miniatura(e.foto) + '<span class="escolha-num">' + e.uf + '</span><span class="escolha-nome">' + esc(e.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceira', 'parceiras') : 'a anunciar') + ' · ' + listaEm(cidadesDe(e)) + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
+        return '<li><button type="button" class="escolha" data-estado="' + i + '" data-foto="' + esc(e.foto || '') + '" data-titulo="' + esc(e.nome) + '" data-sub="' + esc(subEstado(e)) + '">' + miniatura(e.foto) + '<span class="escolha-num">' + e.uf + '</span><span class="escolha-nome">' + esc(e.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceria', 'parcerias') : 'a anunciar') + ' · ' + listaEm(cidadesDe(e)) + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
       }).join('') + '</ol>' + painelFoto({ foto: p.estados[0].foto, titulo: p.estados[0].nome, sub: subEstado(p.estados[0]) }) + '</div></div>';
   }
   function nivelEstado() {
@@ -511,16 +511,16 @@
     // quando abre o pais, nao precisa aparecer foto")
     var comFoto = !!e.foto && parceiras > 0;
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceira', 'parceiras') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parceiras em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceria', 'parcerias') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
       + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '')
       + e.cidades.map(function (c, ci) {
         return '<div class="cidade">'
-          + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceira', 'parceiras') : 'em breve') + '</span></div>'
+          + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
           + (c.construtoras.length
             ? '<ol class="lista">' + c.construtoras.map(function (n, ni) {
                 return '<li><button type="button" class="nome" data-c="' + ci + '" data-n="' + ni + '">' + esc(n) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
               }).join('') + '</ol>'
-            : '<p class="em-breve">As parceiras de ' + esc(c.nome) + ' serão anunciadas em breve.</p>')
+            : '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>')
           + '</div>';
       }).join('') + '</div>';
   }
@@ -575,7 +575,7 @@
   function aberto(em, parceira, c, e) {
     var lado = (em.lazer && em.lazer.length ? '<div class="aberto-bloco"><span class="rotulo">Lazer e conveniência</span><ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
       + (em.diferenciais && em.diferenciais.length ? '<div class="aberto-bloco"><span class="rotulo">Diferenciais</span><ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
-      + (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da parceira.</small>' : '') + '</p></div>' : '');
+      + (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da construtora.</small>' : '') + '</p></div>' : '');
     return galeria(em)
       + '<div class="aberto-corpo">'
       +   '<div class="aberto-principal">'
@@ -587,7 +587,7 @@
       +   '</div>'
       +   (lado ? '<div class="aberto-lado">' + lado + '</div>' : '')
       +   '<div class="aberto-acoes"><a class="botao" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + parceira + ' (' + (c.curta || c.nome) + '), no site da AMGlobal e quero saber mais.') + '">Falar com um consultor</a>'
-      +   '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceira anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceira"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div></div>'
+      +   '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceria anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceria"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div></div>'
       + '</div>';
   }
 
