@@ -52,6 +52,10 @@
       + '@media (max-width:900px){.idiomas-topo.na-home{display:none}.idiomas-menu{display:flex;margin-top:28px;font-size:12px}.idiomas-menu button{padding:10px 8px}}'
       /* paginas internas no celular estreito: so os outros dois idiomas, para caber ao lado do botao */
       + '@media (max-width:600px){.idiomas-topo:not(.na-home) button[aria-pressed="true"],.idiomas-topo:not(.na-home) i{display:none}.idiomas-topo:not(.na-home){gap:0}}'
+      /* traduzida, a barra da home fica mais longa (Curatorship, Developments, Speak to a consultant):
+         o menu aperta, o nome da marca sai e, em telas medias, o botao tambem; em portugues nada muda */
+      + '@media (max-width:1700px){html.translated-ltr .topo .marca-nome{display:none}html.translated-ltr .topo-direita{gap:14px}html.translated-ltr .menu{gap:14px}html.translated-ltr .menu a{letter-spacing:.12em}html.translated-ltr .topo .filtro-abrir{letter-spacing:0}}'
+      + '@media (max-width:1500px){html.translated-ltr .topo .botao{display:none}}'
       + '#' + ALVO + '{display:none}'
       /* a faixa e os baloes do Google */
       + '.goog-te-banner-frame,.skiptranslate iframe,#goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip,.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,.VIpgJd-ZVi9od-ORHb-OEVmcd{display:none!important}'
