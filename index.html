@@ -445,13 +445,13 @@
      some quando o contato esta a vista; no celular vira "Falar" */
   .chamar {
     position: fixed;
-    right: var(--margem);
-    bottom: clamp(22px, 3.5vh, 40px);
+    right: 18px;
+    bottom: 18px;
     z-index: 95;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 20px;
+    gap: 9px;
+    padding: 10px 14px;
     background: rgba(11, 11, 12, 0.78);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -459,8 +459,8 @@
     color: var(--marfim);
     font-family: var(--sans);
     font-weight: 500;
-    font-size: 10.5px;
-    letter-spacing: 0.2em;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
@@ -471,14 +471,14 @@
   .chamar:hover svg { transform: translateX(4px); }
   .chamar.escondido { opacity: 0; pointer-events: none; transform: translateY(10px); }
   .chamar-curto { display: none; }
-  /* o "Rolar" da abertura sobe para ficar logo acima do botao fixo, no mesmo alinhamento */
-  .abertura .rolar { bottom: calc(clamp(22px, 3.5vh, 40px) + 68px); }
+  /* o "Rolar" da abertura sobe para ficar logo acima do botao fixo (senao os dois se encostam no canto) */
+  .abertura .rolar { bottom: 70px; }
   @media (max-width: 600px) {
-    .chamar { padding: 12px 16px; gap: 10px; font-size: 10px; }
+    .abertura .rolar { bottom: clamp(22px, 3.5vh, 40px); }   /* no celular o botao fica escondido na abertura */
+    .chamar { padding: 10px 13px; gap: 8px; font-size: 9.5px; right: 14px; bottom: 14px; }
     .chamar-longo { display: none; }
     .chamar-curto { display: inline; }
     .chamar.na-abertura { opacity: 0; pointer-events: none; transform: translateY(10px); }
-    .abertura .rolar { bottom: clamp(22px, 3.5vh, 40px); }
   }
 
   .menu-abrir {
@@ -2847,7 +2847,7 @@
      para "Falar". O "Rolar" da abertura sobe para ficar logo acima dele. -->
 <a class="chamar" id="chamar" href="#contato">
   <span class="chamar-longo">Fale com um consultor</span><span class="chamar-curto">Falar</span>
-  <svg width="14" height="9" viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1 4.5h12M9 1l4 3.5L9 8"/></svg>
+  <svg width="12" height="8" viewBox="0 0 14 9" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M1 4.5h12M9 1l4 3.5L9 8"/></svg>
 </a>
 <script>
   (function () {
@@ -3396,10 +3396,10 @@
     <div>
       <span class="filete"></span>
       <span class="rotulo">05 — Global</span>
-      <h2>Quatro países, um só atendimento</h2>
+      <h2>Do Brasil para o mundo</h2>
     </div>
     <div class="cabeca-texto">
-      <p>Parcerias no Brasil, nos Estados Unidos, em Portugal e em Dubai, para quem compra fora do país ou chega de fora para comprar aqui.</p>
+      <p>Parcerias nos Estados Unidos, em Portugal e em Dubai, para quem quer comprar fora do país, e para quem vem de fora comprar no Brasil.</p>
     </div>
   </div>
 
