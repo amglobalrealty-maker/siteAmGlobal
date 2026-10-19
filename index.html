@@ -2572,8 +2572,12 @@
        paginas"). Sobre a abertura continua transparente (a imagem fica inteira);
        dali em diante o script poe .com-fundo: onix sobre secao escura, marfim
        sobre secao clara, os dois com o mesmo vidro do computador. */
-    .topo.encolhido.com-fundo { background: rgba(11, 11, 12, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom-color: var(--linha-clara); }
-    .topo.encolhido.com-fundo.sobre-claro { background: rgba(245, 242, 236, 0.94); border-bottom-color: rgba(11, 11, 12, 0.1); }
+    /* SEM backdrop-filter aqui, de proposito: um filtro no cabecalho faz dele o bloco contentor
+       do painel do menu (position: fixed; inset: 0), que entao fica preso nos 64px da barra e
+       os nomes do menu escorrem por cima do texto da pagina ("no mobile o texto do menu continua
+       em cima dos outros", 19/10). Cor quase solida resolve a legibilidade sem o filtro. */
+    .topo.encolhido.com-fundo { background: rgba(11, 11, 12, 0.96); backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom-color: var(--linha-clara); }
+    .topo.encolhido.com-fundo.sobre-claro { background: rgba(245, 242, 236, 0.97); border-bottom-color: rgba(11, 11, 12, 0.1); }
     .menu {
       position: fixed;
       inset: 0;
