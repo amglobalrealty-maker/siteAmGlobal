@@ -296,6 +296,8 @@
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
+<!-- (19/10) PT / EN / ES no cabecalho: tradutor automatico, botoes e cookie em idioma.js -->
+<script src="idioma.js" defer></script>
 </head>
 <body>
 
@@ -479,7 +481,7 @@
     var partes = ['<button type="button" data-volta="raiz">Empreendimentos</button>'];
     if (onde.p !== null) partes.push('<i>›</i>', onde.e === null ? '<b>' + esc(PAISES[onde.p].nome) + '</b>' : '<button type="button" data-volta="pais">' + esc(PAISES[onde.p].nome) + '</button>');
     if (onde.e !== null) { var e = PAISES[onde.p].estados[onde.e]; partes.push('<i>›</i>', onde.n === null ? '<b>' + esc(e.nome) + '</b>' : '<button type="button" data-volta="estado">' + esc(e.nome) + '</button>'); }
-    if (onde.n !== null) { var c = PAISES[onde.p].estados[onde.e].cidades[onde.c]; partes.push('<i>›</i>', '<b>' + esc(c.construtoras[onde.n]) + '</b>'); }
+    if (onde.n !== null) { var c = PAISES[onde.p].estados[onde.e].cidades[onde.c]; partes.push('<i>›</i>', '<b class="notranslate">' + esc(c.construtoras[onde.n]) + '</b>'); }
     $('trilha').innerHTML = partes.join('');
   }
 
@@ -515,10 +517,10 @@
       + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '')
       + e.cidades.map(function (c, ci) {
         return '<div class="cidade">'
-          + '<div class="cidade-nome"><h3>' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
+          + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
           + (c.construtoras.length
             ? '<ol class="lista">' + c.construtoras.map(function (n, ni) {
-                return '<li><button type="button" class="nome" data-c="' + ci + '" data-n="' + ni + '">' + esc(n) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
+                return '<li><button type="button" class="nome notranslate" data-c="' + ci + '" data-n="' + ni + '">' + esc(n) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
               }).join('') + '</ol>'
             : '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>')
           + '</div>';
@@ -530,13 +532,13 @@
     if (onde.k >= lista.length) onde.k = 0;
     var em = lista[onde.k];
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small>' + esc(parceira) + '</h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. O primeiro já está aberto; toque em outro para trocar.</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + esc(parceira) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. O primeiro já está aberto; toque em outro para trocar.</p></div>'
       + '<div class="parceira">'
       +   '<div><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span><ol class="empreendimentos">' + lista.map(function (x, k) {
             var capa = fotosDe(x)[0];
             return '<li><button type="button" class="empreendimento" data-k="' + k + '" aria-pressed="' + (k === onde.k ? 'true' : 'false') + '">'
               + '<span class="empreendimento-foto">' + (capa ? '<img src="' + esc(capa.src) + '" alt="">' : '') + '</span>'
-              + '<span class="empreendimento-nome">' + esc(x.nome) + '</span>'
+              + '<span class="empreendimento-nome notranslate">' + esc(x.nome) + '</span>'
               + '<span class="empreendimento-meta">' + esc(x.bairro) + ' · ' + esc(x.tipologia) + ' · ' + esc(x.area) + '</span>'
               + '<span class="empreendimento-entrega">' + esc(x.entrega) + '</span>'
               + '</button></li>';
@@ -579,8 +581,8 @@
     return galeria(em)
       + '<div class="aberto-corpo">'
       +   '<div class="aberto-principal">'
-      +     '<span class="rotulo">' + esc(parceira) + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
-      +     '<h3>' + esc(em.nome) + '</h3>'
+      +     '<span class="rotulo"><span class="notranslate">' + esc(parceira) + '</span>' + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
+      +     '<h3 class="notranslate">' + esc(em.nome) + '</h3>'
       +     '<p class="aberto-lugar">' + esc(em.bairro) + ', ' + esc(e.nome) + '</p>'
       +     (em.texto ? '<p class="aberto-texto">' + esc(em.texto) + '</p>' : '')
       +     ficha(em)
