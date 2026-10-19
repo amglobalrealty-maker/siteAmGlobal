@@ -3,9 +3,9 @@
    do outro, senao ocupa muito espaco", e "o menu nao pode mudar de lugar quando traduz").
    Tradutor automatico do Google por baixo: este arquivo carrega o widget escondido, desenha um seletor
    compacto (a sigla do idioma atual e uma setinha; ao tocar, desce a lista Portugues / English /
-   Espanol) dentro de .topo-direita (e, na home, tambem dentro do menu do celular), guarda a escolha
-   no cookie googtrans (que o proprio Google le ao abrir qualquer pagina do site) e esconde a faixa do
-   Google. Marcas e nomes proprios ficam sem traduzir pela classe notranslate. Nada da barra muda de
+   Espanol) dentro de .topo-direita, em todas as larguras (no celular fica ao lado do Localizacoes,
+   nunca dentro do menu), guarda a escolha no cookie googtrans (que o proprio Google le ao abrir
+   qualquer pagina do site) e esconde a faixa do Google. Marcas e nomes proprios ficam sem traduzir pela classe notranslate. Nada da barra muda de
    tamanho ou de lugar por causa do idioma: o seletor tem a mesma largura em qualquer lingua.
    Uma copia deste script em cada pagina: <script src="idioma.js" defer>. */
 (function () {
@@ -69,8 +69,10 @@
       + '.idiomas-lista button[aria-selected="true"]{opacity:1}'
       + '.idiomas-lista button small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.55}'
       + '.idiomas-lista button[aria-selected="true"] small{color:var(--champagne,#B49A6E);opacity:1}'
-      + '.idiomas-menu{display:none}'
-      + '@media (max-width:900px){.idiomas-topo.na-home{display:none}.idiomas-menu{display:inline-block;margin-top:30px;font-size:12px}.idiomas-menu .idiomas-lista{right:auto;left:0}}'
+      /* no celular o seletor fica na barra, ao lado do Localizacoes (ela, 19/10: "no mobile o mudar
+         de lingua tem que aparecer do lado de Localizacoes, nao no menu"); o vao da barra aperta
+         para caber simbolo, Localizacoes, idioma e o botao do menu em 360px */
+      + '@media (max-width:600px){.topo .topo-direita{gap:14px}.idiomas-atual{min-width:34px;gap:5px;padding:6px 0 7px}}'
       + '#' + ALVO + '{display:none}'
       /* a faixa e os baloes do Google */
       + '.goog-te-banner-frame,.skiptranslate iframe,#goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip,.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,.VIpgJd-ZVi9od-ORHb-OEVmcd{display:none!important}'
@@ -128,8 +130,6 @@
     var topo = seletor('idiomas-topo' + (naHome ? ' na-home escuro' : ''));
     var ancora = direita.querySelector('.botao') || direita.querySelector('.menu-abrir');
     if (ancora) direita.insertBefore(topo, ancora); else direita.appendChild(topo);
-    var menu = document.querySelector('.topo .menu');
-    if (menu) menu.appendChild(seletor('idiomas-menu escuro'));
     document.addEventListener('click', fecharTodos);
     document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') fecharTodos(); });
     // o que nunca se traduz: a marca e o que a pagina marcar
