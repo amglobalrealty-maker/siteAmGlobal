@@ -58,7 +58,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -1414,145 +1414,144 @@
   .pilar p { font-size: 14.5px; line-height: 1.66; max-width: 36ch; }
 
   /* ============================================================ fundadora ==
-     A CARTA DA FUNDADORA (22/10/2026). Texto da Amanda, em primeira pessoa,
-     com a fotografia dela. Secao onix entre a 03 (clara) e a 05 (onix): o
-     retrato a esquerda, com a moldura champagne deslocada (o filete da
-     identidade virando quadro), e a carta a direita em Jost 300, com a
-     ultima frase em Cormorant italico e a assinatura em Cormorant. No celular
-     a foto vem antes, em toda a largura, e a carta desce embaixo. */
-  #fundadora { border-bottom: 1px solid var(--linha-clara); }
+     A PAGINA DA FUNDADORA (22/10/2026, segunda versao). A primeira punha um
+     retrato de 440px ao lado da carta, e ela achou a foto "grande, grotesca"
+     e o conjunto "basico". Esta e uma pagina de revista: fundo travertino (a
+     pedra da identidade, entre o marfim da 03 e o onix da 05), a frase da
+     Amanda em Cormorant italico grande como manchete, e embaixo um retrato
+     PEQUENO (260px, recorte 3:4, levemente dessaturado) ao lado da carta em
+     duas colunas de Jost com capitular em Cormorant. A assinatura em Pinyon
+     Script, como uma carta assinada a mao. */
+  .fundadora-cabeca { max-width: 1120px; margin-bottom: clamp(44px, 7vh, 84px); }
+  .fundadora-cabeca .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
 
-  .fundadora-grade {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.78fr) 1.22fr;
-    gap: clamp(40px, 7vw, 120px);
-    align-items: start;
-    max-width: 1320px;
-  }
-
-  .fundadora-foto {
-    position: relative;
+  .fundadora-citacao {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(36px, 4.8vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    color: var(--onix);
+    max-width: 18ch;
     margin: 0;
-    max-width: 440px;
-    width: 100%;
   }
 
-  /* a moldura champagne, deslocada: um quadro fino atras da foto */
-  .fundadora-foto::before {
+  .fundadora-corpo {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+    max-width: 1120px;
+    padding-top: clamp(28px, 4vh, 44px);
+    border-top: 1px solid var(--linha-escura);
+  }
+
+  .fundadora-retrato { position: relative; margin: 0; width: 260px; max-width: 100%; }
+
+  /* a moldura champagne, deslocada: o filete da identidade virando quadro. Fica
+     no embrulho da FOTO (e nao na figure, que inclui legenda e dados: na 1a
+     tentativa a moldura media a figure inteira e descia pela pagina) */
+  .fundadora-quadro { position: relative; display: block; }
+  .fundadora-quadro::before {
     content: '';
     position: absolute;
-    inset: 18px -18px -18px 18px;
-    border: 1px solid rgba(180, 154, 110, 0.55);
+    inset: 12px -12px -12px 12px;
+    border: 1px solid rgba(180, 154, 110, 0.6);
     pointer-events: none;
   }
 
-  .fundadora-foto img {
+  .fundadora-retrato img {
     position: relative;
     width: 100%;
-    height: auto;
-    aspect-ratio: 648 / 846;
+    height: auto; /* o atributo height="846" da tag mandaria sem isto, e a foto saia esticada */
+    aspect-ratio: 3 / 4;
     object-fit: cover;
-    filter: saturate(0.94) contrast(1.02);
+    object-position: 50% 18%;
+    filter: grayscale(0.35) sepia(0.08) contrast(1.03);
   }
 
-  .fundadora-foto figcaption {
-    margin-top: clamp(22px, 3vh, 34px);
-    padding-top: 16px;
-    border-top: 1px solid var(--linha-clara);
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
+  .fundadora-retrato figcaption { margin-top: 28px; }
+  .fundadora-retrato figcaption > span { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.1; color: var(--onix); }
+  .fundadora-retrato figcaption small { display: block; margin-top: 7px; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grafite); }
+
+  .fundadora-dados { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--linha-escura); display: grid; gap: 14px; }
+  .fundadora-dados span { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; color: var(--grafite); }
+  .fundadora-dados b { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1; color: var(--onix); margin-bottom: 4px; }
+
+  .fundadora-texto { min-width: 0; }
+
+  .fundadora-carta {
+    column-count: 2;
+    column-gap: clamp(32px, 4vw, 56px);
+    column-rule: 1px solid var(--linha-escura);
   }
 
-  .fundadora-foto figcaption span {
+  .fundadora-carta p {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--grafite);
+    max-width: none;
+    margin: 0 0 1em;
+    break-inside: avoid;
+  }
+
+  /* capitular em Cormorant, champagne */
+  .fundadora-carta p:first-child::first-letter {
     font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(22px, 1.9vw, 27px);
-    line-height: 1.1;
-    color: var(--marfim);
+    font-weight: 300;
+    font-size: 4.4em;
+    line-height: 0.8;
+    float: left;
+    margin: 0.1em 0.14em 0 0;
+    color: var(--champagne);
   }
 
-  .fundadora-foto figcaption small {
+  .fundadora-carta p.fecho {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.36;
+    color: var(--onix);
+    margin: 1.3em 0 0;
+  }
+
+  .fundadora-carta p.fecho::before { content: '— '; color: var(--champagne); }
+
+  /* a assinatura, como numa carta */
+  .assinatura {
+    margin: clamp(30px, 4.5vh, 48px) 0 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 22px;
+    max-width: none;
+  }
+
+  .assinatura::before { content: ''; width: 24px; height: 1px; background: var(--champagne); flex: none; margin-bottom: 20px; }
+
+  .assinatura b {
+    display: block;
+    font-family: 'Pinyon Script', var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 3.6vw, 54px);
+    line-height: 1;
+    color: var(--onix);
+    transform: rotate(-3deg);
+    transform-origin: left bottom;
+  }
+
+  .assinatura small {
+    display: block;
+    margin-top: 10px;
     font-family: var(--sans);
     font-weight: 500;
     font-size: 10.5px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--champagne);
-    white-space: nowrap;
-  }
-
-  .fundadora-texto .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
-
-  .fundadora-texto h2 {
-    font-size: clamp(32px, 3.9vw, 54px);
-    line-height: 1.08;
-    max-width: 16ch;
-    margin: 0 0 clamp(28px, 4vh, 44px);
-  }
-
-  /* 56ch e nao 66: no computador o botao fixo "Fale com um consultor" mora no canto direito, e a carta para antes dele */
-  .fundadora-carta { max-width: min(56ch, 470px); }
-
-  .fundadora-carta p {
-    font-size: clamp(15.5px, 1.15vw, 17px);
-    line-height: 1.72;
-    color: rgba(245, 242, 236, 0.82);
-    margin: 0 0 1.15em;
-  }
-
-  .fundadora-carta p:first-child {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(20px, 1.8vw, 25px);
-    line-height: 1.4;
-    color: var(--marfim);
-    margin-bottom: 1.1em;
-  }
-
-  /* a ultima frase fecha a carta como uma citacao */
-  .fundadora-carta p.fecho {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(21px, 1.9vw, 27px);
-    line-height: 1.34;
-    color: var(--marfim);
-    margin: 1.6em 0 0;
-    padding-top: 1.2em;
-    border-top: 1px solid var(--linha-clara);
-  }
-
-  .fundadora-carta p.fecho::before { content: '— '; color: var(--champagne); }
-
-  .assinatura {
-    margin-top: clamp(32px, 5vh, 52px);
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-
-  .assinatura::before { content: ''; width: 24px; height: 1px; background: var(--champagne); flex: none; }
-
-  .assinatura b {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(26px, 2.4vw, 34px);
-    line-height: 1;
-    color: var(--marfim);
-    letter-spacing: 0.005em;
-  }
-
-  .assinatura small {
-    display: block;
-    margin-top: 6px;
-    font-family: var(--sans);
-    font-weight: 400;
-    font-size: 12.5px;
-    letter-spacing: 0.08em;
-    color: var(--texto-fraco);
+    color: var(--grafite);
   }
 
   /* ============================================================= servicos ==
@@ -2801,11 +2800,11 @@
     .pilar:not(:first-child)::before { display: none; }
     /* no celular a frase ganha mais linhas, entao cabe mais estreita */
     .claro .lema { font-size: clamp(36px, 9.4vw, 62px); }
-    /* a carta da fundadora: foto em cima, carta embaixo */
-    .fundadora-grade { grid-template-columns: 1fr; gap: clamp(36px, 6vh, 56px); }
-    .fundadora-foto { max-width: min(100%, 420px); }
-    .fundadora-foto::before { inset: 14px -14px -14px 14px; }
-    .fundadora-texto h2 { max-width: none; }
+    /* a pagina da fundadora: retrato pequeno em cima, carta numa coluna so */
+    .fundadora-corpo { grid-template-columns: 1fr; gap: clamp(32px, 5vh, 48px); }
+    .fundadora-retrato { width: min(58%, 240px); }
+    .fundadora-carta { column-count: 1; }
+    .fundadora-citacao { max-width: none; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -2909,9 +2908,8 @@
   /* no celular o cabecalho e um pouco mais compacto (16px de respiro em vez de 26) */
   @media (max-width: 600px) {
     .topo, .topo.encolhido { padding-top: 16px; padding-bottom: 16px; }
-    .fundadora-foto figcaption { flex-direction: column; align-items: flex-start; gap: 6px; }
-    .assinatura { align-items: flex-start; }
-    .assinatura::before { margin-top: 14px; }
+    .fundadora-retrato { width: min(62%, 220px); }
+    .fundadora-quadro::before { inset: 10px -10px -10px 10px; }
   }
 
   /* Telas largas mas baixas, como notebook: a abertura nao forca a altura da
@@ -3497,18 +3495,25 @@
   </div>
 </section>
 <!-- =============================================================== fundadora -->
-<!-- A carta da Amanda (22/10/2026), nas palavras dela; so a frase do titulo foi
-     tirada do proprio texto ("uma jornada imobiliaria mais exclusiva"). -->
-<section id="fundadora">
-  <div class="fundadora-grade">
-    <figure class="fundadora-foto sobe">
-      <img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="(max-width: 900px) min(100vw, 420px), 440px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async">
-      <figcaption><span class="notranslate">Amanda Müller</span><small>Fundadora</small></figcaption>
+<!-- A pagina da fundadora (22/10/2026, 2a versao): a frase da Amanda como manchete, retrato pequeno e a carta em
+     duas colunas. Texto dela palavra por palavra; a manchete e um trecho do proprio texto ("o cliente no centro de
+     cada decisao"). -->
+<section class="pedra" id="fundadora">
+  <div class="fundadora-cabeca sobe">
+    <span class="filete"></span>
+    <span class="rotulo">04 — A fundadora</span>
+    <h2 class="fundadora-citacao">O cliente no centro de cada decisão.</h2>
+  </div>
+  <div class="fundadora-corpo">
+    <figure class="fundadora-retrato sobe">
+      <span class="fundadora-quadro"><img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="260px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async"></span>
+      <figcaption><span class="notranslate">Amanda Müller</span><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></figcaption>
+      <div class="fundadora-dados">
+        <span><b>10 anos</b>de mercado imobiliário, entre incorporadoras e imobiliárias</span>
+        <span><b>4 países</b>Brasil, Estados Unidos, Portugal e Dubai</span>
+      </div>
     </figure>
     <div class="fundadora-texto sobe">
-      <span class="filete"></span>
-      <span class="rotulo">04 — A fundadora</span>
-      <h2>Uma jornada imobiliária mais exclusiva.</h2>
       <div class="fundadora-carta">
         <p>A AMGlobal Realty nasceu de um propósito: oferecer ao cliente uma forma mais ampla, personalizada e estratégica de se relacionar com o mercado imobiliário.</p>
         <p>Acredito que cada pessoa tem objetivos, sonhos e necessidades diferentes, e que o atendimento imobiliário deve acompanhar essa individualidade. Por isso, idealizei uma imobiliária que vai além da oferta de imóveis, conectando pessoas às oportunidades certas para morar, investir e construir patrimônio, com uma visão global, parcerias estratégicas e soluções pensadas para cada perfil.</p>
