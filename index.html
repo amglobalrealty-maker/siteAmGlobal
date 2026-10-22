@@ -2800,9 +2800,28 @@
     .pilar:not(:first-child)::before { display: none; }
     /* no celular a frase ganha mais linhas, entao cabe mais estreita */
     .claro .lema { font-size: clamp(36px, 9.4vw, 62px); }
-    /* a pagina da fundadora: retrato pequeno em cima, carta numa coluna so */
-    .fundadora-corpo { grid-template-columns: 1fr; gap: clamp(32px, 5vh, 48px); }
-    .fundadora-retrato { width: min(58%, 240px); }
+    /* a pagina da fundadora no celular (22/10): a carta vem primeiro, numa
+       coluna so, e o retrato FECHA a secao como um bloco de autora: foto
+       pequena a esquerda, nome e cargo ao lado, os dois dados embaixo. (Ela:
+       "em mobile a foto tem que aparecer no final, e nao jogada solta".) */
+    .fundadora-corpo { grid-template-columns: 1fr; gap: clamp(28px, 4vh, 40px); }
+    .fundadora-texto { order: 1; }
+    .fundadora-retrato {
+      order: 2;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 124px minmax(0, 1fr);
+      column-gap: 26px;
+      row-gap: 0;
+      align-items: end;
+      padding-top: clamp(24px, 3.5vh, 32px);
+      border-top: 1px solid var(--linha-escura);
+    }
+    .fundadora-quadro { grid-column: 1; grid-row: 1; }
+    .fundadora-quadro::before { inset: 8px -8px -8px 8px; }
+    .fundadora-retrato figcaption { grid-column: 2; grid-row: 1; margin: 0 0 4px; }
+    .fundadora-retrato figcaption > span { font-size: 22px; }
+    .fundadora-dados { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
     .fundadora-carta { column-count: 1; }
     .fundadora-citacao { max-width: none; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
@@ -2908,8 +2927,8 @@
   /* no celular o cabecalho e um pouco mais compacto (16px de respiro em vez de 26) */
   @media (max-width: 600px) {
     .topo, .topo.encolhido { padding-top: 16px; padding-bottom: 16px; }
-    .fundadora-retrato { width: min(62%, 220px); }
-    .fundadora-quadro::before { inset: 10px -10px -10px 10px; }
+    .fundadora-retrato { grid-template-columns: 112px minmax(0, 1fr); column-gap: 22px; }
+    .fundadora-retrato figcaption > span { font-size: 21px; }
   }
 
   /* Telas largas mas baixas, como notebook: a abertura nao forca a altura da
