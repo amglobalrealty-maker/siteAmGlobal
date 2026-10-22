@@ -4032,6 +4032,44 @@
     if (ev.key === 'Escape') fecharMenu();
   });
 
+  /* 4a. (22/10) IR PARA A SECAO POR CONTA PROPRIA.
+
+     Relato de um celular que nao e o dela: "A AMGlobal" no menu parava na
+     secao 02. O pulo nativo do navegador calcula o destino uma vez; se uma
+     foto ou uma fonte carrega durante a rolagem e empurra o que esta acima,
+     navegadores sem ancoragem de rolagem (Safari do iPhone) param no lugar
+     errado. Aqui a rolagem e nossa e, nos segundos seguintes, a secao e
+     conferida e recolocada no topo, a menos que a pessoa ja tenha tocado
+     para rolar por conta propria. */
+  function irPara(id) {
+    var el = document.getElementById(id);
+    if (!el) return false;
+    var topoDe = function () { return el.getBoundingClientRect().top; };
+    window.scrollTo({ top: topoDe() + window.scrollY, behavior: calmo ? 'auto' : 'smooth' });
+    if (window.history && history.replaceState) history.replaceState(null, '', '#' + id);
+    var cancelado = false;
+    var cancelar = function () { cancelado = true; };
+    ['touchstart', 'wheel', 'keydown'].forEach(function (t) { window.addEventListener(t, cancelar, { once: true, passive: true }); });
+    [1500, 2600, 4000].forEach(function (ms) {
+      window.setTimeout(function () {
+        if (cancelado) return;
+        var d = topoDe();
+        if (Math.abs(d) > 8) window.scrollTo({ top: window.scrollY + d, behavior: 'auto' });
+      }, ms);
+    });
+    return true;
+  }
+
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('.menu a[href^="#"], a.rolar[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!document.getElementById(id)) return;   // sem secao, deixa o navegador fazer o de sempre
+    ev.preventDefault();
+    if (menu.classList.contains('aberto')) fecharMenu();
+    irPara(id);
+  });
+
 
   /* 4b. A LINHA CAIDA.
 
