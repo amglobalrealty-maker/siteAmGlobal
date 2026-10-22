@@ -1417,13 +1417,15 @@
      A PAGINA DA FUNDADORA (22/10/2026, segunda versao). A primeira punha um
      retrato de 440px ao lado da carta, e ela achou a foto "grande, grotesca"
      e o conjunto "basico". Esta e uma pagina de revista: fundo travertino (a
-     pedra da identidade, logo depois da abertura escura: desde a tarde de
-     22/10 e a primeira secao, a pedido dela), a frase da
+     pedra da identidade, entre o onix da curadoria (02) e o marfim de A
+     AMGlobal (04): na tarde de 22/10 ela pediu a fundadora logo antes de
+     A AMGlobal), a frase da
      Amanda em Cormorant italico grande como manchete, e embaixo um retrato
      PEQUENO (260px, recorte 3:4, levemente dessaturado) ao lado da carta em
      duas colunas de Jost com capitular em Cormorant. A assinatura em Cormorant
-     italico, pequena e reta: a Pinyon Script inclinada da manha de 22/10
-     ela achou grande e rebuscada ("menor, mais chic, mais clean"). */
+     italico, pequena (19 a 22px) e reta: a Pinyon Script inclinada da manha
+     de 22/10 ela achou grande e rebuscada ("menor, mais chic, mais clean"),
+     e a primeira troca (24 a 30px) ainda estava grande ("diminua"). */
   .fundadora-cabeca { max-width: 1120px; margin-bottom: clamp(44px, 7vh, 84px); }
   .fundadora-cabeca .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
 
@@ -1532,14 +1534,14 @@
     max-width: none;
   }
 
-  .assinatura::before { content: ''; width: 24px; height: 1px; background: var(--champagne); flex: none; margin-bottom: 20px; }
+  .assinatura::before { content: ''; width: 24px; height: 1px; background: var(--champagne); flex: none; margin-bottom: 22px; }
 
   .assinatura b {
     display: block;
     font-family: var(--serif);
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(24px, 2vw, 30px);
+    font-size: clamp(19px, 1.5vw, 22px);
     line-height: 1;
     letter-spacing: 0.03em;
     color: var(--onix);
@@ -1547,7 +1549,7 @@
 
   .assinatura small {
     display: block;
-    margin-top: 10px;
+    margin-top: 8px;
     font-family: var(--sans);
     font-weight: 500;
     font-size: 10.5px;
@@ -3276,7 +3278,7 @@
   <!-- as pracas do site, como na referencia dela (13/10) -->
   <p class="abertura-pracas"><span>Brasil</span><span>Estados Unidos</span><span>Portugal</span><span>Dubai</span></p>
 
-  <a class="rolar" href="#fundadora" aria-label="Ir para a fundadora">
+  <a class="rolar" href="#curadoria" aria-label="Ir para a curadoria">
     <!-- triangulo aberto, vindo do A -->
     <svg class="chevron" width="17" height="11" viewBox="0 0 17 11" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
       <path d="M1 1 L8.5 10 L16 1"/>
@@ -3285,45 +3287,12 @@
   </a>
 </section>
 
-<!-- =============================================================== fundadora -->
-<!-- A pagina da fundadora (22/10/2026, 2a versao; desde a tarde de 22/10 e a primeira secao depois da abertura, a pedido
-     dela): a frase da Amanda como manchete, retrato pequeno e a carta em
-     duas colunas. Texto dela palavra por palavra; a manchete e um trecho do proprio texto ("o cliente no centro de
-     cada decisao"). -->
-<section class="pedra" id="fundadora">
-  <div class="fundadora-cabeca sobe">
-    <span class="filete"></span>
-    <span class="rotulo">02 — A fundadora</span>
-    <h2 class="fundadora-citacao">O cliente no centro de cada decisão.</h2>
-  </div>
-  <div class="fundadora-corpo">
-    <figure class="fundadora-retrato sobe">
-      <span class="fundadora-quadro"><img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="260px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async"></span>
-      <figcaption><span class="notranslate">Amanda Müller</span><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></figcaption>
-      <div class="fundadora-dados">
-        <span><b>10 anos</b>de mercado imobiliário, entre incorporadoras e imobiliárias</span>
-        <span><b>4 países</b>Brasil, Estados Unidos, Portugal e Dubai</span>
-      </div>
-    </figure>
-    <div class="fundadora-texto sobe">
-      <div class="fundadora-carta">
-        <p>A AMGlobal Realty nasceu de um propósito: oferecer ao cliente uma forma mais ampla, personalizada e estratégica de se relacionar com o mercado imobiliário.</p>
-        <p>Acredito que cada pessoa tem objetivos, sonhos e necessidades diferentes, e que o atendimento imobiliário deve acompanhar essa individualidade. Por isso, idealizei uma imobiliária que vai além da oferta de imóveis, conectando pessoas às oportunidades certas para morar, investir e construir patrimônio, com uma visão global, parcerias estratégicas e soluções pensadas para cada perfil.</p>
-        <p>Minha trajetória no mercado imobiliário começou há 10 anos. Ao longo desse período, passei por incorporadoras e imobiliárias, adquirindo experiência e uma visão abrangente do setor, dos negócios e das diferentes oportunidades que o mercado oferece.</p>
-        <p>Foi essa vivência que fortaleceu minha vontade de criar um modelo de atendimento em que o cliente estivesse no centro de cada decisão, com proximidade, confiança e uma consultoria verdadeiramente personalizada.</p>
-        <p>Assim nasceu a AMGlobal Realty: uma marca que une experiência, conexões e visão de mercado para proporcionar uma jornada imobiliária mais exclusiva, alinhada aos objetivos de cada cliente e aberta a novas possibilidades.</p>
-        <p class="fecho">Porque encontrar o imóvel certo é apenas o começo. O verdadeiro valor está em encontrar a oportunidade certa para cada pessoa.</p>
-      </div>
-      <p class="assinatura"><span><b class="notranslate">Amanda Müller</b><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></span></p>
-    </div>
-  </div>
-</section>
 <!-- =============================================================== curadoria -->
 <section id="curadoria">
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
-      <span class="rotulo">03 — Curadoria</span>
+      <span class="rotulo">02 — Curadoria</span>
       <h2>Atendimento exclusivo, do início ao fim.</h2>
     </div>
     <div class="cabeca-texto">
@@ -3509,6 +3478,39 @@
   </div>
 </section>
 
+<!-- =============================================================== fundadora -->
+<!-- A pagina da fundadora (22/10/2026, 2a versao; desde a tarde de 22/10 fica entre a Curadoria e A AMGlobal, a pedido
+     dela): a frase da Amanda como manchete, retrato pequeno e a carta em
+     duas colunas. Texto dela palavra por palavra; a manchete e um trecho do proprio texto ("o cliente no centro de
+     cada decisao"). -->
+<section class="pedra" id="fundadora">
+  <div class="fundadora-cabeca sobe">
+    <span class="filete"></span>
+    <span class="rotulo">03 — A fundadora</span>
+    <h2 class="fundadora-citacao">O cliente no centro de cada decisão.</h2>
+  </div>
+  <div class="fundadora-corpo">
+    <figure class="fundadora-retrato sobe">
+      <span class="fundadora-quadro"><img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="260px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async"></span>
+      <figcaption><span class="notranslate">Amanda Müller</span><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></figcaption>
+      <div class="fundadora-dados">
+        <span><b>10 anos</b>de mercado imobiliário, entre incorporadoras e imobiliárias</span>
+        <span><b>4 países</b>Brasil, Estados Unidos, Portugal e Dubai</span>
+      </div>
+    </figure>
+    <div class="fundadora-texto sobe">
+      <div class="fundadora-carta">
+        <p>A AMGlobal Realty nasceu de um propósito: oferecer ao cliente uma forma mais ampla, personalizada e estratégica de se relacionar com o mercado imobiliário.</p>
+        <p>Acredito que cada pessoa tem objetivos, sonhos e necessidades diferentes, e que o atendimento imobiliário deve acompanhar essa individualidade. Por isso, idealizei uma imobiliária que vai além da oferta de imóveis, conectando pessoas às oportunidades certas para morar, investir e construir patrimônio, com uma visão global, parcerias estratégicas e soluções pensadas para cada perfil.</p>
+        <p>Minha trajetória no mercado imobiliário começou há 10 anos. Ao longo desse período, passei por incorporadoras e imobiliárias, adquirindo experiência e uma visão abrangente do setor, dos negócios e das diferentes oportunidades que o mercado oferece.</p>
+        <p>Foi essa vivência que fortaleceu minha vontade de criar um modelo de atendimento em que o cliente estivesse no centro de cada decisão, com proximidade, confiança e uma consultoria verdadeiramente personalizada.</p>
+        <p>Assim nasceu a AMGlobal Realty: uma marca que une experiência, conexões e visão de mercado para proporcionar uma jornada imobiliária mais exclusiva, alinhada aos objetivos de cada cliente e aberta a novas possibilidades.</p>
+        <p class="fecho">Porque encontrar o imóvel certo é apenas o começo. O verdadeiro valor está em encontrar a oportunidade certa para cada pessoa.</p>
+      </div>
+      <p class="assinatura"><span><b class="notranslate">Amanda Müller</b><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></span></p>
+    </div>
+  </div>
+</section>
 <!-- =============================================================== manifesto -->
 <section class="claro" id="manifesto">
   <div class="manifesto-fala sobe">
