@@ -3005,7 +3005,8 @@
 
     <nav class="menu" id="menu" aria-label="Navegacao principal">
       <a href="#curadoria">Curadoria</a>
-      <a href="#manifesto">A AMGlobal</a>
+      <!-- (22/10) "A AMGlobal" leva para a fundadora (03); a pessoa desce dali para a secao 04 -->
+      <a href="#fundadora">A AMGlobal</a>
       <a href="#servicos">Serviços</a>
       <a href="#global">Global</a>
       <!-- (15/10) Empreendimentos: pagina propria, por pais, estado e cidade, com as
@@ -4165,7 +4166,8 @@
     var guarda = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var id = e.target.id;
+        // o item "A AMGlobal" aponta para a fundadora (03) e segue aceso na secao 04 (manifesto)
+        var id = e.target.id === 'manifesto' ? 'fundadora' : e.target.id;
         Array.prototype.forEach.call(itensMenu, function (a) {
           a.classList.toggle('ativo', a.getAttribute('href') === '#' + id);
         });
@@ -4176,6 +4178,9 @@
       var el = document.getElementById(id);
       if (el) guarda.observe(el);
     });
+    // (22/10) a fundadora, entre a curadoria e A AMGlobal, tambem acende o item do menu
+    var secFundadora = document.getElementById('fundadora');
+    if (secFundadora) guarda.observe(secFundadora);
   }
 
   /* 7. Filtro por pais, estado e cidade (estados desde 06/10/2026).
