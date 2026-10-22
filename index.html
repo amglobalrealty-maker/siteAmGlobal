@@ -1413,6 +1413,148 @@
 
   .pilar p { font-size: 14.5px; line-height: 1.66; max-width: 36ch; }
 
+  /* ============================================================ fundadora ==
+     A CARTA DA FUNDADORA (22/10/2026). Texto da Amanda, em primeira pessoa,
+     com a fotografia dela. Secao onix entre a 03 (clara) e a 05 (onix): o
+     retrato a esquerda, com a moldura champagne deslocada (o filete da
+     identidade virando quadro), e a carta a direita em Jost 300, com a
+     ultima frase em Cormorant italico e a assinatura em Cormorant. No celular
+     a foto vem antes, em toda a largura, e a carta desce embaixo. */
+  #fundadora { border-bottom: 1px solid var(--linha-clara); }
+
+  .fundadora-grade {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.78fr) 1.22fr;
+    gap: clamp(40px, 7vw, 120px);
+    align-items: start;
+    max-width: 1320px;
+  }
+
+  .fundadora-foto {
+    position: relative;
+    margin: 0;
+    max-width: 440px;
+    width: 100%;
+  }
+
+  /* a moldura champagne, deslocada: um quadro fino atras da foto */
+  .fundadora-foto::before {
+    content: '';
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 1px solid rgba(180, 154, 110, 0.55);
+    pointer-events: none;
+  }
+
+  .fundadora-foto img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 648 / 846;
+    object-fit: cover;
+    filter: saturate(0.94) contrast(1.02);
+  }
+
+  .fundadora-foto figcaption {
+    margin-top: clamp(22px, 3vh, 34px);
+    padding-top: 16px;
+    border-top: 1px solid var(--linha-clara);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .fundadora-foto figcaption span {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 1.9vw, 27px);
+    line-height: 1.1;
+    color: var(--marfim);
+  }
+
+  .fundadora-foto figcaption small {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    white-space: nowrap;
+  }
+
+  .fundadora-texto .rotulo { margin-bottom: clamp(18px, 2.4vh, 26px); }
+
+  .fundadora-texto h2 {
+    font-size: clamp(32px, 3.9vw, 54px);
+    line-height: 1.08;
+    max-width: 16ch;
+    margin: 0 0 clamp(28px, 4vh, 44px);
+  }
+
+  /* 56ch e nao 66: no computador o botao fixo "Fale com um consultor" mora no canto direito, e a carta para antes dele */
+  .fundadora-carta { max-width: min(56ch, 470px); }
+
+  .fundadora-carta p {
+    font-size: clamp(15.5px, 1.15vw, 17px);
+    line-height: 1.72;
+    color: rgba(245, 242, 236, 0.82);
+    margin: 0 0 1.15em;
+  }
+
+  .fundadora-carta p:first-child {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(20px, 1.8vw, 25px);
+    line-height: 1.4;
+    color: var(--marfim);
+    margin-bottom: 1.1em;
+  }
+
+  /* a ultima frase fecha a carta como uma citacao */
+  .fundadora-carta p.fecho {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(21px, 1.9vw, 27px);
+    line-height: 1.34;
+    color: var(--marfim);
+    margin: 1.6em 0 0;
+    padding-top: 1.2em;
+    border-top: 1px solid var(--linha-clara);
+  }
+
+  .fundadora-carta p.fecho::before { content: '— '; color: var(--champagne); }
+
+  .assinatura {
+    margin-top: clamp(32px, 5vh, 52px);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .assinatura::before { content: ''; width: 24px; height: 1px; background: var(--champagne); flex: none; }
+
+  .assinatura b {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 2.4vw, 34px);
+    line-height: 1;
+    color: var(--marfim);
+    letter-spacing: 0.005em;
+  }
+
+  .assinatura small {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    color: var(--texto-fraco);
+  }
+
   /* ============================================================= servicos ==
      QUATRO FRENTES.
 
@@ -2659,6 +2801,11 @@
     .pilar:not(:first-child)::before { display: none; }
     /* no celular a frase ganha mais linhas, entao cabe mais estreita */
     .claro .lema { font-size: clamp(36px, 9.4vw, 62px); }
+    /* a carta da fundadora: foto em cima, carta embaixo */
+    .fundadora-grade { grid-template-columns: 1fr; gap: clamp(36px, 6vh, 56px); }
+    .fundadora-foto { max-width: min(100%, 420px); }
+    .fundadora-foto::before { inset: 14px -14px -14px 14px; }
+    .fundadora-texto h2 { max-width: none; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
     .frentes { grid-template-columns: 1fr; gap: clamp(26px, 4vh, 40px); }
     .frente p { max-width: 54ch; }
@@ -2762,6 +2909,9 @@
   /* no celular o cabecalho e um pouco mais compacto (16px de respiro em vez de 26) */
   @media (max-width: 600px) {
     .topo, .topo.encolhido { padding-top: 16px; padding-bottom: 16px; }
+    .fundadora-foto figcaption { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .assinatura { align-items: flex-start; }
+    .assinatura::before { margin-top: 14px; }
   }
 
   /* Telas largas mas baixas, como notebook: a abertura nao forca a altura da
@@ -3346,12 +3496,37 @@
     </div>
   </div>
 </section>
+<!-- =============================================================== fundadora -->
+<!-- A carta da Amanda (22/10/2026), nas palavras dela; so a frase do titulo foi
+     tirada do proprio texto ("uma jornada imobiliaria mais exclusiva"). -->
+<section id="fundadora">
+  <div class="fundadora-grade">
+    <figure class="fundadora-foto sobe">
+      <img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="(max-width: 900px) min(100vw, 420px), 440px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async">
+      <figcaption><span class="notranslate">Amanda Müller</span><small>Fundadora</small></figcaption>
+    </figure>
+    <div class="fundadora-texto sobe">
+      <span class="filete"></span>
+      <span class="rotulo">04 — A fundadora</span>
+      <h2>Uma jornada imobiliária mais exclusiva.</h2>
+      <div class="fundadora-carta">
+        <p>A AMGlobal Realty nasceu de um propósito: oferecer ao cliente uma forma mais ampla, personalizada e estratégica de se relacionar com o mercado imobiliário.</p>
+        <p>Acredito que cada pessoa tem objetivos, sonhos e necessidades diferentes, e que o atendimento imobiliário deve acompanhar essa individualidade. Por isso, idealizei uma imobiliária que vai além da oferta de imóveis, conectando pessoas às oportunidades certas para morar, investir e construir patrimônio, com uma visão global, parcerias estratégicas e soluções pensadas para cada perfil.</p>
+        <p>Minha trajetória no mercado imobiliário começou há 10 anos. Ao longo desse período, passei por incorporadoras e imobiliárias, adquirindo experiência e uma visão abrangente do setor, dos negócios e das diferentes oportunidades que o mercado oferece.</p>
+        <p>Foi essa vivência que fortaleceu minha vontade de criar um modelo de atendimento em que o cliente estivesse no centro de cada decisão, com proximidade, confiança e uma consultoria verdadeiramente personalizada.</p>
+        <p>Assim nasceu a AMGlobal Realty: uma marca que une experiência, conexões e visão de mercado para proporcionar uma jornada imobiliária mais exclusiva, alinhada aos objetivos de cada cliente e aberta a novas possibilidades.</p>
+        <p class="fecho">Porque encontrar o imóvel certo é apenas o começo. O verdadeiro valor está em encontrar a oportunidade certa para cada pessoa.</p>
+      </div>
+      <p class="assinatura"><span><b class="notranslate">Amanda Müller</b><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></span></p>
+    </div>
+  </div>
+</section>
 <!-- ================================================================ servicos -->
 <section id="servicos">
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
-      <span class="rotulo">04 — Serviços</span>
+      <span class="rotulo">05 — Serviços</span>
       <h2>Uma consultoria completa, do primeiro contato à escritura</h2>
     </div>
     <div class="cabeca-texto">
@@ -3407,7 +3582,7 @@
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
-      <span class="rotulo">05 — Global</span>
+      <span class="rotulo">06 — Global</span>
       <h2>Do Brasil para o mundo</h2>
     </div>
     <div class="cabeca-texto">
