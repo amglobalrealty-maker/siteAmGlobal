@@ -1474,8 +1474,10 @@
     filter: grayscale(0.35) sepia(0.08) contrast(1.03);
   }
 
-  /* (23/10) o retrato nao tem mais legenda: nome e cargo ficam so na assinatura da carta */
-  .fundadora-dados { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--linha-escura); display: grid; gap: 14px; }
+  /* (23/10) a assinatura (nome e cargo) fica sob a foto; a carta termina no fecho em italico */
+  .fundadora-retrato .assinatura { margin: 24px 0 0; }
+  .fundadora-retrato .assinatura::before { display: none; } /* o filete nao cabe ao lado do cargo nos 260px da foto */
+  .fundadora-dados { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--linha-escura); display: grid; gap: 14px; }
   .fundadora-dados span { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; color: var(--grafite); }
   .fundadora-dados b { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1; color: var(--onix); margin-bottom: 4px; }
 
@@ -2802,9 +2804,9 @@
     .claro .lema { font-size: clamp(36px, 9.4vw, 62px); }
     /* a pagina da fundadora no celular (22/10): a carta vem primeiro, numa
        coluna so, e o retrato FECHA a secao como um bloco de autora: foto
-       pequena a esquerda e os dois dados ao lado dela. (Ela: "em mobile a
-       foto tem que aparecer no final, e nao jogada solta". Em 23/10 a legenda
-       com nome e cargo saiu daqui: ja esta na assinatura, logo acima.) */
+       pequena a esquerda, a assinatura (nome e cargo) ao lado, os dois dados
+       embaixo. (Ela: "em mobile a foto tem que aparecer no final, e nao
+       jogada solta"; 23/10: "a assinatura em baixo da foto, nao do texto".) */
     .fundadora-corpo { grid-template-columns: 1fr; gap: clamp(28px, 4vh, 40px); }
     .fundadora-texto { order: 1; }
     .fundadora-retrato {
@@ -2820,7 +2822,9 @@
     }
     .fundadora-quadro { grid-column: 1; grid-row: 1; }
     .fundadora-quadro::before { inset: 8px -8px -8px 8px; }
-    .fundadora-dados { grid-column: 2; grid-row: 1; grid-template-columns: 1fr; gap: 18px; margin: 0 0 4px; padding-top: 0; border-top: 0; }
+    .fundadora-retrato .assinatura { grid-column: 2; grid-row: 1; margin: 0 0 4px; }
+    .fundadora-retrato .assinatura b { font-size: 22px; }
+    .fundadora-dados { grid-column: 1 / -1; grid-row: 2; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
     .fundadora-carta { column-count: 1; }
     .fundadora-citacao { max-width: none; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
@@ -2927,7 +2931,7 @@
   @media (max-width: 600px) {
     .topo, .topo.encolhido { padding-top: 16px; padding-bottom: 16px; }
     .fundadora-retrato { grid-template-columns: 112px minmax(0, 1fr); column-gap: 22px; }
-    .fundadora-dados b { font-size: 22px; }
+    .fundadora-retrato .assinatura b { font-size: 21px; }
   }
 
   /* Telas largas mas baixas, como notebook: a abertura nao forca a altura da
@@ -3297,8 +3301,9 @@
   <div class="fundadora-corpo">
     <figure class="fundadora-retrato sobe">
       <span class="fundadora-quadro"><img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="260px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async"></span>
-      <!-- (23/10) sem legenda sob o retrato: o nome e o cargo ja estao na assinatura, no fim da carta.
-           A Amanda achou repetido ver "Amanda Muller, fundadora" duas vezes na mesma tela. -->
+      <!-- (23/10) a assinatura fica aqui, sob a foto, e nao no fim da carta: a Amanda achou repetido ver o nome
+           duas vezes na mesma tela e pediu "a assinatura em baixo da foto, nao do texto". -->
+      <p class="assinatura"><span><b class="notranslate">Amanda Müller</b><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></span></p>
       <div class="fundadora-dados">
         <span><b>10 anos</b>de mercado imobiliário, entre incorporadoras e imobiliárias</span>
         <span><b>4 países</b>Brasil, Estados Unidos, Portugal e Dubai</span>
@@ -3313,7 +3318,6 @@
         <p>Assim nasceu a AMGlobal Realty: uma marca que une experiência, conexões e visão de mercado para proporcionar uma jornada imobiliária mais exclusiva, alinhada aos objetivos de cada cliente e aberta a novas possibilidades.</p>
         <p class="fecho">Porque encontrar o imóvel certo é apenas o começo. O verdadeiro valor está em encontrar a oportunidade certa para cada pessoa.</p>
       </div>
-      <p class="assinatura"><span><b class="notranslate">Amanda Müller</b><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></span></p>
     </div>
   </div>
 </section>
