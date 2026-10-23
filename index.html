@@ -1474,11 +1474,8 @@
     filter: grayscale(0.35) sepia(0.08) contrast(1.03);
   }
 
-  .fundadora-retrato figcaption { margin-top: 28px; }
-  .fundadora-retrato figcaption > span { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.1; color: var(--onix); }
-  .fundadora-retrato figcaption small { display: block; margin-top: 7px; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grafite); }
-
-  .fundadora-dados { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--linha-escura); display: grid; gap: 14px; }
+  /* (23/10) o retrato nao tem mais legenda: nome e cargo ficam so na assinatura da carta */
+  .fundadora-dados { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--linha-escura); display: grid; gap: 14px; }
   .fundadora-dados span { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; color: var(--grafite); }
   .fundadora-dados b { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1; color: var(--onix); margin-bottom: 4px; }
 
@@ -2805,8 +2802,9 @@
     .claro .lema { font-size: clamp(36px, 9.4vw, 62px); }
     /* a pagina da fundadora no celular (22/10): a carta vem primeiro, numa
        coluna so, e o retrato FECHA a secao como um bloco de autora: foto
-       pequena a esquerda, nome e cargo ao lado, os dois dados embaixo. (Ela:
-       "em mobile a foto tem que aparecer no final, e nao jogada solta".) */
+       pequena a esquerda e os dois dados ao lado dela. (Ela: "em mobile a
+       foto tem que aparecer no final, e nao jogada solta". Em 23/10 a legenda
+       com nome e cargo saiu daqui: ja esta na assinatura, logo acima.) */
     .fundadora-corpo { grid-template-columns: 1fr; gap: clamp(28px, 4vh, 40px); }
     .fundadora-texto { order: 1; }
     .fundadora-retrato {
@@ -2822,9 +2820,7 @@
     }
     .fundadora-quadro { grid-column: 1; grid-row: 1; }
     .fundadora-quadro::before { inset: 8px -8px -8px 8px; }
-    .fundadora-retrato figcaption { grid-column: 2; grid-row: 1; margin: 0 0 4px; }
-    .fundadora-retrato figcaption > span { font-size: 22px; }
-    .fundadora-dados { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+    .fundadora-dados { grid-column: 2; grid-row: 1; grid-template-columns: 1fr; gap: 18px; margin: 0 0 4px; padding-top: 0; border-top: 0; }
     .fundadora-carta { column-count: 1; }
     .fundadora-citacao { max-width: none; }
     /* sem largura para quatro colunas lado a lado, elas viram uma pilha */
@@ -2931,7 +2927,7 @@
   @media (max-width: 600px) {
     .topo, .topo.encolhido { padding-top: 16px; padding-bottom: 16px; }
     .fundadora-retrato { grid-template-columns: 112px minmax(0, 1fr); column-gap: 22px; }
-    .fundadora-retrato figcaption > span { font-size: 21px; }
+    .fundadora-dados b { font-size: 22px; }
   }
 
   /* Telas largas mas baixas, como notebook: a abertura nao forca a altura da
@@ -3295,13 +3291,14 @@
 <section class="pedra" id="fundadora">
   <div class="fundadora-cabeca sobe">
     <span class="filete"></span>
-    <span class="rotulo">02 — A fundadora</span>
+    <span class="rotulo">01 — A fundadora</span>
     <h2 class="fundadora-citacao">O cliente no centro de cada decisão.</h2>
   </div>
   <div class="fundadora-corpo">
     <figure class="fundadora-retrato sobe">
       <span class="fundadora-quadro"><img src="fotos/amanda-muller.webp" srcset="fotos/amanda-muller-cel.webp 582w, fotos/amanda-muller.webp 648w" sizes="260px" alt="Amanda Müller, fundadora da AMGlobal Realty" width="648" height="846" loading="lazy" decoding="async"></span>
-      <figcaption><span class="notranslate">Amanda Müller</span><small>Fundadora, <span class="notranslate">AMGlobal Realty</span></small></figcaption>
+      <!-- (23/10) sem legenda sob o retrato: o nome e o cargo ja estao na assinatura, no fim da carta.
+           A Amanda achou repetido ver "Amanda Muller, fundadora" duas vezes na mesma tela. -->
       <div class="fundadora-dados">
         <span><b>10 anos</b>de mercado imobiliário, entre incorporadoras e imobiliárias</span>
         <span><b>4 países</b>Brasil, Estados Unidos, Portugal e Dubai</span>
@@ -3325,7 +3322,7 @@
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
-      <span class="rotulo">03 — Curadoria</span>
+      <span class="rotulo">02 — Curadoria</span>
       <h2>Atendimento exclusivo, do início ao fim.</h2>
     </div>
     <div class="cabeca-texto">
@@ -3515,7 +3512,7 @@
 <section class="claro" id="manifesto">
   <div class="manifesto-fala sobe">
     <span class="filete"></span>
-    <span class="rotulo">04 — A AMGlobal</span>
+    <span class="rotulo">03 — A AMGlobal</span>
     <p class="manifesto-lede">Somos uma consultoria imobiliária exclusiva, com foco no objetivo de cada cliente. Para quem compra, encontramos o lugar da vida. Para quem investe, o ativo certo. Para quem vende, o comprador certo.</p>
     <p class="manifesto-nota">Cada cliente é atendido de forma dedicada e individual, onde quer que esteja, porque é assim que se dá atenção real a cada negociação.</p>
   </div>
@@ -3555,7 +3552,7 @@
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
-      <span class="rotulo">05 — Serviços</span>
+      <span class="rotulo">04 — Serviços</span>
       <h2>Uma consultoria completa, do primeiro contato à escritura</h2>
     </div>
     <div class="cabeca-texto">
@@ -3611,7 +3608,7 @@
   <div class="cabeca sobe">
     <div>
       <span class="filete"></span>
-      <span class="rotulo">06 — Global</span>
+      <span class="rotulo">05 — Global</span>
       <h2>Do Brasil para o mundo</h2>
     </div>
     <div class="cabeca-texto">
@@ -3804,7 +3801,7 @@
   <div class="contato-grade">
     <div class="sobe">
       <span class="filete"></span>
-      <span class="rotulo">07 — Contato</span>
+      <span class="rotulo">06 — Contato</span>
       <h2>Comece por<br>uma conversa</h2>
       <p>Conte o que você procura, ou o que pretende vender. Respondemos com uma seleção objetiva, não com uma lista.</p>
 
