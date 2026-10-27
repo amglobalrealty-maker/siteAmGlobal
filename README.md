@@ -1,12 +1,12 @@
-# AMGlobal Realty — site
+# AM Global Realty — site
 
-Site institucional da AMGlobal Realty. Uma pagina unica, estatica, sem etapa de build:
+Site institucional da AM Global Realty. Uma pagina unica, estatica, sem etapa de build:
 a Vercel serve o `index.html` direto do repositorio.
 
 Construido a partir de dois documentos entregues pela cliente:
 
-- Briefing AMGlobal Realty v1.0
-- Manual de Identidade Visual AMGlobal Realty v1.0
+- Briefing AM Global Realty v1.0
+- Manual de Identidade Visual AM Global Realty v1.0
 
 ## Como rodar
 
@@ -157,7 +157,7 @@ Para trocar, substitua o `src` da tag `img` correspondente.
 | Imovel 01 | `photo-1706808849780-7a04fbac83ef` |
 | Imovel 02 | `photo-1633354747567-e0682586f082` |
 | Imovel 03 | `photo-1745761320791-5ae142edee8c` |
-| Faixa da secao A AMGlobal | `photo-1660361339436-ddd4b85372da` |
+| Faixa da secao A AM Global | `photo-1660361339436-ddd4b85372da` |
 
 O endereco completo segue sempre o padrao
 `https://images.unsplash.com/<identificador>?auto=format&fit=crop&w=<largura>&q=70`.
@@ -410,7 +410,7 @@ funcao `leituraGemini`.
 |---|---|---|
 | 01 | Abertura | Apresentacao do atendimento (desde 07/10/2026): a esquerda a frase de marca como rotulo, "Consultoria imobiliaria exclusiva, com foco no objetivo de cada cliente" como titulo, UMA linha sobre o atendimento do inicio ao fim e os botoes Fale com um consultor e Ver a curadoria; a direita a MOLDURA VIVA: as tres fotos da casa sem letra (`fotos/capa-N-cel.webp`) trocando dentro da mesma moldura, com menos da metade da tela, cada uma com uma legenda do manifesto ("Para quem compra, o lugar da vida", "Para quem vende, o comprador certo", "Para quem investe, o ativo certo"), avanco lento de camera, cantoneiras champagne e a barra de tres pedacos que se enche; embaixo, os quatro servicos so pelo nome, levando a secao 04, e o servico da foto no ar acende (apontar um servico traz a foto dele). Ate 07/10 era um slide de tres fotografias de pagina inteira com o texto desenhado; o cliente final achou as fotos grandes demais, e a versao so de texto que veio depois ficou "com muito texto" para ela. As outras fotos ficaram em `fotos/`, sem uso |
 | 02 | Curadoria | Uma banda so, de pouco mais de meia tela: uma lamina por residencia, a apontada se abre. Filtravel por pais e cidade |
-| 03 | A AMGlobal | Citacao grande em italico e os tres pilares (desde 08/10/2026: Exclusivo, Com objetivo, Do inicio ao fim; os antigos Curadoria, Precisao e Discricao falavam de escassez) |
+| 03 | A AM Global | Citacao grande em italico e os tres pilares (desde 08/10/2026: Exclusivo, Com objetivo, Do inicio ao fim; os antigos Curadoria, Precisao e Discricao falavam de escassez) |
 | 04 | Servicos | A jornada desenhada (desde 08/10/2026): cinco passos, Conversa, Selecao, Visitas, Negociacao e Escritura, sobre uma linha champagne que se traca ao entrar na tela, com os pontos acendendo um a um (em pe no celular). Abaixo, as quatro frentes, com o numero grande em champagne. Sem imagem |
 | 05 | Global | Uma praca por vez, em onix: a fotografia num painel a direita e o NOME ATRAVESSANDO a borda dela. Anda sozinha, com varredura na troca |
 | 06 | Mercado | Painel no formato do filtro (07/10/2026): coluna Pais, coluna Estado (com "Todo o pais" primeiro) e, embaixo, o painel do que esta escolhido: cabecalho, quatro cartoes com numero, variacao e fonte, tabela por praca e uma leitura curta. Tudo vem de mercado-dados.js |
@@ -951,7 +951,7 @@ O manual pede movimento discreto, entao cada efeito tem uma razao.
   tela, em pouco mais de dois segundos e meio.
 
   Sao tres, uma sobre a banda da curadoria, uma sobre a faixa de imagem da
-  secao A AMGlobal e uma sobre o palco dos servicos, cada uma com a sua curva.
+  secao A AM Global e uma sobre o palco dos servicos, cada uma com a sua curva.
   Todas nascem um pouco acima da foto e passam das duas bordas laterais, para
   parecerem um fio que continua para fora da tela.
 
@@ -1019,7 +1019,7 @@ No celular nao ha largura para quatro estacoes lado a lado: **o trajeto vira
 vertical**, com a linha descendo pela esquerda e as estacoes descendo com ela.
 
 **A secao nao tem imagem nenhuma**, e e isso que da o respiro no meio da
-pagina: abertura (nenhuma, desde 07/10/2026), curadoria (12), A AMGlobal (1),
+pagina: abertura (nenhuma, desde 07/10/2026), curadoria (12), A AM Global (1),
 **servicos (nenhuma)**, global (12), mercado (nenhuma), contato (nenhuma).
 
 A linha caida que pousava sobre o palco desta secao foi removida junto com a
@@ -1111,7 +1111,7 @@ sei") e mensagem (opcional). O botao e "Agende uma visita privada", o CTA que
 o manual aprovou. A mensagem que chega fica assim:
 
 ```
-Olá, AMGlobal. Sou Ana Lima.
+Olá, AM Global. Sou Ana Lima.
 Quero comprar em Balneário Camboriú.
 Procuro frente mar, com 3 suítes, para morar.
 ```

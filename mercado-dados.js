@@ -202,8 +202,8 @@ window.MERCADO = {
         "Dubai Land Department (API de dados abertos), set/2026"
       ],
       "referencia": "set/2026",
-      "nota": "O Dubai Land Department cobre o emirado de Dubai, a praça da AMGlobal nos Emirados.",
-      "leitura": "Nos Emirados, a praça da AMGlobal é Dubai, e o Dubai Land Department cobre o emirado inteiro. Em Dubai, a venda residencial mediana saiu a AED 17.882 por m² em setembro de 2026 (Dubai Land Department, 11.134 vendas registradas no mês), caiu 6,6% desde janeiro. O valor mediano por negócio foi AED 1.156.682, e 72% das vendas de moradia foram na planta. Frente a agosto, o número de vendas caiu 1,4%.",
+      "nota": "O Dubai Land Department cobre o emirado de Dubai, a praça da AM Global nos Emirados.",
+      "leitura": "Nos Emirados, a praça da AM Global é Dubai, e o Dubai Land Department cobre o emirado inteiro. Em Dubai, a venda residencial mediana saiu a AED 17.882 por m² em setembro de 2026 (Dubai Land Department, 11.134 vendas registradas no mês), caiu 6,6% desde janeiro. O valor mediano por negócio foi AED 1.156.682, e 72% das vendas de moradia foram na planta. Frente a agosto, o número de vendas caiu 1,4%.",
       "leituraOrigem": "modelo fixo"
     },
     {
