@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   AMGLOBAL REALTY — a fonte unica do portfolio.
+   AM GLOBAL REALTY — a fonte unica do portfolio.
 
    Carregado por cidade.html e por imovel.html. As duas paginas sao montadas a
    partir DESTE arquivo: mudar aqui muda as duas, sem tocar em script nenhum.

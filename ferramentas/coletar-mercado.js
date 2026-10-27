@@ -3,7 +3,7 @@
    PAINEL DE MERCADO -- o coletor.
 
    Busca indicadores do mercado imobiliario em FONTES PUBLICAS E GRATUITAS para
-   cada estado em que a AMGlobal atua, escreve uma leitura curta por estado e
+   cada estado em que a AM Global atua, escreve uma leitura curta por estado e
    grava tudo em ../mercado-dados.js, que o site le. Roda uma vez por mes:
 
        cd ferramentas && npm install && node coletar-mercado.js
@@ -433,7 +433,7 @@ function montarPaises(bc, fz, zl, pt, db, estados) {
       id: 'emirados', nome: 'Emirados', moeda: 'AED', estados: dosEstados('Emirados'),
       cartoes: dubai ? dubai.cartoes : [], detalhe: dubai ? dubai.detalhe : null,
       fontes: dubai ? dubai.fontes : [], referencia: dubai ? dubai.referencia : null,
-      nota: 'O Dubai Land Department cobre o emirado de Dubai, a praça da AMGlobal nos Emirados.'
+      nota: 'O Dubai Land Department cobre o emirado de Dubai, a praça da AM Global nos Emirados.'
     });
   }
 
@@ -475,7 +475,7 @@ function leituraPais(p, estados) {
   }
   if (p.id === 'emirados') {
     const dubai = estados.find(e => e.id === 'dubai');
-    return 'Nos Emirados, a praça da AMGlobal é Dubai, e o Dubai Land Department cobre o emirado inteiro. ' + (dubai ? dubai.leitura : 'Sem dado do DLD nesta rodada.');
+    return 'Nos Emirados, a praça da AM Global é Dubai, e o Dubai Land Department cobre o emirado inteiro. ' + (dubai ? dubai.leitura : 'Sem dado do DLD nesta rodada.');
   }
   if (p.id === 'portugal') {
     if (!d) return 'Sem dado do INE nesta rodada.';

@@ -1,4 +1,4 @@
-/* AMGlobal Realty: seletor de idioma no cabecalho (19/10/2026, pedido da cliente: "botao para traduzir
+/* AM Global Realty: seletor de idioma no cabecalho (19/10/2026, pedido da cliente: "botao para traduzir
    o site para ingles, espanhol e portugues"; depois: "um menu que desce com as linguas, nao um do lado
    do outro, senao ocupa muito espaco", e "o menu nao pode mudar de lugar quando traduz").
    Tradutor automatico do Google por baixo: este arquivo carrega o widget escondido, desenha um seletor
