@@ -475,7 +475,10 @@
       },
 
       'dubai': {
-        nome: 'Dubai', pais: 'Emirados',
+        // (28/10/2026) a cliente pediu "Emirados Árabes" no lugar de "Dubai" em todo o site; a chave 'dubai' e os
+        // bairros (Dubai Marina, Downtown Dubai) sao nomes proprios e ficam. `em` e a forma com preposicao para
+        // as frases "residências em ...", "O que pesa em ..." da pagina da cidade.
+        nome: 'Emirados Árabes', pais: 'Oriente Médio', em: 'nos Emirados Árabes',
         capa: U + '1598737652403-6e0ee5bf5cf2' + C,
         retrato: U + '1670589953882-b94c9cb380f5' + G,
         linha: 'Um mercado de expansão rápida, com estrutura feita para o comprador estrangeiro e sem imposto sobre a renda do aluguel.',

@@ -3058,7 +3058,7 @@
       <button type="button" class="filtro-pais ativo" data-pais="">Todos os países<span class="filtro-conta" data-conta-pais=""></span></button>
       <button type="button" class="filtro-pais" data-pais="Brasil">Brasil<span class="filtro-conta" data-conta-pais="Brasil"></span></button>
       <button type="button" class="filtro-pais" data-pais="Estados Unidos">Estados Unidos<span class="filtro-conta" data-conta-pais="Estados Unidos"></span></button>
-      <button type="button" class="filtro-pais" data-pais="Emirados">Emirados<span class="filtro-conta" data-conta-pais="Emirados"></span></button>
+      <button type="button" class="filtro-pais" data-pais="Emirados">Emirados Árabes<span class="filtro-conta" data-conta-pais="Emirados"></span></button>
       <button type="button" class="filtro-pais" data-pais="Portugal">Portugal<span class="filtro-conta" data-conta-pais="Portugal"></span></button>
     </div>
 
@@ -3129,9 +3129,11 @@
         </div>
 
         <div class="filtro-grupo" data-pais="Emirados" data-estado="Dubai">
-          <button type="button" class="filtro-estado" data-pais="Emirados" data-estado="Dubai" aria-expanded="false">Dubai<span class="filtro-conta" data-conta-estado="Dubai"></span></button>
+          <!-- (28/10) a cliente pediu "Emirados Árabes" no lugar de "Dubai" em todo o site; os data-* continuam
+               "Dubai"/"dubai" porque sao as chaves que casam com a lamina da curadoria e com o dados.js -->
+          <button type="button" class="filtro-estado" data-pais="Emirados" data-estado="Dubai" aria-expanded="false">Emirados Árabes<span class="filtro-conta" data-conta-estado="Dubai"></span></button>
           <div class="filtro-cidades"><div>
-            <button type="button" class="filtro-cidade" data-pais="Emirados" data-estado="Dubai" data-cidade="Dubai" data-slug="dubai">Dubai</button>
+            <button type="button" class="filtro-cidade" data-pais="Emirados" data-estado="Dubai" data-cidade="Dubai" data-slug="dubai">Emirados Árabes</button>
           </div></div>
         </div>
 
@@ -3276,7 +3278,7 @@
     <a href="#servicos"><span class="abertura-num">04</span><span class="abertura-nome">Assessoria no exterior</span></a>
   </nav>
   <!-- as pracas do site, como na referencia dela (13/10) -->
-  <p class="abertura-pracas"><span>Brasil</span><span>Estados Unidos</span><span>Portugal</span><span>Dubai</span></p>
+  <p class="abertura-pracas"><span>Brasil</span><span>Estados Unidos</span><span>Portugal</span><span>Emirados Árabes</span></p>
 
   <a class="rolar" href="#fundadora" aria-label="Ir para a fundadora">
     <!-- triangulo aberto, vindo do A -->
@@ -3457,10 +3459,10 @@
     <button type="button" class="leque-item" data-pais="Emirados" data-estado="Dubai" data-cidade="Dubai" data-slug="dubai">
       <img src="https://images.unsplash.com/photo-1670589953882-b94c9cb380f5?auto=format&amp;fit=crop&amp;w=1100&amp;q=68" alt="" loading="lazy" decoding="async">
       <span class="leque-num">10</span>
-      <span class="leque-vertical"><span>Dubai</span></span>
+      <span class="leque-vertical"><span>Emirados Árabes</span></span>
       <span class="leque-ficha">
         <span class="leque-nome">Residência Dunas</span>
-        <span class="leque-lugar">Palm Jumeirah &middot; Dubai</span>
+        <span class="leque-lugar">Palm Jumeirah &middot; Emirados Árabes</span>
         <span class="leque-dados"><span>740 m&sup2;</span><span>6 suítes</span><span>Sob consulta</span></span>
         <span class="leque-entrar">Ver o imóvel</span>
       </span>
@@ -3616,7 +3618,7 @@
       <h2>Do Brasil para o mundo</h2>
     </div>
     <div class="cabeca-texto">
-      <p>Parcerias nos Estados Unidos, em Portugal e em Dubai, para quem quer comprar fora do país, e para quem vem de fora comprar no Brasil.</p>
+      <p>Parcerias nos Estados Unidos, em Portugal e nos Emirados Árabes, para quem quer comprar fora do país, e para quem vem de fora comprar no Brasil.</p>
     </div>
   </div>
 
@@ -3678,11 +3680,12 @@
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="America/Sao_Paulo"></span></span>
         </span>
       </button>
-      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Dubai" data-lat="25.2048" data-lon="55.2708" data-moeda="Dirham (AED)" data-idioma="Árabe">
+      <!-- (28/10) sem "Dubai" no site, a pedido da cliente: a linha de cima vira a regiao e o nome vira o pais -->
+      <button type="button" class="carta" data-carta="4" data-pos="4" data-estado="dia" aria-label="Ver Emirados Árabes" data-lat="25.2048" data-lon="55.2708" data-moeda="Dirham (AED)" data-idioma="Árabe">
         <img src="https://images.unsplash.com/photo-1598737652403-6e0ee5bf5cf2?auto=format&amp;fit=crop&amp;w=800&amp;q=74" alt="" loading="lazy" decoding="async">
         <span class="carta-texto">
-          <span class="carta-linha"><span class="carta-lugar">Emirados Árabes</span></span>
-          <span class="carta-linha"><span class="carta-nome">Dubai</span></span>
+          <span class="carta-linha"><span class="carta-lugar">Oriente Médio</span></span>
+          <span class="carta-linha"><span class="carta-nome">Emirados Árabes</span></span>
           <span class="carta-linha"><span class="carta-hora mundo-hora" data-fuso="Asia/Dubai">--:--</span></span>
           <span class="carta-linha"><span class="carta-estado" data-estado-texto="Asia/Dubai"></span></span>
         </span>
@@ -3885,8 +3888,8 @@
             <optgroup label="Estados Unidos">
               <option value="Flórida">Flórida</option>
             </optgroup>
-            <optgroup label="Emirados">
-              <option value="Dubai">Dubai</option>
+            <optgroup label="Emirados Árabes">
+              <option value="Emirados Árabes">Emirados Árabes</option>
             </optgroup>
             <optgroup label="Portugal">
               <option value="Lisboa">Lisboa</option>
@@ -3919,7 +3922,7 @@
       </div>
       <div class="linha-contato">
         <span class="rotulo">E-mail</span>
-        <span class="pendente">A informar</span>
+        <a href="mailto:contato@amglobalrealty.com">contato@amglobalrealty.com</a>
       </div>
       <!-- Sem linha de escritorio: a principio o atendimento e so on-line
            (decisao dela, 07/10/2026). Se um dia houver endereco, volta aqui

@@ -739,7 +739,7 @@
       +     '</div>'
       +     '<div>'
       +       (outras.length
-              ? '<span class="rotulo" style="margin-bottom:18px">Também em ' + esc(c.nome) + '</span>'
+              ? '<span class="rotulo" style="margin-bottom:18px">Também ' + (c.em ? esc(c.em) : 'em ' + esc(c.nome)) + '</span>'
                 + '<div class="vizinhas">' + outras.map(function (o) { return vizinha(slug, o.im, o.k); }).join('') + '</div>'
               : '')
       +     '</div>'
