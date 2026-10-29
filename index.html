@@ -2858,8 +2858,11 @@
        onde o veu e mais escuro */
     .abertura { min-height: 100svh; align-content: end; padding-bottom: clamp(28px, 5vh, 44px); }
     .abertura-poster, .abertura-filme { object-position: 50% 0%; }
-    .abertura-pracas { margin-top: 14px; font-size: 9px; }
-    .abertura-pracas span + span::before { margin: 0 10px; }
+    /* (29/10) as quatro pracas numa linha so no celular ("Emirados Arabes" caia sozinho na linha de baixo):
+       letra levemente menor em telas estreitas, menos espaco entre letras e separadores mais curtos.
+       Medido no site: 390 px = 300 de 324 disponiveis; 360 px = 275 de 299; 320 px ainda cabe. */
+    .abertura-pracas { margin-top: 14px; font-size: clamp(8px, 2.3vw, 9px); letter-spacing: 0.09em; }
+    .abertura-pracas span + span::before { margin: 0 7px; }
     /* LEGIBILIDADE NO CELULAR (08/10, "nao ta dando pra ler direito os textos em
        cima do video no mobile"): o texto ocupa dos 38% aos 95% da tela, bem em
        cima da casa e dos coqueiros, e o veu antigo so escurecia de verdade a
