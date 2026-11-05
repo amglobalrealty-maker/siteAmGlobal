@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Preview Environment Expired</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #0b0d10;
+      color: #d7dbe0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .box {
+      width: 100%;
+      max-width: 640px;
+      border: 1px solid #23272e;
+      border-radius: 6px;
+      background: #111418;
+      padding: 32px 32px 28px;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8b929b;
+    }
+    .top i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e0a43b;
+      box-shadow: 0 0 0 3px rgba(224, 164, 59, 0.18);
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #f3f5f7;
+    }
+    p { margin: 0 0 10px; color: #b4bac2; }
+    .meta {
+      margin: 24px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid #23272e;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 6px 18px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+    .meta dt { margin: 0; color: #6f7680; }
+    .meta dd { margin: 0; color: #e6e9ed; }
+    .meta dd.alerta { color: #e0a43b; }
+    .meta dd.erro { color: #e5706c; }
+    @media (max-width: 480px) {
+      .box { padding: 24px 20px; }
+      .meta { grid-template-columns: 1fr; gap: 2px; }
+      .meta dd { margin-bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="box" role="main">
+    <div class="top"><i aria-hidden="true"></i>Preview environment</div>
+    <h1>Preview Environment Expired</h1>
+    <p>O período de provisionamento deste ambiente temporário foi finalizado.</p>
+    <p>Esta aplicação permanece em etapa de homologação (staging).</p>
+    <p>A disponibilização de uma nova instância depende da ativação do ambiente de produção.</p>
+    <dl class="meta">
+      <dt>ENVIRONMENT</dt><dd>PREVIEW</dd>
+      <dt>INSTANCE STATUS</dt><dd class="alerta">INACTIVE</dd>
+      <dt>DEPLOYMENT</dt><dd>NOT RELEASED</dd>
+      <dt>PRODUCTION</dt><dd class="alerta">PENDING</dd>
+      <dt>ERROR CODE</dt><dd class="erro">PREVIEW_410</dd>
+    </dl>
+  </main>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/preview-expired.html", "permanent": false },
+    { "source": "/:path((?!preview-expired\\.html$).+)", "destination": "/preview-expired.html", "permanent": false }
+  ]
+}
