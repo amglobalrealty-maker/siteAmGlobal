@@ -4,91 +4,156 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Preview Environment Expired</title>
+  <meta name="theme-color" content="#0a0c0f">
+  <title>Preview Environment Expired (410)</title>
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { min-height: 100%; }
     body {
       margin: 0;
-      min-height: 100%;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background: #0b0d10;
-      color: #d7dbe0;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      background: #0a0c0f;
+      color: #cfd4da;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 14px;
       line-height: 1.6;
-    }
-    .box {
-      width: 100%;
-      max-width: 640px;
-      border: 1px solid #23272e;
-      border-radius: 6px;
-      background: #111418;
-      padding: 32px 32px 28px;
-    }
-    .top {
+      -webkit-text-size-adjust: 100%;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #8b929b;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    .top i {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #e0a43b;
-      box-shadow: 0 0 0 3px rgba(224, 164, 59, 0.18);
+    .barra {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 10px 16px;
+      background: #111418;
+      border-bottom: 1px solid #22272e;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8b929b;
+      white-space: nowrap;
     }
-    h1 {
-      margin: 0 0 16px;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: #f3f5f7;
+    .barra b { font-weight: 600; color: #e6e9ed; }
+    .barra .ponto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e0a43b; margin-right: 8px; vertical-align: middle; box-shadow: 0 0 0 3px rgba(224, 164, 59, 0.16); }
+    .barra .dir { overflow: hidden; text-overflow: ellipsis; }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 16px 24px;
     }
-    p { margin: 0 0 10px; color: #b4bac2; }
-    .meta {
-      margin: 24px 0 0;
-      padding-top: 18px;
-      border-top: 1px solid #23272e;
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      gap: 6px 18px;
-      font-size: 12px;
-      letter-spacing: 0.06em;
+    .codigo {
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      margin: 6px 0 14px;
     }
-    .meta dt { margin: 0; color: #6f7680; }
-    .meta dd { margin: 0; color: #e6e9ed; }
-    .meta dd.alerta { color: #e0a43b; }
-    .meta dd.erro { color: #e5706c; }
+    .codigo .num { font-size: 56px; line-height: 1; font-weight: 700; color: #e5706c; letter-spacing: -0.02em; }
+    .codigo .txt { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #8b929b; }
+    h1 { margin: 0 0 18px; font-size: 22px; line-height: 1.25; font-weight: 600; color: #f3f5f7; overflow-wrap: anywhere; }
+    .aviso {
+      border-left: 3px solid #e0a43b;
+      background: #15181d;
+      padding: 14px 16px;
+      margin: 0 0 22px;
+      border-radius: 0 4px 4px 0;
+    }
+    .aviso p { margin: 0 0 8px; color: #d7dbe0; }
+    .aviso p:last-child { margin-bottom: 0; }
+    .registro {
+      margin: 0 0 22px;
+      border: 1px solid #22272e;
+      border-radius: 4px;
+      background: #0e1114;
+      overflow: hidden;
+    }
+    .registro .cab {
+      padding: 8px 14px;
+      border-bottom: 1px solid #22272e;
+      background: #121519;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8b929b;
+    }
+    .registro dl { margin: 0; padding: 10px 14px 12px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; font-size: 13px; }
+    .registro dt { margin: 0; color: #6f7680; letter-spacing: 0.08em; }
+    .registro dd { margin: 0; color: #e6e9ed; overflow-wrap: anywhere; }
+    .registro dd.alerta { color: #e0a43b; }
+    .registro dd.erro { color: #e5706c; font-weight: 600; }
+    .registro dd.ok { color: #7fb77e; }
+    .linha {
+      font-size: 12px; color: #6f7680; line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+    .linha .cursor { display: inline-block; width: 7px; height: 13px; background: #8b929b; vertical-align: -2px; margin-left: 2px; animation: piscar 1.1s steps(2, start) infinite; }
+    .rodape {
+      padding: 14px 16px 18px;
+      border-top: 1px solid #22272e;
+      text-align: center;
+      font-size: 11px; letter-spacing: 0.06em; color: #596069;
+      overflow-wrap: anywhere;
+    }
+    @keyframes piscar { to { visibility: hidden; } }
     @media (max-width: 480px) {
-      .box { padding: 24px 20px; }
-      .meta { grid-template-columns: 1fr; gap: 2px; }
-      .meta dd { margin-bottom: 8px; }
+      body { font-size: 14px; }
+      .barra { font-size: 11px; padding: 10px 14px; }
+      .barra .dir { display: none; }
+      .linha { font-size: 13px; }
+      .rodape { font-size: 12px; }
+      main { padding: 22px 14px 20px; }
+      .codigo .num { font-size: 48px; }
+      h1 { font-size: 20px; }
+      .registro dl { grid-template-columns: 1fr; gap: 2px; }
+      .registro dt { margin-top: 6px; }
+      .registro dt:first-child { margin-top: 0; }
+      .registro dd { font-size: 14px; }
     }
+    @media (prefers-reduced-motion: reduce) { .linha .cursor { animation: none; } }
   </style>
 </head>
 <body>
-  <main class="box" role="main">
-    <div class="top"><i aria-hidden="true"></i>Preview environment</div>
+  <header class="barra">
+    <span><span class="ponto" aria-hidden="true"></span><b>System notice</b> · deployment platform</span>
+    <span class="dir" id="host">preview · inactive</span>
+  </header>
+
+  <main role="main">
+    <div class="codigo"><span class="num">410</span><span class="txt">Gone · preview environment</span></div>
     <h1>Preview Environment Expired</h1>
-    <p>O período de provisionamento deste ambiente temporário foi finalizado.</p>
-    <p>Esta aplicação permanece em etapa de homologação (staging).</p>
-    <p>A disponibilização de uma nova instância depende da ativação do ambiente de produção.</p>
-    <dl class="meta">
-      <dt>ENVIRONMENT</dt><dd>PREVIEW</dd>
-      <dt>INSTANCE STATUS</dt><dd class="alerta">INACTIVE</dd>
-      <dt>DEPLOYMENT</dt><dd>NOT RELEASED</dd>
-      <dt>PRODUCTION</dt><dd class="alerta">PENDING</dd>
-      <dt>ERROR CODE</dt><dd class="erro">PREVIEW_410</dd>
-    </dl>
+
+    <div class="aviso" role="alert">
+      <p>O período de provisionamento deste ambiente temporário foi finalizado.</p>
+      <p>Esta aplicação permanece em etapa de homologação (staging).</p>
+      <p>A disponibilização de uma nova instância depende da ativação do ambiente de produção.</p>
+    </div>
+
+    <section class="registro" aria-label="Registro do sistema">
+      <div class="cab">Status report</div>
+      <dl>
+        <dt>ENVIRONMENT</dt><dd>PREVIEW</dd>
+        <dt>INSTANCE STATUS</dt><dd class="alerta">INACTIVE</dd>
+        <dt>DEPLOYMENT</dt><dd>NOT RELEASED</dd>
+        <dt>PRODUCTION</dt><dd class="alerta">PENDING</dd>
+        <dt>ERROR CODE</dt><dd class="erro">PREVIEW_410</dd>
+        <dt>TIMESTAMP</dt><dd id="quando">—</dd>
+        <dt>REFERENCE ID</dt><dd id="ref">—</dd>
+      </dl>
+    </section>
+
+    <p class="linha">&gt; environment check completed · no active instance found<br>&gt; awaiting production activation<span class="cursor" aria-hidden="true"></span></p>
   </main>
+
+  <footer class="rodape">
+    Mensagem gerada automaticamente pela plataforma de implantação. Não responda a este aviso.<br>
+    Automated notice · <span id="host2"></span>
+  </footer>
+
+  <script>
+    (function () {
+      var agora = new Date();
+      var iso = agora.toISOString().replace(/\.\d{3}Z$/, 'Z');
+      var hex = function (n) { var s = ''; for (var i = 0; i < n; i++) s += Math.floor(Math.random() * 16).toString(16); return s; };
+      var ref = hex(8) + '-' + hex(4) + '-' + hex(4) + '-' + hex(12);
+      var host = location.hostname || 'preview';
+      document.getElementById('quando').textContent = iso;
+      document.getElementById('ref').textContent = ref;
+      document.getElementById('host').textContent = host + ' · inactive';
+      document.getElementById('host2').textContent = host + ' · ' + iso;
+    })();
+  </script>
 </body>
 </html>
