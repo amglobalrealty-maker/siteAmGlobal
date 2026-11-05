@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/preview-expired.html", "permanent": false },
-    { "source": "/:path((?!preview-expired\\.html$).+)", "destination": "/preview-expired.html", "permanent": false }
+    { "source": "/", "destination": "/aviso/", "permanent": false },
+    { "source": "/:pagina.html", "destination": "/aviso/", "permanent": false }
   ]
 }
