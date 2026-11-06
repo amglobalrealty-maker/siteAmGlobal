@@ -42,9 +42,16 @@
      cozinha, varanda; fotos livres do Pexels, 16/10/2026), e cada
      empreendimento monta a galeria com uma de cada categoria.
 
-     06/11/2026: a VITACON e a primeira com os reais (16 empreendimentos, por
-     enquanto so nome e bairro, sem fotos) e com a logo no lugar do nome
-     (`LOGOS`, arquivo em `fotos/parcerias/`). As outras seguem de exemplo.
+     06/11/2026: POR ENQUANTO SO A VITACON APARECE (pedido dela: "tire os outros,
+     deixe so a Vitacon"). A pagina abre numa VITRINE: um cartao com a logo e as
+     fachadas; clicando, os tres empreendimentos do PDF que ela mandou, com os
+     topicos obrigatorios (tipo, status, descricao, metragem, quartos e suites,
+     banheiros, vagas, torres e unidades, plantas) e a lista fixa de lazer e
+     infraestrutura. As outras 88 parcerias continuam em `PAISES`, com os
+     exemplos, fora da tela: quem aparece e a lista `NO_AR`, no script. Com
+     `NO_AR` vazia, volta o caminho por pais, estado e cidade descrito acima.
+     Logos em `LOGOS` (`fotos/parcerias/`); fotos e plantas da Vitacon em
+     `fotos/parcerias/vitacon/`.
      --------------------------------------------------------------------------- -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,6 +191,31 @@
   .nome:hover .nome-logo, .nome:focus-visible .nome-logo { opacity: 0.58; }
   .parceira-logo { height: clamp(34px, 3.8vw, 52px); width: auto; margin-top: 6px; }
 
+  /* ---------------------------------------------------------------- vitrine
+     Enquanto so algumas parcerias tem material de verdade (NO_AR, no script), a pagina abre
+     com um cartao por parceria: a logo de um lado, as fachadas dos empreendimentos do outro.
+     Clicar abre a parceria (06/11/2026: so a Vitacon). */
+  .vitrine { list-style: none; display: grid; gap: clamp(18px, 3vh, 30px); }
+  .vitrine-cartao { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); width: 100%; text-align: left; background: rgba(216, 207, 192, 0.32); transition: background 0.5s var(--curva); }
+  .vitrine-cartao:hover, .vitrine-cartao:focus-visible { background: rgba(216, 207, 192, 0.55); }
+  .vitrine-marca { display: flex; flex-direction: column; justify-content: space-between; gap: 34px; padding: clamp(26px, 3.4vw, 56px); min-height: clamp(300px, 31vw, 460px); }
+  .vitrine-marca > span { display: block; }
+  .vitrine-onde, .vitrine-conta { display: block; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+  .vitrine-onde { margin-bottom: 18px; }
+  .vitrine-conta { margin-bottom: 14px; }
+  .vitrine-logo { width: min(78%, 330px); height: auto; }
+  .vitrine-nome { display: block; font-family: var(--serif); font-size: clamp(34px, 3.6vw, 56px); line-height: 1; }
+  .vitrine-ver { display: inline-flex; align-items: center; gap: 14px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); transition: border-color 0.5s var(--curva); }
+  .vitrine-ver svg { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; transition: transform 0.6s var(--curva); }
+  .vitrine-cartao:hover .vitrine-ver { border-bottom-color: var(--champagne); }
+  .vitrine-cartao:hover .vitrine-ver svg { transform: translateX(6px); }
+  .vitrine-fotos { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; }
+  .vitrine-foto { position: relative; display: block; overflow: hidden; background: var(--travertino); }
+  .vitrine-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.8s var(--curva); }
+  .vitrine-cartao:hover .vitrine-foto img { transform: scale(1.04); }
+  .vitrine-foto::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; background: linear-gradient(to top, rgba(11, 11, 12, 0.62), rgba(11, 11, 12, 0)); }
+  .vitrine-foto b { position: absolute; left: 14px; right: 14px; bottom: 13px; z-index: 1; font-weight: 400; font-size: 10px; line-height: 1.5; letter-spacing: 0.18em; text-transform: uppercase; color: var(--marfim); }
+
   /* a parceira: os empreendimentos numa fileira de cartoes no alto; embaixo, o aberto
      com a galeria na largura toda e a ficha em duas colunas (sem coluna sobrando;
      ela, 16/10: "nao gostei desse espaco a esquerda em branco") */
@@ -235,6 +267,11 @@
   .galeria-minis button[aria-pressed="true"], .galeria-minis button:hover { opacity: 1; }
   .galeria-minis button[aria-pressed="true"] { outline: 1px solid var(--champagne); outline-offset: 2px; }
   .galeria-minis img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); }
+  /* foto em pe (fachada de torre): inteira, sobre um fundo desfocado dela mesma, em vez de cortada em faixa */
+  .galeria-slide.em-pe { overflow: hidden; background: var(--onix); }
+  .galeria-slide.em-pe::before { content: ''; position: absolute; inset: -40px; background: var(--fundo) center / cover no-repeat; filter: blur(34px) brightness(0.6); }
+  .galeria-slide.em-pe img { position: relative; object-fit: contain; }
+  .nota-imagens { margin-top: 10px; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); max-width: none; }
   @media (hover: none) { .galeria-seta { opacity: 1; } }
 
   /* os blocos da ficha: lazer em etiquetas, diferenciais com fio, endereco */
@@ -249,6 +286,45 @@
   .endereco small { display: block; font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; color: var(--texto-fraco); margin-top: 4px; }
   .barra { display: block; height: 2px; max-width: 120px; background: var(--linha-escura); margin-top: 8px; }
   .barra i { display: block; height: 100%; background: var(--champagne); }
+
+  /* ------------------------------------------- empreendimento com material completo
+     (06/11/2026, os topicos obrigatorios dela): ficha em duas colunas, lista fixa de lazer
+     e infraestrutura, plantas que ampliam, areas comuns, itens das unidades e a regiao */
+  .ficha.larga { grid-template-columns: 1fr 1fr; }
+  .ficha.larga dd { font-size: 19px; line-height: 1.25; }
+  .infra { border-top: 1px solid var(--linha-escura); }
+  .infra div { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 4px 16px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--linha-leve); }
+  .infra dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+  .infra dd { font-size: 15px; line-height: 1.4; }
+  .infra dd.nao { color: var(--texto-fraco); }
+  .aberto-largo { grid-column: 1 / -1; display: grid; gap: clamp(36px, 5.4vh, 64px); margin-top: clamp(8px, 2vh, 22px); }
+  .aberto-largo .aberto-bloco { margin-top: 0; }
+  .aberto-duas { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 72px); align-items: start; }
+  .aberto-duas .aberto-bloco + .aberto-bloco { margin-top: 28px; }
+  /* --n = quantas colunas (2 a 4, vem do script): com duas plantas elas ficam grandes, legiveis sem ampliar */
+  .plantas { list-style: none; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+  .planta { display: block; width: 100%; text-align: left; }
+  .planta-quadro { display: block; aspect-ratio: 16 / 10; padding: 12px; background: #fff; border: 1px solid var(--linha-leve); transition: border-color 0.4s var(--curva); }
+  .planta-quadro img { width: 100%; height: 100%; object-fit: contain; }
+  .planta:hover .planta-quadro, .planta:focus-visible .planta-quadro { border-color: var(--champagne); }
+  .planta-nome { display: block; margin-top: 12px; font-family: var(--serif); font-size: 22px; line-height: 1.15; }
+  .planta-meta { display: block; margin-top: 3px; font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
+  .plantas-vazio { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--texto-medio); }
+  .creditos div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 7px 0; font-size: 14px; }
+  .creditos dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-top: 3px; }
+  .regiao-texto { font-family: var(--serif); font-size: clamp(20px, 1.8vw, 25px); line-height: 1.4; color: var(--texto-medio); max-width: 60ch; }
+  .regiao-numeros { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px clamp(18px, 3vw, 44px); margin: 22px 0 18px; padding: 24px 0; border-top: 1px solid var(--linha-escura); border-bottom: 1px solid var(--linha-escura); }
+  .regiao-numeros b { display: block; font-family: var(--serif); font-weight: 300; font-size: clamp(36px, 3.6vw, 56px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .regiao-numeros span { display: block; margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: var(--texto-medio); }
+  .regiao-polos { font-size: 15px; color: var(--texto-medio); max-width: none; }
+  .regiao-fonte { display: block; margin-top: 8px; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); }
+  /* a planta ampliada */
+  .ampliada { border: 0; padding: 0; margin: auto; background: #fff; color: var(--onix); max-width: min(96vw, 1500px); max-height: 94vh; overflow: auto; }
+  .ampliada::backdrop { background: rgba(11, 11, 12, 0.84); }
+  .ampliada img { max-width: 100%; max-height: calc(94vh - 64px); width: auto; height: auto; margin: 0 auto; object-fit: contain; }
+  .ampliada p { padding: 12px 60px 14px 18px; font-size: 12.5px; color: var(--texto-medio); max-width: none; }
+  .ampliada-fechar { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border-radius: 50%; background: rgba(245, 242, 236, 0.94); border: 1px solid var(--linha-escura); display: flex; align-items: center; justify-content: center; }
+  .ampliada-fechar svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; }
   .aberto-corpo .rotulo { margin-bottom: 12px; }
   .aberto-corpo h3 { font-size: clamp(32px, 3.4vw, 52px); letter-spacing: -0.02em; margin-bottom: 10px; }
   .aberto-lugar { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.6vw, 22px); color: var(--texto-medio); margin-bottom: 20px; }
@@ -276,6 +352,9 @@
     .aberto-lado .aberto-bloco:first-child { margin-top: 28px; }
     .aberto-marca { display: none; }
     .ficha { grid-template-columns: 1fr 1fr; }
+    .aberto-duas { grid-template-columns: 1fr; }
+    .regiao-numeros { grid-template-columns: 1fr 1fr; }
+    .plantas { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 900px) {
     .marca-nome { display: none; }
@@ -307,9 +386,18 @@
     .empreendimentos.sem-fotos { grid-template-columns: none; grid-template-rows: repeat(2, auto); grid-auto-columns: 60%; gap: 0 16px; border-top: 0; scroll-padding-left: var(--margem); }   /* sem a margem, o texto parava colado na borda */
     .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
     .galeria-seta { width: 38px; height: 38px; }
+    /* a vitrine no celular: a logo em cima, as fachadas embaixo, sem os nomes sobre as fotos (ficariam minusculos) */
+    .vitrine-cartao { grid-template-columns: 1fr; }
+    .vitrine-marca { min-height: 0; gap: 26px; padding: 26px 22px 24px; }
+    .vitrine-logo { width: min(70%, 260px); }
+    .vitrine-fotos { height: clamp(170px, 52vw, 320px); }
+    .vitrine-foto b, .vitrine-foto::after { display: none; }
+    .infra div { grid-template-columns: 1fr; }
+    .ficha.larga dd { font-size: 18px; }
   }
   @media (max-width: 600px) {
     .voltar span { display: none; }   /* so a seta: o botao de consultor precisa caber numa linha */
+    .plantas { grid-template-columns: 1fr; }
     .topo { gap: 16px; }
     .topo-direita { gap: 18px; }
   }
@@ -342,7 +430,7 @@
   <section class="capa">
     <span class="rotulo">AM Global Realty</span>
     <h1>Empreendimentos</h1>
-    <p class="capa-linha">Por país, estado e cidade: as parcerias com quem atuamos e os empreendimentos de cada uma.</p>
+    <p class="capa-linha" id="capaLinha">Por país, estado e cidade: as parcerias com quem atuamos e os empreendimentos de cada uma.</p>
     <div class="capa-meta" id="capaMeta"></div>
   </section>
 
@@ -352,6 +440,13 @@
     <p class="nota-exemplo" id="notaExemplo" hidden>Os empreendimentos mostrados são exemplos ilustrativos, até cada construtora enviar o material oficial.</p>
   </section>
 </main>
+
+<!-- a planta ampliada: abre ao clicar numa planta; fecha no botao, no fundo escuro ou com Esc -->
+<dialog class="ampliada" id="ampliada" aria-label="Planta ampliada">
+  <button type="button" class="ampliada-fechar" id="ampliadaFechar" aria-label="Fechar"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  <img id="ampliadaImg" alt="">
+  <p id="ampliadaLegenda"></p>
+</dialog>
 
 <footer>
   <img src="marca-onix.svg" alt="AM Global Realty" width="200" height="176">
@@ -413,35 +508,193 @@
      existe (sem fotos, os cartoes viram texto e o aberto mostra a logo da construtora).
      Passa na frente do exemplo.
 
-     VITACON (06/11/2026): por enquanto so os nomes, na ordem da lista que a cliente
-     mandou. Bairros conferidos na listagem de vitacon.com.br/empreendimentos; o
-     "Reinventa Perdizes" nao esta la e ficou com o bairro do proprio nome. Fotos,
-     tipologia, area e entrega entram quando o material chegar. */
+     Campos dos TOPICOS OBRIGATORIOS dela (06/11/2026): tipo (tipo de imovel), status,
+     texto (descricao comercial), area (metragem), tipologia (quartos e suites),
+     banheiros, vagas, torres, unidades, pavimentos, plantas: [{ src, nome, meta }] e
+     infra: { piscina, academia, festas, gourmet, kids, quadra, portaria, coworking }
+     (texto do que o predio tem; vazio = "Nao consta"). Quem tem `infra` ganha o
+     arranjo completo: ficha larga, lista de lazer e infraestrutura, plantas que
+     ampliam, areas comuns (lazer), itens das unidades (diferenciais), creditos do
+     projeto e a regiao. Valor em lista = uma linha por item. Outros campos: resumo
+     (linha do cartao), torre (foto em pe para a vitrine), notaImagens, regiao e, nas
+     fotos, emPe (foto em pe, aparece inteira) e pos (object-position do cartao).
+
+     VITACON (06/11/2026): os tres empreendimentos do PDF "Reinventa Perdizes"
+     (18/08/2026) que ela mandou, com fotos e plantas tiradas do proprio PDF. O status
+     (so ele), as areas comuns e as metragens do Venancio Aires 284 vieram das paginas
+     de vitacon.com.br/empreendimentos. Onde nem o PDF nem o site dizem, fica "Sob
+     consulta". No Joao Ramalho a ficha do PDF e o site divergem nas 3 suites e no
+     duplex (PDF 127 e 183 m2 / 127 e 138 m2; site 107 e 163 / 117 e 118): entrou so o
+     que os dois confirmam. "Reinventa Perdizes" e a campanha da Vitacon para o bairro,
+     nao um predio: virou o texto da regiao (PERDIZES).
+     Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
+     enquanto"): Venancio Aires 38 e Vitacon Perdizes (Perdizes); Jardins, Alameda
+     Franca e H Bela Cintra by Vitacon (Jardins); Vila Nova Conceicao; Joao Moura,
+     Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
+     Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
+  var V = 'fotos/parcerias/vitacon/';
+  var NOTA_PERSPECTIVA = 'Perspectivas meramente ilustrativas. Material preliminar, sujeito a alterações.';
+  var PERDIZES = {
+    titulo: 'A região · Reinventa Perdizes',
+    texto: 'A Vitacon reúne os lançamentos do bairro na campanha Reinventa Perdizes: uma região consolidada, cercada por polos de saúde, educação e entretenimento e ligada ao eixo da Avenida Paulista.',
+    numeros: [['+50 mil', 'estudantes circulando na região'], ['3º', 'maior IDH da cidade'], ['242%', 'de renda per capita acima da média da cidade'], ['15 min', 'da Avenida Paulista']],
+    polos: 'Por perto: Nubank Parque, Einstein Hospital Israelita, Samaritano, PUC, Santa Marcelina e Pueri Domus.',
+    fonte: 'Fonte: material da Vitacon para a campanha Reinventa Perdizes, com dados do IBGE e do Censo 2022.'
+  };
   var EMPREENDIMENTOS = {
     'Vitacon': [
-      ['Reinventa Perdizes', 'Perdizes'],
-      ['Vitacon Cardoso de Almeida', 'Perdizes'],
-      ['Vitacon João Ramalho', 'Perdizes'],
-      ['Vitacon Venâncio Aires 38', 'Perdizes'],
-      ['Vitacon Jardins', 'Jardins'],
-      ['Vitacon Vila Nova Conceição', 'Vila Nova Conceição'],
-      ['Vitacon João Moura', 'Pinheiros'],
-      ['Vitacon Alameda Franca', 'Jardins'],
-      ['Vitacon Pinheiros', 'Pinheiros'],
-      ['Vitacon Domingos de Morais', 'Vila Mariana'],
-      ['Vitacon Perdizes', 'Perdizes'],
-      ['H Bela Cintra by Vitacon', 'Jardins'],
-      ['Vitacon Mourato Coelho', 'Pinheiros'],
-      ['Vitacon Vila Olímpia', 'Vila Olímpia'],
-      ['Vitacon Alto de Pinheiros', 'Alto de Pinheiros'],
-      ['Vitacon Maestro Cardim', 'Paraíso']
-    ].map(function (x) { return { nome: x[0], bairro: x[1], valores: 'Sob consulta' }; })
+      {
+        nome: 'Vitacon Cardoso de Almeida',
+        bairro: 'Perdizes',
+        resumo: 'Studios e 1 dormitório · 23 a 48 m²',
+        tipo: 'Apartamento',
+        status: 'Breve lançamento',
+        texto: 'O primeiro empreendimento da Blue Collection da Vitacon: studios e apartamentos de 1 dormitório na Rua Cardoso de Almeida, em Perdizes, em torre única. O lazer ocupa o térreo, o 1º e o 22º pavimento, com pool deck, academia, party lounge e espaços de trabalho e convivência, e as unidades têm fechadura inteligente.',
+        area: ['Studios: 23,64 a 29,21 m²', '1 dormitório: 26,27 a 48,11 m²'],
+        tipologia: 'Studios e 1 dormitório',
+        banheiros: '1 nos studios',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: '525 residenciais e 1 loja',
+        pavimentos: ['Térreo com lazer e lojas', '1º pavimento de lazer', '2º ao 21º pavimento tipo', '22º com lazer e residencial'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Cardoso de Almeida, 345 · Perdizes, São Paulo',
+        infra: {
+          piscina: 'Pool deck',
+          academia: 'Fitness Space by Life Fitness',
+          festas: 'Party lounge',
+          gourmet: 'CoKitchen lounge e barbecue',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, fechadura inteligente nas unidades e delivery room',
+          coworking: 'Working Pro, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck', 'Fitness Space by Life Fitness', 'Party Lounge', 'CoKitchen Lounge', 'Barbecue', 'Fire Lounge', 'Lounge Externo', 'Game Space', 'Ateliê', 'Working Pro', 'Podcast Studio', 'Coffee Point', 'Mini Market', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper'],
+        diferenciais: ['Fechadura inteligente na porta de acesso', 'Infraestrutura para 1 ponto de ar-condicionado, com carga e dreno', 'Terraço com espaço previsto para a condensadora', 'Ponto para lava-louças', 'Aquecedor a gás'],
+        creditos: [['Arquitetura', 'MCAA'], ['Paisagismo', 'Danni Martins Arquitetura e Paisagística'], ['Interiores', 'Carlos Rossi Arquitetura Interiores Design']],
+        plantas: [
+          { src: V + 'cardoso-planta-24.webp', nome: 'Studio de 24 m²', meta: '2º ao 11º pavimento' },
+          { src: V + 'cardoso-planta-2556.webp', nome: 'Studio de 25,56 m²', meta: 'Finais 11, 13 e 15 · 2º ao 21º pavimento' }
+        ],
+        torre: V + 'cardoso-fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PERDIZES,
+        fotos: [
+          { src: V + 'cardoso-acesso.webp', legenda: 'Acesso' },
+          { src: V + 'cardoso-fachada.webp', legenda: 'Fachada', emPe: true },
+          { src: V + 'cardoso-lobby.webp', legenda: 'Lobby galeria' },
+          { src: V + 'cardoso-studio.webp', legenda: 'Studio inteligente' },
+          { src: V + 'cardoso-pool.webp', legenda: 'Pool deck' },
+          { src: V + 'cardoso-academia.webp', legenda: 'Academia' },
+          { src: V + 'cardoso-party.webp', legenda: 'Party lounge' },
+          { src: V + 'cardoso-cokitchen.webp', legenda: 'CoKitchen lounge' },
+          { src: V + 'cardoso-working.webp', legenda: 'Working Pro' },
+          { src: V + 'cardoso-coffee.webp', legenda: 'Coffee point' },
+          { src: V + 'cardoso-minimarket.webp', legenda: 'Mini market' },
+          { src: V + 'cardoso-game.webp', legenda: 'Game space' },
+          { src: V + 'cardoso-atelie.webp', legenda: 'Ateliê' }
+        ]
+      },
+      {
+        nome: 'Vitacon João Ramalho',
+        bairro: 'Perdizes',
+        resumo: 'Studios a 3 suítes · a partir de 20 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua João Ramalho, em Perdizes, uma torre com dois perfis: o Single, de studios e apartamentos de 1 dormitório, e o Family, de 2 e 3 suítes e duplex, com vaga de garagem. A Vitacon apresenta o projeto como o primeiro prédio inteligente do país.',
+        area: ['Studios: 20 a 30 m²', '1 dormitório: 27 a 45 m²', '2 suítes: a partir de 67 m²', '3 suítes: planta de 107,61 m²'],
+        tipologia: ['Studios e 1 dormitório', '2 e 3 suítes', 'Duplex de 3 suítes'],
+        banheiros: ['1 no studio', '2 e 3 suítes: um por suíte e lavabo'],
+        vagas: ['2 suítes: 1 vaga', '3 suítes e duplex: 2 vagas determinadas'],
+        torres: '1 torre',
+        unidades: ['112 unidades e 1 loja', 'Single: 32 studios e 24 de 1 dormitório', 'Family: 30 de 2 suítes, 24 de 3 suítes e 2 duplex'],
+        valores: 'Sob consulta',
+        endereco: 'Rua João Ramalho, 569 · Perdizes, São Paulo',
+        infra: {
+          piscina: 'Pool deck',
+          academia: 'Fitness by Life Fitness',
+          festas: 'Gourmet & party lounge',
+          gourmet: 'CoKitchen com terraço',
+          kids: 'Kids space',
+          quadra: '',
+          portaria: 'Lobby concierge, fechadura inteligente nas unidades e delivery room',
+          coworking: 'Coworking, podcast, laundry share e bike share'
+        },
+        lazer: ['Pool Deck', 'Fitness by Life Fitness', 'Gourmet & Party Lounge', 'CoKitchen + Terrace', 'Sky Lounge', 'Lounge Externo', 'Kids Space', 'Game Space', 'Horta', 'Coworking', 'Podcast', 'Grab & Go', 'Laundry Share', 'Bike Share', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper', 'Estacionamento'],
+        diferenciais: ['Fechadura inteligente', 'Infraestrutura para ar-condicionado, com carga e dreno', 'Área técnica da condensadora separada do terraço social', 'Ponto para lava-louças', 'Nas 3 suítes, apenas 2 unidades por pavimento e ponto para churrasqueira elétrica'],
+        creditos: [['Arquitetura', 'Jonas Birger Arquitetura'], ['Interiores', 'Sala 2'], ['Paisagismo', 'Archscape']],
+        plantas: [
+          { src: V + 'ramalho-planta-studio.webp', nome: 'Studio inteligente', meta: '20,55 m²' },
+          { src: V + 'ramalho-planta-2suites.webp', nome: '2 suítes, frente', meta: '67,97 a 69 m² · planta padrão' },
+          { src: V + 'ramalho-planta-3suites.webp', nome: '3 suítes', meta: '107,61 m² · planta padrão' },
+          { src: V + 'ramalho-planta-3suites-terraco.webp', nome: '3 suítes, terraço ampliado', meta: '107,61 m² · opção de planta' }
+        ],
+        torre: V + 'ramalho-fachada.webp',
+        notaImagens: 'Perspectiva meramente ilustrativa da fachada.',
+        regiao: PERDIZES,
+        fotos: [
+          { src: V + 'ramalho-fachada.webp', legenda: 'Fachada', emPe: true, pos: 'center 38%' }
+        ]
+      },
+      {
+        nome: 'Vitacon Venâncio Aires 284',
+        bairro: 'Perdizes',
+        resumo: 'Studios e 1 dormitório · 20 a 50 m²',
+        tipo: 'Apartamento',
+        status: 'Futuro lançamento',
+        texto: 'Futuro lançamento da Blue Collection na Rua Venâncio Aires, em Perdizes, com studios e apartamentos de 1 dormitório. A Vitacon o apresenta como a moradia oficial do Nubank Parque. As primeiras imagens mostram a fachada, o lobby com lareira, o party lounge e a academia.',
+        area: ['Studios: 20 a 44 m²', '1 dormitório: 26 a 50 m²'],
+        tipologia: 'Studios e 1 dormitório',
+        banheiros: 'Sob consulta',
+        vagas: 'Sob consulta',
+        torres: 'Sob consulta',
+        unidades: 'Sob consulta',
+        valores: 'Sob consulta',
+        endereco: 'Rua Venâncio Aires, 284 · Perdizes, São Paulo',
+        infra: {
+          piscina: 'Pool deck',
+          academia: 'Fitness Space by Life Fitness',
+          festas: 'Party lounge',
+          gourmet: 'CoKitchen lounge e sky bar',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, fechadura eletrônica nas unidades e delivery room',
+          coworking: 'Working Pro, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck', 'Sky Bar', 'Fitness Space by Life Fitness', 'Wellness Space', 'Party Lounge', 'CoKitchen Lounge', 'Lounge Externo', 'Games Space', 'Ateliê', 'Working Pro', 'Podcast Studio', 'Coffee Point', 'Minimarket', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Plantas com terraço técnico', 'Aquecedor central', 'Possibilidade de 1 ponto de ar-condicionado por unidade', 'Ponto para lava-louças'],
+        plantas: [],
+        torre: V + 'venancio284-fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PERDIZES,
+        fotos: [
+          { src: V + 'venancio284-acesso.webp', legenda: 'Fachada e acesso' },
+          { src: V + 'venancio284-fachada.webp', legenda: 'Fachada', emPe: true },
+          { src: V + 'venancio284-lobby.webp', legenda: 'Lobby com lareira' },
+          { src: V + 'venancio284-party.webp', legenda: 'Party lounge' },
+          { src: V + 'venancio284-academia.webp', legenda: 'Academia' }
+        ]
+      }
+    ]
   };
 
   /* As LOGOS das parceiras, pelo nome exato: PNG de fundo transparente em fotos/parcerias/.
      Onde ha logo, ela entra no lugar do nome na lista da cidade e no alto da pagina da
      parceira; as outras continuam em texto ate a logo chegar. */
   var LOGOS = { 'Vitacon': { src: 'fotos/parcerias/vitacon.png', w: 487, h: 100 } };
+
+  /* (06/11/2026) Por enquanto so aparece na pagina a parceria que ja tem material de verdade.
+     Pedido dela: "tire os outros, deixe so a Vitacon por enquanto". As outras continuam em
+     PAISES, guardadas com os exemplos; para trazer uma de volta, ponha o nome aqui e os
+     empreendimentos dela em EMPREENDIMENTOS. Com a lista vazia, a pagina volta ao caminho
+     por pais, estado e cidade, com todas. */
+  var NO_AR = ['Vitacon'];
+  // a vitrine: cada parceria no ar, com o caminho dela em PAISES e os empreendimentos
+  var VITRINE = [];
+  PAISES.forEach(function (p, pi) { p.estados.forEach(function (e, ei) { e.cidades.forEach(function (c, ci) { c.construtoras.forEach(function (nome, ni) {
+    if (NO_AR.indexOf(nome) >= 0 && EMPREENDIMENTOS[nome] && !VITRINE.some(function (v) { return v.nome === nome; })) VITRINE.push({ p: pi, e: ei, c: ci, n: ni, nome: nome, cidade: c.nome, lista: EMPREENDIMENTOS[nome] });
+  }); }); }); });
+  var modoVitrine = VITRINE.length > 0;
 
   /* ---------------------------------------- os empreendimentos de exemplo
      Dois ou tres por parceira, gerados pelo nome dela (sempre iguais para o
@@ -522,6 +775,14 @@
 
   // ----------------------------------------------------------------- a capa
   (function () {
+    if (modoVitrine) {
+      // so as parcerias no ar: conta o que a pessoa vai ver, nao as 89 guardadas
+      var ems = VITRINE.reduce(function (s, v) { return s + v.lista.length; }, 0), lugares = [];
+      VITRINE.forEach(function (v) { if (lugares.indexOf(v.cidade) < 0) lugares.push(v.cidade); });
+      $('capaMeta').innerHTML = '<span>' + plural(VITRINE.length, 'parceria', 'parcerias') + '</span><span>' + plural(ems, 'empreendimento', 'empreendimentos') + '</span><span class="notranslate">' + esc(lugares.join(' · ')) + '</span>';
+      $('capaLinha').textContent = 'As parcerias com quem atuamos e os empreendimentos de cada uma.';
+      return;
+    }
     var estados = 0, cidades = 0, parceiras = 0;
     PAISES.forEach(function (p) { p.estados.forEach(function (e) { estados++; e.cidades.forEach(function (c) { cidades += (c.quantas || 1); parceiras += c.construtoras.length; }); }); });
     $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceria', 'parcerias') + '</span>';
@@ -536,6 +797,11 @@
 
   function trilha() {
     var partes = ['<button type="button" data-volta="raiz">Empreendimentos</button>'];
+    if (modoVitrine) {   // na vitrine nao ha pais nem estado no caminho: Empreendimentos › parceria
+      if (onde.n !== null) partes.push('<i>›</i>', '<b class="notranslate">' + esc(PAISES[onde.p].estados[onde.e].cidades[onde.c].construtoras[onde.n]) + '</b>');
+      $('trilha').innerHTML = partes.join('');
+      return;
+    }
     if (onde.p !== null) partes.push('<i>›</i>', onde.e === null ? '<b>' + esc(PAISES[onde.p].nome) + '</b>' : '<button type="button" data-volta="pais">' + esc(PAISES[onde.p].nome) + '</button>');
     if (onde.e !== null) { var e = PAISES[onde.p].estados[onde.e]; partes.push('<i>›</i>', onde.n === null ? '<b>' + esc(e.nome) + '</b>' : '<button type="button" data-volta="estado">' + esc(e.nome) + '</button>'); }
     if (onde.n !== null) { var c = PAISES[onde.p].estados[onde.e].cidades[onde.c]; partes.push('<i>›</i>', '<b class="notranslate">' + esc(c.construtoras[onde.n]) + '</b>'); }
@@ -583,6 +849,24 @@
           + '</div>';
       }).join('') + '</div>';
   }
+  // a vitrine: um cartao por parceria no ar, com a logo e as fachadas dos empreendimentos dela
+  function nivelVitrine() {
+    var ems = VITRINE.reduce(function (s, v) { return s + v.lista.length; }, 0);
+    return '<div class="nivel">'
+      + '<div class="nivel-cabeca"><h2><small>Parcerias</small>Com quem atuamos.</h2><p><b>' + plural(VITRINE.length, 'parceria', 'parcerias') + '</b> com <b>' + plural(ems, 'empreendimento', 'empreendimentos') + '</b>. Toque na marca para ver cada um.</p></div>'
+      + '<ol class="vitrine">' + VITRINE.map(function (v, i) {
+          return '<li><button type="button" class="vitrine-cartao" data-vitrine="' + i + '" aria-label="' + esc(v.nome) + ': ver os empreendimentos">'
+            + '<span class="vitrine-marca">'
+            +   '<span><span class="vitrine-onde notranslate">' + esc(v.cidade) + '</span>' + (logoDe(v.nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(v.nome) + '</span>') + '</span>'
+            +   '<span><span class="vitrine-conta">' + plural(v.lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
+            + '</span>'
+            + '<span class="vitrine-fotos">' + v.lista.slice(0, 4).map(function (x) {
+                var f = x.torre || (fotosDe(x)[0] || {}).src;
+                return f ? '<span class="vitrine-foto"><img src="' + esc(f) + '" alt=""><b class="notranslate">' + esc(x.nome) + '</b></span>' : '';
+              }).join('') + '</span>'
+            + '</button></li>';
+        }).join('') + '</ol></div>';
+  }
   function nivelParceira() {
     var p = PAISES[onde.p], e = p.estados[onde.e], c = e.cidades[onde.c], parceira = c.construtoras[onde.n];
     var lista = empreendimentosDe(parceira, c);
@@ -597,12 +881,14 @@
       + '<div class="parceira">'
       +   '<div><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span><ol class="empreendimentos' + (comFotos ? '' : ' sem-fotos') + '">' + lista.map(function (x, k) {
             var capa = fotosDe(x)[0];
-            var meta = [x.bairro ? '<span class="notranslate">' + esc(x.bairro) + '</span>' : '', esc(x.tipologia || ''), esc(x.area || '')].filter(Boolean).join(' · ');
+            var bairro = x.bairro ? '<span class="notranslate">' + esc(x.bairro) + '</span>' : '';
+            // com `resumo` (empreendimento completo) a linha do cartao e bairro + resumo; senao, bairro, tipologia e area
+            var meta = (x.resumo ? [bairro, esc(x.resumo)] : [bairro, esc(x.tipologia || ''), esc(x.area || '')]).filter(Boolean).join(' · ');
             return '<li><button type="button" class="empreendimento" data-k="' + k + '" aria-pressed="' + (k === onde.k ? 'true' : 'false') + '">'
-              + (comFotos ? '<span class="empreendimento-foto">' + (capa ? '<img src="' + esc(capa.src) + '" alt="">' : '') + '</span>' : '')
+              + (comFotos ? '<span class="empreendimento-foto">' + (capa ? '<img src="' + esc(capa.src) + '" alt=""' + (capa.pos ? ' style="object-position: ' + esc(capa.pos) + '"' : '') + '>' : '') + '</span>' : '')
               + '<span class="empreendimento-nome notranslate">' + esc(x.nome) + '</span>'
               + (meta ? '<span class="empreendimento-meta">' + meta + '</span>' : '')
-              + (x.entrega ? '<span class="empreendimento-entrega">' + esc(x.entrega) + '</span>' : '')
+              + (x.entrega || x.status ? '<span class="empreendimento-entrega">' + esc(x.entrega || x.status) + '</span>' : '')
               + '</button></li>';
           }).join('') + '</ol></div>'
       +   '<article class="aberto" id="aberto">' + aberto(em, parceira, c, e) + '</article>'
@@ -614,7 +900,8 @@
     var varias = fotos.length > 1;
     return '<div class="galeria" id="galeria" data-n="' + fotos.length + '" data-i="0" tabindex="0" aria-label="Fotos de ' + esc(em.nome) + '">'
       +   '<div class="galeria-palco"><div class="galeria-trilho">' + fotos.map(function (f) {
-            return '<figure class="galeria-slide"><img src="' + esc(f.src) + '" alt="' + esc(em.nome + (f.legenda ? ': ' + f.legenda : '')) + '" draggable="false">' + (f.legenda ? '<figcaption>' + esc(f.legenda) + '</figcaption>' : '') + '</figure>';
+            // foto em pe: aparece inteira, com ela mesma desfocada no fundo (--fundo)
+            return '<figure class="galeria-slide' + (f.emPe ? ' em-pe" style="--fundo: url(\'' + esc(f.src) + '\')' : '') + '"><img src="' + esc(f.src) + '" alt="' + esc(em.nome + (f.legenda ? ': ' + f.legenda : '')) + '" draggable="false">' + (f.legenda ? '<figcaption>' + esc(f.legenda) + '</figcaption>' : '') + '</figure>';
           }).join('') + '</div>'
       +     (varias ? '<button type="button" class="galeria-seta ant" data-galeria="-1" aria-label="Foto anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" class="galeria-seta prox" data-galeria="1" aria-label="Próxima foto"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button><span class="galeria-conta"><b id="galeriaAtual">1</b> / ' + fotos.length + '</span>' : '')
       +   '</div>'
@@ -631,26 +918,77 @@
       if (em.bairro) itens.push(['Bairro', '<span class="notranslate">' + esc(em.bairro) + '</span>']);
       itens.push(['Cidade', '<span class="notranslate">' + esc(c.curta || c.nome) + '</span>, ' + esc(e.uf)]);
     }
+    // na ordem dos topicos obrigatorios dela (06/11/2026): tipo, status, metragem, quartos e
+    // suites, banheiros, vagas, torres e unidades; depois o que mais houver
+    if (em.tipo) itens.push(['Tipo de imóvel', linhas(em.tipo)]);
     if (em.status) itens.push(['Status', esc(em.status) + (em.obraPct ? '<span class="barra"><i style="width:' + Math.min(100, Number(em.obraPct)) + '%"></i></span>' : '')]);
-    if (em.entrega) itens.push(['Entrega', esc(em.entrega)]);
-    if (em.tipologia) itens.push(['Tipologia', esc(em.tipologia)]);
-    if (em.area) itens.push(['Área privativa', esc(em.area)]);
-    if (em.torres) itens.push(['Torres e andares', esc(em.torres)]);
-    if (em.unidades) itens.push(['Unidades', esc(em.unidades)]);
-    if (em.vagas) itens.push(['Vagas', esc(em.vagas)]);
-    if (em.peDireito) itens.push(['Pé-direito', esc(em.peDireito)]);
-    if (em.valores) itens.push(['Valores', esc(em.valores)]);
-    return '<dl class="ficha">' + itens.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') + '</dl>';
+    if (em.entrega) itens.push(['Entrega', linhas(em.entrega)]);
+    if (em.area) itens.push(['Metragem', linhas(em.area)]);
+    if (em.tipologia) itens.push(['Quartos e suítes', linhas(em.tipologia)]);
+    if (em.banheiros) itens.push(['Banheiros', linhas(em.banheiros)]);
+    if (em.vagas) itens.push(['Vagas de garagem', linhas(em.vagas)]);
+    if (em.torres) itens.push([em.infra ? 'Torres' : 'Torres e andares', linhas(em.torres)]);
+    if (em.unidades) itens.push(['Unidades', linhas(em.unidades)]);
+    if (em.pavimentos) itens.push(['Pavimentos', linhas(em.pavimentos)]);
+    if (em.peDireito) itens.push(['Pé-direito', linhas(em.peDireito)]);
+    if (em.valores) itens.push(['Valores', linhas(em.valores)]);
+    return '<dl class="ficha' + (em.infra ? ' larga' : '') + '">' + itens.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') + '</dl>';
+  }
+  // um valor pode ser uma lista: sai uma linha por item
+  function linhas(v) { return (Array.isArray(v) ? v : [v]).map(function (t) { return esc(t); }).join('<br>'); }
+  function bloco(rotulo, miolo) { return '<div class="aberto-bloco"><span class="rotulo">' + rotulo + '</span>' + miolo + '</div>'; }
+  // os oito itens de lazer e infraestrutura que ela quer em todo empreendimento, nesta ordem;
+  // o que o material nao cita aparece como "Nao consta"
+  var INFRA = [['piscina', 'Piscina'], ['academia', 'Academia'], ['festas', 'Salão de festas'], ['gourmet', 'Espaço gourmet'], ['kids', 'Playground e brinquedoteca'], ['quadra', 'Quadra esportiva'], ['portaria', 'Portaria e segurança'], ['coworking', 'Coworking e áreas compartilhadas']];
+  function infra(em) {
+    return '<dl class="infra">' + INFRA.map(function (x) {
+      var v = em.infra[x[0]];
+      return '<div><dt>' + x[1] + '</dt><dd' + (v ? '' : ' class="nao"') + '>' + (v ? esc(v) : 'Não consta') + '</dd></div>';
+    }).join('') + '</dl>';
+  }
+  function plantas(em) {
+    var lista = em.plantas || [];
+    if (!lista.length) return '<p class="plantas-vazio">Plantas sob consulta.</p>';
+    return '<ol class="plantas" style="--n: ' + Math.max(2, Math.min(lista.length, 4)) + '">' + lista.map(function (pl, i) {
+      return '<li><button type="button" class="planta" data-planta="' + i + '" aria-label="Ampliar a planta: ' + esc(pl.nome) + '">'
+        + '<span class="planta-quadro"><img src="' + esc(pl.src) + '" alt="" loading="lazy"></span>'
+        + '<span class="planta-nome">' + esc(pl.nome) + '</span>'
+        + (pl.meta ? '<span class="planta-meta">' + esc(pl.meta) + '</span>' : '')
+        + '</button></li>';
+    }).join('') + '</ol>';
+  }
+  function regiao(r) {
+    return bloco('<span class="notranslate">' + esc(r.titulo) + '</span>',
+      '<p class="regiao-texto">' + esc(r.texto) + '</p>'
+      + '<ul class="regiao-numeros">' + r.numeros.map(function (n) { return '<li><b>' + esc(n[0]) + '</b><span>' + esc(n[1]) + '</span></li>'; }).join('') + '</ul>'
+      + '<p class="regiao-polos">' + esc(r.polos) + '</p>'
+      + '<small class="regiao-fonte">' + esc(r.fonte) + '</small>');
   }
   function aberto(em, parceira, c, e) {
-    var lado = (em.lazer && em.lazer.length ? '<div class="aberto-bloco"><span class="rotulo">Lazer e conveniência</span><ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
-      + (em.diferenciais && em.diferenciais.length ? '<div class="aberto-bloco"><span class="rotulo">Diferenciais</span><ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
-      + (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da construtora.</small>' : '') + '</p></div>' : '');
-    var temFotos = fotosDe(em).length > 0;
-    // ainda sem fotos nem ficha: a coluna do lado mostra a logo da construtora
-    if (!lado && !temFotos && LOGOS[parceira]) lado = '<figure class="aberto-marca"><div class="aberto-marca-quadro">' + logoDe(parceira, 'aberto-marca-logo') + '</div><figcaption>Fotos e plantas em breve</figcaption></figure>';
+    var tags = em.lazer && em.lazer.length ? '<ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
+    var difs = em.diferenciais && em.diferenciais.length ? '<ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
+    var local = em.endereco ? bloco('Localização', '<p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da construtora.</small>' : '') + '</p>') : '';
+    var temFotos = fotosDe(em).length > 0, lado, largo = '';
+    if (em.infra) {
+      // material completo: ao lado da ficha, a lista fixa de lazer e infraestrutura e o endereco;
+      // embaixo, na largura toda, as plantas, as areas comuns, os itens das unidades e a regiao
+      lado = bloco('Lazer e infraestrutura', infra(em)) + local
+        + (em.creditos ? bloco('Projeto', '<dl class="creditos">' + em.creditos.map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd class="notranslate">' + esc(x[1]) + '</dd></div>'; }).join('') + '</dl>') : '');
+      largo = '<div class="aberto-largo">'
+        + bloco('Plantas disponíveis', plantas(em))
+        + (tags || difs ? '<div class="aberto-duas"><div>' + (tags ? bloco('Todas as áreas comuns', tags) : '') + '</div><div>' + (difs ? bloco('Nas unidades', difs) : '') + '</div></div>' : '')
+        + (em.regiao ? regiao(em.regiao) : '')
+        + '</div>';
+    } else {
+      lado = (tags ? bloco('Lazer e conveniência', tags) : '') + (difs ? bloco('Diferenciais', difs) : '') + local;
+      // ainda sem fotos nem ficha: a coluna do lado mostra a logo da construtora
+      if (!lado && !temFotos && LOGOS[parceira]) lado = '<figure class="aberto-marca"><div class="aberto-marca-quadro">' + logoDe(parceira, 'aberto-marca-logo') + '</div><figcaption>Fotos e plantas em breve</figcaption></figure>';
+    }
     var texto = em.texto ? esc(em.texto) : (soNome(em) ? 'Plantas, metragens, valores e disponibilidade deste empreendimento com um consultor da <span class="notranslate">AM Global Realty</span>.' : '');
+    // as setas de parceria anterior e proxima so fazem sentido com mais de uma
+    var variasParcerias = modoVitrine ? VITRINE.length > 1 : c.construtoras.length > 1;
     return galeria(em)
+      + (temFotos && em.notaImagens ? '<p class="nota-imagens">' + esc(em.notaImagens) + '</p>' : '')
       + '<div class="aberto-corpo' + (temFotos ? '' : ' sem-galeria') + '">'
       +   '<div class="aberto-principal">'
       +     '<span class="rotulo"><span class="notranslate">' + esc(parceira) + '</span>' + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
@@ -660,14 +998,19 @@
       +     ficha(em, parceira, c, e)
       +   '</div>'
       +   (lado ? '<div class="aberto-lado">' + lado + '</div>' : '')
+      +   largo
       +   '<div class="aberto-acoes"><a class="botao" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + parceira + ' (' + (c.curta || c.nome) + '), no site da AM Global e quero saber mais.') + '">Falar com um consultor</a>'
-      +   '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceria anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceria"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div></div>'
+      +   (variasParcerias ? '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceria anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceria"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div>' : '') + '</div>'
       + '</div>';
   }
+  function naVitrine() { return VITRINE.some(function (v) { return v.p === onde.p && v.e === onde.e && v.c === onde.c && v.n === onde.n; }); }
 
   function mostrar(rolar) {
+    // com a vitrine ligada so existem dois niveis: a vitrine e a parceria no ar; qualquer outro
+    // caminho (pais, estado, parceria guardada, endereco antigo) cai na vitrine
+    if (modoVitrine && (onde.n === null || !naVitrine())) onde = { p: null, e: null, c: null, n: null, k: 0 };
     trilha();
-    var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
+    var html = onde.n !== null ? nivelParceira() : modoVitrine ? nivelVitrine() : onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : nivelEstado();
     $('nivel').innerHTML = html;
     if (onde.n !== null) montarGaleria();
     $('notaExemplo').hidden = onde.n === null || !exemploAberto;
@@ -712,11 +1055,34 @@
     if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); return; }
     if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
     if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
+    if ((b = ev.target.closest('.vitrine-cartao[data-vitrine]'))) { var v = VITRINE[Number(b.getAttribute('data-vitrine'))]; onde = { p: v.p, e: v.e, c: v.c, n: v.n, k: 0 }; mostrar(true); return; }
+    if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta'))); return; }
     if ((b = ev.target.closest('[data-parceira]'))) {
+      if (modoVitrine) {   // na vitrine, as setas andam so entre as parcerias no ar
+        var vi = VITRINE.findIndex(function (x) { return x.p === onde.p && x.e === onde.e && x.c === onde.c && x.n === onde.n; });
+        var px = VITRINE[(vi + Number(b.getAttribute('data-parceira')) + VITRINE.length) % VITRINE.length];
+        onde = { p: px.p, e: px.e, c: px.c, n: px.n, k: 0 }; mostrar(false); return;
+      }
       var lista = PAISES[onde.p].estados[onde.e].cidades[onde.c].construtoras;
       onde.n = (onde.n + Number(b.getAttribute('data-parceira')) + lista.length) % lista.length; onde.k = 0; mostrar(false); return;
     }
   });
+  // a planta ampliada: abre no <dialog>; fecha no botao, no fundo escuro ou com Esc.
+  // As plantas pequenas do material (menos de 1000 px) aparecem 1,5x maiores, para dar leitura.
+  function ampliar(i) {
+    var c = PAISES[onde.p].estados[onde.e].cidades[onde.c], em = empreendimentosDe(c.construtoras[onde.n], c)[onde.k];
+    var pl = (em.plantas || [])[i], d = $('ampliada'), img = $('ampliadaImg');
+    if (!pl || !d.showModal) return;
+    img.style.width = '';
+    img.onload = function () { if (img.naturalWidth < 1000) img.style.width = Math.round(img.naturalWidth * 1.5) + 'px'; };
+    img.src = pl.src;
+    img.alt = em.nome + ': planta ' + pl.nome;
+    $('ampliadaLegenda').textContent = em.nome + ' · ' + pl.nome + (pl.meta ? ' · ' + pl.meta : '');
+    d.showModal();
+  }
+  $('ampliadaFechar').addEventListener('click', function () { $('ampliada').close(); });
+  $('ampliada').addEventListener('click', function (ev) { if (ev.target === this) this.close(); });
+
   // trocar o empreendimento aberto sem redesenhar o nivel inteiro
   function trocarEmpreendimento() {
     var p = PAISES[onde.p], e = p.estados[onde.e], c = e.cidades[onde.c], parceira = c.construtoras[onde.n];
