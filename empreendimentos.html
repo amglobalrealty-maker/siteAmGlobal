@@ -42,14 +42,16 @@
      cozinha, varanda; fotos livres do Pexels, 16/10/2026), e cada
      empreendimento monta a galeria com uma de cada categoria.
 
-     06/11/2026: POR ENQUANTO SO A VITACON APARECE (pedido dela: "tire os outros,
-     deixe so a Vitacon"). A pagina abre numa VITRINE: um cartao com a logo e as
+     06/11/2026: POR ENQUANTO SO A VITACON APARECE (pedidos dela: "tire os outros,
+     deixe so a Vitacon" e "mas deixe os filtros"). O caminho continua o mesmo:
+     paises, estados, cidades. Os lugares sem parceria no ar aparecem como "a
+     anunciar"; em Sao Paulo, a Vitacon aparece num cartao com a logo e as
      fachadas; clicando, os tres empreendimentos do PDF que ela mandou, com os
      topicos obrigatorios (tipo, status, descricao, metragem, quartos e suites,
      banheiros, vagas, torres e unidades, plantas) e a lista fixa de lazer e
      infraestrutura. As outras 88 parcerias continuam em `PAISES`, com os
      exemplos, fora da tela: quem aparece e a lista `NO_AR`, no script. Com
-     `NO_AR` vazia, volta o caminho por pais, estado e cidade descrito acima.
+     `NO_AR` vazia, todas voltam, em lista de nomes.
      Logos em `LOGOS` (`fotos/parcerias/`); fotos e plantas da Vitacon em
      `fotos/parcerias/vitacon/`.
      --------------------------------------------------------------------------- -->
@@ -192,9 +194,9 @@
   .parceira-logo { height: clamp(34px, 3.8vw, 52px); width: auto; margin-top: 6px; }
 
   /* ---------------------------------------------------------------- vitrine
-     Enquanto so algumas parcerias tem material de verdade (NO_AR, no script), a pagina abre
-     com um cartao por parceria: a logo de um lado, as fachadas dos empreendimentos do outro.
-     Clicar abre a parceria (06/11/2026: so a Vitacon). */
+     Enquanto so algumas parcerias tem material de verdade (NO_AR, no script), dentro da cidade
+     cada uma aparece num cartao: a logo para clicar de um lado, as fachadas dos empreendimentos
+     do outro. Clicar abre a parceria (06/11/2026: so a Vitacon, em Sao Paulo). */
   .vitrine { list-style: none; display: grid; gap: clamp(18px, 3vh, 30px); }
   .vitrine-cartao { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); width: 100%; text-align: left; background: rgba(216, 207, 192, 0.32); transition: background 0.5s var(--curva); }
   .vitrine-cartao:hover, .vitrine-cartao:focus-visible { background: rgba(216, 207, 192, 0.55); }
@@ -683,18 +685,20 @@
      parceira; as outras continuam em texto ate a logo chegar. */
   var LOGOS = { 'Vitacon': { src: 'fotos/parcerias/vitacon.png', w: 487, h: 100 } };
 
-  /* (06/11/2026) Por enquanto so aparece na pagina a parceria que ja tem material de verdade.
-     Pedido dela: "tire os outros, deixe so a Vitacon por enquanto". As outras continuam em
-     PAISES, guardadas com os exemplos; para trazer uma de volta, ponha o nome aqui e os
-     empreendimentos dela em EMPREENDIMENTOS. Com a lista vazia, a pagina volta ao caminho
-     por pais, estado e cidade, com todas. */
+  /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
+     "tire os outros, deixe so a Vitacon por enquanto" e, depois, "mas deixe os filtros: clica em
+     empreendimentos, aparece paises, ai cidades, ai clicando em SP mostra o logo da construtora
+     pra clicar". Entao o caminho por pais, estado e cidade continua inteiro; so as parcerias
+     fora desta lista somem, e os lugares sem nenhuma aparecem como "a anunciar". As outras
+     continuam em PAISES, guardadas com os exemplos: para trazer uma de volta, ponha o nome aqui
+     e os empreendimentos dela em EMPREENDIMENTOS. Lista vazia = todas aparecem, em texto. */
   var NO_AR = ['Vitacon'];
-  // a vitrine: cada parceria no ar, com o caminho dela em PAISES e os empreendimentos
-  var VITRINE = [];
-  PAISES.forEach(function (p, pi) { p.estados.forEach(function (e, ei) { e.cidades.forEach(function (c, ci) { c.construtoras.forEach(function (nome, ni) {
-    if (NO_AR.indexOf(nome) >= 0 && EMPREENDIMENTOS[nome] && !VITRINE.some(function (v) { return v.nome === nome; })) VITRINE.push({ p: pi, e: ei, c: ci, n: ni, nome: nome, cidade: c.nome, lista: EMPREENDIMENTOS[nome] });
-  }); }); }); });
-  var modoVitrine = VITRINE.length > 0;
+  var filtrado = NO_AR.length > 0;
+  // as parcerias que aparecem numa cidade, cada uma com o indice original (o do endereco #pais/uf/cidade/indice)
+  function parceriasDe(c) {
+    return c.construtoras.map(function (nome, ni) { return { nome: nome, ni: ni }; })
+      .filter(function (x) { return !filtrado || (NO_AR.indexOf(x.nome) >= 0 && !!EMPREENDIMENTOS[x.nome]); });
+  }
 
   /* ---------------------------------------- os empreendimentos de exemplo
      Dois ou tres por parceira, gerados pelo nome dela (sempre iguais para o
@@ -758,7 +762,7 @@
   var $ = function (id) { return document.getElementById(id); };
   function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function plural(n, um, varios) { return n + ' ' + (n === 1 ? um : varios); }
-  function totalEstado(e) { return e.cidades.reduce(function (s, c) { return s + c.construtoras.length; }, 0); }
+  function totalEstado(e) { return e.cidades.reduce(function (s, c) { return s + parceriasDe(c).length; }, 0); }   // so as que aparecem
   function totalPais(p) { return p.estados.reduce(function (s, e) { return s + totalEstado(e); }, 0); }
   function cidadesDe(e) { return e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []); }
   function listaTexto(nomes) { return nomes.join(', ').replace(/, ([^,]*)$/, ' e $1'); }
@@ -775,17 +779,14 @@
 
   // ----------------------------------------------------------------- a capa
   (function () {
-    if (modoVitrine) {
-      // so as parcerias no ar: conta o que a pessoa vai ver, nao as 89 guardadas
-      var ems = VITRINE.reduce(function (s, v) { return s + v.lista.length; }, 0), lugares = [];
-      VITRINE.forEach(function (v) { if (lugares.indexOf(v.cidade) < 0) lugares.push(v.cidade); });
-      $('capaMeta').innerHTML = '<span>' + plural(VITRINE.length, 'parceria', 'parcerias') + '</span><span>' + plural(ems, 'empreendimento', 'empreendimentos') + '</span><span class="notranslate">' + esc(lugares.join(' · ')) + '</span>';
-      $('capaLinha').textContent = 'As parcerias com quem atuamos e os empreendimentos de cada uma.';
-      return;
-    }
-    var estados = 0, cidades = 0, parceiras = 0;
-    PAISES.forEach(function (p) { p.estados.forEach(function (e) { estados++; e.cidades.forEach(function (c) { cidades += (c.quantas || 1); parceiras += c.construtoras.length; }); }); });
-    $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceria', 'parcerias') + '</span>';
+    // conta o que a pessoa vai ver: com NO_AR, so as parcerias no ar (e os empreendimentos delas), nao as guardadas
+    var estados = 0, cidades = 0, parceiras = 0, ems = 0;
+    PAISES.forEach(function (p) { p.estados.forEach(function (e) { estados++; e.cidades.forEach(function (c) {
+      cidades += (c.quantas || 1);
+      parceriasDe(c).forEach(function (x) { parceiras++; ems += empreendimentosDe(x.nome, c).length; });
+    }); }); });
+    $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceria', 'parcerias') + '</span>'
+      + (filtrado ? '<span>' + plural(ems, 'empreendimento', 'empreendimentos') + '</span>' : '');
   })();
 
   /* ======================================================= UM NIVEL POR VEZ
@@ -797,11 +798,6 @@
 
   function trilha() {
     var partes = ['<button type="button" data-volta="raiz">Empreendimentos</button>'];
-    if (modoVitrine) {   // na vitrine nao ha pais nem estado no caminho: Empreendimentos › parceria
-      if (onde.n !== null) partes.push('<i>›</i>', '<b class="notranslate">' + esc(PAISES[onde.p].estados[onde.e].cidades[onde.c].construtoras[onde.n]) + '</b>');
-      $('trilha').innerHTML = partes.join('');
-      return;
-    }
     if (onde.p !== null) partes.push('<i>›</i>', onde.e === null ? '<b>' + esc(PAISES[onde.p].nome) + '</b>' : '<button type="button" data-volta="pais">' + esc(PAISES[onde.p].nome) + '</button>');
     if (onde.e !== null) { var e = PAISES[onde.p].estados[onde.e]; partes.push('<i>›</i>', onde.n === null ? '<b>' + esc(e.nome) + '</b>' : '<button type="button" data-volta="estado">' + esc(e.nome) + '</button>'); }
     if (onde.n !== null) { var c = PAISES[onde.p].estados[onde.e].cidades[onde.c]; partes.push('<i>›</i>', '<b class="notranslate">' + esc(c.construtoras[onde.n]) + '</b>'); }
@@ -815,7 +811,7 @@
   function subEstado(e) { var n = totalEstado(e); return (n ? plural(n, 'parceria', 'parcerias') : 'A anunciar') + ' · ' + listaTexto(cidadesDe(e)); }
   function nivelPaises() {
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>Onde atuamos</small>Escolha o país.</h2><p>As parcerias estão em <b>' + plural(PAISES.length, 'país', 'países') + '</b>. Dentro de cada um, os estados, as cidades e as parcerias.</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>Onde atuamos</small>Escolha o país.</h2><p>Atuamos em <b>' + plural(PAISES.length, 'país', 'países') + '</b>. Dentro de cada um, os estados, as cidades e as parcerias.</p></div>'
       + '<div class="escolhas-com-foto"><ol class="escolhas">' + PAISES.map(function (p, i) {
         var n = totalPais(p);
         return '<li><button type="button" class="escolha" data-pais="' + i + '" data-foto="' + esc(p.foto || '') + '" data-titulo="' + esc(p.nome) + '" data-sub="' + esc(subPais(p)) + '">' + miniatura(p.foto) + '<span class="escolha-num">0' + (i + 1) + '</span><span class="escolha-nome">' + esc(p.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceria', 'parcerias') : 'a anunciar') + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
@@ -823,8 +819,12 @@
   }
   function nivelEstados() {
     var p = PAISES[onde.p];
+    // quantos estados ja tem parceria no ar (com NO_AR, nem todos)
+    var com = p.estados.filter(function (e) { return totalEstado(e) > 0; }).length;
+    var quantos = '<b>' + plural(p.estados.length, 'estado', 'estados') + '</b>'
+      + (com === p.estados.length ? ' com parcerias.' : com === 0 ? ', com parcerias a anunciar.' : com === 1 ? ', um deles com parceria anunciada.' : ', ' + com + ' deles com parcerias anunciadas.');
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + '</small>Escolha o estado.</h2><p>' + (p.estados.length === 1 ? 'Um lugar, por enquanto.' : '<b>' + plural(p.estados.length, 'estado', 'estados') + '</b> com parcerias.') + '</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + '</small>Escolha o estado.</h2><p>' + (p.estados.length === 1 ? 'Um lugar, por enquanto.' : quantos) + '</p></div>'
       + '<div class="escolhas-com-foto"><ol class="escolhas">' + p.estados.map(function (e, i) {
         var n = totalEstado(e);
         return '<li><button type="button" class="escolha" data-estado="' + i + '" data-foto="' + esc(e.foto || '') + '" data-titulo="' + esc(e.nome) + '" data-sub="' + esc(subEstado(e)) + '">' + miniatura(e.foto) + '<span class="escolha-num">' + e.uf + '</span><span class="escolha-nome">' + esc(e.nome) + '</span><span class="escolha-onde">' + (n ? plural(n, 'parceria', 'parcerias') : 'a anunciar') + ' · ' + listaEm(cidadesDe(e)) + '</span>' + SETA.replace('<svg', '<svg class="escolha-seta"') + '</button></li>';
@@ -834,38 +834,41 @@
     var p = PAISES[onde.p], e = p.estados[onde.e], cidades = cidadesDe(e), parceiras = totalEstado(e);
     // a faixa de foto so onde ja ha parceiras (ela, 16/10: "os que nao temos parceria ainda,
     // quando abre o pais, nao precisa aparecer foto")
-    var comFoto = !!e.foto && parceiras > 0;
+    // (06/11) com NO_AR a faixa tambem sai: o cartao da parceria ja traz as fachadas, e a logo
+    // para clicar precisa aparecer na primeira tela ("clicando em SP mostra o logo")
+    var comFoto = !!e.foto && parceiras > 0 && !filtrado;
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceria', 'parcerias') + '</b> em ' + listaEm(cidades) + '. Escolha uma para ver os empreendimentos.' : 'Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceria', 'parcerias') + '</b> em ' + listaEm(cidades) + '. ' + (parceiras === 1 ? 'Toque na marca' : 'Escolha uma') + ' para ver os empreendimentos.' : 'Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
       + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '')
       + e.cidades.map(function (c, ci) {
+        var ps = parceriasDe(c);
         return '<div class="cidade">'
-          + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
-          + (c.construtoras.length
-            ? '<ol class="lista">' + c.construtoras.map(function (n, ni) {
-                return '<li><button type="button" class="nome notranslate' + (LOGOS[n] ? ' com-logo' : '') + '" data-c="' + ci + '" data-n="' + ni + '">' + (logoDe(n, 'nome-logo') || esc(n)) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
-              }).join('') + '</ol>'
-            : '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>')
+          + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>' + (ps.length ? plural(ps.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
+          + (!ps.length
+            ? '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>'
+            // com NO_AR, cada parceria no ar e um cartao com a logo para clicar; sem NO_AR, a lista de nomes em texto
+            : filtrado
+              ? '<ol class="vitrine">' + ps.map(function (x) { return cartaoParceria(x.nome, ci, x.ni, c); }).join('') + '</ol>'
+              : '<ol class="lista">' + ps.map(function (x) {
+                  return '<li><button type="button" class="nome notranslate' + (LOGOS[x.nome] ? ' com-logo' : '') + '" data-c="' + ci + '" data-n="' + x.ni + '">' + (logoDe(x.nome, 'nome-logo') || esc(x.nome)) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
+                }).join('') + '</ol>')
           + '</div>';
       }).join('') + '</div>';
   }
-  // a vitrine: um cartao por parceria no ar, com a logo e as fachadas dos empreendimentos dela
-  function nivelVitrine() {
-    var ems = VITRINE.reduce(function (s, v) { return s + v.lista.length; }, 0);
-    return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>Parcerias</small>Com quem atuamos.</h2><p><b>' + plural(VITRINE.length, 'parceria', 'parcerias') + '</b> com <b>' + plural(ems, 'empreendimento', 'empreendimentos') + '</b>. Toque na marca para ver cada um.</p></div>'
-      + '<ol class="vitrine">' + VITRINE.map(function (v, i) {
-          return '<li><button type="button" class="vitrine-cartao" data-vitrine="' + i + '" aria-label="' + esc(v.nome) + ': ver os empreendimentos">'
-            + '<span class="vitrine-marca">'
-            +   '<span><span class="vitrine-onde notranslate">' + esc(v.cidade) + '</span>' + (logoDe(v.nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(v.nome) + '</span>') + '</span>'
-            +   '<span><span class="vitrine-conta">' + plural(v.lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
-            + '</span>'
-            + '<span class="vitrine-fotos">' + v.lista.slice(0, 4).map(function (x) {
-                var f = x.torre || (fotosDe(x)[0] || {}).src;
-                return f ? '<span class="vitrine-foto"><img src="' + esc(f) + '" alt=""><b class="notranslate">' + esc(x.nome) + '</b></span>' : '';
-              }).join('') + '</span>'
-            + '</button></li>';
-        }).join('') + '</ol></div>';
+  // o cartao de uma parceria no ar, dentro da cidade: a logo para clicar de um lado, as fachadas
+  // dos empreendimentos dela do outro
+  function cartaoParceria(nome, ci, ni, c) {
+    var lista = empreendimentosDe(nome, c);
+    return '<li><button type="button" class="vitrine-cartao" data-c="' + ci + '" data-n="' + ni + '" aria-label="' + esc(nome) + ': ver os empreendimentos">'
+      + '<span class="vitrine-marca">'
+      +   '<span><span class="vitrine-onde">Construtora</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
+      +   '<span><span class="vitrine-conta">' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
+      + '</span>'
+      + '<span class="vitrine-fotos">' + lista.slice(0, 4).map(function (x) {
+          var f = x.torre || (fotosDe(x)[0] || {}).src;
+          return f ? '<span class="vitrine-foto"><img src="' + esc(f) + '" alt=""><b class="notranslate">' + esc(x.nome) + '</b></span>' : '';
+        }).join('') + '</span>'
+      + '</button></li>';
   }
   function nivelParceira() {
     var p = PAISES[onde.p], e = p.estados[onde.e], c = e.cidades[onde.c], parceira = c.construtoras[onde.n];
@@ -986,7 +989,7 @@
     }
     var texto = em.texto ? esc(em.texto) : (soNome(em) ? 'Plantas, metragens, valores e disponibilidade deste empreendimento com um consultor da <span class="notranslate">AM Global Realty</span>.' : '');
     // as setas de parceria anterior e proxima so fazem sentido com mais de uma
-    var variasParcerias = modoVitrine ? VITRINE.length > 1 : c.construtoras.length > 1;
+    var variasParcerias = parceriasDe(c).length > 1;
     return galeria(em)
       + (temFotos && em.notaImagens ? '<p class="nota-imagens">' + esc(em.notaImagens) + '</p>' : '')
       + '<div class="aberto-corpo' + (temFotos ? '' : ' sem-galeria') + '">'
@@ -1003,14 +1006,12 @@
       +   (variasParcerias ? '<div class="aberto-nav"><button type="button" data-parceira="-1" aria-label="Parceria anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" data-parceira="1" aria-label="Próxima parceria"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></div>' : '') + '</div>'
       + '</div>';
   }
-  function naVitrine() { return VITRINE.some(function (v) { return v.p === onde.p && v.e === onde.e && v.c === onde.c && v.n === onde.n; }); }
 
   function mostrar(rolar) {
-    // com a vitrine ligada so existem dois niveis: a vitrine e a parceria no ar; qualquer outro
-    // caminho (pais, estado, parceria guardada, endereco antigo) cai na vitrine
-    if (modoVitrine && (onde.n === null || !naVitrine())) onde = { p: null, e: null, c: null, n: null, k: 0 };
+    // parceria guardada (fora de NO_AR) nao abre: o endereco antigo dela cai na pagina do estado
+    if (onde.n !== null && !parceriasDe(PAISES[onde.p].estados[onde.e].cidades[onde.c]).some(function (x) { return x.ni === onde.n; })) { onde.c = null; onde.n = null; onde.k = 0; }
     trilha();
-    var html = onde.n !== null ? nivelParceira() : modoVitrine ? nivelVitrine() : onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : nivelEstado();
+    var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
     $('nivel').innerHTML = html;
     if (onde.n !== null) montarGaleria();
     $('notaExemplo').hidden = onde.n === null || !exemploAberto;
@@ -1051,20 +1052,16 @@
     var b;
     if ((b = ev.target.closest('.escolha[data-pais]'))) { onde = { p: Number(b.getAttribute('data-pais')), e: null, c: null, n: null, k: 0 }; var p = PAISES[onde.p]; if (p.estados.length === 1) onde.e = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.escolha[data-estado]'))) { onde.e = Number(b.getAttribute('data-estado')); onde.c = null; onde.n = null; onde.k = 0; mostrar(true); return; }
-    if ((b = ev.target.closest('.nome'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
+    if ((b = ev.target.closest('.nome, .vitrine-cartao[data-c]'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); return; }
     if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
     if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
-    if ((b = ev.target.closest('.vitrine-cartao[data-vitrine]'))) { var v = VITRINE[Number(b.getAttribute('data-vitrine'))]; onde = { p: v.p, e: v.e, c: v.c, n: v.n, k: 0 }; mostrar(true); return; }
     if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta'))); return; }
     if ((b = ev.target.closest('[data-parceira]'))) {
-      if (modoVitrine) {   // na vitrine, as setas andam so entre as parcerias no ar
-        var vi = VITRINE.findIndex(function (x) { return x.p === onde.p && x.e === onde.e && x.c === onde.c && x.n === onde.n; });
-        var px = VITRINE[(vi + Number(b.getAttribute('data-parceira')) + VITRINE.length) % VITRINE.length];
-        onde = { p: px.p, e: px.e, c: px.c, n: px.n, k: 0 }; mostrar(false); return;
-      }
-      var lista = PAISES[onde.p].estados[onde.e].cidades[onde.c].construtoras;
-      onde.n = (onde.n + Number(b.getAttribute('data-parceira')) + lista.length) % lista.length; onde.k = 0; mostrar(false); return;
+      // as setas andam so entre as parcerias que aparecem na cidade
+      var ps = parceriasDe(PAISES[onde.p].estados[onde.e].cidades[onde.c]);
+      var pos = ps.findIndex(function (x) { return x.ni === onde.n; });
+      onde.n = ps[(pos + Number(b.getAttribute('data-parceira')) + ps.length) % ps.length].ni; onde.k = 0; mostrar(false); return;
     }
   });
   // a planta ampliada: abre no <dialog>; fecha no botao, no fundo escuro ou com Esc.
