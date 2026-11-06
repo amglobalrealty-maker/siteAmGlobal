@@ -41,6 +41,10 @@
      `fotos/exemplo/<categoria>-<1..4>.webp` (fachada, piscina, living, suite,
      cozinha, varanda; fotos livres do Pexels, 16/10/2026), e cada
      empreendimento monta a galeria com uma de cada categoria.
+
+     06/11/2026: a VITACON e a primeira com os reais (16 empreendimentos, por
+     enquanto so nome e bairro, sem fotos) e com a logo no lugar do nome
+     (`LOGOS`, arquivo em `fotos/parcerias/`). As outras seguem de exemplo.
      --------------------------------------------------------------------------- -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,6 +178,11 @@
   .nome svg { flex: 0 0 auto; width: 14px; height: 8px; fill: none; stroke: currentColor; stroke-width: 1; opacity: 0; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
   .nome:hover svg, .nome:focus-visible svg { opacity: 1; transform: none; }
   .em-breve { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 26px); color: var(--texto-medio); padding: 8px 0 20px; }
+  /* a logo da parceira no lugar do nome (06/11/2026, Vitacon): na lista da cidade e no alto da pagina dela */
+  .nome.com-logo { align-items: center; min-height: calc(1.2em + 27px); }
+  .nome-logo { flex: 0 0 auto; height: 0.84em; width: auto; transition: opacity 0.4s var(--curva); }
+  .nome:hover .nome-logo, .nome:focus-visible .nome-logo { opacity: 0.58; }
+  .parceira-logo { height: clamp(34px, 3.8vw, 52px); width: auto; margin-top: 6px; }
 
   /* a parceira: os empreendimentos numa fileira de cartoes no alto; embaixo, o aberto
      com a galeria na largura toda e a ficha em duas colunas (sem coluna sobrando;
@@ -189,11 +198,22 @@
   .empreendimento[aria-pressed="true"] .empreendimento-nome, .empreendimento:hover .empreendimento-nome { color: var(--champagne); }
   .empreendimento-meta { font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
   .empreendimento-entrega { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+  /* parceira so com os nomes, sem fotos ainda (06/11/2026, Vitacon): cartoes de texto, sem a caixa da foto */
+  .empreendimentos.sem-fotos { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0 clamp(18px, 2.4vw, 36px); border-top: 1px solid var(--linha-escura); }
+  .empreendimentos.sem-fotos .empreendimento { padding: 15px 0 14px; height: 100%; }
 
   .aberto { animation: aparece 0.6s var(--curva) both; }
   .aberto-corpo { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 72px); align-items: start; padding-top: clamp(24px, 3.6vh, 40px); }
   .aberto-lado .aberto-bloco:first-child { margin-top: 0; }
   .aberto-corpo .aberto-acoes { grid-column: 1 / -1; }
+  /* empreendimento ainda sem fotos: sem a galeria, o aberto ganha um fio no alto e, na coluna
+     do lado, um quadro com a logo da construtora (so quando a tela tem as duas colunas) */
+  .aberto-corpo.sem-galeria { border-top: 1px solid var(--linha-escura); }
+  .aberto-corpo.sem-galeria .ficha { grid-template-columns: 1fr 1fr; }
+  .aberto-marca { margin: 0; }
+  .aberto-marca-quadro { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; background: rgba(216, 207, 192, 0.36); }
+  .aberto-marca-logo { width: 44%; height: auto; }
+  .aberto-marca figcaption { padding-top: 12px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
 
   /* a galeria em slides: trilho que desliza por --i; setas, contador e miniaturas */
   .galeria { --i: 0; }
@@ -254,6 +274,7 @@
     .lista { columns: 2; }
     .aberto-corpo { grid-template-columns: 1fr; }
     .aberto-lado .aberto-bloco:first-child { margin-top: 28px; }
+    .aberto-marca { display: none; }
     .ficha { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 900px) {
@@ -282,6 +303,8 @@
     .empreendimentos { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 68%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); padding: 0 var(--margem) 6px; }
     .empreendimentos::-webkit-scrollbar { display: none; }
     .empreendimento { scroll-snap-align: start; }
+    /* so com os nomes: a faixa leva dois por coluna, para os 16 nao virarem 16 telas de deslize */
+    .empreendimentos.sem-fotos { grid-template-columns: none; grid-template-rows: repeat(2, auto); grid-auto-columns: 60%; gap: 0 16px; border-top: 0; scroll-padding-left: var(--margem); }   /* sem a margem, o texto parava colado na borda */
     .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
     .galeria-seta { width: 38px; height: 38px; }
   }
@@ -386,9 +409,39 @@
   /* Os empreendimentos REAIS entram aqui, pelo nome exato da parceira: uma lista de
      { nome, bairro, texto, status, obraPct, entrega, tipologia, area, torres, unidades,
        vagas, peDireito, valores, lazer: [], diferenciais: [], endereco,
-       fotos: [{ src, legenda }] }. So nome, tipologia, area e entrega sao obrigatorios;
-     o resto aparece quando existe. Passa na frente do exemplo. */
-  var EMPREENDIMENTOS = {};
+       fotos: [{ src, legenda }] }. So o nome e obrigatorio; o resto aparece quando
+     existe (sem fotos, os cartoes viram texto e o aberto mostra a logo da construtora).
+     Passa na frente do exemplo.
+
+     VITACON (06/11/2026): por enquanto so os nomes, na ordem da lista que a cliente
+     mandou. Bairros conferidos na listagem de vitacon.com.br/empreendimentos; o
+     "Reinventa Perdizes" nao esta la e ficou com o bairro do proprio nome. Fotos,
+     tipologia, area e entrega entram quando o material chegar. */
+  var EMPREENDIMENTOS = {
+    'Vitacon': [
+      ['Reinventa Perdizes', 'Perdizes'],
+      ['Vitacon Cardoso de Almeida', 'Perdizes'],
+      ['Vitacon João Ramalho', 'Perdizes'],
+      ['Vitacon Venâncio Aires 38', 'Perdizes'],
+      ['Vitacon Jardins', 'Jardins'],
+      ['Vitacon Vila Nova Conceição', 'Vila Nova Conceição'],
+      ['Vitacon João Moura', 'Pinheiros'],
+      ['Vitacon Alameda Franca', 'Jardins'],
+      ['Vitacon Pinheiros', 'Pinheiros'],
+      ['Vitacon Domingos de Morais', 'Vila Mariana'],
+      ['Vitacon Perdizes', 'Perdizes'],
+      ['H Bela Cintra by Vitacon', 'Jardins'],
+      ['Vitacon Mourato Coelho', 'Pinheiros'],
+      ['Vitacon Vila Olímpia', 'Vila Olímpia'],
+      ['Vitacon Alto de Pinheiros', 'Alto de Pinheiros'],
+      ['Vitacon Maestro Cardim', 'Paraíso']
+    ].map(function (x) { return { nome: x[0], bairro: x[1], valores: 'Sob consulta' }; })
+  };
+
+  /* As LOGOS das parceiras, pelo nome exato: PNG de fundo transparente em fotos/parcerias/.
+     Onde ha logo, ela entra no lugar do nome na lista da cidade e no alto da pagina da
+     parceira; as outras continuam em texto ate a logo chegar. */
+  var LOGOS = { 'Vitacon': { src: 'fotos/parcerias/vitacon.png', w: 487, h: 100 } };
 
   /* ---------------------------------------- os empreendimentos de exemplo
      Dois ou tres por parceira, gerados pelo nome dela (sempre iguais para o
@@ -457,6 +510,9 @@
   function cidadesDe(e) { return e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []); }
   function listaTexto(nomes) { return nomes.join(', ').replace(/, ([^,]*)$/, ' e $1'); }
   function listaEm(nomes) { return esc(listaTexto(nomes)); }
+  function logoDe(parceira, classe) { var l = LOGOS[parceira]; return l ? '<img class="' + classe + '" src="' + esc(l.src) + '" alt="' + esc(parceira) + '" width="' + l.w + '" height="' + l.h + '">' : ''; }
+  // so com o nome (sem tipologia, area nem entrega): o material da construtora ainda nao chegou
+  function soNome(em) { return !em.tipologia && !em.area && !em.entrega; }
   function miniatura(foto) { return foto ? '<span class="escolha-mini"><img src="' + esc(foto) + '" alt="" loading="lazy"></span>' : '<span class="escolha-mini"></span>'; }
   function painelFoto(primeiro) {
     return '<figure class="escolhas-foto" id="escolhasFoto"><div class="quadro"><img id="fotoA" class="atual" src="' + esc(primeiro.foto) + '" alt=""><img id="fotoB" alt=""></div>'
@@ -476,6 +532,7 @@
      parceira, empreendimento); cada um nulo quer dizer "ainda nao escolhido".
      `mostrar()` desenha a trilha e o nivel mais fundo escolhido. */
   var onde = { p: null, e: null, c: null, n: null, k: 0 };
+  var exemploAberto = false;   // a parceira aberta esta com empreendimentos de exemplo?
 
   function trilha() {
     var partes = ['<button type="button" data-volta="raiz">Empreendimentos</button>'];
@@ -520,7 +577,7 @@
           + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>' + (c.construtoras.length ? plural(c.construtoras.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
           + (c.construtoras.length
             ? '<ol class="lista">' + c.construtoras.map(function (n, ni) {
-                return '<li><button type="button" class="nome notranslate" data-c="' + ci + '" data-n="' + ni + '">' + esc(n) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
+                return '<li><button type="button" class="nome notranslate' + (LOGOS[n] ? ' com-logo' : '') + '" data-c="' + ci + '" data-n="' + ni + '">' + (logoDe(n, 'nome-logo') || esc(n)) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
               }).join('') + '</ol>'
             : '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>')
           + '</div>';
@@ -531,16 +588,21 @@
     var lista = empreendimentosDe(parceira, c);
     if (onde.k >= lista.length) onde.k = 0;
     var em = lista[onde.k];
+    // a nota "exemplos ilustrativos" so vale para quem ainda esta com os de exemplo
+    exemploAberto = !!em.exemplo;
+    // parceira ainda sem nenhuma foto: os cartoes viram texto, sem a caixa da foto
+    var comFotos = lista.some(function (x) { return fotosDe(x).length > 0; });
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + esc(parceira) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. O primeiro já está aberto; toque em outro para trocar.</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + (logoDe(parceira, 'parceira-logo') || esc(parceira)) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. O primeiro já está aberto; toque em outro para trocar.</p></div>'
       + '<div class="parceira">'
-      +   '<div><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span><ol class="empreendimentos">' + lista.map(function (x, k) {
+      +   '<div><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span><ol class="empreendimentos' + (comFotos ? '' : ' sem-fotos') + '">' + lista.map(function (x, k) {
             var capa = fotosDe(x)[0];
+            var meta = [x.bairro ? '<span class="notranslate">' + esc(x.bairro) + '</span>' : '', esc(x.tipologia || ''), esc(x.area || '')].filter(Boolean).join(' · ');
             return '<li><button type="button" class="empreendimento" data-k="' + k + '" aria-pressed="' + (k === onde.k ? 'true' : 'false') + '">'
-              + '<span class="empreendimento-foto">' + (capa ? '<img src="' + esc(capa.src) + '" alt="">' : '') + '</span>'
+              + (comFotos ? '<span class="empreendimento-foto">' + (capa ? '<img src="' + esc(capa.src) + '" alt="">' : '') + '</span>' : '')
               + '<span class="empreendimento-nome notranslate">' + esc(x.nome) + '</span>'
-              + '<span class="empreendimento-meta">' + esc(x.bairro) + ' · ' + esc(x.tipologia) + ' · ' + esc(x.area) + '</span>'
-              + '<span class="empreendimento-entrega">' + esc(x.entrega) + '</span>'
+              + (meta ? '<span class="empreendimento-meta">' + meta + '</span>' : '')
+              + (x.entrega ? '<span class="empreendimento-entrega">' + esc(x.entrega) + '</span>' : '')
               + '</button></li>';
           }).join('') + '</ol></div>'
       +   '<article class="aberto" id="aberto">' + aberto(em, parceira, c, e) + '</article>'
@@ -561,12 +623,18 @@
           }).join('') + '</ol>' : '')
       + '</div>';
   }
-  function ficha(em) {
+  function ficha(em, parceira, c, e) {
     var itens = [];
+    // so com o nome: a ficha mostra o que ja se sabe (construtora, bairro, cidade)
+    if (soNome(em)) {
+      itens.push(['Construtora', '<span class="notranslate">' + esc(parceira) + '</span>']);
+      if (em.bairro) itens.push(['Bairro', '<span class="notranslate">' + esc(em.bairro) + '</span>']);
+      itens.push(['Cidade', '<span class="notranslate">' + esc(c.curta || c.nome) + '</span>, ' + esc(e.uf)]);
+    }
     if (em.status) itens.push(['Status', esc(em.status) + (em.obraPct ? '<span class="barra"><i style="width:' + Math.min(100, Number(em.obraPct)) + '%"></i></span>' : '')]);
-    itens.push(['Entrega', esc(em.entrega)]);
-    itens.push(['Tipologia', esc(em.tipologia)]);
-    itens.push(['Área privativa', esc(em.area)]);
+    if (em.entrega) itens.push(['Entrega', esc(em.entrega)]);
+    if (em.tipologia) itens.push(['Tipologia', esc(em.tipologia)]);
+    if (em.area) itens.push(['Área privativa', esc(em.area)]);
     if (em.torres) itens.push(['Torres e andares', esc(em.torres)]);
     if (em.unidades) itens.push(['Unidades', esc(em.unidades)]);
     if (em.vagas) itens.push(['Vagas', esc(em.vagas)]);
@@ -578,14 +646,18 @@
     var lado = (em.lazer && em.lazer.length ? '<div class="aberto-bloco"><span class="rotulo">Lazer e conveniência</span><ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
       + (em.diferenciais && em.diferenciais.length ? '<div class="aberto-bloco"><span class="rotulo">Diferenciais</span><ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '')
       + (em.endereco ? '<div class="aberto-bloco"><span class="rotulo">Localização</span><p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da construtora.</small>' : '') + '</p></div>' : '');
+    var temFotos = fotosDe(em).length > 0;
+    // ainda sem fotos nem ficha: a coluna do lado mostra a logo da construtora
+    if (!lado && !temFotos && LOGOS[parceira]) lado = '<figure class="aberto-marca"><div class="aberto-marca-quadro">' + logoDe(parceira, 'aberto-marca-logo') + '</div><figcaption>Fotos e plantas em breve</figcaption></figure>';
+    var texto = em.texto ? esc(em.texto) : (soNome(em) ? 'Plantas, metragens, valores e disponibilidade deste empreendimento com um consultor da <span class="notranslate">AM Global Realty</span>.' : '');
     return galeria(em)
-      + '<div class="aberto-corpo">'
+      + '<div class="aberto-corpo' + (temFotos ? '' : ' sem-galeria') + '">'
       +   '<div class="aberto-principal">'
       +     '<span class="rotulo"><span class="notranslate">' + esc(parceira) + '</span>' + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
       +     '<h3 class="notranslate">' + esc(em.nome) + '</h3>'
-      +     '<p class="aberto-lugar">' + esc(em.bairro) + ', ' + esc(e.nome) + '</p>'
-      +     (em.texto ? '<p class="aberto-texto">' + esc(em.texto) + '</p>' : '')
-      +     ficha(em)
+      +     '<p class="aberto-lugar">' + (em.bairro ? '<span class="notranslate">' + esc(em.bairro) + '</span>, ' : '') + esc(e.nome) + '</p>'
+      +     (texto ? '<p class="aberto-texto">' + texto + '</p>' : '')
+      +     ficha(em, parceira, c, e)
       +   '</div>'
       +   (lado ? '<div class="aberto-lado">' + lado + '</div>' : '')
       +   '<div class="aberto-acoes"><a class="botao" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + parceira + ' (' + (c.curta || c.nome) + '), no site da AM Global e quero saber mais.') + '">Falar com um consultor</a>'
@@ -598,7 +670,7 @@
     var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
     $('nivel').innerHTML = html;
     if (onde.n !== null) montarGaleria();
-    $('notaExemplo').hidden = onde.n === null;
+    $('notaExemplo').hidden = onde.n === null || !exemploAberto;
     var hash = onde.p === null ? '' : '#' + PAISES[onde.p].id
       + (onde.e !== null ? '/' + PAISES[onde.p].estados[onde.e].uf.toLowerCase() : '')
       + (onde.n !== null ? '/' + onde.c + '/' + onde.n + (onde.k ? '/' + onde.k : '') : '');
