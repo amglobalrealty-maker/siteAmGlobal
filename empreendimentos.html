@@ -558,13 +558,15 @@
      Augusta, 2.662; 682 unidades; conceito wellness): 18 imagens em
      `fotos/parcerias/vitacon/jardins/` (miniaturas em `mini/`), 3 plantas com a posicao
      na torre, 3 de implantacao, regiao propria (JARDINS), `perto`, `legal`.
+     O VILA NOVA CONCEICAO entrou em 07/11/2026 como SEXTO, so com a ficha tecnica de 4
+     paginas e os dados publicos do site (ver o comentario no proprio item).
      O CARDOSO DE ALMEIDA foi completado depois com o Book Cliente dele (agosto/2026): 25
      imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
      3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
      (`legal`: venda so apos o registro da incorporacao; unidades R2V, HIS-2 e HMP).
      Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
      enquanto"): Vitacon Perdizes (Perdizes); Alameda
-     Franca e H Bela Cintra by Vitacon (Jardins); Vila Nova Conceicao; Joao Moura,
+     Franca e H Bela Cintra by Vitacon (Jardins); Joao Moura,
      Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
      Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
   var V = 'fotos/parcerias/vitacon/';
@@ -580,6 +582,8 @@
   // e para o Vitacon Jardins (Book Interativo, incorporacao registrada em maio/2025)
   var J = V + 'jardins/';
   function fotoJ(nome, legenda, emPe) { return { src: J + nome + '.webp', mini: J + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
+  // e para o Vila Nova Conceicao (ficha tecnica de 4 paginas, "material de uso interno"; ela autorizou a fachada)
+  var VN = V + 'vilanova/';
   var JARDINS = {
     titulo: 'A região · Jardins',
     texto: 'Entre a Rua Oscar Freire e a Alameda Lorena, no Jardins, um dos endereços mais desejados do país: a Rua Augusta em transformação, com fácil acesso à Avenida Paulista e às estações Oscar Freire e Consolação do metrô.',
@@ -932,6 +936,54 @@
           fotoJ('jardins-sensoriais', 'Jardins sensoriais'),
           fotoJ('pet-place', 'Pet place')
         ]
+      },
+      {
+        // (07/11/2026) o SEXTO: ficha tecnica de 4 paginas do Vitacon Vila Nova Conceicao, carimbada
+        // "material de uso interno, proibida a publicacao"; ela decidiu publicar a fachada mesmo assim
+        // e deixar o endereco sem numero (PDF diz 1.239, site diz 912). O resto veio do site da
+        // Vitacon: status "Futuro lancamento", areas comuns, itens das unidades, creditos e registro.
+        // O PDF so traz a perspectiva do acesso em 744 px: fica suave em tela grande.
+        nome: 'Vitacon Vila Nova Conceição',
+        bairro: 'Vila Nova Conceição',
+        resumo: 'Studios e 1 dormitório · 18 a 43 m²',
+        tipo: 'Apartamento',
+        status: 'Futuro lançamento',
+        texto: 'Studios e apartamentos de 1 dormitório na Rua Afonso Braz, na Vila Nova Conceição, a cinco minutos de bicicleta do Parque Ibirapuera. Torre única com 268 unidades e duas lojas num terreno de 900 m², com pool deck, spa, sports bar e Working Pro no lazer. A Vitacon o apresenta como um ativo para quem busca rentabilidade numa das regiões mais valorizadas de São Paulo.',
+        area: 'Studios e 1 dormitório: 18 a 43 m²',
+        tipologia: 'Studios e 1 dormitório',
+        banheiros: 'Sob consulta',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['268 unidades e 2 lojas', 'Terreno de 900 m²'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Afonso Braz · Vila Nova Conceição, São Paulo',
+        infra: {
+          piscina: 'Pool deck',
+          academia: 'Fitness Space by Life Fitness, wellness space e spa',
+          festas: 'Party lounge e sports bar',
+          gourmet: 'CoKitchen lounge, barbecue e fire lounge',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, acesso de serviço separado e delivery room',
+          coworking: 'Working Pro, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck', 'Spa', 'Wellness Space', 'Fitness Space by Life Fitness', 'Party Lounge', 'Sports Bar', 'CoKitchen Lounge', 'Barbecue', 'Fire Lounge', 'Games Space', 'Working Pro', 'Podcast Studio', 'Minimarket', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper', 'Service Access'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Plantas com terraço técnico para a condensadora', 'Aquecedor central', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para lava-louças'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Danni Martins'], ['Interiores', 'R2 e Espaço Novo']],
+        plantas: [],
+        perto: {
+          grupos: [
+            ['Comércio e lazer', [['Emporium São Paulo', '1 min'], ['Pão de Açúcar', '2 min'], ['Praça Pereira Coutinho', '2 min'], ['Parque Ibirapuera', '5 min'], ['Shopping Ibirapuera', '10 min'], ['Clube Monte Líbano', '10 min']]],
+            ['Educação', [['Faculdade FAAM', '3 min'], ['Faculdade FMU', '5 min'], ['Faculdade Anhembi Morumbi', '5 min'], ['Insper', '5 min']]],
+            ['Saúde', [['Hospital Sancta Maggiore', '5 min de carro'], ['Hospital Santa Paula', '6 min de carro'], ['Hospital São Luiz', '7 min de carro'], ['Hospital Sírio-Libanês', '9 min de carro'], ['Hospital Israelita Albert Einstein', '14 min de carro'], ['Hospital São Paulo', '14 min de carro']]],
+            ['Mobilidade', [['Avenida Hélio Pellegrino', '2 min'], ['Avenida Santo Amaro', '6 min'], ['Avenida Faria Lima', '6 min'], ['Estação Moema', '6 min'], ['Estação Vila Olímpia', '6 min'], ['Ciclovia do Rio Pinheiros', '8 min'], ['Avenida Juscelino Kubitschek', '9 min'], ['Aeroporto de Congonhas', '15 min de carro']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica carro.'
+        },
+        legal: 'Incorporação imobiliária registrada em 22/04/2026 sob R.3 na matrícula nº 215.873 do 4º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 55327-25-SP-ALV. O projeto reúne unidades R2V, NR, HIS-2 e HMP; as HIS-2 e HMP são destinadas a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo. Imagem meramente ilustrativa e informações preliminares, sujeitas a alteração. Fonte: ficha técnica e site da Vitacon.',
+        torre: VN + 'acesso-alto.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        fotos: [{ src: VN + 'acesso.webp', mini: VN + 'mini/acesso.webp', legenda: 'Acesso' }]
       },
       {
         nome: 'Vitacon Venâncio Aires 284',
