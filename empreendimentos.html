@@ -554,12 +554,16 @@
      `fotos/parcerias/vitacon/venancio38/` (miniaturas em `mini/`), 10 plantas de studio,
      3 de implantacao, `perto`, `legal`; status "Lancamento" pelo card do site. E outro
      predio, diferente do Venancio Aires 284 (futuro lancamento, so com o site).
+     O VITACON JARDINS entrou em 07/11/2026 como QUINTO, pelo Book Interativo (Rua
+     Augusta, 2.662; 682 unidades; conceito wellness): 18 imagens em
+     `fotos/parcerias/vitacon/jardins/` (miniaturas em `mini/`), 3 plantas com a posicao
+     na torre, 3 de implantacao, regiao propria (JARDINS), `perto`, `legal`.
      O CARDOSO DE ALMEIDA foi completado depois com o Book Cliente dele (agosto/2026): 25
      imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
      3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
      (`legal`: venda so apos o registro da incorporacao; unidades R2V, HIS-2 e HMP).
      Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
-     enquanto"): Vitacon Perdizes (Perdizes); Jardins, Alameda
+     enquanto"): Vitacon Perdizes (Perdizes); Alameda
      Franca e H Bela Cintra by Vitacon (Jardins); Vila Nova Conceicao; Joao Moura,
      Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
      Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
@@ -573,6 +577,16 @@
   // e para o Venancio Aires 38 (Book do Cliente, incorporacao registrada em janeiro/2026)
   var VA = V + 'venancio38/';
   function fotoVA(nome, legenda, emPe) { return { src: VA + nome + '.webp', mini: VA + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
+  // e para o Vitacon Jardins (Book Interativo, incorporacao registrada em maio/2025)
+  var J = V + 'jardins/';
+  function fotoJ(nome, legenda, emPe) { return { src: J + nome + '.webp', mini: J + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
+  var JARDINS = {
+    titulo: 'A região · Jardins',
+    texto: 'Entre a Rua Oscar Freire e a Alameda Lorena, no Jardins, um dos endereços mais desejados do país: a Rua Augusta em transformação, com fácil acesso à Avenida Paulista e às estações Oscar Freire e Consolação do metrô.',
+    numeros: [['3º', 'metro quadrado mais valorizado de São Paulo'], ['+23 mil', 'empresas no entorno da Rua Augusta'], ['20', 'passos da Rua Oscar Freire'], ['7 min', 'da Avenida Paulista, de bicicleta']],
+    polos: 'Por perto: Casa Santa Luzia, Clube Paulistano, Hospital das Clínicas, Hospital Nove de Julho e Parque Ibirapuera.',
+    fonte: 'Fonte: material da Vitacon para o Vitacon Jardins, com dados citados de Forbes, Siila, Terra e Google.'
+  };
   var NOTA_PERSPECTIVA = 'Perspectivas meramente ilustrativas. Material preliminar, sujeito a alterações.';
   var PERDIZES = {
     titulo: 'A região · Reinventa Perdizes',
@@ -844,6 +858,79 @@
           fotoVA('laundry', 'Laundry share'),
           fotoVA('bike-space', 'Bike space'),
           fotoVA('pet-place', 'Pet place')
+        ]
+      },
+      {
+        // (07/11/2026) o QUINTO: Book Interativo do Vitacon Jardins. Status "Lancamento" pelo card do site
+        nome: 'Vitacon Jardins',
+        bairro: 'Jardins',
+        resumo: 'Studios e 1 dormitório · 20 a 57 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios e apartamentos de 1 dormitório na Rua Augusta, a vinte passos da Rua Oscar Freire, no Jardins. Torre única com 682 unidades e duas lojas, desenhada em torno do conceito wellness: piscina e spa no rooftop, pilates, recovery zone com sauna infravermelha e banheira de gelo, healing space e jardins sensoriais. A Vitacon o apresenta como uma nova categoria de studios.',
+        area: ['Studios e 1 dormitório: 20,82 a 56,59 m²', 'Plantas apresentadas: studios de 20,82 e 25,65 m² e 1 dormitório de 32,27 m²'],
+        tipologia: 'Studios e 1 dormitório',
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['682 residenciais e 2 lojas', 'Terreno de 1.944,72 m² e 24.156,47 m² construídos'],
+        pavimentos: ['Subsolo e térreo com lojas, lobby e lazer', '1º pavimento de lazer', '25 pavimentos', 'Rooftop com piscina, spa e lazer'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Augusta, 2.662 · Jardins, São Paulo',
+        infra: {
+          piscina: 'Wellness Pool & Spa no rooftop, com pool lounge',
+          academia: 'Fitness com equipamentos de última geração, pilates studio e recovery zone com sauna infravermelha, ducha de ozônio e banheira de gelo',
+          festas: 'Gathering Space no rooftop, ambiente de festas no conceito wellness',
+          gourmet: 'Gourmet Wellness no rooftop, espaço gastronômico de convivência',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, acesso de serviço separado, delivery room e bag keeper',
+          coworking: 'Wellness Work, open meeting ao ar livre, creative space, podcast studio e biblioteca'
+        },
+        lazer: ['Wellness Pool & Spa', 'Pool Lounge', 'Sky Bar', 'Gourmet Wellness', 'Gathering Space', 'Recovery Zone', 'Healing Space', 'Mindfulness Space', 'Pilates Studio', 'Fitness', 'Wellness Space', 'Jardins Sensoriais', 'Outdoor Patio', 'Wellness Work', 'Open Meeting', 'Creative Space', 'Podcast Studio', 'Biblioteca', 'Lounge', 'Game Space', 'Health Market', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper', 'Service Access'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Aquecimento central, sem aquecedor em cada unidade', 'Medidor de água individualizado e previsão de medição individualizada de gás', 'Caixilhos amplos e melhor desempenho acústico', 'Plantas com terraço técnico para a condensadora', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para lava-louças, tomada USB-C e tomadas de 20 A', 'Gerador para áreas técnicas e elevadores'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Paisagismo', 'Danni Martins Paisagismo'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: J + 'planta-studio-2082.webp', nome: 'Studio de 20,82 m²', meta: 'Com a posição na torre' },
+          { src: J + 'planta-studio-2565.webp', nome: 'Studio de 25,65 m²', meta: 'Com a posição na torre' },
+          { src: J + 'planta-1dorm-3227.webp', nome: '1 dormitório de 32,27 m²', meta: 'Varanda com possibilidade de fechamento' }
+        ],
+        implantacao: [
+          { src: J + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lojas, lobby, health market, podcast, creative lab, Wellness Work, biblioteca, jardim sensorial e pet place' },
+          { src: J + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Laundry share, healing space, mindfulness, pilates e fitness' },
+          { src: J + 'implantacao-25pav.webp', nome: '25º pavimento', meta: 'Gourmet Wellness, Gathering Space, spa, recovery zone, pool lounge e piscina' }
+        ],
+        perto: {
+          grupos: [
+            ['A poucos passos', [['Rua Oscar Freire', '20 passos'], ['Alameda Lorena', '30 passos'], ['Casa Santa Luzia', 'ao lado']]],
+            ['De bicicleta', [['Avenida Brasil', '2 min'], ['Avenida Rebouças', '3 min'], ['Avenida Paulista', '7 min'], ['Parque Ibirapuera', '10 min']]],
+            ['Na região', [['Estações Oscar Freire e Consolação do metrô', ''], ['Clube Paulistano', ''], ['Hospital das Clínicas', ''], ['Hospital Nove de Julho', '']]]
+          ],
+          nota: 'Distâncias conforme o material da Vitacon; tempos de bicicleta estimados com o Google.'
+        },
+        legal: 'Incorporação imobiliária registrada em 08/05/2025 sob R.4 na matrícula nº 116.436 do 13º Oficial de Registro de Imóveis de São Paulo; projeto aprovado pelo Alvará nº 49102-24-SP-ALV. O projeto reúne unidades R2V, sem restrição de destinação, e unidades HIS-2 e HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo; na compra para investimento ou locação, a destinação deve observar o público elegível. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon.',
+        torre: J + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: JARDINS,
+        fotos: [
+          fotoJ('fachada', 'Fachada', true),
+          fotoJ('acesso', 'Acesso'),
+          fotoJ('studio', 'Studio inteligente'),
+          fotoJ('studio-iluminacao', 'Studio, iluminação indireta'),
+          fotoJ('studio-banho', 'Banho do studio'),
+          fotoJ('wellness-pool', 'Wellness Pool'),
+          fotoJ('gathering-space', 'Gathering Space'),
+          fotoJ('gourmet-wellness', 'Gourmet Wellness'),
+          fotoJ('recovery-zone', 'Recovery zone'),
+          fotoJ('healing-space', 'Healing space'),
+          fotoJ('mindfulness', 'Mindfulness space'),
+          fotoJ('pilates', 'Pilates studio'),
+          fotoJ('fitness', 'Fitness'),
+          fotoJ('wellness-work', 'Wellness Work'),
+          fotoJ('creative-space', 'Creative space'),
+          fotoJ('health-market', 'Health market'),
+          fotoJ('jardins-sensoriais', 'Jardins sensoriais'),
+          fotoJ('pet-place', 'Pet place')
         ]
       },
       {
