@@ -284,6 +284,8 @@
   .aberto-bloco .rotulo { margin-bottom: 12px; }
   .lazer { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
   .lazer li { font-size: 12.5px; letter-spacing: 0.02em; padding: 7px 12px; border: 1px solid var(--linha-escura); color: var(--grafite); }
+  .lazer-titulo { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-medio); margin: 18px 0 10px; }
+  .lazer-titulo:first-child { margin-top: 0; }
   .diferenciais { list-style: none; display: grid; gap: 8px; }
   .diferenciais li { position: relative; padding-left: 22px; font-size: 15px; color: var(--texto-medio); }
   .diferenciais li::before { content: ''; position: absolute; left: 0; top: 0.78em; width: 10px; height: 1px; background: var(--champagne); }
@@ -539,10 +541,14 @@
      (18/08/2026) que ela mandou, com fotos e plantas tiradas do proprio PDF. O status
      (so ele), as areas comuns e as metragens do Venancio Aires 284 vieram das paginas
      de vitacon.com.br/empreendimentos. Onde nem o PDF nem o site dizem, fica "Sob
-     consulta". No Joao Ramalho a ficha do PDF e o site divergem nas 3 suites e no
-     duplex (PDF 127 e 183 m2 / 127 e 138 m2; site 107 e 163 / 117 e 118): entrou so o
-     que os dois confirmam. "Reinventa Perdizes" e a campanha da Vitacon para o bairro,
-     nao um predio: virou o texto da regiao (PERDIZES).
+     consulta". A ficha do PDF do Reinventa dizia 127 e 183 m2 (3 suites) e 127 e 138
+     (duplex) para o Joao Ramalho; o site e o Book Digital dele (setembro/2026) dizem
+     107 e 163 / 117 e 118, e foi isso que entrou. "Reinventa Perdizes" e a campanha
+     da Vitacon para o bairro, nao um predio: virou o texto da regiao (PERDIZES).
+     O JOAO RAMALHO foi completado em 07/11/2026 com o Book Digital: 24 imagens em
+     `fotos/parcerias/vitacon/ramalho/` (miniaturas em `mini/`), 10 plantas, 4 de
+     implantacao, `perto`, `legal` (incorporacao registrada; studios NR) e as areas
+     comuns separadas por condominio (`lazerGrupos`: Family e Single).
      O CARDOSO DE ALMEIDA foi completado depois com o Book Cliente dele (agosto/2026): 25
      imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
      3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
@@ -556,6 +562,9 @@
   // as imagens do book do Cardoso de Almeida: a grande (1600 px) e a miniatura (280 px) de cada uma
   var C = V + 'cardoso/';
   function fotoC(nome, legenda, emPe) { return { src: C + nome + '.webp', mini: C + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
+  // idem para o Joao Ramalho (book de setembro/2026)
+  var R = V + 'ramalho/';
+  function fotoR(nome, legenda, emPe) { return { src: R + nome + '.webp', mini: R + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
   var NOTA_PERSPECTIVA = 'Perspectivas meramente ilustrativas. Material preliminar, sujeito a alterações.';
   var PERDIZES = {
     titulo: 'A região · Reinventa Perdizes',
@@ -652,42 +661,94 @@
       {
         nome: 'Vitacon João Ramalho',
         bairro: 'Perdizes',
-        resumo: 'Studios a 3 suítes · a partir de 20 m²',
+        resumo: 'Studios a 3 suítes · 20 a 163 m²',
         tipo: 'Apartamento',
         status: 'Lançamento',
-        texto: 'Na Rua João Ramalho, em Perdizes, uma torre com dois perfis: o Single, de studios e apartamentos de 1 dormitório, e o Family, de 2 e 3 suítes e duplex, com vaga de garagem. A Vitacon apresenta o projeto como o primeiro prédio inteligente do país.',
-        area: ['Studios: 20 a 30 m²', '1 dormitório: 27 a 45 m²', '2 suítes: a partir de 67 m²', '3 suítes: planta de 107,61 m²'],
-        tipologia: ['Studios e 1 dormitório', '2 e 3 suítes', 'Duplex de 3 suítes'],
-        banheiros: ['1 no studio', '2 e 3 suítes: um por suíte e lavabo'],
-        vagas: ['2 suítes: 1 vaga', '3 suítes e duplex: 2 vagas determinadas'],
-        torres: '1 torre',
+        // (07/11/2026) completado com o Book Digital dele (setembro/2026, 68 paginas): dois condominios
+        // na mesma torre, Single (studios e 1 dorm) e Family (2 e 3 suites e duplex), cada um com
+        // entrada, lobby e lazer proprios; as metragens do book batem com o site da Vitacon
+        texto: 'Na Rua João Ramalho, em Perdizes, uma torre com dois condomínios e entradas independentes: o Single, de studios e apartamentos de 1 dormitório, e o Family, de 2 e 3 suítes e duplex, com vaga de garagem. Lazer em quatro níveis, com pool deck e sky bar na cobertura, e um único aplicativo para os serviços do prédio, que a Vitacon apresenta como prédio inteligente.',
+        area: ['Studios: 20 a 30 m²', '1 dormitório: 27 a 45 m², com opção garden', '2 suítes: 67 a 110 m², com opção Uphouse', '3 suítes: 107 e 163 m², garden', 'Duplex de 3 suítes: 117 e 118 m², garden'],
+        tipologia: ['Single: studios e 1 dormitório', 'Family: 2 e 3 suítes e duplex de 3 suítes'],
+        banheiros: ['Studios e 1 dormitório: 1', '2 suítes: 2 banheiros e lavabo', '3 suítes: 3 banheiros e lavabo, com opção de suíte com 2 banheiros', 'Duplex: 3 banheiros, lavabo e WC de serviço'],
+        vagas: ['2 suítes: 1 vaga', '3 suítes e duplex: 2 vagas determinadas', 'Studios e 1 dormitório: sob consulta', 'Previsão de carga para carregador de carro elétrico'],
+        torres: '1 torre, com os condomínios Single e Family',
         unidades: ['112 unidades e 1 loja', 'Single: 32 studios e 24 de 1 dormitório', 'Family: 30 de 2 suítes, 24 de 3 suítes e 2 duplex'],
+        pavimentos: ['Térreo com acessos, lobbies, loja e garagem', '1º pavimento com lazer do Single e garagem', '6º pavimento com lazer do Family', '24º pavimento com pool deck e sky bar'],
         valores: 'Sob consulta',
         endereco: 'Rua João Ramalho, 569 · Perdizes, São Paulo',
         infra: {
-          piscina: 'Pool deck',
-          academia: 'Fitness by Life Fitness',
-          festas: 'Gourmet & party lounge',
-          gourmet: 'CoKitchen com terraço',
-          kids: 'Kids space',
+          piscina: 'Pool deck na cobertura do Family, 24º pavimento, com deck molhado, ducha e espreguiçadeiras',
+          academia: 'Wellness Space by Life Fitness nos dois condomínios, com terraço no Single',
+          festas: 'Sky bar na cobertura do Family, para festas, com vista para a cidade',
+          gourmet: 'CoKitchen lounge com cooktop em ilha e terraço, no 6º pavimento do Family',
+          kids: 'Kids space no Family, com brinquedos para todas as idades',
           quadra: '',
-          portaria: 'Lobby concierge, fechadura inteligente nas unidades e delivery room',
-          coworking: 'Coworking, podcast, laundry share e bike share'
+          portaria: 'Entradas independentes para Single e Family, lobby concierge com controle e segurança 24 horas, acesso de serviço monitorado e delivery room',
+          coworking: 'Coworking com phone booths e mesa coletiva e laundry share no Single; game space, lounge e horta no Family'
         },
-        lazer: ['Pool Deck', 'Fitness by Life Fitness', 'Gourmet & Party Lounge', 'CoKitchen + Terrace', 'Sky Lounge', 'Lounge Externo', 'Kids Space', 'Game Space', 'Horta', 'Coworking', 'Podcast', 'Grab & Go', 'Laundry Share', 'Bike Share', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper', 'Estacionamento'],
-        diferenciais: ['Fechadura inteligente', 'Infraestrutura para ar-condicionado, com carga e dreno', 'Área técnica da condensadora separada do terraço social', 'Ponto para lava-louças', 'Nas 3 suítes, apenas 2 unidades por pavimento e ponto para churrasqueira elétrica'],
+        lazerGrupos: [
+          ['Family: 2 e 3 suítes', ['Pool Deck', 'Sky Bar', 'Wellness Space by Life Fitness', 'CoKitchen Terrace', 'Kids Space', 'Game Space', 'Horta', 'Lounge', 'Pet Place', 'Bike Space', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper', 'Grab & Go', 'Estacionamento']],
+          ['Single: studios e 1 dormitório', ['Coworking', 'Laundry Share', 'Wellness Space by Life Fitness', 'Terraço Wellness', 'Lobby Concierge', 'Delivery Room', 'Grab & Go', 'Service Access']]
+        ],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Infraestrutura para ar-condicionado na sala e nos dormitórios, com carga e dreno', 'Aquecedor a gás, com água quente nos chuveiros e nas torneiras', 'Janelas e portas de correr dos dormitórios com veneziana embutida', 'Ponto para máquina de lavar e lava-louças', 'Plantas inteligentes com possibilidade de alteração, nas 2 e 3 suítes', 'Ponto para grill no terraço das 3 suítes', 'Nas 3 suítes, apenas 2 unidades por pavimento'],
         creditos: [['Arquitetura', 'Jonas Birger Arquitetura'], ['Interiores', 'Sala 2'], ['Paisagismo', 'Archscape']],
         plantas: [
-          { src: V + 'ramalho-planta-studio.webp', nome: 'Studio inteligente', meta: '20,55 m²' },
-          { src: V + 'ramalho-planta-2suites.webp', nome: '2 suítes, frente', meta: '67,97 a 69 m² · planta padrão' },
-          { src: V + 'ramalho-planta-3suites.webp', nome: '3 suítes', meta: '107,61 m² · planta padrão' },
-          { src: V + 'ramalho-planta-3suites-terraco.webp', nome: '3 suítes, terraço ampliado', meta: '107,61 m² · opção de planta' }
+          { src: R + 'planta-studio.webp', nome: 'Studio inteligente NR', meta: '20,55 m²' },
+          { src: R + 'planta-1dorm-garden.webp', nome: '1 dormitório garden', meta: '45 m²' },
+          { src: R + 'planta-2suites-frente.webp', nome: '2 suítes frente, padrão', meta: '67,97 a 69,58 m²' },
+          { src: R + 'planta-2suites-fundos.webp', nome: '2 suítes fundos, padrão', meta: '82,88 m²' },
+          { src: R + 'planta-2suites-uphouse.webp', nome: '2 suítes Uphouse', meta: '110,18 m²' },
+          { src: R + 'planta-3suites.webp', nome: '3 suítes, padrão', meta: '107,61 m² · 2 por pavimento' },
+          { src: R + 'planta-3suites-terraco.webp', nome: '3 suítes, terraço ampliado', meta: '107,61 m² · opção de planta' },
+          { src: R + 'planta-3suites-living.webp', nome: '3 suítes, living ampliado', meta: '107,61 m² · suíte com 2 banheiros' },
+          { src: R + 'planta-duplex-inferior.webp', nome: 'Duplex de 3 suítes, pavimento inferior', meta: '118 m²' },
+          { src: R + 'planta-duplex-superior.webp', nome: 'Duplex de 3 suítes, pavimento superior', meta: '118 m²' }
         ],
-        torre: V + 'ramalho-fachada.webp',
-        notaImagens: 'Perspectiva meramente ilustrativa da fachada.',
+        implantacao: [
+          { src: R + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lobbies, acessos, bicicletário, pet place, loja e garagem' },
+          { src: R + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Coworking, laundry share e wellness do Single; garagem do Family' },
+          { src: R + 'implantacao-6pav.webp', nome: '6º pavimento', meta: 'Wellness, kids space, game space, CoKitchen e horta do Family' },
+          { src: R + 'implantacao-24pav.webp', nome: '24º pavimento', meta: 'Pool deck e sky bar na cobertura' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Ciclofaixa da Avenida Sumaré', '2 min'], ['Estação PUC-Cardoso de Almeida, Linha 6-Laranja', '3 min'], ['Avenida Pompeia', '3 min'], ['Estação SESC Pompeia, Linha 6-Laranja', '5 min'], ['Avenida Antártica', '5 min'], ['Avenida Sumaré', '7 min'], ['Terminal Barra Funda', '9 min']]],
+            ['Educação', [['PUC-SP, campus Monte Alegre', '1 min'], ['Colégio São Domingos', '2 min'], ['Faculdade Santa Marcelina Perdizes', '6 min'], ['Colégio Pueri Domus Perdizes', '6 min']]],
+            ['Saúde', [['Einstein Hospital Israelita Perdizes', '3 min de carro'], ['Hospital Samaritano', '6 min de carro'], ['Hospital São Camilo Pompeia', '7 min de carro']]],
+            ['Lazer', [['Teatro Tuca', '2 min'], ['Nubank Parque', '4 min'], ['Parque da Água Branca', '5 min'], ['Shopping Bourbon', '5 min'], ['SESC Pompeia', '5 min'], ['Casa das Caldeiras', '6 min'], ['Memorial da América Latina', '9 min']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica carro.'
+        },
+        legal: 'Incorporação imobiliária registrada em 08/05/2025 sob R.7 na matrícula nº 142.309 do 2º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 22985-22-SP-ALV. Os studios são unidades NR, de uso não residencial; os apartamentos de 1 dormitório são R e os de 2 e 3 suítes, R2V. Imagens meramente ilustrativas. Fonte: material da Vitacon de setembro de 2026.',
+        torre: R + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
         regiao: PERDIZES,
         fotos: [
-          { src: V + 'ramalho-fachada.webp', legenda: 'Fachada', emPe: true, pos: 'center 38%' }
+          fotoR('fachada', 'Fachada', true),
+          fotoR('acesso-family', 'Acesso'),
+          fotoR('lobby-family', 'Lobby concierge do Family'),
+          fotoR('lobby-single', 'Lobby concierge do Single'),
+          fotoR('studio', 'Studio inteligente', true),
+          fotoR('apto-1dorm', 'Apartamento de 1 dormitório', true),
+          fotoR('apto-2suites-frente', '2 suítes, frente'),
+          fotoR('apto-2suites-fundos', '2 suítes, fundos'),
+          fotoR('living-3suites', 'Living das 3 suítes'),
+          fotoR('dormitorio-3suites', 'Suíte das 3 suítes'),
+          fotoR('living-3suites-ampliado', 'Living ampliado das 3 suítes'),
+          fotoR('dormitorio-3suites-ampliado', 'Suíte das 3 suítes, opção ampliada'),
+          fotoR('duplex-inferior', 'Duplex, pavimento inferior'),
+          fotoR('duplex-superior', 'Duplex, pavimento superior'),
+          fotoR('pool-deck', 'Pool deck'),
+          fotoR('sky-bar', 'Sky bar'),
+          fotoR('wellness-family', 'Wellness Space by Life Fitness'),
+          fotoR('cokitchen-terrace', 'CoKitchen terrace'),
+          fotoR('kids-space', 'Kids space'),
+          fotoR('game-space', 'Game space'),
+          fotoR('pet-place', 'Pet place'),
+          fotoR('coworking', 'Coworking'),
+          fotoR('laundry', 'Laundry share'),
+          fotoR('delivery-room', 'Delivery room')
         ]
       },
       {
@@ -1031,7 +1092,10 @@
       + (p.nota ? '<small class="perto-nota">' + esc(p.nota) + '</small>' : ''));
   }
   function aberto(em, parceira, c, e) {
-    var tags = em.lazer && em.lazer.length ? '<ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
+    var etiquetas = function (lista) { return '<ul class="lazer">' + lista.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>'; };
+    // `lazerGrupos` = [[titulo, [itens]]]: as areas comuns separadas por condominio (Joao Ramalho: Family e Single)
+    var tags = em.lazerGrupos ? em.lazerGrupos.map(function (g) { return '<p class="lazer-titulo">' + esc(g[0]) + '</p>' + etiquetas(g[1]); }).join('')
+      : (em.lazer && em.lazer.length ? etiquetas(em.lazer) : '');
     var difs = em.diferenciais && em.diferenciais.length ? '<ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
     var local = em.endereco ? bloco('Localização', '<p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da construtora.</small>' : '') + '</p>') : '';
     var temFotos = fotosDe(em).length > 0, lado, largo = '';
