@@ -549,12 +549,17 @@
      `fotos/parcerias/vitacon/ramalho/` (miniaturas em `mini/`), 10 plantas, 4 de
      implantacao, `perto`, `legal` (incorporacao registrada; studios NR) e as areas
      comuns separadas por condominio (`lazerGrupos`: Family e Single).
+     O VENANCIO AIRES 38 entrou em 07/11/2026 como QUARTO empreendimento, pelo Book do
+     Cliente dele (incorporacao registrada em 28/01/2026): 23 imagens em
+     `fotos/parcerias/vitacon/venancio38/` (miniaturas em `mini/`), 10 plantas de studio,
+     3 de implantacao, `perto`, `legal`; status "Lancamento" pelo card do site. E outro
+     predio, diferente do Venancio Aires 284 (futuro lancamento, so com o site).
      O CARDOSO DE ALMEIDA foi completado depois com o Book Cliente dele (agosto/2026): 25
      imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
      3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
      (`legal`: venda so apos o registro da incorporacao; unidades R2V, HIS-2 e HMP).
      Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
-     enquanto"): Venancio Aires 38 e Vitacon Perdizes (Perdizes); Jardins, Alameda
+     enquanto"): Vitacon Perdizes (Perdizes); Jardins, Alameda
      Franca e H Bela Cintra by Vitacon (Jardins); Vila Nova Conceicao; Joao Moura,
      Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
      Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
@@ -565,6 +570,9 @@
   // idem para o Joao Ramalho (book de setembro/2026)
   var R = V + 'ramalho/';
   function fotoR(nome, legenda, emPe) { return { src: R + nome + '.webp', mini: R + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
+  // e para o Venancio Aires 38 (Book do Cliente, incorporacao registrada em janeiro/2026)
+  var VA = V + 'venancio38/';
+  function fotoVA(nome, legenda, emPe) { return { src: VA + nome + '.webp', mini: VA + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
   var NOTA_PERSPECTIVA = 'Perspectivas meramente ilustrativas. Material preliminar, sujeito a alterações.';
   var PERDIZES = {
     titulo: 'A região · Reinventa Perdizes',
@@ -749,6 +757,93 @@
           fotoR('coworking', 'Coworking'),
           fotoR('laundry', 'Laundry share'),
           fotoR('delivery-room', 'Delivery room')
+        ]
+      },
+      {
+        // (07/11/2026) o QUARTO: Book do Cliente do Venancio Aires 38 (diferente do 284). Status
+        // "Lancamento" pelo card do site; a arena e chamada de Nubank Parque, como na pagina do site
+        nome: 'Vitacon Venâncio Aires 38',
+        bairro: 'Perdizes',
+        resumo: 'Studios · 17 a 33 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios inteligentes na Rua Venâncio Aires, em Perdizes, a dois minutos a pé do Nubank Parque, o antigo Allianz Parque. Torre única de 26 andares com 722 studios e duas lojas, lazer no térreo, no 1º e no 26º pavimento, e a Housi na gestão da locação para quem compra para investir. A Vitacon o apresenta como a proptech oficial da arena.',
+        area: ['Studios: 17,54 a 33,47 m²', 'R2V: 556 unidades, de 17,54 a 33,47 m²', 'HIS: 95 unidades, de 24,02 a 26,32 m²', 'HMP: 71 unidades, de 24,02 a 26,36 m²'],
+        tipologia: 'Studios',
+        banheiros: '1 por studio',
+        vagas: 'Sem vagas',
+        torres: 'Torre única',
+        unidades: ['722 studios e 2 lojas', 'Lojas de 170,17 e 270,57 m²'],
+        pavimentos: ['Térreo com lazer e lojas', '1º pavimento de lazer', '2º ao 25º pavimento tipo', '26º com lazer e residencial'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Venâncio Aires, 38 · Perdizes, São Paulo',
+        infra: {
+          piscina: '',
+          academia: 'Fitness Space by Life Fitness no 1º pavimento, com wellness space e spa com massagem',
+          festas: 'Party lounge com estar e cooktop em ilha, e sports bar',
+          gourmet: 'CoKitchen lounge, varanda gourmet no térreo e barbecue na cobertura',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge com controle e segurança 24 horas, acesso de serviço monitorado e delivery room',
+          coworking: 'Working Pro com sala de reunião e phone booth, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Sky Lounge', 'Barbecue', 'Fire Place', 'Sports Bar', 'Party Lounge', 'CoKitchen Lounge', 'Varanda Gourmet', 'Fitness Space by Life Fitness', 'Wellness Space', 'Spa com massagem', 'Lounge Externo', 'Lounge', 'Working Pro', 'Sala de reunião', 'Podcast Studio', 'Minimarket', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Plantas com terraço técnico para a condensadora', 'Aquecimento central, sem aquecedor em cada unidade', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para lava-louças'],
+        creditos: [['Arquitetura', 'MCAA'], ['Paisagismo', 'Faisal Arquitetos Paisagismo'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: VA + 'planta-1731-final-14.webp', nome: 'Studio de 17,31 m²', meta: 'Final 14' },
+          { src: VA + 'planta-1731-final-30.webp', nome: 'Studio de 17,31 m²', meta: 'Final 30' },
+          { src: VA + 'planta-1739-final-13.webp', nome: 'Studio de 17,39 m²', meta: 'Final 13' },
+          { src: VA + 'planta-1840-final-20.webp', nome: 'Studio de 18,40 m²', meta: 'Final 20' },
+          { src: VA + 'planta-1951-final-01.webp', nome: 'Studio de 19,51 m²', meta: 'Final 1' },
+          { src: VA + 'planta-1951-final-01-op2.webp', nome: 'Studio de 19,51 m²', meta: 'Final 1 · opção 2 de planta' },
+          { src: VA + 'planta-2155-final-21.webp', nome: 'Studio de 21,55 m²', meta: 'Final 21' },
+          { src: VA + 'planta-2403-final-24.webp', nome: 'Studio de 24,03 m²', meta: 'Final 24' },
+          { src: VA + 'planta-2406-final-25.webp', nome: 'Studio de 24,06 m²', meta: 'Final 25' },
+          { src: VA + 'planta-3269-final-09.webp', nome: 'Studio de 32,69 m²', meta: 'Final 9' }
+        ],
+        implantacao: [
+          { src: VA + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lobby, estar, minimarket, podcast, reunião, coworking, varanda gourmet, pet place e lojas' },
+          { src: VA + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Fitness, wellness, spa, CoKitchen, sports bar, party lounge, laundry e lounge externo' },
+          { src: VA + 'implantacao-26pav.webp', nome: '26º pavimento', meta: 'Barbecue, lounge fire e sky lounge' }
+        ],
+        perto: {
+          grupos: [
+            ['Lazer', [['Nubank Parque', '2 min a pé'], ['Shopping Bourbon', '6 min a pé'], ['Parque da Água Branca', '6 min de bicicleta'], ['Casa das Caldeiras', '7 min de bicicleta'], ['Memorial da América Latina', '7 min de bicicleta'], ['SESC Pompeia', '8 min de bicicleta']]],
+            ['Mobilidade', [['Avenida Antártica', '5 min a pé'], ['Avenida Pompeia', '6 min a pé'], ['Futura estação PUC-Cardoso de Almeida, Linha 6-Laranja', '6 min a pé'], ['Terminal Barra Funda', '7 min de bicicleta'], ['Futura estação SESC Pompeia, Linha 6-Laranja', '8 min a pé'], ['Futura estação Perdizes, Linha 6-Laranja', '9 min a pé'], ['Avenida Sumaré', '10 min a pé']]],
+            ['Educação', [['PUC-SP', '6 min a pé'], ['Faculdade Santa Marcelina', '9 min a pé']]],
+            ['Saúde', [['Hospital Israelita Albert Einstein', '8 min a pé'], ['Hospital São Camilo', '10 min a pé']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps, a pé ou de bicicleta.'
+        },
+        legal: 'Incorporação imobiliária registrada sob nº 03 em 28/01/2026 na matrícula nº 152.634 do 2º Oficial de Registro de Imóveis de São Paulo. O projeto reúne unidades R2V, sem restrição de destinação, e unidades HIS-2 e HMP, destinadas a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo; na compra para investimento ou locação, a destinação deve observar o público elegível. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon.',
+        torre: VA + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PERDIZES,
+        fotos: [
+          fotoVA('fachada', 'Fachada', true),
+          fotoVA('acesso', 'Acesso'),
+          fotoVA('lobby-1', 'Lobby concierge'),
+          fotoVA('lobby-2', 'Lobby concierge'),
+          fotoVA('lobby-estar', 'Estar do lobby'),
+          fotoVA('studio-final-01', 'Studio, final 1'),
+          fotoVA('studio-final-09', 'Studio, final 9'),
+          fotoVA('studio-final-25', 'Studio, final 25'),
+          fotoVA('fitness', 'Fitness Space by Life Fitness'),
+          fotoVA('wellness', 'Wellness space'),
+          fotoVA('spa', 'Spa'),
+          fotoVA('cokitchen', 'CoKitchen lounge'),
+          fotoVA('party-lounge', 'Party lounge'),
+          fotoVA('barbecue', 'Barbecue'),
+          fotoVA('fire-place', 'Fire place'),
+          fotoVA('sports-bar', 'Sports bar'),
+          fotoVA('working-pro-1', 'Working Pro'),
+          fotoVA('working-pro-2', 'Lounge do Working Pro'),
+          fotoVA('podcast', 'Podcast studio'),
+          fotoVA('minimarket', 'Minimarket'),
+          fotoVA('laundry', 'Laundry share'),
+          fotoVA('bike-space', 'Bike space'),
+          fotoVA('pet-place', 'Pet place')
         ]
       },
       {
