@@ -264,7 +264,10 @@
   .galeria-palco:hover .galeria-seta, .galeria-seta:focus-visible { opacity: 1; }
   .galeria-seta:hover { background: var(--marfim); }
   .galeria-seta svg { width: 16px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.2; }
-  .galeria-minis { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; margin-top: 8px; }
+  .galeria-minis { position: relative; list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; margin-top: 8px; }
+  /* mais de 10 fotos: miniaturas de largura fixa numa faixa que rola de lado (25 espremidas nao davam leitura);
+     a da foto atual vai sozinha para o meio (galeriaIr) */
+  .galeria-minis.muitas { grid-auto-columns: 112px; overflow-x: auto; padding: 3px 3px 9px; margin-left: -3px; margin-right: -3px; scrollbar-width: thin; scrollbar-color: var(--travertino) transparent; }
   .galeria-minis button { display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); opacity: 0.5; transition: opacity 0.4s var(--curva); }
   .galeria-minis button[aria-pressed="true"], .galeria-minis button:hover { opacity: 1; }
   .galeria-minis button[aria-pressed="true"] { outline: 1px solid var(--champagne); outline-offset: 2px; }
@@ -320,6 +323,15 @@
   .regiao-numeros span { display: block; margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: var(--texto-medio); }
   .regiao-polos { font-size: 15px; color: var(--texto-medio); max-width: none; }
   .regiao-fonte { display: block; margin-top: 8px; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); }
+  /* por perto: os grupos correm em colunas (o mais longo sozinho, os curtos juntos) */
+  .perto { columns: 3; column-gap: clamp(26px, 4vw, 64px); }
+  .perto-grupo { break-inside: avoid; margin-bottom: 26px; }
+  .perto h4 { font-family: var(--sans); font-weight: 500; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); }
+  .perto ul { list-style: none; }
+  .perto li { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--linha-leve); font-size: 14px; line-height: 1.35; }
+  .perto li b { flex: 0 0 auto; font-family: var(--serif); font-weight: 400; font-size: 17px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .perto-nota { display: block; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); }
+  .aberto-legal { font-size: 11px; line-height: 1.65; letter-spacing: 0.02em; color: var(--texto-fraco); max-width: 120ch; padding-top: 18px; border-top: 1px solid var(--linha-leve); }
   /* a planta ampliada */
   .ampliada { border: 0; padding: 0; margin: auto; background: #fff; color: var(--onix); max-width: min(96vw, 1500px); max-height: 94vh; overflow: auto; }
   .ampliada::backdrop { background: rgba(11, 11, 12, 0.84); }
@@ -357,6 +369,7 @@
     .aberto-duas { grid-template-columns: 1fr; }
     .regiao-numeros { grid-template-columns: 1fr 1fr; }
     .plantas { grid-template-columns: 1fr 1fr; }
+    .perto { columns: 2; }
   }
   @media (max-width: 900px) {
     .marca-nome { display: none; }
@@ -366,7 +379,7 @@
     .botao { padding-top: 9px; }
     .trilha button { padding: 11px 2px; margin: -6px 0; }
     /* miniaturas da galeria: fixas em 76px e rolando de lado, em vez de 6 espremidas (28px de altura) */
-    .galeria-minis { grid-auto-columns: 76px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding-bottom: 2px; }
+    .galeria-minis, .galeria-minis.muitas { grid-auto-columns: 76px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding-bottom: 2px; }
     .galeria-minis::-webkit-scrollbar { display: none; }
     .galeria-minis button { scroll-snap-align: start; }
     .nivel-cabeca { grid-template-columns: 1fr; }
@@ -400,6 +413,7 @@
   @media (max-width: 600px) {
     .voltar span { display: none; }   /* so a seta: o botao de consultor precisa caber numa linha */
     .plantas { grid-template-columns: 1fr; }
+    .perto { columns: 1; }
     .topo { gap: 16px; }
     .topo-direita { gap: 18px; }
   }
@@ -529,12 +543,19 @@
      duplex (PDF 127 e 183 m2 / 127 e 138 m2; site 107 e 163 / 117 e 118): entrou so o
      que os dois confirmam. "Reinventa Perdizes" e a campanha da Vitacon para o bairro,
      nao um predio: virou o texto da regiao (PERDIZES).
+     O CARDOSO DE ALMEIDA foi completado depois com o Book Cliente dele (agosto/2026): 25
+     imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
+     3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
+     (`legal`: venda so apos o registro da incorporacao; unidades R2V, HIS-2 e HMP).
      Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
      enquanto"): Venancio Aires 38 e Vitacon Perdizes (Perdizes); Jardins, Alameda
      Franca e H Bela Cintra by Vitacon (Jardins); Vila Nova Conceicao; Joao Moura,
      Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
      Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
   var V = 'fotos/parcerias/vitacon/';
+  // as imagens do book do Cardoso de Almeida: a grande (1600 px) e a miniatura (280 px) de cada uma
+  var C = V + 'cardoso/';
+  function fotoC(nome, legenda, emPe) { return { src: C + nome + '.webp', mini: C + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
   var NOTA_PERSPECTIVA = 'Perspectivas meramente ilustrativas. Material preliminar, sujeito a alterações.';
   var PERDIZES = {
     titulo: 'A região · Reinventa Perdizes',
@@ -551,50 +572,81 @@
         resumo: 'Studios e 1 dormitório · 23 a 48 m²',
         tipo: 'Apartamento',
         status: 'Breve lançamento',
-        texto: 'O primeiro empreendimento da Blue Collection da Vitacon: studios e apartamentos de 1 dormitório na Rua Cardoso de Almeida, em Perdizes, em torre única. O lazer ocupa o térreo, o 1º e o 22º pavimento, com pool deck, academia, party lounge e espaços de trabalho e convivência, e as unidades têm fechadura inteligente.',
+        texto: 'O primeiro empreendimento da Blue Collection da Vitacon, na Rua Cardoso de Almeida, em Perdizes: 456 studios e 69 apartamentos de 1 dormitório em torre única. O lazer ocupa o térreo, o 1º e o 22º pavimento, com pool deck e academia no alto, party lounge, CoKitchen e espaços de trabalho. A futura estação PUC-Cardoso de Almeida, da Linha 6-Laranja, fica a um minuto de bicicleta.',
         area: ['Studios: 23,64 a 29,21 m²', '1 dormitório: 26,27 a 48,11 m²'],
         tipologia: 'Studios e 1 dormitório',
-        banheiros: '1 nos studios',
+        banheiros: '1 por unidade, nas plantas apresentadas',
         vagas: 'Sob consulta',
         torres: 'Torre única',
-        unidades: '525 residenciais e 1 loja',
+        unidades: ['525 residenciais e 1 loja', '456 studios e 69 de 1 dormitório'],
         pavimentos: ['Térreo com lazer e lojas', '1º pavimento de lazer', '2º ao 21º pavimento tipo', '22º com lazer e residencial'],
         valores: 'Sob consulta',
         endereco: 'Rua Cardoso de Almeida, 345 · Perdizes, São Paulo',
         infra: {
-          piscina: 'Pool deck',
-          academia: 'Fitness Space by Life Fitness',
-          festas: 'Party lounge',
-          gourmet: 'CoKitchen lounge e barbecue',
+          piscina: 'Pool deck no 22º pavimento, com deck molhado, ducha e espreguiçadeiras',
+          academia: 'Fitness Space by Life Fitness, para musculação, alongamento e funcional',
+          festas: 'Party lounge com cozinha, mesa de refeições e área externa',
+          gourmet: 'CoKitchen lounge com cooktop em ilha e barbecue com churrasqueira elétrica',
           kids: '',
           quadra: '',
-          portaria: 'Lobby concierge, fechadura inteligente nas unidades e delivery room',
-          coworking: 'Working Pro, podcast studio, laundry share e tools sharing'
+          portaria: 'Lobby concierge com controle e segurança 24 horas, câmeras e clausura no acesso social e acesso de serviço monitorado',
+          coworking: 'Working Pro com sala de reunião e cabine, podcast studio, ateliê, laundry share e tools sharing'
         },
-        lazer: ['Pool Deck', 'Fitness Space by Life Fitness', 'Party Lounge', 'CoKitchen Lounge', 'Barbecue', 'Fire Lounge', 'Lounge Externo', 'Game Space', 'Ateliê', 'Working Pro', 'Podcast Studio', 'Coffee Point', 'Mini Market', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper'],
+        lazer: ['Pool Deck', 'Sky Lounge', 'Barbecue', 'Fire Lounge', 'Fitness Space by Life Fitness', 'Party Lounge', 'CoKitchen Lounge', 'Game Space', 'Ateliê', 'Working Pro', 'Meeting Room', 'Podcast Studio', 'Lobby Galeria', 'Coffee Point', 'Minimarket', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lounge Externo', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper'],
         diferenciais: ['Fechadura inteligente na porta de acesso', 'Infraestrutura para 1 ponto de ar-condicionado, com carga e dreno', 'Terraço com espaço previsto para a condensadora', 'Ponto para lava-louças', 'Aquecedor a gás'],
         creditos: [['Arquitetura', 'MCAA'], ['Paisagismo', 'Danni Martins Arquitetura e Paisagística'], ['Interiores', 'Carlos Rossi Arquitetura Interiores Design']],
+        // (06/11/2026) fotos, plantas, implantacao, distancias e nota legal do BOOK CLIENTE dele
+        // (agosto/2026, 78 paginas), que ela mandou depois do PDF do Reinventa
         plantas: [
-          { src: V + 'cardoso-planta-24.webp', nome: 'Studio de 24 m²', meta: '2º ao 11º pavimento' },
-          { src: V + 'cardoso-planta-2556.webp', nome: 'Studio de 25,56 m²', meta: 'Finais 11, 13 e 15 · 2º ao 21º pavimento' }
+          { src: C + 'planta-studio-24.webp', nome: 'Studio de 24 m²', meta: 'Final 27 · 2º ao 21º pavimento' },
+          { src: C + 'planta-studio-2556.webp', nome: 'Studio de 25,56 m²', meta: 'Final 15 · 2º ao 11º pavimento' },
+          { src: C + 'planta-studio-2693.webp', nome: 'Studio de 26,93 m²', meta: 'Final 1 · 2º ao 11º pavimento' },
+          { src: C + 'planta-1dorm-2787.webp', nome: '1 dormitório de 27,87 m²', meta: 'Final 7 · 2º ao 11º pavimento' }
         ],
-        torre: V + 'cardoso-fachada.webp',
+        implantacao: [
+          { src: C + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, lobby, minimarket, coffee point e loja' },
+          { src: C + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Party lounge, CoKitchen, Working Pro e game space' },
+          { src: C + 'implantacao-22pav.webp', nome: '22º pavimento', meta: 'Pool deck, sky lounge, barbecue e academia' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Futura estação PUC-Cardoso de Almeida, Linha 6-Laranja', '1 min'], ['Avenida Sumaré, ciclovia', '4 min'], ['Futura estação Perdizes, Linha 6-Laranja', '6 min'], ['Avenida Antártica', '6 min'], ['Terminal Barra Funda', '8 min'], ['Avenida Pompeia', '9 min de carro'], ['Futura estação SESC Pompeia, Linha 6-Laranja', '11 min']]],
+            ['Educação', [['Faculdade Santa Marcelina', '2 min'], ['PUC-SP, campus Perdizes', '3 min']]],
+            ['Saúde', [['Hospital Israelita Albert Einstein', '5 min de carro'], ['Hospital São Camilo, unidade Pompeia', '8 min de carro']]],
+            ['Lazer', [['Parque da Água Branca', '5 min'], ['Nubank Parque', '6 min'], ['Memorial da América Latina', '7 min'], ['Shopping Bourbon', '7 min'], ['Casa das Caldeiras', '8 min'], ['SESC Pompeia', '10 min']]]
+          ],
+          nota: 'Tempos estimados, conforme o material da Vitacon: de bicicleta, exceto onde indica carro.'
+        },
+        legal: 'O empreendimento só será comercializado após o registro do Memorial de Incorporação, conforme a Lei nº 4.591/64. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração sem aviso prévio. O projeto reúne unidades R2V, sem restrição de destinação, e unidades HIS-2 e HMP, destinadas a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo; na compra para investimento ou locação, a destinação deve observar o público elegível. Fonte: material da Vitacon de agosto de 2026.',
+        torre: C + 'fachada.webp',
         notaImagens: NOTA_PERSPECTIVA,
         regiao: PERDIZES,
         fotos: [
-          { src: V + 'cardoso-acesso.webp', legenda: 'Acesso' },
-          { src: V + 'cardoso-fachada.webp', legenda: 'Fachada', emPe: true },
-          { src: V + 'cardoso-lobby.webp', legenda: 'Lobby galeria' },
-          { src: V + 'cardoso-studio.webp', legenda: 'Studio inteligente' },
-          { src: V + 'cardoso-pool.webp', legenda: 'Pool deck' },
-          { src: V + 'cardoso-academia.webp', legenda: 'Academia' },
-          { src: V + 'cardoso-party.webp', legenda: 'Party lounge' },
-          { src: V + 'cardoso-cokitchen.webp', legenda: 'CoKitchen lounge' },
-          { src: V + 'cardoso-working.webp', legenda: 'Working Pro' },
-          { src: V + 'cardoso-coffee.webp', legenda: 'Coffee point' },
-          { src: V + 'cardoso-minimarket.webp', legenda: 'Mini market' },
-          { src: V + 'cardoso-game.webp', legenda: 'Game space' },
-          { src: V + 'cardoso-atelie.webp', legenda: 'Ateliê' }
+          fotoC('acesso', 'Acesso'),
+          fotoC('fachada', 'Fachada', true),
+          fotoC('lobby-concierge', 'Lobby concierge'),
+          fotoC('lobby-galeria', 'Lobby galeria'),
+          fotoC('studio-2693', 'Studio de 26,93 m²'),
+          fotoC('studio-2556', 'Studio de 25,56 m²'),
+          fotoC('studio-24', 'Studio de 24 m²'),
+          fotoC('pool-deck-1', 'Pool deck'),
+          fotoC('pool-deck-2', 'Pool deck'),
+          fotoC('fitness-1', 'Fitness Space by Life Fitness'),
+          fotoC('fitness-2', 'Fitness Space by Life Fitness'),
+          fotoC('party-lounge-1', 'Party lounge'),
+          fotoC('party-lounge-2', 'Party lounge'),
+          fotoC('cokitchen', 'CoKitchen lounge'),
+          fotoC('barbecue', 'Barbecue'),
+          fotoC('fire-lounge', 'Fire lounge'),
+          fotoC('working-pro', 'Working Pro'),
+          fotoC('meeting-room', 'Meeting room', true),
+          fotoC('podcast', 'Podcast studio'),
+          fotoC('atelie', 'Ateliê'),
+          fotoC('game-space', 'Game space'),
+          fotoC('coffee-point', 'Coffee point'),
+          fotoC('mini-market', 'Minimarket'),
+          fotoC('bike-space', 'Bike space'),
+          fotoC('laundry', 'Laundry share')
         ]
       },
       {
@@ -902,14 +954,16 @@
     if (!fotos.length) return '';
     var varias = fotos.length > 1;
     return '<div class="galeria" id="galeria" data-n="' + fotos.length + '" data-i="0" tabindex="0" aria-label="Fotos de ' + esc(em.nome) + '">'
-      +   '<div class="galeria-palco"><div class="galeria-trilho">' + fotos.map(function (f) {
-            // foto em pe: aparece inteira, com ela mesma desfocada no fundo (--fundo)
-            return '<figure class="galeria-slide' + (f.emPe ? ' em-pe" style="--fundo: url(\'' + esc(f.src) + '\')' : '') + '"><img src="' + esc(f.src) + '" alt="' + esc(em.nome + (f.legenda ? ': ' + f.legenda : '')) + '" draggable="false">' + (f.legenda ? '<figcaption>' + esc(f.legenda) + '</figcaption>' : '') + '</figure>';
+      +   '<div class="galeria-palco"><div class="galeria-trilho">' + fotos.map(function (f, i) {
+            // foto em pe: aparece inteira, com ela mesma desfocada no fundo (--fundo, a miniatura basta).
+            // So as duas primeiras fotos carregam de cara; as outras ficam em data-src e o script
+            // carrega a atual e as vizinhas (galeriaCarregar), para 25 fotos nao pesarem na abertura.
+            return '<figure class="galeria-slide' + (f.emPe ? ' em-pe" style="--fundo: url(\'' + esc(f.mini || f.src) + '\')' : '') + '"><img ' + (i < 2 ? 'src' : 'data-src') + '="' + esc(f.src) + '" alt="' + esc(em.nome + (f.legenda ? ': ' + f.legenda : '')) + '" draggable="false">' + (f.legenda ? '<figcaption>' + esc(f.legenda) + '</figcaption>' : '') + '</figure>';
           }).join('') + '</div>'
       +     (varias ? '<button type="button" class="galeria-seta ant" data-galeria="-1" aria-label="Foto anterior"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button><button type="button" class="galeria-seta prox" data-galeria="1" aria-label="Próxima foto"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button><span class="galeria-conta"><b id="galeriaAtual">1</b> / ' + fotos.length + '</span>' : '')
       +   '</div>'
-      +   (varias ? '<ol class="galeria-minis">' + fotos.map(function (f, i) {
-            return '<li><button type="button" data-foto="' + i + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '" aria-label="' + esc(f.legenda || ('Foto ' + (i + 1))) + '"><img src="' + esc(f.src) + '" alt="" draggable="false"></button></li>';
+      +   (varias ? '<ol class="galeria-minis' + (fotos.length > 10 ? ' muitas' : '') + '">' + fotos.map(function (f, i) {
+            return '<li><button type="button" data-foto="' + i + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '" aria-label="' + esc(f.legenda || ('Foto ' + (i + 1))) + '"><img src="' + esc(f.mini || f.src) + '" alt="" draggable="false"></button></li>';
           }).join('') + '</ol>' : '')
       + '</div>';
   }
@@ -949,11 +1003,12 @@
       return '<div><dt>' + x[1] + '</dt><dd' + (v ? '' : ' class="nao"') + '>' + (v ? esc(v) : 'Não consta') + '</dd></div>';
     }).join('') + '</dl>';
   }
-  function plantas(em) {
-    var lista = em.plantas || [];
+  // `chave` = o campo do empreendimento de onde a lista vem (plantas ou implantacao): o clique usa para ampliar
+  function plantas(em, chave) {
+    var lista = em[chave] || [];
     if (!lista.length) return '<p class="plantas-vazio">Plantas sob consulta.</p>';
     return '<ol class="plantas" style="--n: ' + Math.max(2, Math.min(lista.length, 4)) + '">' + lista.map(function (pl, i) {
-      return '<li><button type="button" class="planta" data-planta="' + i + '" aria-label="Ampliar a planta: ' + esc(pl.nome) + '">'
+      return '<li><button type="button" class="planta" data-lista="' + chave + '" data-planta="' + i + '" aria-label="Ampliar a planta: ' + esc(pl.nome) + '">'
         + '<span class="planta-quadro"><img src="' + esc(pl.src) + '" alt="" loading="lazy"></span>'
         + '<span class="planta-nome">' + esc(pl.nome) + '</span>'
         + (pl.meta ? '<span class="planta-meta">' + esc(pl.meta) + '</span>' : '')
@@ -967,6 +1022,14 @@
       + '<p class="regiao-polos">' + esc(r.polos) + '</p>'
       + '<small class="regiao-fonte">' + esc(r.fonte) + '</small>');
   }
+  // o que fica por perto, em grupos (mobilidade, educacao, saude, lazer), com o tempo de cada um
+  function perto(p) {
+    return bloco('Por perto',
+      '<div class="perto">' + p.grupos.map(function (g) {
+        return '<div class="perto-grupo"><h4>' + esc(g[0]) + '</h4><ul>' + g[1].map(function (x) { return '<li><span class="notranslate">' + esc(x[0]) + '</span><b>' + esc(x[1]) + '</b></li>'; }).join('') + '</ul></div>';
+      }).join('') + '</div>'
+      + (p.nota ? '<small class="perto-nota">' + esc(p.nota) + '</small>' : ''));
+  }
   function aberto(em, parceira, c, e) {
     var tags = em.lazer && em.lazer.length ? '<ul class="lazer">' + em.lazer.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
     var difs = em.diferenciais && em.diferenciais.length ? '<ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
@@ -978,9 +1041,12 @@
       lado = bloco('Lazer e infraestrutura', infra(em)) + local
         + (em.creditos ? bloco('Projeto', '<dl class="creditos">' + em.creditos.map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd class="notranslate">' + esc(x[1]) + '</dd></div>'; }).join('') + '</dl>') : '');
       largo = '<div class="aberto-largo">'
-        + bloco('Plantas disponíveis', plantas(em))
+        + bloco('Plantas disponíveis', plantas(em, 'plantas'))
+        + (em.implantacao && em.implantacao.length ? bloco('Implantação das áreas comuns', plantas(em, 'implantacao')) : '')
         + (tags || difs ? '<div class="aberto-duas"><div>' + (tags ? bloco('Todas as áreas comuns', tags) : '') + '</div><div>' + (difs ? bloco('Nas unidades', difs) : '') + '</div></div>' : '')
+        + (em.perto ? perto(em.perto) : '')
         + (em.regiao ? regiao(em.regiao) : '')
+        + (em.legal ? '<p class="aberto-legal">' + esc(em.legal) + '</p>' : '')
         + '</div>';
     } else {
       lado = (tags ? bloco('Lazer e conveniência', tags) : '') + (difs ? bloco('Diferenciais', difs) : '') + local;
@@ -1056,7 +1122,7 @@
     if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); return; }
     if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
     if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
-    if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta'))); return; }
+    if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta')), b.getAttribute('data-lista')); return; }
     if ((b = ev.target.closest('[data-parceira]'))) {
       // as setas andam so entre as parcerias que aparecem na cidade
       var ps = parceriasDe(PAISES[onde.p].estados[onde.e].cidades[onde.c]);
@@ -1066,9 +1132,9 @@
   });
   // a planta ampliada: abre no <dialog>; fecha no botao, no fundo escuro ou com Esc.
   // As plantas pequenas do material (menos de 1000 px) aparecem 1,5x maiores, para dar leitura.
-  function ampliar(i) {
+  function ampliar(i, chave) {
     var c = PAISES[onde.p].estados[onde.e].cidades[onde.c], em = empreendimentosDe(c.construtoras[onde.n], c)[onde.k];
-    var pl = (em.plantas || [])[i], d = $('ampliada'), img = $('ampliadaImg');
+    var pl = (em[chave === 'implantacao' ? 'implantacao' : 'plantas'] || [])[i], d = $('ampliada'), img = $('ampliadaImg');
     if (!pl || !d.showModal) return;
     img.style.width = '';
     img.onload = function () { if (img.naturalWidth < 1000) img.style.width = Math.round(img.naturalWidth * 1.5) + 'px'; };
@@ -1107,7 +1173,20 @@
     g.setAttribute('data-i', k);
     var atual = $('galeriaAtual'); if (atual) atual.textContent = k + 1;
     g.querySelectorAll('.galeria-minis button').forEach(function (b, j) { b.setAttribute('aria-pressed', j === k ? 'true' : 'false'); });
+    galeriaCarregar(k);
+    // a miniatura da foto atual vai para o meio da faixa (so a faixa anda, a pagina nao)
+    var faixa = g.querySelector('.galeria-minis'), ativa = faixa && faixa.querySelector('button[aria-pressed="true"]');
+    if (ativa && faixa.scrollWidth > faixa.clientWidth + 2) faixa.scrollTo({ left: ativa.offsetLeft - (faixa.clientWidth - ativa.offsetWidth) / 2, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     if (manual) { galeriaManual = true; galeriaParar(); }
+  }
+  // carrega a foto k e as duas vizinhas (as outras esperam em data-src)
+  function galeriaCarregar(k) {
+    var g = $('galeria'); if (!g) return;
+    var imgs = g.querySelectorAll('.galeria-slide img'), n = imgs.length;
+    [k - 1, k, k + 1].forEach(function (j) {
+      var im = imgs[((j % n) + n) % n], s = im && im.getAttribute('data-src');
+      if (s) { im.src = s; im.removeAttribute('data-src'); }
+    });
   }
   function galeriaParar() { if (galeriaTimer) { clearInterval(galeriaTimer); galeriaTimer = null; } }
   function galeriaSozinha() {
@@ -1119,6 +1198,7 @@
     galeriaParar(); galeriaManual = false;
     var g = $('galeria'); if (!g) return;
     g.style.setProperty('--i', 0); g.setAttribute('data-i', 0);
+    galeriaCarregar(0);   // a primeira, a segunda e a ultima (a seta de voltar cai nela)
     if ((Number(g.getAttribute('data-n')) || 1) < 2) return;
     var palco = g.querySelector('.galeria-palco'), x0 = null;
     palco.addEventListener('pointerdown', function (ev) { x0 = ev.clientX; });
