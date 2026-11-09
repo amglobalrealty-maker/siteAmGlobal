@@ -181,7 +181,11 @@
   .cidade-nome h3 { font-size: clamp(24px, 2.4vw, 34px); font-weight: 300; }
   .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
   /* (09/11/2026) o texto curto sobre a cidade, entre o nome e as construtoras */
-  .cidade-texto { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.45; color: var(--texto-medio); max-width: 68ch; margin: -4px 0 clamp(22px, 3.4vh, 34px); }
+  .cidade-sobre { display: grid; gap: 10px; max-width: 80ch; margin: -4px 0 clamp(22px, 3.2vh, 32px); justify-items: start; }
+  .cidade-texto { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 19px); line-height: 1.5; color: var(--texto-medio); max-width: none; }
+  .cidade-texto:first-child { color: var(--texto); }   /* o primeiro paragrafo um pouco mais forte */
+  .cidade-mais { display: none; align-items: center; gap: 10px; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grafite); padding: 8px 0 6px; border-bottom: 1px solid var(--linha-escura); }
+  .cidade-mais svg { width: 10px; height: 6px; fill: none; stroke: var(--champagne); stroke-width: 1.2; }
   .lista { list-style: none; columns: 3; column-gap: clamp(30px, 4vw, 70px); }
   .lista li { break-inside: avoid; }
   .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif); font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
@@ -317,6 +321,12 @@
   .aberto-duas .aberto-bloco + .aberto-bloco { margin-top: 28px; }
   /* --n = quantas colunas (2 a 4, vem do script): com duas plantas elas ficam grandes, legiveis sem ampliar */
   .plantas { list-style: none; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+  /* (09/11/2026) a faixa das plantas: a lista rola de lado dentro da `.faixa`, 3 por vez */
+  .faixa-plantas { margin-bottom: 0; }
+  .faixa-plantas .plantas { --vao: clamp(16px, 2vw, 28px); position: relative; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--vao)) / 3); gap: var(--vao); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+  .faixa-plantas .plantas::-webkit-scrollbar { display: none; }
+  .faixa-plantas .plantas li { scroll-snap-align: start; }
+  .faixa-implantacao .planta-quadro { aspect-ratio: 2 / 1; }   /* as implantacoes sao largas (legenda + planta): quadro 2:1 em vez de 16:10 */
   .planta { display: block; width: 100%; text-align: left; }
   .planta-quadro { display: block; aspect-ratio: 16 / 10; padding: 12px; background: #fff; border: 1px solid var(--linha-leve); transition: border-color 0.4s var(--curva); }
   .planta-quadro img { width: 100%; height: 100%; object-fit: contain; }
@@ -401,6 +411,7 @@
   @media (max-width: 1100px) {
     .lista { columns: 2; }
     .empreendimentos { grid-auto-columns: calc((100% - 3 * var(--vao)) / 4); }
+    .faixa-plantas .plantas { grid-auto-columns: calc((100% - var(--vao)) / 2); }
     .aberto-corpo { grid-template-columns: 1fr; }
     .aberto-lado .aberto-bloco:first-child { margin-top: 28px; }
     .aberto-marca { display: none; }
@@ -444,6 +455,10 @@
     .empreendimentos.sem-fotos { grid-template-rows: repeat(2, auto); gap: 0 16px; border-top: 0; }
     .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
     .galeria-seta { width: 38px; height: 38px; }
+    /* o texto da cidade no celular: so o primeiro paragrafo, o resto atras de "Ler mais", para a logo
+       da construtora continuar na primeira tela */
+    .cidade-sobre.fechado .cidade-texto:not(:first-child) { display: none; }
+    .cidade-sobre.fechado .cidade-mais { display: inline-flex; }
     /* a vitrine no celular: um cartao por linha, mais baixo */
     .vitrine { grid-template-columns: 1fr; }
     .vitrine-cartao { min-height: 0; gap: 22px; padding: 24px 22px 22px; }
@@ -463,11 +478,14 @@
     .ficha.compacta dd b { font-size: 18px; }
     .ficha-mais { grid-template-columns: 1fr; }
     .ficha dt, .infra dt, .creditos dt, .perto h4 { font-size: 11px; }   /* rotulos em caixa alta: 10px fica miudo no celular */
-    /* planta e implantacao no celular: o quadro segue a proporcao da imagem (a implantacao larga ficava
-       pequena num quadro 16:10, com branco em cima e embaixo) */
-    .planta-quadro { aspect-ratio: auto; padding: 10px; }
-    .planta-quadro img { height: auto; }
+    /* planta e implantacao no celular, na faixa de uma por vez: quadro 4:3 para as plantas e 2:1 para as
+       implantacoes (proporcao fixa, senao a mais alta estica a fileira e sobra vao sob as outras) */
+    .planta-quadro { aspect-ratio: 4 / 3; padding: 10px; }
+    .faixa-implantacao .planta-quadro { aspect-ratio: 2 / 1; }
     .planta-nome { font-size: 19px; }
+    .faixa-plantas .plantas { --vao: 10px; grid-auto-columns: 100%; }   /* uma planta por vez, com as setas */
+    .faixa-plantas { margin-bottom: 0; }
+    .aba-largo { gap: 34px; }
   }
   @media (max-width: 600px) {
     .voltar span { display: none; }   /* so a seta: o botao de consultor precisa caber numa linha */
@@ -546,24 +564,48 @@
   // Textos meus, a confirmar com ela; so Sao Paulo aparece hoje (as outras cidades estao "em breve").
   var BRASIL = [
     { uf: 'RS', nome: 'Rio Grande do Sul', foto: 'fotos/lugares/rs.webp', cidades: [
-      { nome: 'Porto Alegre', texto: 'Capital do Rio Grande do Sul, às margens do Guaíba, Porto Alegre combina bairros tradicionais, como Moinhos de Vento e Bela Vista, com uma orla revitalizada e novos polos de moradia e serviços.', construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
+      { nome: 'Porto Alegre', texto: [
+        'Capital do Rio Grande do Sul, com cerca de 1,3 milhão de habitantes, Porto Alegre fica às margens do Guaíba e reúne bairros tradicionais, como Moinhos de Vento, Bela Vista e Petrópolis, parques como a Redenção e uma orla revitalizada com o pôr do sol mais famoso do Sul.',
+        'É um polo de saúde, educação e tecnologia, com universidades e hospitais de referência, e um mercado imobiliário que valoriza o alto padrão, a vista para o rio e a proximidade dos parques.'
+      ], construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
     ] },
     { uf: 'SC', nome: 'Santa Catarina', foto: 'fotos/lugares/sc.webp', cidades: [
-      { nome: 'Florianópolis', texto: 'Entre a Lagoa da Conceição, o Centro e as praias do norte da Ilha, Florianópolis une qualidade de vida, um polo de tecnologia em expansão e alta procura por moradia e investimento.', construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
-      { nome: 'Balneário Camboriú', texto: 'Conhecida pelos edifícios mais altos do país e pela orla alargada da Praia Central, Balneário Camboriú é um dos mercados de alto padrão mais valorizados do Brasil.', construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
-      { nome: 'Praia Brava', texto: 'Entre Itajaí e Balneário Camboriú, a Praia Brava reúne lançamentos de frente para o mar, boa gastronomia e um perfil de moradia e veraneio de alto padrão.', construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
+      { nome: 'Florianópolis', texto: [
+        'Capital de Santa Catarina, Florianópolis combina a Ilha, com praias para todos os perfis, a Lagoa da Conceição e bairros como Jurerê e Campeche, com o Centro histórico e a parte continental, ligados por três pontes.',
+        'Um polo de tecnologia e inovação em expansão, com qualidade de vida entre as mais altas do país e procura constante por moradia, veraneio e investimento.'
+      ], construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
+      { nome: 'Balneário Camboriú', texto: [
+        'Com os edifícios residenciais mais altos do país e a orla alargada da Praia Central, Balneário Camboriú é a referência de alto padrão no litoral catarinense, a poucos minutos de Itajaí, da Praia Brava e do aeroporto de Navegantes.',
+        'A cidade atrai moradores e investidores de todo o Brasil pela infraestrutura, pela segurança e pela valorização constante, com um dos metros quadrados mais caros do país.'
+      ], construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
+      { nome: 'Praia Brava', texto: [
+        'Entre Itajaí e Balneário Camboriú, a Praia Brava é uma faixa de mar aberto cercada por morros verdes, com lançamentos de frente para o mar, beach clubs e boa gastronomia.',
+        'Um mercado de alto padrão para morar e para veranear, a poucos minutos do centro de Balneário Camboriú e do aeroporto de Navegantes.'
+      ], construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
     ] },
     { uf: 'PR', nome: 'Paraná', foto: 'fotos/lugares/pr.webp', cidades: [
-      { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, texto: 'Três polos do Paraná: Curitiba, referência em planejamento urbano e qualidade de vida; Maringá e Londrina, no norte do estado, com agronegócio forte, universidades e mercado imobiliário aquecido.', construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
+      { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, texto: [
+        'Curitiba, capital do Paraná, é referência em planejamento urbano, parques e transporte, com bairros consolidados como Batel, Bigorrilho e Água Verde e um dos melhores índices de qualidade de vida entre as capitais.',
+        'Maringá e Londrina, no norte do estado, são cidades planejadas e arborizadas, polos de agronegócio, universidades e serviços, com mercado imobiliário aquecido e forte procura por lançamentos de médio e alto padrão.'
+      ], construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
     ] },
     { uf: 'SP', nome: 'São Paulo', foto: 'fotos/lugares/sp.webp', cidades: [
-      { nome: 'São Paulo, capital', curta: 'São Paulo', texto: 'A maior cidade da América do Sul e o principal centro financeiro do país. Bairros como Pinheiros, Jardins, Vila Olímpia, Perdizes e Vila Mariana concentram lançamentos compactos, perto do metrô, de hospitais e de universidades, com alta demanda de moradia e de locação.', construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
+      { nome: 'São Paulo, capital', curta: 'São Paulo', texto: [
+        'São Paulo é a maior cidade da América do Sul, com cerca de 11,5 milhões de habitantes na capital e mais de 20 milhões na região metropolitana, e tem o maior PIB entre os municípios do país. Aqui estão a bolsa de valores, as sedes dos principais bancos e empresas, hospitais e universidades de referência nacional, a maior rede de metrô e trens do Brasil e dois aeroportos, Congonhas e Guarulhos.',
+        'No mercado imobiliário, os bairros entre a Avenida Paulista e a Faria Lima lideram a procura: Pinheiros, Jardins, Vila Olímpia, Itaim, Perdizes e Vila Mariana. São ruas arborizadas, com gastronomia, parques, hospitais e estações de metrô, onde os lançamentos compactos, com lazer completo e serviços no prédio, têm alta demanda de moradia e de locação, de executivos, estudantes e profissionais da saúde.'
+      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
     ] },
     { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/lugares/rj.webp', cidades: [
-      { nome: 'Rio de Janeiro', texto: 'Da Zona Sul à Barra da Tijuca, o Rio de Janeiro combina paisagem, orla e bairros consolidados, como Leblon, Ipanema e Botafogo, com novos eixos de desenvolvimento, como o Porto Maravilha.', construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
+      { nome: 'Rio de Janeiro', texto: [
+        'Da Zona Sul à Barra da Tijuca, o Rio de Janeiro combina paisagem, orla e bairros consolidados, como Leblon, Ipanema, Botafogo e Jardim Botânico, com novos eixos de desenvolvimento, como o Porto Maravilha e o Centro revitalizado.',
+        'Segunda maior economia do país e destino turístico o ano inteiro, é um mercado de alto padrão com demanda constante de moradia e de locação, de curta e de longa temporada.'
+      ], construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
     ] },
     { uf: 'GO', nome: 'Goiás', foto: 'fotos/lugares/go.webp', cidades: [
-      { nome: 'Goiânia', texto: 'Capital de Goiás, planejada e arborizada, Goiânia tem um dos mercados imobiliários mais ativos do Centro-Oeste, com alto padrão nos setores Marista, Bueno e Oeste.', construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
+      { nome: 'Goiânia', texto: [
+        'Capital de Goiás, planejada e arborizada, com uma das maiores áreas verdes por habitante do país, Goiânia tem um dos mercados imobiliários mais ativos do Centro-Oeste.',
+        'Os setores Marista, Bueno e Oeste concentram o alto padrão, com gastronomia, parques e serviços, no centro de uma região forte em agronegócio, saúde e educação.'
+      ], construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
     ] }
   ];
   var PAISES = [
@@ -2102,15 +2144,24 @@
     // (06/11) com NO_AR a faixa tambem sai: o cartao da parceria ja traz as fachadas, e a logo
     // para clicar precisa aparecer na primeira tela ("clicando em SP mostra o logo")
     var comFoto = !!e.foto && parceiras > 0 && !filtrado;
+    // (09/11/2026) sem a frase "1 parceria em Sao Paulo. Toque na marca..." no cabecalho (ela: "ta muito
+    // perdido, nao precisa dele"); so quando nao ha parceria nenhuma no estado fica o "a anunciar"
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2><p>' + (parceiras ? '<b>' + plural(parceiras, 'parceria', 'parcerias') + '</b> em ' + listaEm(cidades) + '. ' + (parceiras === 1 ? 'Toque na marca' : 'Escolha uma') + ' para ver os empreendimentos.' : 'Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.') + '</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2>' + (parceiras ? '' : '<p>Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.</p>') + '</div>'
       + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '')
       + e.cidades.map(function (c, ci) {
         var ps = parceriasDe(c);
+        // o rotulo ao lado do nome da cidade so quando ainda nao ha parceria ("em breve"); com parceria, o cartao ja diz
         return '<div class="cidade">'
-          + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>' + (ps.length ? plural(ps.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
-          // (09/11/2026) o texto curto sobre a cidade, acima das construtoras
-          + (c.texto && ps.length ? '<p class="cidade-texto">' + esc(c.texto) + '</p>' : '')
+          + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3>' + (ps.length ? '' : '<span>em breve</span>') + '</div>'
+          // (09/11/2026) o texto sobre a cidade, acima das construtoras (um ou mais paragrafos)
+          // no celular comeca fechado (so o primeiro paragrafo) com o botao "Ler mais"; no computador o CSS mostra tudo
+          + (c.texto && ps.length ? (function () {
+              var ts = Array.isArray(c.texto) ? c.texto : [c.texto];
+              return '<div class="cidade-sobre fechado">' + ts.map(function (t) { return '<p class="cidade-texto">' + esc(t) + '</p>'; }).join('')
+                + (ts.length > 1 ? '<button type="button" class="cidade-mais" aria-expanded="false"><span>Ler mais sobre <span class="notranslate">' + esc(c.curta || c.nome) + '</span></span><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>' : '')
+                + '</div>';
+            })() : '')
           + (!ps.length
             ? '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>'
             // com NO_AR, cada parceria no ar e um cartao com a logo para clicar; sem NO_AR, a lista de nomes em texto
@@ -2249,16 +2300,23 @@
     }).join('') + '</dl>';
   }
   // `chave` = o campo do empreendimento de onde a lista vem (plantas ou implantacao): o clique usa para ampliar
+  // (09/11/2026) as plantas numa faixa com setas, como os empreendimentos (3 por vez no computador, 2 em
+  // telas medias, 1 no celular); com poucas, as setas somem (sem-setas)
   function plantas(em, chave) {
     var lista = em[chave] || [];
     if (!lista.length) return '<p class="plantas-vazio">Plantas sob consulta.</p>';
-    return '<ol class="plantas" style="--n: ' + Math.max(2, Math.min(lista.length, 4)) + '">' + lista.map(function (pl, i) {
-      return '<li><button type="button" class="planta" data-lista="' + chave + '" data-planta="' + i + '" aria-label="Ampliar a planta: ' + esc(pl.nome) + '">'
-        + '<span class="planta-quadro"><img src="' + esc(pl.src) + '" alt="" loading="lazy"></span>'
-        + '<span class="planta-nome">' + esc(pl.nome) + '</span>'
-        + (pl.meta ? '<span class="planta-meta">' + esc(pl.meta) + '</span>' : '')
-        + '</button></li>';
-    }).join('') + '</ol>';
+    var rotulo = chave === 'implantacao' ? 'implantações' : 'plantas';
+    return '<div class="faixa faixa-plantas faixa-' + chave + '">'
+      + '<button type="button" class="faixa-seta ant" data-faixa="-1" aria-label="' + rotulo + ' anteriores"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button>'
+      + '<ol class="plantas">' + lista.map(function (pl, i) {
+        return '<li><button type="button" class="planta" data-lista="' + chave + '" data-planta="' + i + '" aria-label="Ampliar a planta: ' + esc(pl.nome) + '">'
+          + '<span class="planta-quadro"><img src="' + esc(pl.src) + '" alt="" loading="lazy"></span>'
+          + '<span class="planta-nome">' + esc(pl.nome) + '</span>'
+          + (pl.meta ? '<span class="planta-meta">' + esc(pl.meta) + '</span>' : '')
+          + '</button></li>';
+      }).join('') + '</ol>'
+      + '<button type="button" class="faixa-seta prox" data-faixa="1" aria-label="Próximas ' + rotulo + '"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button>'
+      + '</div>';
   }
   function regiao(r) {
     return bloco('<span class="notranslate">' + esc(r.titulo) + '</span>',
@@ -2380,8 +2438,9 @@
     if ((b = ev.target.closest('.escolha[data-estado]'))) { onde.e = Number(b.getAttribute('data-estado')); onde.c = null; onde.n = null; onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.nome, .vitrine-cartao[data-c]'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); subirAteAFaixa(); return; }
-    if ((b = ev.target.closest('[data-faixa]'))) { faixaAndar(Number(b.getAttribute('data-faixa'))); return; }
+    if ((b = ev.target.closest('[data-faixa]'))) { faixaAndar(b, Number(b.getAttribute('data-faixa'))); return; }
     if ((b = ev.target.closest('.abas button[data-aba]'))) { mostrarAba(b.getAttribute('data-aba')); return; }
+    if ((b = ev.target.closest('.cidade-mais'))) { b.parentElement.classList.remove('fechado'); b.setAttribute('aria-expanded', 'true'); return; }
     if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
     if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
     if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta')), b.getAttribute('data-lista')); return; }
@@ -2415,26 +2474,35 @@
      pagina sobe ate o bloco da faixa encostar na barra fixa, para a galeria do aberto aparecer
      na tela principal (ela: "quando clica nao pode aparecer embaixo, tem que aparecer na tela"). */
   function suave() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; }
-  function faixaSetas() {
-    var ol = $('faixaLista'); if (!ol) return;
-    var fim = ol.scrollWidth - ol.clientWidth;
-    var ant = ol.parentElement.querySelector('.faixa-seta.ant'), prox = ol.parentElement.querySelector('.faixa-seta.prox');
+  // (09/11/2026, mais tarde) as mesmas setas servem para as plantas e implantacoes: cada `.faixa` tem a sua
+  // lista `ol` e o par de setas; as funcoes recebem a lista em vez de procurar uma fixa
+  function faixaSetas(ol) {
+    if (!ol) return;
+    var faixa = ol.parentElement, fim = ol.scrollWidth - ol.clientWidth;
+    var ant = faixa.querySelector('.faixa-seta.ant'), prox = faixa.querySelector('.faixa-seta.prox');
     if (ant) ant.disabled = ol.scrollLeft <= 2;
     if (prox) prox.disabled = ol.scrollLeft >= fim - 2;
-    ol.parentElement.classList.toggle('sem-setas', fim <= 2);
+    faixa.classList.toggle('sem-setas', fim <= 2);
   }
-  function faixaAndar(dir) {
-    var ol = $('faixaLista'); if (!ol) return;
+  function faixaAndar(botao, dir) {
+    var ol = botao.parentElement.querySelector('ol'); if (!ol) return;
     ol.scrollBy({ left: dir * ol.clientWidth, behavior: suave() });
   }
-  function montarFaixa() {
-    var ol = $('faixaLista'); if (!ol) return;
-    var ativo = ol.querySelector('.empreendimento[aria-pressed="true"]');
-    if (ativo && ativo.parentElement.offsetLeft + ativo.parentElement.offsetWidth > ol.clientWidth) ol.scrollLeft = ativo.parentElement.offsetLeft;
-    ol.addEventListener('scroll', faixaSetas, { passive: true });
-    faixaSetas();
+  function montarFaixas() {
+    document.querySelectorAll('#nivel .faixa > ol').forEach(function (ol) {
+      if (!ol.__faixa) { ol.__faixa = true; ol.addEventListener('scroll', function () { faixaSetas(ol); }, { passive: true }); }
+      faixaSetas(ol);
+    });
   }
-  window.addEventListener('resize', faixaSetas);
+  function montarFaixa() {
+    var ol = $('faixaLista');
+    if (ol) {
+      var ativo = ol.querySelector('.empreendimento[aria-pressed="true"]');
+      if (ativo && ativo.parentElement.offsetLeft + ativo.parentElement.offsetWidth > ol.clientWidth) ol.scrollLeft = ativo.parentElement.offsetLeft;
+    }
+    montarFaixas();
+  }
+  window.addEventListener('resize', montarFaixas);
   /* ---------------------------------------------------------------- as abas
      (09/11/2026) Uma secao do empreendimento por vez. A aba escolhida (`abaAtual`) sobrevive a
      troca de empreendimento, para comparar plantas ou lazer entre eles; se o novo nao tem a aba
@@ -2454,6 +2522,8 @@
     }
     // as plantas e implantacoes so carregam quando a aba delas abre (loading="lazy" nao dispara escondido)
     if (abaAtual === 'plantas') document.querySelectorAll('#aberto .aba[data-aba="plantas"] img[loading]').forEach(function (i) { i.removeAttribute('loading'); });
+    // as faixas de plantas estavam escondidas (largura zero): recalcula as setas agora que apareceram
+    montarFaixas();
   }
   function subirAteAFaixa() {
     var bloco = $('faixaBloco'), topo = document.querySelector('.topo'); if (!bloco) return;
