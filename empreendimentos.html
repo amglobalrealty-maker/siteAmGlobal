@@ -58,7 +58,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <style>
@@ -82,7 +82,7 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
-  body { background: var(--marfim); color: var(--onix); font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { background: var(--marfim); color: var(--onix); font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
@@ -91,7 +91,7 @@
   [hidden] { display: none !important; }
 
   .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 300; line-height: 1.02; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.02; text-wrap: balance; }
   p { max-width: 62ch; }
 
   .botao { position: relative; display: inline-block; font-family: var(--sans); font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: inherit; padding-bottom: 10px; white-space: nowrap; }
@@ -136,7 +136,7 @@
   .nivel-cabeca h2 { font-size: clamp(42px, 6vw, 96px); letter-spacing: -0.02em; line-height: 0.98; }
   .nivel-cabeca h2 small { display: block; font-size: 0.36em; letter-spacing: 0.02em; color: var(--champagne); margin-bottom: 10px; }
   .nivel-cabeca p { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 27px); line-height: 1.4; color: var(--texto-medio); }
-  .nivel-cabeca p b { font-style: normal; font-weight: 300; color: var(--onix); }
+  .nivel-cabeca p b { font-style: normal; font-weight: 400; color: var(--onix); }
 
   /* escolhas grandes (paises, estados): uma por linha, como um sumario */
   .escolhas { list-style: none; border-top: 1px solid var(--linha-escura); }
@@ -164,7 +164,7 @@
   .escolhas-foto .quadro img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); filter: saturate(0.86) contrast(0.98); transition: opacity 0.9s var(--curva), transform 7s linear; }
   .escolhas-foto .quadro img.atual { opacity: 1; transform: scale(1); }
   .escolhas-foto figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; padding-top: 14px; }
-  .escolhas-foto figcaption b { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; }
+  .escolhas-foto figcaption b { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; }
   .escolhas-foto figcaption span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
 
   /* a foto da cidade no estado: uma faixa panoramica na largura toda, entre o titulo e as cidades
@@ -178,7 +178,7 @@
   /* as cidades e as parceiras */
   .cidade + .cidade { margin-top: clamp(44px, 7vh, 80px); }
   .cidade-nome { display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(18px, 3vh, 28px); padding-bottom: 14px; border-bottom: 1px solid var(--linha-leve); }
-  .cidade-nome h3 { font-size: clamp(24px, 2.4vw, 34px); font-weight: 300; }
+  .cidade-nome h3 { font-size: clamp(24px, 2.4vw, 34px); font-weight: 400; }
   .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
   /* (09/11/2026) o texto curto sobre a cidade, entre o nome e as construtoras */
   .cidade-sobre { display: grid; gap: 10px; max-width: 80ch; margin: -4px 0 clamp(22px, 3.2vh, 32px); justify-items: start; }
@@ -188,7 +188,7 @@
   .cidade-mais svg { width: 10px; height: 6px; fill: none; stroke: var(--champagne); stroke-width: 1.2; }
   .lista { list-style: none; columns: 3; column-gap: clamp(30px, 4vw, 70px); }
   .lista li { break-inside: avoid; }
-  .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif); font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
+  .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif); font-size: clamp(20px, 1.6vw, 24px); font-weight: 400; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
   .nome:hover, .nome:focus-visible { color: var(--champagne); padding-left: 6px; outline: none; }
   .nome svg { flex: 0 0 auto; width: 14px; height: 8px; fill: none; stroke: currentColor; stroke-width: 1; opacity: 0; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
   .nome:hover svg, .nome:focus-visible svg { opacity: 1; transform: none; }
@@ -338,7 +338,7 @@
   .creditos dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-top: 3px; }
   .regiao-texto { font-family: var(--serif); font-size: clamp(20px, 1.8vw, 25px); line-height: 1.4; color: var(--texto-medio); max-width: 60ch; }
   .regiao-numeros { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px clamp(18px, 3vw, 44px); margin: 22px 0 18px; padding: 24px 0; border-top: 1px solid var(--linha-escura); border-bottom: 1px solid var(--linha-escura); }
-  .regiao-numeros b { display: block; font-family: var(--serif); font-weight: 300; font-size: clamp(36px, 3.6vw, 56px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .regiao-numeros b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 3.6vw, 56px); line-height: 1; font-variant-numeric: tabular-nums; }
   .regiao-numeros span { display: block; margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: var(--texto-medio); }
   .regiao-polos { font-size: 15px; color: var(--texto-medio); max-width: none; }
   .regiao-fonte { display: block; margin-top: 8px; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); }
