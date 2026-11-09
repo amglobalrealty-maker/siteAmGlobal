@@ -575,9 +575,17 @@
      `pinheiros/` e `mourato/`, com regiao propria (PINHEIROS). Ordem na pagina: Cardoso,
      Joao Ramalho, VA38, Jardins, Perdizes, Alameda Franca, H Bela Cintra, Joao Moura,
      Pinheiros, Mourato Coelho, Vila Nova Conceicao, VA284.
-     Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
-     enquanto"): Domingos de Morais (Vila Mariana); Vila Olimpia; Alto de Pinheiros;
-     Maestro Cardim (Paraiso). */
+     Por fim, em 09/11/2026 ~10h15, os QUATRO ULTIMOS da lista dela, pelos books: VITACON
+     ALTO DE PINHEIROS (26 paginas duplas), VITACON VILA OLIMPIA (44, fevereiro/2025, duas
+     torres), VITACON DOMINGOS DE MORAIS (58, setembro/2025, fachada com apoio de IA) e
+     VITACON MAESTRO CARDIM (62 paginas simples, fevereiro/2025; as fotos de pagina dupla
+     vieram partidas em duas e foram coladas), em `fotos/parcerias/vitacon/altopinheiros/`,
+     `vilaolimpia/`, `domingos/` e `maestro/`, com regioes VILA_OLIMPIA e VILA_MARIANA.
+     Com isso a lista dela de 16 nomes fechou (o 16o, "Reinventa Perdizes", e a campanha
+     do bairro, nao um predio). Ordem na pagina: Cardoso, Joao Ramalho, VA38, Jardins,
+     Perdizes, Alameda Franca, H Bela Cintra, Joao Moura, Pinheiros, Mourato Coelho, Alto de
+     Pinheiros, Vila Olimpia, Domingos de Morais, Maestro Cardim, Vila Nova Conceicao, VA284.
+     Seguem incompletos, a espera do book: Vila Nova Conceicao e Venancio Aires 284. */
   var V = 'fotos/parcerias/vitacon/';
   // as imagens do book do Cardoso de Almeida: a grande (1600 px) e a miniatura (280 px) de cada uma
   var C = V + 'cardoso/';
@@ -600,6 +608,9 @@
   // (09/11/2026) e para os tres de Pinheiros que vieram juntos: Joao Moura, Pinheiros e Mourato Coelho
   var JM = V + 'joaomoura/', PI = V + 'pinheiros/', MC = V + 'mourato/';
   var fotoJM = fotoEm(JM), fotoPI = fotoEm(PI), fotoMC = fotoEm(MC);
+  // (09/11/2026) e para os quatro ultimos da lista: Alto de Pinheiros, Vila Olimpia, Domingos de Morais e Maestro Cardim
+  var AP = V + 'altopinheiros/', VO = V + 'vilaolimpia/', DM = V + 'domingos/', MA = V + 'maestro/';
+  var fotoAP = fotoEm(AP), fotoVO = fotoEm(VO), fotoDM = fotoEm(DM), fotoMA = fotoEm(MA);
   var JARDINS = {
     titulo: 'A região · Jardins',
     texto: 'Entre a Rua Oscar Freire e a Alameda Lorena, no Jardins, um dos endereços mais desejados do país: a Rua Augusta em transformação, com fácil acesso à Avenida Paulista e às estações Oscar Freire e Consolação do metrô.',
@@ -621,6 +632,20 @@
     numeros: [['31%', 'de valorização média da locação no bairro, de 2015 a 2024, contra 17% na capital'], ['16%', 'de valorização média da compra no mesmo período, contra 9% na capital'], ['+1 milhão', 'de consultas por ano no Complexo Hospital das Clínicas'], ['+1.200', 'pessoas por dia previstas na nova unidade Einstein João Moura']],
     polos: 'Por perto: Rua Oscar Freire, Avenida Faria Lima, Clube Paulistano, Beco do Batman, Instituto Tomie Ohtake, Hospital das Clínicas e Shopping Eldorado.',
     fonte: 'Fonte: material da Vitacon para o Vitacon Pinheiros, o Vitacon João Moura e o Vitacon Mourato Coelho, com dados do Instituto RT Soluções, do Einstein e do Google.'
+  };
+  var VILA_OLIMPIA = {
+    titulo: 'A região · Vila Olímpia',
+    texto: 'Chamada de Vale do Silício da América Latina, a Vila Olímpia reúne grandes empresas, hospitais, escolas de negócios como o Insper e o G4 Educação e os shoppings JK Iguatemi e Vila Olímpia, a poucos minutos da Avenida Faria Lima, do Parque do Povo e do Aeroporto de Congonhas, com duas estações e ciclofaixas ligando tudo.',
+    numeros: [['94%', 'de ocupação dos escritórios, no endereço corporativo mais caro da capital'], ['145 mil', 'pessoas circulando pela região por dia'], ['6 das 10', 'empresas mais valiosas do Brasil a menos de 10 minutos'], ['6 min', 'da Avenida Faria Lima, de bicicleta']],
+    polos: 'Por perto: Shopping JK Iguatemi, Shopping Vila Olímpia, Parque do Povo, Parque Ibirapuera, Insper, G4 Educação e Hospital Santa Paula.',
+    fonte: 'Fonte: material da Vitacon para o Vitacon Vila Olímpia, com dados da NOZ de setembro de 2024 e do Google.'
+  };
+  var VILA_MARIANA = {
+    titulo: 'A região · Vila Mariana',
+    texto: 'Qualidade de vida reconhecida, segurança e infraestrutura completa, a poucos minutos do Parque Ibirapuera e da Avenida Paulista. A Vila Mariana é referência em saúde e ensino, com hospitais e universidades em fluxo contínuo de profissionais, estudantes e pacientes, e fica a quinze minutos do Aeroporto de Congonhas.',
+    numeros: [['+15', 'centros médicos de excelência em um raio de 5 km'], ['+7 mil', 'profissionais de saúde atuando na região'], ['1,5 milhão', 'de pessoas por dia na Avenida Paulista'], ['15 min', 'do Aeroporto de Congonhas, de carro']],
+    polos: 'Por perto: Parque Ibirapuera, Avenida Paulista, Shopping Metrô Santa Cruz, Unifesp, ESPM e os hospitais Santa Catarina e Oswaldo Cruz.',
+    fonte: 'Fonte: material da Vitacon para o Vitacon Domingos de Morais, com dados da Demografia Médica do Brasil (CFM e FMUSP, 2023 e 2024), Siila, Terra e Google.'
   };
   var EMPREENDIMENTOS = {
     'Vitacon': [
@@ -1451,6 +1476,323 @@
           fotoMC('bike-space', 'Bike space'),
           fotoMC('tools-sharing', 'Tools sharing', true),
           fotoMC('pet-place', 'Pet place')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON ALTO DE PINHEIROS, pelo Book Digital (26 paginas duplas). Status "Lancamento" pelo card
+        // do site; endereco igual no book e no site (1.213). A fachada do book tem so 371 px: fica suave em tela grande.
+        // O croqui de localizacao nao traz tempos; o Allianz Parque do book virou Nubank Parque, como nos de Perdizes.
+        nome: 'Vitacon Alto de Pinheiros',
+        bairro: 'Alto de Pinheiros',
+        resumo: 'Studios e 1 dormitório · 18 a 31 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios e apartamentos de 1 dormitório na Rua Tonelero, no Alto de Pinheiros, entre a Vila Madalena e a Pompeia, a poucos passos da futura Estação Cerro Corá da Linha 2 Verde. Prédio de escala menor: torre única com subsolo, térreo e 8 pavimentos, 120 unidades, com lazer no térreo e no subsolo: gourmet lounge & party, Working Pro, Fitness Space by Life Fitness, wellness space, podcast e pet place. Projeto da Gaaz Arquitetos com paisagismo de Marcelo Faisal.',
+        area: ['Studios: 18 a 24 m²', '1 dormitório: 24 a 31 m²', 'Plantas apresentadas: studio de 24,82 m² e 1 dormitório de 24,27 m²'],
+        tipologia: ['Studios', '1 dormitório'],
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['120 unidades: 40 studios e 80 de 1 dormitório', 'Terreno de 676,23 m², 2.838,16 m² privativos e 4.305,51 m² construídos'],
+        pavimentos: ['1º subsolo com gourmet lounge & party, Working Pro, podcast, coffee point e pet place', 'Térreo com lobby, delivery room, laundry, minimarket, Fitness Space e wellness', '8 pavimentos de unidades'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Tonelero, 1.213 · Alto de Pinheiros, São Paulo',
+        infra: {
+          piscina: '',
+          academia: 'Fitness Space by Life Fitness e Wellness Space, no térreo',
+          festas: 'Gourmet Lounge & Party no subsolo',
+          gourmet: 'Gourmet Lounge & Party com cozinha, coffee point e grab & go',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, acessos social e de serviço separados, delivery room e bag keeper',
+          coworking: 'Working Pro com cabine phone booth, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Gourmet Lounge & Party', 'Coffee Point', 'Grab & Go', 'Fitness Space by Life Fitness', 'Wellness Space', 'Working Pro', 'Cabine Phone Booth', 'Podcast Studio', 'Minimarket', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Delivery Room', 'Lobby Concierge', 'Bag Keeper'],
+        diferenciais: ['Porta de acesso com fechadura eletrônica', 'Aquecimento central para o chuveiro dos banheiros', 'Tomada USB', 'Ponto de filtro de água na APA', 'Ponto para cooktop de 2 bocas', 'Possibilidade de 1 ponto de ar-condicionado split por unidade, com carga no quadro e dreno'],
+        creditos: [['Arquitetura', 'Gaaz Arquitetos'], ['Interiores', 'Gaaz Arquitetos e Espaço Novo Arquitetura'], ['Paisagismo', 'Marcelo Faisal Paisagismo']],
+        plantas: [
+          { src: AP + 'planta-studio-2482.webp', nome: 'Studio inteligente de 24,82 m²', meta: 'Studio' },
+          { src: AP + 'planta-1dorm-2427.webp', nome: '1 dormitório de 24,27 m²', meta: '1 dormitório' }
+        ],
+        implantacao: [
+          { src: AP + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos social e de serviço, lobby concierge, delivery room, bag keeper, bike space e tools sharing, laundry share, minimarket, Fitness Space e wellness space' },
+          { src: AP + 'implantacao-subsolo.webp', nome: '1º subsolo', meta: 'Pet place, gourmet lounge & party, Working Pro, cabine phone booth, coffee point, grab & go e podcast' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Vila Madalena, Linha 2 Verde', ''], ['Futura Estação Cerro Corá, Linha 2 Verde', 'a poucos passos'], ['Estação Consolação, Linha 2 Verde', ''], ['Estação Paulista, Linha 4 Amarela', ''], ['Estação Oscar Freire, Linha 4 Amarela', '']]],
+            ['Lazer', [['Parque Villa-Lobos', ''], ['Shopping Bourbon', ''], ['Nubank Parque, o antigo Allianz Parque', ''], ['Praça Panamericana', ''], ['Sesc Pompeia', ''], ['Shopping Villa Lobos', ''], ['Teatro Cacilda Becker', '']]],
+            ['Educação', [['Colégio Oswald de Andrade', ''], ['Senac Lapa', ''], ['Colégio Rainha da Paz', ''], ['Escola Vera Cruz', ''], ['USP', ''], ['Unesp', '']]],
+            ['Saúde', [['Hospital São Camilo Pompeia', ''], ['Hospital Sancta Maggiore Pinheiros', ''], ['Hospital das Clínicas', ''], ['Hospital Metropolitano', ''], ['Hospital Albert Sabin Lapa', '']]],
+            ['Serviços', [['Pão de Açúcar', ''], ['Mambo', ''], ['Dona Deôla', ''], ['Padaria Etienne', ''], ['Padaria Laika', ''], ['Academia Ecofit', ''], ['Academia Bio Ritmo', ''], ['Cobasi', ''], ['Petz', '']]]
+          ],
+          nota: 'Pontos do croqui de localização do material da Vitacon, sem escala e sem tempos.'
+        },
+        legal: 'Incorporação imobiliária registrada em 11/10/2024 sob R.2 na matrícula nº 172.333 do 10º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 34696-23-SP-ALV. No empreendimento existirão unidades HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material e site da Vitacon.',
+        torre: AP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        fotos: [
+          fotoAP('acesso-1', 'Acesso'),
+          fotoAP('acesso-2', 'Acesso'),
+          fotoAP('fachada', 'Fachada', true),
+          fotoAP('lobby', 'Lobby concierge'),
+          fotoAP('studio-2482', 'Studio inteligente de 24,82 m²'),
+          fotoAP('apto-2427', '1 dormitório de 24,27 m²'),
+          fotoAP('gourmet-lounge', 'Gourmet lounge & party'),
+          fotoAP('fitness', 'Fitness Space by Life Fitness'),
+          fotoAP('wellness', 'Wellness Space'),
+          fotoAP('working-pro', 'Working Pro'),
+          fotoAP('podcast', 'Podcast studio'),
+          fotoAP('laundry', 'Laundry share'),
+          fotoAP('delivery', 'Delivery room')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON VILA OLIMPIA, pelo book (44 paginas duplas, fevereiro/2025). O card do site diz "Em obras"
+        // com a etiqueta "Ultimas Unidades": entraram os dois. Endereco igual no book e no site (203). Duas torres,
+        // Cabo Verde e Alvorada, ligadas pelo lazer do 1o e do 2o pavimento; parceria com o G4 Educacao. As plantas
+        // sao as imagens embutidas do book (450 a 560 px), porque a pagina tem o "G4V" vazado por tras.
+        nome: 'Vitacon Vila Olímpia',
+        bairro: 'Vila Olímpia',
+        resumo: 'Studios a 2 dormitórios · 17 a 57 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras · últimas unidades',
+        texto: 'Duas torres na Rua Alvorada, na Vila Olímpia, entre os prédios do G4 Educação e a seis minutos de bicicleta da Avenida Faria Lima: a Torre Cabo Verde, com 22 pavimentos e 400 unidades de 1 e 2 dormitórios, e a Torre Alvorada, com 21 pavimentos e 174 unidades, entre studios e 1 dormitório. O lazer liga as duas torres no 1º e no 2º pavimento, com Working Pro, podcast, Wellness by Life Fitness e crossfit outdoor, e cada torre tem a própria cobertura: pool deck e sky lounge na Alvorada, piano & wine bar, gourmet lounge e Connect Hub by G4 na Cabo Verde. Projeto da Königsberger Vannucchi.',
+        area: ['Torre Cabo Verde: 1 dormitório de 25,22 a 33,21 m² e 2 dormitórios de 41,47 a 43,53 m²', 'Torre Alvorada: studios de 17,54 a 18,61 m² e 1 dormitório de 55,59 a 56,95 m²', 'Plantas apresentadas: studios de 17,58, 17,72 e 18,61 m², 1 dormitório de 25,31, 33,31, 41,47 e 55,59 m² e 2 dormitórios de 43,53 m²'],
+        tipologia: ['Studios', '1 dormitório', '2 dormitórios'],
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: '20 vagas para as lojas da Rua Alvorada e 1 vaga de carga e descarga; para as unidades, sob consulta',
+        torres: '2 torres: Cabo Verde, com 22 pavimentos, e Alvorada, com 21',
+        unidades: ['574 unidades: 400 na Torre Cabo Verde e 174 na Torre Alvorada, sendo 50 de serviço de moradia e 124 residenciais, mais 4 lojas e conjuntos comerciais', 'Terreno de 2.947,01 m², 17.642,03 m² privativos e 24.196,19 m² construídos'],
+        pavimentos: ['Térreo com 4 lojas, lobbies, delivery, bag keeper, lounge e bike space', '1º pavimento, conexão entre torres: book sharing, minimarket, laundry, coffee point, game space, Working Pro, meeting e podcast', '2º pavimento, conexão entre torres: conjuntos comerciais, yoga, Wellness by Life Fitness e crossfit outdoor', '21º pavimento, cobertura da Alvorada: CoKitchen, sky lounge e pool deck', '22º pavimento, cobertura da Cabo Verde: fire place, gourmet lounge, piano & wine bar e Connect Hub by G4'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Alvorada, 203 · Vila Olímpia, São Paulo',
+        infra: {
+          piscina: 'Pool deck na cobertura da Torre Alvorada, 21º pavimento',
+          academia: 'Wellness by Life Fitness, yoga space e crossfit outdoor no 2º pavimento',
+          festas: 'Gourmet lounge e piano & wine bar na cobertura da Cabo Verde; sky lounge na cobertura da Alvorada',
+          gourmet: 'CoKitchen lounge no 21º pavimento, coffee point e grab & go',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, delivery space e bag keeper em cada torre, acessos separados',
+          coworking: 'Working Pro com meeting space, 2 podcast studios, Connect Hub by G4 Educação, book sharing e laundry share'
+        },
+        lazer: ['Pool Deck', 'Sky Lounge', 'CoKitchen Lounge', 'Gourmet Lounge', 'Piano & Wine Bar', 'Fire Place', 'Connect Hub by G4 Educação', 'Game Space', 'Lounge', 'Wellness by Life Fitness', 'Yoga Space', 'Crossfit Outdoor', 'Working Pro', 'Meeting Space', 'Podcast Studio', 'Book Sharing', 'Coffee Point', 'Minimarket', 'Laundry Share', 'Bike Space', 'Delivery Space', 'Lobby Concierge', 'Bag Keeper'],
+        diferenciais: ['Portas com fechaduras inteligentes', 'Sistema de aquecimento central para o chuveiro', 'Tomada USB', 'Infraestrutura para ar-condicionado: 1 ponto nos studios e 1 dormitório, 2 pontos nos 2 dormitórios', 'Ponto para máquina de lavar louça', 'Ponto de filtro de água sob a bancada da APA', 'Ponto para cooktop: 2 bocas nos studios e 1 dormitório, 4 bocas nos 2 dormitórios'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Paisagismo', 'Marcelo Faisal'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: VO + 'planta-studio-1758.webp', nome: 'Studio inteligente de 17,58 m²', meta: 'Torre Alvorada, final 8' },
+          { src: VO + 'planta-studio-1772.webp', nome: 'Studio inteligente de 17,72 m²', meta: 'Torre Alvorada, final 5' },
+          { src: VO + 'planta-studio-1861.webp', nome: 'Studio inteligente de 18,61 m²', meta: 'Torre Alvorada' },
+          { src: VO + 'planta-1dorm-2531.webp', nome: '1 dormitório com terraço de 25,31 m²', meta: 'Torre Cabo Verde' },
+          { src: VO + 'planta-1dorm-3331.webp', nome: '1 dormitório de 33,31 m²', meta: 'Torre Cabo Verde' },
+          { src: VO + 'planta-1dorm-4147.webp', nome: '1 dormitório de 41,47 m²', meta: 'Torre Cabo Verde' },
+          { src: VO + 'planta-2dorm-4353.webp', nome: '2 dormitórios com varanda de 43,53 m²', meta: 'Torre Cabo Verde' },
+          { src: VO + 'planta-1dorm-5559.webp', nome: '1 dormitório de 55,59 m²', meta: 'Torre Alvorada' }
+        ],
+        implantacao: [
+          { src: VO + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lojas 1 a 4, acessos das duas torres e dos conjuntos comerciais, lobbies concierge, delivery space, bag keeper, lounge e bike space' },
+          { src: VO + 'implantacao-1pav.webp', nome: '1º pavimento, conexão entre torres', meta: 'Book sharing, minimarket, laundry share, coffee point, game space, Working Pro, meeting space e podcast studio' },
+          { src: VO + 'implantacao-2pav.webp', nome: '2º pavimento, conexão entre torres', meta: 'Conjuntos comerciais, yoga space, Wellness by Life Fitness e crossfit outdoor' },
+          { src: VO + 'implantacao-21pav.webp', nome: '21º pavimento, cobertura da Torre Alvorada', meta: 'CoKitchen lounge, sky lounge e pool deck' },
+          { src: VO + 'implantacao-22pav.webp', nome: '22º pavimento, cobertura da Torre Cabo Verde', meta: 'Fire place, gourmet lounge, piano & wine bar e Connect Hub by G4 Educação' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Avenida Faria Lima', '6 min'], ['Ciclofaixa da Marginal Pinheiros', ''], ['Ciclofaixa da Faria Lima', ''], ['Estação Vila Olímpia, Linha 9 Esmeralda', ''], ['Estação Eucaliptos, Linha 5 Lilás', ''], ['Aeroporto de Congonhas', '']]],
+            ['Lazer e compras', [['Shopping JK Iguatemi', ''], ['Parque do Povo', ''], ['Parque Ibirapuera', ''], ['Shopping Vila Olímpia', ''], ['Eataly', ''], ['Sociedade Hípica Paulista', '']]],
+            ['Educação', [['G4 Educação', ''], ['Insper', ''], ['Universidade Anhembi Morumbi', '']]],
+            ['Saúde', [['Hospital Sírio-Libanês', ''], ['Hospital Santa Paula', ''], ['Centro Especializado em Medicina Fetal São Luiz', ''], ['Vila Nova Star, da Rede D\'Or São Luiz', '']]],
+            ['Empresas', [['Google', ''], ['XP Investimentos', ''], ['Amazon Brasil', ''], ['Itaú BBA', ''], ['Microsoft Brasil', ''], ['Facebook', ''], ['Unilever', '']]]
+          ],
+          nota: 'Pontos do mapa do material da Vitacon; o tempo até a Faria Lima é de bicicleta, pelo Google Maps.'
+        },
+        legal: 'Incorporação imobiliária registrada em 07/11/2024 sob R.2 na matrícula nº 209.674 do 4º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 34713-23-SP-ALV. No empreendimento existirão unidades HIS-2, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon de fevereiro de 2025 e site da Vitacon.',
+        torre: VO + 'fachada-cabo-verde.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: VILA_OLIMPIA,
+        fotos: [
+          fotoVO('acesso-alvorada', 'Acesso da Torre Alvorada'),
+          fotoVO('acesso-cabo-verde', 'Acesso da Torre Cabo Verde'),
+          fotoVO('fachada-cabo-verde', 'Fachada da Torre Cabo Verde', true),
+          fotoVO('fachada-alvorada', 'Fachada da Torre Alvorada', true),
+          fotoVO('voo-geral', 'Vista geral'),
+          fotoVO('lobby-cabo-verde', 'Lobby concierge da Torre Cabo Verde'),
+          fotoVO('lobby-alvorada', 'Lobby concierge da Torre Alvorada'),
+          fotoVO('studio-1758', 'Studio inteligente de 17,58 m²'),
+          fotoVO('apto-5559', '1 dormitório de 55,59 m²'),
+          fotoVO('apto-2531', '1 dormitório com terraço de 25,31 m²', true),
+          fotoVO('pool-deck', 'Pool deck'),
+          fotoVO('cokitchen', 'CoKitchen lounge'),
+          fotoVO('gourmet-lounge', 'Gourmet lounge'),
+          fotoVO('piano-wine-bar', 'Piano & wine bar'),
+          fotoVO('lounge', 'Lounge'),
+          fotoVO('coffee-point', 'Coffee point'),
+          fotoVO('working-pro', 'Working Pro'),
+          fotoVO('podcast', 'Podcast studio'),
+          fotoVO('wellness', 'Wellness by Life Fitness'),
+          fotoVO('crossfit', 'Crossfit outdoor'),
+          fotoVO('laundry', 'Laundry share'),
+          fotoVO('bike-space', 'Bike space'),
+          fotoVO('delivery', 'Delivery space')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON DOMINGOS DE MORAIS, pelo book (setembro/2025, 58 paginas duplas). Status "Lancamento" pelo
+        // card do site; endereco igual no book e no site (3.093, esquina com a Luis Gois, 876). A DATA do registro
+        // diverge: book 18/06/2025, site 30/05/2025 (mesma matricula); a nota legal cita as duas. O book nao traz o
+        // total de unidades nem os pavimentos; a nota legal diz 145 HIS-2 e 88 HMP. Fachada em 544 px.
+        nome: 'Vitacon Domingos de Morais',
+        bairro: 'Vila Mariana',
+        resumo: 'Studios · 18 a 35 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios inteligentes na esquina da Rua Domingos de Morais com a Rua Luís Góis, na Vila Mariana, a dois minutos de bicicleta da Estação Santa Cruz e a quinze do Parque Ibirapuera e da Avenida Paulista. É o primeiro Vitacon com fachada desenvolvida com apoio de inteligência artificial, pelo escritório nova-iorquino HWKN, na Coleção Vitacon 2025: lazer no térreo, no 1º e no 17º pavimento, com pool deck e sky bar no rooftop, barbecue, fire place, party lounge, game space, Working Pro e podcast.',
+        area: ['Studios: 18 a 35 m²', 'Plantas apresentadas: 18,06, 24,19 e 30,25 m²'],
+        tipologia: 'Studios',
+        banheiros: '1 por studio',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['Total sob consulta; 145 unidades HIS-2 e 88 HMP, mais as R2V', 'Terreno de 2.746,45 m² e 27.000,02 m² construídos'],
+        pavimentos: ['Térreo com lobby, minimarket, Working Pro, podcast, game space, bike space e pet place', '1º pavimento com laundry, Fitness Space e wellness', '17º pavimento com CoKitchen, party lounge, barbecue, pool deck, sky bar e fire place'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Domingos de Morais, 3.093, esquina com a Rua Luís Góis · Vila Mariana, São Paulo',
+        infra: {
+          piscina: 'Pool deck com vista panorâmica, deck molhado e sky bar, no 17º pavimento',
+          academia: 'Fitness Space by Life Fitness e Wellness Space, no 1º pavimento',
+          festas: 'Party lounge com bar em ilha e terraço coberto, no 17º pavimento',
+          gourmet: 'CoKitchen lounge e barbecue com churrasqueira elétrica no 17º, minimarket e grab & go',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge com Wi-Fi e estar, delivery room, bag keeper e service access monitorado',
+          coworking: 'Working Pro com cabine phone booth e sala de reunião, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck', 'Sky Bar', 'Party Lounge', 'CoKitchen Lounge', 'Barbecue', 'Fire Place', 'Outdoor Patio', 'Game Space', 'Lounge', 'Fitness Space by Life Fitness', 'Wellness Space', 'Working Pro', 'Podcast Studio', 'Minimarket', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Delivery Room', 'Lobby Concierge', 'Bag Keeper', 'Service Access'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Aquecimento central, sem aquecedor individual', 'Plantas com terraço técnico para a condensadora', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para máquina lava-louça', 'Tomada USB-C', 'Caixilhos amplos e cuba de sobrepor', 'Varandas com possibilidade de fechamento em algumas plantas', 'Gerador para áreas técnicas e elevadores'],
+        creditos: [['Fachada', 'HWKN Architecture, com apoio de IA'], ['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Danni Martins'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: DM + 'planta-studio-1806.webp', nome: 'Studio de 18,06 m²', meta: 'Final 46, com os itens da unidade' },
+          { src: DM + 'planta-studio-2419.webp', nome: 'Studio de 24,19 m²', meta: 'Final 10, com varanda' },
+          { src: DM + 'planta-studio-3025.webp', nome: 'Studio de 30,25 m²', meta: 'Final 28, com varanda' }
+        ],
+        implantacao: [
+          { src: DM + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lobby concierge, bag keeper e delivery room, minimarket e grab & go, Working Pro, podcast, game space, bike space e pet place' },
+          { src: DM + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Laundry share, Fitness by Life Fitness e wellness space' },
+          { src: DM + 'implantacao-17pav.webp', nome: '17º pavimento', meta: 'CoKitchen lounge, party lounge, minimarket e grab & go, barbecue, pool deck com sky bar e fire place' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Avenida Jabaquara', '2 min'], ['Estação Santa Cruz', '2 min'], ['Rua Vergueiro', '5 min'], ['Estação Chácara Klabin', '5 min'], ['Avenida Doutor Ricardo Jafet', '7 min'], ['Avenida Paulista', '15 min'], ['Aeroporto de Congonhas', '15 min de carro']]],
+            ['Lazer', [['Shopping Metrô Santa Cruz', '3 min'], ['Parque Ibirapuera', '12 min'], ['Parque das Bicicletas', '12 min'], ['Sesc Vila Mariana', '15 min'], ['Shopping Ibirapuera', '15 min'], ['São Paulo Expo', '15 min de carro']]],
+            ['Saúde', [['Hospital Luz Vila Mariana', '2 min de carro'], ['Hospital e Maternidade Santa Joana', '8 min de carro'], ['Hospital Santa Catarina', '8 min de carro'], ['Hospital Alemão Oswaldo Cruz', '9 min de carro'], ['Hospital Paulista', '10 min de carro'], ['Hospital Japonês Santa Cruz', '10 min de carro'], ['Hospital e Maternidade Sepaco', '10 min de carro'], ['Hospital Ortopédico AACD', '10 min de carro'], ['Hospital São Paulo', '13 min de carro']]],
+            ['Educação', [['Unifai', '3 min'], ['Unifesp', '7 min'], ['ESPM', '11 min'], ['Faculdade Belas Artes', '11 min']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica de carro.'
+        },
+        legal: 'Incorporação imobiliária registrada sob R.1 na matrícula nº 264.749 do 14º Oficial de Registro de Imóveis de São Paulo (o material da Vitacon indica 18/06/2025 e o site, 30/05/2025); projeto aprovado no alvará nº 47322-24-SP-ALV. O projeto reúne unidades R2V, sem restrição, 145 unidades HIS-2 e 88 HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo, com locação limitada a 30% da renda e vedada a curta temporada. Imagens meramente ilustrativas, algumas desenvolvidas com IA, e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon de setembro de 2025 e site da Vitacon.',
+        torre: DM + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: VILA_MARIANA,
+        fotos: [
+          fotoDM('acesso', 'Acesso'),
+          fotoDM('fachada', 'Fachada', true),
+          fotoDM('lobby-1', 'Lobby concierge'),
+          fotoDM('lobby-2', 'Lobby concierge'),
+          fotoDM('lobby-detalhe', 'Lobby concierge, detalhe'),
+          fotoDM('lounge', 'Lounge'),
+          fotoDM('studio-final-46', 'Studio de 18,06 m², final 46'),
+          fotoDM('studio-final-10', 'Studio de 24,19 m², final 10'),
+          fotoDM('rooftop', 'Rooftop'),
+          fotoDM('pool-deck', 'Pool deck'),
+          fotoDM('sky-bar', 'Sky bar'),
+          fotoDM('barbecue', 'Barbecue'),
+          fotoDM('cokitchen', 'CoKitchen lounge'),
+          fotoDM('party-lounge-1', 'Party lounge'),
+          fotoDM('party-lounge-2', 'Party lounge'),
+          fotoDM('game-space', 'Game space'),
+          fotoDM('fitness-1', 'Fitness Space by Life Fitness'),
+          fotoDM('fitness-2', 'Fitness Space by Life Fitness'),
+          fotoDM('wellness', 'Wellness Space'),
+          fotoDM('working-pro-1', 'Working Pro'),
+          fotoDM('working-pro-2', 'Working Pro'),
+          fotoDM('podcast', 'Podcast studio'),
+          fotoDM('minimarket', 'Minimarket'),
+          fotoDM('laundry', 'Laundry share'),
+          fotoDM('delivery', 'Delivery room'),
+          fotoDM('bike-space', 'Bike space'),
+          fotoDM('pet-place', 'Pet place')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON MAESTRO CARDIM, pelo book (AF_192_14, fevereiro/2025, 62 paginas simples: as fotos de
+        // pagina dupla vieram partidas em duas e foram coladas com a tarefa "juntar"; as implantacoes com "dupla").
+        // Status "Em obras" pelo card do site. Endereco SEM numero: book e mapa do site dizem 1.023, ficha do site
+        // 1.041 (regra dela). Interiores: book diz Gaaz e Espaco Novo, site diz R2 e Espaco Novo; ficou o book.
+        nome: 'Vitacon Maestro Cardim',
+        bairro: 'Paraíso',
+        resumo: 'Studios e 1 dormitório · 17 a 76 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Studios e apartamentos de 1 dormitório na Rua Maestro Cardim, no Paraíso, a uma quadra da Avenida Paulista e entre os hospitais Beneficência Portuguesa e Oswaldo Cruz, a um minuto a pé do Shopping Pátio Paulista. Torre única com 601 unidades e duas lojas, com lazer no 17º e no 24º pavimento: sky pool com raia de 25 metros e pool bar, pilates room, wellness, Working Pro, podcast, gourmet lounge & party, piano & wine bar e game space. Projeto da MCAA Arquitetos com paisagismo de Marcelo Faisal.',
+        area: ['Studios: 16,93 a 70,73 m²', '1 dormitório: 45,10 a 75,97 m²', 'Lojas: 174,97 e 24,72 m²', 'Plantas apresentadas: studio de 16,93 m² e 1 dormitório de 45 m²'],
+        tipologia: ['Studios', '1 dormitório'],
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: 'Para as unidades, sob consulta; 1 vaga por loja, compartilhada com o NR, e 150 vagas para bicicletas',
+        torres: 'Torre única',
+        unidades: ['601 unidades: 555 studios, 44 de 1 dormitório e 2 lojas', 'Terreno de 1.698,46 m², 14.062 m² privativos e 19.458 m² construídos'],
+        pavimentos: ['Térreo com lojas, lobby concierge, delivery room, laundry, bag keeper, car sharing e bike sharing', '17º pavimento com sky pool, pool bar, academia, pilates, wellness, Working Pro, reunião, podcast e minimarket', '24º pavimento com gourmet lounge & party, piano & wine bar, CoKitchen, game space e grab & go'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Maestro Cardim · Paraíso, São Paulo',
+        infra: {
+          piscina: 'Sky pool com raia de 25 metros, solarium mobiliado e pool bar, no 17º pavimento',
+          academia: 'Fitness Space by Life Fitness, pilates room e wellness space, no 17º pavimento',
+          festas: 'Gourmet Lounge & Party e piano & wine bar com lareira, no 24º pavimento',
+          gourmet: 'CoKitchen lounge e grab & go no 24º, coffee point e minimarket no 17º',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, clausuras social e de serviço, delivery room refrigerado e bag keeper',
+          coworking: 'Working Pro com salas de reunião e phone booths, podcast studio, laundry share, tools sharing, bike sharing e car sharing'
+        },
+        lazer: ['Sky Pool com raia de 25 metros', 'Pool Bar', 'Gourmet Lounge & Party', 'Gourmet Lounge', 'Piano & Wine Bar', 'CoKitchen Lounge', 'Game Space', 'Fitness Space by Life Fitness', 'Pilates Room', 'Wellness Space', 'Working Pro', 'Sala de reunião', 'Phone Booth', 'Podcast Studio', 'Minimarket', 'Coffee Point', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Bike Sharing', 'Car Sharing', 'Delivery Room', 'Lobby Concierge', 'Bag Keeper'],
+        diferenciais: ['Portas com fechaduras inteligentes', 'Sistema de aquecimento central para o chuveiro', 'Tomada USB', 'Infraestrutura para 1 ponto de ar-condicionado por unidade, com carga no quadro e dreno; rede frigorígena e equipamento por conta do proprietário'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores', 'Gaaz Arquitetos e Espaço Novo Arquitetura'], ['Paisagismo', 'Marcelo Faisal']],
+        plantas: [
+          { src: MA + 'planta-studio-1693.webp', nome: 'Studio inteligente de 16,93 m²', meta: 'Studio' },
+          { src: MA + 'planta-1dorm-4510.webp', nome: '1 dormitório de 45 m²', meta: '1 dormitório' }
+        ],
+        implantacao: [
+          { src: MA + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Clausuras social e de serviço, loja 1 e vaga de fachada ativa, delivery room, car sharing, bike sharing, lobby concierge, bag keeper e laundry share' },
+          { src: MA + 'implantacao-17pav.webp', nome: '17º pavimento, lazer', meta: 'Fitness Space, pilates room, wellness space, coffee point, podcast, reunião, Working Pro, minimarket, phone booth, pool bar e sky pool com raia de 25 metros' },
+          { src: MA + 'implantacao-24pav.webp', nome: '24º pavimento, lazer', meta: 'Gourmet lounge & party, piano & wine bar, CoKitchen lounge, game space e grab & go' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Avenida Paulista', '1 min a pé'], ['Avenida 23 de Maio', '2 min a pé'], ['Estação Vergueiro', '5 min a pé'], ['Estação Paraíso', '3 min']]],
+            ['Lazer e compras', [['Shopping Pátio Paulista', '1 min a pé'], ['Parque Ibirapuera', ''], ['Centro Cultural São Paulo', ''], ['Casa das Rosas', '']]],
+            ['Saúde', [['Hospital Sancta Maggiore', '1 min a pé'], ['Hospital Oswaldo Cruz', '1 min a pé'], ['Hospital Beneficência Portuguesa', '3 min a pé'], ['Hospital do Servidor Público', '3 min'], ['Hospital Santa Catarina', '4 min'], ['Hospital dos Olhos', '4 min'], ['Hospital Santa Maria', '5 min'], ['HCor', '7 min'], ['Hospital Santa Joana', '7 min']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica a pé.'
+        },
+        legal: 'Incorporação registrada em 30/07/2024 sob R.3 na matrícula nº 143.454 do 1º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 34702-23-SP-ALV. No empreendimento existirão unidades HIS-2 e HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon de fevereiro de 2025 e site da Vitacon.',
+        torre: MA + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        fotos: [
+          fotoMA('acesso', 'Acesso'),
+          fotoMA('fachada', 'Fachada', true),
+          fotoMA('lobby', 'Lobby concierge'),
+          fotoMA('studio-2445', 'Studio de 24,45 m²'),
+          fotoMA('sky-pool', 'Sky pool com raia de 25 metros'),
+          fotoMA('gourmet-lounge', 'Gourmet lounge & party'),
+          fotoMA('piano-wine-bar', 'Piano & wine bar'),
+          fotoMA('cokitchen', 'CoKitchen lounge'),
+          fotoMA('game-space', 'Game space'),
+          fotoMA('fitness', 'Fitness Space by Life Fitness'),
+          fotoMA('wellness', 'Wellness Space'),
+          fotoMA('working-pro', 'Working Pro'),
+          fotoMA('podcast', 'Podcast studio'),
+          fotoMA('laundry', 'Laundry share', true),
+          fotoMA('delivery', 'Delivery room', true),
+          fotoMA('bike-tools', 'Bike space e tools sharing')
         ]
       },
       {
