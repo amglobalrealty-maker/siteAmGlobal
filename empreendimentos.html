@@ -197,43 +197,48 @@
      Enquanto so algumas parcerias tem material de verdade (NO_AR, no script), dentro da cidade
      cada uma aparece num cartao: a logo para clicar de um lado, as fachadas dos empreendimentos
      do outro. Clicar abre a parceria (06/11/2026: so a Vitacon, em Sao Paulo). */
-  .vitrine { list-style: none; display: grid; gap: clamp(18px, 3vh, 30px); }
-  .vitrine-cartao { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); width: 100%; text-align: left; background: rgba(216, 207, 192, 0.32); transition: background 0.5s var(--curva); }
+  /* (09/11/2026) ela: "quando entra tem que aparecer menor, talvez so o logo, porque vamos ter outras
+     construtoras". O cartao perdeu as 4 fachadas: so a logo, a contagem e o convite, varios por linha. */
+  .vitrine { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(14px, 2vw, 24px); }
+  .vitrine-cartao { display: grid; gap: 28px; align-content: space-between; width: 100%; min-height: 220px; padding: clamp(22px, 2.4vw, 32px) clamp(22px, 2.4vw, 30px); text-align: left; background: rgba(216, 207, 192, 0.32); transition: background 0.5s var(--curva); }
   .vitrine-cartao:hover, .vitrine-cartao:focus-visible { background: rgba(216, 207, 192, 0.55); }
-  .vitrine-marca { display: flex; flex-direction: column; justify-content: space-between; gap: 34px; padding: clamp(26px, 3.4vw, 56px); min-height: clamp(300px, 31vw, 460px); }
-  .vitrine-marca > span { display: block; }
+  .vitrine-cartao > span { display: block; }
   .vitrine-onde, .vitrine-conta { display: block; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
-  .vitrine-onde { margin-bottom: 18px; }
-  .vitrine-conta { margin-bottom: 14px; }
-  .vitrine-logo { width: min(78%, 330px); height: auto; }
-  .vitrine-nome { display: block; font-family: var(--serif); font-size: clamp(34px, 3.6vw, 56px); line-height: 1; }
+  .vitrine-onde { margin-bottom: 14px; }
+  .vitrine-conta { margin-bottom: 10px; }
+  .vitrine-logo { width: min(64%, 210px); height: auto; }
+  .vitrine-nome { display: block; font-family: var(--serif); font-size: clamp(26px, 2.2vw, 34px); line-height: 1; }
   .vitrine-ver { display: inline-flex; align-items: center; gap: 14px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); transition: border-color 0.5s var(--curva); }
   .vitrine-ver svg { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; transition: transform 0.6s var(--curva); }
   .vitrine-cartao:hover .vitrine-ver { border-bottom-color: var(--champagne); }
   .vitrine-cartao:hover .vitrine-ver svg { transform: translateX(6px); }
-  .vitrine-fotos { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; }
-  .vitrine-foto { position: relative; display: block; overflow: hidden; background: var(--travertino); }
-  .vitrine-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.8s var(--curva); }
-  .vitrine-cartao:hover .vitrine-foto img { transform: scale(1.04); }
-  .vitrine-foto::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; background: linear-gradient(to top, rgba(11, 11, 12, 0.62), rgba(11, 11, 12, 0)); }
-  .vitrine-foto b { position: absolute; left: 14px; right: 14px; bottom: 13px; z-index: 1; font-weight: 400; font-size: 10px; line-height: 1.5; letter-spacing: 0.18em; text-transform: uppercase; color: var(--marfim); }
 
   /* a parceira: os empreendimentos numa fileira de cartoes no alto; embaixo, o aberto
      com a galeria na largura toda e a ficha em duas colunas (sem coluna sobrando;
      ela, 16/10: "nao gostei desse espaco a esquerda em branco") */
   .empreendimentos-rotulo { margin-bottom: 14px; }
-  .empreendimentos { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(14px, 2vw, 28px); margin-bottom: clamp(30px, 5vh, 52px); }
-  .empreendimento { display: grid; gap: 5px; width: 100%; padding-bottom: 14px; border-bottom: 1px solid var(--linha-leve); text-align: left; align-content: start; transition: border-color 0.5s var(--curva); }
+  /* (09/11/2026) ela: "nao pode aparecer tudo de uma vez, fica muito poluido, coloque com setinhas".
+     Os cartoes viraram UMA fileira que rola de lado, com setas nas pontas: 5 por vez no computador,
+     4 em telas medias, 2 no celular. A faixa e uma grade de 3 colunas: seta, lista, seta. */
+  .faixa { display: grid; grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 10px; align-items: center; margin-bottom: clamp(26px, 4vh, 44px); }
+  .faixa.sem-setas .faixa-seta { visibility: hidden; }
+  .faixa-seta { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--linha-escura); display: grid; place-items: center; color: var(--texto); transition: border-color 0.4s var(--curva), opacity 0.4s var(--curva); }
+  .faixa-seta svg { width: 16px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.1; }
+  .faixa-seta:hover:not(:disabled) { border-color: var(--champagne); color: var(--champagne); }
+  .faixa-seta:disabled { opacity: 0.22; cursor: default; }
+  .empreendimentos { --vao: clamp(14px, 1.6vw, 24px); position: relative; list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 4 * var(--vao)) / 5); gap: var(--vao); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+  .empreendimentos::-webkit-scrollbar { display: none; }
+  .empreendimento { display: grid; gap: 5px; width: 100%; padding-bottom: 12px; border-bottom: 1px solid var(--linha-leve); text-align: left; align-content: start; scroll-snap-align: start; transition: border-color 0.5s var(--curva); }
   .empreendimento[aria-pressed="true"] { border-bottom-color: var(--champagne); }
   .empreendimento-foto { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); margin-bottom: 8px; }
   .empreendimento-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); opacity: 0.78; transition: opacity 0.5s var(--curva), transform 1.4s var(--curva); }
   .empreendimento[aria-pressed="true"] .empreendimento-foto img, .empreendimento:hover .empreendimento-foto img { opacity: 1; transform: scale(1.04); }
-  .empreendimento-nome { font-family: var(--serif); font-size: clamp(21px, 1.6vw, 26px); line-height: 1.1; transition: color 0.4s var(--curva); }
+  .empreendimento-nome { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 20px); line-height: 1.12; transition: color 0.4s var(--curva); }
   .empreendimento[aria-pressed="true"] .empreendimento-nome, .empreendimento:hover .empreendimento-nome { color: var(--champagne); }
-  .empreendimento-meta { font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
-  .empreendimento-entrega { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+  .empreendimento-meta { font-size: 12px; letter-spacing: 0.03em; color: var(--texto-medio); }
+  .empreendimento-entrega { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--texto-fraco); }
   /* parceira so com os nomes, sem fotos ainda (06/11/2026, Vitacon): cartoes de texto, sem a caixa da foto */
-  .empreendimentos.sem-fotos { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0 clamp(18px, 2.4vw, 36px); border-top: 1px solid var(--linha-escura); }
+  .empreendimentos.sem-fotos { border-top: 1px solid var(--linha-escura); }
   .empreendimentos.sem-fotos .empreendimento { padding: 15px 0 14px; height: 100%; }
 
   .aberto { animation: aparece 0.6s var(--curva) both; }
@@ -364,6 +369,7 @@
   /* ------------------------------------------------------ telas estreitas */
   @media (max-width: 1100px) {
     .lista { columns: 2; }
+    .empreendimentos { grid-auto-columns: calc((100% - 3 * var(--vao)) / 4); }
     .aberto-corpo { grid-template-columns: 1fr; }
     .aberto-lado .aberto-bloco:first-child { margin-top: 28px; }
     .aberto-marca { display: none; }
@@ -395,20 +401,21 @@
     .escolha-nome { grid-column: 2; font-size: clamp(24px, 6.4vw, 32px); }
     .escolha-onde { grid-column: 2; white-space: normal; }
     .lista { columns: 1; }
-    /* no celular os cartoes viram uma faixa que rola de lado, de borda a borda */
-    .empreendimentos { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 68%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); padding: 0 var(--margem) 6px; }
-    .empreendimentos::-webkit-scrollbar { display: none; }
-    .empreendimento { scroll-snap-align: start; }
+    /* no celular a faixa leva 2 por vez, com setas menores nas pontas (e desliza com o dedo) */
+    .faixa { grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 6px; }
+    .faixa-seta { width: 28px; height: 28px; }
+    .faixa-seta svg { width: 13px; height: 8px; }
+    .empreendimentos { --vao: 10px; grid-auto-columns: calc((100% - var(--vao)) / 2); }
+    .empreendimento-nome { font-size: 16px; }
+    .empreendimento-meta { font-size: 11.5px; }
     /* so com os nomes: a faixa leva dois por coluna, para os 16 nao virarem 16 telas de deslize */
-    .empreendimentos.sem-fotos { grid-template-columns: none; grid-template-rows: repeat(2, auto); grid-auto-columns: 60%; gap: 0 16px; border-top: 0; scroll-padding-left: var(--margem); }   /* sem a margem, o texto parava colado na borda */
+    .empreendimentos.sem-fotos { grid-template-rows: repeat(2, auto); gap: 0 16px; border-top: 0; }
     .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
     .galeria-seta { width: 38px; height: 38px; }
-    /* a vitrine no celular: a logo em cima, as fachadas embaixo, sem os nomes sobre as fotos (ficariam minusculos) */
-    .vitrine-cartao { grid-template-columns: 1fr; }
-    .vitrine-marca { min-height: 0; gap: 26px; padding: 26px 22px 24px; }
-    .vitrine-logo { width: min(70%, 260px); }
-    .vitrine-fotos { height: clamp(170px, 52vw, 320px); }
-    .vitrine-foto b, .vitrine-foto::after { display: none; }
+    /* a vitrine no celular: um cartao por linha, mais baixo */
+    .vitrine { grid-template-columns: 1fr; }
+    .vitrine-cartao { min-height: 0; gap: 22px; padding: 24px 22px 22px; }
+    .vitrine-logo { width: min(56%, 200px); }
     .infra div { grid-template-columns: 1fr; }
     .ficha.larga dd { font-size: 18px; }
   }
@@ -2060,19 +2067,13 @@
           + '</div>';
       }).join('') + '</div>';
   }
-  // o cartao de uma parceria no ar, dentro da cidade: a logo para clicar de um lado, as fachadas
-  // dos empreendimentos dela do outro
+  // o cartao de uma parceria no ar, dentro da cidade: so a logo para clicar, a contagem e o convite
+  // (09/11/2026: as 4 fachadas sairam a pedido dela, para caberem varias construtoras lado a lado)
   function cartaoParceria(nome, ci, ni, c) {
     var lista = empreendimentosDe(nome, c);
     return '<li><button type="button" class="vitrine-cartao" data-c="' + ci + '" data-n="' + ni + '" aria-label="' + esc(nome) + ': ver os empreendimentos">'
-      + '<span class="vitrine-marca">'
-      +   '<span><span class="vitrine-onde">Construtora</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
-      +   '<span><span class="vitrine-conta">' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
-      + '</span>'
-      + '<span class="vitrine-fotos">' + lista.slice(0, 4).map(function (x) {
-          var f = x.torre || (fotosDe(x)[0] || {}).src;
-          return f ? '<span class="vitrine-foto"><img src="' + esc(f) + '" alt=""><b class="notranslate">' + esc(x.nome) + '</b></span>' : '';
-        }).join('') + '</span>'
+      + '<span><span class="vitrine-onde">Construtora</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
+      + '<span><span class="vitrine-conta">' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
       + '</button></li>';
   }
   function nivelParceira() {
@@ -2085,9 +2086,13 @@
     // parceira ainda sem nenhuma foto: os cartoes viram texto, sem a caixa da foto
     var comFotos = lista.some(function (x) { return fotosDe(x).length > 0; });
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + (logoDe(parceira, 'parceira-logo') || esc(parceira)) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. O primeiro já está aberto; toque em outro para trocar.</p></div>'
+      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + (logoDe(parceira, 'parceira-logo') || esc(parceira)) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. Toque em um para abrir; as setas percorrem a lista.</p></div>'
       + '<div class="parceira">'
-      +   '<div><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span><ol class="empreendimentos' + (comFotos ? '' : ' sem-fotos') + '">' + lista.map(function (x, k) {
+      // (09/11/2026) a fileira unica com setas; o bloco inteiro (rotulo + faixa) e o alvo da rolagem ao tocar num cartao
+      +   '<div class="faixa-bloco" id="faixaBloco"><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span>'
+      +   '<div class="faixa">'
+      +     '<button type="button" class="faixa-seta ant" data-faixa="-1" aria-label="Empreendimentos anteriores"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button>'
+      +     '<ol class="empreendimentos' + (comFotos ? '' : ' sem-fotos') + '" id="faixaLista">' + lista.map(function (x, k) {
             var capa = fotosDe(x)[0];
             var bairro = x.bairro ? '<span class="notranslate">' + esc(x.bairro) + '</span>' : '';
             // com `resumo` (empreendimento completo) a linha do cartao e bairro + resumo; senao, bairro, tipologia e area
@@ -2098,7 +2103,9 @@
               + (meta ? '<span class="empreendimento-meta">' + meta + '</span>' : '')
               + (x.entrega || x.status ? '<span class="empreendimento-entrega">' + esc(x.entrega || x.status) + '</span>' : '')
               + '</button></li>';
-          }).join('') + '</ol></div>'
+          }).join('') + '</ol>'
+      +     '<button type="button" class="faixa-seta prox" data-faixa="1" aria-label="Próximos empreendimentos"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button>'
+      +   '</div></div>'
       +   '<article class="aberto" id="aberto">' + aberto(em, parceira, c, e) + '</article>'
       + '</div></div>';
   }
@@ -2235,7 +2242,7 @@
     trilha();
     var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
     $('nivel').innerHTML = html;
-    if (onde.n !== null) montarGaleria();
+    if (onde.n !== null) { montarGaleria(); montarFaixa(); }
     $('notaExemplo').hidden = onde.n === null || !exemploAberto;
     var hash = onde.p === null ? '' : '#' + PAISES[onde.p].id
       + (onde.e !== null ? '/' + PAISES[onde.p].estados[onde.e].uf.toLowerCase() : '')
@@ -2275,7 +2282,8 @@
     if ((b = ev.target.closest('.escolha[data-pais]'))) { onde = { p: Number(b.getAttribute('data-pais')), e: null, c: null, n: null, k: 0 }; var p = PAISES[onde.p]; if (p.estados.length === 1) onde.e = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.escolha[data-estado]'))) { onde.e = Number(b.getAttribute('data-estado')); onde.c = null; onde.n = null; onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.nome, .vitrine-cartao[data-c]'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
-    if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); return; }
+    if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); subirAteAFaixa(); return; }
+    if ((b = ev.target.closest('[data-faixa]'))) { faixaAndar(Number(b.getAttribute('data-faixa'))); return; }
     if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
     if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
     if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta')), b.getAttribute('data-lista')); return; }
@@ -2301,6 +2309,39 @@
   }
   $('ampliadaFechar').addEventListener('click', function () { $('ampliada').close(); });
   $('ampliada').addEventListener('click', function (ev) { if (ev.target === this) this.close(); });
+
+  /* ------------------------------------------------------- a faixa com setas
+     (09/11/2026) Os cartoes da parceira numa fileira so que rola de lado. As setas andam uma
+     tela de cada vez e apagam nas pontas; com todos cabendo de uma vez, somem. Ao abrir por
+     endereco (#.../13), a faixa ja chega rolada ate o cartao aberto. Ao tocar num cartao, a
+     pagina sobe ate o bloco da faixa encostar na barra fixa, para a galeria do aberto aparecer
+     na tela principal (ela: "quando clica nao pode aparecer embaixo, tem que aparecer na tela"). */
+  function suave() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; }
+  function faixaSetas() {
+    var ol = $('faixaLista'); if (!ol) return;
+    var fim = ol.scrollWidth - ol.clientWidth;
+    var ant = ol.parentElement.querySelector('.faixa-seta.ant'), prox = ol.parentElement.querySelector('.faixa-seta.prox');
+    if (ant) ant.disabled = ol.scrollLeft <= 2;
+    if (prox) prox.disabled = ol.scrollLeft >= fim - 2;
+    ol.parentElement.classList.toggle('sem-setas', fim <= 2);
+  }
+  function faixaAndar(dir) {
+    var ol = $('faixaLista'); if (!ol) return;
+    ol.scrollBy({ left: dir * ol.clientWidth, behavior: suave() });
+  }
+  function montarFaixa() {
+    var ol = $('faixaLista'); if (!ol) return;
+    var ativo = ol.querySelector('.empreendimento[aria-pressed="true"]');
+    if (ativo && ativo.parentElement.offsetLeft + ativo.parentElement.offsetWidth > ol.clientWidth) ol.scrollLeft = ativo.parentElement.offsetLeft;
+    ol.addEventListener('scroll', faixaSetas, { passive: true });
+    faixaSetas();
+  }
+  window.addEventListener('resize', faixaSetas);
+  function subirAteAFaixa() {
+    var bloco = $('faixaBloco'), topo = document.querySelector('.topo'); if (!bloco) return;
+    var y = bloco.getBoundingClientRect().top - (topo ? topo.getBoundingClientRect().bottom : 0) - 14;
+    if (Math.abs(y) > 4) window.scrollBy({ top: y, behavior: suave() });
+  }
 
   // trocar o empreendimento aberto sem redesenhar o nivel inteiro
   function trocarEmpreendimento() {
