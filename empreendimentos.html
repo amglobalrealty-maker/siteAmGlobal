@@ -58,7 +58,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <style>
@@ -73,6 +73,7 @@
     --texto-medio: rgba(11, 11, 12, 0.62);
     --texto-fraco: rgba(11, 11, 12, 0.42);
     --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --serif-texto: 'EB Garamond', Georgia, 'Times New Roman', serif;
     --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
     --margem: clamp(22px, 6.5vw, 130px);
     --secao: clamp(72px, 11vh, 140px);
@@ -91,7 +92,7 @@
   [hidden] { display: none !important; }
 
   .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.02; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.02; text-wrap: balance; }
   p { max-width: 62ch; }
 
   .botao { position: relative; display: inline-block; font-family: var(--sans); font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: inherit; padding-bottom: 10px; white-space: nowrap; }
@@ -115,7 +116,7 @@
   /* ------------------------------------------------------------------ capa */
   .capa { padding: clamp(150px, 24vh, 240px) var(--margem) clamp(40px, 7vh, 80px); }
   .capa h1 { font-size: clamp(54px, 9vw, 132px); letter-spacing: -0.02em; margin: 18px 0 26px; }
-  .capa-linha { font-family: var(--serif); font-size: clamp(21px, 2.1vw, 30px); line-height: 1.35; color: var(--texto-medio); max-width: 32ch; }
+  .capa-linha { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(19.5px, 2.1vw, 28px); line-height: 1.35; color: var(--texto-medio); max-width: 32ch; }
   .capa-meta { display: flex; flex-wrap: wrap; gap: 8px clamp(22px, 3vw, 44px); margin-top: clamp(36px, 6vh, 64px); padding-top: 22px; border-top: 1px solid var(--linha-escura); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
 
   /* ------------------------------------------------------------------ mapa */
@@ -135,15 +136,15 @@
   .nivel-cabeca { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px clamp(30px, 5vw, 90px); align-items: end; margin-bottom: clamp(36px, 6vh, 70px); }
   .nivel-cabeca h2 { font-size: clamp(42px, 6vw, 96px); letter-spacing: -0.02em; line-height: 0.98; }
   .nivel-cabeca h2 small { display: block; font-size: 0.36em; letter-spacing: 0.02em; color: var(--champagne); margin-bottom: 10px; }
-  .nivel-cabeca p { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 27px); line-height: 1.4; color: var(--texto-medio); }
-  .nivel-cabeca p b { font-style: normal; font-weight: 400; color: var(--onix); }
+  .nivel-cabeca p { font-family: var(--serif-texto); font-weight: 500; font-style: italic; font-size: clamp(19px, 1.9vw, 25.5px); line-height: 1.4; color: var(--texto-medio); }
+  .nivel-cabeca p b { font-style: normal; font-weight: 600; color: var(--onix); }
 
   /* escolhas grandes (paises, estados): uma por linha, como um sumario */
   .escolhas { list-style: none; border-top: 1px solid var(--linha-escura); }
   .escolha { display: grid; grid-template-columns: clamp(40px, 5vw, 80px) 1fr auto auto; align-items: baseline; gap: 16px clamp(18px, 2.6vw, 40px); width: 100%; padding: clamp(18px, 2.6vh, 30px) 0; border-bottom: 1px solid var(--linha-leve); text-align: left; transition: padding-left 0.6s var(--curva); }
   .escolha:hover, .escolha:focus-visible { padding-left: 10px; outline: none; }
-  .escolha-num { font-family: var(--serif); font-size: clamp(16px, 1.3vw, 19px); color: var(--champagne); }
-  .escolha-nome { font-family: var(--serif); font-size: clamp(30px, 3.6vw, 56px); line-height: 1; letter-spacing: -0.01em; transition: color 0.4s var(--curva); }
+  .escolha-num { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(15px, 1.3vw, 18px); color: var(--champagne); }
+  .escolha-nome { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 3.6vw, 56px); line-height: 1; letter-spacing: -0.01em; transition: color 0.4s var(--curva); }
   .escolha:hover .escolha-nome { color: var(--champagne); }
   .escolha-onde { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
   .escolha-seta { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; opacity: 0.5; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
@@ -164,7 +165,7 @@
   .escolhas-foto .quadro img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); filter: saturate(0.86) contrast(0.98); transition: opacity 0.9s var(--curva), transform 7s linear; }
   .escolhas-foto .quadro img.atual { opacity: 1; transform: scale(1); }
   .escolhas-foto figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; padding-top: 14px; }
-  .escolhas-foto figcaption b { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; }
+  .escolhas-foto figcaption b { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(20.5px, 1.8vw, 26.5px); line-height: 1.1; }
   .escolhas-foto figcaption span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
 
   /* a foto da cidade no estado: uma faixa panoramica na largura toda, entre o titulo e as cidades
@@ -182,17 +183,17 @@
   .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
   /* (09/11/2026) o texto curto sobre a cidade, entre o nome e as construtoras */
   .cidade-sobre { display: grid; gap: 10px; max-width: 80ch; margin: -4px 0 clamp(22px, 3.2vh, 32px); justify-items: start; }
-  .cidade-texto { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 19px); line-height: 1.5; color: var(--texto-medio); max-width: none; }
-  .cidade-texto:first-child { color: var(--texto); }   /* o primeiro paragrafo um pouco mais forte */
+  .cidade-texto { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(17px, 1.3vw, 18px); line-height: 1.5; color: var(--texto); max-width: none; }
+  /* (09/11) os dois paragrafos na mesma cor: o segundo em cinza ficava apagado demais, pedido dela */
   .cidade-mais { display: none; align-items: center; gap: 10px; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grafite); padding: 8px 0 6px; border-bottom: 1px solid var(--linha-escura); }
   .cidade-mais svg { width: 10px; height: 6px; fill: none; stroke: var(--champagne); stroke-width: 1.2; }
   .lista { list-style: none; columns: 3; column-gap: clamp(30px, 4vw, 70px); }
   .lista li { break-inside: avoid; }
-  .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif); font-size: clamp(20px, 1.6vw, 24px); font-weight: 400; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
+  .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif-texto); font-size: clamp(19px, 1.6vw, 22.5px); font-weight: 500; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
   .nome:hover, .nome:focus-visible { color: var(--champagne); padding-left: 6px; outline: none; }
   .nome svg { flex: 0 0 auto; width: 14px; height: 8px; fill: none; stroke: currentColor; stroke-width: 1; opacity: 0; transform: translateX(-6px); transition: opacity 0.4s var(--curva), transform 0.6s var(--curva); }
   .nome:hover svg, .nome:focus-visible svg { opacity: 1; transform: none; }
-  .em-breve { font-family: var(--serif); font-style: italic; font-size: clamp(20px, 1.9vw, 26px); color: var(--texto-medio); padding: 8px 0 20px; }
+  .em-breve { font-family: var(--serif-texto); font-weight: 500; font-style: italic; font-size: clamp(19px, 1.9vw, 24.5px); color: var(--texto-medio); padding: 8px 0 20px; }
   /* a logo da parceira no lugar do nome (06/11/2026, Vitacon): na lista da cidade e no alto da pagina dela */
   .nome.com-logo { align-items: center; min-height: calc(1.2em + 27px); }
   .nome-logo { flex: 0 0 auto; height: 0.84em; width: auto; transition: opacity 0.4s var(--curva); }
@@ -213,7 +214,7 @@
   .vitrine-onde { margin-bottom: 14px; }
   .vitrine-conta { margin-bottom: 10px; }
   .vitrine-logo { width: min(64%, 210px); height: auto; }
-  .vitrine-nome { display: block; font-family: var(--serif); font-size: clamp(26px, 2.2vw, 34px); line-height: 1; }
+  .vitrine-nome { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 2.2vw, 34px); line-height: 1; }
   .vitrine-ver { display: inline-flex; align-items: center; gap: 14px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); transition: border-color 0.5s var(--curva); }
   .vitrine-ver svg { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; transition: transform 0.6s var(--curva); }
   .vitrine-cartao:hover .vitrine-ver { border-bottom-color: var(--champagne); }
@@ -239,7 +240,7 @@
   .empreendimento-foto { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); margin-bottom: 8px; }
   .empreendimento-foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82); opacity: 0.78; transition: opacity 0.5s var(--curva), transform 1.4s var(--curva); }
   .empreendimento[aria-pressed="true"] .empreendimento-foto img, .empreendimento:hover .empreendimento-foto img { opacity: 1; transform: scale(1.04); }
-  .empreendimento-nome { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 20px); line-height: 1.12; transition: color 0.4s var(--curva); }
+  .empreendimento-nome { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.12; transition: color 0.4s var(--curva); }
   .empreendimento[aria-pressed="true"] .empreendimento-nome, .empreendimento:hover .empreendimento-nome { color: var(--champagne); }
   .empreendimento-meta { font-size: 12px; letter-spacing: 0.03em; color: var(--texto-medio); }
   .empreendimento-entrega { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--texto-fraco); }
@@ -300,7 +301,7 @@
   .diferenciais { list-style: none; display: grid; gap: 8px; }
   .diferenciais li { position: relative; padding-left: 22px; font-size: 15px; color: var(--texto-medio); }
   .diferenciais li::before { content: ''; position: absolute; left: 0; top: 0.78em; width: 10px; height: 1px; background: var(--champagne); }
-  .endereco { font-family: var(--serif); font-size: 19px; line-height: 1.3; }
+  .endereco { font-family: var(--serif-texto); font-weight: 500; font-size: 18px; line-height: 1.3; }
   .endereco small { display: block; font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; color: var(--texto-fraco); margin-top: 4px; }
   .barra { display: block; height: 2px; max-width: 120px; background: var(--linha-escura); margin-top: 8px; }
   .barra i { display: block; height: 100%; background: var(--champagne); }
@@ -331,14 +332,14 @@
   .planta-quadro { display: block; aspect-ratio: 16 / 10; padding: 12px; background: #fff; border: 1px solid var(--linha-leve); transition: border-color 0.4s var(--curva); }
   .planta-quadro img { width: 100%; height: 100%; object-fit: contain; }
   .planta:hover .planta-quadro, .planta:focus-visible .planta-quadro { border-color: var(--champagne); }
-  .planta-nome { display: block; margin-top: 12px; font-family: var(--serif); font-size: 22px; line-height: 1.15; }
+  .planta-nome { display: block; margin-top: 12px; font-family: var(--serif-texto); font-weight: 500; font-size: 20.5px; line-height: 1.15; }
   .planta-meta { display: block; margin-top: 3px; font-size: 12.5px; letter-spacing: 0.04em; color: var(--texto-medio); }
-  .plantas-vazio { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--texto-medio); }
+  .plantas-vazio { font-family: var(--serif-texto); font-weight: 500; font-style: italic; font-size: 19px; color: var(--texto-medio); }
   .creditos div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 7px 0; font-size: 14px; }
   .creditos dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-top: 3px; }
-  .regiao-texto { font-family: var(--serif); font-size: clamp(20px, 1.8vw, 25px); line-height: 1.4; color: var(--texto-medio); max-width: 60ch; }
+  .regiao-texto { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(19px, 1.8vw, 23.5px); line-height: 1.4; color: var(--texto-medio); max-width: 60ch; }
   .regiao-numeros { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px clamp(18px, 3vw, 44px); margin: 22px 0 18px; padding: 24px 0; border-top: 1px solid var(--linha-escura); border-bottom: 1px solid var(--linha-escura); }
-  .regiao-numeros b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 3.6vw, 56px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .regiao-numeros b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 3.6vw, 56px); line-height: 1; font-variant-numeric: tabular-nums; }
   .regiao-numeros span { display: block; margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: var(--texto-medio); }
   .regiao-polos { font-size: 15px; color: var(--texto-medio); max-width: none; }
   .regiao-fonte { display: block; margin-top: 8px; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); }
@@ -348,7 +349,7 @@
   .perto h4 { font-family: var(--sans); font-weight: 500; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); }
   .perto ul { list-style: none; }
   .perto li { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--linha-leve); font-size: 14px; line-height: 1.35; }
-  .perto li b { flex: 0 0 auto; font-family: var(--serif); font-weight: 400; font-size: 17px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .perto li b { flex: 0 0 auto; font-family: var(--serif-texto); font-weight: 500; font-size: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .perto-nota { display: block; font-size: 11px; letter-spacing: 0.04em; color: var(--texto-fraco); }
   .aberto-legal { font-size: 11px; line-height: 1.65; letter-spacing: 0.02em; color: var(--texto-fraco); max-width: 120ch; padding-top: 18px; border-top: 1px solid var(--linha-leve); }
   /* a planta ampliada */
@@ -360,11 +361,11 @@
   .ampliada-fechar svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; }
   .aberto-corpo .rotulo { margin-bottom: 12px; }
   .aberto-corpo h3 { font-size: clamp(32px, 3.4vw, 52px); letter-spacing: -0.02em; margin-bottom: 10px; }
-  .aberto-lugar { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.6vw, 22px); color: var(--texto-medio); margin-bottom: 20px; }
+  .aberto-lugar { font-family: var(--serif-texto); font-weight: 500; font-style: italic; font-size: clamp(17px, 1.6vw, 20.5px); color: var(--texto-medio); margin-bottom: 20px; }
   .aberto-texto { font-size: 15px; color: var(--texto-medio); margin-bottom: 26px; }
   .ficha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 24px; padding: 22px 0; border-top: 1px solid var(--linha-escura); border-bottom: 1px solid var(--linha-escura); }
   .ficha dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); margin-bottom: 4px; }
-  .ficha dd { font-family: var(--serif); font-size: 20px; line-height: 1.15; }
+  .ficha dd { font-family: var(--serif-texto); font-weight: 500; font-size: 19px; line-height: 1.15; }
   /* (09/11/2026) ela: "quando abre o empreendimento tem muito texto junto, faca mais organizado".
      Empreendimento completo: galeria e descricao fixas; embaixo, ABAS (ficha, lazer, plantas, por
      perto, documentacao), uma secao por vez. A ficha virou grade de 4 valores curtos por linha,
@@ -386,7 +387,7 @@
   .aba-largo .aberto-bloco { margin-top: 0; }
   .ficha.compacta { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px clamp(20px, 2.6vw, 40px); padding: 0 0 28px; border-top: 0; }
   .ficha.compacta dd { font-family: var(--sans); font-size: 12px; }
-  .ficha.compacta dd b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.2; color: var(--texto); }
+  .ficha.compacta dd b { display: block; font-family: var(--serif-texto); font-weight: 500; font-size: clamp(17px, 1.5vw, 20.5px); line-height: 1.2; color: var(--texto); }
   .ficha.compacta dd small { display: block; margin-top: 6px; font-size: 12px; line-height: 1.45; color: var(--texto-medio); }
   .ficha-mais { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px clamp(24px, 3vw, 48px); padding-top: 26px; }
   .ficha-mais .aberto-bloco { margin-top: 0; }

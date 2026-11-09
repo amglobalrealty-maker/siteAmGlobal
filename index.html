@@ -58,7 +58,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -78,6 +78,7 @@
     --texto-fraco: rgba(245, 242, 236, 0.78);
 
     --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --serif-texto: 'EB Garamond', Georgia, 'Times New Roman', serif;
     --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
 
     --margem: clamp(22px, 6.5vw, 130px);
@@ -161,7 +162,7 @@
 
   h1, h2, h3, .citacao {
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.02;
     letter-spacing: -0.005em;
     text-wrap: balance;
@@ -706,10 +707,10 @@
 
   .abertura-giro {
     margin: 0 0 clamp(26px, 3.4vh, 40px);
-    font-family: var(--serif);
+    font-family: var(--serif-texto);
     font-style: italic;
-    font-weight: 400;
-    font-size: clamp(19px, 1.6vw, 26px);
+    font-weight: 500;
+    font-size: clamp(18px, 1.6vw, 24.5px);
     line-height: 1.3;
     color: var(--marfim);
     max-width: 34ch;
@@ -786,9 +787,9 @@
     color: var(--champagne);
   }
   .abertura-nome {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(20px, 1.7vw, 26px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(19px, 1.7vw, 24.5px);
     line-height: 1.1;
     color: rgba(245, 242, 236, 0.78);
     transition: color 0.4s var(--toque);
@@ -891,9 +892,9 @@
 
   .cabeca-texto p {
     display: inline;
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(19px, 2.1vw, 30px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(18px, 2.1vw, 28px);
     line-height: 1.38;
     color: rgba(245, 242, 236, 0.8);
     max-width: none;
@@ -930,10 +931,10 @@
   .filtro-abrir:hover { border-bottom-color: var(--champagne); }
 
   .filtro-valor {
-    font-family: var(--serif);
+    font-family: var(--serif-texto);
     font-style: italic;
-    font-weight: 400;
-    font-size: 17px;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 1;
   }
 
@@ -1035,9 +1036,9 @@
     border: 0;
     text-align: left;
     cursor: pointer;
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(20px, 2.1vw, 27px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(19px, 2.1vw, 25.5px);
     line-height: 1.1;
     color: rgba(245, 242, 236, 0.6);
     transition: color 0.5s var(--toque), padding-left 0.5s var(--toque);
@@ -1218,7 +1219,7 @@
 
   .leque-nome {
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(24px, 2.4vw, 34px);
     line-height: 1.05;
     color: var(--marfim);
@@ -1319,9 +1320,9 @@
   .manifesto-lede, .manifesto-nota { display: inline; margin: 0; max-width: none; }
 
   .manifesto-lede {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(19px, 1.95vw, 28px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(18px, 1.95vw, 26.5px);
     line-height: 1.34;
     color: var(--onix);
   }
@@ -1353,7 +1354,7 @@
     margin: 0;
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(40px, 7.4vw, 128px);
     line-height: 1.0;
     letter-spacing: -0.018em;
@@ -1431,7 +1432,7 @@
   .fundadora-citacao {
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(36px, 4.8vw, 68px);
     line-height: 1.04;
     letter-spacing: -0.01em;
@@ -1479,7 +1480,7 @@
   .fundadora-retrato .assinatura::before { display: none; } /* o filete nao cabe ao lado do cargo nos 260px da foto */
   .fundadora-dados { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--linha-escura); display: grid; gap: 14px; }
   .fundadora-dados span { font-family: var(--sans); font-weight: 400; font-size: 13px; line-height: 1.5; color: var(--grafite); }
-  .fundadora-dados b { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1; color: var(--onix); margin-bottom: 4px; }
+  .fundadora-dados b { display: block; font-family: var(--serif-texto); font-weight: 500; font-size: 22.5px; line-height: 1; color: var(--onix); margin-bottom: 4px; }
 
   .fundadora-texto { min-width: 0; }
 
@@ -1503,7 +1504,7 @@
   /* capitular em Cormorant, champagne */
   .fundadora-carta p:first-child::first-letter {
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 4.4em;
     line-height: 0.8;
     float: left;
@@ -1512,10 +1513,10 @@
   }
 
   .fundadora-carta p.fecho {
-    font-family: var(--serif);
+    font-family: var(--serif-texto);
     font-style: italic;
-    font-weight: 400;
-    font-size: 21px;
+    font-weight: 500;
+    font-size: 19.5px;
     line-height: 1.36;
     color: var(--onix);
     margin: 1.3em 0 0;
@@ -1536,10 +1537,10 @@
 
   .assinatura b {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--serif-texto);
     font-style: italic;
-    font-weight: 400;
-    font-size: clamp(19px, 1.5vw, 22px);
+    font-weight: 500;
+    font-size: clamp(18px, 1.5vw, 20.5px);
     line-height: 1;
     letter-spacing: 0.03em;
     color: var(--onix);
@@ -1644,9 +1645,9 @@
     margin: 0 0 10px;
   }
   .passo-nome {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(19px, 1.5vw, 24px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(18px, 1.5vw, 22.5px);
     line-height: 1.1;
     color: var(--marfim);
     margin: 0 0 8px;
@@ -1714,7 +1715,7 @@
   .frente-num {
     display: block;
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(34px, 3vw, 48px);
     line-height: 1;
     letter-spacing: 0.02em;
@@ -1724,9 +1725,9 @@
   }
 
   .frente-nome {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(21px, 1.9vw, 29px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(19.5px, 1.9vw, 27.5px);
     line-height: 1.1;
     letter-spacing: -0.005em;
     color: var(--marfim);
@@ -2108,7 +2109,7 @@
 
   .carta-nome {
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(24px, 2.4vw, 40px);
     line-height: 1.02;
     color: var(--marfim);
@@ -2128,7 +2129,7 @@
   .carta-hora {
     margin-top: 8px;
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(30px, 3vw, 52px);
     line-height: 0.95;
     color: var(--marfim);
@@ -2261,7 +2262,7 @@
   .ficha-cidade {
     margin: 4px 0 0;
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(38px, 5vw, 76px);
     line-height: 1;
     color: var(--marfim);
@@ -2319,9 +2320,9 @@
 
   .ficha-item dd {
     margin: 5px 0 0;
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(20px, 2.1vw, 30px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(19px, 2.1vw, 28px);
     line-height: 1.05;
     color: var(--marfim);
     font-variant-numeric: tabular-nums;
@@ -2435,8 +2436,8 @@
   .form-campo select,
   .form-campo textarea {
     width: 100%;
-    font-family: var(--serif);
-    font-size: 20px;
+    font-family: var(--serif-texto); font-weight: 500;
+    font-size: 19px;
     line-height: 1.3;
     color: var(--marfim);
     background: rgba(245, 242, 236, 0.045);
@@ -2507,7 +2508,7 @@
 
   .faixa span {
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-style: italic;
     font-size: clamp(26px, 3.4vw, 44px);
     line-height: 1;
@@ -2567,9 +2568,9 @@
     border: 0;
     text-align: left;
     cursor: pointer;
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(20px, 2.1vw, 27px);
+    font-family: var(--serif-texto);
+    font-weight: 500;
+    font-size: clamp(19px, 2.1vw, 25.5px);
     line-height: 1.1;
     color: rgba(245, 242, 236, 0.6);
     transition: color 0.5s var(--toque), padding-left 0.5s var(--toque);
@@ -2597,7 +2598,7 @@
   }
   .mercado-cabeca-nome {
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(28px, 2.8vw, 40px);
     line-height: 1;
     color: var(--marfim);
@@ -2643,7 +2644,7 @@
   .mercado-valor {
     display: block;
     font-family: var(--serif);
-    font-weight: 400;
+    font-weight: 500;
     font-size: clamp(30px, 3vw, 44px);
     line-height: 1;
     color: var(--marfim);
@@ -2670,15 +2671,15 @@
   .mercado-cidades caption { text-align: left; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); padding-bottom: 12px; font-weight: 500; }
   .mercado-cidades th { text-align: left; font-weight: 400; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 242, 236, 0.45); padding: 0 16px 10px 0; border-bottom: 1px solid var(--linha-clara); }
   .mercado-cidades td { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--linha-clara); vertical-align: baseline; }
-  .mercado-cidades td:first-child { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--marfim); }
+  .mercado-cidades td:first-child { font-family: var(--serif-texto); font-size: 18px; font-weight: 500; color: var(--marfim); }
   .mercado-cidades td.alta { color: var(--champagne); }
 
   /* a leitura: um paragrafo em Cormorant, com as fontes embaixo */
   .mercado-leitura { margin-top: clamp(34px, 5vh, 56px); max-width: 72ch; display: grid; gap: 14px; }
-  .mercado-leitura p { font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.5; color: rgba(245, 242, 236, 0.78); margin: 0; }
+  .mercado-leitura p { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(17px, 1.7vw, 21.5px); line-height: 1.5; color: rgba(245, 242, 236, 0.78); margin: 0; }
   .mercado-leitura p.mercado-fontes, .mercado-ressalva { font-family: var(--sans); font-size: 11px; line-height: 1.6; letter-spacing: 0.04em; color: rgba(245, 242, 236, 0.45); }
   .mercado-ressalva { margin: clamp(34px, 5vh, 56px) 0 0; max-width: 80ch; }
-  .mercado-recado { font-family: var(--serif); font-weight: 400; font-size: 20px; color: rgba(245, 242, 236, 0.8); }
+  .mercado-recado { font-family: var(--serif-texto); font-weight: 500; font-size: 19px; color: rgba(245, 242, 236, 0.8); }
 
   /* notebook estreito: a barra fica com simbolo, filtro e os seis itens do menu */
   @media (max-width: 1280px) {
@@ -2737,7 +2738,7 @@
       transition: clip-path 0.5s var(--sai);
     }
     .menu.aberto { clip-path: inset(0 0 0 0); transition: clip-path 0.85s var(--ambiente); }
-    .menu a { font-size: 30px; font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: 0; opacity: 1; }
+    .menu a { font-size: 30px; font-family: var(--serif); font-weight: 500; text-transform: none; letter-spacing: 0; opacity: 1; }
     .menu a::after { bottom: -4px; }
     /* a chapa sobe para cima da lista: e ela que a pessoa ve primeiro */
     /* no celular o painel ocupa a tela inteira e rola */
