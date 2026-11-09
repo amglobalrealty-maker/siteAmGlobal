@@ -569,10 +569,15 @@
      imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
      3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
      (`legal`: venda so apos o registro da incorporacao; unidades R2V, HIS-2 e HMP).
+     Ainda em 09/11/2026 entraram os TRES DE PINHEIROS, pelos books: VITACON JOAO MOURA
+     (62 paginas), VITACON PINHEIROS (76 paginas, setembro/2025) e VITACON MOURATO COELHO
+     (39 paginas duplas, fevereiro/2025), em `fotos/parcerias/vitacon/joaomoura/`,
+     `pinheiros/` e `mourato/`, com regiao propria (PINHEIROS). Ordem na pagina: Cardoso,
+     Joao Ramalho, VA38, Jardins, Perdizes, Alameda Franca, H Bela Cintra, Joao Moura,
+     Pinheiros, Mourato Coelho, Vila Nova Conceicao, VA284.
      Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
-     enquanto"): Joao Moura,
-     Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
-     Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
+     enquanto"): Domingos de Morais (Vila Mariana); Vila Olimpia; Alto de Pinheiros;
+     Maestro Cardim (Paraiso). */
   var V = 'fotos/parcerias/vitacon/';
   // as imagens do book do Cardoso de Almeida: a grande (1600 px) e a miniatura (280 px) de cada uma
   var C = V + 'cardoso/';
@@ -592,6 +597,9 @@
   var P = V + 'perdizes/', AF = V + 'alamedafranca/', B = V + 'belacintra/';
   function fotoEm(pasta) { return function (nome, legenda, emPe) { return { src: pasta + nome + '.webp', mini: pasta + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }; }
   var fotoP = fotoEm(P), fotoAF = fotoEm(AF), fotoB = fotoEm(B);
+  // (09/11/2026) e para os tres de Pinheiros que vieram juntos: Joao Moura, Pinheiros e Mourato Coelho
+  var JM = V + 'joaomoura/', PI = V + 'pinheiros/', MC = V + 'mourato/';
+  var fotoJM = fotoEm(JM), fotoPI = fotoEm(PI), fotoMC = fotoEm(MC);
   var JARDINS = {
     titulo: 'A região · Jardins',
     texto: 'Entre a Rua Oscar Freire e a Alameda Lorena, no Jardins, um dos endereços mais desejados do país: a Rua Augusta em transformação, com fácil acesso à Avenida Paulista e às estações Oscar Freire e Consolação do metrô.',
@@ -606,6 +614,13 @@
     numeros: [['+50 mil', 'estudantes circulando na região'], ['3º', 'maior IDH da cidade'], ['242%', 'de renda per capita acima da média da cidade'], ['15 min', 'da Avenida Paulista']],
     polos: 'Por perto: Nubank Parque, Einstein Hospital Israelita, Samaritano, PUC, Santa Marcelina e Pueri Domus.',
     fonte: 'Fonte: material da Vitacon para a campanha Reinventa Perdizes, com dados do IBGE e do Censo 2022.'
+  };
+  var PINHEIROS = {
+    titulo: 'A região · Pinheiros',
+    texto: 'Entre ruas tranquilas e um cenário urbano vibrante, Pinheiros combina infraestrutura completa, estações da Linha Amarela, ciclovias e a vizinhança da Avenida Faria Lima e da Rua Oscar Freire. O bairro se consolida como polo de saúde e ensino, com o Complexo Hospital das Clínicas da USP e a nova unidade do Einstein na Rua João Moura.',
+    numeros: [['31%', 'de valorização média da locação no bairro, de 2015 a 2024, contra 17% na capital'], ['16%', 'de valorização média da compra no mesmo período, contra 9% na capital'], ['+1 milhão', 'de consultas por ano no Complexo Hospital das Clínicas'], ['+1.200', 'pessoas por dia previstas na nova unidade Einstein João Moura']],
+    polos: 'Por perto: Rua Oscar Freire, Avenida Faria Lima, Clube Paulistano, Beco do Batman, Instituto Tomie Ohtake, Hospital das Clínicas e Shopping Eldorado.',
+    fonte: 'Fonte: material da Vitacon para o Vitacon Pinheiros, o Vitacon João Moura e o Vitacon Mourato Coelho, com dados do Instituto RT Soluções, do Einstein e do Google.'
   };
   var EMPREENDIMENTOS = {
     'Vitacon': [
@@ -1182,6 +1197,260 @@
           fotoB('fresh-space-2', 'Fresh Space'),
           fotoB('podcast', 'Podcast studio'),
           fotoB('outdoor-space', 'Outdoor Space')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON JOAO MOURA, pelo book (62 paginas). Status "Lancamento" pelo card do site;
+        // endereco igual no book e no site (464). O book dizia que a venda so comecaria apos o registro do
+        // memorial de incorporacao; o site ja traz o registro (14/11/2025), e foi ele que entrou na nota legal.
+        // Metragem do book (20 a 81 m2); o site resume como 20 a 31 m2.
+        nome: 'Vitacon João Moura',
+        bairro: 'Pinheiros',
+        resumo: 'Studios e 1 dormitório · 20 a 81 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios e apartamentos de 1 dormitório na Rua João Moura, em Pinheiros, a quatro minutos de bicicleta da Rua Oscar Freire e a cinco a pé da nova unidade do Einstein, na esquina com a Teodoro Sampaio. Torre única com subsolo, térreo, 20 pavimentos e ático, 260 unidades e uma loja, da Coleção Vitacon: pool deck, pool bar e pool lounge na cobertura; gourmet lounge, party lounge, Working Pro, Fitness Space by Life Fitness e wellness space no térreo. Serviços da Housi, com city concierge, custom guest service e reserva de espaços pelo app.',
+        area: ['Studios e 1 dormitório: 20 a 81 m²', 'Plantas apresentadas: studios de 20,12, 21,02 e 23,90 m² e 1 dormitório de 24,28 m²'],
+        tipologia: ['Studios', '1 dormitório'],
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: '260 residenciais e 1 loja',
+        pavimentos: ['Subsolo', 'Térreo com loja, lobby, laundry, minimarket, Working Pro, podcast, party e gourmet lounge, academia e wellness', '20 pavimentos, com pool deck, pool bar e lounge no 20º', 'Ático'],
+        valores: 'Sob consulta',
+        endereco: 'Rua João Moura, 464 · Pinheiros, São Paulo',
+        infra: {
+          piscina: 'Pool deck com pool bar e pool lounge, no 20º pavimento',
+          academia: 'Fitness Space by Life Fitness e Wellness Space, no térreo',
+          festas: 'Party Lounge no térreo',
+          gourmet: 'Gourmet Lounge e CoKitchen lounge, coffee point e grab & go',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge com controle e segurança 24 horas, city concierge, delivery e maleiro, acessos social e de serviço separados',
+          coworking: 'Working Pro com podcast e meeting, laundry share em parceria com a OMO e minimarket com AppSpace'
+        },
+        lazer: ['Pool Deck', 'Pool Bar', 'Pool Lounge', 'Gourmet Lounge', 'Party Lounge', 'CoKitchen Lounge', 'Lounge', 'Fire Place', 'Outdoor Patio', 'Fitness Space by Life Fitness', 'Wellness Space', 'Working Pro', 'Podcast e Meeting', 'Minimarket + AppSpace', 'Coffee Point', 'Grab & Go', 'Laundry Share', 'Bike Space', 'Lobby Concierge', 'Bag Keeper', 'Delivery'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Aquecedor central', 'Melhor desempenho acústico', 'Medidor de água individualizado e previsão de medição individualizada de gás', 'Plantas com terraço técnico', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para lava-louças e tomada de 20 A; tomada USB-C nos 1 dormitório', 'Gerador para áreas técnicas e elevadores, central de lixo reciclável e bacias com acionamento duplo'],
+        creditos: [['Arquitetura', 'MCAA'], ['Paisagismo', 'Danni Martins'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: JM + 'planta-studio-2012.webp', nome: 'Studio de 20,12 m²', meta: 'Studio inteligente' },
+          { src: JM + 'planta-studio-2102.webp', nome: 'Studio de 21,02 m²', meta: 'Studio inteligente' },
+          { src: JM + 'planta-studio-2390.webp', nome: 'Studio de 23,90 m²', meta: 'Studio inteligente' },
+          { src: JM + 'planta-1dorm-2428.webp', nome: '1 dormitório de 24,28 m²', meta: 'Com tomada USB-C' }
+        ],
+        implantacao: [
+          { src: JM + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Loja, acessos social e de serviço, lobby concierge, delivery e maleiro, laundry share, minimarket, Working Pro, podcast e meeting, party lounge, gourmet lounge, Fitness Space e wellness' },
+          { src: JM + 'implantacao-20pav.webp', nome: '20º pavimento', meta: 'Pool bar, lounge, pool deck e studios inteligentes' }
+        ],
+        perto: {
+          grupos: [
+            ['Cultura e lazer', [['Rua Oscar Freire', '4 min'], ['Casa Natura Musical', '6 min'], ['Clube Athletico Paulistano', '6 min'], ['Beco do Batman', '8 min'], ['Museu da Imagem e do Som', '8 min'], ['Instituto Tomie Ohtake', '9 min'], ['Shopping Iguatemi', '12 min'], ['Parque Ibirapuera', '13 min']]],
+            ['Gastronomia', [['La Borratxeria', '1 min a pé'], ['Levena SP', '3 min a pé'], ['Metzi', '6 min a pé'], ['Jacarandá', '3 min'], ['Diavola Pizzeria', '3 min'], ['Bráz Elettrica', '4 min'], ['Pirajá', '4 min'], ['Arturito', '4 min'], ['Z Deli Sandwich Shop', '4 min'], ['Evvai', '5 min'], ['Les Présidents', '5 min'], ['A Figueira Rubaiyat', '6 min'], ['Bottega 21 Bar', '6 min'], ['Mug.sp', '7 min'], ['Cervejaria Nacional', '7 min'], ['Goose Island Brewhouse', '8 min']]],
+            ['Saúde', [['Einstein João Moura, nova unidade prevista para 2026', '5 min a pé'], ['Hospital Sancta Maggiore Colorado', '5 min'], ['Hospital das Clínicas', '8 min'], ['Hospital Sírio-Libanês', '8 min'], ['Incor', '9 min'], ['Instituto de Infectologia Emílio Ribas', '10 min']]],
+            ['Educação', [['Colégio Cavallieri', '3 min'], ['Colégio Objetivo', '4 min'], ['Faculdade Belavista', '6 min'], ['Faculdade de Medicina da USP', '9 min'], ['FGV', '9 min'], ['Universidade Estácio', '9 min']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica a pé.'
+        },
+        legal: 'Incorporação imobiliária registrada em 14/11/2025 sob R.3 na matrícula nº 117.837 do 13º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 55249-25-SP-ALV. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon, anterior ao registro, e site da Vitacon.',
+        torre: JM + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PINHEIROS,
+        fotos: [
+          fotoJM('acesso', 'Acesso'),
+          fotoJM('fachada', 'Fachada', true),
+          fotoJM('torre', 'Torre', true),
+          fotoJM('lobby', 'Lobby concierge'),
+          fotoJM('lounge', 'Lounge'),
+          fotoJM('lounge-detalhe', 'Lounge, detalhe', true),
+          fotoJM('working-pro-1', 'Working Pro'),
+          fotoJM('working-pro-2', 'Working Pro'),
+          fotoJM('fitness-1', 'Fitness Space by Life Fitness'),
+          fotoJM('fitness-2', 'Fitness Space by Life Fitness'),
+          fotoJM('wellness', 'Wellness Space'),
+          fotoJM('party-lounge', 'Party lounge'),
+          fotoJM('gourmet-lounge', 'Gourmet lounge'),
+          fotoJM('minimarket', 'Minimarket + AppSpace'),
+          fotoJM('minimarket-detalhe', 'Minimarket, detalhe', true),
+          fotoJM('bike-space', 'Bike space'),
+          fotoJM('laundry', 'Laundry share'),
+          fotoJM('pool-deck', 'Pool deck'),
+          fotoJM('pool-lounge', 'Pool lounge'),
+          fotoJM('apto-d', 'Apartamento tipo D'),
+          fotoJM('apto-e', 'Apartamento tipo E'),
+          fotoJM('apto-l', 'Apartamento tipo L')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON PINHEIROS, pelo book (76 paginas, setembro/2025). Status "Lancamento" pelo card
+        // do site; endereco igual no book e no site (177). A ficha do book traz duas areas construidas
+        // (15.584,15 e 15.581,81 m2), entao ficou so o terreno. Sao 15 plantas de studio, todas no book.
+        nome: 'Vitacon Pinheiros',
+        bairro: 'Pinheiros',
+        resumo: 'Studios · 19 a 37 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios na esquina da Rua Heitor Penteado com a Rua Capote Valente, em Pinheiros, a quatro minutos de bicicleta da Estação Sumaré e a seis da Rua Oscar Freire. Torre única de 26 pavimentos com 435 studios e uma loja, da coleção VN: pool deck com raia de 25 metros, sports bar, podcast studio, Working Pro e Fitness Space by Life Fitness. Projeto da Königsberger Vannucchi, a poucos quarteirões do Complexo Hospital das Clínicas.',
+        area: ['Studios: 19 a 37 m²', 'Plantas apresentadas: 15 studios, de 19,44 a 37,52 m²'],
+        tipologia: 'Studios',
+        banheiros: '1 por studio',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['435 studios e 1 loja', 'Terreno de 1.221,81 m²'],
+        pavimentos: ['Subsolo com loja, bike space e pet place', 'Térreo com lobby, lounge, minimarket, Working Pro, laundry, podcast e mezanino da loja', '1º pavimento com pool deck, academia, sports bar, party lounge e CoKitchen', '26 pavimentos tipo'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Heitor Penteado, 177 · Pinheiros, São Paulo',
+        infra: {
+          piscina: 'Pool deck com raia de 25 metros, no 1º pavimento',
+          academia: 'Fitness Space by Life Fitness e Wellness Space',
+          festas: 'Party lounge e sports bar no 1º pavimento',
+          gourmet: 'CoKitchen lounge no 1º pavimento, minimarket com grab & go',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, welcome place, bag keeper, delivery room e acesso de serviço',
+          coworking: 'Working Pro, podcast studio, lounge e living room, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck com raia de 25 metros', 'Sports Bar', 'Party Lounge', 'CoKitchen Lounge', 'Lounge', 'Fitness Space by Life Fitness', 'Wellness Space', 'Working Pro', 'Podcast Studio', 'Minimarket', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Delivery Room', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Welcome Place', 'Bag Keeper', 'Service Access'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Aquecedor central', 'Melhor desempenho acústico', 'Medidor de água individualizado', 'Plantas com terraço técnico', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para máquina de lavar, tomada de 20 A e tomada USB-C', 'Ventilação cruzada nas unidades', 'Gerador para áreas técnicas e elevadores'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Paisagismo', 'Roberto Riscala'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: PI + 'planta-studio-1944.webp', nome: 'Studio de 19,44 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-1968.webp', nome: 'Studio de 19,68 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2007.webp', nome: 'Studio de 20,07 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2013.webp', nome: 'Studio de 20,13 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2328.webp', nome: 'Studio de 23,28 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2386.webp', nome: 'Studio de 23,86 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2633.webp', nome: 'Studio de 26,33 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2651.webp', nome: 'Studio de 26,51 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2765.webp', nome: 'Studio de 27,65 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2806.webp', nome: 'Studio de 28,06 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2836.webp', nome: 'Studio de 28,36 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-2931.webp', nome: 'Studio de 29,31 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-3181.webp', nome: 'Studio de 31,81 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-3293.webp', nome: 'Studio de 32,93 m²', meta: 'Com a posição na torre' },
+          { src: PI + 'planta-studio-3752.webp', nome: 'Studio de 37,52 m²', meta: 'Com a posição na torre' }
+        ],
+        implantacao: [
+          { src: PI + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, lobby concierge, bag keeper, lounge, minimarket e grab & go, Working Pro, delivery room, laundry share, living room, podcast studio e mezanino da loja; subsolo com loja, bike space e pet place' },
+          { src: PI + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Pool deck com raia de 25 metros, Fitness Space, sports bar, party lounge e CoKitchen lounge' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Sumaré', '4 min'], ['Estação Vila Madalena', '5 min'], ['Estação Oscar Freire', '6 min'], ['Avenida Sumaré', '6 min'], ['Avenida Rebouças', '7 min'], ['Avenida Paulista', '8 min']]],
+            ['Lazer e compras', [['Clube Pinheiros', '4 min'], ['Rua Oscar Freire', '6 min'], ['Bodytech', '8 min'], ['Praça Charles Miller', '8 min'], ['Estádio do Pacaembu', '10 min'], ['Shopping Eldorado', '10 min'], ['Parque Villa-Lobos', '10 min'], ['Parque do Povo', '16 min'], ['Shopping Iguatemi', '20 min']]],
+            ['Gastronomia', [['Le Repas Ligia', '3 min'], ['Modern Mamma Osteria', '5 min'], ['La Nonna Di Luca', '5 min'], ['Tartuferia San Paolo', '6 min'], ['Nou Ligia', '7 min'], ['The Butcher', '7 min'], ['Filó', '7 min'], ['Bangalô Bar', '8 min'], ['Delirium Café', '8 min'], ['Empório Fernandes', '9 min'], ['Vaca Veia', '11 min'], ['Pato Rei', '12 min']]],
+            ['Ensino', [['USP', '5 min'], ['FAAP', '10 min'], ['UNIP', '11 min']]],
+            ['Saúde', [['Instituto de Infectologia Emílio Ribas', '6 min de carro'], ['Hospital Infantil Sabará', '7 min de carro'], ['Incor', '7 min de carro'], ['Hospital das Clínicas', '8 min de carro'], ['Einstein Perdizes', '10 min de carro'], ['Hospital Nove de Julho', '14 min de carro'], ['Hospital Sírio-Libanês', '15 min de carro'], ['Hospital São Camilo', '16 min de carro']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica de carro.'
+        },
+        legal: 'Incorporação imobiliária registrada em 04/09/2025 sob nº 03 na matrícula nº 116.975 do 13º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 49120-24-SP-ALV. O projeto reúne unidades R2V, sem restrição, 110 unidades HIS-2 e 40 unidades HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo, com locação limitada a 30% da renda e vedada a curta temporada. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon de setembro de 2025 e site da Vitacon.',
+        torre: PI + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PINHEIROS,
+        fotos: [
+          fotoPI('acesso', 'Acesso'),
+          fotoPI('fachada', 'Fachada', true),
+          fotoPI('lobby-1', 'Lobby concierge'),
+          fotoPI('lobby-2', 'Lobby concierge'),
+          fotoPI('lounge-1', 'Lounge'),
+          fotoPI('lounge-2', 'Lounge'),
+          fotoPI('decorado-1', 'Studio decorado pela Housi'),
+          fotoPI('decorado-2', 'Studio decorado pela Housi'),
+          fotoPI('pool-deck', 'Pool deck com raia de 25 metros'),
+          fotoPI('sports-bar', 'Sports bar'),
+          fotoPI('party-lounge', 'Party lounge'),
+          fotoPI('cokitchen', 'CoKitchen lounge'),
+          fotoPI('fitness-1', 'Fitness Space by Life Fitness'),
+          fotoPI('fitness-2', 'Fitness Space by Life Fitness'),
+          fotoPI('working-pro', 'Working Pro'),
+          fotoPI('podcast', 'Podcast studio'),
+          fotoPI('minimarket-1', 'Minimarket'),
+          fotoPI('minimarket-2', 'Minimarket'),
+          fotoPI('laundry', 'Laundry share'),
+          fotoPI('bike-space', 'Bike space'),
+          fotoPI('pet-place', 'Pet place')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON MOURATO COELHO, pelo book (39 paginas duplas, fevereiro/2025). O card do site diz
+        // "Lancamento" com a etiqueta "Ultimas Unidades", e a etiqueta e que entrou, como no Perdizes. Endereco
+        // SEM numero: o book e a localizacao do site dizem 148, a ficha do site diz 128 (regra dela).
+        nome: 'Vitacon Mourato Coelho',
+        bairro: 'Pinheiros',
+        resumo: 'Studios e 1 dormitório · 17 a 95 m²',
+        tipo: 'Apartamento',
+        status: 'Últimas unidades',
+        texto: 'Studios inteligentes e apartamentos de 1 dormitório na Rua Mourato Coelho, em Pinheiros, a três minutos a pé da Estação Fradique Coutinho e perto da Rua dos Pinheiros, do Clube Paulistano e do Beco do Batman. Torre única com 274 unidades, entre elas três lojas, e lazer no térreo, no 2º, no 15º e no 25º pavimento: pool deck com bar, piano & wine bar com terraço, game space, connection lounge, Working Pro e podcast studio. Projeto da Gaaz Arquitetos com paisagismo de Marcelo Faisal.',
+        area: ['Studios: 17 a 49 m²', '1 dormitório: 25 a 95 m²', 'Plantas apresentadas: studio de 17,37 m² e 1 dormitório de 51,92 m²'],
+        tipologia: ['Studios', '1 dormitório'],
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['274 unidades: 172 studios, 99 de 1 dormitório e 3 lojas', 'Terreno de 980,50 m², 7.517,86 m² privativos e 10.119,53 m² construídos'],
+        pavimentos: ['Térreo com lojas, lobby, Working Pro, podcast, laundry, minimarket, outdoor patio e pet place', '2º pavimento com Fitness Space, wellness e coffee point', '15º pavimento com CoKitchen, connection lounge, lounge party e party', '25º pavimento com pool deck, bar, game space e piano & wine bar'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Mourato Coelho · Pinheiros, São Paulo',
+        infra: {
+          piscina: 'Pool deck com bar, no 25º pavimento',
+          academia: 'Fitness Space by Life Fitness e Wellness Space, no 2º pavimento',
+          festas: 'Party e lounge party no 15º pavimento, piano & wine bar com terraço no 25º',
+          gourmet: 'CoKitchen lounge no 15º pavimento, coffee point e grab & go no 2º',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, acessos social e de serviço separados, delivery space e bag keeper',
+          coworking: 'Working Pro com sala de reunião, connection lounge, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck', 'Bar', 'Piano & Wine Bar', 'Terraço do Piano & Wine Bar', 'Game Space', 'Party', 'Lounge Party', 'Connection Lounge', 'CoKitchen Lounge', 'Outdoor Patio', 'Fitness Space by Life Fitness', 'Wellness Space', 'Coffee Point', 'Grab & Go', 'Working Pro', 'Sala de reunião', 'Podcast Studio', 'Minimarket Housi', 'Laundry Share', 'Tools Sharing', 'Delivery Space', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Bag Keeper'],
+        diferenciais: ['Aquecimento central para o chuveiro dos banheiros', 'Tomada USB', 'Porta de acesso com fechadura eletrônica', 'Ponto de filtro de água na APA', 'Ponto para cooktop de 2 bocas nos studios e 1 dormitório', 'Possibilidade de 1 ponto de ar-condicionado split por unidade, com ponto no quadro'],
+        creditos: [['Arquitetura', 'Gaaz Arquitetos'], ['Interiores', 'Gaaz Arquitetos e Espaço Novo Arquitetura'], ['Paisagismo', 'Marcelo Faisal']],
+        plantas: [
+          { src: MC + 'planta-studio-1737.webp', nome: 'Studio inteligente de 17,37 m²', meta: 'Studio' },
+          { src: MC + 'planta-1dorm-5192.webp', nome: '1 dormitório de 51,92 m²', meta: '1 dormitório' }
+        ],
+        implantacao: [
+          { src: MC + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos social e de serviço, lobby concierge, bag keeper, delivery space, bike space, tools sharing, laundry share, Working Pro, sala de reunião, podcast studio, outdoor patio, pet place e minimarket Housi' },
+          { src: MC + 'implantacao-2pav.webp', nome: '2º pavimento', meta: 'Fitness Space by Life Fitness, wellness space, coffee point e grab & go' },
+          { src: MC + 'implantacao-15pav.webp', nome: '15º pavimento', meta: 'CoKitchen lounge, connection lounge, lounge party e party' },
+          { src: MC + 'implantacao-25pav.webp', nome: '25º pavimento', meta: 'Pool deck, bar, game space e piano & wine bar com terraço' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Fradique Coutinho', '3 min a pé'], ['Estação Faria Lima', ''], ['Estação Pinheiros', ''], ['Avenida Faria Lima', ''], ['Marginal Pinheiros', '']]],
+            ['Lazer e compras', [['Rua dos Pinheiros', ''], ['Club Athletico Paulistano', ''], ['Beco do Batman', ''], ['Shopping Eldorado', ''], ['Mercado Municipal de Pinheiros', '']]],
+            ['Gastronomia', [['Restaurante Olea', ''], ['Restaurante Gael', '']]],
+            ['Saúde e ensino', [['Hospital Infantil Sabará, nova unidade', '11 min a pé'], ['Complexo Hospital das Clínicas da USP', ''], ['Ibmec', '']]]
+          ],
+          nota: 'Pontos do mapa do material da Vitacon; os tempos são a pé.'
+        },
+        legal: 'Incorporação registrada em 22/01/2025 sob R.2 na matrícula nº 175.872 do 10º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 35463-23-SP-ALV. No empreendimento existirão unidades HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material da Vitacon de fevereiro de 2025 e site da Vitacon.',
+        torre: MC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PINHEIROS,
+        fotos: [
+          fotoMC('acesso', 'Acesso'),
+          fotoMC('fachada', 'Fachada', true),
+          fotoMC('lobby', 'Lobby concierge'),
+          fotoMC('studio-1737', 'Studio inteligente de 17,37 m²'),
+          fotoMC('apto-5192', '1 dormitório de 51,92 m²'),
+          fotoMC('pool-deck', 'Pool deck'),
+          fotoMC('piano-wine-bar', 'Piano & wine bar'),
+          fotoMC('terraco-wine-bar', 'Terraço do piano & wine bar'),
+          fotoMC('game-space', 'Game space'),
+          fotoMC('party', 'Party'),
+          fotoMC('lounge-party', 'Lounge party'),
+          fotoMC('connection-lounge', 'Connection lounge'),
+          fotoMC('cokitchen', 'CoKitchen lounge'),
+          fotoMC('fitness', 'Fitness Space by Life Fitness'),
+          fotoMC('wellness', 'Wellness Space'),
+          fotoMC('working-pro', 'Working Pro'),
+          fotoMC('podcast', 'Podcast studio'),
+          fotoMC('outdoor-patio', 'Outdoor patio'),
+          fotoMC('minimarket', 'Minimarket Housi'),
+          fotoMC('laundry', 'Laundry share'),
+          fotoMC('delivery', 'Delivery space'),
+          fotoMC('bike-space', 'Bike space'),
+          fotoMC('tools-sharing', 'Tools sharing', true),
+          fotoMC('pet-place', 'Pet place')
         ]
       },
       {
