@@ -108,7 +108,7 @@
   .topo.encolhido .marca img { height: 32px; }
   .marca-nome { font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.3em; text-transform: uppercase; white-space: nowrap; }
   .topo-direita { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
-  .voltar { display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.4s var(--curva); }
+  .voltar { display: flex; align-items: center; gap: 10px; min-height: 36px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.4s var(--curva); }   /* min-height: alvo de toque no celular (a seta sozinha tinha 10px) */
   .voltar:hover { opacity: 1; }
   .voltar svg { color: var(--champagne); }
 
@@ -180,6 +180,8 @@
   .cidade-nome { display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(18px, 3vh, 28px); padding-bottom: 14px; border-bottom: 1px solid var(--linha-leve); }
   .cidade-nome h3 { font-size: clamp(24px, 2.4vw, 34px); font-weight: 300; }
   .cidade-nome span { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
+  /* (09/11/2026) o texto curto sobre a cidade, entre o nome e as construtoras */
+  .cidade-texto { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.45; color: var(--texto-medio); max-width: 68ch; margin: -4px 0 clamp(22px, 3.4vh, 34px); }
   .lista { list-style: none; columns: 3; column-gap: clamp(30px, 4vw, 70px); }
   .lista li { break-inside: avoid; }
   .nome { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; width: 100%; padding: 13px 0; border-bottom: 1px solid var(--linha-leve); text-align: left; font-family: var(--serif); font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; line-height: 1.2; transition: color 0.4s var(--curva), padding-left 0.6s var(--curva); }
@@ -236,7 +238,7 @@
   .empreendimento-nome { font-family: var(--serif); font-size: clamp(17px, 1.3vw, 20px); line-height: 1.12; transition: color 0.4s var(--curva); }
   .empreendimento[aria-pressed="true"] .empreendimento-nome, .empreendimento:hover .empreendimento-nome { color: var(--champagne); }
   .empreendimento-meta { font-size: 12px; letter-spacing: 0.03em; color: var(--texto-medio); }
-  .empreendimento-entrega { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--texto-fraco); }
+  .empreendimento-entrega { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--texto-fraco); }
   /* parceira so com os nomes, sem fotos ainda (06/11/2026, Vitacon): cartoes de texto, sem a caixa da foto */
   .empreendimentos.sem-fotos { border-top: 1px solid var(--linha-escura); }
   .empreendimentos.sem-fotos .empreendimento { padding: 15px 0 14px; height: 100%; }
@@ -357,10 +359,12 @@
      Empreendimento completo: galeria e descricao fixas; embaixo, ABAS (ficha, lazer, plantas, por
      perto, documentacao), uma secao por vez. A ficha virou grade de 4 valores curtos por linha,
      com o detalhe longo em letra pequena; pavimentos, endereco e projeto em tres colunas abaixo. */
-  .aberto-corpo.com-abas { grid-template-columns: 1fr; gap: 0; }
+  .aberto-corpo.com-abas { grid-template-columns: minmax(0, 1fr); gap: 0; }   /* minmax(0, ...): a fileira de abas, que nao quebra linha, nao pode esticar a coluna */
   .com-abas .aberto-texto { max-width: 74ch; margin-bottom: 6px; }
-  .abas { display: flex; flex-wrap: wrap; gap: 0 30px; margin-top: 22px; border-bottom: 1px solid var(--linha-escura); }
+  .abas-caixa { position: relative; margin-top: 22px; min-width: 0; }
+  .abas { display: flex; flex-wrap: wrap; gap: 0 30px; border-bottom: 1px solid var(--linha-escura); }
   .abas button { position: relative; padding: 14px 0 13px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; transition: color 0.4s var(--curva); }
+  .abas .curto { display: none; }   /* o rotulo curto da aba so aparece no celular */
   .abas button::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: transparent; transition: background 0.4s var(--curva); }
   .abas button:hover { color: var(--texto); }
   .abas button[aria-selected="true"] { color: var(--texto); }
@@ -429,12 +433,13 @@
     .escolha-onde { grid-column: 2; white-space: normal; }
     .lista { columns: 1; }
     /* no celular a faixa leva 2 por vez, com setas menores nas pontas (e desliza com o dedo) */
-    .faixa { grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 6px; }
-    .faixa-seta { width: 28px; height: 28px; }
-    .faixa-seta svg { width: 13px; height: 8px; }
+    .faixa { grid-template-columns: 34px minmax(0, 1fr) 34px; gap: 6px; margin-bottom: 18px; }
+    .faixa-seta { width: 34px; height: 34px; }
+    .faixa-seta svg { width: 14px; height: 9px; }
     .empreendimentos { --vao: 10px; grid-auto-columns: calc((100% - var(--vao)) / 2); }
     .empreendimento-nome { font-size: 16px; }
     .empreendimento-meta { font-size: 11.5px; }
+    .empreendimento-entrega { font-size: 11px; }
     /* so com os nomes: a faixa leva dois por coluna, para os 16 nao virarem 16 telas de deslize */
     .empreendimentos.sem-fotos { grid-template-rows: repeat(2, auto); gap: 0 16px; border-top: 0; }
     .galeria-slide figcaption, .galeria-conta { bottom: 12px; }
@@ -445,12 +450,24 @@
     .vitrine-logo { width: min(56%, 200px); }
     .infra div { grid-template-columns: 1fr; }
     .ficha.larga dd { font-size: 18px; }
-    /* as abas rolam de lado numa linha so; a ficha em 2 colunas; pavimentos, endereco e projeto empilhados */
-    .abas { flex-wrap: nowrap; gap: 0 22px; overflow-x: auto; scrollbar-width: none; margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); padding: 0 var(--margem); }
+    /* as abas rolam de lado numa linha so, com rotulo curto e um esmaecido a direita avisando que ha mais;
+       a aba ativa e levada a vista pelo script. Ficha em 2 colunas; pavimentos, endereco e projeto empilhados */
+    .abas-caixa { margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); }
+    .abas-caixa::after { content: ''; position: absolute; top: 0; right: 0; bottom: 1px; width: 44px; pointer-events: none; background: linear-gradient(to right, rgba(245, 242, 236, 0), var(--marfim)); }
+    .abas { flex-wrap: nowrap; gap: 0 24px; overflow-x: auto; scrollbar-width: none; padding: 0 44px 0 var(--margem); scroll-padding-left: var(--margem); }
     .abas::-webkit-scrollbar { display: none; }
+    .abas button { font-size: 11px; letter-spacing: 0.16em; padding: 15px 0 13px; }
+    .abas .longo { display: none; }
+    .abas .curto { display: inline; }
     .ficha.compacta { grid-template-columns: 1fr 1fr; gap: 20px 18px; }
     .ficha.compacta dd b { font-size: 18px; }
     .ficha-mais { grid-template-columns: 1fr; }
+    .ficha dt, .infra dt, .creditos dt, .perto h4 { font-size: 11px; }   /* rotulos em caixa alta: 10px fica miudo no celular */
+    /* planta e implantacao no celular: o quadro segue a proporcao da imagem (a implantacao larga ficava
+       pequena num quadro 16:10, com branco em cima e embaixo) */
+    .planta-quadro { aspect-ratio: auto; padding: 10px; }
+    .planta-quadro img { height: auto; }
+    .planta-nome { font-size: 19px; }
   }
   @media (max-width: 600px) {
     .voltar span { display: none; }   /* so a seta: o botao de consultor precisa caber numa linha */
@@ -524,26 +541,29 @@
      Parana ela listou tres cidades e uma lista so de construtoras. No exterior
      ela deu os lugares (Florida, Portugal, Dubai); as parceiras de la entram
      quando ela mandar (cidade com `construtoras: []` mostra "a anunciar"). */
+  // (09/11/2026) `texto` = o paragrafo curto sobre a cidade que aparece acima das construtoras (pedido dela:
+  // "quando abrisse as cidades, junto com as construtoras, acima aparecesse um textinho sobre a cidade").
+  // Textos meus, a confirmar com ela; so Sao Paulo aparece hoje (as outras cidades estao "em breve").
   var BRASIL = [
     { uf: 'RS', nome: 'Rio Grande do Sul', foto: 'fotos/lugares/rs.webp', cidades: [
-      { nome: 'Porto Alegre', construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
+      { nome: 'Porto Alegre', texto: 'Capital do Rio Grande do Sul, às margens do Guaíba, Porto Alegre combina bairros tradicionais, como Moinhos de Vento e Bela Vista, com uma orla revitalizada e novos polos de moradia e serviços.', construtoras: ['Melnick', 'Cyrela', 'ABF Developments', 'Uma Incorporadora', 'Ivo Rizzo Incorporadora', 'Wikihaus', 'Roque Chies Empreendimentos', 'Pavei Empreendimentos', 'CFL'] }
     ] },
     { uf: 'SC', nome: 'Santa Catarina', foto: 'fotos/lugares/sc.webp', cidades: [
-      { nome: 'Florianópolis', construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
-      { nome: 'Balneário Camboriú', construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
-      { nome: 'Praia Brava', construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
+      { nome: 'Florianópolis', texto: 'Entre a Lagoa da Conceição, o Centro e as praias do norte da Ilha, Florianópolis une qualidade de vida, um polo de tecnologia em expansão e alta procura por moradia e investimento.', construtoras: ['CFL', 'Grupo Dimas', 'Hantei Engenharia', 'WOA Empreendimentos', 'KDS Residenciais Boutique', 'Grupo Lumis', 'Formacco', 'WKoerich', 'Magno Realty', 'Milano Incorporadora'] },
+      { nome: 'Balneário Camboriú', texto: 'Conhecida pelos edifícios mais altos do país e pela orla alargada da Praia Central, Balneário Camboriú é um dos mercados de alto padrão mais valorizados do Brasil.', construtoras: ['FG Empreendimentos', 'Embraed', 'Pasqualotto & GT', 'Procave', 'Silva Packer'] },
+      { nome: 'Praia Brava', texto: 'Entre Itajaí e Balneário Camboriú, a Praia Brava reúne lançamentos de frente para o mar, boa gastronomia e um perfil de moradia e veraneio de alto padrão.', construtoras: ['Brava Beach Group', 'CN Empreendimentos', 'Dall Empreendimentos', 'Alumbra Empreendimentos Design', 'Max Realiza', 'CEG Empreendimentos'] }
     ] },
     { uf: 'PR', nome: 'Paraná', foto: 'fotos/lugares/pr.webp', cidades: [
-      { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
+      { nome: 'Curitiba, Maringá e Londrina', curta: 'Curitiba · Maringá · Londrina', lista: ['Curitiba', 'Maringá', 'Londrina'], quantas: 3, texto: 'Três polos do Paraná: Curitiba, referência em planejamento urbano e qualidade de vida; Maringá e Londrina, no norte do estado, com agronegócio forte, universidades e mercado imobiliário aquecido.', construtoras: ['Plaenge', 'AG7 Realty', 'GT Building', 'Laguna', 'Bidese Construtora', 'Hype Empreendimentos', 'Piemonte', 'Monarca Empreendimentos', 'A. Yoshii Engenharia', 'Construtora JL', 'Paysage Corpal', 'Pride Construtora'] }
     ] },
     { uf: 'SP', nome: 'São Paulo', foto: 'fotos/lugares/sp.webp', cidades: [
-      { nome: 'São Paulo, capital', curta: 'São Paulo', construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
+      { nome: 'São Paulo, capital', curta: 'São Paulo', texto: 'A maior cidade da América do Sul e o principal centro financeiro do país. Bairros como Pinheiros, Jardins, Vila Olímpia, Perdizes e Vila Mariana concentram lançamentos compactos, perto do metrô, de hospitais e de universidades, com alta demanda de moradia e de locação.', construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
     ] },
     { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/lugares/rj.webp', cidades: [
-      { nome: 'Rio de Janeiro', construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
+      { nome: 'Rio de Janeiro', texto: 'Da Zona Sul à Barra da Tijuca, o Rio de Janeiro combina paisagem, orla e bairros consolidados, como Leblon, Ipanema e Botafogo, com novos eixos de desenvolvimento, como o Porto Maravilha.', construtoras: ['Cury', 'Cyrela', 'MRV', 'Tegra', 'Carvalho Hosken', 'SIG Engenharia', 'Mosak', 'Origem Incorporadora', 'RJDI'] }
     ] },
     { uf: 'GO', nome: 'Goiás', foto: 'fotos/lugares/go.webp', cidades: [
-      { nome: 'Goiânia', construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
+      { nome: 'Goiânia', texto: 'Capital de Goiás, planejada e arborizada, Goiânia tem um dos mercados imobiliários mais ativos do Centro-Oeste, com alto padrão nos setores Marista, Bueno e Oeste.', construtoras: ['Opus Incorporadora', 'Consciente Construtora e Incorporadora', 'City Soluções Urbanas', 'Brasal Incorporações', 'O.M Incorporadora', 'Ávolli', 'EBM Desenvolvimento Imobiliário', 'CMO Construtora', 'Terral Incorporadora', 'Sousa Andrade', 'FGR Incorporações', 'Flamboyant Urbanismo', 'GPL Incorporadora', 'Dinâmica Incorporadora', 'FR Incorporadora', 'WV Maldi'] }
     ] }
   ];
   var PAISES = [
@@ -2089,6 +2109,8 @@
         var ps = parceriasDe(c);
         return '<div class="cidade">'
           + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>' + (ps.length ? plural(ps.length, 'parceria', 'parcerias') : 'em breve') + '</span></div>'
+          // (09/11/2026) o texto curto sobre a cidade, acima das construtoras
+          + (c.texto && ps.length ? '<p class="cidade-texto">' + esc(c.texto) + '</p>' : '')
           + (!ps.length
             ? '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>'
             // com NO_AR, cada parceria no ar e um cartao com a logo para clicar; sem NO_AR, a lista de nomes em texto
@@ -2268,18 +2290,21 @@
       // comuns e os itens das unidades. Plantas: plantas e implantacoes. Por perto: perto e regiao.
       // Documentacao: a nota legal. A aba escolhida fica guardada em `abaAtual` ao trocar de empreendimento.
       var painel = function (nome, miolo) { return '<section class="aba" data-aba="' + nome + '" role="tabpanel" hidden>' + miolo + '</section>'; };
+      // [chave, rotulo, miolo, rotulo curto para o celular]
       var lista = [
         ['ficha', 'Ficha', fichaCompacta(em)
           + '<div class="ficha-mais">'
           +   (em.pavimentos ? bloco('Pavimentos', '<ul class="pavimentos">' + (Array.isArray(em.pavimentos) ? em.pavimentos : [em.pavimentos]).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>') : '')
           +   local + projeto
           + '</div>'],
-        ['lazer', 'Lazer e infraestrutura', '<div class="aberto-duas"><div>' + bloco('Lazer e infraestrutura', infra(em)) + '</div><div>' + (tags ? bloco('Todas as áreas comuns', tags) : '') + (difs ? bloco('Nas unidades', difs) : '') + '</div></div>'],
+        ['lazer', 'Lazer e infraestrutura', '<div class="aberto-duas"><div>' + bloco('Lazer e infraestrutura', infra(em)) + '</div><div>' + (tags ? bloco('Todas as áreas comuns', tags) : '') + (difs ? bloco('Nas unidades', difs) : '') + '</div></div>', 'Lazer'],
         ['plantas', 'Plantas', '<div class="aba-largo">' + bloco('Plantas disponíveis', plantas(em, 'plantas')) + (em.implantacao && em.implantacao.length ? bloco('Implantação das áreas comuns', plantas(em, 'implantacao')) : '') + '</div>'],
         em.perto || em.regiao ? ['perto', 'Por perto', '<div class="aba-largo">' + (em.perto ? perto(em.perto) : '') + (em.regiao ? regiao(em.regiao) : '') + '</div>'] : null,
-        em.legal ? ['docs', 'Documentação', '<p class="aberto-legal">' + esc(em.legal) + '</p>'] : null
+        em.legal ? ['docs', 'Documentação', '<p class="aberto-legal">' + esc(em.legal) + '</p>', 'Documentos'] : null
       ].filter(Boolean);
-      abas = '<div class="abas" role="tablist">' + lista.map(function (x) { return '<button type="button" role="tab" data-aba="' + x[0] + '" aria-selected="false">' + x[1] + '</button>'; }).join('') + '</div>'
+      abas = '<div class="abas-caixa"><div class="abas" role="tablist">' + lista.map(function (x) {
+          return '<button type="button" role="tab" data-aba="' + x[0] + '" aria-selected="false">' + (x[3] ? '<span class="longo">' + x[1] + '</span><span class="curto">' + x[3] + '</span>' : x[1]) + '</button>';
+        }).join('') + '</div></div>'
         + lista.map(function (x) { return painel(x[0], x[2]); }).join('');
       lado = '';
     } else {
@@ -2421,6 +2446,12 @@
     abaAtual = existe ? nome : 'ficha';
     botoes.forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-aba') === abaAtual ? 'true' : 'false'); });
     document.querySelectorAll('#aberto .aba[data-aba]').forEach(function (s) { s.hidden = s.getAttribute('data-aba') !== abaAtual; });
+    // no celular a fileira de abas rola de lado: a ativa vem para a vista (sem mexer na rolagem da pagina)
+    var ativo = document.querySelector('#aberto .abas button[aria-selected="true"]'), fila = ativo && ativo.parentElement;
+    if (fila && fila.scrollWidth > fila.clientWidth + 2) {
+      var alvo = ativo.offsetLeft - 24, fim = fila.scrollWidth - fila.clientWidth;
+      fila.scrollTo({ left: Math.max(0, Math.min(alvo, fim)), behavior: suave() });
+    }
     // as plantas e implantacoes so carregam quando a aba delas abre (loading="lazy" nao dispara escondido)
     if (abaAtual === 'plantas') document.querySelectorAll('#aberto .aba[data-aba="plantas"] img[loading]').forEach(function (i) { i.removeAttribute('loading'); });
   }
