@@ -560,13 +560,17 @@
      na torre, 3 de implantacao, regiao propria (JARDINS), `perto`, `legal`.
      O VILA NOVA CONCEICAO entrou em 07/11/2026 como SEXTO, so com a ficha tecnica de 4
      paginas e os dados publicos do site (ver o comentario no proprio item).
+     Em 09/11/2026 entraram TRES de uma vez, pelos books: VITACON PERDIZES (ultimas
+     unidades), VITACON ALAMEDA FRANCA e H BELA CINTRA BY VITACON (lancamentos), em
+     `fotos/parcerias/vitacon/perdizes/`, `alamedafranca/` e `belacintra/`. Ordem na
+     pagina: Cardoso, Joao Ramalho, VA38, Jardins, Perdizes, Alameda Franca, H Bela
+     Cintra, Vila Nova Conceicao, VA284.
      O CARDOSO DE ALMEIDA foi completado depois com o Book Cliente dele (agosto/2026): 25
      imagens em `fotos/parcerias/vitacon/cardoso/` (com miniaturas em `mini/`), 4 plantas,
      3 plantas de implantacao (`implantacao`), o que fica por perto (`perto`) e a nota legal
      (`legal`: venda so apos o registro da incorporacao; unidades R2V, HIS-2 e HMP).
      Os outros nomes da lista dela sairam ate o material de cada um chegar ("saem por
-     enquanto"): Vitacon Perdizes (Perdizes); Alameda
-     Franca e H Bela Cintra by Vitacon (Jardins); Joao Moura,
+     enquanto"): Joao Moura,
      Pinheiros e Mourato Coelho (Pinheiros); Domingos de Morais (Vila Mariana); Vila
      Olimpia; Alto de Pinheiros; Maestro Cardim (Paraiso). */
   var V = 'fotos/parcerias/vitacon/';
@@ -584,6 +588,10 @@
   function fotoJ(nome, legenda, emPe) { return { src: J + nome + '.webp', mini: J + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }
   // e para o Vila Nova Conceicao (ficha tecnica de 4 paginas, "material de uso interno"; ela autorizou a fachada)
   var VN = V + 'vilanova/';
+  // (09/11/2026) e para os tres books que vieram juntos: Perdizes, Alameda Franca e H Bela Cintra
+  var P = V + 'perdizes/', AF = V + 'alamedafranca/', B = V + 'belacintra/';
+  function fotoEm(pasta) { return function (nome, legenda, emPe) { return { src: pasta + nome + '.webp', mini: pasta + 'mini/' + nome + '.webp', legenda: legenda, emPe: !!emPe }; }; }
+  var fotoP = fotoEm(P), fotoAF = fotoEm(AF), fotoB = fotoEm(B);
   var JARDINS = {
     titulo: 'A região · Jardins',
     texto: 'Entre a Rua Oscar Freire e a Alameda Lorena, no Jardins, um dos endereços mais desejados do país: a Rua Augusta em transformação, com fácil acesso à Avenida Paulista e às estações Oscar Freire e Consolação do metrô.',
@@ -935,6 +943,245 @@
           fotoJ('health-market', 'Health market'),
           fotoJ('jardins-sensoriais', 'Jardins sensoriais'),
           fotoJ('pet-place', 'Pet place')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON PERDIZES, pelo Book Cliente (Colecao Vitacon 2025, 40 paginas duplas). Status
+        // "Ultimas unidades" pelo card do site. Endereco SEM numero: o mapa do book diz Padre Chico 175, o
+        // site diz 183 (mesma regra que ela deu para o Vila Nova Conceicao). Arena: o book diz Allianz
+        // Parque; no site ficou Nubank Parque, o nome atual, como nos outros de Perdizes.
+        nome: 'Vitacon Perdizes',
+        bairro: 'Perdizes',
+        resumo: 'Studios · 18 a 60 m²',
+        tipo: 'Apartamento',
+        status: 'Últimas unidades',
+        texto: 'Studios inteligentes na Rua Padre Chico, em Perdizes, a cinco minutos a pé do Nubank Parque, o antigo Allianz Parque. Torre única com 372 unidades e quatro lojas, da Coleção Vitacon 2025: lazer no térreo, no 1º e no 23º pavimento, com pool deck e pool bar, sports bar, spa e gourmet lounge na cobertura. Gestão de locação pela Housi para quem compra para investir.',
+        area: ['Studios: 18,46 a 59,65 m²', 'Plantas apresentadas: 24,33 e 30,67 m², e studio de pé-direito duplo de 32,02 m²'],
+        tipologia: 'Studios',
+        banheiros: '1 por studio',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['372 studios e 4 lojas', 'Terreno de 1.234 m², 11.162,64 m² privativos e 14.264,63 m² construídos'],
+        pavimentos: ['Térreo com lojas, lobby e lazer', '1º pavimento com academia, laundry e mezaninos das lojas', '23º pavimento com pool deck, spa e lazer'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Padre Chico · Perdizes, São Paulo',
+        infra: {
+          piscina: 'Pool deck com deck molhado e pool bar, no 23º pavimento',
+          academia: 'Fitness Space by Life Fitness, e spa na cobertura',
+          festas: 'Gourmet Lounge & Party com terraço coberto, e sports bar',
+          gourmet: 'CoKitchen lounge com ilha gourmet e barbecue com churrasqueira elétrica',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge, acessos social e de serviço separados e delivery room',
+          coworking: 'Working Pro com sala de reunião, podcast studio, laundry share e tools sharing'
+        },
+        lazer: ['Pool Deck', 'Pool Bar', 'Spa', 'Sports Bar', 'Gourmet Lounge & Party', 'CoKitchen Lounge', 'Barbecue', 'Fire Place', 'Outdoor Patio', 'Fitness Space by Life Fitness', 'Game Space', 'Lounge', 'Working Pro', 'Sala de reunião', 'Podcast Studio', 'Minimarket', 'Laundry Share', 'Tools Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Delivery Room', 'Bag Keeper', 'Service Access', 'Social Access'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Aquecimento central, sem aquecedor em cada unidade', 'Plantas com terraço técnico para a condensadora', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para lava-louças', 'Studios de pé-direito duplo, com mezanino a instalar pelo proprietário'],
+        creditos: [['Arquitetura', 'Jonas Birger Arquitetos'], ['Paisagismo', 'Roberto Riscala Paisagismo'], ['Interiores', 'Gaaz e Espaço Novo']],
+        plantas: [
+          { src: P + 'planta-studio-2433.webp', nome: 'Studio de 24,33 m²', meta: 'Studio inteligente' },
+          { src: P + 'planta-studio-3067.webp', nome: 'Studio de 30,67 m²', meta: 'Studio inteligente' }
+        ],
+        implantacao: [
+          { src: P + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lojas, lobby, minimarket, reunião, podcast, Working Pro, game space, barbecue, pet place e fire place' },
+          { src: P + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Fitness Space, laundry share e mezaninos das lojas' },
+          { src: P + 'implantacao-23pav.webp', nome: '23º pavimento', meta: 'Sports bar, gourmet lounge, CoKitchen, pool bar, pool deck e spa' }
+        ],
+        perto: {
+          grupos: [
+            ['Lazer', [['Nubank Parque', '5 min a pé'], ['Shopping Bourbon', ''], ['Casa das Caldeiras', ''], ['SESC Pompeia', ''], ['Parque da Água Branca', ''], ['Memorial da América Latina', '']]],
+            ['Mobilidade', [['Avenida Pompeia', ''], ['Rua Venâncio Aires', ''], ['Avenida Antártica', ''], ['Avenida Sumaré', ''], ['Futura estação SESC Pompeia, Linha 6-Laranja', ''], ['Futura estação Perdizes, Linha 6-Laranja', ''], ['Terminal Barra Funda', '']]],
+            ['Educação', [['Faculdade Santa Marcelina', ''], ['PUC-SP', '']]],
+            ['Saúde', [['Hospital Albert Einstein', ''], ['Hospital São Camilo', '']]]
+          ],
+          nota: 'Pontos do mapa do material da Vitacon; o tempo até a arena é a pé, pelo Google Maps.'
+        },
+        legal: 'Incorporação imobiliária registrada em 02/05/2025 sob R.3, com patrimônio de afetação, na matrícula nº 145.784 do 2º Oficial de Registro de Imóveis de São Paulo. O projeto reúne unidades R2V, sem restrição de destinação, e unidades HIS-2 e HMP, destinadas por dez anos a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo; na compra para investimento ou locação, a destinação deve observar o público elegível. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material e site da Vitacon.',
+        torre: P + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: PERDIZES,
+        fotos: [
+          fotoP('acesso', 'Acesso'),
+          fotoP('fachada', 'Fachada', true),
+          fotoP('acesso-lobby', 'Lobby, pelo acesso'),
+          fotoP('lobby', 'Lobby concierge'),
+          fotoP('studio-2433', 'Studio de 24,33 m²'),
+          fotoP('studio-3067', 'Studio de 30,67 m²'),
+          fotoP('studio-3067-b', 'Studio de 30,67 m²'),
+          fotoP('studio-duplo', 'Studio de pé-direito duplo'),
+          fotoP('pool-deck', 'Pool deck'),
+          fotoP('sports-bar', 'Sports bar'),
+          fotoP('gourmet-lounge-1', 'Gourmet Lounge & Party'),
+          fotoP('gourmet-lounge-2', 'Gourmet Lounge & Party', true),
+          fotoP('cokitchen', 'CoKitchen lounge'),
+          fotoP('barbecue', 'Barbecue'),
+          fotoP('fire-place', 'Fire place'),
+          fotoP('fitness', 'Fitness Space by Life Fitness', true),
+          fotoP('game-space', 'Game space'),
+          fotoP('working-pro-1', 'Working Pro'),
+          fotoP('working-pro-2', 'Working Pro, sala de reunião'),
+          fotoP('working-pro-3', 'Working Pro, lounge'),
+          fotoP('minimarket', 'Minimarket'),
+          fotoP('laundry', 'Laundry share'),
+          fotoP('bike-space', 'Bike space'),
+          fotoP('pet-place', 'Pet place')
+        ]
+      },
+      {
+        // (09/11/2026) VITACON ALAMEDA FRANCA, pelo Book do Cliente (72 paginas). Status "Lancamento" pelo card
+        // do site; endereco igual no book e no site (253); incorporacao registrada em 08/10/2026 (site).
+        nome: 'Vitacon Alameda Franca',
+        bairro: 'Jardins',
+        resumo: 'Studios a 2 dormitórios · 20 a 65 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Em um dos últimos terrenos da Alameda Franca, no Jardins, a um minuto a pé da Avenida Nove de Julho e a cinco de bicicleta da Paulista: studios e apartamentos de 1 e 2 dormitórios em torre única de 26 pavimentos, com 182 unidades e uma loja. Lazer no subsolo, no térreo e no 13º pavimento, com pool deck, barbecue, party lounge e Working Pro. Fica ao lado da Afya Educação Médica, unidade Jardins.',
+        area: ['Studios, 1 e 2 dormitórios: 19,90 a 64,78 m²', 'Plantas apresentadas: studios de 19,90, 24,59 e 32,85 m² e 1 dormitório de 27,17, 28,18 e 36,45 m²'],
+        tipologia: ['Studios', '1 dormitório', '2 dormitórios'],
+        banheiros: '1 por unidade, nas plantas apresentadas',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: '182 residenciais e 1 loja',
+        pavimentos: ['Subsolo com pet place, fire place e bike space', 'Térreo com loja, lobby, Working Pro, meeting room, podcast e academia', '26 pavimentos, com lazer no 13º', 'Ático'],
+        valores: 'Sob consulta',
+        endereco: 'Alameda Franca, 253 · Jardins, São Paulo',
+        infra: {
+          piscina: 'Pool deck no 13º pavimento',
+          academia: 'Fitness Space by Life Fitness, no térreo',
+          festas: 'Gourmet & Party Lounge no 13º pavimento',
+          gourmet: 'CoKitchen lounge e barbecue no 13º pavimento, coffee point e grab & go',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge com controle e segurança 24 horas, city concierge para eventos e lazer, bag keeper e acesso de serviço',
+          coworking: 'Working Pro com meeting room, podcast studio, laundry share em parceria com a OMO e minimarket com AppSpace'
+        },
+        lazer: ['Pool Deck', 'Gourmet & Party Lounge', 'CoKitchen Lounge', 'Barbecue', 'Fire Place', 'Outdoor Patio', 'Fitness Space by Life Fitness', 'Working Pro', 'Meeting Room', 'Podcast Studio', 'Minimarket + AppSpace', 'Coffee Point', 'Grab & Go', 'Laundry Share', 'Tools Sharing', 'Car Sharing', 'Bike Space', 'Pet Place', 'Lobby Concierge', 'Bag Keeper'],
+        diferenciais: ['Fechadura eletrônica na porta de acesso', 'Aquecimento central', 'Melhor desempenho acústico', 'Medidor de água individualizado e previsão de medição individualizada de gás', 'Plantas com terraço técnico para a condensadora', 'Possibilidade de 1 ponto de ar-condicionado por unidade, com dreno e ponto de energia', 'Ponto para lava-louças e tomada de 20 A; tomada USB-C nos 1 dormitório', 'Gerador para áreas técnicas e elevadores'],
+        creditos: [['Arquitetura', 'MCAA'], ['Paisagismo', 'Danni Martins'], ['Interiores', 'R2 e Espaço Novo']],
+        plantas: [
+          { src: AF + 'planta-studio-1990.webp', nome: 'Studio de 19,90 m²', meta: 'Com a posição na torre' },
+          { src: AF + 'planta-studio-2459.webp', nome: 'Studio de 24,59 m²', meta: 'Com a posição na torre' },
+          { src: AF + 'planta-1dorm-2717.webp', nome: '1 dormitório de 27,17 m²', meta: 'Com a posição na torre' },
+          { src: AF + 'planta-1dorm-2818.webp', nome: '1 dormitório de 28,18 m²', meta: 'Com a posição na torre' },
+          { src: AF + 'planta-studio-3285.webp', nome: 'Studio de 32,85 m²', meta: 'Com a posição na torre' },
+          { src: AF + 'planta-1dorm-3645.webp', nome: '1 dormitório de 36,45 m²', meta: 'Com a posição na torre' }
+        ],
+        implantacao: [
+          { src: AF + 'implantacao-subsolo.webp', nome: 'Subsolo', meta: 'Pet place, fire place e bike space' },
+          { src: AF + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Loja, lobby, bag keeper, AppSpace, Working Pro, meeting room, podcast, fitness e outdoor patio' },
+          { src: AF + 'implantacao-13pav.webp', nome: '13º pavimento', meta: 'CoKitchen, party lounge, barbecue, pool deck e laundry share' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Avenida Nove de Julho', '1 min a pé'], ['Estação Trianon-Masp', '5 min'], ['Avenida Paulista', '5 min'], ['Estação Oscar Freire', '10 min'], ['Avenida Rebouças', '10 min'], ['Avenida Brigadeiro Faria Lima', '14 min']]],
+            ['Lazer e compras', [['Rua Oscar Freire', '4 min'], ['Jardim Pamplona Shopping', '6 min a pé'], ['MASP', '7 min'], ['Parque Ibirapuera', '8 min'], ['Shopping Cidade São Paulo', '8 min'], ['Parque Trianon', '8 min'], ['Shops Jardins', '8 min']]],
+            ['Gastronomia', [['Veridiana', '2 min'], ['Lellis Trattoria', '4 min'], ['Ráscal', '7 min'], ['Gula Gula', '7 min'], ['Fogo de Chão', '8 min'], ['A Figueira Rubaiyat', '8 min'], ['Les Présidents', '9 min'], ['Aizomê', '9 min']]],
+            ['Saúde', [['Hospital Sírio-Libanês, Bela Vista', '6 min'], ['HCor', '8 min'], ['Einstein Jardins', '8 min'], ['Pro Matre', '9 min'], ['Hospital Samaritano Paulista', '10 min'], ['Hospital Nove de Julho', '10 min']]],
+            ['Educação', [['Colégio Assunção', '6 min a pé'], ['Colégio Dante Alighieri', '6 min'], ['FIAP Paulista', '8 min'], ['Faculdade Cásper Líbero', '9 min'], ['Faculdade de Medicina da USP', '14 min']]]
+          ],
+          nota: 'Tempos estimados pela Vitacon com o Google Maps: de bicicleta, exceto onde indica a pé.'
+        },
+        legal: 'Incorporação imobiliária registrada em 08/10/2026 sob R.8 na matrícula nº 205.011 do 4º Oficial de Registro de Imóveis de São Paulo; projeto aprovado no processo nº 55111-25-SP-ALV. O projeto reúne unidades R2V, NR, HIS-2 e HMP; as HIS-2 e HMP são destinadas a famílias dentro dos limites de renda definidos pela Prefeitura de São Paulo, com locação limitada e vedada a curta temporada. Imagens meramente ilustrativas e informações preliminares, sujeitas a alteração. Fonte: material e site da Vitacon.',
+        torre: AF + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        fotos: [
+          fotoAF('acesso', 'Acesso'),
+          fotoAF('fachada', 'Fachada', true),
+          fotoAF('lobby-1', 'Lobby concierge'),
+          fotoAF('lobby-2', 'Lobby concierge'),
+          fotoAF('apto-final-01', 'Apartamento, final 1'),
+          fotoAF('apto-final-01-b', 'Apartamento, final 1'),
+          fotoAF('apto-final-04', 'Apartamento, final 4'),
+          fotoAF('apto-final-05', 'Apartamento, final 5'),
+          fotoAF('apto-final-11', 'Apartamento, final 11'),
+          fotoAF('pool-deck', 'Pool deck'),
+          fotoAF('party-lounge', 'Party lounge'),
+          fotoAF('cokitchen', 'CoKitchen lounge'),
+          fotoAF('barbecue', 'Barbecue'),
+          fotoAF('fire-place', 'Fire place'),
+          fotoAF('fitness-1', 'Fitness Space by Life Fitness'),
+          fotoAF('fitness-2', 'Fitness Space by Life Fitness'),
+          fotoAF('working-pro', 'Working Pro e minimarket'),
+          fotoAF('minimarket', 'Minimarket'),
+          fotoAF('podcast', 'Podcast studio'),
+          fotoAF('laundry', 'Laundry share', true),
+          fotoAF('bike-space', 'Bike space')
+        ]
+      },
+      {
+        // (09/11/2026) H BELA CINTRA BY VITACON, pelo Book Cliente (43 paginas duplas, marco/2025). E um predio
+        // existente, o condominio VN Bela Cintra, em modernizacao, operado com servicos de hotelaria pela
+        // Housi; por isso nao ha "incorporacao", e sim instituicao do condominio. Status "Lancamento" pelo site.
+        nome: 'H Bela Cintra by Vitacon',
+        bairro: 'Jardins',
+        resumo: 'Studios e lofts · 25 a 141 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Studios inteligentes e lofts na Rua Bela Cintra, no Jardins, entre a Avenida Paulista e a Rua Oscar Freire. Torre única com 92 unidades e fachada ativa no térreo, operada com serviços de hotelaria pela Housi: recepção em tempo integral, arrumação, city concierge, gourmet market e fresh space, wine meeting room, wellness spa e piscina com serviço de bar. Projeto da Imã Brands.',
+        area: ['Studios inteligentes: 25 a 76 m²', 'Lofts: 52 a 141 m²'],
+        tipologia: ['Studios inteligentes', 'Lofts'],
+        banheiros: 'Sob consulta',
+        vagas: 'Sob consulta',
+        torres: 'Torre única, com fachada ativa no térreo',
+        unidades: ['92 unidades', '3.788,99 m² privativos e 6.732,85 m² construídos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Bela Cintra, 1.425 · Jardins, São Paulo',
+        infra: {
+          piscina: 'Pool com serviço de concierge, espreguiçadeiras e cardápio de drinks e snacks',
+          academia: 'Fitness Space com treinos personalizados, e Wellness Spa com massagens, sauna e hidromassagem',
+          festas: 'Signature Bar com mixologia, e Wine Meeting Room para degustações',
+          gourmet: 'Gourmet Market e Fresh Space, com menu sazonal',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby concierge com recepção em tempo integral, city concierge e guest assistant',
+          coworking: 'Wine Meeting Room para reuniões, podcast studio e Wi-Fi de alta performance'
+        },
+        lazerGrupos: [
+          ['Áreas comuns', ['Pool', 'Wellness Spa', 'Fitness Space', 'Signature Bar', 'Wine Meeting Room', 'Gourmet Market', 'Fresh Space', 'Podcast Studio', 'Outdoor Space', 'Lobby Concierge']],
+          ['Serviços', ['City Concierge', 'Recepção em tempo integral', 'Guest Assistant', 'Daily Housekeeping', 'Custom Guest Service', 'Premier Transfer', 'Premium Laundry com a OMO', 'Gourmet Hub', 'Fitness Partner', 'Reserve App', 'ShareSpace', 'Prime Connect']]
+        ],
+        diferenciais: ['Dream Menu: variedade de travesseiros com consultoria', 'Cofre eletrônico', 'Essence Collection: aromaterapia no quarto', 'Fragrance Lounge: difusores com aroma exclusivo', 'Exclusive Room Care: arrumação com café da manhã no quarto', 'Green Amenities: chá noturno, playlists e massagens agendadas', 'In & Out Service pelo tablet', 'Wellness Hub: luz, cortinas, temperatura e som pelo app'],
+        creditos: [['Projeto', 'Imã Brands']],
+        plantas: [],
+        implantacao: [
+          { src: B + 'implantacao.webp', nome: 'Implantação', meta: 'Acesso, lobby, Signature Bar, Fresh Space, Wine Meeting Room, Gourmet Market, podcast, spa, fitness, pool e Outdoor Space' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estações Paulista e Consolação do metrô', ''], ['Avenida Paulista', ''], ['Rua Oscar Freire', ''], ['Avenida Rebouças', '']]],
+            ['Cultura', [['MASP', ''], ['Itaú Cultural', ''], ['Japan House', ''], ['IMS Paulista', ''], ['Sesc Avenida Paulista', '']]],
+            ['Lazer e compras', [['Parque Trianon', ''], ['Shops Jardins', ''], ['Conjunto Nacional', ''], ['Clube Paulistano', ''], ['Blue Note São Paulo', '']]],
+            ['Saúde', [['Hospital Sírio-Libanês', ''], ['Hospital Nove de Julho', ''], ['Hospital das Clínicas', ''], ['Hospital Santa Catarina', '']]],
+            ['Gastronomia com estrela Michelin', [['D.O.M.', ''], ['Fame Osteria', ''], ['Kuro', ''], ['Murakami', ''], ['Picchi', '']]]
+          ],
+          nota: 'Pontos do mapa do material da Vitacon, com fonte no Google Maps.'
+        },
+        legal: 'O condomínio VN Bela Cintra, H Bela Cintra, está regularmente instituído conforme R.11 da matrícula nº 96.525 do 13º Oficial de Registro de Imóveis de São Paulo. As adaptações e modernizações do empreendimento serão submetidas à aprovação dos órgãos reguladores, e o projeto pode sofrer alterações. Imagens meramente ilustrativas e informações preliminares. Fonte: material da Vitacon de março de 2025 e site da Vitacon.',
+        torre: B + 'acesso.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        fotos: [
+          fotoB('acesso', 'Acesso pela Rua Bela Cintra'),
+          fotoB('lobby-1', 'Lobby'),
+          fotoB('lobby-2', 'Lobby'),
+          fotoB('lobby-concierge', 'Lobby concierge'),
+          fotoB('studio-1', 'Studio inteligente'),
+          fotoB('studio-2', 'Studio inteligente'),
+          fotoB('loft-1', 'Loft'),
+          fotoB('loft-2', 'Loft'),
+          fotoB('loft-3', 'Loft'),
+          fotoB('pool', 'Pool'),
+          fotoB('wellness-spa-1', 'Wellness Spa'),
+          fotoB('wellness-spa-2', 'Wellness Spa'),
+          fotoB('wellness-spa-3', 'Wellness Spa'),
+          fotoB('fitness-1', 'Fitness Space'),
+          fotoB('fitness-2', 'Fitness Space'),
+          fotoB('signature-bar', 'Signature Bar'),
+          fotoB('wine-meeting-room', 'Wine Meeting Room'),
+          fotoB('gourmet-market', 'Gourmet Market'),
+          fotoB('fresh-space-1', 'Fresh Space'),
+          fotoB('fresh-space-2', 'Fresh Space'),
+          fotoB('podcast', 'Podcast studio'),
+          fotoB('outdoor-space', 'Outdoor Space')
         ]
       },
       {
