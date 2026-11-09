@@ -353,6 +353,33 @@
   .ficha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 24px; padding: 22px 0; border-top: 1px solid var(--linha-escura); border-bottom: 1px solid var(--linha-escura); }
   .ficha dt { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); margin-bottom: 4px; }
   .ficha dd { font-family: var(--serif); font-size: 20px; line-height: 1.15; }
+  /* (09/11/2026) ela: "quando abre o empreendimento tem muito texto junto, faca mais organizado".
+     Empreendimento completo: galeria e descricao fixas; embaixo, ABAS (ficha, lazer, plantas, por
+     perto, documentacao), uma secao por vez. A ficha virou grade de 4 valores curtos por linha,
+     com o detalhe longo em letra pequena; pavimentos, endereco e projeto em tres colunas abaixo. */
+  .aberto-corpo.com-abas { grid-template-columns: 1fr; gap: 0; }
+  .com-abas .aberto-texto { max-width: 74ch; margin-bottom: 6px; }
+  .abas { display: flex; flex-wrap: wrap; gap: 0 30px; margin-top: 22px; border-bottom: 1px solid var(--linha-escura); }
+  .abas button { position: relative; padding: 14px 0 13px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; transition: color 0.4s var(--curva); }
+  .abas button::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: transparent; transition: background 0.4s var(--curva); }
+  .abas button:hover { color: var(--texto); }
+  .abas button[aria-selected="true"] { color: var(--texto); }
+  .abas button[aria-selected="true"]::after { background: var(--champagne); }
+  .aba { padding-top: clamp(26px, 3.8vh, 42px); animation: aparece 0.5s var(--curva) both; }
+  .aba[hidden] { display: none; }
+  .aba > .aberto-bloco:first-child, .aba .aberto-duas > div > .aberto-bloco:first-child { margin-top: 0; }
+  .aba-largo { display: grid; gap: clamp(36px, 5.4vh, 64px); }
+  .aba-largo .aberto-bloco { margin-top: 0; }
+  .ficha.compacta { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px clamp(20px, 2.6vw, 40px); padding: 0 0 28px; border-top: 0; }
+  .ficha.compacta dd { font-family: var(--sans); font-size: 12px; }
+  .ficha.compacta dd b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.2; color: var(--texto); }
+  .ficha.compacta dd small { display: block; margin-top: 6px; font-size: 12px; line-height: 1.45; color: var(--texto-medio); }
+  .ficha-mais { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px clamp(24px, 3vw, 48px); padding-top: 26px; }
+  .ficha-mais .aberto-bloco { margin-top: 0; }
+  .pavimentos { list-style: none; display: grid; gap: 7px; font-size: 13.5px; line-height: 1.45; color: var(--texto-medio); }
+  .pavimentos li { position: relative; padding-left: 18px; }
+  .pavimentos li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 8px; height: 1px; background: var(--champagne); }
+  .aba .aberto-legal { padding-top: 0; border-top: 0; font-size: 12.5px; line-height: 1.7; color: var(--texto-medio); max-width: 100ch; }
   .aberto-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 32px; margin-top: 28px; }
   .aberto-nav { display: flex; gap: 10px; margin-left: auto; }
   .aberto-nav button { width: 42px; height: 42px; border: 1px solid var(--linha-escura); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.4s var(--curva), color 0.4s var(--curva); }
@@ -418,6 +445,12 @@
     .vitrine-logo { width: min(56%, 200px); }
     .infra div { grid-template-columns: 1fr; }
     .ficha.larga dd { font-size: 18px; }
+    /* as abas rolam de lado numa linha so; a ficha em 2 colunas; pavimentos, endereco e projeto empilhados */
+    .abas { flex-wrap: nowrap; gap: 0 22px; overflow-x: auto; scrollbar-width: none; margin-left: calc(-1 * var(--margem)); margin-right: calc(-1 * var(--margem)); padding: 0 var(--margem); }
+    .abas::-webkit-scrollbar { display: none; }
+    .ficha.compacta { grid-template-columns: 1fr 1fr; gap: 20px 18px; }
+    .ficha.compacta dd b { font-size: 18px; }
+    .ficha-mais { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .voltar span { display: none; }   /* so a seta: o botao de consultor precisa caber numa linha */
@@ -1568,7 +1601,7 @@
         area: ['Torre Cabo Verde: 1 dormitório de 25,22 a 33,21 m² e 2 dormitórios de 41,47 a 43,53 m²', 'Torre Alvorada: studios de 17,54 a 18,61 m² e 1 dormitório de 55,59 a 56,95 m²', 'Plantas apresentadas: studios de 17,58, 17,72 e 18,61 m², 1 dormitório de 25,31, 33,31, 41,47 e 55,59 m² e 2 dormitórios de 43,53 m²'],
         tipologia: ['Studios', '1 dormitório', '2 dormitórios'],
         banheiros: '1 por unidade, nas plantas apresentadas',
-        vagas: '20 vagas para as lojas da Rua Alvorada e 1 vaga de carga e descarga; para as unidades, sob consulta',
+        vagas: 'Para as unidades, sob consulta; 20 vagas para as lojas da Rua Alvorada e 1 vaga de carga e descarga',
         torres: '2 torres: Cabo Verde, com 22 pavimentos, e Alvorada, com 21',
         unidades: ['574 unidades: 400 na Torre Cabo Verde e 174 na Torre Alvorada, sendo 50 de serviço de moradia e 124 residenciais, mais 4 lojas e conjuntos comerciais', 'Terreno de 2.947,01 m², 17.642,03 m² privativos e 24.196,19 m² construídos'],
         pavimentos: ['Térreo com 4 lojas, lobbies, delivery, bag keeper, lounge e bike space', '1º pavimento, conexão entre torres: book sharing, minimarket, laundry, coffee point, game space, Working Pro, meeting e podcast', '2º pavimento, conexão entre torres: conjuntos comerciais, yoga, Wellness by Life Fitness e crossfit outdoor', '21º pavimento, cobertura da Alvorada: CoKitchen, sky lounge e pool deck', '22º pavimento, cobertura da Cabo Verde: fire place, gourmet lounge, piano & wine bar e Connect Hub by G4'],
@@ -2153,6 +2186,36 @@
   }
   // um valor pode ser uma lista: sai uma linha por item
   function linhas(v) { return (Array.isArray(v) ? v : [v]).map(function (t) { return esc(t); }).join('<br>'); }
+  // (09/11/2026) valor curto em cima, detalhe em letra pequena embaixo: o primeiro item ate o primeiro
+  // ":" ou ";" vira o valor; o resto do item e os itens seguintes viram o detalhe
+  function curto(v, soDetalhe) {
+    var lista = (Array.isArray(v) ? v : [v]).filter(Boolean);
+    var primeiro = String(lista[0] || ''), resto = lista.slice(1);
+    var m = soDetalhe ? null : primeiro.match(/^([^:;]{1,46})[:;]\s*(.+)$/);
+    var grande = soDetalhe ? '' : (m ? m[1] : primeiro), miudo = (soDetalhe ? [primeiro] : (m ? [m[2]] : [])).concat(resto);
+    return (grande ? '<b>' + esc(grande) + '</b>' : '') + (miudo.length ? '<small>' + miudo.map(esc).join('<br>') + '</small>' : '');
+  }
+  // a ficha do empreendimento completo, na aba Ficha: grade de valores curtos na ordem dos topicos dela
+  // (tipo, status, metragem, quartos e suites, banheiros, vagas, torres, unidades, valores); a metragem
+  // curta vem do `resumo` do cartao ("Studios a 2 dormitorios · 17 a 57 m2") e os itens de `area` viram o
+  // detalhe, sem a linha "Plantas apresentadas" (a aba Plantas ja mostra)
+  function fichaCompacta(em) {
+    var itens = [];
+    var metragemCurta = em.resumo && em.resumo.indexOf(' · ') > -1 ? em.resumo.split(' · ').pop() : '';
+    var areas = (Array.isArray(em.area) ? em.area : [em.area]).filter(function (t) { return t && !/^Plantas apresentadas/.test(t); });
+    if (em.tipo) itens.push(['Tipo de imóvel', curto(em.tipo)]);
+    if (em.status) itens.push(['Status', '<b>' + esc(em.status) + '</b>' + (em.entrega ? '<small>' + linhas(em.entrega) + '</small>' : '')]);
+    if (em.area) itens.push(['Metragem', metragemCurta ? '<b>' + esc(metragemCurta) + '</b>' + (areas.length ? '<small>' + areas.map(esc).join('<br>') + '</small>' : '') : curto(areas)]);
+    if (em.tipologia) itens.push(['Quartos e suítes', '<b>' + (Array.isArray(em.tipologia) ? em.tipologia.map(esc).join(', ') : esc(em.tipologia)) + '</b>']);
+    // "1 por unidade, nas plantas apresentadas": o numero grande, a ressalva pequena
+    if (em.banheiros) itens.push(['Banheiros', curto(Array.isArray(em.banheiros) ? em.banheiros : String(em.banheiros).replace(/^([^,:;]{1,30}), /, '$1: '))]);
+    if (em.vagas) itens.push(['Vagas de garagem', curto(em.vagas)]);
+    if (em.torres) itens.push(['Torres', curto(em.torres)]);
+    if (em.unidades) itens.push(['Unidades', curto(em.unidades)]);
+    if (em.peDireito) itens.push(['Pé-direito', curto(em.peDireito)]);
+    if (em.valores) itens.push(['Valores', curto(em.valores)]);
+    return '<dl class="ficha compacta">' + itens.map(function (x) { return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>'; }).join('') + '</dl>';
+  }
   function bloco(rotulo, miolo) { return '<div class="aberto-bloco"><span class="rotulo">' + rotulo + '</span>' + miolo + '</div>'; }
   // os oito itens de lazer e infraestrutura que ela quer em todo empreendimento, nesta ordem;
   // o que o material nao cita aparece como "Nao consta"
@@ -2197,20 +2260,28 @@
       : (em.lazer && em.lazer.length ? etiquetas(em.lazer) : '');
     var difs = em.diferenciais && em.diferenciais.length ? '<ul class="diferenciais">' + em.diferenciais.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
     var local = em.endereco ? bloco('Localização', '<p class="endereco">' + esc(em.endereco) + (em.exemplo ? '<small>Endereço de exemplo. O real vem com o material da construtora.</small>' : '') + '</p>') : '';
-    var temFotos = fotosDe(em).length > 0, lado, largo = '';
+    var temFotos = fotosDe(em).length > 0, lado, largo = '', abas = '';
+    var projeto = em.creditos ? bloco('Projeto', '<dl class="creditos">' + em.creditos.map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd class="notranslate">' + esc(x[1]) + '</dd></div>'; }).join('') + '</dl>') : '';
     if (em.infra) {
-      // material completo: ao lado da ficha, a lista fixa de lazer e infraestrutura e o endereco;
-      // embaixo, na largura toda, as plantas, as areas comuns, os itens das unidades e a regiao
-      lado = bloco('Lazer e infraestrutura', infra(em)) + local
-        + (em.creditos ? bloco('Projeto', '<dl class="creditos">' + em.creditos.map(function (x) { return '<div><dt>' + esc(x[0]) + '</dt><dd class="notranslate">' + esc(x[1]) + '</dd></div>'; }).join('') + '</dl>') : '');
-      largo = '<div class="aberto-largo">'
-        + bloco('Plantas disponíveis', plantas(em, 'plantas'))
-        + (em.implantacao && em.implantacao.length ? bloco('Implantação das áreas comuns', plantas(em, 'implantacao')) : '')
-        + (tags || difs ? '<div class="aberto-duas"><div>' + (tags ? bloco('Todas as áreas comuns', tags) : '') + '</div><div>' + (difs ? bloco('Nas unidades', difs) : '') + '</div></div>' : '')
-        + (em.perto ? perto(em.perto) : '')
-        + (em.regiao ? regiao(em.regiao) : '')
-        + (em.legal ? '<p class="aberto-legal">' + esc(em.legal) + '</p>' : '')
-        + '</div>';
+      // (09/11/2026) material completo: ABAS, uma secao por vez (ela: "muito texto junto").
+      // Ficha: grade curta + pavimentos, endereco e projeto. Lazer: os 8 itens fixos, todas as areas
+      // comuns e os itens das unidades. Plantas: plantas e implantacoes. Por perto: perto e regiao.
+      // Documentacao: a nota legal. A aba escolhida fica guardada em `abaAtual` ao trocar de empreendimento.
+      var painel = function (nome, miolo) { return '<section class="aba" data-aba="' + nome + '" role="tabpanel" hidden>' + miolo + '</section>'; };
+      var lista = [
+        ['ficha', 'Ficha', fichaCompacta(em)
+          + '<div class="ficha-mais">'
+          +   (em.pavimentos ? bloco('Pavimentos', '<ul class="pavimentos">' + (Array.isArray(em.pavimentos) ? em.pavimentos : [em.pavimentos]).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>') : '')
+          +   local + projeto
+          + '</div>'],
+        ['lazer', 'Lazer e infraestrutura', '<div class="aberto-duas"><div>' + bloco('Lazer e infraestrutura', infra(em)) + '</div><div>' + (tags ? bloco('Todas as áreas comuns', tags) : '') + (difs ? bloco('Nas unidades', difs) : '') + '</div></div>'],
+        ['plantas', 'Plantas', '<div class="aba-largo">' + bloco('Plantas disponíveis', plantas(em, 'plantas')) + (em.implantacao && em.implantacao.length ? bloco('Implantação das áreas comuns', plantas(em, 'implantacao')) : '') + '</div>'],
+        em.perto || em.regiao ? ['perto', 'Por perto', '<div class="aba-largo">' + (em.perto ? perto(em.perto) : '') + (em.regiao ? regiao(em.regiao) : '') + '</div>'] : null,
+        em.legal ? ['docs', 'Documentação', '<p class="aberto-legal">' + esc(em.legal) + '</p>'] : null
+      ].filter(Boolean);
+      abas = '<div class="abas" role="tablist">' + lista.map(function (x) { return '<button type="button" role="tab" data-aba="' + x[0] + '" aria-selected="false">' + x[1] + '</button>'; }).join('') + '</div>'
+        + lista.map(function (x) { return painel(x[0], x[2]); }).join('');
+      lado = '';
     } else {
       lado = (tags ? bloco('Lazer e conveniência', tags) : '') + (difs ? bloco('Diferenciais', difs) : '') + local;
       // ainda sem fotos nem ficha: a coluna do lado mostra a logo da construtora
@@ -2221,14 +2292,15 @@
     var variasParcerias = parceriasDe(c).length > 1;
     return galeria(em)
       + (temFotos && em.notaImagens ? '<p class="nota-imagens">' + esc(em.notaImagens) + '</p>' : '')
-      + '<div class="aberto-corpo' + (temFotos ? '' : ' sem-galeria') + '">'
+      + '<div class="aberto-corpo' + (temFotos ? '' : ' sem-galeria') + (abas ? ' com-abas' : '') + '">'
       +   '<div class="aberto-principal">'
       +     '<span class="rotulo"><span class="notranslate">' + esc(parceira) + '</span>' + (em.exemplo ? ' · empreendimento de exemplo' : '') + '</span>'
       +     '<h3 class="notranslate">' + esc(em.nome) + '</h3>'
       +     '<p class="aberto-lugar">' + (em.bairro ? '<span class="notranslate">' + esc(em.bairro) + '</span>, ' : '') + esc(e.nome) + '</p>'
       +     (texto ? '<p class="aberto-texto">' + texto + '</p>' : '')
-      +     ficha(em, parceira, c, e)
+      +     (abas ? '' : ficha(em, parceira, c, e))
       +   '</div>'
+      +   abas
       +   (lado ? '<div class="aberto-lado">' + lado + '</div>' : '')
       +   largo
       +   '<div class="aberto-acoes"><a class="botao" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Vi o empreendimento ' + em.nome + ', da ' + parceira + ' (' + (c.curta || c.nome) + '), no site da AM Global e quero saber mais.') + '">Falar com um consultor</a>'
@@ -2242,7 +2314,7 @@
     trilha();
     var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
     $('nivel').innerHTML = html;
-    if (onde.n !== null) { montarGaleria(); montarFaixa(); }
+    if (onde.n !== null) { montarGaleria(); montarFaixa(); mostrarAba(abaAtual); }
     $('notaExemplo').hidden = onde.n === null || !exemploAberto;
     var hash = onde.p === null ? '' : '#' + PAISES[onde.p].id
       + (onde.e !== null ? '/' + PAISES[onde.p].estados[onde.e].uf.toLowerCase() : '')
@@ -2284,6 +2356,7 @@
     if ((b = ev.target.closest('.nome, .vitrine-cartao[data-c]'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.empreendimento'))) { onde.k = Number(b.getAttribute('data-k')); trocarEmpreendimento(); subirAteAFaixa(); return; }
     if ((b = ev.target.closest('[data-faixa]'))) { faixaAndar(Number(b.getAttribute('data-faixa'))); return; }
+    if ((b = ev.target.closest('.abas button[data-aba]'))) { mostrarAba(b.getAttribute('data-aba')); return; }
     if ((b = ev.target.closest('[data-galeria]'))) { galeriaIr(galeriaIndice() + Number(b.getAttribute('data-galeria')), true); return; }
     if ((b = ev.target.closest('.galeria-minis button[data-foto]'))) { galeriaIr(Number(b.getAttribute('data-foto')), true); return; }
     if ((b = ev.target.closest('.planta[data-planta]'))) { ampliar(Number(b.getAttribute('data-planta')), b.getAttribute('data-lista')); return; }
@@ -2337,6 +2410,20 @@
     faixaSetas();
   }
   window.addEventListener('resize', faixaSetas);
+  /* ---------------------------------------------------------------- as abas
+     (09/11/2026) Uma secao do empreendimento por vez. A aba escolhida (`abaAtual`) sobrevive a
+     troca de empreendimento, para comparar plantas ou lazer entre eles; se o novo nao tem a aba
+     (sem nota legal, por exemplo), volta para a Ficha. Nao entra no endereco (#). */
+  var abaAtual = 'ficha';
+  function mostrarAba(nome) {
+    var botoes = document.querySelectorAll('#aberto .abas button[data-aba]'); if (!botoes.length) return;
+    var existe = Array.prototype.some.call(botoes, function (b) { return b.getAttribute('data-aba') === nome; });
+    abaAtual = existe ? nome : 'ficha';
+    botoes.forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-aba') === abaAtual ? 'true' : 'false'); });
+    document.querySelectorAll('#aberto .aba[data-aba]').forEach(function (s) { s.hidden = s.getAttribute('data-aba') !== abaAtual; });
+    // as plantas e implantacoes so carregam quando a aba delas abre (loading="lazy" nao dispara escondido)
+    if (abaAtual === 'plantas') document.querySelectorAll('#aberto .aba[data-aba="plantas"] img[loading]').forEach(function (i) { i.removeAttribute('loading'); });
+  }
   function subirAteAFaixa() {
     var bloco = $('faixaBloco'), topo = document.querySelector('.topo'); if (!bloco) return;
     var y = bloco.getBoundingClientRect().top - (topo ? topo.getBoundingClientRect().bottom : 0) - 14;
@@ -2352,6 +2439,7 @@
     el.innerHTML = aberto(lista[onde.k], parceira, c, e);
     el.classList.remove('aberto'); void el.offsetWidth; el.classList.add('aberto');
     montarGaleria();
+    mostrarAba(abaAtual);
     window.history.replaceState(null, '', '#' + p.id + '/' + e.uf.toLowerCase() + '/' + onde.c + '/' + onde.n + (onde.k ? '/' + onde.k : ''));
   }
 
