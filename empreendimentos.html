@@ -68,10 +68,13 @@
     --travertino: #D8CFC0;
     --grafite: #3A3A3C;
     --champagne: #B49A6E;
+    /* (10/11) sobre o marfim o champagne e o cinza claro sumiam ("poderia ser uma cor um pouco mais
+       visivel"): texto pequeno em dourado usa o tom escuro, e os cinzas sobem um degrau */
+    --champagne-escuro: #8A7147;
     --linha-escura: rgba(11, 11, 12, 0.14);
     --linha-leve: rgba(11, 11, 12, 0.08);
-    --texto-medio: rgba(11, 11, 12, 0.62);
-    --texto-fraco: rgba(11, 11, 12, 0.42);
+    --texto-medio: rgba(11, 11, 12, 0.74);
+    --texto-fraco: rgba(11, 11, 12, 0.6);
     --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --serif-texto: 'EB Garamond', Georgia, 'Times New Roman', serif;
     --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
@@ -91,7 +94,7 @@
   :focus-visible { outline: 1px solid var(--champagne); outline-offset: 6px; }
   [hidden] { display: none !important; }
 
-  .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); }
+  .rotulo { display: block; font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne-escuro); }
   h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.02; text-wrap: balance; }
   p { max-width: 62ch; }
 
@@ -127,7 +130,7 @@
   .trilha { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; min-height: 22px; margin-bottom: clamp(30px, 5vh, 56px); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
   .trilha button { letter-spacing: inherit; text-transform: inherit; font-size: inherit; color: var(--texto-fraco); padding: 2px 0; transition: color 0.4s var(--curva); }
   .trilha button:hover { color: var(--onix); }
-  .trilha i { font-style: normal; color: var(--champagne); }
+  .trilha i { font-style: normal; color: var(--champagne-escuro); }
   .trilha b { font-weight: 500; color: var(--onix); }
 
   .nivel { animation: aparece 0.7s var(--curva) both; }
@@ -135,7 +138,7 @@
 
   .nivel-cabeca { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px clamp(30px, 5vw, 90px); align-items: end; margin-bottom: clamp(36px, 6vh, 70px); }
   .nivel-cabeca h2 { font-size: clamp(42px, 6vw, 96px); letter-spacing: -0.02em; line-height: 0.98; }
-  .nivel-cabeca h2 small { display: block; font-size: 0.36em; letter-spacing: 0.02em; color: var(--champagne); margin-bottom: 10px; }
+  .nivel-cabeca h2 small { display: block; font-size: 0.36em; letter-spacing: 0.02em; color: var(--champagne-escuro); margin-bottom: 10px; }
   .nivel-cabeca p { font-family: var(--serif-texto); font-weight: 500; font-style: italic; font-size: clamp(19px, 1.9vw, 25.5px); line-height: 1.4; color: var(--texto-medio); }
   .nivel-cabeca p b { font-style: normal; font-weight: 600; color: var(--onix); }
 
@@ -143,7 +146,7 @@
   .escolhas { list-style: none; border-top: 1px solid var(--linha-escura); }
   .escolha { display: grid; grid-template-columns: clamp(40px, 5vw, 80px) 1fr auto auto; align-items: baseline; gap: 16px clamp(18px, 2.6vw, 40px); width: 100%; padding: clamp(18px, 2.6vh, 30px) 0; border-bottom: 1px solid var(--linha-leve); text-align: left; transition: padding-left 0.6s var(--curva); }
   .escolha:hover, .escolha:focus-visible { padding-left: 10px; outline: none; }
-  .escolha-num { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(15px, 1.3vw, 18px); color: var(--champagne); }
+  .escolha-num { font-family: var(--serif-texto); font-weight: 500; font-size: clamp(15px, 1.3vw, 18px); color: var(--champagne-escuro); }
   .escolha-nome { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 3.6vw, 56px); line-height: 1; letter-spacing: -0.01em; transition: color 0.4s var(--curva); }
   .escolha:hover .escolha-nome { color: var(--champagne); }
   .escolha-onde { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); white-space: nowrap; }
