@@ -610,7 +610,7 @@
       { nome: 'São Paulo, capital', curta: 'São Paulo', texto: [
         'São Paulo é a maior cidade da América do Sul, com cerca de 11,5 milhões de habitantes na capital e mais de 20 milhões na região metropolitana, e tem o maior PIB entre os municípios do país. Aqui estão a bolsa de valores, as sedes dos principais bancos e empresas, hospitais e universidades de referência nacional, a maior rede de metrô e trens do Brasil e dois aeroportos, Congonhas e Guarulhos.',
         'No mercado imobiliário, os bairros entre a Avenida Paulista e a Faria Lima lideram a procura: Pinheiros, Jardins, Vila Olímpia, Itaim, Perdizes e Vila Mariana. São ruas arborizadas, com gastronomia, parques, hospitais e estações de metrô, onde os lançamentos compactos, com lazer completo e serviços no prédio, têm alta demanda de moradia e de locação, de executivos, estudantes e profissionais da saúde.'
-      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] },
+      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur', 'Living'] },
       // (10/11/2026) a Living (Grupo Cyrela) entrou com tres empreendimentos no ABC paulista; textos meus, a confirmar
       { nome: 'Santo André e São Bernardo do Campo', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo'], quantas: 2, texto: [
         'Santo André e São Bernardo do Campo formam o coração do Grande ABC, a região industrial que se tornou um dos mercados residenciais mais fortes da Grande São Paulo: 1,6 milhão de habitantes nas duas cidades, a 30 minutos do centro da capital pelas linhas 10-Turquesa e 18, pela Anchieta e pela Imigrantes, com universidades como a UFABC, hospitais de referência e o Parque Central e o Parque Celso Daniel entre os maiores da região.',
@@ -739,6 +739,23 @@
   var L = 'fotos/parcerias/living/';
   var LJ = L + 'jardim/', LR = L + 'resort/', LM = L + 'magic/';
   var fotoLJ = fotoEm(LJ), fotoLR = fotoEm(LR), fotoLM = fotoEm(LM);
+  // (10/11/2026) e os da Zona Leste da capital, da pasta "ZONA LESTE (10)" dela
+  var LP = L + 'pacific/', LH = L + 'homeboutique/';
+  var fotoLP = fotoEm(LP), fotoLH = fotoEm(LH);
+  var ZL_BELEM = {
+    titulo: 'A região · Belém e Tatuapé',
+    texto: 'O Belém é o bairro da Zona Leste que faz a ponte entre a Mooca e o Tatuapé, a 3 minutos da Estação Belém da Linha 3-Vermelha e a 5 do Shopping Metrô Tatuapé. Ruas residenciais de casas e sobrados, colégios tradicionais e hospitais a poucos minutos, com acesso rápido à Marginal Tietê e à Radial Leste.',
+    numeros: [['3 min', 'da Estação Belém, de carro'], ['5 min', 'dos shoppings Metrô Tatuapé e Boulevard'], ['+9 mil m²', 'de terreno do Living Pacific'], ['12 min', 'da Marginal Tietê']],
+    polos: 'Por perto: Shopping Metrô Tatuapé, Shopping Anália Franco, Colégio Agostiniano São José, Universidade São Judas Tadeu, Hospital CEMA e Hospital Sancta Maggiore.',
+    fonte: 'Fonte: book do Living Pacific Belém (setembro de 2023), com tempos do Google Maps de 2023.'
+  };
+  var ZL_ANALIA = {
+    titulo: 'A região · Anália Franco',
+    texto: 'Entre a Vila Formosa e o Tatuapé, o Anália Franco é o bairro-jardim da Zona Leste: o Parque Ceret, com mais de 34 mil m² de mata nativa tombada, o Shopping Anália Franco a 4 minutos e a futura Estação Anália Franco do metrô a 1 minuto. Colégios e escolas bilíngues, os hospitais São Luiz e Vitória e uma das melhores cenas de gastronomia da região.',
+    numeros: [['1 min', 'da futura Estação Anália Franco do metrô'], ['4 min', 'do Shopping Anália Franco e do Clube Ceret'], ['+34 mil m²', 'de mata nativa no Parque Ceret'], ['4 min', 'dos hospitais São Luiz e Vitória']],
+    polos: 'Por perto: Parque Ceret, Shopping Anália Franco, Hospital e Maternidade São Luiz, Hospital Vitória, Universidade Cruzeiro do Sul e os colégios da região.',
+    fonte: 'Fonte: book do Home Boutique by Living Anália Franco (setembro de 2024), com tempos do Google de 2024, de carro.'
+  };
   var ABC_JARDIM = {
     titulo: 'A região · Bairro Jardim, Santo André',
     texto: 'O Jardim é o endereço nobre de Santo André: ruas arborizadas com fiação subterrânea, o Parque Celso Daniel a 300 m e o Grand Plaza Shopping a 350 m, entre as avenidas Industrial e Dom Pedro II. A região reúne hospitais, escolas bilíngues, a FGV e a UFABC, com duas estações de trem a menos de cinco minutos e saída rápida para a capital pela Avenida dos Estados.',
@@ -2034,6 +2051,7 @@
     'Living': [
       {
         nome: 'Living Grand Wish Jardim',
+        cidade: 'Santo André e São Bernardo do Campo',
         bairro: 'Jardim, Santo André',
         resumo: '2 a 4 dormitórios · 74 a 126 m²',
         tipo: 'Apartamento',
@@ -2110,6 +2128,7 @@
       },
       {
         nome: 'Grand Resort by Living',
+        cidade: 'Santo André e São Bernardo do Campo',
         bairro: 'Jardim, Santo André',
         resumo: '2 dormitórios a 3 suítes · 52 a 102 m²',
         tipo: 'Apartamento',
@@ -2197,6 +2216,7 @@
       },
       {
         nome: 'Living Magic Rudge Ramos',
+        cidade: 'Santo André e São Bernardo do Campo',
         bairro: 'Rudge Ramos, São Bernardo do Campo',
         resumo: '2 e 3 dormitórios · 50 a 69 m²',
         tipo: 'Apartamento',
@@ -2260,6 +2280,153 @@
           fotoLM('games', 'Espaço games'),
           fotoLM('games-2', 'Espaço games'),
           fotoLM('brinquedoteca', 'Brinquedoteca')
+        ]
+      },
+      {
+        nome: 'Living Pacific Belém',
+        cidade: 'São Paulo, capital',
+        bairro: 'Belém',
+        resumo: '2 suítes a 4 dormitórios · 74 a 115 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Visconde de Parnaíba, no Belém, um terreno de mais de 9 mil m² transformado numa ilha no meio do bairro: Pacific Pool & SPA, Pacific Garden, Beach Lounge, Beach House, Beach Arena, Tennis Court, Yoga Deck e Massage & SPA, num conjunto de 24 espaços de lazer e serviços com Living Mini Market 24 horas e Car Sharing. Apartamentos de 74 a 115 m², de 2 suítes a 4 dormitórios, com Smart Home 2.0.',
+        area: ['74 m²: 2 suítes e 1 vaga', '95 m²: 3 dormitórios com 1 suíte, ou 2 suítes, e 2 vagas', '115 m²: 3 suítes, ou 4 dormitórios com 2 suítes, e 2 vagas'],
+        tipologia: '2 suítes a 4 dormitórios, de 74 a 115 m²',
+        banheiros: 'Lavabo em todas as plantas; banheiros ventilados, com infraestrutura para água quente',
+        vagas: '1 vaga no 74 m² e 2 vagas no 95 e no 115 m²; vagas de visitantes e de delivery',
+        torres: '2 torres',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: Porte-Cochère, acessos social e de serviço, delivery, lobby, coworking e Mini Market', 'Lazer no terreno: piscinas, Beach House, quadras, Fitness, Massage & SPA e Pet Park'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Visconde de Parnaíba, 3380 · Belém, São Paulo',
+        infra: {
+          piscina: 'Pacific Pool & SPA com deck molhado e Kids Pool; Beach Lounge e Pacific Garden ao redor',
+          academia: 'Fitness equipado, Yoga Deck ao ar livre e Massage & SPA',
+          festas: 'Lounge Festas',
+          gourmet: 'Beach Grill com churrasqueira e Beach House com cozinha',
+          kids: 'Kids Space (brinquedoteca), Kids Arena com brinquedos de madeira e cama elástica, Kids Pool',
+          quadra: 'Tennis Court em saibro e Beach Arena de beach tennis',
+          portaria: 'Portaria com acessos social, de serviço e de veículos separados, vagas de visitantes e espaço delivery',
+          coworking: 'Coworking com sala de reunião, Living Mini Market 24 horas, Car Sharing e Pet Park'
+        },
+        lazer: ['Lobby', 'Delivery', 'Coworking', 'Mini Market', 'Kids Space', 'Kids Arena', 'Yacht Pub', 'Lounge Festas', 'Kids Pool', 'Beach Lounge', 'Pacific Pool & SPA', 'Pacific Garden', 'Yoga Deck', 'Fitness', 'Massage & SPA', 'Games', 'Beach House', 'Tennis Court', 'Beach Arena', 'Beach Grill', 'Pet Park', 'Car Sharing'],
+        diferenciais: ['Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes na sala e quartos, tomadas USB e ponto para câmera na sala e nos quartos', 'Piso laminado e persianas de enrolar nos quartos', 'Infraestrutura para ar-condicionado com área técnica', 'Infraestrutura para churrasqueira e bancada no terraço social, com ponto de TV', 'Infraestrutura para água quente nos banheiros e na cozinha, ponto para lava-louças', 'Closet e lavabo no 74 m²', 'Living Mini Market: 3% das vendas revertidos ao condomínio', 'Car Sharing com vaga exclusiva e reserva pelo app'],
+        creditos: [['Arquitetura', 'Marcelo Bartolo Arquitetos'], ['Interiores das áreas comuns', 'Débora Dalanezi Arquitetura'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'CBR Magik LZ 06, com participação da Mio e da Cyrela']],
+        plantas: [
+          { src: LP + 'planta-74.webp', nome: '74 m² · padrão', meta: '2 suítes, closet e lavabo · 1 vaga' },
+          { src: LP + 'planta-95.webp', nome: '95 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LP + 'planta-95-opcao.webp', nome: '95 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LP + 'planta-115.webp', nome: '115 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LP + 'planta-115-opcao.webp', nome: '115 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LP + 'implantacao.webp', nome: 'Implantação', meta: 'Mais de 9 mil m², com os 24 espaços numerados' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Estação Belém', '3 min'], ['Estação Tatuapé', '5 min'], ['Estação Bresser-Mooca', '6 min']]],
+            ['Vias de acesso', [['Av. Celso Garcia', '7 min'], ['Av. Salim Farah Maluf', '7 min'], ['Rua Bresser', '9 min'], ['Av. Alcântara Machado', '10 min'], ['Marginal Tietê', '12 min']]],
+            ['Educação', [['Colégio Ranieri', '2 min'], ['Colégio Agostiniano São José', '4 min'], ['Colégio Espírito Santo', '5 min'], ['Universidade São Judas Tadeu', '5 min'], ['Universidade Anhembi Morumbi', '7 min']]],
+            ['Lazer', [['Shopping Metrô Tatuapé', '5 min'], ['Shopping Boulevard Tatuapé', '5 min'], ['Shopping Anália Franco', '9 min']]],
+            ['Saúde', [['Hospital CEMA', '3 min'], ['Hospital Sancta Maggiore', '5 min'], ['Hospital Santa Virgínia', '9 min'], ['Hospital São Luiz Anália Franco', '10 min'], ['Hospital São Camilo, oncologia', '12 min']]],
+            ['Compras', [['Petz', '3 min'], ["Sam's Club", '4 min'], ['Hirota Supermercado', '4 min'], ['St. Marche', '7 min'], ['Pão de Açúcar', '7 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2023).'
+        },
+        legal: 'Incorporadora CBR Magik LZ 06 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 535.963 no 7º Registro de Imóveis de São Paulo. Área não contaminada (CETESB 30/00353/22). Unidades dos finais 1 a 4 da torre 1 e 1, 2, 7 e 8 da torre 2 com duas vagas determinadas; finais 3 e 5 do térreo da torre 2 com uma vaga; as demais com direito a uma vaga por sorteio. Ar-condicionado, churrasqueira, água quente e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de setembro de 2023.',
+        torre: LP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_BELEM,
+        fotos: [
+          fotoLP('fachada', 'Fachada', true),
+          fotoLP('portaria', 'Portaria'),
+          fotoLP('lobby', 'Lobby'),
+          fotoLP('pacific-pool', 'Pacific Pool & SPA'),
+          fotoLP('pacific-garden', 'Pacific Garden'),
+          fotoLP('beach-house', 'Beach House'),
+          fotoLP('beach-house-interna', 'Beach House, interior'),
+          fotoLP('beach-grill', 'Beach Grill'),
+          fotoLP('lounge-festas', 'Lounge Festas'),
+          fotoLP('yacht-pub', 'Yacht Pub'),
+          fotoLP('games', 'Games'),
+          fotoLP('coworking', 'Coworking'),
+          fotoLP('fitness', 'Fitness'),
+          fotoLP('massage-spa', 'Massage & SPA'),
+          fotoLP('tennis-court', 'Tennis Court'),
+          fotoLP('beach-arena', 'Beach Arena'),
+          fotoLP('kids-arena', 'Kids Arena'),
+          fotoLP('kids-space', 'Kids Space')
+        ]
+      },
+      {
+        nome: 'Home Boutique by Living Anália Franco',
+        cidade: 'São Paulo, capital',
+        bairro: 'Anália Franco',
+        resumo: '3 suítes · 144 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Acuruí, a um minuto da futura Estação Anália Franco do metrô e a poucos passos do Parque Ceret: a sensação de entrar num hotel boutique todos os dias. Torre única com apartamentos de 144 m², 3 suítes e 2 vagas, com cozinha integrada ou fechada, WC de serviço ou despensa. The Lobby com pé-direito duplo, Guest Lounge e Guest Terrace, Swimming Pool com raia, The Gym e um Private Studio equipado para hospedar os convidados dos moradores.',
+        area: ['144 m²: 3 suítes, cozinha integrada e WC de serviço, com 2 vagas', '144 m² opção 1: 3 suítes, cozinha integrada e despensa', '144 m² opção 2: 3 suítes, cozinha fechada e WC de serviço'],
+        tipologia: '3 suítes, 144 m²',
+        banheiros: '3 banheiros de suíte com ralo linear e água quente, lavabo e WC de serviço ou despensa',
+        vagas: '2 vagas por apartamento, do 4º ao 23º pavimento; studios sem vaga',
+        torres: 'Torre única de 23 pavimentos',
+        unidades: ['Apartamentos de 144 m² do 4º ao 23º pavimento, 4 por andar', 'Studios do 1º ao 3º pavimento, 10 por andar, e o Private Studio comum'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, The Lobby e Mini Market', 'Subsolo: Pet Place', '1º pavimento: Private Studio para hóspedes', '4º pavimento, lazer: The Gym, The Kids Place, The Kids Park, Guest Lounge, Guest Terrace, Lounge Gourmet, Solarium, Pool Deck, Swimming Pool e Kids Pool'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Acuruí, 577 · Vila Formosa (Anália Franco), São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com raia, Kids Pool, Pool Deck e Solarium no 4º pavimento',
+          academia: 'The Gym com esteiras, estações e pesos',
+          festas: 'Guest Lounge com bar e Guest Terrace com mesa para 12',
+          gourmet: 'Lounge Gourmet com churrasqueira e vista para a cidade',
+          kids: 'The Kids Place (brinquedoteca com piscina de bolinhas) e The Kids Park com túnel de rede',
+          quadra: '',
+          portaria: 'Social Entrance e Service Entrance separadas, Garage Entrance e The Lobby com pé-direito duplo',
+          coworking: 'Living Mini Market 24 horas, Car Sharing, Pet Place e Private Studio para convidados'
+        },
+        lazer: ['The Lobby', 'Mini Market', 'Pet Place', 'Private Studio', 'The Gym', 'The Kids Place', 'The Kids Park', 'Guest Lounge', 'Guest Terrace', 'Lounge Gourmet', 'Solarium', 'Pool Deck', 'Swimming Pool', 'Kids Pool', 'Car Sharing'],
+        diferenciais: ['Private Studio equipado e decorado no 1º pavimento para hospedar convidados dos moradores', 'Contrapiso para atenuação acústica nos quartos e na sala', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes na sala, quartos, terraço e cozinha, tomadas USB e câmera Wi-Fi na sala', 'Infraestrutura para ar-condicionado nas suítes e na sala, com área técnica', 'Infraestrutura para churrasqueira e bancada no terraço social, com ponto de TV', 'Cozinha com cuba dupla, coifa, triturador, lava-louças e água quente; ponto de água para geladeira', 'Banheiros com ralo linear, toalheiro aquecido e desembaçador de espelho; nicho no box da suíte master', 'Closet na suíte master e persianas de enrolar nos dormitórios'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Chris Silveira'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística']],
+        plantas: [
+          { src: LH + 'planta-144.webp', nome: '144 m² · padrão', meta: '3 suítes, cozinha integrada e WC de serviço · 2 vagas' },
+          { src: LH + 'planta-144-opcao-1.webp', nome: '144 m² · opção 1', meta: '3 suítes, cozinha integrada e despensa · 2 vagas' },
+          { src: LH + 'planta-144-opcao-2.webp', nome: '144 m² · opção 2', meta: '3 suítes, cozinha fechada e WC de serviço · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LH + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, subsolo, 1º pavimento e o 4º pavimento de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Futura Estação Anália Franco do metrô', '1 min'], ['Metrô Carrão', '6 min'], ['Estação Tatuapé', '6 min']]],
+            ['Mobilidade', [['Av. Vereador Abel Ferreira', '4 min'], ['Av. Regente Feijó', '4 min'], ['Av. Salim Farah Maluf', '7 min'], ['Radial Leste', '9 min']]],
+            ['Lazer e compras', [['Clube Recreativo Ceret', '4 min'], ['Shopping Anália Franco', '4 min'], ['Praça Silvio Romero', '6 min']]],
+            ['Saúde', [['Hospital e Maternidade São Luiz', '4 min'], ['Hospital Vitória', '4 min'], ['Prevent Senior', '6 min']]],
+            ['Educação', [['Colégio Jardim Têxtil', '3 min'], ['Universidade Cruzeiro do Sul', '4 min'], ['Kindy Escola Americana', '4 min'], ['Colégio Agostiniano Mendel', '7 min']]],
+            ['Conveniências e gastronomia', [['Padaria Casa Nápoles', '1 min'], ['Pão de Açúcar Anália Franco', '3 min'], ['Oba Hortifruti', '4 min'], ['Restaurante Coco Bambu', '4 min'], ['Nohar Steak House', '5 min'], ['Aoyama Tatuapé', '5 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google, 2024).'
+        },
+        legal: 'Incorporadora Living Cantagalo Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 814.510 no 9º Oficial de Registro de Imóveis. Área não contaminada (CETESB 30/00970/23). Unidades dos finais 1 a 4, do 4º ao 23º pavimento, com duas vagas; studios dos finais 1 a 10, do 1º ao 3º pavimento, sem direito a vaga; o studio de final 11 do 1º pavimento é área comum do subcondomínio 1, para hóspedes dos moradores. Ar-condicionado, churrasqueira, água quente, lavabo e interruptores inteligentes entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de setembro de 2024.',
+        torre: LH + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_ANALIA,
+        fotos: [
+          fotoLH('fachada', 'Fachada', true),
+          fotoLH('portaria', 'Portaria'),
+          fotoLH('lobby', 'The Lobby', true),
+          fotoLH('lobby-2', 'The Lobby'),
+          fotoLH('guest-lounge', 'Guest Lounge'),
+          fotoLH('guest-terrace', 'Guest Terrace'),
+          fotoLH('lounge-gourmet', 'Lounge Gourmet'),
+          fotoLH('swimming-pool', 'Swimming Pool'),
+          fotoLH('piscina-fotomontagem', 'Swimming Pool e fachada, fotomontagem'),
+          fotoLH('the-gym', 'The Gym'),
+          fotoLH('kids-place', 'The Kids Place'),
+          fotoLH('kids-park', 'The Kids Park'),
+          fotoLH('private-studio', 'Private Studio para convidados'),
+          fotoLH('vista-aerea', 'Vista aérea da região, agosto de 2024'),
+          fotoLH('parque-ceret', 'Parque Ceret')
         ]
       }
     ]
@@ -2344,7 +2511,16 @@
     }
     return saida;
   }
-  function empreendimentosDe(parceira, cidade) { return EMPREENDIMENTOS[parceira] || empreendimentosExemplo(parceira, cidade); }
+  // (10/11/2026) uma construtora pode ter empreendimentos em mais de uma cidade do estado (a Living, no
+  // ABC e na capital): o campo `cidade` de cada empreendimento diz a qual cidade ele pertence (o `nome`
+  // da cidade em PAISES); os que nao tem o campo aparecem em toda cidade em que a construtora esta
+  function empreendimentosDe(parceira, cidade) {
+    var lista = EMPREENDIMENTOS[parceira];
+    if (!lista) return empreendimentosExemplo(parceira, cidade);
+    if (!cidade) return lista;
+    var daCidade = lista.filter(function (em) { return !em.cidade || em.cidade === cidade.nome; });
+    return daCidade.length ? daCidade : lista;
+  }
   function fotosDe(em) { return em.fotos && em.fotos.length ? em.fotos : (em.foto ? [{ src: em.foto, legenda: '' }] : []); }
 
   // ----------------------------------------------------------------- utilidades
