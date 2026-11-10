@@ -726,14 +726,21 @@
   var fotoAP = fotoEm(AP), fotoVO = fotoEm(VO), fotoDM = fotoEm(DM), fotoMA = fotoEm(MA);
   // (10/11/2026) a Living, no ABC: pastas por empreendimento em fotos/parcerias/living/
   var L = 'fotos/parcerias/living/';
-  var LJ = L + 'jardim/';
-  var fotoLJ = fotoEm(LJ);
+  var LJ = L + 'jardim/', LR = L + 'resort/', LM = L + 'magic/';
+  var fotoLJ = fotoEm(LJ), fotoLR = fotoEm(LR), fotoLM = fotoEm(LM);
   var ABC_JARDIM = {
     titulo: 'A região · Bairro Jardim, Santo André',
     texto: 'O Jardim é o endereço nobre de Santo André: ruas arborizadas com fiação subterrânea, o Parque Celso Daniel a 300 m e o Grand Plaza Shopping a 350 m, entre as avenidas Industrial e Dom Pedro II. A região reúne hospitais, escolas bilíngues, a FGV e a UFABC, com duas estações de trem a menos de cinco minutos e saída rápida para a capital pela Avenida dos Estados.',
-    numeros: [['300 m', 'do Parque Celso Daniel, a pé'], ['350 m', 'do Grand Plaza Shopping, a pé'], ['950 m', 'da Estação Prefeito Saladino'], ['+6 mil m²', 'de terreno, com 35 espaços de lazer e serviços']],
+    numeros: [['300 m', 'do Parque Celso Daniel, a pé'], ['350 m', 'do Grand Plaza Shopping, a pé'], ['950 m', 'da Estação Prefeito Saladino'], ['1 km', 'da FGV e do Colégio Arbos']],
     polos: 'Por perto: Parque Celso Daniel, Grand Plaza Shopping, Hospital ABC, Fleury, FGV, UFABC e as estações Prefeito Saladino e Santo André.',
-    fonte: 'Fonte: book do Living Grand Wish Jardim (agosto de 2023), com distâncias do Google Maps de novembro de 2022.'
+    fonte: 'Fonte: books da Living para o Grand Wish Jardim (agosto de 2023) e o Grand Resort (janeiro de 2025), com distâncias do Google Maps.'
+  };
+  var ABC_RUDGE = {
+    titulo: 'A região · Rudge Ramos, São Bernardo do Campo',
+    texto: 'O Rudge Ramos é o bairro de São Bernardo que faz divisa com São Caetano e com a capital, ao redor da Avenida Dr. Rudge Ramos e da Universidade Metodista. Comércio consolidado, acesso rápido à Anchieta e ao Rodoanel, e uma demanda constante de locação de estudantes, professores e profissionais do polo industrial do ABC.',
+    numeros: [['15.479 m²', 'de terreno'], ['5', 'torres, em duas fases'], ['790', 'unidades ao todo: 474 na 1ª fase e 316 na 2ª'], ['1 ou 2', 'vagas cobertas e determinadas']],
+    polos: 'Por perto: Universidade Metodista, Avenida Dr. Rudge Ramos, Shopping Metrópole, Parque Salvador Arena e a divisa com São Caetano do Sul.',
+    fonte: 'Fonte: book do Living Magic Rudge Ramos (maio de 2023) e anúncios da corretagem em novembro de 2026.'
   };
   var JARDINS = {
     titulo: 'A região · Jardins',
@@ -2088,6 +2095,160 @@
           fotoLJ('gamer-blogger-space', 'Gamer and Blogger Space'),
           fotoLJ('brinquedoteca', 'Brinquedoteca'),
           fotoLJ('playground', 'Playground')
+        ]
+      },
+      {
+        nome: 'Grand Resort by Living',
+        bairro: 'Jardim, Santo André',
+        resumo: '2 dormitórios a 3 suítes · 52 a 102 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na mesma Rua Dr. Rubens Awada, no Jardim, um condomínio com clima de resort: mais de 10 mil m² de terreno e mais de 50 espaços de lazer, com a The Royal Pool de raia de 50 m, piscina coberta e aquecida, Beach Pool, Coast Line Deck, dois Private Pool Houses, dois salões de festas, quadras de beach tennis e poliesportiva, Sauna & SPA e assessoria esportiva com atividades inclusas o ano inteiro. Três torres: nas torres 1 e 2, apartamentos de 52 a 74 m²; na torre 3, de 102 m² com 3 suítes, hall semi-privativo e duas vagas.',
+        area: ['52 m²: 2 dormitórios e 1 vaga, torres 1 e 2', '61 m²: 2 suítes e 1 vaga, torres 1 e 2', '74 m²: 2 suítes, ou 3 dormitórios com 1 suíte, e 1 vaga, torres 1 e 2', '102 m²: 3 suítes e 2 vagas, torre 3'],
+        tipologia: '2 dormitórios a 3 suítes, de 52 a 102 m²',
+        banheiros: 'Lavabo a partir de 61 m²; banheiros com infraestrutura para água quente',
+        vagas: '1 vaga nas torres 1 e 2 (2 em algumas unidades) e 2 vagas na torre 3, todas determinadas; vagas de visitantes e de delivery',
+        torres: '3 torres',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Pavimento de acesso: Porte-Cochère, lobby, Espaço Delivery, Praça das Águas, Pet Park e bicicletário no subsolo', 'Pavimento lazer: piscinas, Pool Houses, salões de festas, quadras, Fitness, Sauna & SPA e Wellness'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Dr. Rubens Awada, 99 · Jardim, Santo André',
+        infra: {
+          piscina: 'Pool Complex: The Royal Pool com raia de 50 m, piscina coberta e aquecida, Beach Pool, piscina infantil, Acqua Massage, Coast Line Deck e dois solariums',
+          academia: 'Fitness com mais de 250 m², entregue completo e equipado, Fitness externo, Espaço Crossfit e Sala de Dança',
+          festas: 'Salões de festas The Royal e The Palm, cada um com lounge próprio',
+          gourmet: 'The Royal Gourmet, Atlantis Barbecue, The Palm Barbecue e The Royal Barbecue; Private Pool Houses The Palm e The Royal',
+          kids: 'Brinquedoteca, Playground ao ar livre e Gamer and Blogger Space',
+          quadra: 'Quadra de Beach Tennis com lounge integrado e Quadra Poliesportiva',
+          portaria: 'Porte-Cochère, clausura no acesso de veículos e de pedestres, acessos social e de serviço separados, vagas de visitantes e de delivery',
+          coworking: 'Coworking com Wi-Fi, Minimarket, Espaço Delivery com lockers, Car Sharing, bicicletário e Transfer'
+        },
+        lazer: ['Porte-Cochère', 'Lobby', 'Praça das Águas', 'Transfer', 'Coworking', 'Minimarket', 'Espaço Delivery', 'Pet Park', 'Bicicletário', 'Salão de Festas The Royal', 'Lounge Festas The Royal', 'Salão de Festas The Palm', 'Lounge Festas The Palm', 'Private Pool House The Royal', 'Private Pool House The Palm', 'The Royal Gourmet', 'The Royal Barbecue', 'The Palm Barbecue', 'Atlantis Barbecue', 'Jogos Adulto', 'Gamer and Blogger Space', 'Brinquedoteca', 'Playground', 'Alameda Grand Resort', 'Quadra de Beach Tennis', 'Lounge Beach Tennis', 'Quadra Poliesportiva', 'Fitness', 'Fitness Externo', 'Espaço Crossfit', 'Sala de Dança', 'Relax Space', 'Espaço Zen', 'Beauty Care', 'Sauna', 'SPA', 'Wellness Massage', 'The Royal Pool, raia de 50 m', 'Piscina Aquecida', 'Beach Pool', 'Piscina Infantil', 'Acqua Massage', 'Coast Line Deck', 'Solarium', 'Solarium Coberto', 'Assessoria Esportiva'],
+        diferenciais: ['Assessoria esportiva e recreativa com atividades inclusas o ano inteiro', 'Smart Home 2.0 nas áreas comuns e nas unidades', 'Dormitórios com piso laminado e persiana blackout de enrolar', 'Infraestrutura para ar-condicionado nos dormitórios e na sala, com área técnica', 'Infraestrutura para churrasqueira a carvão no terraço social e para água quente e lava-louças na cozinha', 'Área de serviço isolada da social e espaço generoso para armários', 'Torre 3: hall semi-privativo, acesso de serviço e depósito privativo na garagem', 'Gerador para um elevador de serviço por torre, elevadores sociais da torre 3, Transfer e bombas de recalque', 'Captação de água da chuva, lâmpadas LED e eletrodomésticos Procel A nas áreas comuns', 'Preference: curadoria de personalização com time de arquitetos'],
+        creditos: [['Arquitetura', 'iAnseé Arquitetura e Planejamento'], ['Interiores das áreas comuns', 'Desenvolvimento interno da Living'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística']],
+        plantas: [
+          { src: LR + 'planta-52.webp', nome: '52 m² · padrão', meta: '2 dormitórios, cozinha integrada · 1 vaga · final 4B, torres 1 e 2' },
+          { src: LR + 'planta-52-opcao.webp', nome: '52 m² · opção', meta: '2 dormitórios · 1 vaga' },
+          { src: LR + 'planta-61.webp', nome: '61 m² · padrão', meta: '2 suítes, cozinha integrada · 1 vaga · finais 3A, 3B e 5B' },
+          { src: LR + 'planta-61-opcao.webp', nome: '61 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LR + 'planta-74.webp', nome: '74 m² · padrão', meta: '2 suítes · 1 vaga · finais 1A, 2A, 1B, 2B e 7B' },
+          { src: LR + 'planta-74-opcao.webp', nome: '74 m² · opção', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LR + 'planta-102.webp', nome: '102 m² · padrão', meta: '3 suítes, cozinha integrada · 2 vagas · finais 1 a 4, torre 3' },
+          { src: LR + 'planta-102-opcao.webp', nome: '102 m² · opção', meta: '3 suítes, cozinha fechada · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LR + 'implantacao-lazer.webp', nome: 'Pavimento lazer', meta: 'Mais de 10 mil m² e os 51 espaços numerados' }
+        ],
+        perto: {
+          grupos: [
+            ['Lazer', [['Parque Celso Daniel', '280 m'], ['Grand Plaza Shopping', '350 m'], ['Parque Central', '3,9 km'], ['Shopping ABC', '3,2 km'], ['Teatro Municipal', '4,3 km']]],
+            ['Mobilidade', [['Estação Prefeito Saladino', '1,2 km'], ['Estação Santo André', '1,2 km'], ['Av. Goiás', '3,3 km']]],
+            ['Educação', [['FGV', '1 km'], ['Colégio Arbos', '1 km'], ['Cycle Escola Bilíngue', '650 m'], ['Liceu Jardim', '1,7 km'], ['Universidade Federal do ABC', '1,2 km'], ['Senac', '2,2 km']]],
+            ['Saúde', [['Hospital Bartira', '3 km'], ['Hospital BP de Santo André', '2,3 km'], ['Hospital Brasil', '4,6 km']]],
+            ['Conveniências e gastronomia', [['Pão de Açúcar', '800 m'], ['Drogasil', '600 m'], ['Oba Hortifruti', '1,3 km'], ['Pilão Mineiro', '200 m'], ['Parrilla del Carmen', '750 m'], ['Porto Fino', '550 m']]]
+          ],
+          nota: 'Distâncias de carro, conforme o material da Living (Google Maps, dezembro de 2024).'
+        },
+        legal: 'Incorporadora Cyrela Piracema Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 185.480 do 1º Cartório de Registro de Imóveis de Santo André. Área em processo de reabilitação, com plano de intervenção aprovado (CETESB 16/00865/22). Unidades com 1 ou 2 vagas determinadas, conforme o memorial de incorporação; opções de planta na personalização, com custo; unidades do final 7B do 2º ao 10º pavimento entregues como planta acessível. Ar-condicionado, churrasqueira, interruptores inteligentes e água quente são entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de janeiro de 2025. Status e previsão de entrega (junho de 2028) conforme portais de imóveis em novembro de 2026.',
+        torre: LR + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ABC_JARDIM,
+        fotos: [
+          fotoLR('fachada', 'Fachada', true),
+          fotoLR('fachada-torre-3', 'Torre 3', true),
+          fotoLR('portaria', 'Portaria e Porte-Cochère'),
+          fotoLR('praca-das-aguas', 'Praça das Águas'),
+          fotoLR('lobby', 'Lobby'),
+          fotoLR('piscina-aerea', 'Pool Complex, vista aérea'),
+          fotoLR('beach-pool', 'Beach Pool'),
+          fotoLR('piscina-aquecida', 'Piscina coberta e aquecida'),
+          fotoLR('pool-house-royal-externa', 'Private Pool House The Royal'),
+          fotoLR('pool-house-royal', 'Private Pool House The Royal, interior'),
+          fotoLR('pool-house-palm', 'Private Pool House The Palm'),
+          fotoLR('festas-royal', 'Salão de festas The Royal'),
+          fotoLR('festas-palm', 'Salão de festas The Palm'),
+          fotoLR('gourmet-royal', 'The Royal Gourmet'),
+          fotoLR('barbecue-palm', 'The Palm Barbecue'),
+          fotoLR('jogos-adulto', 'Jogos adulto'),
+          fotoLR('gamer-blogger-space', 'Gamer and Blogger Space'),
+          fotoLR('coworking', 'Coworking'),
+          fotoLR('fitness', 'Fitness'),
+          fotoLR('beach-tennis', 'Quadra de beach tennis'),
+          fotoLR('quadra-poliesportiva', 'Quadra poliesportiva'),
+          fotoLR('sauna-spa', 'Sauna & SPA'),
+          fotoLR('wellness-massage', 'Wellness Massage'),
+          fotoLR('espaco-zen', 'Espaço Zen'),
+          fotoLR('beauty-care', 'Beauty Care'),
+          fotoLR('relax-space', 'Relax Space'),
+          fotoLR('brinquedoteca', 'Brinquedoteca'),
+          fotoLR('playground', 'Playground')
+        ]
+      },
+      {
+        nome: 'Living Magic Rudge Ramos',
+        bairro: 'Rudge Ramos, São Bernardo do Campo',
+        resumo: '2 e 3 dormitórios · 50 a 69 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto, 1ª fase entregue',
+        texto: 'Na Avenida Dr. Rudge Ramos, em São Bernardo do Campo, um condomínio-clube de 15.479 m² com cinco torres em duas fases: três já entregues, com 474 apartamentos, e duas na segunda fase, com mais 316. Plantas de 50 a 69 m², com 2 ou 3 dormitórios e 1 ou 2 vagas cobertas, e áreas de lazer inspiradas em filmes da Disney: piscinas, Praça das Águas, salão de festas para 38 pessoas, espaço gourmet, churrasqueiras, fitness, jogos adulto, espaço games e brinquedoteca. As fotos são do condomínio pronto.',
+        area: ['50 m²: 2 dormitórios e 1 vaga', '55 m²: 2 dormitórios com 1 suíte e 1 vaga', '69 m²: 3 dormitórios com 1 suíte e 2 vagas', '69 m² opção: 2 dormitórios com 1 suíte, sala ampliada, e 2 vagas'],
+        tipologia: '2 e 3 dormitórios, de 50 a 69 m²',
+        banheiros: 'Banheiros ventilados; 1 ou 2 por unidade, conforme a planta',
+        vagas: '1 ou 2 vagas cobertas e determinadas',
+        torres: '5 torres: 3 na 1ª fase e 2 na 2ª',
+        unidades: ['790 ao todo', '474 na 1ª fase e 316 na 2ª'],
+        pavimentos: ['Sob consulta'],
+        valores: 'Sob consulta',
+        endereco: 'Avenida Dr. Rudge Ramos, 1178 · Rudge Ramos, São Bernardo do Campo',
+        infra: {
+          piscina: 'Piscinas adulto e infantil com deck e espreguiçadeiras',
+          academia: 'Fitness equipado',
+          festas: 'Salão de festas de 100 m² para 38 pessoas e lounge',
+          gourmet: 'Espaço gourmet para 16 pessoas e churrasqueiras com pergolado',
+          kids: 'Brinquedoteca e espaço games com tema de filmes da Disney, playground',
+          quadra: 'Quadra poliesportiva',
+          portaria: 'Portaria 24 horas com acesso social separado, Praça das Águas na entrada',
+          coworking: 'Sob consulta'
+        },
+        lazer: ['Praça das Águas', 'Piscina Adulto', 'Piscina Infantil', 'Fitness', 'Salão de Festas', 'Lounge', 'Espaço Gourmet', 'Churrasqueiras', 'Jogos Adulto', 'Espaço Games', 'Brinquedoteca', 'Playground', 'Quadra Poliesportiva'],
+        diferenciais: ['Piso laminado nos quartos', 'Infraestrutura para ar-condicionado', 'Smart Home: ponto para câmeras no teto da sala e dos quartos e Wi-Fi otimizado', 'Ponto elétrico para grill na varanda', 'Tomada USB nos quartos', 'Banheiros ventilados'],
+        creditos: [['Incorporação', 'Living, Grupo Cyrela']],
+        plantas: [
+          { src: LM + 'planta-50.webp', nome: '50 m²', meta: '2 dormitórios · 1 vaga coberta' },
+          { src: LM + 'planta-55.webp', nome: '55 m²', meta: '2 dormitórios, 1 suíte · 1 vaga coberta' },
+          { src: LM + 'planta-69.webp', nome: '69 m²', meta: '3 dormitórios, 1 suíte · 2 vagas cobertas' },
+          { src: LM + 'planta-69-ampliado.webp', nome: '69 m² · sala ampliada', meta: '2 dormitórios, 1 suíte · 2 vagas cobertas' }
+        ],
+        implantacao: [
+          { src: LM + 'implantacao.webp', nome: 'Implantação', meta: 'As cinco torres no terreno de 15.479 m²' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Universidade Metodista', 'no bairro'], ['Divisa com São Caetano do Sul', 'no bairro'], ['Shopping Metrópole', 'Sob consulta'], ['Rodovia Anchieta', 'Sob consulta']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Living, marca do Grupo Cyrela. Dados de terreno, torres, unidades e plantas conforme o book da Living de maio de 2023; endereço e entrega da 1ª fase conforme anúncios da corretagem em novembro de 2026. Fotos do condomínio pronto. Valores e detalhes da 2ª fase sob consulta.',
+        torre: LM + 'fachada.webp',
+        notaImagens: 'Fotos do condomínio entregue (1ª fase). Material sujeito a confirmação com a Living.',
+        regiao: ABC_RUDGE,
+        fotos: [
+          fotoLM('aerea', 'Vista aérea das torres'),
+          fotoLM('fachada', 'Fachada', true),
+          fotoLM('portaria', 'Portaria'),
+          fotoLM('praca-das-aguas', 'Praça das Águas'),
+          fotoLM('piscina', 'Piscina'),
+          fotoLM('piscina-2', 'Piscina e torres'),
+          fotoLM('fitness', 'Fitness'),
+          fotoLM('salao-de-festas', 'Salão de festas'),
+          fotoLM('salao-de-festas-2', 'Salão de festas'),
+          fotoLM('lounge', 'Lounge'),
+          fotoLM('gourmet', 'Espaço gourmet'),
+          fotoLM('churrasqueira', 'Churrasqueiras'),
+          fotoLM('jogos-adulto', 'Jogos adulto'),
+          fotoLM('games', 'Espaço games'),
+          fotoLM('games-2', 'Espaço games'),
+          fotoLM('brinquedoteca', 'Brinquedoteca')
         ]
       }
     ]
