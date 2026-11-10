@@ -742,6 +742,22 @@
   // (10/11/2026) e os da Zona Leste da capital, da pasta "ZONA LESTE (10)" dela
   var LP = L + 'pacific/', LH = L + 'homeboutique/';
   var fotoLP = fotoEm(LP), fotoLH = fotoEm(LH);
+  var LE = L + 'hectare/', LD = L + 'duett/', LA = L + 'arq/', LZ = L + 'palazzo/', LV = L + 'villaggio/';
+  var fotoLE = fotoEm(LE), fotoLD = fotoEm(LD), fotoLA = fotoEm(LA), fotoLZ = fotoEm(LZ), fotoLV = fotoEm(LV);
+  var ZL_MOOCA = {
+    titulo: 'A região · Mooca',
+    texto: 'Bairro de tradição italiana e um dos mais procurados da Zona Leste, a Mooca combina ruas arborizadas, cantinas e padarias centenárias com uma nova geração de lançamentos de médio e alto padrão. Perto do centro e com as estações Bresser-Mooca e Mooca, a Radial Leste e a Avenida Alcântara Machado, o bairro tem demanda constante de famílias que querem ficar na região e de quem trabalha no centro expandido.',
+    numeros: [['3', 'lançamentos da Living no bairro: Duett, Arq e Palazzo'], ['2', 'estações: Bresser-Mooca, na Linha 3, e Mooca, na Linha 10'], ['10 min', 'do centro de São Paulo'], ['+100', 'anos de cantinas e padarias tradicionais']],
+    polos: 'Por perto: Shopping Mooca Plaza, Juventus da Mooca, SESC Belenzinho, Hospital Igesp, Universidade São Judas e as cantinas da Rua da Mooca.',
+    fonte: 'Fonte: books da Living para o Duett Mooca, o Arq Mooca e o Palazzo Mooca.'
+  };
+  var ZL_TATUAPE = {
+    titulo: 'A região · Tatuapé',
+    texto: 'O Tatuapé é o bairro mais valorizado da Zona Leste, com o eixo dos shoppings Metrô Tatuapé e Boulevard, a estação da Linha 3-Vermelha e o acesso à Radial Leste e à Marginal Tietê. Ruas de prédios altos e lazer completo convivem com o Parque Ceret e o Clube Ceret, colégios tradicionais e uma das cenas gastronômicas mais ativas da região.',
+    numeros: [['2', 'torres do Villaggio Tatuapé: Firenze e Pienza'], ['3 min', 'da Estação Tatuapé'], ['1º', 'metro quadrado mais valorizado da Zona Leste'], ['+34 mil m²', 'de mata nativa no Parque Ceret, ao lado']],
+    polos: 'Por perto: Shopping Metrô Tatuapé, Shopping Boulevard, Parque Ceret, Clube Ceret, Hospital São Luiz Anália Franco e os colégios da região.',
+    fonte: 'Fonte: material da Living para o Villaggio Tatuapé e dados públicos da região; números a confirmar.'
+  };
   var ZL_BELEM = {
     titulo: 'A região · Belém e Tatuapé',
     texto: 'O Belém é o bairro da Zona Leste que faz a ponte entre a Mooca e o Tatuapé, a 3 minutos da Estação Belém da Linha 3-Vermelha e a 5 do Shopping Metrô Tatuapé. Ruas residenciais de casas e sobrados, colégios tradicionais e hospitais a poucos minutos, com acesso rápido à Marginal Tietê e à Radial Leste.',
@@ -2427,6 +2443,362 @@
           fotoLH('private-studio', 'Private Studio para convidados'),
           fotoLH('vista-aerea', 'Vista aérea da região, agosto de 2024'),
           fotoLH('parque-ceret', 'Parque Ceret')
+        ]
+      },
+      {
+        nome: 'Living Hectare Anália Franco',
+        cidade: 'São Paulo, capital',
+        bairro: 'Anália Franco',
+        resumo: '2 suítes a 4 dormitórios · 76 a 122 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Jalisco, na Vila Regente Feijó, ao lado do Anália Franco: um terreno raro de mais de 10 mil m², um hectare, com 5 mil m² de área verde. Piscina adulto com raia de 25 m e deck molhado, Casa de Campo, Casa de Festas, Steak House, Lounge Bar, quadra de tênis, Kids Garden e Relax Garden. Apartamentos de 76 a 122 m², de 2 suítes a 4 dormitórios, com Smart Home 2.0, Mini Market e Car Sharing.',
+        area: ['76 m²: 2 suítes', '100 m²: 3 dormitórios com 1 suíte, ou 4 dormitórios com 2 suítes, e 2 vagas', '122 m²: 3 suítes, ou 4 dormitórios com 2 suítes, e 2 vagas'],
+        tipologia: '2 suítes a 4 dormitórios, de 76 a 122 m²',
+        banheiros: 'Lavabo; banheiros com infraestrutura para água quente',
+        vagas: '2 vagas no 100 e no 122 m²; vagas determinadas e por sorteio, conforme o memorial',
+        torres: 'Sob consulta',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo e subsolo: acessos social, de serviço e de veículos, lobby, alameda, Transfer, Espaço Delivery, Mini Market, Car Sharing e ponto para carro elétrico', 'Lazer no terreno: piscinas, Casa de Campo, Casa de Festas, Steak House, Lounge Bar, quadra de tênis, Fitness, Games, Coworking, Kids Garden, Pet Garden e Relax Garden'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Jalisco, 8 · Vila Regente Feijó (Anália Franco), São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 25 m e deck molhado, piscina infantil e solarium',
+          academia: 'Fitness com Wi-Fi nas áreas de lazer',
+          festas: 'Casa de Festas com hall social',
+          gourmet: 'Varanda Gourmet, Steak House e Lounge Bar',
+          kids: 'Brinquedoteca, Kids Garden e Casa de Campo',
+          quadra: 'Quadra de tênis',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby e alameda',
+          coworking: 'Coworking, Games com Poker & Snooker, Mini Market 24 horas, Espaço Delivery, Car Sharing, Transfer e ponto de recarga para carro elétrico'
+        },
+        lazer: ['Lobby', 'Alameda', 'Casa de Festas', 'Varanda Gourmet', 'Casa de Campo', 'Piscina infantil', 'Piscina adulto, raia de 25 m', 'Solarium', 'Quadra de tênis', 'Pet Garden', 'Kids Garden', 'Transfer', 'Steak House', 'Lounge Bar', 'Poker & Snooker', 'Hall social', 'Games', 'Coworking', 'Fitness', 'Brinquedoteca', 'Relax Garden', 'Mini Market', 'Espaço Delivery', 'Car Sharing', 'Recarga para carro elétrico'],
+        diferenciais: ['Terreno de mais de 10 mil m² com 5 mil m² de área verde', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmera na sala', 'Infraestrutura para ar-condicionado nas suítes, dormitórios e sala', 'Infraestrutura para churrasqueira e bancada no terraço social', 'Infraestrutura para água quente e lavabo', 'Quarto dormitório da planta de 122 m² na personalização'],
+        creditos: [['Arquitetura', 'IDE Studio Arquitetura'], ['Interiores das áreas comuns', 'Carlos Rossi Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem']],
+        plantas: [
+          { src: LE + 'planta-76.webp', nome: '76 m²', meta: '2 suítes' },
+          { src: LE + 'planta-100.webp', nome: '100 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LE + 'planta-100-opcao.webp', nome: '100 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' },
+          { src: LE + 'planta-122.webp', nome: '122 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LE + 'planta-122-opcao.webp', nome: '122 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LE + 'implantacao.webp', nome: 'Implantação', meta: 'Um hectare: os 24 espaços do térreo e do subsolo' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Parque Ceret e Clube Ceret', 'no bairro'], ['Shopping Anália Franco', 'no bairro'], ['Hospital São Luiz Anália Franco', 'no bairro'], ['Futura Estação Anália Franco do metrô', 'no bairro']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora Living Salazares Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, em processo no 7º Cartório de Registro de Imóveis de São Paulo, matrícula 525.881. Área não contaminada (CETESB 30/01343/21). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, água quente, churrasqueira, lavabo e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de junho de 2023. Status e entrega (outubro de 2026, pela corretagem) conforme portais em novembro de 2026.',
+        torre: LE + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_ANALIA,
+        fotos: [
+          fotoLE('fachada', 'Fachada', true),
+          fotoLE('portaria', 'Portaria'),
+          fotoLE('lobby', 'Lobby'),
+          fotoLE('piscina', 'Piscina com raia de 25 m'),
+          fotoLE('piscina-2', 'Piscina e solarium'),
+          fotoLE('area-externa', 'Área externa'),
+          fotoLE('casa-de-campo', 'Casa de Campo'),
+          fotoLE('casa-de-festas', 'Casa de Festas'),
+          fotoLE('casa-de-festas-interna', 'Casa de Festas, interior'),
+          fotoLE('salao-de-festas', 'Salão de festas'),
+          fotoLE('varanda-gourmet', 'Varanda Gourmet'),
+          fotoLE('lounge-bar', 'Lounge Bar'),
+          fotoLE('games', 'Games'),
+          fotoLE('coworking', 'Coworking'),
+          fotoLE('fitness', 'Fitness'),
+          fotoLE('quadra-de-tenis', 'Quadra de tênis'),
+          fotoLE('kids-garden', 'Kids Garden'),
+          fotoLE('brinquedoteca', 'Brinquedoteca')
+        ]
+      },
+      {
+        nome: 'Living Duett Mooca',
+        cidade: 'São Paulo, capital',
+        bairro: 'Alto da Mooca',
+        resumo: '2 a 4 dormitórios · 68 a 126 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'No Alto da Mooca, entre a Rua São Nicásio e a Rua Chamantá, um terreno de mais de 5.900 m² com duas torres e um prédio de studios. Apartamentos de 68 a 126 m², de 2 a 4 dormitórios, e um lazer de 24 espaços no térreo: piscinas com deck molhado, Family House, Blogger Space, Fitness externo, quadra recreativa, redário e Pet Place. Smart Home 2.0 nas unidades.',
+        area: ['68 m²: 2 dormitórios com 1 suíte', '74 m²: 2 suítes', '84 m²: 3 dormitórios com 1 suíte, ou 2 suítes', '126 m²: 3 suítes, ou 4 dormitórios com 2 suítes, com 2 vagas'],
+        tipologia: '2 a 4 dormitórios, de 68 a 126 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: '2 vagas no 126 m²; depósitos, vagas determinadas e por sorteio, conforme o memorial',
+        torres: '2 torres e studios',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos social, de serviço e de veículos, lobby, hall social, coworking, Mini Market e os 24 espaços de lazer'],
+        valores: 'Sob consulta',
+        endereco: 'Rua São Nicásio, 136 · Alto da Mooca, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto e piscina infantil com deck molhado, solarium',
+          academia: 'Fitness e Fitness externo',
+          festas: 'Salão de festas',
+          gourmet: 'Espaço gourmet e churrasqueira; Family House',
+          kids: 'Brinquedoteca, playground, Jogos Teen e Blogger Space',
+          quadra: 'Quadra recreativa',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby e hall social',
+          coworking: 'Coworking, Jogos Adulto, Mini Market, Pet Place e redário'
+        },
+        lazer: ['Lobby', 'Hall social', 'Coworking', 'Brinquedoteca', 'Jogos Adulto', 'Espaço Gourmet', 'Salão de Festas', 'Churrasqueira', 'Quadra recreativa', 'Playground', 'Piscina adulto com deck molhado', 'Piscina infantil com deck molhado', 'Solarium', 'Family House', 'Blogger Space', 'Jogos Teen', 'Fitness', 'Fitness externo', 'Mini Market', 'Pet Place', 'Redário'],
+        diferenciais: ['Smart Home 2.0: Wi-Fi otimizado e interruptores inteligentes na sala, cozinha, dormitórios e varanda', 'Infraestrutura para ar-condicionado nas suítes e dormitórios', 'Infraestrutura para churrasqueira na varanda', 'Infraestrutura para água quente', 'Persianas de enrolar nos dormitórios'],
+        creditos: [['Arquitetura', 'IDE Studio Arquitetura'], ['Interiores das áreas comuns', 'Sesso & Dalanezi Arquitetura'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística']],
+        plantas: [
+          { src: LD + 'planta-68.webp', nome: '68 m²', meta: '2 dormitórios, 1 suíte' },
+          { src: LD + 'planta-74.webp', nome: '74 m²', meta: '2 suítes' },
+          { src: LD + 'planta-84.webp', nome: '84 m² · padrão', meta: '3 dormitórios, 1 suíte' },
+          { src: LD + 'planta-84-opcao.webp', nome: '84 m² · opção', meta: '2 suítes' },
+          { src: LD + 'planta-126.webp', nome: '126 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LD + 'planta-126-opcao.webp', nome: '126 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LD + 'implantacao.webp', nome: 'Térreo', meta: 'Mais de 5.900 m² e os 24 espaços numerados' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Bresser-Mooca, Linha 3', 'no bairro'], ['Shopping Mooca Plaza', 'no bairro'], ['Juventus da Mooca', 'no bairro'], ['Radial Leste', 'no bairro']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR 092 Empreendimentos Imobiliários Ltda. Memorial de Incorporação prenotado sob nº 771.577 no 6º Oficial de Registro de Imóveis de São Paulo em 14/04/2022. Área não contaminada (CETESB 079016/2021-02). Depósitos, vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, água quente, churrasqueira e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Book de abril de 2022; status "pronto para morar" conforme portais em novembro de 2026.',
+        torre: LD + 'fachada-torre-1.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA,
+        fotos: [
+          fotoLD('fachada-torre-1', 'Fachada, torre 1, Rua Chamantá', true),
+          fotoLD('fachada-torre-2', 'Fachada, torre 2', true),
+          fotoLD('fachada-studios', 'Fachada dos studios', true),
+          fotoLD('portaria', 'Portaria, Rua São Nicásio'),
+          fotoLD('lobby', 'Lobby'),
+          fotoLD('piscina', 'Piscinas com deck molhado'),
+          fotoLD('playground-quadra', 'Playground e quadra recreativa'),
+          fotoLD('churrasqueira', 'Churrasqueira'),
+          fotoLD('gourmet', 'Espaço gourmet'),
+          fotoLD('salao-de-festas', 'Salão de festas'),
+          fotoLD('family-house', 'Family House'),
+          fotoLD('jogos-adulto', 'Jogos adulto'),
+          fotoLD('jogos-teen', 'Jogos teen'),
+          fotoLD('blogger-space', 'Blogger Space'),
+          fotoLD('brinquedoteca', 'Brinquedoteca'),
+          fotoLD('coworking', 'Coworking'),
+          fotoLD('pet-place', 'Pet Place')
+        ]
+      },
+      {
+        nome: 'Arq Mooca by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Mooca',
+        resumo: '2 a 4 dormitórios · 71 a 120 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Padre Raposo, na Mooca, com o lazer dividido em três níveis: no térreo, lobby, Fitness, Pet Place e Mini Market; no pavimento lazer, piscinas com deck molhado, Pool Garden, playground, Pub, churrasqueira, salão de festas e coworking; e no 21º pavimento, um rooftop com Poker, Sunset Barbecue e Private House & SPA. Apartamentos de 71 a 120 m², de 2 a 4 dormitórios.',
+        area: ['71 m²: 2 dormitórios com 1 suíte', '82 m²: 3 dormitórios com 1 suíte, ou 2 suítes, com 2 vagas', '120 m²: 3 suítes, ou 4 dormitórios com 2 suítes, com 2 vagas'],
+        tipologia: '2 a 4 dormitórios, de 71 a 120 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: '2 vagas no 82 e no 120 m²; vagas determinadas e por sorteio, conforme o memorial',
+        torres: 'Torre única com rooftop no 21º pavimento',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Subsolo: acessos, Car Sharing', 'Térreo: lobby, Fitness, Pet Place, Mini Market e Espaço Delivery', 'Pavimento lazer: piscinas, Pool Garden, solarium, deck molhado, playground, brinquedoteca, Jogos Teen, Pub, churrasqueira, salão de festas e coworking', '21º pavimento: Poker, Sunset Barbecue e Private House & SPA'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Padre Raposo, 610 · Mooca, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto e infantil com deck molhado, Pool Garden e solarium',
+          academia: 'Fitness no térreo e SPA no rooftop',
+          festas: 'Salão de festas',
+          gourmet: 'Churrasqueira, Sunset Barbecue no rooftop e Private House',
+          kids: 'Brinquedoteca, playground e Jogos Teen',
+          quadra: '',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby',
+          coworking: 'Coworking, Pub, Poker, Mini Market, Espaço Delivery, Pet Place e Car Sharing'
+        },
+        lazer: ['Lobby', 'Fitness', 'Pet Place', 'Car Sharing', 'Mini Market', 'Espaço Delivery', 'Coworking', 'Pub', 'Churrasqueira', 'Salão de Festas', 'Pool Garden', 'Solarium', 'Deck molhado', 'Piscina adulto', 'Piscina infantil', 'Jogos Teen', 'Playground', 'Brinquedoteca', 'Poker', 'Sunset Barbecue', 'Private House & SPA'],
+        diferenciais: ['Rooftop no 21º pavimento com Private House & SPA, Poker e Sunset Barbecue', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB', 'Infraestrutura para ar-condicionado nas suítes, dormitórios e sala', 'Infraestrutura para churrasqueira no terraço social', 'Opção de 4 dormitórios no 120 m² na personalização'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Carlos Rossi'], ['Paisagismo', 'Rossin + Tramontina, Desenho da Paisagem']],
+        plantas: [
+          { src: LA + 'planta-71.webp', nome: '71 m²', meta: '2 dormitórios, 1 suíte' },
+          { src: LA + 'planta-82.webp', nome: '82 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LA + 'planta-82-opcao.webp', nome: '82 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LA + 'planta-120.webp', nome: '120 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LA + 'planta-120-opcao.webp', nome: '120 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Bresser-Mooca, Linha 3', 'no bairro'], ['Shopping Mooca Plaza', 'no bairro'], ['Av. Alcântara Machado e Radial Leste', 'no bairro'], ['Universidade São Judas Tadeu', 'no bairro']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR 098 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 220.636 do 7º Cartório de Registro de Imóveis de São Paulo. Área não contaminada (CETESB 101948/2021-50). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira, água quente e interruptores inteligentes entregues como infraestrutura; opção de planta na personalização. Comercialização: Cyrela, Creci J-17.592. Book de janeiro de 2023; status "em obras" conforme portais em novembro de 2026.',
+        torre: LA + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA,
+        fotos: [
+          fotoLA('fachada', 'Fachada', true),
+          fotoLA('portaria', 'Portaria'),
+          fotoLA('lobby', 'Lobby'),
+          fotoLA('piscina', 'Piscina'),
+          fotoLA('pool-garden', 'Pool Garden'),
+          fotoLA('rooftop', 'Rooftop, 21º pavimento'),
+          fotoLA('private-house', 'Private House & SPA'),
+          fotoLA('private-house-interna', 'Private House, interior'),
+          fotoLA('churrasqueira', 'Churrasqueira'),
+          fotoLA('salao-de-festas', 'Salão de festas'),
+          fotoLA('pub', 'Pub'),
+          fotoLA('jogos-teen', 'Jogos teen'),
+          fotoLA('coworking', 'Coworking'),
+          fotoLA('fitness', 'Fitness'),
+          fotoLA('brinquedoteca', 'Brinquedoteca'),
+          fotoLA('pet-place', 'Pet Place')
+        ]
+      },
+      {
+        nome: 'Palazzo Mooca by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Mooca',
+        resumo: '1 suíte a 3 suítes · 75 a 134 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Tamarataca, na Mooca, uma torre única com lazer no rooftop: Wellness Club com Fitness, Spa & Massage e sauna, Poker & Snooker Bar, Pool Garden, beach tennis, piscinas e solarium no alto, e no térreo o Terraço Festas, playground, Pet Place, brinquedoteca e Mini Market. Apartamentos de 75 a 134 m², com Private House para receber.',
+        area: ['75 m²: 2 dormitórios com 1 suíte, ou 2 suítes, ou 1 suíte com sala ampliada', '84 m²: 3 dormitórios com 1 suíte, ou 2 suítes, com 2 vagas', '134 m²: 3 suítes, com 2 vagas'],
+        tipologia: '1 a 3 suítes, de 75 a 134 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: '2 vagas cobertas nos finais 1 e 2 e 1 vaga coberta nos demais, determinadas; algumas por sorteio, conforme o memorial',
+        torres: 'Torre única de 24 pavimentos',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos social, de serviço e de veículos, Terraço Festas, playground, Pet Place, brinquedoteca, lobby, salão de festas, Mini Market e Delivery', '4º pavimento: Wellness Club com Fitness e Spa & Massage', 'Rooftop: Poker & Snooker Bar, Pool Garden, beach tennis, piscinas adulto e infantil e solarium'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Tamarataca, 256 · Mooca, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto, piscina infantil, Pool Garden e solarium no rooftop',
+          academia: 'Wellness Club: Fitness, Spa & Massage e sauna',
+          festas: 'Salão de festas e Terraço Festas',
+          gourmet: 'Churrasqueira e Private House',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Beach tennis no rooftop',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby',
+          coworking: 'Poker & Snooker Bar, Mini Market, Delivery, Pet Place e Car Sharing'
+        },
+        lazer: ['Lobby', 'Salão de Festas', 'Terraço Festas', 'Playground', 'Pet Place', 'Brinquedoteca', 'Mini Market', 'Delivery', 'Fitness', 'Spa & Massage', 'Sauna', 'Poker & Snooker Bar', 'Pool Garden', 'Beach Tennis', 'Piscina adulto', 'Piscina infantil', 'Solarium', 'Private House', 'Churrasqueira', 'Car Sharing'],
+        diferenciais: ['Lazer no rooftop, com piscinas, beach tennis e Poker & Snooker Bar no alto da torre', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes e tomadas USB', 'Infraestrutura para ar-condicionado', 'Infraestrutura para churrasqueira e bancada no terraço social', 'Ponto para lava-louças e água quente'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Débora Dalanezi Arquitetura'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'CBR Magik LZ 21, com participação da Cyrela']],
+        plantas: [
+          { src: LZ + 'planta-75.webp', nome: '75 m² · padrão', meta: '2 dormitórios, 1 suíte' },
+          { src: LZ + 'planta-75-opcao.webp', nome: '75 m² · opção 1', meta: '2 suítes' },
+          { src: LZ + 'planta-75-opcao-2.webp', nome: '75 m² · opção 2', meta: '1 suíte, sala ampliada' },
+          { src: LZ + 'planta-84.webp', nome: '84 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LZ + 'planta-84-opcao.webp', nome: '84 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LZ + 'planta-134.webp', nome: '134 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LZ + 'planta-134-opcao.webp', nome: '134 m² · opção', meta: '3 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LZ + 'implantacao-lazer.webp', nome: 'Térreo e 4º pavimento', meta: 'Acessos, Terraço Festas, playground, Pet Place e Wellness Club' },
+          { src: LZ + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Poker & Snooker Bar, Pool Garden, beach tennis, piscinas e solarium' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Mooca, Linha 10', 'no bairro'], ['Estação Bresser-Mooca, Linha 3', 'no bairro'], ['Shopping Mooca Plaza', 'no bairro'], ['Rua da Mooca', 'no bairro']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR Magik LZ 21 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado em 19/07/2024 sob nº 565.832 no 7º Oficial de Registro de Imóveis de São Paulo. Área não contaminada (CETESB 30/00528/23). Vagas conforme o memorial: duas cobertas nos finais 1 e 2 do 5º ao 24º pavimento, uma coberta ou descoberta nos demais finais, e as outras por sorteio. Ar-condicionado, churrasqueira e interruptores inteligentes entregues como infraestrutura. Comercialização: CBR Magik LZ 21 e Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; status "em obras" conforme portais em novembro de 2026.',
+        torre: LZ + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA,
+        fotos: [
+          fotoLZ('fachada', 'Fachada', true),
+          fotoLZ('portaria', 'Portaria'),
+          fotoLZ('lobby', 'Lobby'),
+          fotoLZ('piscina', 'Piscina no rooftop'),
+          fotoLZ('beach-tennis', 'Beach tennis'),
+          fotoLZ('private-house', 'Private House'),
+          fotoLZ('churrasqueira', 'Churrasqueira'),
+          fotoLZ('salao-de-festas', 'Salão de festas'),
+          fotoLZ('salao-de-festas-2', 'Salão de festas'),
+          fotoLZ('poker-snooker-bar', 'Poker & Snooker Bar'),
+          fotoLZ('fitness', 'Fitness'),
+          fotoLZ('sauna', 'Sauna'),
+          fotoLZ('spa-massage', 'Spa & Massage'),
+          fotoLZ('brinquedoteca', 'Brinquedoteca'),
+          fotoLZ('playground', 'Playground')
+        ]
+      },
+      {
+        nome: 'Living Villaggio Tatuapé',
+        cidade: 'São Paulo, capital',
+        bairro: 'Tatuapé',
+        resumo: '3 dormitórios a 3 suítes · 100 a 157 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Cantagalo, no Tatuapé, duas torres com nomes de cidades italianas, Firenze e Pienza, cada uma com lazer próprio: piscina, churrasqueira, salão de festas, salão de jogos, coworking, fitness, brinquedoteca e playground. Apartamentos de 100 e 122 m², de 3 dormitórios a 3 suítes, e unidades town de 157 m² em dois pisos, com 3 suítes. Condomínio pronto.',
+        area: ['100 m²: 3 dormitórios, ou 2 suítes', '122 m²: 3 suítes, ou 4 dormitórios', '157 m² town: 3 suítes, em dois pisos'],
+        tipologia: '3 dormitórios a 3 suítes, de 100 a 157 m²',
+        banheiros: 'Sob consulta',
+        vagas: 'Sob consulta',
+        torres: '2 torres: Firenze e Pienza',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Sob consulta'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Cantagalo, 2167 · Tatuapé, São Paulo',
+        infra: {
+          piscina: 'Piscina em cada torre',
+          academia: 'Fitness em cada torre',
+          festas: 'Salão de festas em cada torre',
+          gourmet: 'Churrasqueira em cada torre',
+          kids: 'Brinquedoteca e playground em cada torre; salão de jogos teen na Firenze',
+          quadra: '',
+          portaria: 'Portaria e lobby em cada torre',
+          coworking: 'Coworking e salão de jogos adulto em cada torre'
+        },
+        lazer: ['Portaria', 'Lobby', 'Piscina', 'Churrasqueira', 'Salão de Festas', 'Salão de Jogos Adulto', 'Salão de Jogos Teen', 'Coworking', 'Fitness', 'Brinquedoteca', 'Playground'],
+        diferenciais: ['Duas torres independentes, Firenze e Pienza, com lazer completo em cada uma', 'Unidades town de 157 m² em dois pisos', 'Condomínio entregue'],
+        creditos: [['Incorporação', 'Living, Grupo Cyrela']],
+        plantas: [
+          { src: LV + 'planta-100.webp', nome: '100 m² · padrão', meta: '3 dormitórios' },
+          { src: LV + 'planta-100-opcao.webp', nome: '100 m² · opção', meta: '2 suítes' },
+          { src: LV + 'planta-122.webp', nome: '122 m² · padrão', meta: '3 suítes' },
+          { src: LV + 'planta-122-opcao.webp', nome: '122 m² · opção', meta: '4 dormitórios' },
+          { src: LV + 'planta-157-town.webp', nome: '157 m² · town', meta: 'Piso inferior e superior, 3 suítes' }
+        ],
+        implantacao: [
+          { src: LV + 'implantacao.webp', nome: 'Implantação', meta: 'As duas torres e o lazer' },
+          { src: LV + 'implantacao-2.webp', nome: 'Implantação', meta: 'Segunda vista' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Tatuapé, Linha 3', 'no bairro'], ['Shopping Metrô Tatuapé e Boulevard', 'no bairro'], ['Parque Ceret', 'no bairro'], ['Hospital São Luiz Anália Franco', 'no bairro']]]
+          ],
+          nota: 'O material não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Living, marca do Grupo Cyrela. O material recebido traz só as imagens e as plantas; endereço e status "pronto para morar" conforme o site da Living e portais em novembro de 2026. Banheiros, vagas, torres e unidades a confirmar com a Living.',
+        torre: LV + 'fachada-firenze.webp',
+        notaImagens: 'Imagens do material da Living; condomínio entregue. Dados a confirmar com a Living.',
+        regiao: ZL_TATUAPE,
+        fotos: [
+          fotoLV('fachada-firenze', 'Fachada, torre Firenze', true),
+          fotoLV('fachada-pienza', 'Fachada, torre Pienza', true),
+          fotoLV('portaria-firenze', 'Portaria, Firenze'),
+          fotoLV('portaria-pienza', 'Portaria, Pienza'),
+          fotoLV('lobby-firenze', 'Lobby, Firenze'),
+          fotoLV('lobby-pienza', 'Lobby, Pienza'),
+          fotoLV('piscina-firenze', 'Piscina, Firenze'),
+          fotoLV('piscina-pienza', 'Piscina, Pienza'),
+          fotoLV('churrasqueira-firenze', 'Churrasqueira, Firenze'),
+          fotoLV('churrasqueira-pienza', 'Churrasqueira, Pienza'),
+          fotoLV('festas-firenze', 'Salão de festas, Firenze'),
+          fotoLV('festas-pienza', 'Salão de festas, Pienza'),
+          fotoLV('jogos-firenze', 'Salão de jogos adulto, Firenze'),
+          fotoLV('jogos-pienza', 'Salão de jogos, Pienza'),
+          fotoLV('jogos-teen-firenze', 'Salão de jogos teen, Firenze'),
+          fotoLV('coworking-firenze', 'Coworking, Firenze'),
+          fotoLV('coworking-pienza', 'Coworking, Pienza'),
+          fotoLV('fitness-firenze', 'Fitness, Firenze'),
+          fotoLV('fitness-pienza', 'Fitness, Pienza'),
+          fotoLV('brinquedoteca-firenze', 'Brinquedoteca, Firenze'),
+          fotoLV('brinquedoteca-pienza', 'Brinquedoteca, Pienza'),
+          fotoLV('playground-firenze', 'Playground, Firenze'),
+          fotoLV('playground-pienza', 'Playground, Pienza')
         ]
       }
     ]
