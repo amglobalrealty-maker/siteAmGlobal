@@ -218,7 +218,7 @@
   .vitrine-conta { margin-bottom: 10px; }
   /* (10/11) logos de proporcoes diferentes (Vitacon larga, Living mais alta): a largura e a mesma,
      a altura tem teto e a imagem se encaixa a esquerda */
-  .vitrine-logo { width: min(64%, 210px); height: auto; max-height: 76px; object-fit: contain; object-position: left center; }
+  .vitrine-logo { width: min(64%, 210px); height: auto; max-height: 62px; object-fit: contain; object-position: left center; }
   .vitrine-nome { display: block; font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 2.2vw, 34px); line-height: 1; }
   .vitrine-ver { display: inline-flex; align-items: center; gap: 14px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); transition: border-color 0.5s var(--curva); }
   .vitrine-ver svg { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; transition: transform 0.6s var(--curva); }
@@ -328,6 +328,13 @@
   /* --n = quantas colunas (2 a 4, vem do script): com duas plantas elas ficam grandes, legiveis sem ampliar */
   .plantas { list-style: none; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
   /* (09/11/2026) a faixa das plantas: a lista rola de lado dentro da `.faixa`, 3 por vez */
+  /* (10/11) as construtoras do estado numa faixa com setas: 3 por vez no computador, 1 no celular */
+  .faixa-bloco-vitrine { margin-bottom: clamp(36px, 6vh, 70px); }
+  .faixa-bloco-vitrine > .rotulo { margin-bottom: 18px; }
+  .faixa-vitrine .vitrine { --vao: clamp(14px, 2vw, 24px); position: relative; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--vao)) / 3); gap: var(--vao); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+  .faixa-vitrine .vitrine::-webkit-scrollbar { display: none; }
+  .faixa-vitrine .vitrine li { scroll-snap-align: start; min-width: 0; display: grid; }
+  .faixa-vitrine .vitrine-cartao { height: 100%; }   /* os cartoes da mesma fileira com a mesma altura */
   .faixa-plantas { margin-bottom: 0; }
   .faixa-plantas .plantas { --vao: clamp(16px, 2vw, 28px); position: relative; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--vao)) / 3); gap: var(--vao); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
   .faixa-plantas .plantas::-webkit-scrollbar { display: none; }
@@ -418,6 +425,7 @@
     .lista { columns: 2; }
     .empreendimentos { grid-auto-columns: calc((100% - 3 * var(--vao)) / 4); }
     .faixa-plantas .plantas { grid-auto-columns: calc((100% - var(--vao)) / 2); }
+    .faixa-vitrine .vitrine { grid-auto-columns: calc((100% - var(--vao)) / 2); }
     .aberto-corpo { grid-template-columns: 1fr; }
     .aberto-lado .aberto-bloco:first-child { margin-top: 28px; }
     .aberto-marca { display: none; }
@@ -468,7 +476,7 @@
     /* a vitrine no celular: um cartao por linha, mais baixo */
     .vitrine { grid-template-columns: 1fr; }
     .vitrine-cartao { min-height: 0; gap: 22px; padding: 24px 22px 22px; }
-    .vitrine-logo { width: min(56%, 200px); }
+    .vitrine-logo { width: min(74%, 200px); }   /* (10/11) o cartao ficou mais estreito dentro da faixa com setas; a logo mantem o tamanho */
     .infra div { grid-template-columns: 1fr; }
     .ficha.larga dd { font-size: 18px; }
     /* as abas rolam de lado numa linha so, com rotulo curto e um esmaecido a direita avisando que ha mais;
@@ -490,6 +498,9 @@
     .faixa-implantacao .planta-quadro { aspect-ratio: 2 / 1; }
     .planta-nome { font-size: 19px; }
     .faixa-plantas .plantas { --vao: 10px; grid-auto-columns: 100%; }   /* uma planta por vez, com as setas */
+    .faixa-vitrine .vitrine { --vao: 10px; grid-auto-columns: 100%; }   /* uma construtora por vez, com as setas */
+    .faixa-bloco-vitrine { margin-bottom: 40px; }
+    .faixa-bloco-vitrine > .rotulo { display: none; }   /* no celular o cartao fala por si, e a logo precisa caber na primeira tela */
     .faixa-plantas { margin-bottom: 0; }
     .aba-largo { gap: 34px; }
   }
@@ -2417,28 +2428,50 @@
     var comFoto = !!e.foto && parceiras > 0 && !filtrado;
     // (09/11/2026) sem a frase "1 parceria em Sao Paulo. Toque na marca..." no cabecalho (ela: "ta muito
     // perdido, nao precisa dele"); so quando nao ha parceria nenhuma no estado fica o "a anunciar"
-    return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2>' + (parceiras ? '' : '<p>Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.</p>') + '</div>'
-      + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '')
+    // (10/11/2026) com parcerias no ar, o estado mostra UM texto (o da primeira cidade que o tem, a
+    // capital) e TODAS as construtoras do estado lado a lado numa faixa com setas, cada cartao
+    // dizendo a cidade (ela: "queria com setinhas um do lado do outro e so o textinho da capital,
+    // nao precisa colocar de Santo Andre e Sao Bernardo"). As cidades sem parceria seguem em "em breve".
+    var textoDe = function (c) {
+      if (!c.texto) return '';
+      var ts = Array.isArray(c.texto) ? c.texto : [c.texto];
+      return '<div class="cidade-sobre fechado">' + ts.map(function (t) { return '<p class="cidade-texto">' + esc(t) + '</p>'; }).join('')
+        + (ts.length > 1 ? '<button type="button" class="cidade-mais" aria-expanded="false"><span>Ler mais sobre <span class="notranslate">' + esc(c.curta || c.nome) + '</span></span><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>' : '')
+        + '</div>';
+    };
+    var cabeca = '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2>' + (parceiras ? '' : '<p>Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.</p>') + '</div>'
+      + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '');
+    if (filtrado && parceiras) {
+      var comTexto = null, cartoes = [], semParceria = [];
+      e.cidades.forEach(function (c, ci) {
+        var ps = parceriasDe(c);
+        if (!ps.length) { semParceria.push(c); return; }
+        if (!comTexto && c.texto) comTexto = c;
+        ps.forEach(function (x) { cartoes.push(cartaoParceria(x.nome, ci, x.ni, c)); });
+      });
+      return '<div class="nivel">' + cabeca
+        + (comTexto ? '<div class="cidade"><div class="cidade-nome"><h3 class="notranslate">' + esc(comTexto.nome) + '</h3></div>' + textoDe(comTexto) + '</div>' : '')
+        + '<div class="faixa-bloco faixa-bloco-vitrine"><span class="rotulo">As construtoras</span>'
+        +   '<div class="faixa faixa-vitrine">'
+        +     '<button type="button" class="faixa-seta ant" data-faixa="-1" aria-label="Construtoras anteriores"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M15 5H1M5 1L1 5l4 4"/></svg></button>'
+        +     '<ol class="vitrine">' + cartoes.join('') + '</ol>'
+        +     '<button type="button" class="faixa-seta prox" data-faixa="1" aria-label="Próximas construtoras"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button>'
+        +   '</div>'
+        + '</div>'
+        + semParceria.map(function (c) { return '<div class="cidade"><div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>em breve</span></div><p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p></div>'; }).join('')
+        + '</div>';
+    }
+    return '<div class="nivel">' + cabeca
       + e.cidades.map(function (c, ci) {
         var ps = parceriasDe(c);
         // o rotulo ao lado do nome da cidade so quando ainda nao ha parceria ("em breve"); com parceria, o cartao ja diz
         return '<div class="cidade">'
           + '<div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3>' + (ps.length ? '' : '<span>em breve</span>') + '</div>'
-          // (09/11/2026) o texto sobre a cidade, acima das construtoras (um ou mais paragrafos)
-          // no celular comeca fechado (so o primeiro paragrafo) com o botao "Ler mais"; no computador o CSS mostra tudo
-          + (c.texto && ps.length ? (function () {
-              var ts = Array.isArray(c.texto) ? c.texto : [c.texto];
-              return '<div class="cidade-sobre fechado">' + ts.map(function (t) { return '<p class="cidade-texto">' + esc(t) + '</p>'; }).join('')
-                + (ts.length > 1 ? '<button type="button" class="cidade-mais" aria-expanded="false"><span>Ler mais sobre <span class="notranslate">' + esc(c.curta || c.nome) + '</span></span><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>' : '')
-                + '</div>';
-            })() : '')
+          + (ps.length ? textoDe(c) : '')
           + (!ps.length
             ? '<p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p>'
-            // com NO_AR, cada parceria no ar e um cartao com a logo para clicar; sem NO_AR, a lista de nomes em texto
-            : filtrado
-              ? '<ol class="vitrine">' + ps.map(function (x) { return cartaoParceria(x.nome, ci, x.ni, c); }).join('') + '</ol>'
-              : '<ol class="lista">' + ps.map(function (x) {
+            // sem NO_AR, a lista de nomes em texto
+            : '<ol class="lista">' + ps.map(function (x) {
                   return '<li><button type="button" class="nome notranslate' + (LOGOS[x.nome] ? ' com-logo' : '') + '" data-c="' + ci + '" data-n="' + x.ni + '">' + (logoDe(x.nome, 'nome-logo') || esc(x.nome)) + '<svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button></li>';
                 }).join('') + '</ol>')
           + '</div>';
@@ -2449,7 +2482,8 @@
   function cartaoParceria(nome, ci, ni, c) {
     var lista = empreendimentosDe(nome, c);
     return '<li><button type="button" class="vitrine-cartao" data-c="' + ci + '" data-n="' + ni + '" aria-label="' + esc(nome) + ': ver os empreendimentos">'
-      + '<span><span class="vitrine-onde">Construtora</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
+      // (10/11) o rotulo do cartao e a cidade, porque as construtoras de todas as cidades do estado ficam na mesma faixa
+      + '<span><span class="vitrine-onde notranslate">' + esc(c.curta || c.nome) + '</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
       + '<span><span class="vitrine-conta">' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
       + '</button></li>';
   }
@@ -2669,6 +2703,7 @@
     var html = onde.p === null ? nivelPaises() : onde.e === null ? nivelEstados() : onde.n === null ? nivelEstado() : nivelParceira();
     $('nivel').innerHTML = html;
     if (onde.n !== null) { montarGaleria(); montarFaixa(); mostrarAba(abaAtual); }
+    else montarFaixas();   // (10/11) a faixa das construtoras no nivel do estado tambem tem setas
     $('notaExemplo').hidden = onde.n === null || !exemploAberto;
     var hash = onde.p === null ? '' : '#' + PAISES[onde.p].id
       + (onde.e !== null ? '/' + PAISES[onde.p].estados[onde.e].uf.toLowerCase() : '')
