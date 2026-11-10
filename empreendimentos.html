@@ -216,7 +216,9 @@
   .vitrine-onde, .vitrine-conta { display: block; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-fraco); }
   .vitrine-onde { margin-bottom: 14px; }
   .vitrine-conta { margin-bottom: 10px; }
-  .vitrine-logo { width: min(64%, 210px); height: auto; }
+  /* (10/11) logos de proporcoes diferentes (Vitacon larga, Living mais alta): a largura e a mesma,
+     a altura tem teto e a imagem se encaixa a esquerda */
+  .vitrine-logo { width: min(64%, 210px); height: auto; max-height: 76px; object-fit: contain; object-position: left center; }
   .vitrine-nome { display: block; font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 2.2vw, 34px); line-height: 1; }
   .vitrine-ver { display: inline-flex; align-items: center; gap: 14px; font-weight: 500; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--linha-escura); transition: border-color 0.5s var(--curva); }
   .vitrine-ver svg { width: 20px; height: 10px; fill: none; stroke: var(--champagne); stroke-width: 1; transition: transform 0.6s var(--curva); }
@@ -597,7 +599,12 @@
       { nome: 'São Paulo, capital', curta: 'São Paulo', texto: [
         'São Paulo é a maior cidade da América do Sul, com cerca de 11,5 milhões de habitantes na capital e mais de 20 milhões na região metropolitana, e tem o maior PIB entre os municípios do país. Aqui estão a bolsa de valores, as sedes dos principais bancos e empresas, hospitais e universidades de referência nacional, a maior rede de metrô e trens do Brasil e dois aeroportos, Congonhas e Guarulhos.',
         'No mercado imobiliário, os bairros entre a Avenida Paulista e a Faria Lima lideram a procura: Pinheiros, Jardins, Vila Olímpia, Itaim, Perdizes e Vila Mariana. São ruas arborizadas, com gastronomia, parques, hospitais e estações de metrô, onde os lançamentos compactos, com lazer completo e serviços no prédio, têm alta demanda de moradia e de locação, de executivos, estudantes e profissionais da saúde.'
-      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] }
+      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur'] },
+      // (10/11/2026) a Living (Grupo Cyrela) entrou com tres empreendimentos no ABC paulista; textos meus, a confirmar
+      { nome: 'Santo André e São Bernardo do Campo', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo'], quantas: 2, texto: [
+        'Santo André e São Bernardo do Campo formam o coração do Grande ABC, a região industrial que se tornou um dos mercados residenciais mais fortes da Grande São Paulo: 1,6 milhão de habitantes nas duas cidades, a 30 minutos do centro da capital pelas linhas 10-Turquesa e 18, pela Anchieta e pela Imigrantes, com universidades como a UFABC, hospitais de referência e o Parque Central e o Parque Celso Daniel entre os maiores da região.',
+        'Em Santo André, o bairro Jardim concentra o alto padrão, ao redor do Parque Celso Daniel e do Grand Plaza Shopping; em São Bernardo, o Rudge Ramos faz divisa com a capital e com São Caetano, perto da Universidade Metodista. São bairros de ruas arborizadas e comércio consolidado, onde os lançamentos com lazer completo, serviços no condomínio e plantas de 2 a 4 dormitórios atendem famílias que querem ficar na região e investidores que buscam locação estável.'
+      ], construtoras: ['Living'] }
     ] },
     { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/lugares/rj.webp', cidades: [
       { nome: 'Rio de Janeiro', texto: [
@@ -717,6 +724,17 @@
   // (09/11/2026) e para os quatro ultimos da lista: Alto de Pinheiros, Vila Olimpia, Domingos de Morais e Maestro Cardim
   var AP = V + 'altopinheiros/', VO = V + 'vilaolimpia/', DM = V + 'domingos/', MA = V + 'maestro/';
   var fotoAP = fotoEm(AP), fotoVO = fotoEm(VO), fotoDM = fotoEm(DM), fotoMA = fotoEm(MA);
+  // (10/11/2026) a Living, no ABC: pastas por empreendimento em fotos/parcerias/living/
+  var L = 'fotos/parcerias/living/';
+  var LJ = L + 'jardim/';
+  var fotoLJ = fotoEm(LJ);
+  var ABC_JARDIM = {
+    titulo: 'A região · Bairro Jardim, Santo André',
+    texto: 'O Jardim é o endereço nobre de Santo André: ruas arborizadas com fiação subterrânea, o Parque Celso Daniel a 300 m e o Grand Plaza Shopping a 350 m, entre as avenidas Industrial e Dom Pedro II. A região reúne hospitais, escolas bilíngues, a FGV e a UFABC, com duas estações de trem a menos de cinco minutos e saída rápida para a capital pela Avenida dos Estados.',
+    numeros: [['300 m', 'do Parque Celso Daniel, a pé'], ['350 m', 'do Grand Plaza Shopping, a pé'], ['950 m', 'da Estação Prefeito Saladino'], ['+6 mil m²', 'de terreno, com 35 espaços de lazer e serviços']],
+    polos: 'Por perto: Parque Celso Daniel, Grand Plaza Shopping, Hospital ABC, Fleury, FGV, UFABC e as estações Prefeito Saladino e Santo André.',
+    fonte: 'Fonte: book do Living Grand Wish Jardim (agosto de 2023), com distâncias do Google Maps de novembro de 2022.'
+  };
   var JARDINS = {
     titulo: 'A região · Jardins',
     texto: 'Entre a Rua Oscar Freire e a Alameda Lorena, no Jardins, um dos endereços mais desejados do país: a Rua Augusta em transformação, com fácil acesso à Avenida Paulista e às estações Oscar Freire e Consolação do metrô.',
@@ -1988,13 +2006,101 @@
           { src: V + 'venancio284-academia.webp', legenda: 'Academia' }
         ]
       }
+    ],
+    /* (10/11/2026) LIVING, marca do Grupo Cyrela, no ABC paulista. Ela mandou a pasta "ABC + (5)"
+       com book, fotos em alta e plantas de tres empreendimentos (Grand Wish Jardim e Grand Resort,
+       em Santo Andre; Magic Rudge Ramos, em Sao Bernardo). As fotos vieram dos PNG/JPG da pasta
+       (nao do PDF), convertidas para webp 1600 + miniatura 280 em fotos/parcerias/living/<nome>/.
+       O book do Jardim e de agosto/2023 e nao diz status, torres nem unidades: o status veio dos
+       portais (apto.vc "em construcao", Lopes "inicio de obras") e o resto fica "Sob consulta". */
+    'Living': [
+      {
+        nome: 'Living Grand Wish Jardim',
+        bairro: 'Jardim, Santo André',
+        resumo: '2 a 4 dormitórios · 74 a 126 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'No bairro Jardim, o endereço mais valorizado de Santo André, a 300 m do Parque Celso Daniel e a 350 m do Grand Plaza Shopping: apartamentos de 74 a 126 m², de 2 a 4 dormitórios, num terreno de mais de 6 mil m² com lazer de resort. Piscina com tanque de 30 m, Private Pool House com mais de 300 m², Casa de Campo com Casa na Árvore, quadra de tênis em grama sintética e área wellness, mais Smart Home 2.0, Mini Market 24 horas e Car Sharing dentro do condomínio.',
+        area: ['74 m²: 2 suítes e 1 vaga', '90 m²: 3 dormitórios com 1 suíte, ou 2 suítes, com 2 vagas', '104 m²: 3 dormitórios com 1 suíte, ou 2 suítes, com 2 vagas', '126 m²: 3 suítes, ou 4 dormitórios com 2 suítes, com 2 vagas'],
+        tipologia: '2 a 4 dormitórios, de 74 a 126 m²',
+        banheiros: 'Lavabo em todas as unidades; banheiros ventilados, com infraestrutura para água quente',
+        vagas: '1 vaga no 74 m² e 2 vagas a partir de 90 m², todas determinadas; vagas de visitantes',
+        torres: 'Sob consulta',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo com Porte-Cochère, lobby de pé-direito alto, coworking, Mini Market e Espaço Delivery', 'Lazer nos jardins: piscinas, deck molhado com SPA, quadra de tênis, Private Pool House e Casa de Campo'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Dr. Rubens Awada, 55 · Jardim, Santo André',
+        infra: {
+          piscina: 'Piscina adulto com tanque de 30 m, piscina infantil, deck molhado com SPA e solarium',
+          academia: 'Área wellness com Fitness, Espaço Zen e Sala de Massagem; ar-condicionado entregue instalado no Fitness',
+          festas: 'Salão de Festas com mais de 170 m² e ar-condicionado instalado, dois lounges de apoio externos',
+          gourmet: 'Gourmet e Lounge Gourmet; Private Pool House com mais de 300 m²',
+          kids: 'Brinquedoteca e Gamer and Blogger Space com infraestrutura de monitoramento, Playground, Casa de Campo com Casa na Árvore',
+          quadra: 'Quadra de Tênis em grama sintética',
+          portaria: 'Porte-Cochère, portaria com vidro blindado e clausura nos acessos de pedestres e veículos, vagas de visitantes',
+          coworking: 'Coworking, Mini Market 24 horas, Espaço Delivery com lockers, Car Sharing e Car Care com carregador para carro elétrico'
+        },
+        lazer: ['Porte-Cochère', 'Lobby', 'Praça dos Desejos', 'Alameda das Palmeiras', 'Coworking', 'Mini Market', 'Espaço Delivery', 'Fitness', 'Espaço Zen', 'Sala de Massagem', 'Salão de Festas', 'Lounge Festas', 'Gourmet', 'Lounge Gourmet', 'Jogos Adulto', 'Gamer Space', 'Blogger Space', 'Brinquedoteca', 'Playground', 'Casa de Campo', 'Casa na Árvore', 'Quadra de Tênis', 'Private Pool House', 'Piscina Adulto', 'Piscina Infantil', 'Deck Molhado', 'SPA', 'Solarium', 'Pet Park', 'Bosque', 'Horta', 'Car Sharing', 'Car Care', 'Vagas de Visitantes'],
+        diferenciais: ['Lavabo social em todas as unidades', 'Infraestrutura para ar-condicionado em todos os dormitórios, com terraço técnico privativo para a condensadora', 'Infraestrutura para churrasqueira a carvão na varanda', 'Piso laminado nos dormitórios e persiana de enrolar nas janelas', 'Smart Home 2.0: infraestrutura para interruptores inteligentes, Wi-Fi otimizado, câmera na sala e tomadas USB', 'Infraestrutura para aquecedor a gás e ponto para lava-louças', 'Gerador para as tomadas de uso geral das unidades'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'FARAH + Arquitetura e Interiores'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística']],
+        plantas: [
+          { src: LJ + 'planta-74.webp', nome: '74 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LJ + 'planta-90.webp', nome: '90 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LJ + 'planta-90-opcao-1.webp', nome: '90 m² · opção 1', meta: '2 suítes · 2 vagas' },
+          { src: LJ + 'planta-90-opcao-2.webp', nome: '90 m² · opção 2', meta: '2 dormitórios, 1 suíte, sala ampliada · 2 vagas' },
+          { src: LJ + 'planta-104.webp', nome: '104 m² · padrão', meta: '3 dormitórios, 1 suíte, espaço para home office · 2 vagas' },
+          { src: LJ + 'planta-104-opcao.webp', nome: '104 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LJ + 'planta-126.webp', nome: '126 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LJ + 'planta-126-opcao.webp', nome: '126 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LJ + 'implantacao-lazer.webp', nome: 'Implantação', meta: 'Terreno de mais de 6 mil m²: 35 espaços de lazer e serviços' }
+        ],
+        perto: {
+          grupos: [
+            ['Lazer', [['Parque Celso Daniel', '3 min a pé, 170 m'], ['Grand Plaza Shopping', '5 min a pé, 350 m'], ['Parque Central', '11 min, 3,9 km'], ['Parque Antônio Fláquer', '11 min, 4,3 km']]],
+            ['Mobilidade', [['Estação Prefeito Saladino', '3 min, 950 m'], ['Estação Santo André', '4 min, 1,2 km'], ['Av. Industrial', '1 min, 50 m'], ['Av. dos Estados', '5 min, 1,1 km']]],
+            ['Educação', [['FGV', '5 min, 1 km'], ['Colégio Arbos', '3 min, 1 km'], ['Liceu Jardim', '6 min, 1,9 km'], ['Senac Santo André', '6 min, 2,2 km'], ['UFABC', '7 min, 2,3 km']]],
+            ['Saúde', [['Hospital ABC', '3 min, 800 m'], ['Fleury Santo André', '3 min, 700 m'], ['Beneficência Portuguesa de Santo André', '8 min, 2,3 km']]],
+            ['Conveniências e gastronomia', [['Pão de Açúcar', '3 min, 800 m'], ['Drogasil', '3 min, 750 m'], ['Oba Hortifruti', '6 min, 1,3 km'], ['Pilão Mineiro', '1 min, 200 m'], ['Portofino Cucina Italiana', '3 min, 550 m'], ['Parrilla Del Carmen', '3 min, 650 m']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, novembro de 2022), exceto onde indica a pé.'
+        },
+        legal: 'Incorporadora Cyrela Piracema Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 5 na matrícula 175.008 do 1º Cartório de Registro de Imóveis de Santo André, em 03/04/2023. Área em processo de reabilitação para fins residenciais, com plano de intervenção aprovado (CETESB 16/00864/22). Vagas determinadas, conforme o memorial de incorporação. Ar-condicionado, água quente, churrasqueira e interruptores inteligentes são entregues como infraestrutura; equipamentos por conta dos proprietários. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de agosto de 2023. Status conforme portais de imóveis em novembro de 2026.',
+        torre: LJ + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ABC_JARDIM,
+        fotos: [
+          fotoLJ('fachada', 'Fachada', true),
+          fotoLJ('portaria', 'Portaria e Porte-Cochère'),
+          fotoLJ('lobby', 'Lobby'),
+          fotoLJ('piscina', 'Piscina de 30 m'),
+          fotoLJ('piscina-aerea', 'Piscinas e deck molhado, vista aérea'),
+          fotoLJ('private-pool-house', 'Private Pool House'),
+          fotoLJ('private-pool-house-externa', 'Private Pool House, área externa'),
+          fotoLJ('casa-de-campo', 'Casa de Campo e Casa na Árvore'),
+          fotoLJ('quadra-de-tenis', 'Quadra de tênis em grama sintética'),
+          fotoLJ('fitness', 'Fitness'),
+          fotoLJ('salao-de-festas', 'Salão de festas'),
+          fotoLJ('gourmet', 'Gourmet'),
+          fotoLJ('jogos-adulto', 'Jogos adulto'),
+          fotoLJ('coworking', 'Coworking'),
+          fotoLJ('gamer-blogger-space', 'Gamer and Blogger Space'),
+          fotoLJ('brinquedoteca', 'Brinquedoteca'),
+          fotoLJ('playground', 'Playground')
+        ]
+      }
     ]
   };
 
   /* As LOGOS das parceiras, pelo nome exato: PNG de fundo transparente em fotos/parcerias/.
      Onde ha logo, ela entra no lugar do nome na lista da cidade e no alto da pagina da
      parceira; as outras continuam em texto ate a logo chegar. */
-  var LOGOS = { 'Vitacon': { src: 'fotos/parcerias/vitacon.png', w: 487, h: 100 } };
+  var LOGOS = {
+    'Vitacon': { src: 'fotos/parcerias/vitacon.png', w: 487, h: 100 },
+    // (10/11/2026) tirada em vetor do book e pintada no dourado do logo que ela mandou; 2x (200 px de altura)
+    'Living': { src: 'fotos/parcerias/living.png', w: 367, h: 200 }
+  };
 
   /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
      "tire os outros, deixe so a Vitacon por enquanto" e, depois, "mas deixe os filtros: clica em
@@ -2003,7 +2109,7 @@
      fora desta lista somem, e os lugares sem nenhuma aparecem como "a anunciar". As outras
      continuam em PAISES, guardadas com os exemplos: para trazer uma de volta, ponha o nome aqui
      e os empreendimentos dela em EMPREENDIMENTOS. Lista vazia = todas aparecem, em texto. */
-  var NO_AR = ['Vitacon'];
+  var NO_AR = ['Vitacon', 'Living'];
   var filtrado = NO_AR.length > 0;
   // as parcerias que aparecem numa cidade, cada uma com o indice original (o do endereco #pais/uf/cidade/indice)
   function parceriasDe(c) {
