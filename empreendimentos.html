@@ -747,6 +747,24 @@
   // (11/11/2026) e os da Zona Norte, da pasta "ZONA NORTE (5)" dela
   var LX = L + 'exclusivefo/', LT = L + 'exclusivetucuruvi/', LG = L + 'villagefo/', LU = L + 'uniquefo/';
   var fotoLX = fotoEm(LX), fotoLT = fotoEm(LT), fotoLG = fotoEm(LG), fotoLU = fotoEm(LU);
+  // (11/11/2026) e os dois books que chegaram depois na pasta da Zona Leste, so em PDF (fotos tiradas do book).
+  // Os books sao da Lavvi (marca do Grupo Cyrela), mas ela confirmou: "e tudo Living", entram na Living.
+  var LAL = L + 'alive/', LPC = L + 'palace-pracas/';
+  var fotoLAL = fotoEm(LAL), fotoLPC = fotoEm(LPC);
+  var ZL_VILA_PRUDENTE = {
+    titulo: 'A região · Vila Prudente',
+    texto: 'A Vila Prudente é a porta de entrada da Zona Leste pela Linha 2-Verde do metrô e pela Linha 15-Prata do monotrilho, a quinze minutos de carro do centro. Bairro de casas e comércio tradicional, com a Uninove a 150 m, colégios por perto, o Parque Ecológico Professora Lydia Natalizio Diogo e, a poucos quilômetros, o Mooca Plaza Shopping, o Central Plaza e o Juventus.',
+    numeros: [['150 m', 'da Uninove'], ['15 min', 'do centro, de carro'], ['2 km', 'do Mooca Plaza e do Central Plaza Shopping'], ['3', 'torres de 39 pavimentos no Alive Home Resort']],
+    polos: 'Por perto: Estação Vila Prudente (Linhas 2 e 15), Uninove, Colégio Civitatis, ETEC Rocha Mendes, Parque Ecológico Lydia Natalizio Diogo, Mooca Plaza Shopping e Clube Atlético Juventus.',
+    fonte: 'Fonte: book do Alive Home Resort (janeiro de 2024), com distâncias do próprio material.'
+  };
+  var ZL_BRAS = {
+    titulo: 'A região · Brás',
+    texto: 'O Brás é o bairro que a cidade redescobre: colado ao centro, a dois passos da Mooca e do Belém, com as estações Brás e Bresser-Mooca das Linhas 3-Vermelha, 10 e 11 e saída direta pela Radial Leste. O complexo Praças da Cidade cria um novo quarteirão residencial com praças abertas, comércio no térreo e lazer de condomínio-clube.',
+    numeros: [['30 min', 'de qualquer ponto do centro expandido'], ['2', 'estações a poucos minutos: Brás e Bresser-Mooca'], ['86 a 370 m²', 'do compacto ao duplex'], ['39', 'pavimentos de torre']],
+    polos: 'Por perto: Estação Brás, Estação Bresser-Mooca, Radial Leste, Mooca, Belém, Parque Dom Pedro II e o centro de São Paulo.',
+    fonte: 'Fonte: book do Palace by Praças da Cidade (agosto de 2023); números a confirmar.'
+  };
   var ZN_FREGUESIA = {
     titulo: 'A região · Freguesia do Ó',
     texto: 'Fundada em 1580, a Freguesia do Ó é o distrito mais antigo da Zona Norte e um bairro de vizinhança familiar, com o Largo da Matriz e seu casario, feiras e comércio de rua. As avenidas Miguel Conejo e Inajar de Souza ligam o bairro à Marginal Tietê em poucos minutos, com o Parque Rodrigo de Gásperi, o Shopping Freguesia e os hospitais da região por perto.',
@@ -3085,6 +3103,197 @@
           fotoLU('coworking', 'Coworking'),
           fotoLU('fitness', 'Fitness'),
           fotoLU('brinquedoteca', 'Brinquedoteca')
+        ]
+      },
+      {
+        nome: 'Alive Home Resort',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Prudente',
+        resumo: '2 dormitórios a 4 suítes · 72 a 351 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Cavour, na Vila Prudente, um resort para morar: três torres de 39 pavimentos e mais de 1.000 m² de área de água em piscinas, com piscina de raia de 50 m, piscina coberta de 25 m, Pool House, bar da piscina, quadras com medidas oficiais de tênis, beach tennis, squash e poliesportiva, 410 m² de Fitness, salas de spinning, pilates e danças, cinema, SPA, saunas e serviços exclusivos: assessoria esportiva, minimercados, Pet Care, escola de idiomas, lavanderia e salão de beleza. Apartamentos de 72 a 188 m², penthouses de 201 e 212 m² e duplex de 323 e 351 m².',
+        area: ['Torre A: 170 e 188 m², com elevador privativo; duplex de 323 e 351 m²', 'Torres B e C: 72, 86, 113 e 139 m²; penthouses de 201 e 212 m²'],
+        tipologia: '2 dormitórios a 4 suítes, de 72 a 351 m²',
+        banheiros: 'Sob consulta',
+        vagas: 'Vagas por unidade conforme o memorial; 24 vagas de visitantes e 1 vaga de carro elétrico por subsolo',
+        torres: '3 torres de 39 pavimentos: A, B e C',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo, lazer: Transfer, praça de chegada, lobbies das três torres, playground, brinquedoteca, festas infantil, churrasqueiras, festas gourmet, salão de festas, lounge bar, praça da piscina, bar da piscina, jogos juvenil, cinema, salas de aula e de estudos e coworking', '1º subsolo: lobby de acesso, portaria social, minimercado, Espaço Beauty, massagem, depilação, lavanderia, Pet Care, delivery e bicicletário', '2º subsolo: quadra de tênis, spinning e Fitness', '3º subsolo: sala multifuncional, danças, pilates e squash', '4º subsolo: piscina coberta de 25 m, SPA, saunas e lounge da piscina'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Cavour, 462 · Vila Prudente, São Paulo',
+        infra: {
+          piscina: 'Piscina com raia de 50 m, piscina coberta com raia de 25 m, piscina infantil, Pool House, bar da piscina, SPA e saunas seca e úmida',
+          academia: 'Fitness de 410 m², sala de spinning de 45 m², sala multifuncional de 177 m², sala de pilates de 43 m² e sala de danças, com assessoria esportiva Bodycare',
+          festas: 'Salão de festas, festas gourmet, salão de festas infantil e lounge bar',
+          gourmet: 'Churrasqueiras e festas gourmet',
+          kids: 'Brinquedoteca, playground, jogos juvenil, salas de aula com escola de idiomas Red Balloon e sala de estudos',
+          quadra: 'Quadra de tênis, quadras de beach tennis, quadra de squash e quadra poliesportiva, com medidas oficiais',
+          portaria: 'Portaria social, entrada e saída de veículos independentes, 24 vagas de visitantes, estacionamento para delivery e acesso de serviço',
+          coworking: 'Coworking, cinema, 2 minimercados Smart Break, Pet Care by Zazzu, OMO Lavanderia, salão de beleza 3, 2, 1 Beauty e bicicletário'
+        },
+        lazer: ['Transfer', 'Praça de chegada', 'Playground', 'Brinquedoteca', 'Salão de festas infantil', 'Churrasqueiras', 'Festas gourmet', 'Salão de festas', 'Lounge bar', 'Praça da piscina', 'Bar da piscina', 'Jogos juvenil', 'Cinema', 'Salas de aula', 'Sala de estudos', 'Coworking', 'Minimercado', 'Espaço Beauty', 'Sala de massagem', 'Sala de depilação', 'Lavanderia', 'Pet Care', 'Quadra de tênis', 'Spinning', 'Fitness', 'Sala multifuncional', 'Sala de danças', 'Sala de pilates', 'Quadra de squash', 'Quadra poliesportiva', 'Beach tennis', 'Piscina com raia de 50 m', 'Piscina coberta com raia de 25 m', 'Piscina infantil', 'Pool House', 'SPA', 'Sauna seca', 'Sauna úmida', 'Lounge da piscina'],
+        diferenciais: ['Mais de 1.000 m² de área de água em piscinas', 'Elevadores privativos nas unidades de 188, 170 e 139 m²', 'Área verde de acesso ao público com 3.700 m²', 'Serviços exclusivos no condomínio: assessoria esportiva, minimercados, Pet Care, escola de idiomas, lavanderia e salão de beleza', 'Previsão de churrasqueira a carvão e tomada USB na suíte master', 'Previsão de Wi-Fi nas áreas comuns'],
+        creditos: [['Incorporação', 'Lavvi Portugal Empreendimentos Imobiliários, Grupo Cyrela']],
+        plantas: [
+          { src: LAL + 'planta-188.webp', nome: '188 m² · torre A', meta: 'Final 1, padrão · elevador privativo' },
+          { src: LAL + 'planta-188-opcao.webp', nome: '188 m² · torre A, opção', meta: 'Final 1' },
+          { src: LAL + 'planta-170.webp', nome: '170 m² · torre A', meta: 'Final 4, padrão · elevador privativo' },
+          { src: LAL + 'planta-170-opcao.webp', nome: '170 m² · torre A, opção', meta: 'Final 4' },
+          { src: LAL + 'planta-139.webp', nome: '139 m² · torres B e C', meta: 'Final 1, padrão · elevador privativo' },
+          { src: LAL + 'planta-139-opcao.webp', nome: '139 m² · torres B e C, opção', meta: 'Final 1' },
+          { src: LAL + 'planta-bc-2.webp', nome: '113 m² · torres B e C', meta: 'Final 4, padrão' },
+          { src: LAL + 'planta-bc-2-opcao.webp', nome: '113 m² · torres B e C, opção', meta: 'Final 4' },
+          { src: LAL + 'planta-bc-3.webp', nome: '86 m² · torres B e C', meta: 'Final 3, padrão' },
+          { src: LAL + 'planta-bc-3-opcao.webp', nome: '86 m² · torres B e C, opção', meta: 'Final 3' },
+          { src: LAL + 'planta-bc-4.webp', nome: '72 m² · torres B e C', meta: 'Final 2' },
+          { src: LAL + 'planta-penthouse-1.webp', nome: 'Penthouse de 201 m²', meta: 'Torres B e C, final 4' },
+          { src: LAL + 'planta-penthouse-2.webp', nome: 'Penthouse de 212 m²', meta: 'Torres B e C, final 1' },
+          { src: LAL + 'planta-duplex-323-inferior.webp', nome: 'Duplex de 323 m² · inferior', meta: 'Torre A, final 4' },
+          { src: LAL + 'planta-duplex-323-superior.webp', nome: 'Duplex de 323 m² · superior', meta: 'Torre A, final 4' },
+          { src: LAL + 'planta-duplex-350-inferior.webp', nome: 'Duplex de 351 m² · inferior', meta: 'Torre A, final 1' },
+          { src: LAL + 'planta-duplex-350-superior.webp', nome: 'Duplex de 351 m² · superior', meta: 'Torre A, final 1' }
+        ],
+        implantacao: [
+          { src: LAL + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lazer: lobbies, praças, festas, churrasqueiras, cinema e coworking' },
+          { src: LAL + 'implantacao-1-subsolo.webp', nome: '1º subsolo', meta: 'Acessos, minimercado, Beauty, lavanderia e Pet Care' },
+          { src: LAL + 'implantacao-2-subsolo.webp', nome: '2º subsolo', meta: 'Quadra de tênis, spinning e Fitness' },
+          { src: LAL + 'implantacao-3-subsolo.webp', nome: '3º subsolo', meta: 'Multifuncional, danças, pilates e squash' },
+          { src: LAL + 'implantacao-5.webp', nome: '4º subsolo', meta: 'Piscina coberta de 25 m, SPA e saunas' }
+        ],
+        perto: {
+          grupos: [
+            ['Educação', [['Uninove', '150 m'], ['ETEC Rocha Mendes', '230 m'], ['Colégio Civitatis', '300 m'], ['Colégio João XXIII', '850 m'], ['Colégio São Miguel Arcanjo', '1,3 km']]],
+            ['Lazer', [['Parque Ecológico Profª Lydia Natalizio Diogo', '1,7 km'], ['Mooca Plaza Shopping', '2 km'], ['Central Plaza Shopping', '2 km'], ['Parque da Mooca', '2,7 km'], ['Parque Sabesp Alto da Mooca', '2,8 km'], ['Clube Atlético Juventus', '3 km']]],
+            ['Conveniências', [['Padaria Cepam', '1,3 km'], ['Sonda Supermercados', '1,7 km']]]
+          ],
+          nota: 'Distâncias conforme o material do empreendimento.'
+        },
+        legal: 'Condomínio Alive: Lavvi Portugal Empreendimentos Imobiliários Ltda., incorporação registrada sob R.2 de 18/12/2023 na matrícula 262.604 do 6º Cartório de Registro de Imóveis de São Paulo, alvará 19488-22-SP-ALV. Material das torres A, B e C, com acesso pela Rua Cavour, 462. Serviços de empresas parceiras sujeitos a alteração. Intermediação: Lior, Creci 30.906-J. Material preliminar; impresso em janeiro de 2024. Marca Lavvi, do Grupo Cyrela; material enviado pela parceria.',
+        torre: LAL + 'fachada-torre-a.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_VILA_PRUDENTE,
+        fotos: [
+          fotoLAL('fachada-torre-a', 'Fachada, torre A', true),
+          fotoLAL('fachada-torres-b-c', 'Fachada, torres B e C', true),
+          fotoLAL('acesso', 'Acesso'),
+          fotoLAL('lobby', 'Lobby'),
+          fotoLAL('lobby-torre-a', 'Lobby de acesso, torre A'),
+          fotoLAL('lazer-aereo', 'Lazer, vista aérea'),
+          fotoLAL('piscina', 'Piscina'),
+          fotoLAL('piscina-raia-50', 'Piscina com raia de 50 m'),
+          fotoLAL('piscina-2', 'Piscina'),
+          fotoLAL('pool-house', 'Pool House'),
+          fotoLAL('piscina-infantil', 'Piscina infantil'),
+          fotoLAL('piscina-coberta', 'Piscina coberta com raia de 25 m'),
+          fotoLAL('bar-da-piscina', 'Bar da piscina'),
+          fotoLAL('fitness', 'Fitness'),
+          fotoLAL('fitness-2', 'Fitness'),
+          fotoLAL('sala-multifuncional', 'Sala multifuncional'),
+          fotoLAL('spinning', 'Spinning'),
+          fotoLAL('quadra-de-tenis', 'Quadra de tênis'),
+          fotoLAL('beach-tennis', 'Quadras de beach tennis'),
+          fotoLAL('squash', 'Quadra de squash'),
+          fotoLAL('quadra-poliesportiva', 'Quadra poliesportiva'),
+          fotoLAL('sauna', 'Sauna úmida'),
+          fotoLAL('spa', 'SPA'),
+          fotoLAL('playground', 'Playground'),
+          fotoLAL('brinquedoteca', 'Brinquedoteca'),
+          fotoLAL('brinquedoteca-2', 'Brinquedoteca'),
+          fotoLAL('jogos-juvenil', 'Jogos juvenil'),
+          fotoLAL('sala-de-aula', 'Sala de aula'),
+          fotoLAL('coworking', 'Coworking'),
+          fotoLAL('cinema', 'Cinema'),
+          fotoLAL('sala-de-dancas', 'Sala de danças'),
+          fotoLAL('festas-infantil', 'Salão de festas infantil'),
+          fotoLAL('lounge-bar', 'Lounge bar'),
+          fotoLAL('salao-de-festas', 'Salão de festas'),
+          fotoLAL('festas-gourmet', 'Festas gourmet'),
+          fotoLAL('churrasqueira', 'Churrasqueira'),
+          fotoLAL('espaco-beauty', 'Espaço Beauty'),
+          fotoLAL('pet-care', 'Pet Care'),
+          fotoLAL('minimercado', 'Minimercado'),
+          fotoLAL('lavanderia', 'Lavanderia e costura')
+        ]
+      },
+      {
+        nome: 'Palace by Praças da Cidade',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brás',
+        resumo: '2 dormitórios a 4 suítes · 86 a 370 m²',
+        tipo: 'Apartamento',
+        status: 'Breve lançamento',
+        texto: 'Na Rua Ernesto de Castro, no Brás, a torre residencial do complexo Praças da Cidade: apartamentos de 86, 143 e 165 m² e duplex de 305 e 370 m², com lazer de clube no térreo e no pavimento de lazer: piscina adulto e infantil com Pool House, quadra, playground, brinquedoteca, lounges externos com fogo, churrasqueira, gourmet, salão de festas, sala de jogos, Fitness, spinning e Pet Place. Projeto em fase de estudo; metragens sujeitas a alteração.',
+        area: ['86 m², final 2B: padrão ou opção', '143 m², final 1A: padrão ou opção', '165 m², final 3A: padrão ou opção', 'Duplex de 305 m², final 1A, e de 370 m², final 3A'],
+        tipologia: '2 dormitórios a 4 suítes, de 86 a 370 m²',
+        banheiros: 'Sob consulta',
+        vagas: 'Sob consulta',
+        torres: 'Sob consulta',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos, lobby e praças', 'Pavimento lazer: piscinas, Pool House, quadra, playground, lounges, churrasqueira e salões'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Ernesto de Castro · Brás, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto, piscina infantil com brinquedos aquáticos e Pool House',
+          academia: 'Fitness e sala de spinning',
+          festas: 'Salão de festas e lounge',
+          gourmet: 'Gourmet, churrasqueira e lounges externos com fogo',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra society',
+          portaria: 'Acesso com praça de chegada e lobby',
+          coworking: 'Sala de jogos e Pet Place'
+        },
+        lazer: ['Lobby', 'Lounge', 'Gourmet', 'Salão de festas', 'Sala de jogos', 'Fitness', 'Spinning', 'Brinquedoteca', 'Piscina adulto', 'Piscina infantil', 'Pool House', 'Lounges externos', 'Quadra', 'Playground', 'Churrasqueira', 'Pet Place'],
+        diferenciais: ['Parte do complexo Praças da Cidade, no Brás', 'Duplex de 305 e 370 m²', 'Projeto em fase de estudo'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Chris Silveira'], ['Paisagismo', 'Benedito Abbud Arquitetura Paisagística'], ['Incorporação', 'Vinson Empreendimentos Imobiliários, Lavvi, Grupo Cyrela']],
+        plantas: [
+          { src: LPC + 'planta-86.webp', nome: '86 m² · padrão', meta: 'Final 2B' },
+          { src: LPC + 'planta-86-opcao.webp', nome: '86 m² · opção', meta: 'Final 2B' },
+          { src: LPC + 'planta-142.webp', nome: '143 m² · padrão', meta: 'Final 1A' },
+          { src: LPC + 'planta-142-opcao.webp', nome: '143 m² · opção', meta: 'Final 1A' },
+          { src: LPC + 'planta-164.webp', nome: '165 m² · padrão', meta: 'Final 3A' },
+          { src: LPC + 'planta-164-opcao.webp', nome: '165 m² · opção', meta: 'Final 3A' },
+          { src: LPC + 'planta-duplex-304-inferior.webp', nome: 'Duplex de 305 m² · inferior', meta: 'Final 1A' },
+          { src: LPC + 'planta-duplex-304-superior.webp', nome: 'Duplex de 305 m² · superior', meta: 'Final 1A' },
+          { src: LPC + 'planta-duplex-370-inferior.webp', nome: 'Duplex de 370 m² · inferior', meta: 'Final 3A' },
+          { src: LPC + 'planta-duplex-370-superior.webp', nome: 'Duplex de 370 m² · superior', meta: 'Final 3A' }
+        ],
+        implantacao: [
+          { src: LPC + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos e praças' },
+          { src: LPC + 'implantacao-lazer.webp', nome: 'Pavimento lazer', meta: 'Piscinas, quadra, playground e salões' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Brás, Linhas 3, 10 e 11', 'no bairro'], ['Estação Bresser-Mooca, Linha 3', 'no bairro'], ['Radial Leste', 'no bairro'], ['Centro de São Paulo', '30 min']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a parceria.'
+        },
+        legal: 'Incorporadora responsável: Vinson Empreendimentos Imobiliários Ltda. Projeto em fase de estudo: o empreendimento será comercializado somente após o registro do Memorial de Incorporação, nos termos da Lei nº 4.591/64. Metragens sujeitas a alteração. Futura intermediação: Lior, Creci 30.906-J. Material preliminar, produzido em agosto de 2023. Marca Lavvi, do Grupo Cyrela; material enviado pela parceria.',
+        torre: LPC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_BRAS,
+        fotos: [
+          fotoLPC('fachada', 'Fachada', true),
+          fotoLPC('vista-aerea', 'Vista aérea da região'),
+          fotoLPC('acesso', 'Acesso'),
+          fotoLPC('lobby', 'Lobby'),
+          fotoLPC('lounge', 'Lounge'),
+          fotoLPC('gourmet', 'Gourmet'),
+          fotoLPC('salao-de-festas', 'Salão de festas'),
+          fotoLPC('sala-de-jogos', 'Sala de jogos'),
+          fotoLPC('fitness', 'Fitness'),
+          fotoLPC('spinning', 'Spinning'),
+          fotoLPC('brinquedoteca', 'Brinquedoteca'),
+          fotoLPC('lazer-aereo', 'Lazer, vista aérea'),
+          fotoLPC('piscina', 'Piscina'),
+          fotoLPC('piscina-infantil', 'Piscina infantil'),
+          fotoLPC('pool-house', 'Pool House'),
+          fotoLPC('lounge-externo', 'Lounge externo'),
+          fotoLPC('lounge-externo-2', 'Lounge externo'),
+          fotoLPC('quadra', 'Quadra'),
+          fotoLPC('playground', 'Playground'),
+          fotoLPC('churrasqueira', 'Churrasqueira'),
+          fotoLPC('pet-place', 'Pet Place')
         ]
       }
     ]
