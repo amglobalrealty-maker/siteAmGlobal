@@ -612,10 +612,11 @@
         'No mercado imobiliário, os bairros entre a Avenida Paulista e a Faria Lima lideram a procura: Pinheiros, Jardins, Vila Olímpia, Itaim, Perdizes e Vila Mariana. São ruas arborizadas, com gastronomia, parques, hospitais e estações de metrô, onde os lançamentos compactos, com lazer completo e serviços no prédio, têm alta demanda de moradia e de locação, de executivos, estudantes e profissionais da saúde.'
       ], construtoras: ['Cyrela', 'Mitre', 'Even', 'Ezetec', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur', 'Living'] },
       // (10/11/2026) a Living (Grupo Cyrela) entrou com tres empreendimentos no ABC paulista; textos meus, a confirmar
-      { nome: 'Santo André e São Bernardo do Campo', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo'], quantas: 2, texto: [
+      // (11/11/2026) Sao Caetano entrou com o Casa Parque Ceramica, da Mitre com a Basilar
+      { nome: 'Santo André, São Bernardo do Campo e São Caetano do Sul', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo', 'São Caetano do Sul'], quantas: 3, texto: [
         'Santo André e São Bernardo do Campo formam o coração do Grande ABC, a região industrial que se tornou um dos mercados residenciais mais fortes da Grande São Paulo: 1,6 milhão de habitantes nas duas cidades, a 30 minutos do centro da capital pelas linhas 10-Turquesa e 18, pela Anchieta e pela Imigrantes, com universidades como a UFABC, hospitais de referência e o Parque Central e o Parque Celso Daniel entre os maiores da região.',
-        'Em Santo André, o bairro Jardim concentra o alto padrão, ao redor do Parque Celso Daniel e do Grand Plaza Shopping; em São Bernardo, o Rudge Ramos faz divisa com a capital e com São Caetano, perto da Universidade Metodista. São bairros de ruas arborizadas e comércio consolidado, onde os lançamentos com lazer completo, serviços no condomínio e plantas de 2 a 4 dormitórios atendem famílias que querem ficar na região e investidores que buscam locação estável.'
-      ], construtoras: ['Living'] }
+        'Em Santo André, o bairro Jardim concentra o alto padrão, ao redor do Parque Celso Daniel e do Grand Plaza Shopping; em São Bernardo, o Rudge Ramos faz divisa com a capital e com São Caetano, perto da Universidade Metodista. São bairros de ruas arborizadas e comércio consolidado, onde os lançamentos com lazer completo, serviços no condomínio e plantas de 2 a 4 dormitórios atendem famílias que querem ficar na região e investidores que buscam locação estável. São Caetano do Sul, a menor das três cidades e a de maior IDH do país, completa o trio com o bairro Cerâmica e o Espaço Cerâmica, na divisa com o Ipiranga.'
+      ], construtoras: ['Living', 'Mitre'] }
     ] },
     { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/lugares/rj.webp', cidades: [
       { nome: 'Rio de Janeiro', texto: [
@@ -790,6 +791,24 @@
   // Living Resort Mall (folheto comercial do Cambuci, ~2016, so imagem) e The Grand Residence (um cartao de tour 360, dados da corretagem)
   var LCN = L + 'connect/', LMD = L + 'mediterranee/', LRM = L + 'resortmall/', LGR = L + 'grandresidence/';
   var fotoLCN = fotoEm(LCN), fotoLMD = fotoEm(LMD), fotoLRM = fotoEm(LRM), fotoLGR = fotoEm(LGR);
+  // (11/11/2026) MITRE, os 4 books que ela mandou: Althea (out/2026), Raizes Premium Campo Belo (2025), Haus Mitre Campo Belo (abr/2021) e Casa Parque Ceramica (so imagem)
+  var MT = 'fotos/parcerias/mitre/';
+  var MAL = MT + 'althea/', MRC = MT + 'raizescb/', MHC = MT + 'hauscb/', MCP = MT + 'casaparque/';
+  var fotoMAL = fotoEm(MAL), fotoMRC = fotoEm(MRC), fotoMHC = fotoEm(MHC), fotoMCP = fotoEm(MCP);
+  var ZS_CAMPO_BELO = {
+    titulo: 'A região · Campo Belo',
+    texto: 'Entre o Brooklin, Moema e o Aeroporto de Congonhas, o Campo Belo é um bairro de ruas arborizadas e casas que viraram prédios de médio e alto padrão, servido pelas estações Campo Belo e Eucaliptos da Linha 5-Lilás, pela Avenida Vereador José Diniz, pela Santo Amaro e pela Jornalista Roberto Marinho, a poucos minutos do Shopping Ibirapuera e do Parque Ibirapuera. Colégios como o Vértice e a Aubrick, os hospitais Oswaldo Cruz, Moriah e Santa Paula, e uma vida de bairro de padarias, bares e restaurantes. A Mitre tem três projetos ali: o Haus Mitre Campo Belo, o Raízes Premium e o Althea.',
+    numeros: [['5 min', 'do Aeroporto de Congonhas'], ['4 min', 'do Metrô Eucaliptos, do Althea'], ['6 min', 'do Metrô Campo Belo, do Raízes Premium'], ['3', 'projetos da Mitre no bairro']],
+    polos: 'Por perto: estações Campo Belo e Eucaliptos, Aeroporto de Congonhas, Av. Vereador José Diniz, Av. Santo Amaro, Av. Jornalista Roberto Marinho, Shopping Ibirapuera, Parque Ibirapuera, Esporte Clube Sírio, Hípica Paulista, Colégio Vértice, Aubrick, Brazilian International School e os hospitais Oswaldo Cruz, Moriah e Santa Paula.',
+    fonte: 'Fonte: books do Althea by Mitre (outubro de 2026), do Raízes Premium Campo Belo (2025) e do Haus Mitre Campo Belo (abril de 2021), com tempos do próprio material, de carro.'
+  };
+  var ZS_SAO_CAETANO = {
+    titulo: 'A região · São Caetano do Sul, Cerâmica',
+    texto: 'Menor cidade do Grande ABC e a de maior IDH do Brasil, São Caetano do Sul faz divisa com o Ipiranga e com Santo André, a 20 minutos do centro da capital pela Anchieta e pela Linha 10-Turquesa da CPTM. O bairro Cerâmica, no terreno da antiga fábrica da Cerâmica São Caetano, virou o novo eixo da cidade, com o Espaço Cerâmica, o ParkShopping São Caetano, o Parque Cerâmica e torres residenciais de alto padrão; no bairro São José, vizinho, a Mitre e a Basilar lançam o Casa Parque Cerâmica.',
+    numeros: [['1º', 'IDH do Brasil entre os municípios, pelo PNUD'], ['3', 'torres do Casa Parque Cerâmica, com 202 apartamentos'], ['133 a 381 m²', 'de 2 a 4 dormitórios'], ['2029', 'entrega prevista, pela corretagem']],
+    polos: 'Por perto: ParkShopping São Caetano, Espaço Cerâmica, Parque Cerâmica, Av. Goiás, Rodovia Anchieta, estação São Caetano do Sul da CPTM, Universidade Municipal de São Caetano e o Ipiranga.',
+    fonte: 'Fonte: corretagem (apto.vc) para o empreendimento; o book recebido só tem imagens. Descrição geral da cidade, a confirmar.'
+  };
   var ZS_VILA_DAS_MERCES = {
     titulo: 'A região · Vila das Mercês e Sacomã',
     texto: 'No alto do Ipiranga, entre a Rodovia Anchieta, a Avenida Tancredo Neves e a Avenida do Cursino, a Vila das Mercês nasceu da Chácara Dona Vera, do engenheiro Malta Jr., em 1919, e virou bairro de família: a poucos minutos das estações Alto do Ipiranga e Sacomã da Linha 2-Verde, com o Shopping Plaza Sul, o Parque da Independência e o Museu do Ipiranga, o Zoológico, o Jardim Botânico e o Aquário de São Paulo, e saída rápida para o ABC, o litoral e o Aeroporto de Congonhas.',
@@ -5950,9 +5969,242 @@
        nome, bairro, tipologia, metragem e status; fotos, plantas e ficha entram com os books.
        [nome, bairro, tipologia, metragem, status, cidade (capital se vazio)] */
     'Mitre': [
+      /* (11/11/2026) os quatro books que ela mandou: Althea (out/2026), Casa Parque Ceramica (so imagem; ficha pela
+         corretagem), Raizes Premium Campo Belo (2025) e, no fim da lista, Haus Mitre Campo Belo (abr/2021, entregue 2024) */
+      {
+        nome: 'Althea by Mitre',
+        cidade: 'São Paulo, capital',
+        bairro: 'Campo Belo',
+        resumo: '3 a 5 suítes · 223 e 442 m²',
+        tipo: 'Apartamento',
+        status: 'Breve lançamento',
+        texto: 'Na Rua Morais de Barros, 643, no Campo Belo, a 4 minutos do Metrô Eucaliptos e a 5 do Aeroporto de Congonhas: torre única de 25 pavimentos num terreno de 3.200 m², com 74 apartamentos de 223 m² (3 ou 4 suítes, 3 vagas) do 5º ao 23º andar e 4 duplex de 442 m² (5 suítes, 4 vagas) nos dois últimos. O nome vem do grego e fala de regeneração: lazer no 4º pavimento com piscina semicoberta aquecida de 25 m, piscina infantil, quadra de tênis oficial, Tennis Lounge, fitness Technogym, saunas, Beauty Studio e sala de massagem, salão de festas e Social Kitchen; no térreo, lobby de pé-direito triplo, Fire Place, Pet Care e Pet Place, Mini Market e Delivery. Lançamento previsto para janeiro de 2027 e entrega para dezembro de 2031, pela corretagem.',
+        area: ['223 m²: 4 suítes (padrão) ou 3 suítes com living ampliado e sala íntima (opção), 3 vagas, do 5º ao 23º pavimento', '442 m² duplex: 5 suítes, 4 vagas, 24º e 25º pavimentos'],
+        tipologia: '3 a 5 suítes, de 223 a 442 m²',
+        banheiros: 'Banhos ventilados e iluminados naturalmente (exceto lavabo e banho de serviço); banho master com previsão para banheira; banho sr. e sra. e sauna privativa no duplex',
+        vagas: '3 vagas no 223 m² e 4 no duplex, vinculadas e demarcadas, com pintura epóxi; vagas de visitantes e ponto para recarga de carro elétrico',
+        torres: 'Torre única de 25 pavimentos, em terreno de 3.200 m²',
+        unidades: ['78 unidades: 74 de 223 m² e 4 duplex de 442 m²'],
+        pavimentos: ['Térreo: clausura e acesso social, lobby, Delivery, Mini Mercado, bicicletário, Pet Care, Pet Place, Fire Place, horta, espaço para carro elétrico e vagas de visitantes', '4º pavimento, lazer: playground, Kids Room, Game Lounge, Espaço Gourmet, Salão de Festas, saunas úmida e seca, piscina semicoberta com raia de 25 m, piscina infantil, Beauty Studio, massagem, Tennis Lounge, Tennis Court, Fitness, Fitness Externo e praça externa com parrilla', 'Do 5º ao 23º: 223 m²; 24º e 25º: duplex de 442 m²'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Morais de Barros, 643 · Campo Belo, São Paulo',
+        infra: {
+          piscina: 'Piscina semicoberta aquecida com raia de 25 m e deck molhado, mais piscina infantil',
+          academia: 'Fitness com aparelhos Technogym e Fitness Externo',
+          festas: 'Salão de Festas e Game Lounge',
+          gourmet: 'Espaço Gourmet (Social Kitchen) e praça externa com parrilla',
+          kids: 'Kids Room e playground',
+          quadra: 'Tennis Court com medidas oficiais e Tennis Lounge',
+          portaria: 'Clausura de acesso social, portaria com vidro blindado, lobby de pé-direito triplo, 8 câmeras entregues e Delivery',
+          coworking: 'Mini Mercado, Pet Care, Pet Place, Fire Place, horta, bicicletário e Beauty Studio com sala de massagem'
+        },
+        lazer: ['Lobby', 'Delivery', 'Mini Mercado', 'Bicicletário', 'Pet Care', 'Pet Place', 'Fire Place', 'Horta', 'Vagas de visitantes', 'Espaço para carro elétrico', 'Playground', 'Kids Room', 'Game Lounge', 'Espaço Gourmet', 'Salão de Festas', 'Sauna Úmida', 'Sauna Seca', 'Piscina semicoberta com raia de 25 m', 'Piscina Infantil', 'Beauty Studio', 'Massagem', 'Tennis Lounge', 'Tennis Court', 'Fitness', 'Fitness Externo', 'Praça Externa com Parrilla'],
+        diferenciais: ['Elevadores sociais privativos com controle de acesso e hall social privativo', 'Áreas comuns entregues com ar-condicionado e projeto luminotécnico', 'Manta acústica no piso e caixilhos das suítes com desempenho acústico superior', 'Gerador full para unidades e áreas comuns, aquecimento solar instalado e reúso de água de chuva', 'Entrada de energia com carga para um ponto de recarga de carro elétrico por unidade', 'Certificação AQUA nível Excepcional'],
+        creditos: [['Arquitetura', 'Jonas Birger'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Cláudia Albertini'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MAL + 'planta-223.webp', nome: '223 m² · padrão', meta: '4 suítes · 3 vagas' },
+          { src: MAL + 'planta-223-opcao.webp', nome: '223 m² · opção', meta: '3 suítes, living ampliado e sala íntima · 3 vagas' },
+          { src: MAL + 'planta-442-inferior.webp', nome: '442 m² duplex · pavimento inferior', meta: '5 suítes · 4 vagas' },
+          { src: MAL + 'planta-442-superior.webp', nome: '442 m² duplex · pavimento superior', meta: 'Suíte master com banho sr. e sra., sala íntima e deck com piscina' }
+        ],
+        implantacao: [
+          { src: MAL + 'implantacao-terreo.webp', nome: 'Implantação · térreo', meta: '11 espaços, do lobby às vagas de visitantes' },
+          { src: MAL + 'implantacao-lazer.webp', nome: 'Implantação · 4º pavimento', meta: '16 espaços de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Jornalista Roberto Marinho', '2 min'], ['Metrô Eucaliptos', '4 min'], ['Aeroporto de Congonhas', '5 min'], ['Av. dos Bandeirantes', '6 min'], ['Metrô Campo Belo', '8 min'], ['Av. Brigadeiro Faria Lima', '10 min']]],
+            ['Comodidade e gastronomia', [['Gansaral', '1 min'], ['Cabana Burguer', '2 min'], ['Padaria A Trigueira', '2 min'], ['St. Marche', '3 min'], ['Pão de Açúcar', '3 min'], ['Shopping Ibirapuera', '5 min'], ['Fogo de Chão', '5 min']]],
+            ['Ensino e movimento', [['Bio Ritmo', '2 min'], ['Aubrick Escola Bilíngue', '5 min'], ['Brazilian International School', '6 min'], ['Colégio Vértice', '6 min'], ['Esporte Clube Sírio', '7 min'], ['Hípica Paulista', '8 min']]],
+            ['Saúde', [['Hospital Oswaldo Cruz', '3 min'], ['Hospital Moriah', '7 min'], ['Hospital Santa Paula', '8 min'], ['Hospital Sírio-Libanês', '14 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro.'
+        },
+        legal: 'O empreendimento só será comercializado após a aprovação do Projeto de Edificação Nova pela municipalidade e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. Mitre Vendas Corretagem de Imóveis Ltda., CNPJ 21.677.690/0001-98, Creci J-26794. Plantas, implantação, áreas de lazer e equipamentos podem sofrer adequações; metragens são estimativas até a NBR 12.721 e a convenção de condomínio. Imagens meramente ilustrativas. Book impresso em outubro de 2026. Pela corretagem: breve lançamento, com lançamento previsto para janeiro de 2027 e entrega para dezembro de 2031; a corretagem fala em térreo mais 21 andares, o book em 25 pavimentos.',
+        torre: MAL + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CAMPO_BELO,
+        fotos: [
+          fotoMAL('fachada', 'Fachada', true),
+          fotoMAL('lobby', 'Lobby'),
+          fotoMAL('tennis-court', 'Tennis Court'),
+          fotoMAL('piscina-externa', 'Piscina externa, adulto e infantil'),
+          fotoMAL('piscina-coberta', 'Piscina semicoberta aquecida, com raia de 25 m'),
+          fotoMAL('sauna', 'Sauna seca'),
+          fotoMAL('fitness', 'Fitness com equipamentos Technogym'),
+          fotoMAL('espaco-gourmet', 'Espaço Gourmet'),
+          fotoMAL('salao-de-festas', 'Salão de Festas'),
+          fotoMAL('beauty-studio', 'Beauty Studio'),
+          fotoMAL('massagem', 'Massagem'),
+          fotoMAL('living-223', 'Living do apartamento de 223 m²'),
+          fotoMAL('living-442', 'Living do duplex de 442 m²'),
+          fotoMAL('regiao', 'Campo Belo')
+        ]
+      },
+      {
+        nome: 'Casa Parque Cerâmica',
+        cidade: 'São Caetano do Sul',
+        bairro: 'São José, São Caetano do Sul',
+        resumo: '2 a 4 dormitórios · 133 a 381 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Eduardo Prado, entre a Rua Pandiá Calógeras e a Rua Engenheiro Armando de Arruda Pereira, no bairro São José, ao lado do Espaço Cerâmica e do ParkShopping São Caetano: lançamento da Mitre com a Basilar, com 3 torres de térreo mais 25 andares e 202 apartamentos de 133 a 381 m², de 2 a 4 dormitórios com 2 e 3 suítes e 2 a 5 vagas, num terreno de 6.810 m². O condomínio é um clube: quadra de tênis oficial, beach tennis, quadra recreativa, piscinas externa e com raia, Pool House, spa com sauna e massagem, fitness interno e externo, salão de festas com terraço, espaço gourmet e churrasqueira, salão de jogos, brinquedoteca, playground, coworking, Mini Market e Pet Place. Lançamento de outubro de 2026, entrega prevista para novembro de 2029 pela corretagem.',
+        area: ['De 133 a 381 m², pela corretagem; o book recebido não traz as metragens de cada planta', 'Torres 1 e 2: final 1 com planta ampliada, em andares pares e ímpares', 'Torre 3: planta própria'],
+        tipologia: '2 a 4 dormitórios, com 2 e 3 suítes, de 133 a 381 m²',
+        banheiros: '3 e 4 banheiros, pela corretagem; suíte master com banho sr. e sra. nas plantas do book',
+        vagas: '2 a 5 vagas, pela corretagem',
+        torres: '3 torres de térreo mais 25 andares, em terreno de 6.810 m² (corretagem)',
+        unidades: ['202 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: portaria, lobbies das três torres, praça, Boulevard das Águas, piscinas, Pool House, spa, fitness interno e externo, quadra de tênis, beach tennis, quadra recreativa, playground, Pet Place e salões'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Eduardo Prado · São José, São Caetano do Sul',
+        infra: {
+          piscina: 'Piscina com raia e deck, piscina externa com lounge, Pool House e spa',
+          academia: 'Fitness e fitness externo',
+          festas: 'Salão de festas com terraço e salão de jogos',
+          gourmet: 'Espaço gourmet e churrasqueira com terraço',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra de tênis oficial, quadra de beach tennis e quadra recreativa',
+          portaria: 'Portaria com acessos separados e lobbies por torre',
+          coworking: 'Coworking e sala de reunião, Mini Market, Pet Place e Espaço Wellness'
+        },
+        lazer: ['Piscina', 'Piscina externa', 'Lounge da piscina', 'Pool House', 'Spa', 'Sala de massagem', 'Espaço relaxamento', 'Espaço Wellness', 'Fitness', 'Fitness externo', 'Quadra de tênis oficial', 'Quadra de beach tennis', 'Quadra recreativa', 'Praça de estar', 'Boulevard das Águas', 'Salão de festas com terraço', 'Espaço gourmet', 'Churrasqueira com terraço', 'Salão de jogos', 'Brinquedoteca', 'Playground', 'Coworking', 'Sala de reunião', 'Mini Market', 'Pet Place'],
+        diferenciais: ['Condomínio-clube com quadra de tênis oficial e beach tennis', 'Três torres num quarteirão inteiro, com paisagismo de praça entre elas', 'Plantas com living ampliado, suíte master com banho sr. e sra. e terraço gourmet', 'Ao lado do Espaço Cerâmica e do ParkShopping São Caetano', 'Parceria Mitre e Basilar'],
+        creditos: [['Incorporação', 'Mitre Realty e Basilar Empreendimentos Imobiliários']],
+        plantas: [
+          { src: MCP + 'planta-1.webp', nome: 'Torres 1 e 2 · final 1, andares ímpares', meta: 'Planta ampliada 2, 3 suítes e living ampliado; metragem no book sem legenda' },
+          { src: MCP + 'planta-2.webp', nome: 'Torres 1 e 2 · final 1, andares pares', meta: 'Planta ampliada 2, 3 suítes; metragem no book sem legenda' },
+          { src: MCP + 'planta-3.webp', nome: 'Torre 3', meta: '3 suítes; metragem no book sem legenda' }
+        ],
+        implantacao: [
+          { src: MCP + 'implantacao.webp', nome: 'Implantação', meta: 'As três torres, as quadras e as piscinas entre a Rua Eduardo Prado, a Pandiá Calógeras e a Armando de Arruda Pereira' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Espaço Cerâmica e ParkShopping São Caetano', 'ao lado'], ['Parque Cerâmica', 'no bairro'], ['Espaço Verde Chico Mendes', 'no bairro'], ['Rodovia Anchieta e Av. Goiás', 'perto'], ['Ipiranga, São Paulo', 'na divisa']]]
+          ],
+          nota: 'O book não traz mapa nem distâncias; os pontos acima são do bairro. Confirmar com a Mitre.'
+        },
+        legal: 'O book recebido é só de imagens, sem ficha técnica nem texto legal; os dados de torres, unidades, metragens, vagas e datas vêm da corretagem (apto.vc): lançamento em outubro de 2026, entrega prevista para novembro de 2029, 3 torres de térreo mais 25 andares, 202 unidades, terreno de 6.810 m². Projeto da Basilar com a Mitre. Comercialização sujeita ao registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. Imagens meramente ilustrativas. Confirmar tudo com a Mitre antes de divulgar.',
+        torre: MCP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_SAO_CAETANO,
+        fotos: [
+          fotoMCP('fachada', 'As torres', true),
+          fotoMCP('fachada-torres', 'Fachada'),
+          fotoMCP('torre', 'Torre'),
+          fotoMCP('portaria', 'Portaria'),
+          fotoMCP('embasamento', 'Embasamento'),
+          fotoMCP('varandas', 'Varandas'),
+          fotoMCP('praca', 'Praça'),
+          fotoMCP('jardim', 'Jardim e espelho d\'água'),
+          fotoMCP('piscina', 'Piscina externa'),
+          fotoMCP('piscina-deck', 'Piscina com deck'),
+          fotoMCP('piscina-aerea', 'Piscina, vista aérea'),
+          fotoMCP('deck', 'Deck'),
+          fotoMCP('lounge-externo', 'Lounge externo'),
+          fotoMCP('lounge', 'Lounge', true),
+          fotoMCP('lounge-coberto', 'Lounge coberto'),
+          fotoMCP('bar', 'Bar'),
+          fotoMCP('fire-lounge', 'Fire lounge'),
+          fotoMCP('beach-tennis', 'Quadra de beach tennis'),
+          fotoMCP('quadra-de-tenis', 'Quadra de tênis'),
+          fotoMCP('fitness', 'Fitness'),
+          fotoMCP('spa', 'Spa', true),
+          fotoMCP('sauna', 'Sauna', true),
+          fotoMCP('massagem', 'Massagem'),
+          fotoMCP('espaco-gourmet', 'Espaço gourmet'),
+          fotoMCP('varanda-gourmet', 'Varanda gourmet'),
+          fotoMCP('salao-de-festas', 'Salão de festas'),
+          fotoMCP('salao-de-jogos', 'Salão de jogos'),
+          fotoMCP('brinquedoteca', 'Brinquedoteca'),
+          fotoMCP('playground', 'Playground'),
+          fotoMCP('coworking', 'Coworking e sala de reunião'),
+          fotoMCP('mini-market', 'Mini Market'),
+          fotoMCP('pet-place', 'Pet Place'),
+          fotoMCP('sala-de-estar', 'Sala de estar'),
+          fotoMCP('piscina-privativa', 'Piscina privativa'),
+          fotoMCP('regiao-aerea', 'Região, foto aérea')
+        ]
+      },
+      {
+        nome: 'Raízes Premium Campo Belo',
+        cidade: 'São Paulo, capital',
+        bairro: 'Campo Belo',
+        resumo: '1 a 3 dormitórios · 38 a 85 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Rua Vieira de Morais, 1.722, a 6 minutos do Metrô Campo Belo e a 5 do Aeroporto de Congonhas: a linha Raízes da Mitre chega ao Campo Belo com torre única de térreo mais 18 andares e 252 apartamentos de 38 m² (1 suíte), 64 m² (2 dormitórios com 1 suíte) e 85 m² (3 dormitórios com 1 suíte). Lazer em dois níveis: no térreo, lobby, Steak Bar com lounge externo, coworking, quadra recreativa, Pet Care e Pet Place com a Cobasi, horta e bicicletário; no 4º pavimento, piscina com raia de 25 m e deck molhado, fitness Technogym com aulas da Team Training, massagem, sauna com descanso, Beauty Space, brinquedoteca, playground, salão de festas com terraço, Pool House e lounge. Lançamento de novembro de 2025, entrega prevista para julho de 2029 pela corretagem.',
+        area: ['38 m²: 1 suíte, com APA e cooktop elétrico entregues', '64 m²: 2 dormitórios, 1 suíte', '85 m²: 3 dormitórios, 1 suíte, com lavabo e antessala'],
+        tipologia: '1 a 3 dormitórios, sempre com 1 suíte, de 38 a 85 m²',
+        banheiros: 'Banhos entregues com bancada, piso, louças e metais, com ponto de água quente; lavabo no 85 m²',
+        vagas: '1 vaga por unidade, pela corretagem',
+        torres: 'Torre única, térreo mais 18 andares, em terreno de 2.971 m² (corretagem)',
+        unidades: ['252 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: lobby, bicicletário, Pet Care, Steak Bar com lounge externo, coworking, quadra recreativa, Pet Place, horta e carregamento de carro elétrico', '4º pavimento, lazer: piscina, fitness, massagem, sauna com descanso, Beauty Space, brinquedoteca, playground, salão de festas com terraço, Pool House e lounge'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Vieira de Morais, 1.722 · Campo Belo, São Paulo',
+        infra: {
+          piscina: 'Piscina com raia de 25 m e deck molhado, no 4º pavimento',
+          academia: 'Fitness com esteiras Technogym e aulas em grupo da Team Training',
+          festas: 'Salão de festas com terraço e lounge',
+          gourmet: 'Steak Bar com lounge externo e Pool House privativa',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra recreativa',
+          portaria: 'Lobby, com acessos social, de serviço e de veículos separados',
+          coworking: 'Coworking, Pet Care e Pet Place com a Cobasi, horta, bicicletário e Beauty Space'
+        },
+        lazer: ['Lobby', 'Bicicletário', 'Pet Care', 'Steak Bar com lounge externo', 'Coworking', 'Quadra recreativa', 'Pet Place', 'Horta', 'Carregamento de carro elétrico', 'Piscina com raia de 25 m', 'Fitness', 'Massagem', 'Sauna com descanso', 'Beauty Space', 'Brinquedoteca', 'Playground', 'Salão de festas com terraço', 'Pool House', 'Lounge'],
+        diferenciais: ['Infraestrutura para ar-condicionado na sala e nos dormitórios, com área técnica para condensadoras', 'Ponto de água quente nos banhos e na cozinha, persianas de enrolar nos dormitórios e laje nivelada entre estar e terraço', 'Churrasqueira a carvão (elétrica no 38 m²) pelo Personal Home', 'Serviços com parceiros: Cobasi no pet, Team Training no fitness, recarga de carro elétrico e conveniência', 'Personal Home: opções de planta e acabamentos durante a obra', 'Selo AQUA-HQE: 20% de economia de energia e água, reúso de água de chuva, gerador e LED nas áreas comuns'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Beth Miyazaki'], ['Interiores', 'Archiave'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MRC + 'planta-38.webp', nome: '38 m²', meta: '1 suíte' },
+          { src: MRC + 'planta-64.webp', nome: '64 m²', meta: '2 dormitórios, 1 suíte' },
+          { src: MRC + 'planta-85.webp', nome: '85 m²', meta: '3 dormitórios, 1 suíte, lavabo e antessala' }
+        ],
+        implantacao: [
+          { src: MRC + 'implantacao-terreo.webp', nome: 'Implantação · térreo', meta: '8 espaços, do lobby à horta' },
+          { src: MRC + 'implantacao-lazer.webp', nome: 'Implantação · 4º pavimento', meta: '10 espaços de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Vereador José Diniz', '4 min'], ['Aeroporto de Congonhas', '5 min'], ['Av. Jornalista Roberto Marinho', '5 min'], ['Metrô Campo Belo', '6 min'], ['Av. Santo Amaro', '6 min'], ['Av. Ibirapuera', '7 min']]],
+            ['Gastronomia e serviços', [['Academia Leven', '4 min a pé'], ['Pão de Açúcar', '6 min a pé'], ['Padaria Alfamas', '6 min a pé'], ['Spazio Itália', '7 min a pé'], ['Othelo', '10 min a pé'], ['La Ventana Parrilla', '10 min a pé'], ['Shopping Ibirapuera', '8 min']]],
+            ['Ensino', [['Aubrick Escola Bilíngue', '6 min a pé'], ['Colégio Vértice', '10 min a pé'], ['Estácio Campo Belo', '10 min a pé'], ['Colégio Stockler', '8 min'], ['UNIP', '10 min']]],
+            ['Saúde e lazer', [['Campo Belo Medical Center', '6 min'], ['Parque Cordeiro', '7 min'], ['Hospital Ruben Berta', '8 min'], ['Hospital Moriah', '9 min'], ['Parque Ibirapuera', '13 min'], ['Hospital Oswaldo Cruz', '17 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro, salvo onde diz a pé.'
+        },
+        legal: 'O empreendimento só será comercializado após a aprovação do Projeto de Edificação Nova pela municipalidade e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. Mitre Vendas Corretagem de Imóveis Ltda., CNPJ 21.677.690/0001-98, Creci J-26794. O book recebido está marcado como de uso interno e projeto em desenvolvimento, sujeito a alterações; verificar o memorial descritivo após o registro. Parcerias de serviços em negociação, podem ser modificadas; aquecimento solar entregue como área para instalação. Imagens meramente ilustrativas. Pela corretagem: lançamento em novembro de 2025, em construção, entrega prevista para julho de 2029, 252 unidades em torre de térreo mais 18 andares.',
+        torre: MRC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CAMPO_BELO,
+        fotos: [
+          fotoMRC('fachada', 'Fachada'),
+          fotoMRC('portaria', 'Portaria'),
+          fotoMRC('lobby', 'Lobby'),
+          fotoMRC('piscina', 'Piscina com raia de 25 m'),
+          fotoMRC('piscina-vertical', 'Piscina', true),
+          fotoMRC('fitness', 'Fitness, perspectiva preliminar'),
+          fotoMRC('spa', 'Spa'),
+          fotoMRC('massagem', 'Massagem'),
+          fotoMRC('beauty-space', 'Beauty Space'),
+          fotoMRC('steak-bar', 'Steak Bar'),
+          fotoMRC('salao-de-festas', 'Salão de Festas'),
+          fotoMRC('pool-house', 'Pool House'),
+          fotoMRC('brinquedoteca', 'Brinquedoteca'),
+          fotoMRC('playground', 'Playground'),
+          fotoMRC('quadra-recreativa', 'Quadra Recreativa'),
+          fotoMRC('pet-place', 'Pet Place'),
+          fotoMRC('living-85', 'Living do apartamento de 85 m²'),
+          fotoMRC('suite-85', 'Suíte do apartamento de 85 m²', true),
+          fotoMRC('living-64', 'Living do apartamento de 64 m²'),
+          fotoMRC('studio-38', 'Studio de 38 m²'),
+          fotoMRC('regiao-aerea', 'Campo Belo, foto aérea')
+        ]
+      }
+    ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
-      ['Althea by Mitre', 'Campo Belo', '3 a 5 dormitórios', '223 e 442 m²', 'Lançamento'],
-      ['Casa Parque Cerâmica', 'São José, São Caetano do Sul', '2 a 4 dormitórios', '133 a 381 m²', 'Lançamento', 'São Caetano do Sul'],
       ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
       ['Haus Mitre Edition NY Soho Apartments', 'Brooklin', '1 e 2 dormitórios', '23 a 92 m²', 'Em construção'],
       ['Haus Mitre Edition NY', 'Brooklin', '4 dormitórios', '164 m²', 'Em construção'],
@@ -5962,7 +6214,6 @@
       ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
       ['GIO Jardins', 'Jardins', 'Studios e 2 dormitórios', '23 e 178 m²', 'Em construção'],
       ['Daslu Residences São Paulo', 'Jardins', '2 e 3 dormitórios', '114 a 157 m²', 'Em construção'],
-      ['Raízes Premium Campo Belo', 'Campo Belo', '1 a 3 dormitórios', '38 a 85 m²', 'Em construção'],
       ['Raízes L\'Avenir', 'Vila Prudente', '3 e 4 dormitórios', '109 e 132 m²', 'Em construção'],
       ['Raízes Jardim São Paulo', 'Jardim São Paulo', '3 e 4 dormitórios', '106 e 127 m²', 'Em construção'],
       ['Origem Guilhermina', 'Vila Guilhermina', '2 dormitórios', '40 e 54 m²', 'Em construção'],
@@ -5986,7 +6237,88 @@
       ['Origem Penha', 'Penha de França', '2 dormitórios', '46 m²', 'Pronto para morar']
     ].map(function (x) {
       return { nome: x[0], bairro: x[1], tipologia: x[2], area: x[3], status: x[4], cidade: x[5] || 'São Paulo, capital', valores: 'Sob consulta' };
-    })
+    })).concat([
+      {
+        nome: 'Haus Mitre Campo Belo',
+        cidade: 'São Paulo, capital',
+        bairro: 'Campo Belo',
+        resumo: 'Studios e 2 ou 3 suítes · 25 e 109 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua João de Sousa Dias, 953, no ponto mais alto do Campo Belo, a 3 minutos da Avenida Santo Amaro e a 5 do Aeroporto de Congonhas: a linha Haus Mitre com duas entradas e serviços independentes, apartamentos residenciais de 109 m² (3 suítes ou 2 suítes com living ampliado, 2 vagas determinadas) e studios de 25 m², mais um mall de conveniência no térreo. Rooftop com piscina e vista da cidade, salão de festas, fitness, yoga e pilates, sauna, parrilhas indoor e gourmet, brinquedoteca, playground e Pet Place para os residenciais; piscina, fitness, coworking, lavanderia e bicicletário próprios para os studios, que podem ser operados pela e/joy, da Atlantica Residences. Entregue em abril de 2024, pela corretagem.',
+        area: ['109 m²: 3 suítes (padrão) ou 2 suítes com living ampliado (opção), 2 vagas determinadas', '25 m²: studio residencial, sem vaga'],
+        tipologia: 'Studios de 25 m² e apartamentos de 109 m² com 2 ou 3 suítes',
+        banheiros: 'Banheiros com iluminação e ventilação natural, ponto de água quente nas bancadas (exceto lavabo), banheiros sr. e sra. na suíte master e lavabo no 109 m²',
+        vagas: '2 vagas determinadas no 109 m²; studios sem vaga (a corretagem registra o condomínio como sem vagas)',
+        torres: 'Torre única em terreno de 1.772 m² (corretagem), com entradas residencial e de studios independentes e lojas no térreo',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Térreo: lobby residencial, mall de conveniência com lojas 1 e 2, Mini Market, Espaço Delivery e bicicletários', 'Rooftop residencial: piscina, salão de festas, fitness, yoga e pilates, sauna, parrilhas indoor e gourmet, brinquedoteca, playground e Pet Place', 'Studios: piscina, fitness, coworking, lavanderia e bicicletário próprios'],
+        valores: 'Sob consulta',
+        endereco: 'Rua João de Sousa Dias, 953 · Campo Belo, São Paulo',
+        infra: {
+          piscina: 'Piscina no rooftop residencial e piscina dos studios',
+          academia: 'Fitness residencial, Espaço Yoga e Pilates e fitness dos studios',
+          festas: 'Salão de Festas com vista',
+          gourmet: 'Parrilha Indoor e Parrilha Gourmet',
+          kids: 'Brinquedoteca e playground',
+          quadra: '',
+          portaria: 'Entradas residencial e de studios independentes, lobby residencial e Espaço Delivery',
+          coworking: 'Coworking e lavanderia (studios), Mini Market, mall de conveniência e bicicletários'
+        },
+        lazerGrupos: [
+          ['Residencial', ['Lobby residencial', 'Piscina no rooftop', 'Salão de Festas', 'Fitness', 'Espaço Yoga e Pilates', 'Sauna', 'Parrilha Indoor', 'Parrilha Gourmet', 'Brinquedoteca', 'Playground', 'Pet Place', 'Bicicletário', 'Mini Market', 'Espaço Delivery']],
+          ['Studios', ['Piscina', 'Fitness', 'Coworking', 'Lavanderia', 'Bicicletário', 'Mini Market', 'Espaço Delivery']],
+          ['Térreo', ['Mall de conveniência com 2 lojas']]
+        ],
+        diferenciais: ['Ponto elétrico e dreno para ar-condicionado nos dormitórios, sala e terraço, com área técnica para a condensadora', 'Ponto de água quente nas bancadas dos banheiros e da cozinha, ponto para lavadora e secadora', 'Terraço com churrasqueira a carvão e piso nivelado com o living', 'Fechadura eletrônica, opções de planta e acabamentos pelo Mitre Personal Home', 'Tomada para carro elétrico (residencial) e espaço para home office', 'Studios com gestão de locação pela e/joy, da Atlantica Residences, para quem compra para investir'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi Arquitetos Associados'], ['Paisagismo', 'Benedito Abbud'], ['Interiores', 'João Armentano'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MHC + 'planta-109-3-suites.webp', nome: '109 m² · padrão', meta: '3 suítes · 2 vagas determinadas' },
+          { src: MHC + 'planta-109-2-suites.webp', nome: '109 m² · opção', meta: '2 suítes com living ampliado · 2 vagas determinadas' },
+          { src: MHC + 'planta-25.webp', nome: '25 m² · studio residencial', meta: 'Sem vaga' }
+        ],
+        implantacao: [
+          { src: MHC + 'mapa.webp', nome: 'Mapa da região', meta: 'Distâncias de carro pelo Google Maps, segundo o book' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Hospital Oswaldo Cruz', '1 min'], ['Av. Santo Amaro', '3 min'], ['Pão de Açúcar', '3 min'], ['Colégio Vértice', '3 min'], ['Hospital Campo Belo e Maternidade São Luiz', '3 min'], ['Shopping Ibirapuera', '5 min'], ['Aeroporto de Congonhas', '5 min'], ['Metrô Campo Belo', '7 min'], ['Hospital Moriah', '8 min'], ['Av. dos Bandeirantes', '10 min'], ['Parque Ibirapuera', '12 min'], ['Av. Paulista', '20 min']]]
+          ],
+          nota: 'Distâncias estimadas pelo Google Maps, de carro, segundo o book.'
+        },
+        legal: 'Comercializado após o registro do Memorial de Incorporação no 15º Oficial de Registro de Imóveis de São Paulo, nos termos da Lei 4.591/1964. Intermediação: LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Alguns itens são de uso exclusivo dos moradores das unidades residenciais, conforme a convenção de condomínio; rede frigorígena e fechadura eletrônica são itens de personalização. Imagens ilustrativas; book impresso em abril de 2021. Pela corretagem: lançamento em janeiro de 2022 e entrega em abril de 2024, condomínio pronto para morar; disponibilidade de unidades sob consulta.',
+        torre: MHC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CAMPO_BELO,
+        fotos: [
+          fotoMHC('fachada', 'Fachada', true),
+          fotoMHC('loja-1', 'Embasamento com a loja 1'),
+          fotoMHC('lobby', 'Lobby residencial'),
+          fotoMHC('piscina', 'Piscina do rooftop residencial'),
+          fotoMHC('rooftop', 'Rooftop, voo de pássaro'),
+          fotoMHC('salao-de-festas', 'Salão de Festas'),
+          fotoMHC('fitness', 'Fitness residencial'),
+          fotoMHC('yoga-pilates', 'Espaço Yoga e Pilates'),
+          fotoMHC('sauna', 'Sauna'),
+          fotoMHC('parrilha-indoor', 'Parrilha Indoor'),
+          fotoMHC('parrilha-gourmet', 'Parrilha Gourmet'),
+          fotoMHC('brinquedoteca', 'Brinquedoteca'),
+          fotoMHC('playground', 'Playground'),
+          fotoMHC('pet-place', 'Pet Place'),
+          fotoMHC('bicicletario', 'Bicicletário residencial'),
+          fotoMHC('mini-market', 'Mini Market'),
+          fotoMHC('delivery', 'Espaço Delivery'),
+          fotoMHC('living-109', 'Living do apartamento de 109 m² com living ampliado'),
+          fotoMHC('terraco-109', 'Terraço do apartamento de 109 m²'),
+          fotoMHC('piscina-studios', 'Piscina dos studios'),
+          fotoMHC('fitness-studios', 'Fitness dos studios'),
+          fotoMHC('coworking', 'Coworking dos studios'),
+          fotoMHC('lavanderia', 'Lavanderia dos studios'),
+          fotoMHC('bicicletario-studios', 'Bicicletário dos studios'),
+          fotoMHC('studio-25', 'Studio residencial de 25 m²')
+        ]
+      }
+    ])
   };
 
   /* As LOGOS das parceiras, pelo nome exato: PNG de fundo transparente em fotos/parcerias/.
