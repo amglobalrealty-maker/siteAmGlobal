@@ -757,6 +757,23 @@
   // (11/11/2026) e os dois da Zona Sul que ela mandou so em PDF (fotos tiradas dos books): Unique Saude e Exclusive (Socorro)
   var LUS = L + 'uniquesaude/', LES = L + 'exclusivesocorro/';
   var fotoLUS = fotoEm(LUS), fotoLES = fotoEm(LES);
+  // (11/11/2026) e os dois Home Boutique que ela mandou em PDF (Downloads): Campo Belo e Ipiranga, fotos tiradas dos books
+  var LHC = L + 'hbcampobelo/', LHI = L + 'hbipiranga/';
+  var fotoLHC = fotoEm(LHC), fotoLHI = fotoEm(LHI);
+  var ZS_CAMPO_BELO = {
+    titulo: 'A região · Campo Belo',
+    texto: 'Entre as avenidas Vereador José Diniz, Santo Amaro, Roberto Marinho e dos Bandeirantes, o Campo Belo é o bairro residencial que liga o Brooklin a Moema: ruas arborizadas, as estações Eucaliptos e Campo Belo da Linha 5-Lilás, o Shopping Ibirapuera a 4 minutos, a Sociedade Hípica Paulista a 5 e o Parque Ibirapuera a 9, com os hospitais Alemão Oswaldo Cruz e Blanc, o Insper e colégios como o Magno e o Vértice por perto. Alto padrão consolidado, com a gastronomia da Rua Gabriele D\'Annunzio e as lojas de Moema ao lado.',
+    numeros: [['3 min', 'do Metrô Eucaliptos, Linha 5-Lilás'], ['4 min', 'do Shopping Ibirapuera'], ['9 min', 'do Parque Ibirapuera'], ['149 e 265 m²', 'apartamentos e duplex, 2 vagas']],
+    polos: 'Por perto: estações Eucaliptos e Campo Belo, Shopping Ibirapuera, Sociedade Hípica Paulista, Parque Ibirapuera, Hospital Alemão Oswaldo Cruz, Insper, Rua Gabriele D\'Annunzio e Moema.',
+    fonte: 'Fonte: book do Home Boutique by Living Campo Belo (agosto de 2025), com tempos do próprio material.'
+  };
+  var ZS_IPIRANGA = {
+    titulo: 'A região · Ipiranga, Avenida Nazaré',
+    texto: 'A Avenida Nazaré é o endereço mais desejado do Ipiranga, bairro histórico da cidade, a 10 minutos a pé da Estação Alto do Ipiranga da Linha 2-Verde e a 7 de carro da Santos-Imigrantes. Em volta, o Museu do Ipiranga e o Parque da Independência, o Aquário de São Paulo, o Clube Atlético Ypiranga, hospitais como o Dom Alvarenga e o São Camilo, e as saídas pela Ricardo Jafet e pela Vergueiro. Bairro de famílias tradicionais que trocam a casa pelo apartamento novo.',
+    numeros: [['10 min', 'a pé da Estação Alto do Ipiranga'], ['7 min', 'da Estação Santos-Imigrantes'], ['4 min', 'do Aquário de São Paulo'], ['137 e 156 m²', '3 suítes, 2 vagas']],
+    polos: 'Por perto: estações Alto do Ipiranga e Santos-Imigrantes, Museu do Ipiranga, Parque da Independência, Aquário de São Paulo, Clube Atlético Ypiranga e os hospitais Dom Alvarenga, São Camilo e Ipiranga.',
+    fonte: 'Fonte: book do Home Boutique by Living Ipiranga (2024), com tempos do próprio material.'
+  };
   var ZS_SAUDE = {
     titulo: 'A região · Saúde',
     texto: 'Entre a Avenida Jabaquara e o Parque Ibirapuera, a Saúde é um bairro de ruas calmas e arborizadas, com quatro estações da Linha 1-Azul (Praça da Árvore, Saúde, São Judas e Santa Cruz), o Shopping Metrô Santa Cruz e o Plaza Sul, os hospitais da região da Unifesp e colégios tradicionais como o Marista Arquidiocesano. O Ibirapuera a 7 minutos e a Avenida Paulista a 16, de carro.',
@@ -3656,6 +3673,156 @@
           fotoLES('academia', 'Academia, 71 m²'),
           fotoLES('churras-e-pizza', 'Churrasqueira com forno de pizza'),
           fotoLES('cantinho-dos-pequenos', 'Cantinho dos Pequenos')
+        ]
+      },
+      {
+        nome: 'Home Boutique by Living Campo Belo',
+        cidade: 'São Paulo, capital',
+        bairro: 'Campo Belo',
+        resumo: '3 suítes e duplex · 149 e 265 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Barão do Triunfo, esquina com a Rua Rita Joana de Souza, no Campo Belo, a 3 minutos do Metrô Eucaliptos e a 4 do Shopping Ibirapuera: a sensação de entrar num hotel boutique todos os dias. Torre única com apartamentos de 149 m², de 3 suítes (ou 4 dormitórios, ou 2 suítes), e duplex de 265 m² com terraço e SPA, todos com 2 vagas. The Lobby, Guest Lounge, Private Pool, Swimming Pool com raia, The Gym e Outside Gym, Kids Place, Garden Lounge, Pet Park e um Private Studio equipado para hospedar os convidados dos moradores. Lançado em setembro de 2025.',
+        area: ['149 m²: 3 suítes, com cozinha integrada e WC de serviço (padrão), cozinha integrada e despensa, ou cozinha fechada e despensa', '149 m²: 4 dormitórios, com cozinha integrada e WC de serviço, ou cozinha fechada e despensa', '149 m²: 2 suítes, cozinha integrada e WC de serviço', '265 m² duplex: 3 suítes, cozinha integrada e WC de serviço, com estar, terraço e SPA no pavimento superior; opção com 4 suítes, cozinha fechada e despensa'],
+        tipologia: '3 suítes de 149 m² e duplex de 265 m², com opções de 2 suítes a 4 suítes',
+        banheiros: 'Banheiros das suítes com ralo linear, água quente, toalheiro aquecido e desembaçador; lavabo; WC de serviço ou despensa; banheira e 2 chuveiros na suíte master',
+        vagas: '2 vagas por apartamento, do 4º ao 24º pavimento; studios sem vaga',
+        torres: 'Torre única de 24 pavimentos',
+        unidades: ['Apartamentos dos finais 1 a 4, do 4º ao 24º pavimento, 4 por andar', 'Studios dos finais 1 a 12 no 2º e no 3º pavimento, e o Private Studio comum (final 3 do 2º pavimento)'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, Garden Lounge, Pet Park, The Lobby, Delivery e Mini Market', '2º pavimento: Private Studio para hóspedes', '3º pavimento, lazer: The Guest Lounge, The Private Pool, Playground, Kids Place, The Gym, Outside Gym, Solarium, Pool Deck, Kids Pool e The Swimming Pool'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Barão do Triunfo, 2017 · Campo Belo, São Paulo',
+        infra: {
+          piscina: 'The Swimming Pool com raia, Kids Pool, Pool Deck e Solarium no 3º pavimento, e The Private Pool com lounge',
+          academia: 'The Gym com equipamentos Matrix e Outside Gym',
+          festas: 'The Guest Lounge com mesa para 12',
+          gourmet: 'The Private Pool, com bancada e churrasqueira ao lado da piscina privativa',
+          kids: 'Kids Place com piscina de bolinhas e escorregador, e Playground',
+          quadra: '',
+          portaria: 'Social Entrance e Service Entrance separadas, Garage Entrance, Delivery e The Lobby com pé-direito duplo',
+          coworking: 'Living Mini Market 24 horas, Garden Lounge, Pet Park e Private Studio para convidados'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Garden Lounge', 'Pet Park', 'The Lobby', 'Delivery', 'Mini Market', 'Private Studio', 'The Guest Lounge', 'The Private Pool', 'Playground', 'Kids Place', 'The Gym', 'Outside Gym', 'Solarium', 'Pool Deck', 'Kids Pool', 'The Swimming Pool'],
+        diferenciais: ['Private Studio equipado e decorado no 2º pavimento para hospedar convidados dos moradores', 'Duplex de 265 m² com estar, terraço, SPA e churrasqueira no pavimento superior', 'Contrapiso para atenuação acústica nos quartos, na sala e no terraço social', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmera Wi-Fi na sala', 'Infraestrutura para ar-condicionado nas suítes e na sala, com área técnica', 'Infraestrutura para churrasqueira e bancada no terraço social, com ponto de TV', 'Cozinha com cuba dupla, coifa, triturador, lava-louças e água quente; ponto de água para geladeira', 'Banheiros com ralo linear, toalheiro aquecido e desembaçador; banheira e 2 chuveiros na suíte master', 'Hall privativo com controle de acesso, closet e persianas de enrolar nos quartos'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'Living Colombo Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LHC + 'planta-149.webp', nome: '149 m² · padrão', meta: '3 suítes, cozinha integrada e WC de serviço · 2 vagas' },
+          { src: LHC + 'planta-149-opcao-1.webp', nome: '149 m² · opção 1', meta: '3 suítes, cozinha integrada e despensa · 2 vagas' },
+          { src: LHC + 'planta-149-opcao-2.webp', nome: '149 m² · opção 2', meta: '3 suítes, cozinha fechada e despensa · 2 vagas' },
+          { src: LHC + 'planta-149-opcao-3.webp', nome: '149 m² · opção 3', meta: '4 dormitórios, cozinha integrada e WC de serviço · 2 vagas' },
+          { src: LHC + 'planta-149-opcao-4.webp', nome: '149 m² · opção 4', meta: '4 dormitórios, cozinha fechada e despensa · 2 vagas' },
+          { src: LHC + 'planta-149-opcao-5.webp', nome: '149 m² · opção 5', meta: '2 suítes, cozinha integrada e WC de serviço · 2 vagas' },
+          { src: LHC + 'duplex-265-inferior.webp', nome: 'Duplex 265 m² · inferior', meta: '3 suítes, cozinha integrada e WC de serviço · 2 vagas' },
+          { src: LHC + 'duplex-265-superior.webp', nome: 'Duplex 265 m² · superior', meta: 'Estar, terraço com SPA e churrasqueira' },
+          { src: LHC + 'duplex-265-opcao-inferior.webp', nome: 'Duplex 265 m² · opção, inferior', meta: '4 suítes, cozinha fechada e despensa · 2 vagas' },
+          { src: LHC + 'duplex-265-opcao-superior.webp', nome: 'Duplex 265 m² · opção, superior', meta: 'Suíte, estar e terraço com SPA' }
+        ],
+        implantacao: [
+          { src: LHC + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, 2º pavimento e o 3º pavimento de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Metrô Eucaliptos', '3 min'], ['Metrô Campo Belo', '6 min']]],
+            ['Vias', [['Av. Vereador José Diniz', '1 min'], ['Av. Jornalista Roberto Marinho', '3 min'], ['Av. Santo Amaro', '3 min'], ['Av. dos Bandeirantes', '4 min']]],
+            ['Lazer', [['Bodytech Brooklin', '3 min'], ['Bio Ritmo Campo Belo', '4 min'], ['Shopping Ibirapuera', '4 min'], ['Sociedade Hípica Paulista', '5 min'], ['Parque Ibirapuera', '9 min']]],
+            ['Saúde', [['Hospital Alemão Oswaldo Cruz', '4 min'], ['Hospital Blanc', '6 min'], ['Hospital São Luiz Vila Nova Star', '10 min']]],
+            ['Conveniência', [['Pão de Açúcar', '3 min'], ['Oba Hortifruti', '4 min'], ['Natural da Terra', '4 min'], ['St. Marché', '4 min']]],
+            ['Educação', [['Aubrick Escola Bilíngue', '2 min'], ['Colégio Magno', '4 min'], ['Colégio Vértice', '5 min'], ['Colégio Stockler', '6 min'], ['Insper', '7 min']]],
+            ['Gastronomia', [['O Jardim Café e Brunch', '2 min'], ['Huto Campo Belo', '3 min'], ['Maremonti Campo Belo', '3 min'], ['Gansaral', '3 min'], ['Leona Pizzaria', '4 min'], ['Oizumi Sushi', '4 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2025).'
+        },
+        legal: 'Incorporadora Living Colombo Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 1.094.299 no 15º Oficial de Registro de Imóveis de São Paulo. Área não contaminada (CETESB 33/08336/24); manejo arbóreo e plantio compensatório autorizados (6027.2025/0006016-1). Unidades dos finais 1 a 4, do 4º ao 24º pavimento, com duas vagas; studios dos finais 1 a 12, do 2º ao 3º pavimento, sem direito a vaga; o studio de final 3 do 2º pavimento é unidade autônoma do subcondomínio 1, para hóspedes dos moradores. Ar-condicionado, churrasqueira, água quente, lavabo, banheira, SPA e interruptores inteligentes entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de agosto de 2025. Lançamento em setembro de 2025 e entrega prevista para 2028/2029, pela corretagem.',
+        torre: LHC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CAMPO_BELO,
+        fotos: [
+          fotoLHC('fachada', 'Fachada'),
+          fotoLHC('embasamento', 'Embasamento'),
+          fotoLHC('portaria', 'Portaria'),
+          fotoLHC('the-lobby', 'The Lobby'),
+          fotoLHC('guest-lounge', 'The Guest Lounge'),
+          fotoLHC('private-pool', 'The Private Pool'),
+          fotoLHC('swimming-pool', 'The Swimming Pool'),
+          fotoLHC('the-gym', 'The Gym'),
+          fotoLHC('kids-place', 'Kids Place'),
+          fotoLHC('private-studio', 'Private Studio para convidados'),
+          fotoLHC('quarto-fotomontagem', 'Private Studio, fotomontagem'),
+          fotoLHC('living-decorado', 'Living do apartamento, perspectiva'),
+          fotoLHC('lounge-fotomontagem', 'Lounge com jardim, fotomontagem')
+        ]
+      },
+      {
+        nome: 'Home Boutique by Living Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Ipiranga',
+        resumo: '3 suítes · 137 e 156 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Avenida Nazaré, esquina com a Rua Antônio Marcondes, no Ipiranga, a 1 minuto da Rua Marquês de Olinda e a 10 minutos a pé da Estação Alto do Ipiranga: a sensação de entrar num hotel boutique todos os dias. Torre única com apartamentos de 137 e 156 m², de 3 suítes (ou 3 suítes com home office, ou 4 dormitórios com 2 suítes), todos com 2 vagas. The Lobby, Guest Lounge, Private Pool House interna e externa, Swimming Pool com raia, Pool Lounge, The Gym, Kids Place, Playground e um Private Studio equipado para hospedar os convidados dos moradores. Entrega prevista para março de 2029.',
+        area: ['137 m²: 3 suítes com sala ampliada e cozinha integrada (padrão), ou cozinha fechada, ou 3 suítes com home office e despensa', '156 m²: 3 suítes com sala ampliada e cozinha integrada (padrão), ou com despensa, ou 4 dormitórios com 2 suítes e cozinha integrada'],
+        tipologia: '3 suítes, de 137 a 156 m², com opções de home office e de 4 dormitórios',
+        banheiros: 'Banheiros das suítes com ralo linear, água quente, toalheiro aquecido e desembaçador; lavabo; WC de serviço ou despensa; banheira e 2 chuveiros na suíte master dos finais 1 e 2',
+        vagas: '2 vagas por apartamento, do 4º ao 25º pavimento; studios sem vaga',
+        torres: 'Torre única de 25 pavimentos',
+        unidades: ['Apartamentos dos finais 1 a 4, do 4º ao 25º pavimento, 4 por andar', 'Studios dos finais 1 a 13, do 1º ao 3º pavimento, e o Private Studio comum (final 1 do 1º pavimento)'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, Delivery e The Lobby', '1º pavimento: Private Studio para hóspedes', '4º pavimento, lazer: Social Hall, Service Hall, Mini Market, Kids Place, Playground, The Gym, The Guest Lounge, The Private Pool House, Solarium, Pool Deck, Pool Lounge, Swimming Pool e Kids Pool'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Nazaré, 1596 a 1626, esquina com a Rua Antônio Marcondes · Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com raia, Kids Pool, Pool Deck, Pool Lounge e Solarium no 4º pavimento',
+          academia: 'The Gym com equipamentos Matrix',
+          festas: 'The Guest Lounge',
+          gourmet: 'The Private Pool House, interna e externa, com piscina privativa e churrasqueira',
+          kids: 'Kids Place com monitoramento, e Playground',
+          quadra: '',
+          portaria: 'Social Entrance e Service Entrance separadas, Garage Entrance, Delivery e The Lobby',
+          coworking: 'Living Mini Market 24 horas, Car Sharing e Private Studio para convidados'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Delivery', 'The Lobby', 'Private Studio', 'Social Hall', 'Service Hall', 'Mini Market', 'Kids Place', 'Playground', 'The Gym', 'The Guest Lounge', 'The Private Pool House', 'Solarium', 'Pool Deck', 'Pool Lounge', 'Swimming Pool', 'Kids Pool', 'Car Sharing'],
+        diferenciais: ['Private Studio equipado e decorado no 1º pavimento para hospedar convidados dos moradores', 'The Private Pool House, interna e externa, com piscina privativa para receber', 'Contrapiso para atenuação acústica nos quartos e na sala', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmera Wi-Fi na sala', 'Infraestrutura para ar-condicionado nas suítes e na sala', 'Infraestrutura para churrasqueira e bancada no terraço social, com ponto de TV', 'Cozinha com cuba dupla, coifa, triturador, lava-louças e água quente; ponto de água para geladeira', 'Hall privativo com controle de acesso, closet e persianas de enrolar nos dormitórios', 'Carro compartilhado no condomínio, por aplicativo'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Farah + Arquitetura e Interiores'], ['Paisagismo', 'Beth Miyasaki Arquitetura Paisagística'], ['Incorporação', 'CBR 017 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LHI + 'planta-137.webp', nome: '137 m² · padrão', meta: '3 suítes, sala ampliada e cozinha integrada · 2 vagas' },
+          { src: LHI + 'planta-137-opcao-1.webp', nome: '137 m² · opção 1', meta: '3 suítes, sala ampliada e cozinha fechada · 2 vagas' },
+          { src: LHI + 'planta-137-opcao-2.webp', nome: '137 m² · opção 2', meta: '3 suítes, home office e cozinha integrada · 2 vagas' },
+          { src: LHI + 'planta-156.webp', nome: '156 m² · padrão', meta: '3 suítes, sala ampliada e cozinha integrada · 2 vagas' },
+          { src: LHI + 'planta-156-opcao-1.webp', nome: '156 m² · opção 1', meta: '3 suítes, sala ampliada, cozinha integrada e despensa · 2 vagas' },
+          { src: LHI + 'planta-156-opcao-2.webp', nome: '156 m² · opção 2', meta: '4 dormitórios, 2 suítes, cozinha integrada · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LHI + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, 1º pavimento e o 4º pavimento de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Estação Alto do Ipiranga', '10 min a pé'], ['Estação Santos-Imigrantes', '7 min']]],
+            ['Vias', [['Rua Marquês de Olinda', '1 min'], ['Av. Dr. Gentil de Moura', '3 min'], ['Av. Dr. Ricardo Jafet', '6 min'], ['Rua Vergueiro', '6 min']]],
+            ['Conveniência', [['Drogaria São Paulo', '4 min a pé'], ['Hirota Food', '5 min a pé'], ['Panificadora Grão do Ipiranga', '5 min'], ['Petz', '6 min'], ['St Marché', '8 min']]],
+            ['Saúde', [['Hospital Dom Alvarenga', '3 min'], ['Hospital São Camilo', '8 min'], ['Hospital Ipiranga', '8 min']]],
+            ['Lazer', [['Aquário de São Paulo', '4 min'], ['Museu do Ipiranga', '10 min'], ['Parque da Independência', '10 min'], ['Clube Atlético Ypiranga', '12 min']]],
+            ['Restaurantes', [['Hamburguer Seu Oswaldo', '6 min'], ['Empório Pata Negra', '6 min'], ['Nico Pasta e Basta', '8 min'], ['Sala VIP', '8 min']]]
+          ],
+          nota: 'Tempos de carro, salvo os indicados a pé, conforme o material da Living (Google Maps, 2024).'
+        },
+        legal: 'Incorporadora CBR 017 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 850.462 no 6º Oficial de Registro de Imóveis de São Paulo. Área em processo de aprovação ambiental (CETESB 45/00847/23); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2023/0020606-5). Unidades dos finais 1 a 4, do 4º ao 25º pavimento, com duas vagas; studios dos finais 1 a 13, do 1º ao 3º pavimento, sem direito a vaga; o studio de final 1 do 1º pavimento é área comum do subcondomínio 1, para hóspedes dos moradores. Terreno na Rua Antônio Marcondes, 300 a 330, e na Avenida Nazaré, 1588 a 1626. Ar-condicionado, churrasqueira, água quente, lavabo, banheira e interruptores inteligentes entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de 2024. Em obras, com entrega prevista para março de 2029, pela corretagem.',
+        torre: LHI + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_IPIRANGA,
+        fotos: [
+          fotoLHI('fachada', 'Fachada', true),
+          fotoLHI('embasamento', 'Embasamento'),
+          fotoLHI('portaria', 'Portaria'),
+          fotoLHI('the-lobby', 'The Lobby'),
+          fotoLHI('guest-lounge', 'The Guest Lounge'),
+          fotoLHI('private-pool-house', 'The Private Pool House, interna'),
+          fotoLHI('private-pool-house-externa', 'The Private Pool House, externa'),
+          fotoLHI('swimming-pool', 'Swimming Pool'),
+          fotoLHI('the-gym', 'The Gym'),
+          fotoLHI('kids-place', 'Kids Place'),
+          fotoLHI('playground', 'Playground'),
+          fotoLHI('private-studio', 'Private Studio para convidados'),
+          fotoLHI('living-decorado', 'Decorado de 156 m², fotomontagem'),
+          fotoLHI('av-nazare', 'Avenida Nazaré, foto da região (2024)')
         ]
       }
     ]
