@@ -783,6 +783,16 @@
   // (11/11/2026) Brooklin e Berrini, rodada 5a: Full Berrini (jul/2024), Full Estaiada (jan/2025), The New Residence (out/2025), The Residence Brooklin (jun/2025)
   var LFB = L + 'fullberrini/', LFS = L + 'fullestaiada/', LNR = L + 'newresidence/', LRB = L + 'residencebrooklin/';
   var fotoLFB = fotoEm(LFB), fotoLFS = fotoEm(LFS), fotoLNR = fotoEm(LNR), fotoLRB = fotoEm(LRB);
+  // (11/11/2026) rodada 5b: Well Home (book 2026) e Wellness (folhetao abr/2026) na Chacara Santo Antonio; High Line (out/2024) e 25H, books so de imagem, lidos pelas paginas
+  var LWH = L + 'wellhome/', LWC = L + 'wellnesscsa/', LHL = L + 'highline/', L25 = L + 'h25/';
+  var fotoLWH = fotoEm(LWH), fotoLWC = fotoEm(LWC), fotoLHL = fotoEm(LHL), fotoL25 = fotoEm(L25);
+  var ZS_CHACARA_SANTO_ANTONIO = {
+    titulo: 'A região · Chácara Santo Antônio',
+    texto: 'Entre o Brooklin, Santo Amaro e a Marginal Pinheiros, a Chácara Santo Antônio é o bairro de ruas arborizadas e casas que viraram escritórios, estúdios e restaurantes, colado ao eixo corporativo da Avenida Chucri Zaidan e às estações Borba Gato e Santo Amaro da Linha 5-Lilás. Morumbi Shopping, Market Place e os parques Severo Gomes e Burle Marx por perto. Na Rua Fernandes Moreira e na Rua Antônio das Chagas, a poucas quadras uma da outra, a Living lançou dois projetos em 2026: o Wellness e o Well Home.',
+    numeros: [['2 min', 'da Estação Borba Gato, do Well Home'], ['5 min', 'da Avenida Chucri Zaidan'], ['2', 'projetos da Living no bairro em 2026: Wellness e Well Home'], ['48 a 140 m²', 'da suíte única ao 4 dormitórios, entre os dois']],
+    polos: 'Por perto: Av. Chucri Zaidan, Av. Santo Amaro, Marginal Pinheiros, estações Borba Gato e Santo Amaro, Morumbi Shopping, Market Place, Parque Severo Gomes, Parque Burle Marx, Colégio Santa Maria e Hospital Santa Paula.',
+    fonte: 'Fonte: book do Living Well Home e folhetão do Living Wellness Chácara Santo Antônio (abril de 2026), com tempos do próprio material.'
+  };
   var ZS_BROOKLIN = {
     titulo: 'A região · Brooklin e Berrini',
     texto: 'Entre a Avenida Santo Amaro, a Berrini, a Marginal Pinheiros e a Avenida dos Bandeirantes, o Brooklin é o bairro de ruas com nomes de estados americanos que virou o centro financeiro novo da cidade: as torres da Berrini e da Chucri Zaidan, a Ponte Estaiada, os shoppings Morumbi, Market Place, JK Iguatemi e Vila Olímpia, as estações Berrini, Vila Olímpia e Morumbi da CPTM e a Linha 17-Ouro. Demanda constante de executivos e famílias, do studio ao 4 dormitórios.',
@@ -5378,6 +5388,289 @@
           fotoLRB('the-gym', 'The Gym'),
           fotoLRB('kids-place', 'Kids Place'),
           fotoLRB('terreno-aereo', 'Foto aérea do terreno, maio de 2025')
+        ]
+      },
+      {
+        nome: 'Living Well Home Chácara Santo Antônio',
+        cidade: 'São Paulo, capital',
+        bairro: 'Chácara Santo Antônio',
+        resumo: '1 suíte a 3 dormitórios · 48 a 88 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Antônio das Chagas, 557, a 2 minutos da Estação Borba Gato e a 5 da Avenida Chucri Zaidan: torre de 25 pavimentos com apartamentos de 48 a 88 m², de 1 suíte a 3 dormitórios, e 1 vaga. Bem-estar em dois níveis: no embasamento, lobby, The Private Pool House, The Swimming Pool, sauna, Wellness Massage e The Gym by Matrix; no rooftop, Sky Gym by Matrix e Sky Party, com a vista verde da Chácara Santo Antônio e o horizonte da cidade. Lançamento de setembro de 2026, entrega prevista para dezembro de 2031 pela corretagem.',
+        area: ['48 m²: 1 suíte, 1 vaga, final 4A do 6º ao 25º pavimento', '65 m²: 2 dormitórios, 1 vaga, final 4B do 5º ao 25º', '77 m²: 2 suítes, 1 vaga, final 5A do 5º ao 25º', '88 m²: 3 dormitórios (padrão) ou 2 suítes (opção) nos finais 1A e 2A, e 2 suítes com closet nos finais 1B e 2B, 1 vaga'],
+        tipologia: '1 suíte a 3 dormitórios, de 48 a 88 m²',
+        banheiros: 'Banheiros ventilados; lavabo no 48, no 77 e no 88 m²',
+        vagas: '1 vaga por apartamento: determinada nos finais 1A do 7º ao 25º, 2A do 5º e do 7º ao 25º, 1B e 2B do 6º ao 25º pavimento; por sorteio nas demais',
+        torres: 'Torre única de 25 pavimentos',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Embasamento: lobby, The Private Pool House, The Swimming Pool, sauna, Wellness Massage e The Gym by Matrix', 'Rooftop: Sky Gym by Matrix e Sky Party'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Antônio das Chagas, 557 · Chácara Santo Antônio, São Paulo (stand de vendas na Rua Fernandes Moreira, 224)',
+        infra: {
+          piscina: 'The Swimming Pool, com The Private Pool House',
+          academia: 'The Gym by Matrix e Sky Gym by Matrix, no rooftop',
+          festas: 'Sky Party, no rooftop',
+          gourmet: 'The Private Pool House',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby',
+          coworking: 'Sauna e Wellness Massage'
+        },
+        lazer: ['Lobby', 'The Private Pool House', 'The Swimming Pool', 'Sauna', 'Wellness Massage', 'The Gym by Matrix', 'Sky Gym by Matrix', 'Sky Party'],
+        diferenciais: ['Dois pavimentos de bem-estar: embasamento e rooftop com Sky Gym e Sky Party', 'A 2 minutos da Estação Borba Gato e a 5 da Av. Chucri Zaidan', 'Infraestrutura para ar-condicionado na sala e nos dormitórios, para bancada e churrasqueira no terraço social (grill no 48 m²) e para água quente na cozinha', 'Wi-Fi otimizado, interruptor inteligente, câmera de monitoramento na sala e camada de atenuação de ruído nos dormitórios', 'Persianas de enrolar nos dormitórios e banheiros ventilados', 'Closet nos dormitórios do 88 m² dos finais 1B e 2B'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'CBR Magik LZ 14 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LWH + 'planta-48.webp', nome: '48 m² · padrão', meta: '1 suíte · 1 vaga' },
+          { src: LWH + 'planta-48-opcao.webp', nome: '48 m² · opção', meta: '1 suíte · 1 vaga' },
+          { src: LWH + 'planta-65.webp', nome: '65 m² · padrão', meta: '2 dormitórios · 1 vaga' },
+          { src: LWH + 'planta-65-opcao.webp', nome: '65 m² · opção', meta: '2 dormitórios · 1 vaga' },
+          { src: LWH + 'planta-77.webp', nome: '77 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LWH + 'planta-77-opcao.webp', nome: '77 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LWH + 'planta-88a.webp', nome: '88 m² · padrão, finais 1A e 2A', meta: '3 dormitórios · 1 vaga' },
+          { src: LWH + 'planta-88a-opcao.webp', nome: '88 m² · opção, finais 1A e 2A', meta: '2 suítes · 1 vaga' },
+          { src: LWH + 'planta-88b.webp', nome: '88 m² · finais 1B e 2B', meta: '2 suítes com closet · 1 vaga' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Borba Gato, Linha 5-Lilás', '2 min'], ['Av. Chucri Zaidan', '5 min']]]
+          ],
+          nota: 'Tempos do próprio book. O material não traz outros pontos; confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR Magik LZ 14 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob o nº 2 na matrícula 568.061 do 11º Registro de Imóveis de São Paulo. Área em processo de reabilitação para fins residenciais, com plano de intervenção aprovado (CETESB 33/01071/25); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2025/0005892-2). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira (exceto finais 3A e 4A), água quente na cozinha, lavabo e interruptor inteligente entregues como infraestrutura; itens de personalização com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de 2026, com foto aérea de agosto de 2026. Lançamento em setembro de 2026 e entrega prevista para dezembro de 2031 pela corretagem.',
+        torre: LWH + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CHACARA_SANTO_ANTONIO,
+        fotos: [
+          fotoLWH('fachada', 'Fachada'),
+          fotoLWH('lobby', 'Lobby'),
+          fotoLWH('private-pool-house', 'The Private Pool House'),
+          fotoLWH('swimming-pool', 'The Swimming Pool'),
+          fotoLWH('sauna', 'Sauna'),
+          fotoLWH('wellness-massage', 'Wellness Massage'),
+          fotoLWH('the-gym', 'The Gym by Matrix'),
+          fotoLWH('sky-gym', 'Sky Gym by Matrix, rooftop'),
+          fotoLWH('sky-party', 'Sky Party, rooftop'),
+          fotoLWH('regiao-aerea', 'Foto aérea da região, agosto de 2026')
+        ]
+      },
+      {
+        nome: 'Living Wellness Chácara Santo Antônio',
+        cidade: 'São Paulo, capital',
+        bairro: 'Chácara Santo Antônio',
+        resumo: '2 suítes a 4 dormitórios · 76 a 140 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Fernandes Moreira, 224, com inspiração no Hotel Six Senses de Londres: torre única, com mais privacidade e respiro, e apartamentos de 76 a 140 m², de 2 suítes a 4 dormitórios, com 1 ou 2 vagas; unidades HMP de 27 a 33 m² em breve. Lazer em três níveis: no térreo, lobby, Guest Lounge, Pet Place, Delivery e Mini Market; no 4º pavimento, The Private Pool House, Kids Place, Wellness Massage, sauna, The Gym by Matrix, The Outdoor Gym, The Court com grama sintética, Indoor Swimming Pool, Swimming Pool e playground; no rooftop, Sky Barbecue e Sky Gourmet. Lançamento de junho de 2026, entrega prevista para junho de 2029 pela corretagem.',
+        area: ['76 m²: 2 suítes, 1 vaga (final 3B)', '90 m²: 2 suítes (padrão) ou 3 dormitórios com 1 suíte (opção), 1 vaga (final 3A)', '128 m²: 3 suítes (padrão) ou 4 dormitórios com 2 suítes (opção), 2 vagas (final 1A)', '140 m²: 3 suítes (padrão), 4 dormitórios com 2 suítes ou 2 suítes com master ampliada e banho dele e dela (opções), 2 vagas (final 1B)', 'HMP: 27 a 33 m², em breve'],
+        tipologia: '2 suítes a 4 dormitórios, de 76 a 140 m², mais HMP de 27 a 33 m²',
+        banheiros: 'Banheiros ventilados, com ralo linear, infraestrutura para água quente, toalheiro aquecido e desembaçador na suíte master; lavabo em todas as plantas; banheira e cuba dupla na master do 140 m²',
+        vagas: '2 vagas determinadas nos finais 1A, 2A, 1B e 2B; 1 vaga determinada nos finais 3A e 4A; 1 vaga por sorteio nos finais 3B e 4B',
+        torres: 'Torre única',
+        unidades: ['Número de unidades não informado no folhetão'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, Pet Place, lobby, Guest Lounge, Delivery e Mini Market', '4º pavimento, lazer: The Private Pool House (interna e externa), Kids Place, Wellness Massage, sauna, The Gym by Matrix, The Outdoor Gym, The Court, Indoor Swimming Pool, Swimming Pool e playground', 'Rooftop: Sky Barbecue e Sky Gourmet'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Fernandes Moreira, 224 · Chácara Santo Antônio, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool e Indoor Swimming Pool no 4º pavimento',
+          academia: 'The Gym by Matrix e The Outdoor Gym',
+          festas: 'Guest Lounge, no térreo',
+          gourmet: 'Sky Gourmet e Sky Barbecue, no rooftop; The Private Pool House',
+          kids: 'Kids Place e playground',
+          quadra: 'The Court, quadra de tênis com grama sintética',
+          portaria: 'Social Entrance, Service Entrance e Garage Entrance separadas, lobby',
+          coworking: 'Mini Market 24 horas, Delivery e Pet Place'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Pet Place', 'Lobby', 'Guest Lounge', 'Delivery', 'Mini Market', 'The Private Pool House', 'Kids Place', 'Wellness Massage', 'Sauna', 'The Gym by Matrix', 'The Outdoor Gym', 'The Court', 'Indoor Swimming Pool', 'Swimming Pool', 'Playground', 'Sky Barbecue', 'Sky Gourmet'],
+        diferenciais: ['Torre única, inspirada no Hotel Six Senses de Londres', 'Quadra de tênis com grama sintética e piscina coberta', 'Smart Home 2.0: Wi-Fi nas áreas de lazer, monitoramento no Kids Place, interruptor inteligente e câmera Wi-Fi na sala', 'Contrapiso acústico, infraestrutura para ar-condicionado, churrasqueira no terraço social, triturador, coifa, cuba dupla e máquina de secar', 'Infraestrutura para SPA nos terraços descobertos do 4º pavimento (finais 1B, 3A e 3B)', 'Gerador, reaproveitamento de água de chuva, previsão de aquecimento solar, vaga para recarga de carro elétrico, bicicletário e Mini Market'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'Rua dos Alpes Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LWC + 'planta-76.webp', nome: '76 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LWC + 'planta-76-opcao.webp', nome: '76 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LWC + 'planta-90.webp', nome: '90 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LWC + 'planta-90-opcao.webp', nome: '90 m² · opção', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LWC + 'planta-128.webp', nome: '128 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LWC + 'planta-128-opcao.webp', nome: '128 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' },
+          { src: LWC + 'planta-140.webp', nome: '140 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LWC + 'planta-140-opcao.webp', nome: '140 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' },
+          { src: LWC + 'planta-140-opcao-2.webp', nome: '140 m² · opção 2', meta: '2 suítes, master ampliada com banho dele e dela · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LWC + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, 4º pavimento e rooftop, com os 17 espaços numerados' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Borba Gato, Linha 5-Lilás', 'no bairro'], ['Av. Chucri Zaidan e Av. Santo Amaro', 'no bairro'], ['Morumbi Shopping e Market Place', 'no bairro']]]
+          ],
+          nota: 'O folhetão não traz distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora Rua dos Alpes Empreendimentos Imobiliários Ltda. Empreendimento registrado sob o nº 2 na matrícula 551.655 do 11º Registro de Imóveis de São Paulo. Área em processo de reabilitação para uso residencial, com plano de intervenção aprovado (CETESB 33/00405/25); manejo arbóreo e plantio compensatório autorizados (SVMA 6027.2025/0012641-3, TCA 623/2025). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira, água quente, lavabo e interruptor inteligente entregues como infraestrutura; itens de personalização com custo. O endereço consta como Santo Amaro no texto legal e Chácara Santo Antônio no folhetão. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; folhetão impresso em abril de 2026, com foto aérea de março de 2026. Lançamento em junho de 2026 e entrega prevista para junho de 2029 pela corretagem.',
+        torre: LWC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CHACARA_SANTO_ANTONIO,
+        fotos: [
+          fotoLWC('fachada', 'Fachada frontal', true),
+          fotoLWC('embasamento', 'Embasamento'),
+          fotoLWC('lobby', 'Lobby'),
+          fotoLWC('guest-lounge', 'Guest Lounge'),
+          fotoLWC('the-gym', 'The Gym by Matrix'),
+          fotoLWC('the-court', 'The Court'),
+          fotoLWC('wellness-massage', 'Wellness Massage'),
+          fotoLWC('sauna', 'Sauna'),
+          fotoLWC('swimming-pool', 'Swimming Pool'),
+          fotoLWC('indoor-swimming-pool', 'Indoor Swimming Pool'),
+          fotoLWC('kids-place', 'Kids Place'),
+          fotoLWC('playground', 'Playground'),
+          fotoLWC('private-pool-house', 'The Private Pool House, interna'),
+          fotoLWC('private-pool-house-externa', 'The Private Pool House, externa'),
+          fotoLWC('sky-gourmet', 'Sky Gourmet, rooftop'),
+          fotoLWC('sky-barbecue', 'Sky Barbecue, rooftop'),
+          fotoLWC('unidade-140', 'Apartamento de 140 m²'),
+          fotoLWC('unidade-128', 'Apartamento de 128 m²'),
+          fotoLWC('unidade-90', 'Apartamento de 90 m²'),
+          fotoLWC('unidade-76', 'Apartamento de 76 m²'),
+          fotoLWC('regiao-aerea', 'Foto aérea da região, março de 2026')
+        ]
+      },
+      {
+        nome: 'High Line by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Aclimação',
+        resumo: '2 a 3 dormitórios · 62 a 86 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Castro Alves, 254, a 350 metros do metrô Vergueiro e a 3 minutos do Paraíso, com o nome e a inspiração do parque suspenso de Nova York: dois blocos, A e B, de 23 pavimentos, com apartamentos de 62 a 86 m², de 2 a 3 dormitórios, e 1 vaga. Lazer no pavimento elevado, com Gym by Matrix, Outdoor Gym, Kids Space, Private Pool House, Discovery & Play, Swimming Pool e solarium, e rooftop com Lounge, High Line Gourmet, High Line Space, Skyview e um Blank Space que os moradores definem por votação. Entrega prevista para janeiro de 2028 pela corretagem.',
+        area: ['62 m²: 1 suíte e 1 dormitório, 1 vaga', '74 m²: 2 suítes com rouparia (padrão) ou 2 suítes (opção), 1 vaga', '86 m²: 2 suítes (padrão) ou 1 suíte e 2 dormitórios (opção), 1 vaga'],
+        tipologia: '2 a 3 dormitórios, de 62 a 86 m²',
+        banheiros: 'Banheiros ventilados; lavabo no 74 e no 86 m²',
+        vagas: '1 vaga por apartamento: determinada nos finais 1 e 2 do bloco A do 7º ao 23º pavimento e do bloco B do 6º ao 23º; por sorteio nas demais',
+        torres: 'Dois blocos, A e B, de 23 pavimentos',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Pavimento de acesso: Social Entrance, Service Entrance, Garage Entrance, lobby e Delivery', 'Térreo: Pet Park', 'Pavimento de lazer: Gym by Matrix, Outdoor Gym, Kids Space, Private Pool House, Discovery & Play, Swimming Pool e solarium', 'Rooftop: Lounge, High Line Gourmet, High Line Space, Skyview e Blank Space'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Castro Alves, 254 · Aclimação, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com solarium no pavimento de lazer',
+          academia: 'Gym by Matrix e Outdoor Gym',
+          festas: 'Lounge e High Line Space, no rooftop',
+          gourmet: 'High Line Gourmet, no rooftop, e Private Pool House',
+          kids: 'Kids Space e Discovery & Play',
+          quadra: '',
+          portaria: 'Social Entrance, Service Entrance e Garage Entrance separadas, lobby',
+          coworking: 'Delivery, Pet Park, Mini Market e Blank Space definido por votação dos moradores'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Lobby', 'Delivery', 'Pet Park', 'Gym by Matrix', 'Outdoor Gym', 'Kids Space', 'Private Pool House', 'Discovery & Play', 'Swimming Pool', 'Solarium', 'Lounge', 'High Line Gourmet', 'High Line Space', 'Skyview', 'Blank Space'],
+        diferenciais: ['A 350 metros do metrô Vergueiro e a 3 minutos do Paraíso', 'Rooftop com Skyview e Blank Space escolhido pelos moradores', 'Infraestrutura para ar-condicionado, churrasqueira no terraço social, lavabo, água quente na cozinha, lava-louças e lava-roupas', 'Casa conectada: interruptor inteligente na sala, terraço, dormitórios e cozinha, câmera de monitoramento e tomadas USB', 'Persianas de enrolar nos dormitórios e banheiros ventilados', 'Mini Market no condomínio'],
+        creditos: [['Incorporação', 'Cyrela Pérola Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LHL + 'planta-62.webp', nome: '62 m²', meta: '1 suíte e 1 dormitório · 1 vaga' },
+          { src: LHL + 'planta-74.webp', nome: '74 m² · padrão', meta: '2 suítes com rouparia · 1 vaga' },
+          { src: LHL + 'planta-74-opcao.webp', nome: '74 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LHL + 'planta-86.webp', nome: '86 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LHL + 'planta-86-opcao.webp', nome: '86 m² · opção', meta: '1 suíte e 2 dormitórios · 1 vaga' }
+        ],
+        implantacao: [
+          { src: LHL + 'implantacao.webp', nome: 'Implantação · pavimento de lazer', meta: 'Acesso, térreo e lazer, com os 11 espaços numerados' },
+          { src: LHL + 'implantacao-lazer.webp', nome: 'Implantação · rooftop', meta: 'Lounge, High Line Gourmet, High Line Space, Skyview e Blank Space' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Metrô Vergueiro', '350 m a pé'], ['Rua Vergueiro', '2 min'], ['Metrô Paraíso', '3 min'], ['Av. 23 de Maio', '4 min'], ['Av. Brigadeiro Luís Antônio', '6 min'], ['Rua Treze de Maio', '10 min']]],
+            ['Educação', [['Uninove Campus Vergueiro', '2 min'], ['ETAPA', '3 min'], ['Colégio Benjamin Constant', '4 min'], ['Colégio Bandeirantes', '4 min'], ['Belas Artes Campus Paraíso', '4 min'], ['Faculdade Sírio-Libanês', '5 min']]],
+            ['Lazer e compras', [['Centro Cultural São Paulo', '3 min'], ['Parque da Aclimação', '4 min'], ['Shopping Pátio Paulista', '4 min'], ['Parque Ibirapuera', '6 min'], ['MAC USP', '9 min'], ['MASP', '10 min']]],
+            ['Saúde', [['A.C. Camargo Cancer Center', '3 min'], ['Hospital Oswaldo Cruz', '3 min'], ['Santa Joana', '3 min'], ['Beneficência Portuguesa', '4 min'], ['HCor', '5 min'], ['Hospital Santa Catarina', '6 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro, com fonte Google 2024.'
+        },
+        legal: 'Incorporadora Cyrela Pérola Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob o nº 663.884 no 16º Oficial de Registro de Imóveis. Área não contaminada (CETESB 45/01154/23). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, lavabo, churrasqueira, lava-roupas, lava-louças, água quente na cozinha e interruptor inteligente entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book impresso em outubro de 2024, só em imagem, lido pelas páginas. Em obras, com entrega prevista para janeiro de 2028 pela corretagem.',
+        torre: LHL + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ACLIMACAO,
+        fotos: [
+          fotoLHL('fachada', 'Fachada', true),
+          fotoLHL('portaria', 'Portaria'),
+          fotoLHL('embasamento', 'Embasamento'),
+          fotoLHL('lobby', 'Lobby'),
+          fotoLHL('gym', 'Gym by Matrix'),
+          fotoLHL('kids-space', 'Kids Space'),
+          fotoLHL('private-pool-house', 'Private Pool House'),
+          fotoLHL('private-pool-house-2', 'Private Pool House'),
+          fotoLHL('swimming-pool', 'Swimming Pool'),
+          fotoLHL('swimming-pool-2', 'Swimming Pool, vista de cima'),
+          fotoLHL('discover-play', 'Discovery & Play'),
+          fotoLHL('highline-gourmet', 'High Line Gourmet, rooftop'),
+          fotoLHL('highline-space', 'High Line Space, rooftop'),
+          fotoLHL('skyview', 'Skyview, rooftop'),
+          fotoLHL('skyview-2', 'Skyview, rooftop')
+        ]
+      },
+      {
+        nome: '25H by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Clementino',
+        resumo: 'Studios a 2 dormitórios · 19 a 37 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Borges Lagoa, 245, na Vila Clementino, o conceito dos hotéis 25hours, como o de Dubai, aterrissa em São Paulo: studios e apartamentos de 1 e 2 dormitórios, de 19 a 37 m², sem vaga, com unidades residenciais e não residenciais. No térreo, lobby com biblioteca, Party Lounge & Coworking, Gym, Swimming Pool com Pool Garden, Pet Park, Laundry, Bike Station e Delivery; no rooftop, Sunset Bar e Sky Garden. Estação Santa Cruz, Shopping Metrô Santa Cruz, Hospital São Paulo e ESPM por perto. Entrega prevista para novembro de 2027 pela corretagem.',
+        area: ['19 m²: studio, finais 22, 23, 26 e 29 (residenciais) e 22, 23 e 26 (não residenciais)', '24 m²: studio nos finais 11, 13, 16, 17, 18 e 21 (residenciais e não residenciais); studio (padrão) ou 1 dormitório (opção) nos finais 1, 2, 3, 4, 7, 9, 29 e 30', '28 m²: studio (padrão) ou 1 dormitório (opção), finais 19 e 20', '37 m²: 2 dormitórios (padrão) ou 1 suíte com lavabo (opção), finais 5, 9 e 10'],
+        tipologia: 'Studios a 2 dormitórios, de 19 a 37 m²',
+        banheiros: '1 banheiro por unidade; lavabo na opção do 37 m²',
+        vagas: 'Sem vagas',
+        torres: 'Torre única',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Térreo: Social Entrance, Secondary Entrance, Delivery, lobby, Party Lounge & Coworking, Gym, Swimming Pool, Pool Garden, Pet Park, Laundry e Bike Station', 'Rooftop: Sunset Bar e Sky Garden'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Borges Lagoa, 245 · Vila Clementino, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com Pool Garden, no térreo',
+          academia: 'Gym',
+          festas: 'Party Lounge & Coworking e Sunset Bar, no rooftop',
+          gourmet: 'Sunset Bar, no rooftop',
+          kids: '',
+          quadra: '',
+          portaria: 'Social Entrance e Secondary Entrance, lobby com biblioteca',
+          coworking: 'Party Lounge & Coworking, Laundry, Bike Station, Pet Park e Delivery'
+        },
+        lazer: ['Social Entrance', 'Secondary Entrance', 'Delivery', 'Lobby', 'Party Lounge & Coworking', 'Gym', 'Swimming Pool', 'Pool Garden', 'Pet Park', 'Laundry', 'Bike Station', 'Sunset Bar', 'Sky Garden'],
+        diferenciais: ['Conceito dos hotéis 25hours, com unidades residenciais e não residenciais', 'Studios de 19 m² e plantas com opção de 1 dormitório', 'Laundry, Bike Station e Pet Park no térreo; Sunset Bar e Sky Garden no rooftop', 'Infraestrutura para ar-condicionado, chuveiro e cooktop elétricos e lava-roupas', 'Camada de atenuação de ruído de impacto', 'Vila Clementino: Metrô Santa Cruz, Hospital São Paulo e ESPM por perto'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Farah + Arquitetura e Interiores'], ['Paisagismo', 'Roberta Ventura Arquitetura e Paisagismo'], ['Incorporação', 'CBR 036 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: L25 + 'planta-19.webp', nome: '19 m² · residencial', meta: 'Studio · sem vaga' },
+          { src: L25 + 'planta-19-opcao.webp', nome: '19 m² · não residencial', meta: 'Studio · sem vaga' },
+          { src: L25 + 'planta-24.webp', nome: '24 m² · residencial, finais 11 a 21', meta: 'Studio · sem vaga' },
+          { src: L25 + 'planta-24-opcao.webp', nome: '24 m² · não residencial, finais 11 a 21', meta: 'Studio · sem vaga' },
+          { src: L25 + 'planta-24-b.webp', nome: '24 m² · padrão, finais 1 a 9, 29 e 30', meta: 'Studio · sem vaga' },
+          { src: L25 + 'planta-24-b-opcao.webp', nome: '24 m² · opção, finais 1 a 9, 29 e 30', meta: '1 dormitório · sem vaga' },
+          { src: L25 + 'planta-28.webp', nome: '28 m² · padrão', meta: 'Studio · sem vaga' },
+          { src: L25 + 'planta-28-opcao.webp', nome: '28 m² · opção', meta: '1 dormitório · sem vaga' },
+          { src: L25 + 'planta-37.webp', nome: '37 m² · padrão', meta: '2 dormitórios · sem vaga' },
+          { src: L25 + 'planta-37-opcao.webp', nome: '37 m² · opção', meta: '1 suíte e lavabo · sem vaga' }
+        ],
+        implantacao: [
+          { src: L25 + 'implantacao.webp', nome: 'Implantação · térreo', meta: '11 espaços, da Social Entrance à Bike Station' },
+          { src: L25 + 'implantacao-rooftop.webp', nome: 'Implantação · rooftop', meta: 'Sunset Bar e Sky Garden' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Santa Cruz, Linhas 1-Azul e 5-Lilás', 'no bairro'], ['Shopping Metrô Santa Cruz', 'no bairro'], ['Hospital São Paulo', 'no bairro'], ['ESPM', 'no bairro']]]
+          ],
+          nota: 'O book mostra os pontos sem distâncias; confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR 036 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob o nº 934.721 no 14º Registro de Imóveis. Área não contaminada (CETESB 45/00451/18); TCA 283/2019 aprovado no processo 2018-0.063.920-3 da SVMA. Ar-condicionado e lavabo entregues como infraestrutura; opções de planta na personalização, com custo. Unidades residenciais e não residenciais, conforme a planta. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book só em imagem, lido pelas páginas, sem data impressa. Em obras, com entrega prevista para novembro de 2027 pela corretagem.',
+        torre: L25 + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MARIANA,
+        fotos: [
+          fotoL25('fachada', 'Fachada', true),
+          fotoL25('fachada-2', 'Fachada', true),
+          fotoL25('portaria', 'Portaria'),
+          fotoL25('lobby', 'Lobby'),
+          fotoL25('party-lounge-coworking', 'Party Lounge & Coworking'),
+          fotoL25('gym', 'Gym'),
+          fotoL25('laundry', 'Laundry'),
+          fotoL25('swimming-pool', 'Swimming Pool'),
+          fotoL25('sunset-bar', 'Sunset Bar, rooftop'),
+          fotoL25('sky-garden', 'Sky Garden, rooftop')
         ]
       }
     ]
