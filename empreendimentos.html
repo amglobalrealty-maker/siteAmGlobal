@@ -805,6 +805,17 @@
     polos: 'Por perto: Parque Ibirapuera, Shopping Ibirapuera, estações Eucaliptos e Moema, Av. Ibirapuera, Av. dos Bandeirantes, Aeroporto de Congonhas, Esporte Clube Sírio, Clube Atlético Monte Líbano, Colégio Itatiaia, Colégio Augusto Laranja, Unifesp e os hospitais Moriah, Santa Paula e Ruben Berta.',
     fonte: 'Fonte: book do Haus Mitre Station Moema (2025), com tempos do próprio material.'
   };
+  // (11/11/2026, ~15h40) Jardins: Haddock 885 (books residencial ago/2022 e studios set/2022), GIO Jardins (folder mai/2023, baixa),
+  // Daslu Residences (book nov/2024) e Haus Mitre Jardins (so a lista de acabamentos do decorado)
+  var MHD = MT + 'haddock885/', MGJ = MT + 'gio/', MDS = MT + 'daslu/';
+  var fotoMHD = fotoEm(MHD), fotoMGJ = fotoEm(MGJ), fotoMDS = fotoEm(MDS);
+  var ZS_JARDINS = {
+    titulo: 'A região · Jardins',
+    texto: 'Entre a Avenida Paulista, a Rebouças, a Brasil e a Nove de Julho, os Jardins são o endereço mais tradicional do alto padrão paulistano: a Rua Oscar Freire e a Haddock Lobo com as flagships de Cartier, Montblanc, Gucci e Tiffany, a Alameda Gabriel Monteiro da Silva com as lojas de design e as galerias de arte, e a maior concentração de restaurantes estrelados da cidade, de Fasano e Gero a Maní, Evvai e D.O.M. Parque Trianon, Cidade Matarazzo, Clube Paulistano, colégios como o Dante Alighieri e a Saint Paul, e os hospitais Sírio-Libanês, 9 de Julho, Santa Catarina e HCor a poucos minutos.',
+    numeros: [['2 min', 'do Gero e do Fasano, do Haddock 885'], ['4 min', 'da Rua Oscar Freire, do GIO e do Daslu'], ['4', 'projetos da Mitre no bairro: Haddock 885, GIO, Daslu e Haus Mitre Jardins'], ['23 a 350 m²', 'do studio ao penthouse, entre eles']],
+    polos: 'Por perto: Rua Oscar Freire, Rua Haddock Lobo, Alameda Gabriel Monteiro da Silva, Av. Paulista, Parque Trianon, Cidade Matarazzo, Shopping Cidade São Paulo, Jardim Pamplona Shopping, Clube Paulistano, Sociedade Harmonia de Tênis, Colégio Dante Alighieri, Escola Saint Paul e os hospitais Sírio-Libanês, 9 de Julho, Santa Catarina e HCor.',
+    fonte: 'Fonte: books do Haddock 885 (2022), do GIO Jardins (2023) e do Daslu Residences (2024), com tempos do próprio material, de carro.'
+  };
   var ZS_CAMPO_BELO = {
     titulo: 'A região · Campo Belo',
     texto: 'Entre o Brooklin, Moema e o Aeroporto de Congonhas, o Campo Belo é um bairro de ruas arborizadas e casas que viraram prédios de médio e alto padrão, servido pelas estações Campo Belo e Eucaliptos da Linha 5-Lilás, pela Avenida Vereador José Diniz, pela Santo Amaro e pela Jornalista Roberto Marinho, a poucos minutos do Shopping Ibirapuera e do Parque Ibirapuera. Colégios como o Vértice e a Aubrick, os hospitais Oswaldo Cruz, Moriah e Santa Paula, e uma vida de bairro de padarias, bares e restaurantes. A Mitre tem três projetos ali: o Haus Mitre Campo Belo, o Raízes Premium e o Althea.',
@@ -6287,6 +6298,149 @@
           fotoMSM('unidade-dormitorio', 'Unidade decorada, dormitório'),
           fotoMSM('terreno-aereo', 'Vista aérea do terreno')
         ]
+      },
+      {
+        nome: 'Daslu Residences São Paulo',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jardins',
+        resumo: '3 a 4 suítes · 114 a 350 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na esquina da Alameda Gabriel Monteiro da Silva com a Rua Chabad, 109, nos Jardins: o primeiro residencial com a marca Daslu, da Mitre, com torre única de térreo mais 21 andares e 110 unidades. Luxury Residences de 114 e 157 m² (3 suítes, 2 vagas), Maisons de 144 a 350 m² e Penthouses de 243 e 306 m² (4 suítes, 3 vagas), com opção de juntar duas unidades em 272 m². No embasamento, um boulevard aberto ao público com escadas rolantes ao ar livre, o Daslu Spa & Wellness com curadoria de Renata de Abreu, restaurante do chef Rafael Cagali (duas estrelas Michelin em Londres), The Terrace Jardins, The Bar, Golf Experience com simulador e piscina coberta de 25 m aquecida; para os moradores, Fitness Club by Sett, Kids Club, The Terrace Club e serviços de hotel, de concierge a mordomia. Lançamento de novembro de 2024, entrega prevista para outubro de 2028 pela corretagem.',
+        area: ['Luxury Residences: 114 m² (3 suítes ou 2 suítes, 2 vagas) e 157 m² (3 suítes, 2 vagas)', '272 m²: 4 suítes e 4 vagas, pela junção de uma unidade de 114 com uma de 157 m²', 'Maisons: 144 e 156 m² (3 suítes, 2 vagas) e 330 e 350 m² (3 suítes, 3 vagas)', 'Penthouses: 243 e 306 m² (4 suítes, 3 vagas), com piscina descoberta, deck e solarium'],
+        tipologia: '3 e 4 suítes, de 114 a 350 m²',
+        banheiros: 'Banhos ventilados e iluminados naturalmente (exceto lavabo e banho de serviço), com pontos para desembaçador e toalheiro térmico e infraestrutura para ducha higiênica na suíte master',
+        vagas: '2 vagas no 114 e no 157 m², 3 nas Maisons maiores e nos Penthouses, 4 no 272 m²; vinculadas e demarcadas, com piso epóxi e ponto de recarga de carro elétrico por pavimento de garagem',
+        torres: 'Torre única, térreo mais 21 andares, em terreno de 2.663 m² (corretagem); três pavimentos de embasamento e torre residencial elevada',
+        unidades: ['110 unidades, pela corretagem'],
+        pavimentos: ['Boulevard Daslu, aberto ao público: Daslu Spa & Wellness, restaurante por Rafael Cagali, The Terrace Jardins, The Bar, Golf Experience e mirante', '3º pavimento: piscina coberta com raia de 25 m aquecida (setor não residencial, de uso dos moradores conforme a convenção)', 'Setor residencial: hall, lobby em galeria de arte, Fitness Club by Sett, Kids Club e The Terrace Club'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Chabad, 109, esquina com a Alameda Gabriel Monteiro da Silva · Jardins, São Paulo',
+        infra: {
+          piscina: 'Piscina coberta com raia de 25 m, aquecida, no 3º pavimento; piscina privativa nos Penthouses',
+          academia: 'Fitness Club by Sett, com equipamentos Technogym e personal trainer',
+          festas: 'The Terrace Club, exclusivo dos moradores',
+          gourmet: 'Restaurante por Rafael Cagali, The Terrace Jardins e The Bar, no boulevard',
+          kids: 'Kids Club',
+          quadra: 'Golf Experience, com simulador de golfe da Tiro Certo',
+          portaria: 'Portaria blindada com clausura, acessos pela Alameda Gabriel Monteiro da Silva e pela Rua Chabad com embarque e desembarque, reconhecimento facial e Espaço Delivery',
+          coworking: 'Daslu Spa & Wellness com saunas úmida e seca, concierge, mordomia, governança, lavanderia, alfaiataria e serviços de mudança pela Bespoke'
+        },
+        lazer: ['Boulevard Daslu', 'Mirante', 'Daslu Spa & Wellness', 'Sauna úmida', 'Sauna seca', 'Piscina coberta de 25 m', 'Restaurante por Rafael Cagali', 'The Bar', 'The Terrace Jardins', 'The Terrace Club', 'Golf Experience', 'Hall', 'Lobby', 'Fitness Club by Sett', 'Kids Club', 'Espaço Delivery'],
+        diferenciais: ['Serviços de hotel: concierge, mordomia, governança, alfaiataria, lavanderia, health coach, reparos e Bespoke para a mudança', 'Hall social privativo e entradas social e de serviço separadas, elevadores de alta velocidade com controle de acesso', 'Contrapiso com manta acústica, caixilhos amplos de desempenho acústico superior e laje nivelada com o terraço', 'Infraestrutura para ar-condicionado, churrasqueira a gás no terraço, coifa, Wi-Fi e duas máquinas lava e seca', 'Personal Home by Mitre: planta e acabamentos com Altera, Suite ou Anastassiadis, com opção de receber o apartamento pronto', 'Gerador full para 100% das unidades e ar-condicionado entregue nas áreas comuns'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Interiores', 'Anastassiadis Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Spa', 'Renata de Abreu'], ['Restaurante', 'Rafael Cagali'], ['Incorporação', 'Mitre Realty, com a marca Daslu']],
+        plantas: [
+          { src: MDS + 'planta-114.webp', nome: '114 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: MDS + 'planta-114-2-suites.webp', nome: '114 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: MDS + 'planta-157.webp', nome: '157 m²', meta: '3 suítes · 2 vagas' },
+          { src: MDS + 'planta-157-b.webp', nome: '157 m² · segunda posição', meta: '3 suítes · 2 vagas' },
+          { src: MDS + 'planta-272.webp', nome: '272 m² · junção', meta: '4 suítes · 4 vagas, união de 114 e 157 m²' },
+          { src: MDS + 'planta-243.webp', nome: 'Penthouse 243 m²', meta: '4 suítes · 3 vagas' },
+          { src: MDS + 'planta-306.webp', nome: 'Penthouse 306 m²', meta: '4 suítes · 3 vagas' }
+        ],
+        perto: {
+          grupos: [
+            ['Gastronomia', [['Adega Santiago', '2 min'], ['Ristorantino', '4 min'], ['A Figueira Rubaiyat', '5 min'], ['Gero', '5 min'], ['Evvai', '5 min'], ['Fasano', '6 min'], ['Maní', '6 min'], ['Chef Rouge', '6 min'], ['Piselli', '7 min'], ['D.O.M.', '8 min']]],
+            ['Arte', [['Galeria de Arte André', '4 min'], ['Andrea Rehder', '4 min'], ['Zipper', '5 min'], ['Dan Galeria', '6 min'], ['Casa Triângulo', '7 min'], ['Galeria Nara Roesler', '7 min']]],
+            ['Entretenimento', [['Rua Oscar Freire', '4 min'], ['Livraria da Vila', '4 min'], ['Casa Santa Luzia', '4 min'], ['CJ Shops', '6 min'], ['Clube Paulistano', '8 min'], ['Sociedade Harmonia de Tênis', '10 min'], ['Cidade Matarazzo', '15 min'], ['Shopping Cidade São Paulo', '17 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro, pelo Google Maps.'
+        },
+        legal: 'O book não traz o texto de registro; pela corretagem, lançamento em novembro de 2024, em construção, entrega prevista para outubro de 2028, torre única de térreo mais 21 andares com 110 unidades em terreno de 2.663 m². Os espaços do boulevard (spa, restaurante, The Terrace Jardins, Golf Experience e piscina coberta) compõem o setor não residencial, de uso dos moradores conforme a convenção; parcerias com Renata de Abreu, Rafael Cagali, Sett, Tiro Certo e Bespoke por contrato, podendo ser descontinuadas. Serviços obrigatórios e pay-per-use conforme a convenção. O revestimento de piso das unidades fica a cargo do cliente. Imagens meramente ilustrativas e plantas preliminares.',
+        torre: MDS + 'fachada-torre.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_JARDINS,
+        fotos: [
+          fotoMDS('fachada-torre', 'Fachada', true),
+          fotoMDS('fachada', 'Fachada, embasamento'),
+          fotoMDS('fachada-2', 'Fachada'),
+          fotoMDS('fachada-3', 'Torre', true),
+          fotoMDS('fachada-4', 'Fachada'),
+          fotoMDS('fachada-detalhe', 'Detalhe da fachada'),
+          fotoMDS('acesso-chabad', 'Acesso pela Rua Chabad'),
+          fotoMDS('boulevard', 'Boulevard'),
+          fotoMDS('mirante', 'Mirante'),
+          fotoMDS('paisagismo', 'Paisagismo', true),
+          fotoMDS('hall', 'Hall'),
+          fotoMDS('lobby', 'Lobby'),
+          fotoMDS('welcome-spa', 'Welcome Spa'),
+          fotoMDS('sauna-umida', 'Sauna úmida'),
+          fotoMDS('sauna-seca', 'Sauna seca'),
+          fotoMDS('piscina-indoor', 'Piscina coberta'),
+          fotoMDS('the-terrace', 'The Terrace Jardins'),
+          fotoMDS('golf-experience', 'Golf Experience'),
+          fotoMDS('fitness', 'Fitness Club by Sett'),
+          fotoMDS('fitness-2', 'Fitness'),
+          fotoMDS('kids-club', 'Kids Club'),
+          fotoMDS('living-157', 'Living do apartamento de 157 m²', true),
+          fotoMDS('living-157-2', 'Living do apartamento de 157 m²'),
+          fotoMDS('suite-master-157', 'Suíte master do apartamento de 157 m²')
+        ]
+      },
+      {
+        nome: 'GIO Jardins',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jardins',
+        resumo: 'Studios e 3 a 4 suítes · 23 a 276 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Alameda Gabriel Monteiro da Silva, 135, a rua do design e das galerias dos Jardins: torre única da Mitre Exclusive Collection, com Luxury Residences de 178 m² (3 suítes ou 2 suítes com master ampliada, 2 vagas), duplex de 276 m² (4 suítes, 3 vagas, pé-direito duplo no terraço e na sala de jantar) e um setor de studios a partir de 23 m², num terreno de 1.232 m². Hospitalidade de hotel no dia a dia: concierge, mordomia, governança, lavanderia, alfaiataria, health coach e assessoria de eventos; lobby de pé-direito duplo, lounge e terrace by Anastassiadis, adega e charutaria com lareira, piscina, wellness center com spa e sauna, fitness Technogym interno e externo, brinquedoteca e Pet Place. Lançamento de outubro de 2023, entrega prevista para abril de 2027 pela corretagem.',
+        area: ['178 m²: 3 suítes (padrão) ou 2 suítes com master ampliada (opção), 2 vagas', '276 m² duplex: 4 suítes, 3 vagas', 'Studios do setor próprio, a partir de 23 m² pela corretagem; o folder recebido não traz as plantas'],
+        tipologia: 'Studios e apartamentos de 3 a 4 suítes, de 23 a 276 m²',
+        banheiros: 'Banhos com ventilação e iluminação naturais (exceto lavabo), com pontos para desembaçador de espelho e toalheiro aquecido',
+        vagas: '2 vagas no 178 m² e 3 no duplex, com infraestrutura para recarga de carro elétrico numa vaga por unidade do setor residencial',
+        torres: 'Torre única, térreo mais 41 andares, em terreno de 1.232 m² (corretagem)',
+        unidades: ['30 unidades no setor residencial, pela corretagem'],
+        pavimentos: ['Térreo: lobby de pé-direito duplo, elevadores com controle de acesso, bicicletário e garagem', 'Lazer do setor residencial: piscina, terrace, The Lounge, adega e charutaria, spa e sauna, fitness e fitness externo, brinquedoteca e Pet Place'],
+        valores: 'Sob consulta',
+        endereco: 'Alameda Gabriel Monteiro da Silva, 135 · Jardins, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck',
+          academia: 'Fitness com equipamentos Technogym, fitness externo e pilates, com health coach',
+          festas: 'The Lounge e terrace by Anastassiadis, com assessoria de eventos',
+          gourmet: 'Adega e charutaria com lareira',
+          kids: 'Brinquedoteca',
+          quadra: '',
+          portaria: 'Portaria blindada com clausura, reconhecimento facial, Espaço Delivery com refrigerador e lockers',
+          coworking: 'Spa e sauna, Pet Place, bicicletário e serviços de hotel: concierge, mordomia, governança, lavanderia, alfaiataria e reparos'
+        },
+        lazer: ['Lobby', 'Terrace', 'The Lounge', 'Adega e charutaria', 'Piscina', 'Deck', 'Spa', 'Sauna', 'Fitness', 'Fitness externo', 'Brinquedoteca', 'Pet Place', 'Bicicletário', 'Espaço Delivery'],
+        diferenciais: ['Serviços inspirados no Baccarat, no Savoy, no Mandarin Oriental e no George V: concierge, mordomia, governança, lavanderia, alfaiataria, health coach e eventos', 'Hall social privativo, elevadores social e de serviço com controle de acesso', 'Living com caixilho piso-teto integrado ao terraço, pé-direito de 2,87 m e de 3,05 m na master do duplex', 'Contrapiso acústico, caixilhos de desempenho acústico superior e persianas de enrolar com infraestrutura para automação', 'Gerador full para 100% do setor residencial, portaria blindada e reconhecimento facial', 'Varanda Sky View com vista para os Jardins'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Interiores', 'Anastassiadis Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Mitre Realty, Mitre Exclusive Collection']],
+        plantas: [
+          { src: MGJ + 'planta-178.webp', nome: '178 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: MGJ + 'planta-178-opcao.webp', nome: '178 m² · opção', meta: '2 suítes com master ampliada · 2 vagas' },
+          { src: MGJ + 'planta-276-duplex.webp', nome: '276 m² duplex', meta: '4 suítes · 3 vagas, plantas inferior e superior' }
+        ],
+        perto: {
+          grupos: [
+            ['Gastronomia', [['Le Jazz', '2 min'], ['Adega Santiago', '2 min'], ['Ristorantino', '4 min'], ['A Figueira Rubaiyat', '5 min'], ['Gero', '5 min'], ['Evvai', '5 min'], ['Fasano', '6 min'], ['Maní', '6 min'], ['Piselli', '7 min'], ['D.O.M.', '8 min'], ['Emiliano', '8 min']]],
+            ['Arte', [['Galeria de Arte André', '4 min'], ['Andrea Rehder', '4 min'], ['Zipper', '5 min'], ['Dan Galeria', '6 min'], ['Casa Triângulo', '7 min'], ['Galeria Nara Roesler', '7 min'], ['Milan Galeria', '12 min']]],
+            ['Entretenimento e passeios', [['Rua Oscar Freire', '4 min'], ['CJ Shops', '6 min'], ['Clube Paulistano', '8 min'], ['Sociedade Harmonia de Tênis', '10 min'], ['Jardim Pamplona Shopping', '12 min'], ['Cidade Matarazzo', '15 min']]]
+          ],
+          nota: 'Tempos do próprio folder, de carro, pelo Google Maps.'
+        },
+        legal: 'Incorporação registrada sob o R.3 da matrícula 108.445 do 13º Oficial de Registro de Imóveis de São Paulo, em 28 de abril de 2023. Intermediação: LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP J-24073, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Serviços obrigatórios e pay-per-use conforme a convenção, prestados pela administradora ou por terceiros indicados pelo concierge; o empreendimento não tem relação com os hotéis citados. O revestimento de piso das unidades fica a cargo do cliente. Folder impresso em maio de 2023, em baixa resolução (imagens menores). Pela corretagem: lançamento em outubro de 2023, em construção, entrega prevista para abril de 2027, 30 unidades residenciais, studios de 23 m².',
+        torre: MGJ + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_JARDINS,
+        fotos: [
+          fotoMGJ('fachada', 'Fachada', true),
+          fotoMGJ('fachada-detalhe', 'Detalhe da fachada'),
+          fotoMGJ('elevador', 'Elevador'),
+          fotoMGJ('varanda-sky-view', 'Varanda Sky View'),
+          fotoMGJ('piscina', 'Piscina'),
+          fotoMGJ('terrace', 'Terrace'),
+          fotoMGJ('adega-charutaria', 'Adega e charutaria'),
+          fotoMGJ('spa', 'Spa'),
+          fotoMGJ('brinquedoteca', 'Brinquedoteca'),
+          fotoMGJ('pet-place', 'Pet Place'),
+          fotoMGJ('bicicletario', 'Bicicletário'),
+          fotoMGJ('living-terraco', 'Living integrado ao terraço, 178 m²'),
+          fotoMGJ('suite-master', 'Suíte master'),
+          fotoMGJ('duplex', 'Duplex de 276 m²'),
+          fotoMGJ('regiao-aerea', 'Jardins, foto aérea')
+        ]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
@@ -6296,14 +6450,10 @@
       ['Haus Mitre Station Brooklin', 'Brooklin', 'Studios a 2 dormitórios', '26 a 64 m²', 'Em construção'],
       ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
       ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
-      ['GIO Jardins', 'Jardins', 'Studios e 2 dormitórios', '23 e 178 m²', 'Em construção'],
-      ['Daslu Residences São Paulo', 'Jardins', '2 e 3 dormitórios', '114 a 157 m²', 'Em construção'],
       ['Raízes L\'Avenir', 'Vila Prudente', '3 e 4 dormitórios', '109 e 132 m²', 'Em construção'],
       ['Raízes Jardim São Paulo', 'Jardim São Paulo', '3 e 4 dormitórios', '106 e 127 m²', 'Em construção'],
       ['Origem Guilhermina', 'Vila Guilhermina', '2 dormitórios', '40 e 54 m²', 'Em construção'],
       ['Haus Mitre Reserva Vila Mariana', 'Vila Mariana', '4 dormitórios', '280 m²', 'Pronto para morar'],
-      ['Haddock 885', 'Jardins', 'Studios a 3 dormitórios', '29 a 185 m²', 'Pronto para morar'],
-      ['Haus Mitre Jardins', 'Jardins', 'Studios a 3 dormitórios', '23 a 184 m²', 'Pronto para morar'],
       ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
       ['Haus Mitre Perdizes', 'Perdizes', '1 dormitório', '38 m²', 'Pronto para morar'],
       ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
@@ -6401,6 +6551,105 @@
           fotoMHC('bicicletario-studios', 'Bicicletário dos studios'),
           fotoMHC('studio-25', 'Studio residencial de 25 m²')
         ]
+      },
+      {
+        nome: 'Haddock 885',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jardins',
+        resumo: 'Studios a 3 suítes · 26 a 185 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na esquina da Rua Haddock Lobo, 885, com a Alameda Itu, nos Jardins: o primeiro da Mitre Exclusive Collection, entregue em julho de 2025, com arquitetura e interiores do Anastassiadis Arquitetos e paisagismo biofílico da Cardim. Dois setores com acessos próprios: as Luxury Residences de 185 m² (3 suítes ou 2 suítes ampliadas, com galeria, Library Room, Library Terrace, rooftop com Skypool, sauna, fitness Technogym, spa e Terrace Lounge) e os Luxury Apartments, studios de 26 a 42 m² com piscina e fitness próprios, pensados para morar ou locar por até 90 dias pela administradora. Nos dois, serviços de hotel: concierge, governança, mordomia, lavanderia, alfaiataria, health coach, eventos e reparos.',
+        area: ['Luxury Residences: 185 m², 3 suítes (padrão) ou 2 suítes ampliadas com home office, beauty space e closet (opção)', 'Luxury Apartments: studios de 26 a 42 m², residenciais e não residenciais, com plantas de 26, 29 e 38 m²', 'Pela corretagem o conjunto vai de 29 a 185 m², de studio a 3 suítes, com até 2 vagas'],
+        tipologia: 'Studios de 26 a 42 m² e apartamentos de 185 m² com 2 ou 3 suítes',
+        banheiros: 'Residências: banhos com ventilação e iluminação naturais (exceto uma suíte, lavabo e WC de serviço), infraestrutura para desembaçador e toalheiro aquecido; studios: monocomando com água quente e fria',
+        vagas: 'Até 2 vagas pela corretagem; vagas de visitantes no subsolo residencial e ponto de recarga de carro elétrico em uma vaga de cada unidade residencial',
+        torres: 'Torre única com dois setores, residencial e studios, de acessos independentes',
+        unidades: ['Número de unidades não informado nos books'],
+        pavimentos: ['Setor residencial: lobby com som ambiente, galeria, Library Room com Festas Gourmet, Library Terrace, spa, fitness e Terrace Lounge; rooftop com Skypool, sauna e Rooftop View', 'Setor studios: piscina e fitness exclusivos', 'Térreo: fachada ativa, Espaço Delivery com refrigerador e lockers'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Haddock Lobo, 885, esquina com a Alameda Itu · Jardins, São Paulo',
+        infra: {
+          piscina: 'Skypool no rooftop residencial e piscina dos studios, com privacidade total',
+          academia: 'Fitness com equipamentos Technogym em cada setor',
+          festas: 'Library Room com Festas Gourmet, som ambiente e automação de iluminação',
+          gourmet: 'Festas Gourmet e Terrace Lounge',
+          kids: '',
+          quadra: '',
+          portaria: 'Portaria blindada com clausura, reconhecimento facial, segurança 24 h e Espaço Delivery',
+          coworking: 'Galeria, Library Terrace, spa com tratamentos on-demand, sauna e serviços de hotel'
+        },
+        lazerGrupos: [
+          ['Luxury Residences', ['Lobby', 'Galeria', 'Library Room', 'Festas Gourmet', 'Library Terrace', 'Rooftop View', 'Skypool', 'Sauna', 'Fitness', 'Spa', 'Terrace Lounge']],
+          ['Luxury Apartments', ['Piscina', 'Fitness']],
+          ['Serviços', ['Concierge', 'Health coach', 'Governança', 'Laundry service', 'Alfaiataria', 'Assessoria de eventos', 'Mordomia', 'Reparos e instalações']]
+        ],
+        diferenciais: ['Hospitalidade inspirada no George V, no Savoy, no Baccarat e no Mandarin Oriental, com equipe exclusiva', 'Residências com hall social privativo, elevadores com controle de acesso, pé-direito de 2,95 m, caixilho piso-teto e entrada de serviço blindada', 'Studios com fechadura digital, caixilhos acústicos, aquecimento central a gás e locação por até 90 dias pela administradora do setor', 'Contrapiso acústico, infraestrutura para ar-condicionado e automação de persianas', 'Gerador full para 100% das unidades residenciais, automação predial e paisagismo biofílico com espécies nativas', 'Fachada ativa integrada à Rua Haddock Lobo'],
+        creditos: [['Arquitetura e interiores', 'Anastassiadis Arquitetos'], ['Paisagismo', 'Cardim Arquitetura Paisagística'], ['Incorporação', 'Mitre Realty, Mitre Exclusive Collection']],
+        plantas: [
+          { src: MHD + 'planta-185.webp', nome: '185 m² · padrão', meta: '3 suítes · Luxury Residences' },
+          { src: MHD + 'planta-185-opcao.webp', nome: '185 m² · opção', meta: '2 suítes ampliadas, com home office e beauty space' },
+          { src: MHD + 'planta-38.webp', nome: '38 m² · studio', meta: 'Luxury Apartments, de 26 a 42 m²' }
+        ],
+        implantacao: [
+          { src: MHD + 'mapa.webp', nome: 'Mapa da região', meta: 'Jardins, com os restaurantes, galerias, hospitais e escolas por perto' }
+        ],
+        perto: {
+          grupos: [
+            ['Gastronomia', [['Gero', '2 min'], ['Fasano', '2 min'], ['Nakka', '3 min'], ['Casarìa', '3 min'], ['Maní', '3 min'], ['Evvai', '3 min'], ['Piselli', '3 min'], ['CJ Shops', '3 min'], ['Casa Santa Luzia', '7 min']]],
+            ['Por perto', [['Rua Oscar Freire', '2 min'], ['Cartier, Montblanc, Gucci e Tiffany & Co.', 'no bairro'], ['Parque Trianon e Av. Paulista', 'no bairro'], ['Hospital Sírio-Libanês e Hospital 9 de Julho', 'no bairro'], ['Colégio Dante Alighieri e Escola Saint Paul', 'no bairro']]]
+          ],
+          nota: 'Tempos dos próprios books, de carro; os demais pontos vêm do mapa, sem distâncias.'
+        },
+        legal: 'Incorporação registrada sob o R.3 da matrícula 105.501 do 13º Oficial de Registro de Imóveis de São Paulo, em 10 de junho de 2022. Intermediação: LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. O empreendimento não tem relação com os hotéis citados; serviços obrigatórios e pay-per-use conforme a convenção, pela administradora ou por prestadores indicados pelo concierge. Locações do setor studios por até 90 dias só pela administradora do setor ou do pool. O revestimento de piso das residências fica a cargo do cliente. Books impressos em agosto (residencial) e setembro (studios) de 2022. Pela corretagem: lançamento em outubro de 2022 e entrega em julho de 2025, pronto para morar; disponibilidade sob consulta.',
+        torre: MHD + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_JARDINS,
+        fotos: [
+          fotoMHD('fachada', 'Fachada', true),
+          fotoMHD('fachada-rua', 'Fachada pela Rua Haddock Lobo'),
+          fotoMHD('fachada-detalhe', 'Detalhe da fachada'),
+          fotoMHD('fachada-detalhe-studios', 'Esquina com a Alameda Itu'),
+          fotoMHD('embasamento', 'Embasamento com fachada ativa'),
+          fotoMHD('lobby', 'Lobby residencial'),
+          fotoMHD('galeria', 'Galeria'),
+          fotoMHD('library-room', 'Library Room'),
+          fotoMHD('library-room-festas', 'Library Room com Festas Gourmet'),
+          fotoMHD('library-terrace', 'Library Terrace'),
+          fotoMHD('rooftop-view', 'Rooftop View'),
+          fotoMHD('piscina-rooftop', 'Piscina do rooftop'),
+          fotoMHD('skypool', 'Skypool'),
+          fotoMHD('sauna', 'Sauna', true),
+          fotoMHD('fitness', 'Fitness residencial'),
+          fotoMHD('spa', 'Spa'),
+          fotoMHD('terrace-lounge', 'Terrace Lounge'),
+          fotoMHD('living-185', 'Living integrado ao terraço, 185 m²'),
+          fotoMHD('terraco-185', 'Terraço integrado ao living, 185 m²'),
+          fotoMHD('jantar-185', 'Sala de jantar integrada ao terraço, 185 m²'),
+          fotoMHD('suite-master-185', 'Suíte master na planta ampliada'),
+          fotoMHD('piscina-studios', 'Piscina dos studios'),
+          fotoMHD('fitness-studios', 'Fitness dos studios'),
+          fotoMHD('studio-26', 'Studio de 26 m²'),
+          fotoMHD('studio-29', 'Studio de 29 m²'),
+          fotoMHD('studio-38', 'Studio de 38 m²'),
+          fotoMHD('studio-26-adega', 'Studio de 26 m² como adega e charutaria'),
+          fotoMHD('studio-29-home-office', 'Studio de 29 m² como home office'),
+          fotoMHD('regiao-aerea', 'Jardins, vista aérea')
+        ]
+      },
+      {
+        /* so a lista de acabamentos do decorado (Maison 132 m2): entrada simples, com texto e diferenciais, sem fotos nem plantas */
+        nome: 'Haus Mitre Jardins',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jardins',
+        tipologia: 'Studios a 3 suítes, com a Maison de 132 m²',
+        area: '23 a 184 m²',
+        status: 'Pronto para morar',
+        valores: 'Sob consulta',
+        endereco: 'Rua Itapeva · Jardins, São Paulo',
+        texto: 'Na Rua Itapeva, perto da Estação Bela Vista: torre única de térreo mais 19 andares com 52 unidades residenciais, de studios a 3 suítes (23 a 184 m²), e um setor de studios de 20 a 47 m², sem vaga. Entregue em novembro de 2024 (o setor de studios em outubro de 2026), pela corretagem. O material recebido é a lista de acabamentos do decorado Maison 132 m²: mármores Limestone Persiano e Rafaello na cozinha e no living, carvalho tingido nos dormitórios, marcenaria Ornare e Latão e Arte, papel de parede Celina Dias e mobiliário Artefacto com a linha assinada por Patricia Anastassiadis.',
+        diferenciais: ['Living e cozinha em mármore Limestone Persiano levigado, bancadas em mármore Rafaello e coluna em pedra Kilimanjaro', 'Estante da libreria e forro em lâmina de madeira Grey Wood pela Latão e Arte', 'Dormitórios em carvalho tingido da RB Pisos, armários Ornare com iluminação ao abrir', 'Banhos em mármore Limestone Baiteg Blue e Silk Georgette', 'Mobiliário Artefacto, inclusive a linha assinada por Patricia Anastassiadis, e tapetes By Kamy', 'Luminárias de Guilherme Wentz, Cristiana Bertolucci, Estúdio Orth e Dimlux'],
+        legal: 'Ficha pela corretagem (apto.vc): lançamento em novembro de 2021, torre única de térreo mais 19 andares, 52 unidades, terreno de 2.098 m², entrega em novembro de 2024; setor de studios de 20 a 47 m², sem vagas, entregue em outubro de 2026. O PDF recebido traz só os acabamentos do decorado da Maison 132 m², sem plantas nem fotos em tamanho para o site.'
       }
     ])
   };
