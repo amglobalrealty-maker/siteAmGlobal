@@ -751,6 +751,23 @@
   // Os books sao da Lavvi (marca do Grupo Cyrela), mas ela confirmou: "e tudo Living", entram na Living.
   var LAL = L + 'alive/', LPC = L + 'palace-pracas/';
   var fotoLAL = fotoEm(LAL), fotoLPC = fotoEm(LPC);
+  // (11/11/2026) e os da Zona Oeste, do zip "ZONA OESTE (2)" dela (extraido em Downloads\ZONA OESTE extraida)
+  var LFP = L + 'fullpinheiros/', LFE = L + 'fulleldorado/', LON = L + 'one/';
+  var fotoLFP = fotoEm(LFP), fotoLFE = fotoEm(LFE), fotoLON = fotoEm(LON);
+  var ZO_PINHEIROS = {
+    titulo: 'A região · Pinheiros, eixo Faria Lima',
+    texto: 'Entre a Rua dos Pinheiros, a Marginal e a Avenida Faria Lima, o pedaço de Pinheiros que virou o endereço dos studios para quem trabalha no eixo financeiro: Terminal e Estação Pinheiros a 3 minutos, Estação Faria Lima a 5, Shopping Eldorado a 5 minutos a pé e o JK Iguatemi e o Parque do Povo a 7. Demanda de locação constante, de executivos, estudantes e profissionais da saúde do Hospital das Clínicas.',
+    numeros: [['3 min', 'da Marginal e do Terminal Pinheiros'], ['4 min', 'da Avenida Faria Lima'], ['5 min', 'a pé do Shopping Eldorado'], ['24 a 37 m²', 'studios e 1 ou 2 dormitórios']],
+    polos: 'Por perto: Avenida Faria Lima, Rua dos Pinheiros, Shopping Eldorado, JK Iguatemi, Parque do Povo, estações Pinheiros e Faria Lima.',
+    fonte: 'Fonte: books da Living para o Full Pinheiros e o Full Eldorado, com tempos do próprio material.'
+  };
+  var ZO_BARRA_FUNDA = {
+    titulo: 'A região · Barra Funda',
+    texto: 'A Barra Funda é a nova fronteira do centro expandido: o Terminal Barra Funda, com metrô, trem e rodoviária, a Marginal Tietê e as avenidas Francisco Matarazzo e Sumaré, o Allianz Parque, o Memorial da América Latina e o Parque Jardim das Perdizes, com o Bourbon Shopping e Perdizes logo acima. Bairro de torres novas, universidades e empresas, com forte locação.',
+    numeros: [['8 min', 'do Parque Jardim das Perdizes'], ['128', 'unidades em torre única'], ['25 m', 'de raia na piscina'], ['2', 'vagas determinadas por apartamento']],
+    polos: 'Por perto: Terminal Barra Funda, Allianz Parque, Memorial da América Latina, Parque Jardim das Perdizes, Bourbon Shopping, Casa das Caldeiras e Universidade Anhembi Morumbi.',
+    fonte: 'Fonte: book do Living One (abril de 2021).'
+  };
   var ZL_VILA_PRUDENTE = {
     titulo: 'A região · Vila Prudente',
     texto: 'A Vila Prudente é a porta de entrada da Zona Leste pela Linha 2-Verde do metrô e pela Linha 15-Prata do monotrilho, a quinze minutos de carro do centro. Bairro de casas e comércio tradicional, com a Uninove a 150 m, colégios por perto, o Parque Ecológico Professora Lydia Natalizio Diogo e, a poucos quilômetros, o Mooca Plaza Shopping, o Central Plaza e o Juventus.',
@@ -3294,6 +3311,198 @@
           fotoLPC('playground', 'Playground'),
           fotoLPC('churrasqueira', 'Churrasqueira'),
           fotoLPC('pet-place', 'Pet Place')
+        ]
+      },
+      {
+        nome: 'Living Full Pinheiros',
+        cidade: 'São Paulo, capital',
+        bairro: 'Pinheiros',
+        resumo: 'Studios e 1 dormitório · 24 a 29 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Em Pinheiros, a 3 minutos do Terminal Pinheiros e da Marginal e a 4 da Avenida Faria Lima: studios e apartamentos de 1 dormitório de 24 e 29 m², feitos para morar e para alugar, com lazer 24 horas e serviços no prédio. Swimming Pool, Pool Garden, Garden Lounge, Lounge BBQ, Lounge Bar, Nightclub & Coworking, Fitness e Laundry no térreo; Sky Garden e Sky Lounge & Grill no rooftop. Unidades contíguas podem ser integradas.',
+        area: ['24 m²: 1 dormitório, padrão ou com sala e dormitório integrados', '24 m²: studio', '29 m²: 1 dormitório'],
+        tipologia: 'Studios e 1 dormitório, de 24 a 29 m²',
+        banheiros: '1 por unidade',
+        vagas: 'Vagas só em unidades determinadas, conforme o memorial',
+        torres: 'Torre única com rooftop',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: Social Entrance, Secondary Entrance, Lounge Bar, Fitness, Laundry, Nightclub & Coworking, Swimming Pool, Pool Garden, Garden Lounge e Lounge BBQ', 'Rooftop: Sky Garden e Sky Lounge & Grill, só para as unidades residenciais'],
+        valores: 'Sob consulta',
+        endereco: 'Pinheiros, São Paulo · endereço com a Living',
+        infra: {
+          piscina: 'Swimming Pool com Pool Garden',
+          academia: 'Fitness',
+          festas: 'Lounge Bar e Nightclub',
+          gourmet: 'Lounge BBQ e Sky Lounge & Grill no rooftop',
+          kids: '',
+          quadra: '',
+          portaria: 'Social Entrance e Secondary Entrance',
+          coworking: 'Nightclub & Coworking e Laundry'
+        },
+        lazer: ['Social Entrance', 'Secondary Entrance', 'Lounge Bar', 'Fitness', 'Laundry', 'Nightclub & Coworking', 'Swimming Pool', 'Pool Garden', 'Garden Lounge', 'Lounge BBQ', 'Sky Garden', 'Sky Lounge & Grill'],
+        diferenciais: ['Lazer 24 horas e serviços no prédio, pensados para locação', 'Rooftop com Sky Garden e Sky Lounge & Grill', 'Unidades contíguas de mesmo uso podem ser integradas, pela incorporadora ou depois da entrega', 'Infraestrutura para ar-condicionado em um ambiente'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Desenvolvimento interno da Living'], ['Incorporação', 'CBR 105 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LFP + 'planta-24.webp', nome: '24 m² · padrão', meta: '1 dormitório' },
+          { src: LFP + 'planta-24-opcao.webp', nome: '24 m² · opção', meta: 'Sala e dormitório integrados' },
+          { src: LFP + 'planta-24-studio.webp', nome: '24 m² · studio', meta: 'Studio residencial' },
+          { src: LFP + 'planta-29.webp', nome: '29 m²', meta: '1 dormitório' }
+        ],
+        implantacao: [
+          { src: LFP + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, Lounge Bar, Fitness, Laundry, Nightclub & Coworking e piscina' },
+          { src: LFP + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Sky Garden e Sky Lounge & Grill' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Marginal Pinheiros', '3 min'], ['Terminal Pinheiros', '3 min'], ['Av. Brigadeiro Faria Lima', '4 min'], ['Estação Faria Lima', '7 min']]]
+          ],
+          nota: 'Tempos conforme o material da Living.'
+        },
+        legal: 'Incorporadora CBR 105 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação. O lazer do rooftop não é acessível às unidades não residenciais. Vagas só nas unidades R2V listadas no memorial. Integração de unidades contíguas conforme as regras do material. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de 2024. Endereço e status a confirmar com a Living.',
+        torre: LFP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZO_PINHEIROS,
+        fotos: [
+          fotoLFP('fachada', 'Fachada', true),
+          fotoLFP('portaria', 'Portaria'),
+          fotoLFP('swimming-pool', 'Swimming Pool'),
+          fotoLFP('garden-lounge', 'Garden Lounge'),
+          fotoLFP('lounge-bbq', 'Lounge BBQ'),
+          fotoLFP('sky-garden', 'Sky Garden, rooftop'),
+          fotoLFP('sky-lounge-grill', 'Sky Lounge & Grill, rooftop'),
+          fotoLFP('lounge-bar', 'Lounge Bar'),
+          fotoLFP('lounge-bar-2', 'Lounge Bar'),
+          fotoLFP('nightclub', 'Nightclub & Coworking'),
+          fotoLFP('coworking', 'Coworking'),
+          fotoLFP('fitness', 'Fitness'),
+          fotoLFP('laundry', 'Laundry')
+        ]
+      },
+      {
+        nome: 'Living Full Eldorado',
+        cidade: 'São Paulo, capital',
+        bairro: 'Pinheiros',
+        resumo: 'Studios e 1 a 2 dormitórios · 24 a 37 m²',
+        tipo: 'Apartamento',
+        status: 'Breve lançamento',
+        texto: 'Na Rua Butantã, em Pinheiros, a 5 minutos a pé do Shopping Eldorado e a 2 da Rua dos Pinheiros: studios e apartamentos de 1 e 2 dormitórios, de 24 a 37 m², em duas torres, com Garden Lounge, Beach Arena, salão de festas, Fitness by Matrix, Infrared Sauna, Espaço Zen e lavanderia. A 5 minutos da Faria Lima, da Rebouças e da Estação Faria Lima.',
+        area: ['24 m²: 1 dormitório, padrão ou opção (torre 2)', '37 m²: 2 dormitórios, ou 1 suíte com lavabo (torre 1)'],
+        tipologia: 'Studios e 1 a 2 dormitórios, de 24 a 37 m²',
+        banheiros: '1 por unidade; lavabo na opção de 37 m²',
+        vagas: 'Sob consulta',
+        torres: '2 torres',
+        unidades: ['Sob consulta; parte das unidades é HIS, com regras próprias'],
+        pavimentos: ['Sob consulta'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Butantã, 153 · Pinheiros, São Paulo',
+        infra: {
+          piscina: 'Sob consulta',
+          academia: 'Fitness by Matrix, Infrared Sauna e Espaço Zen',
+          festas: 'Salão de festas',
+          gourmet: 'Garden Lounge',
+          kids: '',
+          quadra: 'Beach Arena',
+          portaria: 'Portaria e lobby por torre',
+          coworking: 'Lavanderia'
+        },
+        lazer: ['Portaria', 'Lobby', 'Garden Lounge', 'Beach Arena', 'Salão de Festas', 'Fitness by Matrix', 'Infrared Sauna', 'Espaço Zen', 'Lavanderia'],
+        diferenciais: ['A 5 minutos a pé do Shopping Eldorado', 'Fitness com equipamentos Matrix e Infrared Sauna', 'Unidades compactas para morar e para alugar'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Incorporação', 'CBR 112 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LFE + 'planta-24.webp', nome: '24 m² · padrão', meta: '1 dormitório · final 12, torre 2' },
+          { src: LFE + 'planta-24-opcao.webp', nome: '24 m² · opção', meta: '1 dormitório · final 12, torre 2' },
+          { src: LFE + 'planta-37.webp', nome: '37 m² · padrão', meta: '2 dormitórios · final 6, torre 1' },
+          { src: LFE + 'planta-37-opcao.webp', nome: '37 m² · opção', meta: '1 suíte e lavabo · final 6, torre 1' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Rua dos Pinheiros', '2 min'], ['Marginal Pinheiros', '3 min'], ['Estação Faria Lima', '5 min'], ['Av. Brigadeiro Faria Lima', '5 min'], ['Av. Rebouças', '5 min']]],
+            ['Compras e lazer', [['Shopping Eldorado', '5 min a pé'], ['Shopping JK Iguatemi', '7 min'], ['Parque do Povo', '7 min']]]
+          ],
+          nota: 'Tempos conforme o material da Living.'
+        },
+        legal: 'Incorporadora CBR 112 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 669.079 no 10º Oficial de Registro de Imóveis de São Paulo. Parte das unidades é HIS, com regras de renda próprias; ver o memorial. Terreno na Rua Butantã, 153; stand na Rua Henrique Schaumann, 461. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração.',
+        torre: LFE + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZO_PINHEIROS,
+        fotos: [
+          fotoLFE('fachada', 'Fachada', true),
+          fotoLFE('portaria', 'Portaria'),
+          fotoLFE('lobby', 'Lobby, torre 1'),
+          fotoLFE('garden-lounge', 'Garden Lounge'),
+          fotoLFE('beach-arena', 'Beach Arena'),
+          fotoLFE('salao-de-festas', 'Salão de festas'),
+          fotoLFE('fitness', 'Fitness by Matrix'),
+          fotoLFE('infrared-sauna', 'Infrared Sauna'),
+          fotoLFE('espaco-zen', 'Espaço Zen'),
+          fotoLFE('lavanderia', 'Lavanderia')
+        ]
+      },
+      {
+        nome: 'Living One',
+        cidade: 'São Paulo, capital',
+        bairro: 'Barra Funda',
+        resumo: '3 e 4 dormitórios · 90 e 116 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Adalberto Kemeny, na Barra Funda, torre única com 128 apartamentos de 90 e 116 m², de 3 e 4 dormitórios, e 2 vagas determinadas. Lazer com piscina de raia de 25 m, deck molhado, praça com espelho d\'água, quadra de tênis, SPA, Fitness, salão de festas, espaço gourmet, jogos adulto, brinquedoteca, playground, Pet Place e Living Mini Market. As fotos são do condomínio pronto.',
+        area: ['90 m²: 3 dormitórios com 1 suíte, padrão ou opção', '116 m²: 4 dormitórios com 1 suíte, padrão ou opção'],
+        tipologia: '3 e 4 dormitórios, de 90 a 116 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: '2 vagas determinadas por apartamento',
+        torres: 'Torre única',
+        unidades: ['128 apartamentos'],
+        pavimentos: ['Térreo: acessos de pedestres e de veículos, hall social, salão de festas, jogos adulto, Fitness, SPA, brinquedoteca, espaço gourmet, piscinas adulto e infantil com deck molhado, praça com espelho d\'água, Pet Place, Mini Market, playground e quadra de tênis'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Adalberto Kemeny, 119 · Barra Funda, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 25 m, piscina infantil, deck molhado e praça com espelho d\'água',
+          academia: 'Fitness e SPA',
+          festas: 'Salão de festas',
+          gourmet: 'Espaço gourmet com churrasqueira',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra de tênis',
+          portaria: 'Acessos de pedestres e de veículos separados, hall social',
+          coworking: 'Jogos adulto, Pet Place e Living Mini Market'
+        },
+        lazer: ['Hall social', 'Salão de festas', 'Jogos adulto', 'Fitness', 'SPA', 'Brinquedoteca', 'Espaço gourmet', 'Piscina adulto, raia de 25 m', 'Piscina infantil', 'Deck molhado', "Praça com espelho d'água", 'Pet Place', 'Mini Market', 'Playground', 'Quadra de tênis'],
+        diferenciais: ['Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes e infraestrutura para persianas automatizadas', 'Tratamento acústico', 'Infraestrutura para ar-condicionado na suíte e nos dormitórios', 'Infraestrutura para água quente', 'Living Mini Market'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Sesso & Dalanezi'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'Cyrela Magik Monaco, com participação da Cyrela']],
+        plantas: [
+          { src: LON + 'planta-90.webp', nome: '90 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LON + 'planta-90-opcao.webp', nome: '90 m² · opção', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LON + 'planta-116.webp', nome: '116 m² · padrão', meta: '4 dormitórios, 1 suíte · 2 vagas' },
+          { src: LON + 'planta-116-opcao.webp', nome: '116 m² · opção', meta: '4 dormitórios, 1 suíte · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LON + 'implantacao.webp', nome: 'Implantação', meta: 'Os 19 espaços do térreo e o pavimento lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Parque Jardim das Perdizes', '8 min'], ['Bourbon Shopping', 'poucos minutos'], ['Terminal Barra Funda', 'no bairro'], ['Allianz Parque e Memorial da América Latina', 'no bairro']]]
+          ],
+          nota: 'Tempos conforme o material da Living; os demais pontos são do bairro.'
+        },
+        legal: 'Incorporadora Cyrela Magik Monaco Empreendimentos Imobiliários Ltda. Empreendimento registrado em 23/02/2021 sob nº 26 na matrícula 36.638 do 15º Registro de Imóveis de São Paulo. Ar-condicionado, água quente e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Book de abril de 2021; fotos do condomínio pronto.',
+        torre: LON + 'aerea.webp',
+        notaImagens: 'Fotos do condomínio entregue. Dados a confirmar com a Living.',
+        regiao: ZO_BARRA_FUNDA,
+        fotos: [
+          fotoLON('aerea', 'Vista aérea'),
+          fotoLON('portaria', 'Portaria'),
+          fotoLON('lobby', 'Lobby'),
+          fotoLON('piscina', 'Piscina com raia de 25 m'),
+          fotoLON('espelho-dagua', "Praça com espelho d'água"),
+          fotoLON('churrasqueira', 'Espaço gourmet'),
+          fotoLON('salao-de-festas', 'Salão de festas'),
+          fotoLON('jogos-adulto', 'Jogos adulto'),
+          fotoLON('fitness', 'Fitness'),
+          fotoLON('spa', 'SPA'),
+          fotoLON('quadra-de-tenis', 'Quadra de tênis'),
+          fotoLON('brinquedoteca', 'Brinquedoteca'),
+          fotoLON('playground', 'Playground'),
+          fotoLON('pet-place', 'Pet Place')
         ]
       }
     ]
