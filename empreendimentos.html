@@ -786,6 +786,31 @@
   // (11/11/2026) rodada 5b: Well Home (book 2026) e Wellness (folhetao abr/2026) na Chacara Santo Antonio; High Line (out/2024) e 25H, books so de imagem, lidos pelas paginas
   var LWH = L + 'wellhome/', LWC = L + 'wellnesscsa/', LHL = L + 'highline/', L25 = L + 'h25/';
   var fotoLWH = fotoEm(LWH), fotoLWC = fotoEm(LWC), fotoLHL = fotoEm(LHL), fotoL25 = fotoEm(L25);
+  // (11/11/2026) rodada 6, os 4 PDFs sem nome: Living Connect (book 2017, entregue 2020), Mediterranee by Living ("Mascote_Folhetao", set/2025),
+  // Living Resort Mall (folheto comercial do Cambuci, ~2016, so imagem) e The Grand Residence (um cartao de tour 360, dados da corretagem)
+  var LCN = L + 'connect/', LMD = L + 'mediterranee/', LRM = L + 'resortmall/', LGR = L + 'grandresidence/';
+  var fotoLCN = fotoEm(LCN), fotoLMD = fotoEm(LMD), fotoLRM = fotoEm(LRM), fotoLGR = fotoEm(LGR);
+  var ZS_VILA_DAS_MERCES = {
+    titulo: 'A região · Vila das Mercês e Sacomã',
+    texto: 'No alto do Ipiranga, entre a Rodovia Anchieta, a Avenida Tancredo Neves e a Avenida do Cursino, a Vila das Mercês nasceu da Chácara Dona Vera, do engenheiro Malta Jr., em 1919, e virou bairro de família: a poucos minutos das estações Alto do Ipiranga e Sacomã da Linha 2-Verde, com o Shopping Plaza Sul, o Parque da Independência e o Museu do Ipiranga, o Zoológico, o Jardim Botânico e o Aquário de São Paulo, e saída rápida para o ABC, o litoral e o Aeroporto de Congonhas.',
+    numeros: [['2', 'estações da Linha 2-Verde por perto: Alto do Ipiranga e Sacomã'], ['2', 'rodovias na porta: Anchieta e Imigrantes'], ['5.770 m²', 'de terreno do Living Connect'], ['56 a 69 m²', '2 e 3 quartos, entregues em 2020']],
+    polos: 'Por perto: estações Alto do Ipiranga e Sacomã, Shopping Plaza Sul, ParkShopping São Caetano, Parque da Independência, Museu do Ipiranga, Aquário de São Paulo, Zoológico, Jardim Botânico, Sesi Vila das Mercês e Colégio Mercedário.',
+    fonte: 'Fonte: book do Living Connect (edição 02/2017), que traz o croqui sem distâncias.'
+  };
+  var ZS_VILA_MASCOTE = {
+    titulo: 'A região · Vila Mascote',
+    texto: 'Na Zona Sul, entre o Campo Belo, o Jabaquara e Santo Amaro, a Vila Mascote é um bairro residencial de ruas largas e arborizadas em torno da Avenida Mascote e da Avenida Vereador João de Luca, vizinho do Aeroporto de Congonhas, da Avenida Washington Luís e da Avenida Santo Amaro, com as estações Campo Belo da Linha 5-Lilás e Jabaquara e Conceição da Linha 1-Azul por perto. Prédios novos de médio e alto padrão vêm substituindo as casas, e a Living chega com o Mediterranée.',
+    numeros: [['2', 'torres do Mediterranée, com 205 apartamentos'], ['76 a 149 m²', 'de 2 suítes a 4 dormitórios'], ['20', 'espaços de lazer na implantação'], ['2029', 'entrega prevista, pela corretagem']],
+    polos: 'Por perto: Aeroporto de Congonhas, Av. Washington Luís, Av. Santo Amaro, Av. Vereador João de Luca e as estações Campo Belo, Jabaquara e Conceição.',
+    fonte: 'Fonte: folhetão do Mediterranée by Living (setembro de 2025), que não traz mapa; descrição geral do bairro, a confirmar.'
+  };
+  var ZS_CAMBUCI = {
+    titulo: 'A região · Cambuci',
+    texto: 'Colado ao centro, entre a Liberdade, a Aclimação, o Ipiranga e a Mooca, o Cambuci cresceu como extensão natural desses bairros, com muitos lançamentos residenciais e empresas como a Ambev e o Centro Tecnológico Itaú. A Avenida do Estado é a via de passagem obrigatória da região, com ligação à Radial Leste, à 23 de Maio e ao Expresso Tiradentes; num raio de 2 km ficam oito estações de metrô e CPTM, os hospitais Cruz Azul, A.C. Camargo e Beneficência Portuguesa, o Parque da Aclimação, o Largo do Cambuci, a 25 de Março e o Mercado Municipal.',
+    numeros: [['62 mil', 'domicílios num raio de 2 km'], ['175 mil', 'pessoas por mês de público potencial'], ['8', 'estações de metrô e CPTM no raio: Paraíso, Vergueiro, São Joaquim, Liberdade, Sé, D. Pedro II, Brás e Mooca'], ['380', 'apartamentos do Living Resort, em 3 torres']],
+    polos: 'Por perto: hospitais Cruz Azul, A.C. Camargo e Beneficência Portuguesa; Parque da Independência, Largo do Cambuci, Parque da Aclimação e Parque Dom Pedro II; Museu do Imigrante, Centro Cultural São Paulo, Museu Catavento e FIAM; Rua 25 de Março, Mercado Municipal, Liberdade e Shopping Paulista.',
+    fonte: 'Fonte: folheto do Living Resort Mall, com estudo de microrregião do IBGE (cerca de 2016), sem distâncias.'
+  };
   var ZS_CHACARA_SANTO_ANTONIO = {
     titulo: 'A região · Chácara Santo Antônio',
     texto: 'Entre o Brooklin, Santo Amaro e a Marginal Pinheiros, a Chácara Santo Antônio é o bairro de ruas arborizadas e casas que viraram escritórios, estúdios e restaurantes, colado ao eixo corporativo da Avenida Chucri Zaidan e às estações Borba Gato e Santo Amaro da Linha 5-Lilás. Morumbi Shopping, Market Place e os parques Severo Gomes e Burle Marx por perto. Na Rua Fernandes Moreira e na Rua Antônio das Chagas, a poucas quadras uma da outra, a Living lançou dois projetos em 2026: o Wellness e o Well Home.',
@@ -5671,6 +5696,252 @@
           fotoL25('swimming-pool', 'Swimming Pool'),
           fotoL25('sunset-bar', 'Sunset Bar, rooftop'),
           fotoL25('sky-garden', 'Sky Garden, rooftop')
+        ]
+      },
+      {
+        nome: 'Living Connect',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila das Mercês, Ipiranga',
+        resumo: '2 e 3 quartos · 56 a 69 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Dom Vilares, 1.801, na Vila das Mercês, a poucos minutos da Estação Alto do Ipiranga e com saída pela Anchieta e pela Imigrantes: condomínio entregue em agosto de 2020, com 182 apartamentos de 2 e 3 quartos, de 56 a 69 m², em dois conjuntos de blocos (Vila Vera e Vila Malta) de térreo mais 8 andares, num terreno de 5.770 m². Lazer conectado por Wi-Fi: piscinas dos adultos e dos pequenos com deck molhado, Churras, Festas, Cozinha do Chef, academia, Espaço Poker, Games, Cantinho dos Pequenos, Cantinho da Brincadeira, Cantinho do Pet e campo gramado.',
+        area: ['56 m²: 2 quartos, 1 suíte, 1 ou 2 vagas', '57 m²: 2 quartos, 1 suíte, 1 ou 2 vagas', '59 m²: 2 quartos, 1 suíte, 1 ou 2 vagas', '69 m²: 3 quartos com 1 suíte (padrão) ou 2 quartos com sala ampliada (opção), 2 vagas'],
+        tipologia: '2 e 3 quartos, sempre com 1 suíte, de 56 a 69 m²',
+        banheiros: '2 banheiros, ventilado no 59 e no 69 m²',
+        vagas: '2 vagas nos 3 quartos e nos 2 quartos do 5º ao 8º andar (exceto 54, 56 e 58 da Torre 1 e 53 da Torre 2); 1 vaga nas demais; sem vaga determinada nos 2 quartos do 1º e 2º andares da Torre 1 (exceto 23, 25 e 29) e do térreo, 1º andar e unidade 23 da Torre 2',
+        torres: 'Duas torres em quatro blocos (Vila Vera A e B, Vila Malta C e D), térreo mais 8 andares',
+        unidades: ['182 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: acessos de pedestres e de carros, alameda, halls, Cantinho da Brincadeira, Churras, piscinas dos pequenos e dos adultos, deck molhado, Lugar de Curtir o Sol, Festas, Cozinha do Chef, academia, Cantinho dos Pequenos, Espaço Poker, Games, Cantinho do Pet e campo gramado'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Dom Vilares, 1.801 · Vila das Mercês, São Paulo',
+        infra: {
+          piscina: 'Piscina dos Adultos e Piscina dos Pequenos, com deck molhado e Lugar de Curtir o Sol',
+          academia: 'Academia',
+          festas: 'Festas',
+          gourmet: 'Churras e Cozinha do Chef',
+          kids: 'Cantinho dos Pequenos e Cantinho da Brincadeira, com monitoramento, e Games',
+          quadra: 'Campo gramado',
+          portaria: 'Portaria com acessos separados de pedestres e de carros',
+          coworking: 'Espaço Poker, Cantinho do Pet e Wi-Fi nas áreas de lazer'
+        },
+        lazer: ['Acesso de pedestres', 'Acesso de carros', 'Alameda', 'Hall', 'Cantinho da Brincadeira', 'Churras', 'Piscina dos Pequenos', 'Piscina dos Adultos', 'Deck molhado', 'Lugar de Curtir o Sol', 'Festas', 'Cozinha do Chef', 'Academia', 'Cantinho dos Pequenos', 'Espaço Poker', 'Games', 'Cantinho do Pet', 'Campo gramado'],
+        diferenciais: ['Wi-Fi nas áreas de lazer e infraestrutura para otimização do Wi-Fi nos apartamentos', 'Tomada USB, piso laminado e persianas de enrolar nos quartos', 'Ponto para câmeras de monitoramento nos quartos e na sala', 'Varanda integrada à cozinha', 'Monitoramento nas áreas infantis', 'Fácil acesso à Anchieta, à Imigrantes, à Av. do Estado e à Tancredo Neves'],
+        creditos: [['Arquitetura', 'Living'], ['Interiores das áreas comuns', 'Farah+ Arquitetura e Interiores'], ['Paisagismo', 'Takeda Paisagismo e Urbanismo'], ['Incorporação', 'Living 010 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LCN + 'planta-56.webp', nome: '56 m²', meta: '2 quartos, 1 suíte · 1 ou 2 vagas' },
+          { src: LCN + 'planta-57.webp', nome: '57 m²', meta: '2 quartos, 1 suíte · 1 ou 2 vagas' },
+          { src: LCN + 'planta-59.webp', nome: '59 m²', meta: '2 quartos, 1 suíte · 1 ou 2 vagas' },
+          { src: LCN + 'planta-69.webp', nome: '69 m² · padrão', meta: '3 quartos, 1 suíte · 2 vagas' },
+          { src: LCN + 'planta-69-opcao.webp', nome: '69 m² · opção', meta: '2 quartos, 1 suíte, sala ampliada · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LCN + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo com os quatro blocos e os 18 espaços numerados' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Alto do Ipiranga', 'poucos minutos de carro'], ['Estação Sacomã', ''], ['Aeroporto de Congonhas', ''], ['Rodovias Anchieta e Imigrantes', '']]],
+            ['Educação', [['Escola Nossa Senhora das Mercês', ''], ['Sesi Vila das Mercês', ''], ['Colégio Regina Mundi', ''], ['Colégio Mercedário', '']]],
+            ['Compras', [['Shopping Plaza Sul', ''], ['ParkShopping São Caetano', ''], ['Extra Tancredo Neves', ''], ['Carrefour Anchieta', '']]],
+            ['Lazer', [['Parque da Independência', ''], ['Museu do Ipiranga', ''], ['Aquário de São Paulo', ''], ['Jardim Botânico', ''], ['Zoológico de São Paulo', ''], ['Parque Ibirapuera', '']]]
+          ],
+          nota: 'Pontos do croqui do book, sem distâncias.'
+        },
+        legal: 'Incorporadora Living 010 Empreendimentos Imobiliários Ltda. Empreendimento registrado em 20/07/2017 sob R.07 na matrícula 217.705 do 14º Registro de Imóveis de São Paulo. Terreno sem potencial de contaminação (CETESB 45/11270/14); licenciamento arbóreo SVMA 2016-0.162.389-1. Vagas conforme a planta e o memorial. Creci Cyrela J-17.592 e Abyara 20.363-J. Book edição 02/2017, impresso em março de 2020. Lançamento em setembro de 2017 e entrega em agosto de 2020 pela corretagem; 182 apartamentos pela corretagem. Condomínio pronto: disponibilidade de unidades sob consulta.',
+        torre: LCN + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_DAS_MERCES,
+        fotos: [
+          fotoLCN('fachada', 'Fachada'),
+          fotoLCN('portaria', 'Portaria'),
+          fotoLCN('alameda', 'Alameda'),
+          fotoLCN('hall', 'Hall'),
+          fotoLCN('piscina-dos-adultos', 'Piscina dos Adultos'),
+          fotoLCN('churras', 'Churras'),
+          fotoLCN('cozinha-do-chef', 'Cozinha do Chef'),
+          fotoLCN('festas', 'Festas'),
+          fotoLCN('academia', 'Academia'),
+          fotoLCN('espaco-poker', 'Espaço Poker'),
+          fotoLCN('games', 'Games'),
+          fotoLCN('cantinho-dos-pequenos', 'Cantinho dos Pequenos'),
+          fotoLCN('cantinho-da-brincadeira', 'Cantinho da Brincadeira'),
+          fotoLCN('cantinho-do-pet', 'Cantinho do Pet'),
+          fotoLCN('regiao-aerea', 'Foto aérea da região')
+        ]
+      },
+      {
+        nome: 'Mediterranée by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Mascote',
+        resumo: '2 suítes a 4 dormitórios · 76 a 149 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Avenida Mascote, 1.171, esquina com a Avenida Vereador João de Luca: duas torres, A e B, com apartamentos de 76 a 149 m², de 2 suítes a 4 dormitórios, e 1 ou 2 vagas, num projeto wellness inspirado no Mediterrâneo e no hotel Park Hyatt Dubai. No 2º pavimento, a Mediterranean Area com Beach Pool, Beach Arena, Pool Deck e Kids Pool, o Wellness Center com The Gym by Matrix, Wellness Massage, sauna e Yoga Space, mais Gourmet Lounge, Guest Lounge, Private Pool House, Snooker Lounge, Games Lounge, Kids Place, Kids Court e playground; no térreo, lobby, Delivery e Mini Market; Pet Park no 2º subsolo. Lançamento de novembro de 2025, entrega prevista para dezembro de 2029 pela corretagem.',
+        area: ['76 m²: 2 suítes, 1 vaga', '89 m²: 2 suítes (padrão) ou 3 dormitórios com 1 suíte (opção), 1 vaga', '149 m²: 3 suítes com cozinha integrada e WC de serviço (padrão), 3 suítes com cozinha integrada e despensa (decorado) ou 4 dormitórios com 2 suítes e cozinha fechada (opção), 2 vagas'],
+        tipologia: '2 suítes a 4 dormitórios, de 76 a 149 m²',
+        banheiros: 'Banheiros ventilados, com ralo linear, nicho no box, infraestrutura para água quente, toalheiro aquecido e desembaçador; lavabo em todas as plantas; banheira e cuba dupla na suíte master do 149 m²',
+        vagas: '2 vagas determinadas nos finais 1 a 4 da Torre A; 1 vaga determinada nos finais 1, 2 e 5 do 15º ao 23º pavimento e no final 6 do 16º ao 23º da Torre B; por sorteio nas demais',
+        torres: 'Duas torres, A e B (térreo mais 20 andares pela corretagem; o texto legal cita até o 23º pavimento)',
+        unidades: ['205 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, Delivery, Mini Market e lobby', '2º subsolo: Pet Park', '2º pavimento: Gourmet Lounge, Guest Lounge, Private Pool House, Snooker Lounge, Games Lounge, playground, Kids Court e Kids Place; Mediterranean Area com Beach Arena, Beach Pool, Pool Deck e Kids Pool; Wellness Center com The Gym by Matrix, Wellness Massage, sauna e Yoga Space'],
+        valores: 'Sob consulta',
+        endereco: 'Avenida Mascote, 1.171 · Vila Mascote, São Paulo',
+        infra: {
+          piscina: 'Beach Pool com Pool Deck e Kids Pool',
+          academia: 'The Gym by Matrix e Yoga Space',
+          festas: 'Guest Lounge e Snooker Lounge',
+          gourmet: 'Gourmet Lounge e Private Pool House',
+          kids: 'Kids Place, Kids Court, Kids Pool e playground',
+          quadra: 'Beach Arena com piscina integrada e Kids Court',
+          portaria: 'Social Entrance, Service Entrance e Garage Entrance separadas, lobby',
+          coworking: 'Games Lounge, Mini Market 24 horas, Delivery e Pet Park'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Delivery', 'Mini Market', 'Lobby', 'Pet Park', 'Gourmet Lounge', 'Guest Lounge', 'Private Pool House', 'Snooker Lounge', 'Games Lounge', 'Playground', 'Kids Court', 'Kids Place', 'Beach Arena', 'Beach Pool', 'Pool Deck', 'Kids Pool', 'The Gym by Matrix', 'Wellness Massage', 'Sauna', 'Yoga Space'],
+        diferenciais: ['Mediterranean Area: Beach Pool, Beach Arena, Pool Deck e Kids Pool', 'Wellness Center com The Gym by Matrix, Wellness Massage, sauna e Yoga Space', 'Smart Home 2.0: Wi-Fi nas áreas de lazer, monitoramento no Kids Place, interruptor inteligente e câmera Wi-Fi na sala', 'Contrapiso acústico, infraestrutura para ar-condicionado, churrasqueira no terraço social, lava-louças, lava e seca, triturador e coifa', 'Banheira, dois chuveiros e cuba dupla na suíte master do 149 m²', 'Mini Market 24 horas no condomínio'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'CBR Magik LZ 18 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LMD + 'planta-76.webp', nome: '76 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LMD + 'planta-76-decoracao.webp', nome: '76 m² · sugestão de decoração', meta: '2 suítes, sala, cozinha e terraço integrados · 1 vaga' },
+          { src: LMD + 'planta-89.webp', nome: '89 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LMD + 'planta-89-opcao.webp', nome: '89 m² · opção', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LMD + 'planta-149.webp', nome: '149 m² · padrão', meta: '3 suítes, cozinha integrada e WC de serviço · 2 vagas' },
+          { src: LMD + 'planta-149-decorado.webp', nome: '149 m² · decorado', meta: '3 suítes, cozinha integrada e despensa · 2 vagas' },
+          { src: LMD + 'planta-149-opcao.webp', nome: '149 m² · opção', meta: '4 dormitórios, 2 suítes, cozinha fechada e despensa · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LMD + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, 2º subsolo e 2º pavimento, com os 20 espaços numerados' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Aeroporto de Congonhas', 'no bairro'], ['Av. Washington Luís e Av. Santo Amaro', 'no bairro'], ['Estações Campo Belo e Jabaquara', 'no bairro']]]
+          ],
+          nota: 'O folhetão não traz mapa nem distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR Magik LZ 18 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado em 27/08/2025 sob o nº 894.039 no 8º Registro de Imóveis de São Paulo. Área não contaminada (CETESB 33/08139/24); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2024/0026562-4). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira, lavabo, interruptor inteligente, água quente, nicho, ralo linear, lava-roupas e seca, banheira, toalheiro aquecido e triturador entregues como infraestrutura; opções de planta na personalização, com custo. Realização Living, com participação da Magik LZ. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; folhetão impresso em setembro de 2025 (o arquivo recebido se chama Mascote_Folhetão; o nome Mediterranée vem da corretagem). Lançamento em novembro de 2025 e entrega prevista para dezembro de 2029 pela corretagem (outra fonte diz janeiro de 2026 e julho de 2029); 205 unidades pela corretagem.',
+        torre: LMD + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MASCOTE,
+        fotos: [
+          fotoLMD('fachada', 'Fachada'),
+          fotoLMD('embasamento', 'Embasamento'),
+          fotoLMD('lobby-fotomontagem', 'Lobby, fotomontagem'),
+          fotoLMD('lobby', 'Lobby'),
+          fotoLMD('beach-pool', 'Beach Pool'),
+          fotoLMD('beach-arena', 'Beach Arena'),
+          fotoLMD('wellness-massage', 'Wellness Massage'),
+          fotoLMD('sauna', 'Sauna'),
+          fotoLMD('the-gym', 'The Gym by Matrix'),
+          fotoLMD('gourmet-lounge', 'Gourmet Lounge'),
+          fotoLMD('guest-lounge', 'Guest Lounge'),
+          fotoLMD('snooker-lounge', 'Snooker Lounge'),
+          fotoLMD('private-pool-house', 'Private Pool House'),
+          fotoLMD('private-pool-house-2', 'Private Pool House'),
+          fotoLMD('games-lounge', 'Games Lounge'),
+          fotoLMD('kids-place', 'Kids Place'),
+          fotoLMD('living-149', 'Living do apartamento de 149 m²'),
+          fotoLMD('living-89', 'Living do apartamento de 89 m²'),
+          fotoLMD('living-76', 'Living do apartamento de 76 m²'),
+          fotoLMD('regiao-aerea', 'Imagem aérea da região, 2025')
+        ]
+      },
+      {
+        nome: 'Living Resort Mall',
+        cidade: 'São Paulo, capital',
+        bairro: 'Cambuci',
+        resumo: '6 lojas · 64 a 79 m²',
+        tipo: 'Loja',
+        status: 'Pronto, a confirmar',
+        texto: 'Na Avenida do Estado, 5.200, entre a Rua dos Alpes e a Rua Alexandre Levi, no Cambuci: o mall de rua do Living Resort, condomínio de 3 torres e 380 apartamentos num terreno de 11.562 m². São 6 lojas de 64 a 79 m², com 14 vagas exclusivas para veículos mais vagas de motos e bicicletas, administração com entrada independente e infraestrutura completa em cada loja. Público do próprio condomínio e dos mais de 175 mil clientes potenciais por mês num raio de 2 km, segundo o estudo de microrregião do folheto.',
+        area: ['Loja 1: 67,54 m²', 'Lojas 2 a 5: 64 m² cada', 'Loja 6: 79,45 m²', 'Total: 416,39 m² de lojas'],
+        tipologia: 'Lojas de rua, de 64 a 79 m²',
+        banheiros: '1 banheiro completo e instalado em cada loja, mais WC comum',
+        vagas: '14 vagas para veículos, mais vagas para motos e bicicletas, exclusivas do mall',
+        torres: 'Mall térreo na frente do Living Resort, condomínio de 3 torres com 14 e 16 pavimentos',
+        unidades: ['6 lojas, WC e sala de administração', '380 apartamentos de 46, 49, 59 e 72 m² no residencial'],
+        pavimentos: ['Térreo: lojas 1 a 6 de frente para a Avenida do Estado, WC e administração com entrada independente do mall e do residencial'],
+        valores: 'Sob consulta',
+        endereco: 'Avenida do Estado, 5.200 · Cambuci, São Paulo',
+        infra: {
+          piscina: '',
+          academia: '',
+          festas: '',
+          gourmet: '',
+          kids: '',
+          quadra: '',
+          portaria: 'Administração com entrada independente',
+          coworking: 'Estacionamento exclusivo com 14 vagas, motos e bicicletas'
+        },
+        lazer: ['Loja 1', 'Loja 2', 'Loja 3', 'Loja 4', 'Loja 5', 'Loja 6', 'WC', 'Administração', 'Estacionamento com 14 vagas', 'Vagas para motos e bicicletas'],
+        diferenciais: ['Ponto de ar-condicionado, ponto de gás e banheiro instalado em cada loja', 'Medição individualizada de água, gás e energia', 'Equipamentos de combate a incêndio', 'Público do próprio condomínio: 380 apartamentos', 'Raio de 2 km com 62 mil domicílios e potencial de 175 mil pessoas por mês (IBGE, pelo folheto)', 'Avenida do Estado, via de passagem obrigatória da região, com acesso à Radial Leste e à 23 de Maio'],
+        creditos: [['Incorporação', 'Living, Grupo Cyrela']],
+        plantas: [],
+        implantacao: [
+          { src: LRM + 'implantacao.webp', nome: 'Implantação do mall', meta: 'As 6 lojas, o WC e a administração entre a Rua dos Alpes e a Rua Alexandre Levi' },
+          { src: LRM + 'mapa.webp', nome: 'Mapa da região', meta: 'Hospitais, parques, cultura, compras, metrô e CPTM e empresas num raio de 2 km' }
+        ],
+        perto: {
+          grupos: [
+            ['Metrô e CPTM', [['Paraíso', ''], ['Vergueiro', ''], ['São Joaquim', ''], ['Liberdade', ''], ['Sé', ''], ['D. Pedro II', ''], ['Brás', ''], ['CPTM Mooca', '']]],
+            ['Compras', [['Cosmopolitano Shopping', ''], ['Shopping Paulista', ''], ['Rua 25 de Março', ''], ['Mercado Municipal', ''], ['Liberdade', '']]],
+            ['Hospitais', [['Hospital Cruz Azul', ''], ['Hospital A.C. Camargo', ''], ['Hospital Beneficência Portuguesa', '']]],
+            ['Parques e cultura', [['Parque da Independência', ''], ['Largo do Cambuci', ''], ['Parque da Aclimação', ''], ['Parque Dom Pedro II', ''], ['Museu do Imigrante', ''], ['Centro Cultural São Paulo', ''], ['Museu Catavento', ''], ['FIAM', '']]],
+            ['Empresas', [['Ambev', ''], ['Centro Tecnológico Itaú', '']]]
+          ],
+          nota: 'Pontos do mapa do folheto, num raio de 2 km, sem distâncias.'
+        },
+        legal: 'O material recebido é o folheto comercial do Living Resort Mall, só em imagem, de cerca de 2016 (cita o Cosmopolitano Shopping com inauguração prevista para o 2º semestre de 2017), com ficha técnica do residencial: terreno de 11.562 m², 3 torres com 14 e 16 pavimentos, unidades de 46, 49, 59 e 72 m², 380 unidades. O residencial Living Resort consta como entregue nas corretagens (Rua Alexandre Levi, 85 e Rua dos Alpes, 240); a situação atual das lojas, a disponibilidade e as condições são sob consulta. Realização Living, Grupo Cyrela. Imagens meramente ilustrativas.',
+        torre: LRM + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CAMBUCI,
+        fotos: [
+          fotoLRM('fachada', 'Fachada do mall, perspectiva ilustrada'),
+          fotoLRM('regiao-aerea', 'Macrolocalização, Avenida do Estado, 5.200'),
+          fotoLRM('mosaico', 'Mix de produtos e serviços, imagem ilustrativa')
+        ]
+      },
+      {
+        nome: 'The Grand Residence · A Living Lifestyle',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin, Cidade Monções',
+        resumo: '2 a 3 dormitórios · 77 a 147 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Filadélfia, 42, na Cidade Monções, entre a Berrini e a Marginal Pinheiros: lançamento da Living de maio de 2026, com apartamentos de 77 a 147 m², de 2 a 3 dormitórios, com 2 e 3 suítes e 1 ou 2 vagas, e hall privativo nas plantas maiores. Lazer com piscina, academia, quadra de tênis, spa e sauna, games lounge, kids place, playground, churrasqueira e salão de festas. Entrega prevista para agosto de 2029 pela corretagem.',
+        area: ['77 m²: 2 dormitórios, 2 suítes, 1 vaga', '88 m²: 2 suítes, 1 vaga', '104 m²: 2 suítes, 2 vagas', '133 m²: 3 suítes, 2 vagas, hall privativo', '147 m²: 3 suítes, 2 vagas, hall privativo'],
+        tipologia: '2 a 3 dormitórios, com 2 e 3 suítes, de 77 a 147 m² (a corretagem também cita 4 dormitórios)',
+        banheiros: '2 e 3 banheiros, com ventilação natural, pela corretagem',
+        vagas: '1 vaga no 77 e no 88 m²; 2 vagas do 104 m² em diante, pela corretagem',
+        torres: 'Torre única, pela perspectiva do cartão',
+        unidades: ['Número de unidades não informado'],
+        pavimentos: ['Não informado no material recebido'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Filadélfia, 42 · Cidade Monções, Brooklin, São Paulo',
+        infra: {
+          piscina: 'Piscina',
+          academia: 'Academia',
+          festas: 'Salão de festas e lounge',
+          gourmet: 'Churrasqueira',
+          kids: 'Kids Place e playground',
+          quadra: 'Quadra de tênis (outra fonte diz poliesportiva)',
+          portaria: 'Portaria com segurança',
+          coworking: 'Games Lounge, spa e sauna'
+        },
+        lazer: ['Piscina', 'Academia', 'Quadra de tênis', 'Spa', 'Sauna', 'Games Lounge', 'Kids Place', 'Playground', 'Churrasqueira', 'Salão de festas', 'Lounge', 'Portaria'],
+        diferenciais: ['Hall privativo nas plantas de 133 e 147 m²', 'Banheiros com ventilação natural e laje técnica', 'Quadra de tênis, spa e sauna', 'Cidade Monções, entre a Berrini, a Marginal e o Shopping Morumbi', 'Tour 360º no cartão enviado'],
+        creditos: [['Incorporação', 'Living, Grupo Cyrela']],
+        plantas: [],
+        perto: {
+          grupos: [
+            ['Por perto', [['Av. Berrini e Av. das Nações Unidas', 'no bairro'], ['Estações Berrini e Morumbi da CPTM', 'no bairro'], ['Shopping Morumbi e Market Place', 'no bairro']]]
+          ],
+          nota: 'O material recebido é um cartão de tour 360º, sem mapa; os pontos acima são do bairro.'
+        },
+        legal: 'O material recebido é um único cartão (story) com a fachada e o botão do tour 360º, assinado Smart Visium e Living; a ficha vem das corretagens (apto.vc, MySide e Lopes): lançamento de maio de 2026, estágio de fundação, entrega prevista para agosto de 2029 (outra fonte diz outubro de 2029); metragens de 77 a 147 m² (outra fonte diz 78 a 148). Sem memorial, número de unidades, plantas ou texto legal no material. Confirmar tudo com a Living antes de divulgar.',
+        torre: LGR + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN,
+        fotos: [
+          fotoLGR('fachada', 'Fachada, pelo cartão do tour 360º', true)
         ]
       }
     ]
