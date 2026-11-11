@@ -816,6 +816,17 @@
     polos: 'Por perto: Rua Oscar Freire, Rua Haddock Lobo, Alameda Gabriel Monteiro da Silva, Av. Paulista, Parque Trianon, Cidade Matarazzo, Shopping Cidade São Paulo, Jardim Pamplona Shopping, Clube Paulistano, Sociedade Harmonia de Tênis, Colégio Dante Alighieri, Escola Saint Paul e os hospitais Sírio-Libanês, 9 de Julho, Santa Catarina e HCor.',
     fonte: 'Fonte: books do Haddock 885 (2022), do GIO Jardins (2023) e do Daslu Residences (2024), com tempos do próprio material, de carro.'
   };
+  // (11/11/2026, ~16h30) Brooklin: Haus Mitre Edition NY (book), Edition NY Soho Apartments (apresentacao em slides),
+  // Haus Mitre Station Brooklin (book cliente fev/2025) e ML Brooklin (book do setor ML Selection, com a Lucio)
+  var MNY = MT + 'editionny/', MSO = MT + 'soho/', MSB = MT + 'stationbrooklin/', MML = MT + 'mlbrooklin/';
+  var fotoMNY = fotoEm(MNY), fotoMSO = fotoEm(MSO), fotoMSB = fotoEm(MSB), fotoMML = fotoEm(MML);
+  var ZS_BROOKLIN_MITRE = {
+    titulo: 'A região · Brooklin',
+    texto: 'O bairro das ruas com nomes de estados americanos virou o eixo corporativo novo de São Paulo: as torres da Berrini, da Chucri Zaidan e da Roque Petroni, a Ponte Estaiada e a Marginal Pinheiros de um lado, as ruas arborizadas de casas e os restaurantes de bairro do outro. Estação Brooklin da Linha 5-Lilás, Shopping Morumbi, Market Place, JK Iguatemi, Parque Bruno Covas, Parque do Povo, Hípica Paulista, Teatro Vivo, colégios como o Elvira Brandão, o Pueri Domus e o Stockler, e os hospitais Santa Paula, Einstein e São Luiz a poucos minutos. A Mitre tem quatro projetos no bairro, do studio ao apartamento de 3 suítes.',
+    numeros: [['190 m', 'da Estação Brooklin, o Haus Mitre Station'], ['5 min', 'a pé da estação, o ML Brooklin'], ['7.400 m²', 'de terreno no Haus Mitre Edition NY, com o Soho'], ['23 a 217 m²', 'do studio ao apartamento de 3 suítes, nos quatro projetos']],
+    polos: 'Por perto: Estação Brooklin, Av. Berrini, Av. Chucri Zaidan, Av. Roque Petroni Júnior, Av. Santo Amaro, Ponte Estaiada, Shopping Morumbi, Market Place, JK Iguatemi, Parque Bruno Covas, Parque do Povo, Hípica Paulista, Teatro Vivo, Casa de Vidro Lina Bo Bardi, Colégio Elvira Brandão, Pueri Domus, Stockler, Hospital Santa Paula, Einstein e São Luiz.',
+    fonte: 'Fonte: books do Haus Mitre Edition NY, do Haus Mitre Station Brooklin (2025) e do ML Brooklin, com tempos do próprio material.'
+  };
   var ZS_CAMPO_BELO = {
     titulo: 'A região · Campo Belo',
     texto: 'Entre o Brooklin, Moema e o Aeroporto de Congonhas, o Campo Belo é um bairro de ruas arborizadas e casas que viraram prédios de médio e alto padrão, servido pelas estações Campo Belo e Eucaliptos da Linha 5-Lilás, pela Avenida Vereador José Diniz, pela Santo Amaro e pela Jornalista Roberto Marinho, a poucos minutos do Shopping Ibirapuera e do Parque Ibirapuera. Colégios como o Vértice e a Aubrick, os hospitais Oswaldo Cruz, Moriah e Santa Paula, e uma vida de bairro de padarias, bares e restaurantes. A Mitre tem três projetos ali: o Haus Mitre Campo Belo, o Raízes Premium e o Althea.',
@@ -6441,13 +6452,309 @@
           fotoMGJ('duplex', 'Duplex de 276 m²'),
           fotoMGJ('regiao-aerea', 'Jardins, foto aérea')
         ]
+      },
+      {
+        nome: 'Haus Mitre Edition NY',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin',
+        resumo: '3 suítes · 164 e 217 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Rua Michigan, 1.020, esquina com a Rua Guaraiúva, no Brooklin: um conjunto de 7.400 m² de terreno inspirado em Nova York, com duas torres residenciais de mais de 30 andares, a Manhattan e a Brooklyn, e um boulevard de lojas com empório e restaurante na esquina. Residences de 164 m² (Torre Brooklyn, 3 suítes, 2 vagas) e 217 m² (Torre Manhattan, 3 suítes, suíte de serviço, 3 vagas), recebidas por porte-cochère como num hotel. Lazer em três pavimentos: complexo aquático com piscina de 25 m, piscina coberta de 25 m no rooftop da Torre Brooklyn, private pools com área gourmet, quadra de tênis com medidas oficiais da ITF, beach tennis, quadra coberta, circuito fitness de 225 m², spa, bosque e pet place; serviços de concierge, governança, in-room dining, dog walker e recreação infantil. Projeto de Königsberger Vannucchi, interiores de Débora Aguiar e paisagismo de Benedito Abbud. Lançamento de janeiro de 2024, entrega prevista para setembro de 2027 pela corretagem.',
+        area: ['164 m²: 3 suítes, dormitório e WC de serviço, 2 vagas vinculadas (Torre Brooklyn; opção de 3 suítes com living ampliado)', '217 m²: 3 suítes com banheira e chuveiro duplo na master, suíte de serviço, 3 vagas vinculadas (Torre Manhattan; opção com living ampliado)', 'Pela corretagem: 176 unidades de 164 m², 4 quartos, 4 banheiros e 2 vagas'],
+        tipologia: '3 suítes, 164 e 217 m², com dormitório ou suíte de serviço',
+        banheiros: 'Iluminação e ventilação naturais em todos os banhos do 217 m² (exceto lavabo); ponto de água quente em cozinha e banhos, cuba dupla e infraestrutura para ducha higiênica no banho master',
+        vagas: '2 vagas vinculadas e demarcadas no 164 m² e 3 no 217 m², com piso epóxi; vaga box com portão de enrolar em unidades específicas de cada torre; infraestrutura para um ponto de recarga de carro elétrico por apartamento',
+        torres: 'Duas torres residenciais, Manhattan e Brooklyn, com mais de 30 andares cada (térreo mais 31 pela corretagem), em terreno de 7.400 m², com o boulevard de lojas na esquina',
+        unidades: ['176 unidades, pela corretagem'],
+        pavimentos: ['Térreo: boulevard com 5 lojas, empório e restaurante, porte-cochères externo e interno, lobby central e lobbies das torres, espaço gourmet, The Lounge, quadra recreativa coberta, bosque com percurso de caminhada, terrace, quadras de tênis e beach tennis, pet place e delivery', '2º pavimento: sauna seca, pilates, fitness e crossfit, spinning, spa com hidromassagem, salas de massagem, brinquedoteca com terraço, jogos teens, salão de festas infantil, praça central, playground, piscina infantil, piscina adulto com raia de 25 m, gazebos, deck molhado e solário', 'Coberturas: piscina coberta com raia de 25 m no rooftop da Torre Brooklyn e private pools com área gourmet nas duas torres'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Michigan, 1.020, esquina com a Rua Guaraiúva · Brooklin, São Paulo',
+        infra: {
+          piscina: 'Complexo aquático com piscina adulto de 25 m, deck molhado, gazebos, daybeds e piscina infantil; piscina coberta de 25 m no rooftop da Torre Brooklyn; private pools com área gourmet nas coberturas',
+          academia: 'Circuito fitness de 225 m² com equipamentos Life Fitness: musculação, aeróbico, crossfit, sala de spinning e sala de pilates',
+          festas: 'Espaço gourmet, The Lounge e salão de festas infantil, entregues decorados por Débora Aguiar',
+          gourmet: 'Espaço gourmet, private pools com churrasqueira a carvão e chopeira, empório e restaurante no boulevard com in-room dining',
+          kids: 'Brinquedoteca integrada a terraço, playground, salão de festas infantil e espaço de jogos teens',
+          quadra: 'Quadra de tênis rápida com dimensões e recuos oficiais pela ITF, quadra de beach tennis com medidas oficiais (18 x 10 m) e quadra recreativa coberta com pé-direito duplo para basquete, futsal e pickleball',
+          portaria: 'Portaria blindada, sala de segurança, clausura de pedestres e veículos pela Rua Michigan, dois porte-cochères, câmeras perimetrais, controle de acesso nas áreas comuns e nos elevadores',
+          coworking: 'Spa com hidromassagem, salas de massagem individuais, sauna seca, bosque com mais de 50 m de percurso, pet place arborizado, bicicletário, espaço delivery com refrigerador e menu de serviços: concierge, governança, in-room dining, dog walker, health coach, recreação infantil e reparos'
+        },
+        lazer: ['Boulevard de lojas', 'Empório e restaurante', 'Porte-cochère', 'Lobby central', 'Espaço gourmet', 'The Lounge', 'Complexo aquático', 'Piscina de 25 m', 'Piscina coberta de 25 m', 'Private pools', 'Deck molhado', 'Solário', 'Gazebos', 'Quadra de tênis', 'Quadra de beach tennis', 'Quadra coberta', 'Fitness e crossfit', 'Spinning', 'Pilates', 'Spa com hidromassagem', 'Salas de massagem', 'Sauna seca', 'Brinquedoteca', 'Playground', 'Salão de festas infantil', 'Jogos teens', 'Bosque', 'Pet place', 'Bicicletário', 'Espaço delivery'],
+        diferenciais: ['Hall social privativo, suíte master com closet e cama king, persianas de enrolar preparadas para motorização e infraestrutura para automação', 'Infraestrutura para ar-condicionado na sala, no terraço e nos dormitórios, coifa, Wi-Fi, TV no terraço e churrasqueira a carvão', 'Laje nivelada entre terraço e sala, ralo linear e capa de granito nos terraços, peitoril de pedra nas janelas, revestimentos entregues nas áreas molhadas', 'Dormitório e WC de serviço no 164 m², suíte de serviço no 217 m², ponto para lavadora e secadora', 'Personal Home by Mitre: plantas, revestimentos, mármores, louças, metais e ar-condicionado escolhidos durante a obra', 'Gerador de conforto, som ambiente no fitness e nas festas, iluminação 100% LED, reúso de água de chuva e área para aquecimento solar'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Interiores', 'Débora Aguiar'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MNY + 'planta-164.webp', nome: '164 m² · padrão', meta: '3 suítes · 2 vagas · Torre Brooklyn' },
+          { src: MNY + 'planta-164-ampliado.webp', nome: '164 m² · living ampliado', meta: '3 suítes · 2 vagas · Torre Brooklyn' },
+          { src: MNY + 'planta-217.webp', nome: '217 m² · padrão', meta: '3 suítes · 3 vagas · Torre Manhattan' },
+          { src: MNY + 'planta-217-ampliado.webp', nome: '217 m² · living ampliado', meta: '3 suítes · 3 vagas · Torre Manhattan' }
+        ],
+        implantacao: [
+          { src: MNY + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, com o boulevard, os porte-cochères e as quadras' },
+          { src: MNY + 'implantacao-2.webp', nome: 'Implantação e lazer', meta: 'Áreas de lazer, com o complexo aquático' }
+        ],
+        perto: {
+          grupos: [
+            ['Gastronomia', [['Lar Bianco', '2 min a pé'], ['Pizzaria A Esperança', '3 min a pé'], ['Lolla Osteria', '5 min a pé'], ['Verissimo', '2 min'], ['Vicolo Nostro', '7 min'], ['Fogo de Chão', '7 min'], ['Jardineira', '8 min'], ['Pobre Juan e Barbacoa', '10 min'], ['Adega Santiago e Due Cuochi', '12 min']]],
+            ['Compras e parques', [['JK Iguatemi', '6 min'], ['Parque do Povo', '6 min'], ['Bosque do Brooklin', '8 min'], ['Shopping Cidade Jardim', '12 min'], ['Parque Burle Marx', '15 min'], ['Shopping Morumbi', '16 min'], ['Hípica Paulista', '4 min'], ['Hilton Morumbi e Hyatt', '6 min']]],
+            ['Ensino e saúde', [['Hospital Premier', '6 min a pé'], ['Colégio C.E.C.I.', '3 min a pé'], ['Escola Patoxó Simão Frugis', '4 min a pé'], ['Colégio Vértice', '8 min'], ['Hospital Blanc', '9 min'], ['Insper e Anhembi Morumbi', '12 min'], ['Hospital São Luiz Morumbi', '13 min'], ['Hospital Einstein', '15 min'], ['Porto Seguro e Pueri Domus', '18 min'], ['Graded School', '24 min']]],
+            ['Mobilidade', [['Academia Cia Athletica', '9 min'], ['Aeroporto de Congonhas', '20 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro quando não indicado.'
+        },
+        legal: 'O book diz que o empreendimento só será comercializado após a aprovação do projeto e o registro do memorial de incorporação (Lei 4.591/64); futura intermediação por LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Serviços obrigatórios e pay-per-use pela administradora, conforme a convenção, podendo ser descontinuados; empório e restaurante nas lojas do setor comercial, sujeitos à contratação; equipamentos Life Fitness ou equivalentes; vagas box só nas unidades indicadas de cada torre. Material recebido como "Book Investidores". Pela corretagem: lançamento em janeiro de 2024, em construção, entrega prevista para setembro de 2027, 176 unidades de 164 m² em torre de térreo mais 31 andares, terreno de 7.400 m².',
+        torre: MNY + 'fachada-torres.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN_MITRE,
+        fotos: [
+          fotoMNY('fachada-torres', 'Torres Manhattan e Brooklyn'),
+          fotoMNY('fachada-detalhe', 'Detalhe da fachada'),
+          fotoMNY('boulevard', 'Boulevard de lojas na esquina da Guaraiúva com a Michigan'),
+          fotoMNY('boulevard-2', 'Boulevard'),
+          fotoMNY('loja-florida-2', 'Loja na Rua Flórida'),
+          fotoMNY('loja-florida-3', 'Loja na Rua Flórida'),
+          fotoMNY('lobby-central', 'Lobby central'),
+          fotoMNY('espaco-gourmet', 'Espaço gourmet'),
+          fotoMNY('the-lounge', 'The Lounge'),
+          fotoMNY('complexo-aquatico', 'Complexo aquático, voo de pássaro'),
+          fotoMNY('piscina', 'Piscina com raia de 25 m'),
+          fotoMNY('piscina-coberta', 'Piscina coberta com raia de 25 m, rooftop da Torre Brooklyn'),
+          fotoMNY('private-pool', 'Private pool com área gourmet'),
+          fotoMNY('spa', 'Spa com hidromassagem'),
+          fotoMNY('sala-massagem', 'Sala de massagem'),
+          fotoMNY('sauna-seca', 'Sauna seca'),
+          fotoMNY('quadra-tenis', 'Quadra de tênis com medidas oficiais da ITF'),
+          fotoMNY('beach-tennis', 'Quadra de beach tennis'),
+          fotoMNY('quadra-coberta', 'Quadra recreativa coberta'),
+          fotoMNY('fitness-crossfit', 'Espaço fitness e crossfit'),
+          fotoMNY('fitness', 'Fitness'),
+          fotoMNY('spinning', 'Sala de spinning'),
+          fotoMNY('playground', 'Playground'),
+          fotoMNY('brinquedoteca', 'Brinquedoteca'),
+          fotoMNY('festas-infantil', 'Salão de festas infantil'),
+          fotoMNY('jogos-teen', 'Jogos teens'),
+          fotoMNY('pet-place', 'Pet place'),
+          fotoMNY('bicicletario', 'Bicicletário'),
+          fotoMNY('delivery', 'Espaço delivery'),
+          fotoMNY('living-164', 'Living do apartamento de 164 m², Torre Brooklyn'),
+          fotoMNY('living-217', 'Living do apartamento de 217 m², Torre Manhattan')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Edition NY Soho Apartments',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin',
+        resumo: 'Studios, 1 e 2 dormitórios · 23 a 92 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'A torre de studios e apartamentos compactos do conjunto Haus Mitre Edition NY, no Brooklin, com frente para a Rua Flórida: térreo mais 23 andares e 184 unidades pela corretagem, de 23 a 92 m², com studios de 23 m², apartamentos de 33 e de 60 m² (2 dormitórios) e plantas de 1 e 2 dormitórios. Lazer em dois pavimentos: no térreo, lounge coworking, festas gourmet, lavanderia, fitness interno e externo, mini market e delivery, com duas lojas na fachada ativa; no 19º andar, piscina com deck molhado, spa com hidromassagem, solário, bar gourmet e sauna outdoor com vista para o skyline de São Paulo. Projeto de Königsberger Vannucchi, interiores de Débora Aguiar e paisagismo de Benedito Abbud. Lançamento de abril de 2024, entrega prevista para setembro de 2027 pela corretagem.',
+        area: ['Studio de 23 m² (final 05, do 1º ao 23º pavimento)', 'Apartamento de 33 m² (final 07, do 2º ao 23º) e de 60 m² com 2 dormitórios (final 14, do 3º ao 18º)', 'Finais 01 (2º ao 23º) e 12 (6º ao 18º) com planta na apresentação, sem metragem; pela corretagem o conjunto vai de 23 a 92 m², 1 e 2 dormitórios, até 1 vaga'],
+        tipologia: 'Studios, 1 e 2 dormitórios, de 23 a 92 m²',
+        banheiros: '1 ou 2 banheiros pela corretagem; infraestrutura para ducha higiênica na suíte, ponto de água quente e revestimento entregue nas áreas molhadas',
+        vagas: 'Até 1 vaga, pela corretagem; estacionamento não residencial no térreo',
+        torres: 'Torre única, térreo mais 23 andares, no terreno de 7.400 m² do conjunto Haus Mitre Edition NY (corretagem)',
+        unidades: ['184 unidades, pela corretagem'],
+        pavimentos: ['Térreo: acessos de pedestres e veículos com port-cochère, lojas 04 e 05, estacionamento não residencial, delivery, mini market, lounge coworking, festas gourmet, lavanderia, espaço fitness e fitness externo', '1º ao 18º: studios, 1 e 2 dormitórios', '19º: lazer com bar gourmet, sauna outdoor, piscina adulto, deck molhado, spa com hidromassagem e solário, mais studios e 1 dormitório', '20º ao 23º: studios e 1 dormitório'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Flórida, no conjunto do Haus Mitre Edition NY (Rua Michigan, 1.020) · Brooklin, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto descoberta no 19º pavimento, com deck molhado, spa com hidromassagem e solário',
+          academia: 'Espaço fitness com equipamentos Life Fitness, ar-condicionado e som ambiente, e fitness externo',
+          festas: 'Festas gourmet com ar-condicionado e som ambiente',
+          gourmet: 'Bar gourmet no 19º e festas gourmet no térreo',
+          kids: '',
+          quadra: '',
+          portaria: 'Portaria blindada, clausura de pedestres e veículos, sala de segurança, câmeras perimetrais, controle de acesso nas áreas comuns e nos elevadores',
+          coworking: 'Lounge coworking, lavanderia pay-per-use, mini market, espaço delivery com refrigerador e Wi-Fi nas áreas comuns'
+        },
+        lazer: ['Lounge coworking', 'Festas gourmet', 'Lavanderia', 'Espaço fitness', 'Fitness externo', 'Mini market', 'Delivery', 'Bar gourmet', 'Sauna outdoor', 'Piscina adulto', 'Deck molhado', 'Spa com hidromassagem', 'Solário', 'Lojas na fachada'],
+        diferenciais: ['Unidades entregues com revestimento nas áreas molhadas, capa de granito, laje nivelada e peitoril em pedra', 'Infraestrutura para ar-condicionado no estar e nos dormitórios, área técnica para condensadora e ponto de grill elétrico', 'Persiana de enrolar na suíte, ducha higiênica, cooktop de 4 bocas e ponto para lava e seca nos apartamentos maiores', 'Áreas comuns entregues equipadas e decoradas por Débora Aguiar, paisagismo de Benedito Abbud com espécies nativas', 'Gerador para 100% das unidades e um elevador, acesso social e de serviço independentes com clausura, dois acessos de serviço', 'Lazer em dois pavimentos, com sauna outdoor com vista para o skyline de São Paulo'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Interiores', 'Débora Aguiar'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MSO + 'planta-23.webp', nome: '23 m² · studio', meta: 'Final 05 · 1º ao 23º pavimento' },
+          { src: MSO + 'planta-33.webp', nome: '33 m²', meta: 'Final 07 · 2º ao 23º pavimento' },
+          { src: MSO + 'planta-60.webp', nome: '60 m² · 2 dormitórios', meta: 'Final 14 · 3º ao 18º pavimento' },
+          { src: MSO + 'planta-final-01.webp', nome: 'Final 01', meta: '2º ao 23º pavimento · metragem no material de vendas' },
+          { src: MSO + 'planta-final-12.webp', nome: 'Final 12 · 2 dormitórios', meta: '6º ao 18º pavimento · metragem no material de vendas' }
+        ],
+        implantacao: [
+          { src: MSO + 'implantacao-terreo.webp', nome: 'Implantação', meta: 'Térreo, com lojas, lazer e acessos' },
+          { src: MSO + 'implantacao-19.webp', nome: '19º pavimento', meta: 'Lazer, com piscina, spa, bar gourmet e sauna outdoor' },
+          { src: MSO + 'planta-pavimento.webp', nome: 'Pavimento tipo', meta: 'Finais 01 a 15' }
+        ],
+        perto: {
+          grupos: [
+            ['Gastronomia', [['Lar Bianco', '2 min a pé'], ['Pizzaria A Esperança', '3 min a pé'], ['Lolla Osteria', '5 min a pé'], ['Verissimo', '2 min'], ['Vicolo Nostro', '7 min'], ['Fogo de Chão', '7 min']]],
+            ['Compras e parques', [['JK Iguatemi', '6 min'], ['Parque do Povo', '6 min'], ['Bosque do Brooklin', '8 min'], ['Shopping Cidade Jardim', '12 min'], ['Shopping Morumbi', '16 min'], ['Hípica Paulista', '4 min']]],
+            ['Ensino e saúde', [['Hospital Premier', '6 min a pé'], ['Colégio C.E.C.I.', '3 min a pé'], ['Colégio Vértice', '8 min'], ['Insper', '12 min'], ['Hospital Einstein', '15 min'], ['Aeroporto de Congonhas', '20 min']]]
+          ],
+          nota: 'Tempos do book do conjunto Haus Mitre Edition NY, de carro quando não indicado.'
+        },
+        legal: 'A apresentação não traz texto de registro nem data; a intermediação do conjunto Edition NY é de LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Lavanderia com sistema pay-per-use; áreas comuns conforme memorial descritivo. Pela corretagem (apto.vc): lançamento em abril de 2024, em construção, entrega prevista para setembro de 2027, torre única de térreo mais 23 andares com 184 unidades de 23 a 92 m², 1 e 2 dormitórios, até 1 vaga, na Rua Flórida.',
+        torre: MSO + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN_MITRE,
+        fotos: [
+          fotoMSO('fachada', 'Torre Soho', true),
+          fotoMSO('loja-04', 'Loja 04, na fachada ativa'),
+          fotoMSO('loja-05', 'Loja 05, na fachada ativa'),
+          fotoMSO('delivery', 'Delivery'),
+          fotoMSO('lounge-coworking', 'Lounge coworking'),
+          fotoMSO('festas-gourmet', 'Festas gourmet'),
+          fotoMSO('lavanderia', 'Lavanderia'),
+          fotoMSO('fitness', 'Espaço fitness'),
+          fotoMSO('piscina', 'Piscina adulto no 19º pavimento'),
+          fotoMSO('sauna-outdoor', 'Sauna outdoor'),
+          fotoMSO('studio-23', 'Studio de 23 m²'),
+          fotoMSO('apartamento-33', 'Apartamento de 33 m²'),
+          fotoMSO('apartamento-60', 'Apartamento de 60 m²')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Station Brooklin',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin',
+        resumo: 'Studios a 2 dormitórios · 26 a 63 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'A 190 m da Estação Brooklin do Metrô, na Av. Roque Petroni Júnior, 130, ao lado do eixo corporativo da Berrini e da Chucri Zaidan: torre única de térreo mais 24 andares com 530 unidades pela corretagem, do studio de 26 m² ao 2 dormitórios de 63 m², com arquitetura inspirada em Tribeca (cerâmicas Terracota e Central Dark, pórticos e faixas horizontais) e interiores em terracota, concreto, caramelo, tijolo e couro. Lazer elevado a mais de 10 m da avenida: piscina com raia de 25 m, private terrace, celebration hall, steak bar, fitness center com assessoria da Cia Athletica, game lounge, sports arena, kids lounge, beauty care e massagem agendados pelo app Bluma, coworking, laundry by OMO, pet care com a Cobasi e mini market 24 h com a Nutricar. Lançamento de maio de 2025, entrega prevista para julho de 2028 pela corretagem.',
+        area: ['Studio de 26 m² (final 05)', '1 dormitório de 31 m² (final 12) e de 43 m² com suíte e vaga (final 21), com opção de living ampliado', '2 dormitórios de 63 m² com suíte e vaga (final 20), com opção de living ampliado', 'Pela corretagem: 26 a 64 m², studio a 2 quartos, até 1 suíte, 1 banheiro, até 1 vaga'],
+        tipologia: 'Studios, 1 e 2 dormitórios, de 26 a 63 m²',
+        banheiros: '1 banheiro por unidade, com lavabo no 43 m²; bacia com válvula dual flux, bancadas entregues, ponto de água quente e revestimento nas áreas molhadas',
+        vagas: 'Vaga nas unidades de 43 e 63 m²; haverá unidades sem direito a vaga, conforme a aprovação do empreendimento; estação de recarga para carro elétrico',
+        torres: 'Torre única, térreo mais 24 andares, em terreno de 3.200 m² (corretagem), entre a Av. Roque Petroni Júnior e a Rua Sempre Vivas',
+        unidades: ['530 unidades, pela corretagem'],
+        pavimentos: ['Térreo: lobby, portaria blindada com clausura, espaço delivery, mini market e laundry', 'Pavimento de lazer a mais de 10 m da avenida: áreas internas (fitness center, sauna, massagem, descanso, beauty care, coworking, game lounge, steak bar, celebration hall, private terrace e kids lounge) e externas (piscina adulto com raia de 25 m, piscina infantil, solarium, spa, playground, square e sports arena)'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Roque Petroni Júnior, 130 · Brooklin, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto descoberta com raia de 25 m, piscina infantil, solarium e spa',
+          academia: 'Fitness Center com projeto e assessoria da Cia Athletica, equipamentos de última geração e aulas em grupo Team Training',
+          festas: 'Celebration Hall e Private Terrace',
+          gourmet: 'Steak Bar',
+          kids: 'Kids Lounge e playground',
+          quadra: 'Sports Arena',
+          portaria: 'Portaria blindada com clausura de pedestres e veículos, infraestrutura para segurança perimetral e controle de acesso, espaço delivery isolado e controlado pela portaria',
+          coworking: 'Coworking, Game Lounge, Beauty Care e massagem com agendamento pelo app Bluma, laundry by OMO, pet care com a Cobasi, mini market 24 h com a Nutricar, lockers inteligentes e recarga para carro elétrico'
+        },
+        lazer: ['Lobby', 'Fitness Center', 'Sauna', 'Massagem', 'Descanso', 'Beauty Care', 'Laundry', 'Coworking', 'Game Lounge', 'Steak Bar', 'Celebration Hall', 'Private Terrace', 'Kids Lounge', 'Piscina adulto com raia de 25 m', 'Piscina infantil', 'Solarium', 'Spa', 'Playground', 'Square', 'Sports Arena', 'Mini Market', 'Pet Care', 'Espaço Delivery'],
+        diferenciais: ['Fachada em cerâmicas Terracota e Central Dark, com pórticos e faixas horizontais inspirados em Tribeca', 'Infraestrutura para ar-condicionado e aquecedor a gás, ponto de água quente, bancadas entregues e piso laminado nos dormitórios', 'Laje nivelada entre terraço e sala, grill elétrico no terraço, persiana de enrolar na suíte e ponto para lava-louças', 'Personal Home by Mitre para escolher plantas, revestimentos, louças, metais e ar-condicionado durante a obra', 'Gerador entregue, lazer entregue equipado, ar-condicionado nas áreas comuns, iluminação 100% LED e reúso de água de chuva', 'Serviços pay-per-use: Bluma (estética), OMO (lavanderia), Cobasi (pet), Nutricar (mini market), lockers e aulas de yoga, futebol e balé'],
+        creditos: [['Arquitetura', 'Alexandre Milleu'], ['Interiores', 'Paula Aveiro'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Fitness', 'Cia Athletica'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MSB + 'planta-26.webp', nome: '26 m² · studio', meta: 'Final 05' },
+          { src: MSB + 'planta-31.webp', nome: '31 m² · 1 dormitório', meta: 'Final 12' },
+          { src: MSB + 'planta-43.webp', nome: '43 m² · 1 suíte', meta: 'Final 21 · 1 vaga' },
+          { src: MSB + 'planta-43-opcao.webp', nome: '43 m² · living ampliado', meta: '1 suíte · 1 vaga' },
+          { src: MSB + 'planta-63.webp', nome: '63 m² · 2 dormitórios', meta: 'Final 20 · 1 suíte · 1 vaga' },
+          { src: MSB + 'planta-63-opcao.webp', nome: '63 m² · living ampliado', meta: '2 dormitórios · 1 suíte · 1 vaga' }
+        ],
+        implantacao: [
+          { src: MSB + 'implantacao.webp', nome: 'Implantação das áreas comuns', meta: 'Entre a Rua Sempre Vivas e a Av. Roque Petroni Júnior' }
+        ],
+        perto: {
+          grupos: [
+            ['Gastronomia', [['Vicolo Nostro', '3 min'], ['Portucho', '3 min'], ['Pizzaria A Esperança', '3 min'], ['Jucalemão', '5 min'], ['Bar do Juarez', '6 min'], ['Manga Bar', '6 min'], ['Natory Sushi', '7 min'], ['Lolla Osteria', '7 min']]],
+            ['Serviços e lazer', [['Bluefit', '2 min'], ['Buddha Spa Av. Morumbi', '3 min'], ['Padaria Pássaros e Flores', '4 min'], ['Shopping Market Place', '5 min'], ['Carrefour', '5 min'], ['Cia Athletica', '6 min'], ['Shopping Morumbi', '6 min'], ['Shopping Ibirapuera', '7 min'], ['Parque do Povo', '7 min'], ['Parque Ibirapuera', '12 min'], ['Parque Bruno Covas', '12 min']]],
+            ['Mobilidade', [['Av. Morumbi', '2 min'], ['Estação Brooklin', '3 min'], ['Av. Nações Unidas', '3 min'], ['Av. Santo Amaro', '3 min'], ['Av. Vereador José Diniz', '4 min'], ['Ponte Estaiada', '6 min'], ['Av. Bandeirantes', '7 min'], ['Av. Berrini', '10 min'], ['Av. Faria Lima', '11 min']]],
+            ['Saúde, ensino e cultura', [['Droga Raia e Lavoisier', '4 min'], ['UNIP Chácara Santo Antônio', '4 min'], ['Cultura Inglesa Santo Amaro', '6 min'], ['Estácio Campo Belo e CNA', '7 min'], ['Hospital Albert Einstein', '10 min'], ['Hospital São Luiz Itaim', '12 min'], ['Teatro Vivo', '3 min'], ['Casa de Vidro Lina Bo Bardi', '6 min'], ['Teatro Multiplan', '6 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro.'
+        },
+        legal: 'O book (impresso em fevereiro de 2025) diz que o empreendimento só será comercializado após a aprovação do projeto e o registro do memorial de incorporação (Lei 4.591/64); Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. As vagas são direcionadas a algumas unidades residenciais e nem todas terão direito a vaga. Serviços obrigatórios e pay-per-use conforme a convenção, pela administradora, podendo ser descontinuados; maquinário da lavanderia por empresa especializada. O gerador atende um elevador, a segurança, os portões, a iluminação de circulação e o Celebration Hall. Pela corretagem: lançamento em maio de 2025, em construção, entrega prevista para julho de 2028, torre de térreo mais 24 andares com 530 unidades, terreno de 3.200 m².',
+        torre: MSB + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN_MITRE,
+        fotos: [
+          fotoMSB('fachada', 'Fachada', true),
+          fotoMSB('embasamento', 'Embasamento'),
+          fotoMSB('lobby', 'Lobby'),
+          fotoMSB('piscina', 'Piscina adulto com raia de 25 m'),
+          fotoMSB('private-terrace', 'Private Terrace'),
+          fotoMSB('celebration-hall', 'Celebration Hall'),
+          fotoMSB('steak-bar', 'Steak Bar'),
+          fotoMSB('fitness-center', 'Fitness Center'),
+          fotoMSB('game-lounge', 'Game Lounge'),
+          fotoMSB('sports-arena', 'Sports Arena'),
+          fotoMSB('kids-lounge', 'Kids Lounge'),
+          fotoMSB('beauty-care', 'Beauty Care'),
+          fotoMSB('massagem', 'Massagem'),
+          fotoMSB('coworking', 'Coworking'),
+          fotoMSB('pet-care', 'Pet Care'),
+          fotoMSB('laundry', 'Laundry by OMO'),
+          fotoMSB('mini-market', 'Mini Market')
+        ]
+      },
+      {
+        nome: 'ML Brooklin Selection',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin',
+        resumo: '3 dormitórios · 84 e 118 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'O primeiro produto da linha ML, parceria da Mitre com a Lucio: na Rua Joaquim Guarani, 248, a 5 minutos a pé da Estação Brooklin e perto do eixo corporativo da Roque Petroni, da Chucri Zaidan e da Berrini. O conjunto tem setor comercial, a Torre ML Selection, residencial, e a Torre ML Edition, de studios, com acesso pelo 1º subsolo. Na Torre ML Selection, apartamentos de 118 m² (3 suítes, ou 2 suítes com living ampliado, 2 vagas) e de 84 m² (3 dormitórios com 1 suíte, ou 2 suítes com living ampliado, 1 vaga), com lazer exclusivo: sky pool, festas gourmet, lobby, sports bar, fitness, playground, brinquedoteca, spa com sala de massagem, sauna, central delivery e pet place. Lançado em dezembro de 2022 e entregue em julho de 2026 pela corretagem.',
+        area: ['118 m²: 3 suítes e 2 vagas determinadas (opção de 2 suítes com living ampliado)', '84 m²: 3 dormitórios com 1 suíte e 1 vaga determinada (opção de 2 suítes com living ampliado)', 'Torre ML Edition, no mesmo conjunto: studios de 23 e 24 m², sem vaga, entregues em março de 2026 pela corretagem'],
+        tipologia: '3 dormitórios, 84 e 118 m²',
+        banheiros: '2 e 3 banheiros; iluminação e ventilação naturais nos banhos das suítes, ponto de água quente nas bancadas da cozinha e nos banhos (exceto lavabo)',
+        vagas: '2 vagas determinadas no 118 m² e 1 no 84 m² (finais 3 e 4 do 1º ao 5º pavimento sem vaga determinada)',
+        torres: 'Conjunto com setor comercial, Torre ML Selection (residencial, acesso pelo térreo) e Torre ML Edition (studios, acesso pelo 1º subsolo); 2 torres pela corretagem',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Lazer de uso exclusivo da Torre ML Selection: sky pool, festas gourmet, lobby, sports bar, fitness, playground, brinquedoteca, spa com sala de massagem, sauna, central delivery e pet place'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Joaquim Guarani, 248 · Brooklin, São Paulo',
+        infra: {
+          piscina: 'Sky Pool, no alto da torre',
+          academia: 'Fitness',
+          festas: 'Festas gourmet e sports bar',
+          gourmet: 'Festas gourmet',
+          kids: 'Playground e brinquedoteca',
+          quadra: '',
+          portaria: 'Portarias blindadas, controle de acesso nas áreas comuns e câmeras de segurança perimetral entregues',
+          coworking: 'Spa com sala de massagem, sauna, central delivery e pet place'
+        },
+        lazer: ['Sky Pool', 'Festas Gourmet', 'Lobby', 'Sports Bar', 'Fitness', 'Playground', 'Brinquedoteca', 'Spa', 'Sala de massagem', 'Sauna', 'Central Delivery', 'Pet Place'],
+        diferenciais: ['Terraço entregue com churrasqueira a carvão e piso nivelado com o living', 'Infraestrutura de ar-condicionado em dormitórios, sala e terraço, com área técnica para condensadoras', 'Persiana de enrolar nos quartos, ponto para coifa, água quente em cozinha e banhos', 'Reúso de água de chuva, área para aquecimento solar, torneiras com temporizador e LED nas áreas comuns', 'Projeto de LE Arquitetos, paisagismo de Benedito Abbud e interiores de Claudia Albertini', 'Mitre Experience: app com serviços, acompanhamento da obra e eventos para clientes'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Interiores', 'Claudia Albertini'], ['Incorporação', 'Mitre Realty e Lucio']],
+        plantas: [
+          { src: MML + 'planta-118.webp', nome: '118 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: MML + 'planta-118-2-suites.webp', nome: '118 m² · living ampliado', meta: '2 suítes · 2 vagas' },
+          { src: MML + 'planta-84.webp', nome: '84 m² · padrão', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: MML + 'planta-84-2-suites.webp', nome: '84 m² · living ampliado', meta: '2 suítes · 1 vaga' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Brooklin do Metrô', '5 min a pé'], ['Estação Campo Belo', '1 min'], ['Estação Eucaliptos', '2 min'], ['Estação Moema', '4 min'], ['Estação AACD-Servidor', '4 min'], ['Estação Hospital São Paulo', '9 min'], ['Estação Santa Cruz', '11 min']]],
+            ['Lazer e compras', [['Shopping Morumbi', '3 min'], ['Vicolo Nostro', '4 min'], ['Parque Linear Bruno Covas', '6 min'], ['Teatro Vivo', '6 min'], ['Colégio Stockler', '6 min'], ['Parque do Povo', '14 min'], ['JK Iguatemi', '15 min']]]
+          ],
+          nota: 'Tempos do próprio book; as estações são da Linha 5-Lilás, a partir da Estação Brooklin.'
+        },
+        legal: 'O book diz que o empreendimento só seria comercializado após a aprovação do projeto e o registro do memorial de incorporação (Lei 4.591/64); LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP J-24073, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. O setor studios tem unidades não residenciais com serviços obrigatórios e pay-per-use e unidades residenciais com serviços pay-per-use, conforme a convenção. Piso interno das unidades não entregue pela construtora. Pela corretagem: lançamento em dezembro de 2022, Torre ML Selection entregue em julho de 2026 e Torre ML Edition (studios de 23 e 24 m², sem vaga) em março de 2026, pronto para morar; disponibilidade sob consulta.',
+        torre: MML + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN_MITRE,
+        fotos: [
+          fotoMML('fachada', 'Torre ML Selection', true),
+          fotoMML('foto-aerea', 'Foto aérea, com as estações da Linha 5-Lilás'),
+          fotoMML('sky-pool', 'Sky Pool', true),
+          fotoMML('festas-gourmet', 'Festas gourmet'),
+          fotoMML('festas-gourmet-2', 'Festas gourmet'),
+          fotoMML('lobby', 'Lobby'),
+          fotoMML('sports-bar', 'Sports bar'),
+          fotoMML('fitness', 'Fitness'),
+          fotoMML('playground', 'Playground'),
+          fotoMML('brinquedoteca', 'Brinquedoteca'),
+          fotoMML('spa-massagem', 'Spa com sala de massagem'),
+          fotoMML('sauna', 'Sauna'),
+          fotoMML('central-delivery', 'Central delivery'),
+          fotoMML('pet-place', 'Pet place'),
+          fotoMML('living-118', 'Living do apartamento de 118 m²'),
+          fotoMML('terraco-118', 'Terraço do apartamento de 118 m²'),
+          fotoMML('living-84', 'Living do apartamento de 84 m²'),
+          fotoMML('terraco-84', 'Terraço do apartamento de 84 m²')
+        ]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
       ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
-      ['Haus Mitre Edition NY Soho Apartments', 'Brooklin', '1 e 2 dormitórios', '23 a 92 m²', 'Em construção'],
-      ['Haus Mitre Edition NY', 'Brooklin', '4 dormitórios', '164 m²', 'Em construção'],
-      ['Haus Mitre Station Brooklin', 'Brooklin', 'Studios a 2 dormitórios', '26 a 64 m²', 'Em construção'],
       ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
       ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
       ['Raízes L\'Avenir', 'Vila Prudente', '3 e 4 dormitórios', '109 e 132 m²', 'Em construção'],
@@ -6457,7 +6764,6 @@
       ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
       ['Haus Mitre Perdizes', 'Perdizes', '1 dormitório', '38 m²', 'Pronto para morar'],
       ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
-      ['ML Brooklin Selection', 'Brooklin', '3 dormitórios', '84 e 118 m²', 'Pronto para morar'],
       ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
       ['Raízes Premium Mooca', 'Mooca', '3 dormitórios', '82 m²', 'Pronto para morar'],
       ['Raízes Reserve Mooca', 'Mooca', '3 dormitórios', '85 m²', 'Pronto para morar'],
