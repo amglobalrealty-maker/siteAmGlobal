@@ -5944,7 +5944,49 @@
           fotoLGR('fachada', 'Fachada, pelo cartão do tour 360º', true)
         ]
       }
-    ]
+    ],
+    /* (11/11/2026) MITRE REALTY: ela mandou a logo e disse "outra construtora de sp". Ainda sem
+       material: a lista e a de imoveis a venda da propria Mitre na corretagem (apto.vc), so com
+       nome, bairro, tipologia, metragem e status; fotos, plantas e ficha entram com os books.
+       [nome, bairro, tipologia, metragem, status, cidade (capital se vazio)] */
+    'Mitre': [
+      ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
+      ['Althea by Mitre', 'Campo Belo', '3 a 5 dormitórios', '223 e 442 m²', 'Lançamento'],
+      ['Casa Parque Cerâmica', 'São José, São Caetano do Sul', '2 a 4 dormitórios', '133 a 381 m²', 'Lançamento', 'São Caetano do Sul'],
+      ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
+      ['Haus Mitre Edition NY Soho Apartments', 'Brooklin', '1 e 2 dormitórios', '23 a 92 m²', 'Em construção'],
+      ['Haus Mitre Edition NY', 'Brooklin', '4 dormitórios', '164 m²', 'Em construção'],
+      ['Haus Mitre Station Brooklin', 'Brooklin', 'Studios a 2 dormitórios', '26 a 64 m²', 'Em construção'],
+      ['Haus Mitre Station Moema', 'Moema', 'Studios e 1 dormitório', '23 a 35 m²', 'Em construção'],
+      ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
+      ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
+      ['GIO Jardins', 'Jardins', 'Studios e 2 dormitórios', '23 e 178 m²', 'Em construção'],
+      ['Daslu Residences São Paulo', 'Jardins', '2 e 3 dormitórios', '114 a 157 m²', 'Em construção'],
+      ['Raízes Premium Campo Belo', 'Campo Belo', '1 a 3 dormitórios', '38 a 85 m²', 'Em construção'],
+      ['Raízes L\'Avenir', 'Vila Prudente', '3 e 4 dormitórios', '109 e 132 m²', 'Em construção'],
+      ['Raízes Jardim São Paulo', 'Jardim São Paulo', '3 e 4 dormitórios', '106 e 127 m²', 'Em construção'],
+      ['Origem Guilhermina', 'Vila Guilhermina', '2 dormitórios', '40 e 54 m²', 'Em construção'],
+      ['Haus Mitre Reserva Vila Mariana', 'Vila Mariana', '4 dormitórios', '280 m²', 'Pronto para morar'],
+      ['Haddock 885', 'Jardins', 'Studios a 3 dormitórios', '29 a 185 m²', 'Pronto para morar'],
+      ['Haus Mitre Jardins', 'Jardins', 'Studios a 3 dormitórios', '23 a 184 m²', 'Pronto para morar'],
+      ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
+      ['Haus Mitre Perdizes', 'Perdizes', '1 dormitório', '38 m²', 'Pronto para morar'],
+      ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
+      ['ML Brooklin Selection', 'Brooklin', '3 dormitórios', '84 e 118 m²', 'Pronto para morar'],
+      ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
+      ['Raízes Premium Mooca', 'Mooca', '3 dormitórios', '82 m²', 'Pronto para morar'],
+      ['Raízes Reserve Mooca', 'Mooca', '3 dormitórios', '85 m²', 'Pronto para morar'],
+      ['Raízes Vila Mascote', 'Vila Mascote', '3 dormitórios', '81 m²', 'Pronto para morar'],
+      ['Raízes Tatuapé', 'Tatuapé', '2 dormitórios', '49 e 57 m²', 'Pronto para morar'],
+      ['Raízes Premium Butantã', 'Butantã', '1 e 3 dormitórios', '39 e 119 m²', 'Pronto para morar'],
+      ['Raízes Reserve', 'Vila Prudente', 'Studios a 3 dormitórios', '26 a 119 m²', 'Pronto para morar'],
+      ['Raízes Vila Prudente', 'Vila Prudente', '1 e 2 dormitórios', '26 e 62 m²', 'Pronto para morar'],
+      ['Raízes Alto Freguesia do Ó', 'Vila Primavera', 'Studios', '25 m²', 'Pronto para morar'],
+      ['Raízes Tucuruvi Jacarandá', 'Tucuruvi', '1 dormitório', '26 m²', 'Pronto para morar'],
+      ['Origem Penha', 'Penha de França', '2 dormitórios', '46 m²', 'Pronto para morar']
+    ].map(function (x) {
+      return { nome: x[0], bairro: x[1], tipologia: x[2], area: x[3], status: x[4], cidade: x[5] || 'São Paulo, capital', valores: 'Sob consulta' };
+    })
   };
 
   /* As LOGOS das parceiras, pelo nome exato: PNG de fundo transparente em fotos/parcerias/.
@@ -5953,7 +5995,9 @@
   var LOGOS = {
     'Vitacon': { src: 'fotos/parcerias/vitacon.png', w: 487, h: 100 },
     // (10/11/2026) tirada em vetor do book e pintada no dourado do logo que ela mandou; 2x (200 px de altura)
-    'Living': { src: 'fotos/parcerias/living.png', w: 367, h: 200 }
+    'Living': { src: 'fotos/parcerias/living.png', w: 367, h: 200 },
+    // (11/11/2026) ela mandou branca no preto; invertida e recortada por amglobal-logo.cjs (opcao "inverter")
+    'Mitre': { src: 'fotos/parcerias/mitre.png', w: 406, h: 103 }
   };
 
   /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
@@ -5963,7 +6007,7 @@
      fora desta lista somem, e os lugares sem nenhuma aparecem como "a anunciar". As outras
      continuam em PAISES, guardadas com os exemplos: para trazer uma de volta, ponha o nome aqui
      e os empreendimentos dela em EMPREENDIMENTOS. Lista vazia = todas aparecem, em texto. */
-  var NO_AR = ['Vitacon', 'Living'];
+  var NO_AR = ['Vitacon', 'Living', 'Mitre'];
   var filtrado = NO_AR.length > 0;
   // as parcerias que aparecem numa cidade, cada uma com o indice original (o do endereco #pais/uf/cidade/indice)
   function parceriasDe(c) {
