@@ -744,6 +744,23 @@
   var fotoLP = fotoEm(LP), fotoLH = fotoEm(LH);
   var LE = L + 'hectare/', LD = L + 'duett/', LA = L + 'arq/', LZ = L + 'palazzo/', LV = L + 'villaggio/';
   var fotoLE = fotoEm(LE), fotoLD = fotoEm(LD), fotoLA = fotoEm(LA), fotoLZ = fotoEm(LZ), fotoLV = fotoEm(LV);
+  // (11/11/2026) e os da Zona Norte, da pasta "ZONA NORTE (5)" dela
+  var LX = L + 'exclusivefo/', LT = L + 'exclusivetucuruvi/', LG = L + 'villagefo/', LU = L + 'uniquefo/';
+  var fotoLX = fotoEm(LX), fotoLT = fotoEm(LT), fotoLG = fotoEm(LG), fotoLU = fotoEm(LU);
+  var ZN_FREGUESIA = {
+    titulo: 'A região · Freguesia do Ó',
+    texto: 'Fundada em 1580, a Freguesia do Ó é o distrito mais antigo da Zona Norte e um bairro de vizinhança familiar, com o Largo da Matriz e seu casario, feiras e comércio de rua. As avenidas Miguel Conejo e Inajar de Souza ligam o bairro à Marginal Tietê em poucos minutos, com o Parque Rodrigo de Gásperi, o Shopping Freguesia e os hospitais da região por perto.',
+    numeros: [['1580', 'ano de fundação do bairro, o mais antigo da Zona Norte'], ['3 min', 'das avenidas Inajar de Souza e Miguel Conejo'], ['3', 'lançamentos da Living no bairro: Grand Exclusive, Grand Village e Unique'], ['10 min', 'da Marginal Tietê']],
+    polos: 'Por perto: Largo da Matriz, Shopping Freguesia, Parque Rodrigo de Gásperi, Hospital Nossa Senhora do Ó, Hospital Sancta Maggiore e as avenidas Inajar de Souza e Miguel Conejo.',
+    fonte: 'Fonte: books da Living para o Grand Exclusive, o Grand Village e o Unique Freguesia do Ó.'
+  };
+  var ZN_TUCURUVI = {
+    titulo: 'A região · Tucuruvi',
+    texto: 'Na Avenida Tucuruvi, a poucos minutos da estação terminal da Linha 1-Azul do metrô e do Shopping Metrô Tucuruvi, num dos bairros mais consolidados da Zona Norte: ruas arborizadas, comércio completo, a Serra da Cantareira a dez minutos e acesso fácil à Avenida Nova Cantareira e à Marginal Tietê.',
+    numeros: [['5 min', 'da Estação Tucuruvi, Linha 1-Azul'], ['227', 'unidades em torre única'], ['10 min', 'da Serra da Cantareira'], ['ago/2028', 'entrega prevista, pela corretagem']],
+    polos: 'Por perto: Estação Tucuruvi, Shopping Metrô Tucuruvi, Avenida Nova Cantareira, Serra da Cantareira, Hospital San Paolo e os colégios da região.',
+    fonte: 'Fonte: anúncios da corretagem para o Living Grand Exclusive Tucuruvi em novembro de 2026; números a confirmar.'
+  };
   var ZL_MOOCA = {
     titulo: 'A região · Mooca',
     texto: 'Bairro de tradição italiana e um dos mais procurados da Zona Leste, a Mooca combina ruas arborizadas, cantinas e padarias centenárias com uma nova geração de lançamentos de médio e alto padrão. Perto do centro e com as estações Bresser-Mooca e Mooca, a Radial Leste e a Avenida Alcântara Machado, o bairro tem demanda constante de famílias que querem ficar na região e de quem trabalha no centro expandido.',
@@ -2799,6 +2816,275 @@
           fotoLV('brinquedoteca-pienza', 'Brinquedoteca, Pienza'),
           fotoLV('playground-firenze', 'Playground, Firenze'),
           fotoLV('playground-pienza', 'Playground, Pienza')
+        ]
+      },
+      {
+        nome: 'Living Grand Exclusive Freguesia do Ó',
+        cidade: 'São Paulo, capital',
+        bairro: 'Freguesia do Ó',
+        resumo: '2 dormitórios a 4 suítes · 71 a 216 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Avenida Miguel Conejo, na Freguesia do Ó, um condomínio de mais de 3.800 m² de lazer em dois níveis: no térreo e no 4º pavimento, com piscina, quadra, churrasqueira, salão de festas, Family House, Fitness, coworking, jogos adulto e teen, brinquedoteca, Mini Market e Car Sharing. Apartamentos de 71 a 120 m², de 2 dormitórios a 3 suítes, e duplex de 216 m² com 4 suítes.',
+        area: ['71 m²: 2 dormitórios com 1 suíte', '72 m²: 2 suítes', '82 m²: 3 dormitórios com 1 suíte, ou 2 suítes com sala ampliada', '120 m²: 3 suítes', '216 m² duplex: 4 suítes'],
+        tipologia: '2 dormitórios a 4 suítes, de 71 a 216 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: 'Sob consulta',
+        torres: 'Sob consulta',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos, lobby, Mini Market, Car Sharing e lazer', '4º pavimento: lazer com Family House interna e externa'],
+        valores: 'Sob consulta',
+        endereco: 'Avenida Miguel Conejo, 1.143 · Freguesia do Ó, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck',
+          academia: 'Fitness',
+          festas: 'Salão de festas',
+          gourmet: 'Churrasqueira e Family House',
+          kids: 'Brinquedoteca e Jogos Teen',
+          quadra: 'Quadra recreativa',
+          portaria: 'Portaria com acessos separados e lobby',
+          coworking: 'Coworking, Jogos Adulto, Mini Market e Car Sharing'
+        },
+        lazer: ['Lobby', 'Piscina', 'Churrasqueira', 'Quadra', 'Salão de Festas', 'Family House', 'Jogos Adulto', 'Jogos Teen', 'Fitness', 'Brinquedoteca', 'Coworking', 'Mini Market', 'Car Sharing'],
+        diferenciais: ['Mais de 3.800 m² de lazer em dois níveis', 'Smart Home: interruptores inteligentes na sala, cozinha e dormitórios', 'Infraestrutura para ar-condicionado nas suítes e dormitórios', 'Infraestrutura para churrasqueira a carvão na varanda', 'Infraestrutura para água quente', 'Duplex de 216 m² com 4 suítes'],
+        creditos: [['Incorporação', 'CBR Magik 02 LZ, com participação da Cyrela']],
+        plantas: [
+          { src: LX + 'planta-71.webp', nome: '71 m²', meta: '2 dormitórios, 1 suíte' },
+          { src: LX + 'planta-72.webp', nome: '72 m²', meta: '2 suítes' },
+          { src: LX + 'planta-82.webp', nome: '82 m² · padrão', meta: '3 dormitórios, 1 suíte' },
+          { src: LX + 'planta-82-opcao.webp', nome: '82 m² · opção', meta: '2 suítes, sala ampliada' },
+          { src: LX + 'planta-119.webp', nome: '120 m² · padrão', meta: '3 suítes' },
+          { src: LX + 'planta-119-opcao.webp', nome: '120 m² · opção', meta: '3 suítes' },
+          { src: LX + 'planta-duplex-inferior.webp', nome: '216 m² duplex · inferior', meta: '4 suítes' },
+          { src: LX + 'planta-duplex-superior.webp', nome: '216 m² duplex · superior', meta: '4 suítes' }
+        ],
+        implantacao: [
+          { src: LX + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, lobby e o lazer do térreo' },
+          { src: LX + 'implantacao-lazer.webp', nome: '4º pavimento', meta: 'Lazer com Family House' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Av. Inajar de Souza', '3 min'], ['Largo da Matriz da Freguesia do Ó', 'no bairro'], ['Shopping Freguesia', 'no bairro'], ['Marginal Tietê', '10 min']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR Magik 02 LZ Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação. Ar-condicionado, churrasqueira, água quente e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de outubro de 2022. Status a confirmar com a Living.',
+        torre: LX + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZN_FREGUESIA,
+        fotos: [
+          fotoLX('fachada', 'Fachada, detalhe'),
+          fotoLX('portaria', 'Portaria'),
+          fotoLX('piscina', 'Piscina'),
+          fotoLX('churrasqueira', 'Churrasqueira'),
+          fotoLX('quadra', 'Quadra'),
+          fotoLX('salao-de-festas', 'Salão de festas'),
+          fotoLX('family-house', 'Family House'),
+          fotoLX('jogos-adulto', 'Jogos adulto'),
+          fotoLX('jogos-teen', 'Jogos teen'),
+          fotoLX('fitness', 'Fitness'),
+          fotoLX('brinquedoteca', 'Brinquedoteca'),
+          fotoLX('coworking', 'Coworking')
+        ]
+      },
+      {
+        nome: 'Living Grand Exclusive Tucuruvi',
+        cidade: 'São Paulo, capital',
+        bairro: 'Tucuruvi',
+        resumo: '2 e 3 dormitórios · 61 a 87 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Avenida Tucuruvi, a poucos minutos da estação terminal da Linha 1-Azul e do Shopping Metrô Tucuruvi: torre única com 227 apartamentos de 61 a 87 m², de 2 e 3 dormitórios, e lazer com piscina, jardim, salões de festas, coworking, Fitness, sala de yoga, Espaço Wellness e brinquedoteca. O book recebido é só de imagens; a ficha vem da corretagem e deve ser confirmada com a Living.',
+        area: ['61 m²: 2 dormitórios', '69 m²: 2 dormitórios com 1 suíte, padrão ou opção', '87 m²: 3 dormitórios com 1 suíte, padrão ou opção'],
+        tipologia: '2 e 3 dormitórios, de 61 a 87 m²',
+        banheiros: 'Sob consulta',
+        vagas: 'Sob consulta',
+        torres: 'Torre única',
+        unidades: ['227 apartamentos, pela corretagem'],
+        pavimentos: ['1º pavimento: lazer com piscina, jardim e salões', 'Subsolo: jardim externo e Fitness, Wellness e yoga'],
+        valores: 'Sob consulta',
+        endereco: 'Avenida Tucuruvi, 360 · Tucuruvi, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck e jardim',
+          academia: 'Fitness, sala de yoga e Espaço Wellness',
+          festas: 'Dois salões de festas',
+          gourmet: 'Sob consulta',
+          kids: 'Brinquedoteca',
+          quadra: '',
+          portaria: 'Portaria e lobby',
+          coworking: 'Coworking'
+        },
+        lazer: ['Portaria', 'Lobby', 'Piscina', 'Jardim', 'Salão de Festas', 'Coworking', 'Fitness', 'Sala de Yoga', 'Espaço Wellness', 'Brinquedoteca'],
+        diferenciais: ['A 5 minutos da Estação Tucuruvi, terminal da Linha 1-Azul', 'Espaço Wellness com sala de yoga'],
+        creditos: [['Incorporação', 'Living, Grupo Cyrela']],
+        plantas: [
+          { src: LT + 'planta-61.webp', nome: '61 m²', meta: '2 dormitórios' },
+          { src: LT + 'planta-69.webp', nome: '69 m² · padrão', meta: '2 dormitórios, 1 suíte' },
+          { src: LT + 'planta-69-opcao.webp', nome: '69 m² · opção', meta: '2 dormitórios, 1 suíte' },
+          { src: LT + 'planta-87.webp', nome: '87 m² · padrão', meta: '3 dormitórios, 1 suíte' },
+          { src: LT + 'planta-87-opcao.webp', nome: '87 m² · opção', meta: '3 dormitórios, 1 suíte' }
+        ],
+        implantacao: [
+          { src: LT + 'implantacao-1pav.webp', nome: '1º pavimento', meta: 'Piscina, jardim e salões' },
+          { src: LT + 'implantacao-subsolo.webp', nome: '2º subsolo', meta: 'Jardim externo e Wellness' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Tucuruvi, Linha 1-Azul', '5 min'], ['Shopping Metrô Tucuruvi', '5 min'], ['Av. Nova Cantareira', 'no bairro'], ['Serra da Cantareira', '10 min']]]
+          ],
+          nota: 'Pontos do bairro, pela corretagem. Confirmar com a Living.'
+        },
+        legal: 'Living, marca do Grupo Cyrela. O book recebido traz só as imagens; endereço, número de unidades, status "em obras" e entrega prevista (agosto de 2028) conforme anúncios da corretagem em novembro de 2026. Banheiros, vagas e valores sob consulta.',
+        torre: LT + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZN_TUCURUVI,
+        fotos: [
+          fotoLT('fachada', 'Fachada', true),
+          fotoLT('portaria', 'Portaria'),
+          fotoLT('lobby', 'Lobby'),
+          fotoLT('piscina', 'Piscina'),
+          fotoLT('jardim', 'Jardim externo'),
+          fotoLT('salao-de-festas', 'Salão de festas'),
+          fotoLT('salao-de-festas-2', 'Salão de festas 2'),
+          fotoLT('coworking', 'Coworking'),
+          fotoLT('fitness', 'Fitness'),
+          fotoLT('sala-de-yoga', 'Sala de yoga'),
+          fotoLT('wellness', 'Espaço Wellness'),
+          fotoLT('brinquedoteca', 'Brinquedoteca')
+        ]
+      },
+      {
+        nome: 'Living Grand Village Freguesia do Ó',
+        cidade: 'São Paulo, capital',
+        bairro: 'Freguesia do Ó',
+        resumo: '2 dormitórios a 2 suítes · 60 a 84 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Numa rua tranquila da Freguesia do Ó, a Rua Manuel Correia, a 3 minutos das avenidas Inajar de Souza e Miguel Conejo: apartamentos de 60 a 84 m², de 2 dormitórios a 2 suítes, com lazer de beach tennis, piscina, churrasqueira, espaço gourmet, salão de festas, academia, sala de massagem, Espaço Beauty, jogos adulto e brinquedoteca.',
+        area: ['60 m²: 2 dormitórios com 1 suíte', '69 m²: 2 dormitórios com 1 suíte', '84 m²: 2 suítes, ou 3 dormitórios com 1 suíte'],
+        tipologia: '2 dormitórios a 2 suítes, de 60 a 84 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: '1 vaga determinada nos finais 1, 2, 9 e 10 do 9º ao 20º pavimento; as demais com 1 vaga por sorteio',
+        torres: 'Torre única de 20 pavimentos',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Sob consulta'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Manuel Correia, 577 · Freguesia do Ó, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck',
+          academia: 'Academia, sala de massagem e Espaço Beauty',
+          festas: 'Salão de festas',
+          gourmet: 'Espaço gourmet e churrasqueira',
+          kids: 'Brinquedoteca',
+          quadra: 'Beach tennis',
+          portaria: 'Portaria e lobby',
+          coworking: 'Jogos adulto'
+        },
+        lazer: ['Portaria', 'Lobby', 'Piscina', 'Beach Tennis', 'Churrasqueira', 'Espaço Gourmet', 'Salão de Festas', 'Jogos Adulto', 'Academia', 'Sala de Massagem', 'Espaço Beauty', 'Brinquedoteca'],
+        diferenciais: ['Quadra de beach tennis', 'Infraestrutura para ar-condicionado na suíte ou dormitório principal', 'Infraestrutura para água quente', 'Smart Home: interruptores inteligentes e Wi-Fi otimizado'],
+        creditos: [['Arquitetura', 'Marcelo Bartolo Arquitetos'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística']],
+        plantas: [
+          { src: LG + 'planta-60.webp', nome: '60 m²', meta: '2 dormitórios, 1 suíte' },
+          { src: LG + 'planta-69.webp', nome: '69 m²', meta: '2 dormitórios, 1 suíte' },
+          { src: LG + 'planta-84.webp', nome: '84 m² · padrão', meta: '2 suítes' },
+          { src: LG + 'planta-84-opcao.webp', nome: '84 m² · opção', meta: '3 dormitórios, 1 suíte' }
+        ],
+        implantacao: [
+          { src: LG + 'implantacao.webp', nome: 'Implantação', meta: 'Torre e lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Vias', [['Av. Inajar de Souza', '3 min de carro'], ['Av. Miguel Conejo', '3 min de carro']]],
+            ['Por perto', [['Largo da Matriz da Freguesia do Ó', 'no bairro'], ['Shopping Freguesia', 'no bairro']]]
+          ],
+          nota: 'Tempos de carro conforme o material da Living; os demais pontos são do bairro.'
+        },
+        legal: 'Incorporadora Living 010 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 2 na matrícula 214.594 do 8º Cartório de Registro de Imóveis de São Paulo. Vagas: determinada nos finais 1, 2, 9 e 10 do 9º ao 20º pavimento (exceto a unidade 10 do 9º), as demais por sorteio. Ar-condicionado, água quente e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de março de 2025.',
+        torre: LG + 'portaria.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZN_FREGUESIA,
+        fotos: [
+          fotoLG('portaria', 'Portaria e fachada'),
+          fotoLG('lobby', 'Lobby'),
+          fotoLG('piscina', 'Piscina'),
+          fotoLG('beach-tennis', 'Beach tennis'),
+          fotoLG('churrasqueira', 'Churrasqueira'),
+          fotoLG('gourmet', 'Espaço gourmet'),
+          fotoLG('salao-de-festas', 'Salão de festas'),
+          fotoLG('jogos-adulto', 'Jogos adulto'),
+          fotoLG('fitness', 'Academia'),
+          fotoLG('sala-de-massagem', 'Sala de massagem'),
+          fotoLG('espaco-beauty', 'Espaço Beauty'),
+          fotoLG('brinquedoteca', 'Brinquedoteca')
+        ]
+      },
+      {
+        nome: 'Living Unique Freguesia do Ó',
+        cidade: 'São Paulo, capital',
+        bairro: 'Freguesia do Ó',
+        resumo: '2 dormitórios a 3 suítes · 67 a 125 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Antônio Blasques, na Freguesia do Ó, do térreo ao rooftop com vista: piscina adulto com raia de 25 m, deck molhado com SPA, piscina infantil, solarium, Fitness interno e externo, salão de festas, churrasqueira, Family House, jogos adulto e teen, Blogger Space, brinquedoteca, playground, Pet Place, Mini Market 24 horas e Car Sharing. Apartamentos de 67 a 125 m², de 2 dormitórios a 3 suítes, com 1 ou 2 vagas e depósito.',
+        area: ['67 m²: 2 dormitórios com 1 suíte e 1 vaga', '72 m²: 2 suítes, ou 2 dormitórios com 1 suíte, e 1 vaga', '82 m²: 3 dormitórios com 1 suíte, ou 2 suítes com sala ampliada, e 1 vaga', '125 m²: 3 suítes com sala ampliada, ou 4 dormitórios com 2 suítes, e 2 vagas'],
+        tipologia: '2 dormitórios a 3 suítes, de 67 a 125 m²',
+        banheiros: 'Banheiros com infraestrutura para água quente',
+        vagas: '1 vaga até 82 m² e 2 vagas no 125 m², com depósito; determinadas conforme o memorial',
+        torres: 'Torre única de 22 pavimentos, com rooftop',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos de pedestres e de veículos, Pet Place', '1º pavimento, lazer: piscinas, deck molhado com SPA, solarium, Fitness interno e externo, Jogos Teen, hall social, Blogger Space, brinquedoteca, playground, salão de festas, churrasqueira, Jogos Adulto e Family House', 'Rooftop: lazer com vista'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Antônio Blasques, 122 · Freguesia do Ó, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 25 m, deck molhado com SPA, piscina infantil e solarium',
+          academia: 'Fitness interno e Fitness externo',
+          festas: 'Salão de festas com hall social',
+          gourmet: 'Churrasqueira e Family House',
+          kids: 'Brinquedoteca, playground, Jogos Teen e Blogger Space',
+          quadra: '',
+          portaria: 'Acessos de pedestres e de veículos separados, lobby',
+          coworking: 'Coworking, Jogos Adulto, Mini Market 24 horas, Pet Place e Car Sharing'
+        },
+        lazer: ['Acesso de pedestres', 'Acesso de veículos', 'Pet Place', 'Piscina adulto, raia de 25 m', 'Deck molhado com SPA', 'Piscina infantil', 'Solarium', 'Fitness', 'Fitness externo', 'Jogos Teen', 'Hall social', 'Blogger Space', 'Brinquedoteca', 'Playground', 'Salão de Festas', 'Churrasqueira', 'Jogos Adulto', 'Family House', 'Coworking', 'Mini Market', 'Car Sharing', 'Rooftop'],
+        diferenciais: ['Lazer do térreo ao rooftop, com piscina de raia de 25 m', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmeras', 'Infraestrutura para ar-condicionado na suíte e nos dormitórios', 'Infraestrutura para churrasqueira e água quente', 'Mini Market 24 horas com 3% das vendas para o condomínio', 'Depósito e Car Sharing'],
+        creditos: [['Incorporação', 'Cyrela México Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LU + 'planta-67.webp', nome: '67 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LU + 'planta-72.webp', nome: '72 m² · padrão', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LU + 'planta-72-opcao.webp', nome: '72 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LU + 'planta-82.webp', nome: '82 m² · padrão', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LU + 'planta-82-opcao.webp', nome: '82 m² · opção', meta: '2 suítes, sala ampliada · 1 vaga' },
+          { src: LU + 'planta-125.webp', nome: '125 m² · padrão', meta: '3 suítes, sala ampliada · 2 vagas' },
+          { src: LU + 'planta-125-opcao.webp', nome: '125 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LU + 'implantacao-lazer.webp', nome: 'Lazer', meta: 'Os 18 espaços do térreo e do 1º pavimento' },
+          { src: LU + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Lazer com vista no alto da torre' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Largo da Matriz da Freguesia do Ó', 'no bairro'], ['Av. Inajar de Souza e Av. Miguel Conejo', 'no bairro'], ['Shopping Freguesia', 'no bairro'], ['Marginal Tietê', '10 min']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora Cyrela México Empreendimentos Imobiliários Ltda. Registro de incorporação prenotado sob nº 773.146 no 8º Oficial de Registro de Imóveis de São Paulo. Área não contaminada. Vagas determinadas conforme o memorial, com depósito nas unidades listadas no material. Ar-condicionado, água quente, churrasqueira e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração. Status a confirmar com a Living.',
+        torre: LU + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZN_FREGUESIA,
+        fotos: [
+          fotoLU('fachada', 'Fachada', true),
+          fotoLU('portaria', 'Portaria'),
+          fotoLU('lobby', 'Lobby'),
+          fotoLU('piscina', 'Piscina com raia de 25 m'),
+          fotoLU('churrasqueira', 'Churrasqueira'),
+          fotoLU('salao-de-festas', 'Salão de festas'),
+          fotoLU('family-house', 'Family House'),
+          fotoLU('jogos-adulto', 'Jogos adulto'),
+          fotoLU('jogos-teen', 'Jogos teen'),
+          fotoLU('blogger-space', 'Blogger Space'),
+          fotoLU('coworking', 'Coworking'),
+          fotoLU('fitness', 'Fitness'),
+          fotoLU('brinquedoteca', 'Brinquedoteca')
         ]
       }
     ]
