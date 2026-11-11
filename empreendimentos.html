@@ -764,6 +764,23 @@
   // da Living (meuliving.com.br, marco/2023), baixado por mim
   var LUN = L + 'united/';
   var fotoLUN = fotoEm(LUN);
+  // (11/11/2026) e o Living Heredita Alto do Ipiranga (book out/2021) e o Living Full Conceicao (folhetao ago/2026), PDFs dela
+  var LHE = L + 'heredita/', LFC = L + 'fullconceicao/';
+  var fotoLHE = fotoEm(LHE), fotoLFC = fotoEm(LFC);
+  var ZS_ALTO_IPIRANGA = {
+    titulo: 'A região · Alto do Ipiranga, Rua Marquês de Olinda',
+    texto: 'A Rua Marquês de Olinda é a rua mais procurada do Ipiranga: a 4 minutos a pé da Estação Alto do Ipiranga da Linha 2-Verde, com as estações Santos-Imigrantes, Chácara Klabin e Sacomã a poucos minutos, e as saídas pela Nazaré, pela Ricardo Jafet e pela Vergueiro. O bairro onde São Paulo viu o primeiro bonde elétrico, com 12 construções centenárias tombadas, o Museu e o Parque da Independência, o Aquário de São Paulo, o Sesc Ipiranga, a PUC e os hospitais Sepaco e Santa Cruz por perto.',
+    numeros: [['4 min', 'a pé da Estação Alto do Ipiranga'], ['3 min', 'do Aquário de São Paulo'], ['7 min', 'do Museu e do Parque da Independência'], ['10 min', 'do Parque da Aclimação e do Shopping Metrô Santa Cruz']],
+    polos: 'Por perto: estações Alto do Ipiranga, Santos-Imigrantes, Chácara Klabin e Sacomã, Museu do Ipiranga, Parque da Independência, Aquário de São Paulo, Sesc Ipiranga, PUC Ipiranga, Colégio São Camilo, Shopping Metrô Santa Cruz e os hospitais Sepaco e Santa Cruz.',
+    fonte: 'Fonte: book do Living Heredità Alto do Ipiranga (outubro de 2021), com tempos do próprio material.'
+  };
+  var ZS_CONCEICAO = {
+    titulo: 'A região · Conceição, Jabaquara',
+    texto: 'Na Avenida Engenheiro Armando de Arruda Pereira, a 2 minutos a pé do Centro Empresarial Itaú Conceição e a 3 da Estação Conceição da Linha 1-Azul: o pedaço do Jabaquara que concentra escritórios, faculdades e hospitais, a 8 minutos do Aeroporto de Congonhas e do Jardim Botânico, a 6 do Plaza Sul e a 10 do São Paulo Expo e do Zoológico. Demanda de locação constante, de quem trabalha no CEIC e no eixo da Avenida dos Bandeirantes.',
+    numeros: [['2 min', 'a pé do Itaú CEIC'], ['3 min', 'a pé da Estação Conceição'], ['8 min', 'do Aeroporto de Congonhas'], ['24 a 37 m²', 'studios e 1 ou 2 dormitórios']],
+    polos: 'Por perto: Itaú CEIC, Estação Conceição, Faculdade ITA, Hospital São Luiz, Plaza Sul Shopping, Aeroporto de Congonhas, Jardim Botânico, Zoológico de São Paulo e São Paulo Expo.',
+    fonte: 'Fonte: folhetão do Living Full Conceição (agosto de 2026), com tempos do próprio material.'
+  };
   var ZS_IPIRANGA_BUENO = {
     titulo: 'A região · Ipiranga, Silva Bueno',
     texto: 'Na esquina da Rua Silva Bueno com a Rua dos Sorocabanos, o pedaço do Ipiranga que fica entre o Parque da Independência e o Parque da Aclimação, a 950 m da Estação Ipiranga da CPTM e a 10 minutos da Avenida do Estado e da Ricardo Jafet. Bairro histórico com infraestrutura completa: o Museu do Ipiranga, o Aquário de São Paulo, o Clube Atlético Ypiranga, o Mooca Plaza Shopping e os hospitais São Camilo, Monumento e Cruz Azul por perto.',
@@ -3911,6 +3928,158 @@
           fotoLUN('quadra-de-tenis', 'Quadra de tênis'),
           fotoLUN('piscina', 'Piscina adulto'),
           fotoLUN('regiao-aerea', 'Foto aérea da região, com o terreno marcado')
+        ]
+      },
+      {
+        nome: 'Living Heredità Alto do Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Alto do Ipiranga',
+        resumo: '2 dormitórios a 3 suítes e duplex · 69 a 241 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Marquês de Olinda, 125, entre a Rua Salvador Simões e a Rua Prof. Eduardo Carlos Pereira, a 4 minutos a pé da Estação Alto do Ipiranga: torre única com apartamentos de 69, 83 e 125 m², de 2 dormitórios a 3 suítes, e duplex de 157 e 241 m² com SPA e solarium, todos com churrasqueira na varanda já entregue. Lazer em três níveis: no térreo, lobby, salão de festas, quadra de beach tênis, Pet Place, Mini Market e Car Sharing; no 2º pavimento, academia, coworking e Jogos Teen; no 3º, piscina adulto de 20 m com deck molhado, piscina infantil, solarium, espaço gourmet, churrasqueira, jogos adulto, brinquedoteca, playground e quadra recreativa. Entregue em março de 2025.',
+        area: ['69 m²: 2 dormitórios com 1 suíte e 1 vaga', '83 m²: 3 dormitórios com 1 suíte (padrão), ou 2 suítes com sala ampliada (opção), 1 vaga', '125 m²: 3 suítes com sala ampliada (padrão), ou 4 dormitórios com 2 suítes (opção), 2 vagas', '157 m² duplex: 2 dormitórios com 1 suíte no piso inferior e suíte com SPA e solarium no superior, 2 vagas', '241 m² duplex: 3 dormitórios com 2 suítes no piso inferior e suíte com SPA e churrasqueira na varanda no superior, 3 vagas'],
+        tipologia: '2 dormitórios a 3 suítes, de 69 a 125 m², e duplex de 157 e 241 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo a partir do 83 m²',
+        vagas: '1 vaga no 69 e no 83 m², 2 vagas no 125 m² e no duplex de 157 m², 3 vagas no duplex de 241 m²; vagas determinadas e por sorteio, conforme o memorial',
+        torres: 'Torre única de 23 pavimentos',
+        unidades: ['165 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: acessos social, de serviço e de veículos, lobby, salão de festas, quadra de beach tênis, Pet Place, Mini Market, Car Sharing e Espaço Delivery', '2º pavimento: academia, coworking e Jogos Teen', '3º pavimento: hall social, brinquedoteca, jogos adulto, espaço gourmet, churrasqueira, playground, quadra recreativa, solarium, deck molhado, piscina adulto de 20 m e piscina infantil'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Marquês de Olinda, 125 · Alto do Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto de 20 m com deck molhado, piscina infantil e solarium no 3º pavimento',
+          academia: 'Academia no 2º pavimento',
+          festas: 'Salão de festas no térreo e hall social no 3º',
+          gourmet: 'Espaço gourmet e churrasqueira',
+          kids: 'Brinquedoteca, playground e Jogos Teen',
+          quadra: 'Quadra de beach tênis e quadra recreativa',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby',
+          coworking: 'Coworking, jogos adulto, Mini Market 24 horas, Car Sharing, Espaço Delivery e Pet Place'
+        },
+        lazer: ['Acesso social', 'Acesso de serviço', 'Acesso de veículos', 'Lobby', 'Salão de Festas', 'Quadra de beach tênis', 'Pet Place', 'Mini Market', 'Car Sharing', 'Espaço Delivery', 'Academia', 'Coworking', 'Jogos Teen', 'Hall social', 'Brinquedoteca', 'Jogos Adulto', 'Espaço Gourmet', 'Churrasqueira', 'Playground', 'Quadra recreativa', 'Solarium', 'Deck molhado', 'Piscina adulto, 20 m', 'Piscina infantil'],
+        diferenciais: ['Churrasqueira e bancada na varanda entregues em todas as unidades', 'Quadra de beach tênis no condomínio', 'Duplex com SPA e solarium privativos', 'Contrapiso com atenuação acústica e infraestrutura para ar-condicionado nos quartos', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmeras na sala e nos quartos', 'Depósito (armário comum) por sorteio para as unidades listadas no memorial', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing', 'Pronto para morar, entregue em março de 2025'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Carlos Rossi'], ['Paisagismo', 'Rossin + Tramontina'], ['Incorporação', 'CBR 097 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LHE + 'planta-69.webp', nome: '69 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LHE + 'planta-83.webp', nome: '83 m² · padrão', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LHE + 'planta-83-opcao.webp', nome: '83 m² · opção', meta: '2 suítes, sala ampliada · 1 vaga' },
+          { src: LHE + 'planta-125.webp', nome: '125 m² · padrão', meta: '3 suítes, sala ampliada · 2 vagas' },
+          { src: LHE + 'planta-125-opcao.webp', nome: '125 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' },
+          { src: LHE + 'duplex-157-inferior.webp', nome: 'Duplex 157 m² · inferior', meta: '2 dormitórios, 1 suíte · 2 vagas' },
+          { src: LHE + 'duplex-157-superior.webp', nome: 'Duplex 157 m² · superior', meta: 'Suíte, SPA e solarium descoberto' },
+          { src: LHE + 'duplex-241-inferior.webp', nome: 'Duplex 241 m² · inferior', meta: '3 dormitórios, 2 suítes · 3 vagas' },
+          { src: LHE + 'duplex-241-superior.webp', nome: 'Duplex 241 m² · superior', meta: 'Suíte, SPA e churrasqueira na varanda' }
+        ],
+        implantacao: [
+          { src: LHE + 'implantacao.webp', nome: 'Implantação', meta: 'Os 16 espaços do térreo, do 2º e do 3º pavimento, entre a Marquês de Olinda e a Salvador Simões' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Alto do Ipiranga', '4 min a pé'], ['Estação Santos-Imigrantes', '5 min'], ['Estação Chácara Klabin', '6 min'], ['Av. Nazaré, Av. Ricardo Jafet e Rua Vergueiro', 'vias de acesso']]],
+            ['Lazer', [['Aquário de São Paulo', '3 min'], ['Bar do Nico', '4 min'], ['Paellas Pepe', '5 min'], ['Parque da Independência', '7 min'], ['Museu do Ipiranga', '7 min'], ['Sesc Ipiranga', '7 min'], ['Parque da Aclimação', '10 min'], ['Shopping Metrô Santa Cruz', '10 min']]],
+            ['Educação', [['Colégio São Camilo', '3 min'], ['Colégio Santa Helena', '4 min'], ['PUC Ipiranga', '5 min'], ['Escola Futura', '9 min'], ['Escola Liceu Pasteur', '10 min']]],
+            ['Saúde', [['Hospital Sepaco', '6 min'], ['Hospital Santa Cruz', '9 min']]],
+            ['Conveniência', [['Padaria Fiorella', '3 min'], ['Padaria Big Bread', '8 min'], ['Pão de Açúcar', '8 min'], ['St Marché', '8 min']]]
+          ],
+          nota: 'Tempos de carro, salvo a estação, a pé, conforme o material da Living (Google Maps, 2021).'
+        },
+        legal: 'Incorporadora CBR 097 Empreendimentos Imobiliários Ltda. Memorial de Incorporação prenotado sob nº 754.584 no 6º Oficial de Registro de Imóveis de São Paulo. Terreno reabilitado para fins residenciais (CETESB 45/00158/21); manejo arbóreo e plantio compensatório autorizados (SVMA 6027.2021/0004945-4). Vagas determinadas e por sorteio, conforme o memorial; armário comum por sorteio para as unidades dos finais 1A e 2A, 1B e 2B do 17º ao 23º pavimento e 1B do 3º. Ar-condicionado, água quente e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de outubro de 2021. Lançamento em novembro de 2021 e entrega em março de 2025, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LHE + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ALTO_IPIRANGA,
+        fotos: [
+          fotoLHE('fachada', 'Fachada', true),
+          fotoLHE('portaria', 'Portaria'),
+          fotoLHE('lobby', 'Lobby', true),
+          fotoLHE('salao-de-festas', 'Salão de festas', true),
+          fotoLHE('espaco-gourmet', 'Espaço gourmet'),
+          fotoLHE('churrasqueira', 'Churrasqueira'),
+          fotoLHE('piscina', 'Piscina adulto de 20 m'),
+          fotoLHE('beach-tenis', 'Quadra de beach tênis'),
+          fotoLHE('fitness', 'Academia'),
+          fotoLHE('coworking', 'Coworking'),
+          fotoLHE('jogos-adulto', 'Jogos adulto'),
+          fotoLHE('jogos-teen', 'Jogos Teen'),
+          fotoLHE('brinquedoteca', 'Brinquedoteca'),
+          fotoLHE('playground', 'Playground'),
+          fotoLHE('decorado', 'Decorado de 125 m²', true),
+          fotoLHE('regiao-aerea', 'Foto aérea da região, com o Museu do Ipiranga'),
+          fotoLHE('museu-do-ipiranga', 'Museu do Ipiranga')
+        ]
+      },
+      {
+        nome: 'Living Full Conceição',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jabaquara, Conceição',
+        resumo: 'Studios e 1 a 2 dormitórios · 24 a 37 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Avenida Engenheiro Armando de Arruda Pereira, 657, esquina com a Rua Guaratuba, a 2 minutos a pé do Itaú CEIC e a 3 da Estação Conceição: studios e apartamentos de 1 e 2 dormitórios de 24 a 37 m², em duas torres, sem vaga de garagem, feitos para morar e para alugar. Na torre A, lobby, Nightclub & Coworking, Swimming Pool com Pool Deck, Lounge Barbecue, Laundry e o Wellness Center com Fitness by Matrix, Mind & Body Room, Massage Room e Infrared Sauna; no rooftop, Sky Garden, Sky Lounge e Sky Barbecue. Na torre B, lobby, Laundry, Bike Station, Game Point, Central Garden e Pet Place. Lançamento de 2026.',
+        area: ['24 m²: sala e dormitório integrados (padrão) ou 1 dormitório (opção), sem terraço (final 3) ou com terraço (final 26), torre A', '32 m²: 2 dormitórios (padrão) ou 1 suíte com lavabo (opção), sem terraço, final 1 da torre A', '34 m²: 2 dormitórios (padrão) ou 1 dormitório com sala integrada (opção), com terraço, final 17 da torre A', '37 m²: 2 dormitórios, com terraço, final 29 da torre A'],
+        tipologia: 'Studios e 1 a 2 dormitórios, de 24 a 37 m²',
+        banheiros: '1 por unidade, com ponto para chuveiro elétrico; lavabo na opção de 32 m²; banheiro ventilado no 34 m²',
+        vagas: 'Sem vaga de garagem; Bike Station na torre B',
+        torres: '2 torres: torre A com lazer e rooftop, torre B com Central Garden',
+        unidades: ['Sob consulta; os 24 m² são unidades HMP, Habitação de Mercado Popular, com regras próprias'],
+        pavimentos: ['Térreo da torre A: Social Entrance, Service Entrance, Delivery, Mini Market, lobby, Nightclub & Coworking, lounge externo, Swimming Pool, Pool Deck, Lounge Barbecue e Laundry', 'Wellness Center: Infrared Sauna, Mind & Body Room, Massage Room e Fitness by Matrix', 'Térreo da torre B: lobby, Laundry, Bike Station, Game Point, Central Garden e Pet Place', 'Rooftop da torre A: Sky Barbecue, Sky Lounge e Sky Garden'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Eng. Armando de Arruda Pereira, 657 · Jabaquara, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com Pool Deck e lounge externo',
+          academia: 'Wellness Center: Fitness by Matrix com equipamentos SPlan, Mind & Body Room, Massage Room e Infrared Sauna',
+          festas: 'Nightclub & Coworking e Sky Lounge no rooftop',
+          gourmet: 'Lounge Barbecue no térreo e Sky Barbecue no rooftop',
+          kids: 'Game Point',
+          quadra: '',
+          portaria: 'Social Entrance, Service Entrance e lobby por torre',
+          coworking: 'Nightclub & Coworking, Laundry nas duas torres, Mini Market, Delivery, Bike Station e Pet Place'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Delivery', 'Mini Market', 'Lobby', 'Nightclub & Coworking', 'Lounge externo', 'Swimming Pool', 'Pool Deck', 'Lounge Barbecue', 'Laundry', 'Infrared Sauna', 'Mind & Body Room', 'Massage Room', 'Fitness by Matrix', 'Bike Station', 'Game Point', 'Central Garden', 'Pet Place', 'Sky Barbecue', 'Sky Lounge', 'Sky Garden'],
+        diferenciais: ['A 2 minutos a pé do Itaú CEIC e a 3 da Estação Conceição', 'Wellness Center com Fitness by Matrix, equipamentos SPlan, Massage Room e Infrared Sauna', 'Rooftop com Sky Garden, Sky Lounge e Sky Barbecue', 'Camada de atenuação a ruído de impacto e infraestrutura para ar-condicionado em um ambiente', 'Laundry nas duas torres e unidades compactas para morar e para alugar', 'Opções de planta com terraço nos 24, 34 e 37 m²'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Habitat Arquitetura da Paisagem'], ['Incorporação', 'CBR 056 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LFC + 'planta-24.webp', nome: '24 m² · padrão', meta: 'Sala e dormitório integrados, sem terraço · final 3' },
+          { src: LFC + 'planta-24-opcao.webp', nome: '24 m² · opção', meta: '1 dormitório, sem terraço · final 3' },
+          { src: LFC + 'planta-24-terraco.webp', nome: '24 m² · com terraço', meta: 'Sala e dormitório integrados · final 26' },
+          { src: LFC + 'planta-24-terraco-opcao.webp', nome: '24 m² · com terraço, opção', meta: '1 dormitório · final 26' },
+          { src: LFC + 'planta-32.webp', nome: '32 m² · padrão', meta: '2 dormitórios, sem terraço · final 1' },
+          { src: LFC + 'planta-32-opcao.webp', nome: '32 m² · opção', meta: '1 suíte com lavabo · final 1' },
+          { src: LFC + 'planta-34.webp', nome: '34 m² · padrão', meta: '2 dormitórios, com terraço · final 17' },
+          { src: LFC + 'planta-34-opcao.webp', nome: '34 m² · opção', meta: '1 dormitório e sala integrada, com terraço · final 17' },
+          { src: LFC + 'planta-37.webp', nome: '37 m²', meta: '2 dormitórios, com terraço · final 29' }
+        ],
+        implantacao: [
+          { src: LFC + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Torre A com lazer e Wellness Center, torre B com Central Garden, entre a Av. Armando de Arruda Pereira e a Rua Guaratuba' },
+          { src: LFC + 'implantacao-rooftop.webp', nome: 'Rooftop da torre A', meta: 'Sky Barbecue, Sky Lounge e Sky Garden' }
+        ],
+        perto: {
+          grupos: [
+            ['Trabalho e mobilidade', [['Itaú CEIC', '2 min a pé'], ['Estação Conceição', '3 min a pé'], ['Aeroporto de Congonhas', '8 min'], ['São Paulo Expo', '10 min']]],
+            ['Educação e saúde', [['Faculdade ITA', '4 min'], ['Hospital São Luiz', '4 min']]],
+            ['Compras e lazer', [['Plaza Sul Shopping', '6 min'], ['Jardim Botânico', '8 min'], ['Zoológico de São Paulo', '10 min']]]
+          ],
+          nota: 'Tempos de carro, salvo os indicados a pé, conforme o material da Living (Google Maps, agosto de 2026).'
+        },
+        legal: 'Incorporadora CBR 056 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação. Área não contaminada (CETESB 33/00004/26); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2025/0016851-5). Não há vagas para as unidades residenciais. Ar-condicionado (em um ambiente), bancada e cooktop, tanque ou máquina de lavar e lavabo entregues como infraestrutura; opções de planta na personalização, com custo. Unidades HMP com regras próprias; ver o memorial. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; folhetão de agosto de 2026. Lançamento em setembro de 2026 pela corretagem; entrega a confirmar com a Living.',
+        torre: LFC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_CONCEICAO,
+        fotos: [
+          fotoLFC('fachada', 'Fachada', true),
+          fotoLFC('portaria', 'Portaria'),
+          fotoLFC('lobby', 'Lobby, torre A'),
+          fotoLFC('nightclub-coworking', 'Nightclub & Coworking'),
+          fotoLFC('swimming-pool', 'Swimming Pool'),
+          fotoLFC('fitness-by-matrix', 'Fitness by Matrix'),
+          fotoLFC('mind-body-room', 'Mind & Body Room'),
+          fotoLFC('massage-room', 'Massage Room'),
+          fotoLFC('infrared-sauna', 'Infrared Sauna'),
+          fotoLFC('laundry', 'Laundry, torre A'),
+          fotoLFC('sky-barbecue', 'Sky Barbecue, rooftop'),
+          fotoLFC('sky-garden', 'Sky Garden, rooftop'),
+          fotoLFC('studio-decorado', 'Studio, imagem ilustrativa'),
+          fotoLFC('ceic', 'Centro Empresarial Itaú Conceição, foto da região')
         ]
       }
     ]
