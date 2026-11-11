@@ -827,6 +827,24 @@
     polos: 'Por perto: Estação Brooklin, Av. Berrini, Av. Chucri Zaidan, Av. Roque Petroni Júnior, Av. Santo Amaro, Ponte Estaiada, Shopping Morumbi, Market Place, JK Iguatemi, Parque Bruno Covas, Parque do Povo, Hípica Paulista, Teatro Vivo, Casa de Vidro Lina Bo Bardi, Colégio Elvira Brandão, Pueri Domus, Stockler, Hospital Santa Paula, Einstein e São Luiz.',
     fonte: 'Fonte: books do Haus Mitre Edition NY, do Haus Mitre Station Brooklin (2025) e do ML Brooklin, com tempos do próprio material.'
   };
+  // (11/11/2026, ~17h) Vila Mariana, Vila Clementino, Aclimacao e Vila Mascote: Haus Mitre Reserva Vila Mariana, Haus Mitre Vila Clementino,
+  // Haus Mitre Ibirapuera, Haus Mitre Aclimacao (book mai/2021) e Raizes Vila Mascote (book so de imagem)
+  var MRV = MT + 'reservavm/', MVC = MT + 'vilaclementino/', MIB = MT + 'ibirapuera/', MAC = MT + 'aclimacao/', MRM = MT + 'raizesvm/';
+  var fotoMRV = fotoEm(MRV), fotoMVC = fotoEm(MVC), fotoMIB = fotoEm(MIB), fotoMAC = fotoEm(MAC), fotoMRM = fotoEm(MRM);
+  var ZS_VILA_MARIANA_MITRE = {
+    titulo: 'A região · Vila Mariana e Vila Clementino',
+    texto: 'O maior polo de saúde e ensino da Zona Sul: Hospital São Paulo e Unifesp, AACD, Santa Cruz, Einstein, Oswaldo Cruz, Beneficência Portuguesa e Santa Catarina, ESPM, Belas Artes, FMU, Colégio Bandeirantes e Arquidiocesano, com as estações Santa Cruz, Vila Mariana e Ana Rosa cruzando as linhas 1-Azul, 2-Verde e 5-Lilás. Ruas arborizadas de casas e prédios entre a Avenida Domingos de Morais e a Rua Vergueiro, o Parque Ibirapuera e o Parque da Aclimação a poucos minutos, o Sesc Vila Mariana, a Cinemateca e o Museu Lasar Segall no bairro, e a Avenida Paulista a 9 minutos de carro.',
+    numeros: [['5 min', 'do Metrô Santa Cruz, o Haus Mitre Vila Clementino'], ['4 min', 'da Estação Vila Mariana, o Haus Mitre Reserva'], ['1/3', 'dos compradores do Vila Clementino trabalha na saúde, pelo book'], ['24 a 280 m²', 'do studio ao duplex, nos quatro projetos da Mitre']],
+    polos: 'Por perto: estações Santa Cruz, Vila Mariana, Ana Rosa, Paraíso e Chácara Klabin, Parque Ibirapuera, Parque da Aclimação, Sesc Vila Mariana, Cinemateca, Museu Lasar Segall, Shopping Metrô Santa Cruz, Pátio Paulista, Hospital São Paulo, Unifesp, AACD, Santa Cruz, Einstein, Oswaldo Cruz, Beneficência Portuguesa, Santa Catarina, HCor, ESPM, Belas Artes, FMU, Colégio Bandeirantes e Arquidiocesano.',
+    fonte: 'Fonte: books do Haus Mitre Vila Clementino, do Haus Mitre Reserva Vila Mariana, do Haus Mitre Ibirapuera e do Haus Mitre Aclimação (2021), com tempos do próprio material.'
+  };
+  var ZS_VILA_MASCOTE_MITRE = {
+    titulo: 'A região · Vila Mascote',
+    texto: 'Bairro residencial da Zona Sul entre o Campo Belo, o Jabaquara e Santo Amaro, de ruas largas e arborizadas em torno da Avenida Vereador João de Luca e da Avenida Mascote, com saídas pela Washington Luís, pela Jornalista Roberto Marinho e pela Bandeirantes. O Aeroporto de Congonhas e o Metrô Brooklin a 9 minutos, o Metrô Jabaquara a 15, os shoppings Morumbi, Market Place e Ibirapuera, a Chácara Flora e os hospitais Moriah e São Luiz por perto; o Colégio Emilie de Villeneuve fica na mesma quadra do Raízes.',
+    numeros: [['9 min', 'do Aeroporto de Congonhas e do Metrô Brooklin'], ['13 min', 'do Shopping Morumbi e do Hospital Moriah'], ['305', 'unidades no Raízes Vila Mascote, entre studios, apartamentos e lojas'], ['24 a 169 m²', 'do studio ao garden']],
+    polos: 'Por perto: Colégio Emilie de Villeneuve, Av. Vereador João de Luca, Av. Washington Luís, Av. Jornalista Roberto Marinho, Av. dos Bandeirantes, Aeroporto de Congonhas, Metrô Brooklin, Metrô Jabaquara, Shopping Morumbi, Market Place, Shopping Ibirapuera, Chácara Flora, Parque Ibirapuera, Av. Berrini e os hospitais Moriah, São Luiz e São Luiz Jabaquara.',
+    fonte: 'Fonte: book do Raízes Vila Mascote, com tempos do próprio material, de carro.'
+  };
   var ZS_CAMPO_BELO = {
     titulo: 'A região · Campo Belo',
     texto: 'Entre o Brooklin, Moema e o Aeroporto de Congonhas, o Campo Belo é um bairro de ruas arborizadas e casas que viraram prédios de médio e alto padrão, servido pelas estações Campo Belo e Eucaliptos da Linha 5-Lilás, pela Avenida Vereador José Diniz, pela Santo Amaro e pela Jornalista Roberto Marinho, a poucos minutos do Shopping Ibirapuera e do Parque Ibirapuera. Colégios como o Vértice e a Aubrick, os hospitais Oswaldo Cruz, Moriah e Santa Paula, e uma vida de bairro de padarias, bares e restaurantes. A Mitre tem três projetos ali: o Haus Mitre Campo Belo, o Raízes Premium e o Althea.',
@@ -6751,6 +6769,391 @@
           fotoMML('living-84', 'Living do apartamento de 84 m²'),
           fotoMML('terraco-84', 'Terraço do apartamento de 84 m²')
         ]
+      },
+      {
+        nome: 'Haus Mitre Reserva Vila Mariana',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Mariana',
+        resumo: 'Studios e 4 dormitórios · 24 a 280 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'A 750 m da Estação Vila Mariana, na Rua Dona Brígida, 620: duas torres independentes num terreno de 2.861 m², uma residencial e uma de studios, com arquitetura biofílica e projeto em certificação EDGE. A torre residencial tem 88 apartamentos de 142 m² (4 dormitórios com 2 ou 3 suítes, 2 vagas) e 4 duplex de 280 m² (4 suítes, 3 vagas), com lazer no térreo (quadra, praça da lareira, churrasqueira, playground, salão de festas, jogos, brinquedoteca e coworking) e no 25º andar, a 80 m de altura: sky lounge, spa, pilates, fitness, lounge e piscinas. A torre de studios tem 192 unidades de 24 e 25 m², residenciais e com serviços, com lounge, coworking, lavanderia, fitness e gourmet próprios. Königsberger Vannucchi, Benedito Abbud e Claudia Albertini. Lançado em novembro de 2021 e entregue em outubro de 2026 pela corretagem.',
+        area: ['142 m²: 4 dormitórios com 2 suítes (planta tipo) ou 3 suítes, 2 vagas determinadas, 4 por andar do 1º ao 22º', '280 m² duplex: 4 suítes, 3 vagas determinadas, no 23º e 24º (4 unidades)', 'Studios de 24 m² (89 residenciais e 89 com serviços) e de 25 m² (7 residenciais e 7 com serviços), na torre de studios', 'Lojas 1 e 2 com 272 m² e loja 3 com 91,27 m²'],
+        tipologia: 'Studios de 24 e 25 m² e apartamentos de 4 dormitórios, 142 e 280 m²',
+        banheiros: '142 m²: banhos das suítes com iluminação e ventilação naturais, master com 2 cubas e ducha higiênica, lavabo e banheiro de serviço; duplex com 2 chuveiros e previsão de banheira na master; bacia com válvula dual flux',
+        vagas: '2 vagas determinadas no 142 m² e 3 no duplex de 280 m²; studios sem vaga',
+        torres: 'Duas torres em terreno de 2.861,25 m²: a residencial com 3 subsolos, térreo, 22 pavimentos tipo, 2 de duplex e o 25º de lazer; a de studios com 3 subsolos, térreo e 13 pavimentos (térreo mais 23 pela corretagem)',
+        unidades: ['92 na torre residencial (88 de 142 m² e 4 duplex) e 192 studios; 188 residências pela corretagem'],
+        pavimentos: ['Subsolos: acessos residencial e dos studios, loja 1, vagas, bicicletário, pet place e delivery', 'Térreo residencial: praça de chegada, quadra, praça da lareira, churrasqueira, playground, salão de festas, salão de jogos, brinquedoteca, coworking e loja 2', '1º ao 22º: 4 apartamentos de 142 m² por andar; 23º e 24º: duplex de 280 m²', '25º: terraço sky lounge, sky lounge, espaço wellness, pilates, fitness interno e externo, lounge piscina, piscinas adulto e infantil, deck molhado e deck piscina', 'Torre de studios: térreo com lounge, lobby e coworking, lavanderia, fitness, salão de festas e gourmet e loja 3; 1º ao 6º studios com serviços (16 por andar); 7º ao 13º studios residenciais'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Dona Brígida, 620 · Vila Mariana, São Paulo',
+        infra: {
+          piscina: 'Sky pool no 25º: piscinas adulto e infantil com lounge, deck molhado e deck piscina',
+          academia: 'Fitness e fitness externo no 25º, com espaço pilates; fitness próprio na torre de studios',
+          festas: 'Salão de festas e salão de jogos no térreo, sky lounge e terraço sky lounge no 25º; salão de festas e gourmet dos studios',
+          gourmet: 'Churrasqueira e praça da lareira no térreo; espaço gourmet e coliving na torre de studios',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra recreativa',
+          portaria: 'Acessos independentes para a torre residencial e a de studios, com delivery nos subsolos',
+          coworking: 'Coworking nas duas torres, espaço wellness com massagem e sauna, lavanderia dos studios, bicicletário (Bike Box) e pet place'
+        },
+        lazerGrupos: [
+          ['Torre residencial · térreo', ['Praça de chegada', 'Quadra recreativa', 'Praça da lareira', 'Churrasqueira', 'Playground', 'Salão de festas', 'Salão de jogos', 'Brinquedoteca', 'Coworking']],
+          ['Torre residencial · 25º', ['Terraço sky lounge', 'Sky lounge', 'Espaço wellness', 'Pilates', 'Fitness', 'Fitness externo', 'Lounge piscina', 'Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Deck piscina']],
+          ['Torre de studios', ['Lounge', 'Lobby e coworking', 'Lavanderia', 'Fitness', 'Salão de festas e gourmet', 'Delivery']],
+          ['Subsolos', ['Bicicletário', 'Pet place', 'Delivery']]
+        ],
+        diferenciais: ['Torres independentes para apartamentos e studios, com spa a 80 m de altura no setor residencial', 'Arquitetura biofílica e projeto em processo de certificação EDGE', 'Fechadura eletrônica oferecida no Personal Home, infraestrutura para ar-condicionado em dormitórios, sala e terraço', 'Terraço com churrasqueira a carvão e mesa para 10 lugares, piso nivelado com o living, espaço home office', 'Closet na suíte master, banheiro de serviço, lavadora e secadora, persianas de enrolar', 'Studios com água quente, infraestrutura para ar-condicionado e fechadura eletrônica no Personal Home'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi Arquitetura Associados'], ['Paisagismo', 'Benedito Abbud Arquitetura Paisagística'], ['Interiores', 'Claudia Albertini Arquitetos Associados'], ['Incorporação', 'Mitre Realty, linha Haus']],
+        plantas: [
+          { src: MRV + 'planta-142-2-suites.webp', nome: '142 m² · planta tipo', meta: '4 dormitórios, 2 suítes · 2 vagas' },
+          { src: MRV + 'planta-142-3-suites.webp', nome: '142 m² · 3 suítes', meta: '4 dormitórios · 2 vagas' },
+          { src: MRV + 'planta-280-inferior.webp', nome: '280 m² · duplex, pavimento inferior', meta: '4 suítes · 3 vagas' },
+          { src: MRV + 'planta-280-superior.webp', nome: '280 m² · duplex, pavimento superior', meta: '4 suítes · 3 vagas' },
+          { src: MRV + 'planta-studio-24.webp', nome: '24 m² · studio residencial', meta: 'Torre de studios' },
+          { src: MRV + 'planta-studio-25.webp', nome: '25 m² · studio com serviço', meta: 'Torre de studios' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Vila Mariana', '4 min'], ['Rua Vergueiro', '10 min'], ['Av. Paulista', '12 min'], ['Estações Ana Rosa, Paraíso, Chácara Klabin e Santa Cruz', 'na região']]],
+            ['Ensino e lazer', [['ESPM e Belas Artes', '7 min'], ['Colégio Bandeirantes', '10 min'], ['Parque da Aclimação', '10 min'], ['Parque Ibirapuera', '11 min'], ['Shopping Pátio Paulista', '12 min'], ['Sesc Vila Mariana, Cinemateca e Museu Lasar Segall', 'no bairro']]],
+            ['Saúde e gastronomia', [['Hospital Santa Rita', '8 min'], ['Hospital São Rafael', '12 min'], ['Shin-Zushi, Pizzaria 1900 e Quintal', 'por perto, no book']]]
+          ],
+          nota: 'Tempos do próprio book, de carro.'
+        },
+        legal: 'O book não traz o texto de registro nem data; intermediação pela Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Certificação EDGE em processo; spa e áreas do 25º exclusivas do setor residencial; piso interno e banheira não entregues pela construtora; studios residenciais e com serviços conforme a convenção. Pela corretagem (apto.vc): lançamento em novembro de 2021, entregue em outubro de 2026, pronto para morar, 2 torres de térreo mais 23 andares com 188 residências em terreno de 2.861 m²; disponibilidade sob consulta.',
+        torre: MRV + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MARIANA_MITRE,
+        fotos: [
+          fotoMRV('fachada', 'As duas torres, residencial e de studios'),
+          fotoMRV('fachada-studios', 'Torre de studios', true),
+          fotoMRV('sky-pool', 'Sky pool, no 25º'),
+          fotoMRV('sky-lounge', 'Sky lounge'),
+          fotoMRV('fitness-pilates', 'Fitness e pilates'),
+          fotoMRV('churrasqueira', 'Churrasqueira'),
+          fotoMRV('espaco-festas', 'Espaço festas'),
+          fotoMRV('espaco-festas-2', 'Espaço festas'),
+          fotoMRV('lounge-de-jogos', 'Lounge de jogos'),
+          fotoMRV('quadra', 'Quadra recreativa'),
+          fotoMRV('playground', 'Playground'),
+          fotoMRV('brinquedoteca', 'Brinquedoteca'),
+          fotoMRV('pet-place', 'Pet place'),
+          fotoMRV('bicicletario', 'Bicicletário'),
+          fotoMRV('living-142', 'Living do apartamento de 142 m²'),
+          fotoMRV('gourmet-coliving-studios', 'Espaço gourmet e coliving dos studios'),
+          fotoMRV('coworking-studios', 'Coworking dos studios'),
+          fotoMRV('fitness-studios', 'Fitness dos studios'),
+          fotoMRV('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMRV('studio', 'Studio'),
+          fotoMRV('regiao-aerea', 'Vila Mariana, foto aérea')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Vila Clementino',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Clementino',
+        resumo: 'Studios e 4 dormitórios · 27 a 132 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Borges Lagoa, 360, a 5 minutos do Metrô Santa Cruz, a 400 m do Hospital São Paulo e a 7 minutos do Ibirapuera: torre única com 217 unidades num terreno de 2.427 m² e setores independentes. Os 64 apartamentos de 4 dormitórios e 132 m² (2 vagas; opção de 3 suítes com living ampliado) ficam do 8º ao 23º, com lazer no 7º: fitness com terraço, festas com parrilla gourmet, jogos, brinquedoteca, playground, piscinas adulto e infantil, pool house, solário e praça da lareira. Os 147 studios a partir de 27 m² ficam do 2º ao 6º, com lazer próprio no 6º (pilates, spinning, fitness, gourmet e piscina) e lobby, delivery, coworking e lavanderia. Seis lojas no térreo. Lançado em agosto de 2021 e entregue em outubro de 2024 pela corretagem.',
+        area: ['132 m²: 4 dormitórios com 2 vagas (planta tipo) ou 3 suítes com living ampliado (opção), 64 unidades do 8º ao 23º', 'Studios a partir de 27 m², residenciais e com serviços, 147 unidades do 2º ao 6º', '6 lojas no térreo'],
+        tipologia: 'Studios a partir de 27 m² e apartamentos de 4 dormitórios de 132 m²',
+        banheiros: '132 m²: banho master com duas cubas, banheiro de serviço e lavabo, água quente nas pias (exceto lavabo e serviço); studios com água quente no banho e na cozinha',
+        vagas: '2 vagas no 132 m², com uma vaga de home charger e car wash para o setor de 4 dormitórios; studios sem vaga (até 2 vagas pela corretagem)',
+        torres: 'Torre única de 23 pavimentos (2 subsolos, térreo, 1 sobressolo, 2 de studios não residenciais, 2 de studios residenciais, 1 de studios com o lazer dos studios, 1 de lazer dos apartamentos e 16 de apartamentos), em terreno de 2.427,71 m²',
+        unidades: ['217 unidades: 64 apartamentos de 132 m² e 147 studios, mais 6 lojas'],
+        pavimentos: ['Subsolos: garagem, pet place e bicicletário; 1º pavimento: acessos, lojas e garagem', 'Térreo dos apartamentos: lobby, delivery, mini market e coworking; dos studios: lobby, delivery, coworking e lavanderia', '2º ao 6º: studios; 6º: lazer dos studios com pilates, spinning, fitness com terraço, espaço gourmet com terraço, piscina, solário e deck molhado', '7º: lazer dos apartamentos com fitness com terraço, festas com parrilla gourmet, jogos com terraço, brinquedoteca, playground, piscina adulto com raia de 15 m, piscina infantil, pool house, solário, deck molhado e praça da lareira', '8º ao 23º: apartamentos de 4 dormitórios, 132 m²'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Borges Lagoa, 360 · Vila Clementino, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 15 m e deck molhado e piscina infantil no 7º, com pool house e pool lounge; piscina com raia de 15 m e deck molhado no 6º, para os studios',
+          academia: 'Fitness com terraço nos dois setores; pilates e spinning no setor de studios',
+          festas: 'Salão de festas com parrilla gourmet e lounge de jogos com terraço',
+          gourmet: 'Parrilla gourmet no 7º; espaço gourmet com terraço e churrasqueira gourmet no 6º',
+          kids: 'Brinquedoteca e playground',
+          quadra: '',
+          portaria: 'Portarias e entradas exclusivas e independentes para os studios e os apartamentos, sala de segurança, previsão de segurança perimetral e CFTV',
+          coworking: 'Coworking nos dois setores, central delivery exclusiva de cada setor, mini market, lavanderia dos studios, bicicletário e pet place'
+        },
+        lazerGrupos: [
+          ['Apartamentos · 7º', ['Fitness com terraço', 'Festas com parrilla gourmet', 'Jogos com terraço', 'Brinquedoteca', 'Playground', 'Piscina adulto', 'Piscina infantil', 'Pool house', 'Pool lounge', 'Solário', 'Deck molhado', 'Praça da lareira']],
+          ['Apartamentos · térreo e subsolo', ['Lobby', 'Central delivery', 'Mini market', 'Coworking', 'Pet place', 'Bicicletário']],
+          ['Studios', ['Lobby', 'Delivery', 'Coworking', 'Lavanderia', 'Pilates', 'Spinning', 'Fitness com terraço', 'Espaço gourmet com terraço', 'Churrasqueira gourmet', 'Piscina', 'Solário', 'Deck molhado']]
+        ],
+        diferenciais: ['Setores independentes para studios e apartamentos, cada um com lazer com vista para a cidade', 'Fechadura eletrônica no Personal Home, infraestrutura para ar-condicionado, persianas de enrolar com infraestrutura para automação', 'Terraço com churrasqueira a carvão no 132 m², piso nivelado com o living, lavadora e secadora', 'Entrada de serviço, banheiro de serviço, closet e duas cubas no banho master', 'Studios com terraço com ponto para grill, água quente e persiana na porta do terraço', 'Reúso de água de chuva, previsão de aquecimento solar, LED e torneiras com temporizador nas áreas comuns'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Haus']],
+        plantas: [
+          { src: MVC + 'planta-132.webp', nome: '132 m² · planta tipo', meta: '4 dormitórios · 2 vagas' },
+          { src: MVC + 'planta-132-3-suites.webp', nome: '132 m² · living ampliado', meta: '3 suítes · 2 vagas' },
+          { src: MVC + 'planta-studio-27.webp', nome: '27 m² · studio', meta: 'Planta do decorado' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Metrô Santa Cruz', '5 min'], ['Hospital São Paulo', '650 m'], ['Parque Ibirapuera', '7 min'], ['Av. Paulista', '9 min'], ['Estações Vila Mariana, Ana Rosa, Paraíso e Chácara Klabin', 'na região']]],
+            ['Saúde', [['Hospital São Paulo e AACD', 'no bairro'], ['Santa Cruz, Einstein, Oswaldo Cruz e Beneficência Portuguesa', 'no polo de saúde'], ['Santa Catarina, HCor, Sepaco, GRAACC e Hospital do Rim', 'no polo de saúde']]],
+            ['Ensino', [['Unifesp', '12.000 alunos, no bairro'], ['ESPM', '4.800 alunos, no bairro'], ['Belas Artes, FMU, Colégio Bandeirantes e Arquidiocesano', 'por perto'], ['Poliedro, Etapa e Objetivo', 'por perto']]],
+            ['Compras e cultura', [['Shopping Pátio Paulista, Santa Cruz e Ibirapuera', 'por perto'], ['Pão de Açúcar, Tateno e Oba', 'por perto'], ['MASP, Itaú Cultural, Japan House e Sesc Paulista', 'por perto'], ['Parque da Aclimação, Sesc Vila Mariana, MAC, Cinemateca e Museu Lasar Segall', 'por perto']]]
+          ],
+          nota: 'Tempos e pontos do próprio book, de carro.'
+        },
+        legal: 'Book de corretor, sem texto de registro nem data; intermediação pela Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Studios residenciais e com serviços conforme a convenção; aquecimento solar com instalação a cargo do condomínio. Pela corretagem (apto.vc): lançamento em agosto de 2021, entregue em outubro de 2024, pronto para morar, torre de térreo mais 22 andares com 217 residências em terreno de 2.427 m²; disponibilidade sob consulta.',
+        torre: MVC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MARIANA_MITRE,
+        fotos: [
+          fotoMVC('fachada', 'Fachada', true),
+          fotoMVC('fachada-2', 'Fachada', true),
+          fotoMVC('lobby', 'Lobby dos apartamentos'),
+          fotoMVC('pool-lounge', 'Pool lounge, no 7º'),
+          fotoMVC('piscina', 'Piscina dos apartamentos'),
+          fotoMVC('pool-house', 'Pool house'),
+          fotoMVC('praca-da-lareira', 'Praça da lareira'),
+          fotoMVC('parrilla-gourmet', 'Parrilla gourmet'),
+          fotoMVC('salao-de-festas', 'Salão de festas'),
+          fotoMVC('lounge-de-jogos', 'Lounge de jogos'),
+          fotoMVC('fitness', 'Fitness dos apartamentos'),
+          fotoMVC('brinquedoteca', 'Brinquedoteca'),
+          fotoMVC('coworking', 'Coworking dos apartamentos'),
+          fotoMVC('central-delivery', 'Central delivery'),
+          fotoMVC('bicicletario', 'Bicicletário'),
+          fotoMVC('pet-place', 'Pet place'),
+          fotoMVC('piscina-studios', 'Piscina dos studios, no 6º'),
+          fotoMVC('churrasqueira-studios', 'Churrasqueira gourmet dos studios'),
+          fotoMVC('fitness-studios', 'Fitness dos studios'),
+          fotoMVC('coworking-studios', 'Coworking dos studios'),
+          fotoMVC('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMVC('studio', 'Studio decorado'),
+          fotoMVC('regiao-aerea', 'Vila Clementino, foto aérea')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Ibirapuera',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Clementino',
+        resumo: 'Studios a 3 dormitórios · 25 a 76 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'A 450 m do Metrô Hospital São Paulo e a 7 minutos de Congonhas, na Rua Loefgren, 1.710, no polo de saúde da Vila Clementino: torre única de 17 andares com 158 unidades num terreno de 1.545 m², "design com alma paulistana" e setores independentes. Residencial do 5º ao 16º: 24 apartamentos de 3 dormitórios com 76 m², 48 de 2 dormitórios com 63 a 67 m² e 24 de 1 dormitório com 38 m², todos com 1 vaga, mais 6 gardens; 62 studios de 25 a 36 m² do 1º ao 4º, com serviços pay-per-use de recepção e governança. Lazer residencial no rooftop, no 17º: piscina, coworking, salão de festas, fitness, lounge de jogos, churrasqueira gourmet e brinquedoteca; studios com hall, lavanderia, fitness e coworking no térreo. Decoração de Claudia Albertini, arquitetura de Königsberger Vannucchi e paisagismo de Martha Gavião. Entregue em novembro de 2023 pela corretagem.',
+        area: ['76 m²: 3 dormitórios, 1 suíte, 1 vaga (24 unidades; opção de 2 suítes com living ampliado)', '63 a 67 m²: 2 dormitórios, 1 suíte, 1 vaga (48 unidades; planta de 67 m² com opção)', '38 m²: 1 dormitório, 1 vaga (24 unidades)', 'Studios de 25 a 36 m² (62 unidades), 6 gardens no 5º e uma loja de 177 m²'],
+        tipologia: 'Studios de 25 a 36 m² e apartamentos de 1, 2 e 3 dormitórios, de 38 a 76 m²',
+        banheiros: 'Suíte nos apartamentos de 2 e 3 dormitórios, com ducha higiênica; água quente nas pias dos banhos e da cozinha e bacia com válvula dual flux nos dois setores',
+        vagas: '1 vaga por apartamento residencial, com um home charger na garagem; studios sem vaga',
+        torres: 'Torre única de 17 andares em terreno de 1.545,42 m², com 4 elevadores (2 para os studios e 2 para o residencial)',
+        unidades: ['158 unidades: 96 apartamentos, 62 studios e uma loja'],
+        pavimentos: ['Térreo residencial: acessos, hall social, delivery, estar, sala de reuniões e loja; térreo dos studios: acessos, hall social, lavanderia, fitness e coworking', '1º pavimento: 5 studios; 2º ao 4º: 19 studios por andar', '5º: 6 gardens; 6º ao 16º: 2 apartamentos de 1 dormitório, 4 de 2 e 2 de 3 por andar', '17º, rooftop residencial: coworking, salão de festas, fitness, lounge de jogos, churrasqueira gourmet, brinquedoteca e piscina'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Loefgren, 1.710 · Vila Clementino, São Paulo',
+        infra: {
+          piscina: 'Piscina no rooftop, no 17º, com bangalô e lounge lareira',
+          academia: 'Fitness no rooftop para o residencial e fitness próprio dos studios',
+          festas: 'Salão de festas e lounge de jogos no rooftop',
+          gourmet: 'Churrasqueira gourmet no rooftop',
+          kids: 'Brinquedoteca',
+          quadra: '',
+          portaria: 'Acessos e halls independentes para o residencial e os studios, sala de segurança, previsão de segurança perimetral e CFTV',
+          coworking: 'Coworking no rooftop e no setor de studios, sala de reuniões, central de delivery para os dois setores, lavanderia dos studios e bicicletário'
+        },
+        lazerGrupos: [
+          ['Rooftop residencial', ['Piscina', 'Bangalô', 'Lounge lareira', 'Sky lounge', 'Coworking', 'Salão de festas', 'Fitness', 'Lounge de jogos', 'Churrasqueira gourmet', 'Brinquedoteca']],
+          ['Térreo', ['Hall social', 'Central delivery', 'Estar', 'Sala de reuniões', 'Bicicletário', 'Loja']],
+          ['Studios', ['Hall social', 'Lavanderia', 'Fitness', 'Coworking', 'Delivery']]
+        ],
+        diferenciais: ['Central de delivery para o residencial e para os studios, lazer no rooftop com piscina e vista em 360°', 'Fechadura eletrônica, rede frigorígena, ponto elétrico e dreno para ar-condicionado, previsão de automação no Personal Home', 'Terraço com churrasqueira elétrica nos apartamentos, tratamento acústico no piso, piso nivelado e terraço técnico', 'Mesa para 6 lugares na sala, amplo espaço para armários, lavadora e secadora, persianas de enrolar', 'Studios com terraço com ponto para grill e pay-per-use de recepção, concierge e governança', 'Reúso de água de chuva, previsão de aquecimento solar, LED, torneiras com temporizador e home charger na garagem'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi Arquitetura'], ['Decoração', 'Claudia Albertini'], ['Paisagismo', 'Martha Gavião Associados'], ['Incorporação', 'Mitre Realty, linha Haus']],
+        plantas: [
+          { src: MIB + 'planta-76.webp', nome: '76 m² · 3 dormitórios', meta: 'Planta tipo · 1 suíte · 1 vaga' },
+          { src: MIB + 'planta-76-opcao.webp', nome: '76 m² · living ampliado', meta: '2 suítes · 1 vaga' },
+          { src: MIB + 'planta-67.webp', nome: '67 m² · 2 dormitórios', meta: '1 suíte · 1 vaga' },
+          { src: MIB + 'planta-67-opcao.webp', nome: '67 m² · opção', meta: '2 dormitórios · 1 vaga' },
+          { src: MIB + 'planta-38.webp', nome: '38 m² · 1 dormitório', meta: '1 vaga' },
+          { src: MIB + 'planta-studio-25.webp', nome: '25 m² · studio', meta: 'Setor de studios' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Metrô Hospital São Paulo', '450 m a pé'], ['Hospital São Paulo', '400 m a pé'], ['Rua Borges Lagoa', '350 m a pé'], ['Unifesp', '3 min'], ['Rua Sena Madureira', '3 min'], ['Rua Domingos de Morais', '4 min'], ['Aeroporto de Congonhas', '7 min'], ['Av. Paulista', '9 min']]],
+            ['Lazer, ensino e saúde', [['Parque Ibirapuera', '7 min de bicicleta'], ['Colégio Marista Arquidiocesano', '5 min'], ['HCor', '10 min'], ['18 hospitais', 'num raio de 4,5 km, pelo book']]]
+          ],
+          nota: 'Tempos do próprio book, de carro quando não indicado.'
+        },
+        legal: 'Book de corretor, sem texto de registro nem data; intermediação pela Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Serviços pay-per-use só nos studios com serviço (recepção, concierge, limpeza das áreas comuns e governança), conforme a convenção; aquecimento solar e segurança perimetral só previstos. O book escreve o endereço como "R. Loefrgreen"; a rua é a Loefgren. Pela corretagem (MySide): entregue em novembro de 2023, pronto para morar; disponibilidade sob consulta.',
+        torre: MIB + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MARIANA_MITRE,
+        fotos: [
+          fotoMIB('fachada', 'Fachada', true),
+          fotoMIB('acesso', 'Acesso'),
+          fotoMIB('rooftop', 'Rooftop com piscina, no 17º'),
+          fotoMIB('sky-lounge', 'Sky lounge'),
+          fotoMIB('bangalo', 'Bangalô'),
+          fotoMIB('lounge-lareira', 'Lounge lareira'),
+          fotoMIB('salao-de-festas', 'Salão de festas'),
+          fotoMIB('lounge-jogos', 'Lounge de jogos'),
+          fotoMIB('coworking', 'Coworking'),
+          fotoMIB('fitness', 'Fitness'),
+          fotoMIB('brinquedoteca', 'Brinquedoteca'),
+          fotoMIB('lobby', 'Lobby residencial'),
+          fotoMIB('central-delivery', 'Central delivery'),
+          fotoMIB('living-3-dorms', 'Living do apartamento de 3 dormitórios'),
+          fotoMIB('living-2-dorms', 'Living do apartamento de 2 dormitórios'),
+          fotoMIB('living-2-dorms-c', 'Living do apartamento de 2 dormitórios'),
+          fotoMIB('living-1-dorm', 'Living do apartamento de 1 dormitório'),
+          fotoMIB('lobby-studios', 'Lobby dos studios'),
+          fotoMIB('lavanderia-coworking-studios', 'Lavanderia e coworking dos studios'),
+          fotoMIB('fitness-studios', 'Fitness dos studios'),
+          fotoMIB('metro-hospital-sao-paulo', 'Estação Hospital São Paulo, a 450 m'),
+          fotoMIB('parque-ibirapuera', 'Parque Ibirapuera'),
+          fotoMIB('regiao-aerea', 'Vila Clementino, foto aérea')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Aclimação',
+        cidade: 'São Paulo, capital',
+        bairro: 'Aclimação',
+        resumo: 'Studios e 4 dormitórios · 27 a 127 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Gualachos, 187, esquina com a Rua dos Itatins, a 600 m da Estação Vergueiro: torre de térreo mais 25 andares com entradas independentes para o setor residencial e o de studios. Apartamentos de 4 dormitórios com 127 m² (2 suítes, ou 3 suítes com living ampliado, 2 vagas) e studios a partir de 27 m², residenciais e com serviços, mais duas lojas na esquina. Lazer residencial com portaria, hall, piscina, fitness, salão de festas, brinquedoteca, bicicletário e delivery; studios com coworking, espaço gourmet, salão de festas, fitness e lavanderia. Lançado em setembro de 2021 e entregue em dezembro de 2023 pela corretagem.',
+        area: ['127 m²: 4 dormitórios com 2 suítes (planta tipo) ou 3 suítes com living ampliado (opção), 2 vagas', 'Studios: 27 m² com serviços, 27 m² residencial e 28 m² acessível (PNE)', 'Pela corretagem: 27 e 127 m², studio a 4 quartos, até 3 suítes, até 2 vagas'],
+        tipologia: 'Studios de 27 e 28 m² e apartamentos de 4 dormitórios de 127 m²',
+        banheiros: '127 m²: iluminação e ventilação naturais nos banhos dos dormitórios, 2 cubas e ducha higiênica na master, lavabo e banheiro de serviço; água quente nas bancadas e bacia com válvula dual flux',
+        vagas: '2 vagas no 127 m²; studios sem vaga',
+        torres: 'Torre de térreo mais 25 andares (corretagem), com entradas independentes para o residencial e os studios',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Setor residencial: portaria, hall, piscina, fitness, salão de festas, brinquedoteca, bicicletário e espaço delivery', 'Setor de studios: coworking, espaço gourmet, salão de festas, fitness e lavanderia', 'Lojas nas ruas Gualachos e Itatins'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Gualachos, 187, esquina com a Rua dos Itatins · Aclimação, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck, no setor residencial',
+          academia: 'Fitness em cada setor',
+          festas: 'Salão de festas em cada setor',
+          gourmet: 'Espaço gourmet dos studios',
+          kids: 'Brinquedoteca',
+          quadra: '',
+          portaria: 'Portaria e entradas independentes para o residencial e os studios',
+          coworking: 'Coworking dos studios, lavanderia, bicicletário e espaço delivery'
+        },
+        lazerGrupos: [
+          ['Residencial', ['Portaria', 'Hall', 'Piscina', 'Fitness', 'Salão de festas', 'Brinquedoteca', 'Bicicletário', 'Espaço delivery']],
+          ['Studios', ['Coworking', 'Espaço gourmet', 'Salão de festas', 'Fitness', 'Lavanderia']]
+        ],
+        diferenciais: ['Entradas independentes para o residencial e os studios com serviços', 'Fechadura eletrônica no Personal Home, infraestrutura para ar-condicionado com área técnica', 'Terraço com churrasqueira a carvão e mesa para 8 lugares, piso nivelado com o living', 'Closet na suíte master, banheiro de serviço, lavadora e secadora, persianas de enrolar', 'Studios com terraço com ponto para grill e água quente na cozinha e no banho', 'Lojas nas duas ruas da esquina'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Haus']],
+        plantas: [
+          { src: MAC + 'planta-127.webp', nome: '127 m² · planta tipo', meta: '4 dormitórios, 2 suítes · 2 vagas' },
+          { src: MAC + 'planta-127-3-suites.webp', nome: '127 m² · living ampliado', meta: '3 suítes · 2 vagas' },
+          { src: MAC + 'planta-studio-27.webp', nome: '27 m² · studio com serviços', meta: 'Setor de studios' },
+          { src: MAC + 'planta-studio-27-res.webp', nome: '27 m² · studio residencial', meta: 'Setor de studios' },
+          { src: MAC + 'planta-studio-28-pne.webp', nome: '28 m² · studio acessível', meta: 'PNE' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Vergueiro, Linha 1-Azul', '600 m, pela corretagem'], ['Parque da Aclimação', 'no bairro'], ['Estações Ana Rosa, Vila Mariana e Paraíso', 'na região'], ['Av. Paulista e Centro', 'a poucos minutos']]]
+          ],
+          nota: 'O book de maio de 2021 não traz mapa; a distância da estação vem da corretagem.'
+        },
+        legal: 'O book (impresso em maio de 2021) diz que o empreendimento só seria comercializado após o registro do memorial de incorporação (Lei 4.591/64); futura intermediação por LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Perspectivas preliminares; piso interno não entregue pela construtora. Pela corretagem (apto.vc): lançamento em setembro de 2021, entregue em dezembro de 2023, pronto para morar, térreo mais 25 andares, na Rua Gualaxo; disponibilidade sob consulta.',
+        torre: MAC + 'portaria.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MARIANA_MITRE,
+        fotos: [
+          fotoMAC('portaria', 'Portaria'),
+          fotoMAC('hall', 'Hall residencial'),
+          fotoMAC('piscina', 'Piscina'),
+          fotoMAC('piscina-2', 'Piscina'),
+          fotoMAC('fitness', 'Fitness residencial'),
+          fotoMAC('salao-de-festas', 'Salão de festas residencial'),
+          fotoMAC('brinquedoteca', 'Brinquedoteca'),
+          fotoMAC('bicicletario', 'Bicicletário'),
+          fotoMAC('delivery', 'Espaço delivery'),
+          fotoMAC('loja-gualachos', 'Loja na Rua Gualachos'),
+          fotoMAC('loja-itatins', 'Loja na Rua dos Itatins'),
+          fotoMAC('living-ampliado', 'Living ampliado do apartamento de 127 m²'),
+          fotoMAC('terraco', 'Terraço ampliado do apartamento de 127 m²'),
+          fotoMAC('coworking-studios', 'Coworking dos studios'),
+          fotoMAC('gourmet-studios', 'Espaço gourmet dos studios'),
+          fotoMAC('festas-studios', 'Salão de festas dos studios'),
+          fotoMAC('fitness-studios', 'Fitness dos studios'),
+          fotoMAC('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMAC('studio', 'Studio')
+        ]
+      },
+      {
+        nome: 'Raízes Vila Mascote',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Mascote',
+        resumo: 'Studios e 3 dormitórios · 24 a 169 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'A linha Raízes da Mitre na Vila Mascote, ao lado do Colégio Emilie de Villeneuve e da Avenida Vereador João de Luca: torre única de 28 pavimentos com 305 unidades, entre 3 lojas, 160 studios (com serviços pay-per-use da Atlantica Residences, ou residenciais) e 142 apartamentos de 3 dormitórios, de 81 m² (1 suíte, 1 vaga) e 106 m² (3 suítes, 2 vagas), mais 8 gardens no 8º andar. Lazer residencial no rooftop, no 26º: piscinas, espaço festas, gourmet, terraço com churrasqueira, parrilla, sports bar, fitness, pilates, brinquedoteca e terraço teen; no térreo, delivery, coworking, sala de reunião, mini market e beauty care; no subsolo, bicicletário, playground e pet place. Projeto de MCAA Arquitetos, decoração da Archiave e paisagismo de Martha Gavião. Lançado em agosto de 2021 e entregue em outubro de 2024 pela corretagem.',
+        area: ['81 m²: 3 dormitórios com 1 suíte e 1 vaga (66 unidades, mais 2 de 82 m²)', '106 m²: 3 suítes e 2 vagas (34 unidades, mais 32 de 107 m²)', 'Gardens no 8º pavimento: 8 unidades de 107,16 a 169,25 m²', 'Studios: 96 com serviços do 3º ao 5º (24,20 a 34,92 m²) e 64 residenciais no 6º e 7º (24,34 a 35,39 m²)', '3 lojas de 45,95 a 525,62 m²'],
+        tipologia: 'Studios a partir de 24 m² e apartamentos de 3 dormitórios de 81 a 169 m²',
+        banheiros: '2 banheiros no 81 m² (suíte com ducha higiênica e lavabo) e 4 no 106 m² (3 suítes, master com 2 cubas, e lavabo); bacia com válvula dual flux e água quente nas bancadas',
+        vagas: '1 vaga no 81 m² e 2 no 106 m²; studios sem vaga pela corretagem; estacionamento no subsolo, no térreo e em dois sobressolos',
+        torres: 'Torre única de 28 pavimentos (subsolo, térreo, 2 sobressolos, 5 de studios, 1 de gardens, 17 residenciais e o rooftop de lazer), em terreno de 3.409 m² (corretagem); 4 elevadores no setor residencial e 2 no setor de studios',
+        unidades: ['305 unidades: 3 lojas, 160 studios e 142 apartamentos (206 residências pela corretagem)'],
+        pavimentos: ['Subsolo: 3 lojas, estacionamento e lazer residencial com bicicletário, playground e pet place', 'Térreo: acessos independentes, estacionamento e pavimento superior da loja; lazer residencial com delivery, coworking, sala de reunião, mini market e beauty care; lazer dos studios com delivery, sala de reunião, coworking, lavanderia, mini market e fitness', '1º e 2º: sobressolos de estacionamento', '3º ao 5º: studios com serviços; 6º e 7º: studios residenciais', '8º: gardens; 9º ao 24º: 8 apartamentos por andar; 25º: 6 por andar', '26º, rooftop: espaço festas, espaço gourmet, terraço gourmet com churrasqueira, brinquedoteca com terraço, fitness, pilates, sports bar, terraço teen, espaço parrilla e piscinas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Madre Emilie de Villeneuve · Vila Mascote, São Paulo',
+        infra: {
+          piscina: 'Piscinas adulto e infantil no rooftop, com deck molhado, spa e solário',
+          academia: 'Fitness e pilates no rooftop, no setor residencial; fitness próprio no setor de studios',
+          festas: 'Espaço festas e sports bar no rooftop',
+          gourmet: 'Espaço gourmet, terraço gourmet com churrasqueira e espaço parrilla',
+          kids: 'Brinquedoteca com terraço, terraço teen e playground',
+          quadra: '',
+          portaria: 'Acessos independentes para os setores residencial, de studios e das lojas, com previsão de sistema perimetral e CFTV',
+          coworking: 'Coworking e sala de reunião nos dois setores, beauty care, mini market, delivery, lavanderia dos studios, bicicletário e pet place'
+        },
+        lazerGrupos: [
+          ['Rooftop residencial', ['Espaço festas', 'Espaço gourmet', 'Terraço gourmet com churrasqueira', 'Espaço parrilla', 'Sports bar', 'Fitness', 'Pilates', 'Brinquedoteca com terraço', 'Terraço teen', 'Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Spa', 'Solário']],
+          ['Térreo e subsolo', ['Delivery', 'Coworking', 'Sala de reunião', 'Mini market', 'Beauty care', 'Bicicletário', 'Playground', 'Pet place']],
+          ['Studios', ['Hall', 'Delivery', 'Sala de reunião', 'Coworking', 'Lavanderia', 'Mini market', 'Fitness']]
+        ],
+        diferenciais: ['Setores independentes: residencial, studios e lojas, com lazer no rooftop para os apartamentos', 'Studios com serviços pay-per-use da Atlantica Residences (e/joy), para morar, alugar ou investir', 'Mitre Personal Home com opções de planta e acabamentos, e fechadura eletrônica no Personal Home', 'Ponto elétrico e dreno para ar-condicionado, piso nivelado entre living e terraço, água quente nas bancadas', 'Churrasqueira a carvão nas unidades residenciais, lavadora e secadora, persianas de enrolar', 'Reúso de água de chuva, torneiras com temporizador, previsão de aquecimento solar e LED nas áreas comuns'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Decoração', 'Archiave'], ['Paisagismo', 'Martha Gavião'], ['Serviços dos studios', 'Atlantica Residences (e/joy)'], ['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MRM + 'planta-106.webp', nome: '106 m² · 3 suítes', meta: 'Planta tipo · 2 vagas' },
+          { src: MRM + 'planta-81.webp', nome: '81 m² · 3 dormitórios', meta: 'Planta tipo · 1 suíte · 1 vaga' },
+          { src: MRM + 'planta-24.webp', nome: '24 m² · studio', meta: 'Setores com serviços e residencial' }
+        ],
+        implantacao: [
+          { src: MRM + 'mapa.webp', nome: 'Mapa da região', meta: 'Tempos de carro aos principais pontos' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Aeroporto de Congonhas', '9 min'], ['Metrô Brooklin', '9 min'], ['Av. Washington Luís', '10 min'], ['Av. Jornalista Roberto Marinho', '10 min'], ['Av. dos Bandeirantes', '11 min'], ['Av. Berrini', '15 min'], ['Metrô Jabaquara', '15 min']]],
+            ['Compras e lazer', [['Chácara Flora', '10 min'], ['Shopping Morumbi e Market Place', '13 min'], ['Shopping Ibirapuera', '15 min'], ['Parque Ibirapuera', '20 min']]],
+            ['Saúde e ensino', [['Colégio Emilie de Villeneuve', 'ao lado'], ['Hospital Moriah', '13 min'], ['Hospital São Luiz Jabaquara', '14 min'], ['Hospital São Luiz', '22 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro.'
+        },
+        legal: 'O book do cliente não traz o texto de registro nem data; intermediação pela Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Serviços pay-per-use dos studios pela Atlantica Residences, por contrato e sem garantia de rentabilidade; piso interno não entregue pela construtora; churrasqueira a carvão só nas unidades residenciais; aquecimento solar só previsto. Pela corretagem (apto.vc): lançamento em agosto de 2021, entregue em outubro de 2024, pronto para morar, torre de térreo mais 27 andares com 206 residências em terreno de 3.409 m², na Rua Madre Emilie de Villeneuve; disponibilidade sob consulta.',
+        torre: MRM + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MASCOTE_MITRE,
+        fotos: [
+          fotoMRM('fachada', 'Fachada', true),
+          fotoMRM('fachada-rua', 'Fachada pela rua', true),
+          fotoMRM('voo-de-passaro', 'Rooftop, voo de pássaro'),
+          fotoMRM('piscina', 'Piscina no rooftop'),
+          fotoMRM('espaco-festas', 'Espaço festas'),
+          fotoMRM('gourmet', 'Espaço gourmet'),
+          fotoMRM('sports-bar', 'Sports bar'),
+          fotoMRM('fitness-residencial', 'Fitness residencial'),
+          fotoMRM('pilates', 'Pilates'),
+          fotoMRM('brinquedoteca', 'Brinquedoteca'),
+          fotoMRM('hall-residencial', 'Hall residencial'),
+          fotoMRM('coworking-residencial', 'Coworking residencial'),
+          fotoMRM('beauty-care', 'Beauty care'),
+          fotoMRM('delivery', 'Delivery'),
+          fotoMRM('bicicletario', 'Bicicletário'),
+          fotoMRM('pet-place', 'Pet place'),
+          fotoMRM('playground', 'Playground'),
+          fotoMRM('hall-coworking-studios', 'Hall e coworking dos studios'),
+          fotoMRM('fitness-studios', 'Fitness dos studios'),
+          fotoMRM('lavanderia-studios', 'Lavanderia dos studios')
+        ]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
@@ -6760,14 +7163,12 @@
       ['Raízes L\'Avenir', 'Vila Prudente', '3 e 4 dormitórios', '109 e 132 m²', 'Em construção'],
       ['Raízes Jardim São Paulo', 'Jardim São Paulo', '3 e 4 dormitórios', '106 e 127 m²', 'Em construção'],
       ['Origem Guilhermina', 'Vila Guilhermina', '2 dormitórios', '40 e 54 m²', 'Em construção'],
-      ['Haus Mitre Reserva Vila Mariana', 'Vila Mariana', '4 dormitórios', '280 m²', 'Pronto para morar'],
       ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
       ['Haus Mitre Perdizes', 'Perdizes', '1 dormitório', '38 m²', 'Pronto para morar'],
       ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
       ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
       ['Raízes Premium Mooca', 'Mooca', '3 dormitórios', '82 m²', 'Pronto para morar'],
       ['Raízes Reserve Mooca', 'Mooca', '3 dormitórios', '85 m²', 'Pronto para morar'],
-      ['Raízes Vila Mascote', 'Vila Mascote', '3 dormitórios', '81 m²', 'Pronto para morar'],
       ['Raízes Tatuapé', 'Tatuapé', '2 dormitórios', '49 e 57 m²', 'Pronto para morar'],
       ['Raízes Premium Butantã', 'Butantã', '1 e 3 dormitórios', '39 e 119 m²', 'Pronto para morar'],
       ['Raízes Reserve', 'Vila Prudente', 'Studios a 3 dormitórios', '26 a 119 m²', 'Pronto para morar'],
