@@ -780,6 +780,16 @@
   // (11/11/2026) Panamby, rodada 4: Wish, Dream e Concept (slides so de imagem, nomeados pela folha; vizinhos na Av. Alberto Augusto Alves)
   var LWP = L + 'wish/', LDP = L + 'dream/', LCP = L + 'concept/';
   var fotoLWP = fotoEm(LWP), fotoLDP = fotoEm(LDP), fotoLCP = fotoEm(LCP);
+  // (11/11/2026) Brooklin e Berrini, rodada 5a: Full Berrini (jul/2024), Full Estaiada (jan/2025), The New Residence (out/2025), The Residence Brooklin (jun/2025)
+  var LFB = L + 'fullberrini/', LFS = L + 'fullestaiada/', LNR = L + 'newresidence/', LRB = L + 'residencebrooklin/';
+  var fotoLFB = fotoEm(LFB), fotoLFS = fotoEm(LFS), fotoLNR = fotoEm(LNR), fotoLRB = fotoEm(LRB);
+  var ZS_BROOKLIN = {
+    titulo: 'A região · Brooklin e Berrini',
+    texto: 'Entre a Avenida Santo Amaro, a Berrini, a Marginal Pinheiros e a Avenida dos Bandeirantes, o Brooklin é o bairro de ruas com nomes de estados americanos que virou o centro financeiro novo da cidade: as torres da Berrini e da Chucri Zaidan, a Ponte Estaiada, os shoppings Morumbi, Market Place, JK Iguatemi e Vila Olímpia, as estações Berrini, Vila Olímpia e Morumbi da CPTM e a Linha 17-Ouro. Demanda constante de executivos e famílias, do studio ao 4 dormitórios.',
+    numeros: [['5 min', 'da Estação Berrini, do Full Berrini'], ['3 min', 'da Ponte Estaiada, do Full Estaiada'], ['4', 'projetos da Living no bairro: Full Berrini, Full Estaiada, The New Residence e The Residence'], ['17 a 127 m²', 'do studio ao 4 dormitórios']],
+    polos: 'Por perto: Av. Berrini, Av. Chucri Zaidan, Ponte Estaiada, estações Berrini, Vila Olímpia e Morumbi, Morumbi Shopping, Market Place, JK Iguatemi, Shopping Vila Olímpia, Parque do Povo, WTorre, Rochaverá e os hospitais Santa Paula e São Luiz Star.',
+    fonte: 'Fonte: books da Living para o Full Berrini, o Full Estaiada, o The New Residence e o The Residence Brooklin, com tempos do próprio material.'
+  };
   var ZS_PANAMBY = {
     titulo: 'A região · Panamby',
     texto: 'Na Zona Sul, entre o Morumbi e a Vila Andrade, o Panamby é o bairro de torres novas em torno do Parque Burle Marx e do Palácio Tangará, com o Colégio Porto Seguro e o Pentágono, o Shopping Jardim Sul e o Morumbi Town, e a ligação pela Avenida Giovanni Gronchi e pela Marginal Pinheiros. Na Avenida Alberto Augusto Alves, a Living construiu três condomínios lado a lado: o Wish, o Dream e o Concept, todos entregues.',
@@ -5079,6 +5089,295 @@
           fotoLCP('jogos-teens', 'Jogos Teens'),
           fotoLCP('lavanderia', 'Lavanderia'),
           fotoLCP('mapa', 'Mapa de localização')
+        ]
+      },
+      {
+        nome: 'Living Full Berrini',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin, Berrini',
+        resumo: 'Studios e 1 a 2 dormitórios · 25 a 49 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Araberi, 67, a meio quarteirão da Avenida dos Bandeirantes e a 5 minutos da Estação Berrini: a linha Full da Living, feita para morar perto do trabalho e para alugar. Studios de 25 m² e apartamentos de 49 m², com 2 dormitórios ou suíte com lavabo. No térreo, Lounge Bar, Nightclub & Coworking, Garden Lounge, Lounge BBQ, Pet Park, Fitness integrado à Laundry, Home Market, Espaço Delivery, Pool Garden e Swimming Pool; no rooftop, Sky Lounge & Grill e Sky Garden. Entrega prevista para agosto de 2027.',
+        area: ['25 m²: 1 dormitório com sala integrada (padrão) ou dormitório fechado (opção), com terraço', '49 m²: 2 dormitórios (padrão) ou 1 suíte com lavabo (opção), 1 vaga'],
+        tipologia: 'Studios e 1 a 2 dormitórios, de 25 a 49 m²',
+        banheiros: '1 por unidade, com ponto para chuveiro elétrico; lavabo na opção de 49 m²',
+        vagas: '1 vaga no 49 m²; studios sem vaga',
+        torres: 'Torre única com rooftop',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: Social Entrance, Secondary Entrance, Garage Entrance, Delivery, Lounge Bar, Nightclub & Coworking, Garden Lounge, Lounge BBQ, Pet Park, Fitness, Laundry, Pool Garden e Swimming Pool', 'Rooftop: Sky Lounge & Grill e Sky Garden, só para as unidades residenciais'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Araberi, 67 · Brooklin, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com Pool Garden',
+          academia: 'Fitness integrado à Laundry',
+          festas: 'Lounge Bar e Nightclub',
+          gourmet: 'Lounge BBQ e Sky Lounge & Grill no rooftop',
+          kids: '',
+          quadra: '',
+          portaria: 'Social Entrance, Secondary Entrance e Garage Entrance',
+          coworking: 'Nightclub & Coworking, Laundry, Home Market, Espaço Delivery, bike e Pet Park'
+        },
+        lazer: ['Social Entrance', 'Secondary Entrance', 'Garage Entrance', 'Delivery', 'Lounge Bar', 'Nightclub & Coworking', 'Garden Lounge', 'Lounge BBQ', 'Pet Park', 'Fitness', 'Laundry', 'Home Market', 'Pool Garden', 'Swimming Pool', 'Sky Lounge & Grill', 'Sky Garden'],
+        diferenciais: ['A 5 minutos da Estação Berrini e a meio quarteirão da Av. dos Bandeirantes', 'Laundry, Home Market e Espaço Delivery no condomínio', 'Rooftop com Sky Lounge & Grill e Sky Garden', 'Camada de atenuação a ruído de impacto e infraestrutura para ar-condicionado em um ambiente', 'Unidades compactas com terraço, para morar e para alugar'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores e paisagismo', 'Desenvolvimento interno da Living'], ['Incorporação', 'CBR 015 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LFB + 'planta-25.webp', nome: '25 m² · padrão', meta: '1 dormitório, sala integrada · com terraço' },
+          { src: LFB + 'planta-25-opcao.webp', nome: '25 m² · opção', meta: 'Dormitório fechado · com terraço' },
+          { src: LFB + 'planta-49.webp', nome: '49 m² · padrão', meta: '2 dormitórios · 1 vaga' },
+          { src: LFB + 'planta-49-opcao.webp', nome: '49 m² · opção', meta: '1 suíte e lavabo · 1 vaga' }
+        ],
+        implantacao: [
+          { src: LFB + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, Lounge Bar, Nightclub & Coworking, Garden Lounge, Lounge BBQ, Pet Park, Fitness, Laundry e piscina' },
+          { src: LFB + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Sky Lounge & Grill e Sky Garden' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. dos Bandeirantes', '2 min'], ['Estação Vila Olímpia e Av. das Nações Unidas', '4 min'], ['Estação Berrini', '5 min']]],
+            ['Lazer e compras', [['Escape Time', '2 min'], ['Companhia Athletica', '3 min'], ['Shopping Vila Olímpia', '6 min'], ['Sociedade Hípica Paulista e JK Iguatemi', '7 min'], ['Parque do Povo', '9 min'], ['Teatro Santander e Shopping Cidade Jardim', '12 min'], ['Parque Ibirapuera', '19 min']]],
+            ['Gastronomia', [['Fogo de Chão', '1 min'], ['Starbucks Berrini', '4 min'], ['Praça São Lourenço', '8 min'], ['Garota da Vila', '9 min'], ['Jardineira Grill', '11 min']]],
+            ['Conveniência', [['Smart Fit Brooklin', '6 min'], ['St. Marché', '7 min'], ['Bluefit e Oba JK', '8 min'], ['Petz', '11 min'], ['Decathlon', '16 min']]],
+            ['Educação e saúde', [['Maple Bear e Maternidade São Luiz Star', '7 min'], ['Anhembi Morumbi', '8 min'], ['Hospital Santa Paula', '9 min'], ['FMU Santo Amaro', '14 min'], ['Hospital São Luiz Morumbi', '15 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2024).'
+        },
+        legal: 'Incorporadora CBR 015 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 1.039.977 no 15º Registro de Imóveis de São Paulo em 5 de julho de 2024. Área em processo de reabilitação para fins residenciais e comerciais, com plano de intervenção aprovado (CETESB 45/01272/23); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2023/0020588-3). O lazer do rooftop não é acessível às unidades não residenciais. Laundry e Home Market entregues como infraestrutura, a cargo do condomínio; ar-condicionado em um ambiente como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de julho de 2024. Lançamento em agosto de 2024 e entrega prevista para agosto de 2027, pela corretagem.',
+        torre: LFB + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN,
+        fotos: [
+          fotoLFB('fachada', 'Fachada', true),
+          fotoLFB('portaria', 'Portaria'),
+          fotoLFB('lounge-bar', 'Lounge Bar'),
+          fotoLFB('nightclub-coworking', 'Nightclub & Coworking'),
+          fotoLFB('nightclub-coworking-2', 'Nightclub & Coworking'),
+          fotoLFB('garden-lounge', 'Garden Lounge'),
+          fotoLFB('lounge-bbq', 'Lounge BBQ'),
+          fotoLFB('swimming-pool', 'Swimming Pool'),
+          fotoLFB('fitness', 'Fitness'),
+          fotoLFB('laundry', 'Laundry'),
+          fotoLFB('sky-lounge-grill', 'Sky Lounge & Grill, rooftop'),
+          fotoLFB('sky-garden', 'Sky Garden, rooftop')
+        ]
+      },
+      {
+        nome: 'Living Full Estaiada',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin, Ponte Estaiada',
+        resumo: 'Studios e 1 a 2 dormitórios · 17 a 38 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Avenida Morumbi, 7.710, a 3 minutos da Ponte Estaiada e a dois quarteirões do Morumbi Shopping e do Market Place: a linha Full da Living no Brooklin, com studios e apartamentos de 17 a 38 m², de 1 a 2 dormitórios, sem vaga de garagem e com fachada ativa. No térreo, lobby, Laundry, Fitness, Home Market, Pool Garden, Swimming Pool e Bike Station; no 1º pavimento, Nightclub & Coworking, Lounge BBQ e quadra de beach tennis; no rooftop, Sky Lounge & Grill e Sky Garden. Entrega prevista para fevereiro de 2028.',
+        area: ['17 m²: studio', '24 m²: 1 dormitório (opção)', '26 m²: sala e dormitório integrados (padrão ampliada) ou 1 dormitório (opção), com terraço', '30 m²: sala e dormitório integrados (padrão ampliada) ou 1 dormitório (opção), com terraço grande', '35 m²: sala e dormitório integrados (padrão ampliada) ou 1 suíte (opção)', '38 m²: 2 dormitórios (padrão) ou 1 suíte com lavabo (opção), com terraço'],
+        tipologia: 'Studios e 1 a 2 dormitórios, de 17 a 38 m²',
+        banheiros: '1 por unidade, com ponto para chuveiro elétrico; lavabo na opção de 38 m²',
+        vagas: 'Sem vaga para as unidades residenciais; as vagas do projeto são da fachada ativa; Bike Station',
+        torres: 'Torre única com rooftop e fachada ativa',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, lobby, Delivery, Laundry, Fitness, Pool Garden, Swimming Pool e Bike Station', '1º pavimento: Nightclub & Coworking, Lounge BBQ e beach tennis', 'Rooftop: Sky Lounge & Grill e Sky Garden, só para as unidades residenciais'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Morumbi, 7.710 · Brooklin, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool com Pool Garden',
+          academia: 'Fitness integrado à Laundry',
+          festas: 'Nightclub & Coworking',
+          gourmet: 'Lounge BBQ e Sky Lounge & Grill no rooftop',
+          kids: '',
+          quadra: 'Quadra de beach tennis',
+          portaria: 'Social Entrance e Service Entrance separadas, lobby',
+          coworking: 'Nightclub & Coworking, Laundry, Home Market, Espaço Delivery e Bike Station'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Lobby', 'Delivery', 'Laundry', 'Fitness', 'Home Market', 'Pool Garden', 'Swimming Pool', 'Bike Station', 'Nightclub & Coworking', 'Lounge BBQ', 'Beach tennis', 'Sky Lounge & Grill', 'Sky Garden'],
+        diferenciais: ['A 3 minutos da Ponte Estaiada e a dois quarteirões de dois shoppings', 'Quadra de beach tennis no 1º pavimento', 'Laundry, Home Market e Espaço Delivery no condomínio', 'Rooftop com Sky Lounge & Grill e Sky Garden', 'Camada de atenuação a ruído de impacto e infraestrutura para ar-condicionado em um ambiente', 'Studios a partir de 17 m², para alugar'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Link Interiores'], ['Paisagismo', 'Projetos internos Living'], ['Incorporação', 'CBR 156 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LFS + 'planta-17.webp', nome: '17 m²', meta: 'Studio' },
+          { src: LFS + 'planta-24.webp', nome: '24 m²', meta: '1 dormitório' },
+          { src: LFS + 'planta-26.webp', nome: '26 m² · padrão', meta: 'Sala e dormitório integrados · com terraço' },
+          { src: LFS + 'planta-26-opcao.webp', nome: '26 m² · opção', meta: '1 dormitório · com terraço' },
+          { src: LFS + 'planta-30.webp', nome: '30 m² · padrão', meta: 'Sala e dormitório integrados · terraço grande' },
+          { src: LFS + 'planta-30-opcao.webp', nome: '30 m² · opção', meta: '1 dormitório · terraço grande' },
+          { src: LFS + 'planta-35.webp', nome: '35 m² · padrão', meta: 'Sala e dormitório integrados · terraço grande' },
+          { src: LFS + 'planta-35-opcao.webp', nome: '35 m² · opção', meta: '1 suíte' },
+          { src: LFS + 'planta-38.webp', nome: '38 m² · padrão', meta: '2 dormitórios · com terraço' },
+          { src: LFS + 'planta-38-opcao.webp', nome: '38 m² · opção', meta: '1 suíte e lavabo · com terraço' }
+        ],
+        implantacao: [
+          { src: LFS + 'implantacao-terreo.webp', nome: 'Térreo e 1º pavimento', meta: 'Lobby, Laundry, Fitness, piscina, Bike Station, Nightclub & Coworking, Lounge BBQ e beach tennis' },
+          { src: LFS + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Sky Lounge & Grill e Sky Garden' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Chucri Zaidan e Av. Roque Petroni Júnior', '2 min'], ['Ponte Estaiada e Av. Roberto Marinho', '3 min'], ['Av. Berrini', '6 min'], ['Estação Morumbi, CPTM', '11 min'], ['Estação Brooklin', '20 min']]],
+            ['Compras e lazer', [['Shopping Parque da Cidade', '8 min'], ['Morumbi Shopping e Market Place', '10 min']]],
+            ['Gastronomia', [['Fogo de Chão, Outback, Olive Garden e Andiamo, no Morumbi Shopping', '10 min'], ['Abbraccio e Coco Bambu, no Market Place', '10 min']]],
+            ['Conveniência', [['Bluefit', '3 min'], ['Drogasil', '4 min'], ['Telhanorte', '5 min'], ['Leroy Merlin', '6 min'], ['Empório Santa Maria e Oba', '10 min'], ['Carrefour Paseo', '11 min']]],
+            ['Saúde e empresas', [['Hospital Sancta Maggiore', '2 min'], ['WeWork', '4 min'], ['Rochaverá Corporate', '5 min'], ['WTorre', '7 min'], ['Alta Diagnósticos', '10 min'], ['Hospital Santa Paula', '14 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2025).'
+        },
+        legal: 'Incorporadora CBR 156 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 1.063.775 no 15º Registro de Imóveis de São Paulo. Área em processo de reabilitação para fins residenciais e comerciais, com plano de intervenção aprovado (CETESB 33/07748/24); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2024/0007831-0). Não há vagas para as unidades residenciais; as vagas do projeto são da fachada ativa. O lazer do rooftop não é acessível às unidades não residenciais. Ar-condicionado em um ambiente, bancada da cozinha e tanque entregues como infraestrutura; Laundry e Home Market a cargo do condomínio. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de janeiro de 2025. Entrega prevista para fevereiro de 2028, pela corretagem.',
+        torre: LFS + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN,
+        fotos: [
+          fotoLFS('fachada', 'Fachada', true),
+          fotoLFS('portaria', 'Portaria'),
+          fotoLFS('lobby', 'Lobby'),
+          fotoLFS('swimming-pool', 'Swimming Pool'),
+          fotoLFS('beach-tennis', 'Beach tennis'),
+          fotoLFS('nightclub-coworking', 'Nightclub & Coworking'),
+          fotoLFS('nightclub-coworking-2', 'Nightclub & Coworking'),
+          fotoLFS('lounge-bbq', 'Lounge BBQ'),
+          fotoLFS('fitness', 'Fitness'),
+          fotoLFS('laundry', 'Laundry'),
+          fotoLFS('sky-lounge-grill', 'Sky Lounge & Grill, rooftop'),
+          fotoLFS('sky-garden', 'Sky Garden, rooftop')
+        ]
+      },
+      {
+        nome: 'The New Residence Brooklin by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin',
+        resumo: '1 a 3 dormitórios · 47 a 88 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Pensilvânia, 1.411, entre a energia da Berrini e a calma do Brooklin: inspirado na Filadélfia, onde um país nasceu, dois blocos de apartamentos de 47 a 88 m², de 1 suíte a 3 dormitórios, com cozinha integrada em opção. Wellness Center no 4º pavimento com Swimming Pool, Kids Pool, Pool Garden, Wellness Lounge, sauna, Wellness Massage, The Gym by Matrix e Yoga; Private Pool House, Poker & Games Lounge, Kids Place, playground e Kids Court; e, no rooftop, The Sky Gym by Matrix, Sky Outside Gym, Sky Gourmet e Sky Barbecue. Lançamento de dezembro de 2025.',
+        area: ['47 m²: 1 suíte, padrão ou com cozinha integrada, 1 vaga', '69 m²: 2 dormitórios com 1 suíte, padrão ou com cozinha integrada, 1 vaga', '75 m²: 2 suítes, padrão ou com cozinha integrada, 1 vaga', '88 m², bloco A: 3 dormitórios com 1 suíte (padrão) ou 2 suítes com cozinha integrada (opção), 1 vaga', '88 m², bloco B: 2 suítes, 1 vaga'],
+        tipologia: '1 suíte a 3 dormitórios, de 47 a 88 m²',
+        banheiros: 'Banheiros ventilados, com ralo linear e infraestrutura para água quente; lavabo em todas as plantas',
+        vagas: '1 vaga; determinada nos finais 1A, 2A, 1B e 2B do 12º ao 24º pavimento e 1A, 2A e 1B do 11º, por sorteio nas demais',
+        torres: 'Blocos A e B, de 24 pavimentos, com rooftop',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, Pet Place, Garden Lounge, Delivery, Mini Market, The Lobby e The Party Lounge', '4º pavimento, lazer: The Private Pool House, Poker & Games Lounge, Kids Place, playground, Kids Court e o Wellness Center com solarium, Pool Deck, The Swimming Pool, Kids Pool, Pool Garden, Wellness Lounge, sauna, Wellness Massage, The Gym by Matrix e Yoga', 'Rooftop: The Sky Gym by Matrix, The Sky Outside Gym, The Sky Gourmet e The Sky Barbecue'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Pensilvânia, 1.411 · Brooklin, São Paulo',
+        infra: {
+          piscina: 'The Swimming Pool com Pool Deck, Kids Pool, Pool Garden e solarium no 4º pavimento',
+          academia: 'The Gym by Matrix e Yoga no 4º pavimento; The Sky Gym by Matrix e Sky Outside Gym no rooftop; Wellness Lounge, sauna e Wellness Massage',
+          festas: 'The Party Lounge e Poker & Games Lounge',
+          gourmet: 'The Private Pool House, The Sky Gourmet e The Sky Barbecue',
+          kids: 'Kids Place, Kids Court, Kids Pool e playground',
+          quadra: 'Kids Court',
+          portaria: 'Social Entrance, Service Entrance e Garage Entrance separadas, The Lobby',
+          coworking: 'Garden Lounge, Mini Market 24 horas, Delivery e Pet Place'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Pet Place', 'Garden Lounge', 'Delivery', 'Mini Market', 'The Lobby', 'The Party Lounge', 'The Private Pool House', 'Poker & Games Lounge', 'Kids Place', 'Playground', 'Kids Court', 'Solarium', 'Pool Deck', 'The Swimming Pool', 'Kids Pool', 'Pool Garden', 'Wellness Lounge', 'Sauna', 'Wellness Massage', 'The Gym by Matrix', 'Yoga', 'The Sky Gym by Matrix', 'The Sky Outside Gym', 'The Sky Gourmet', 'The Sky Barbecue'],
+        diferenciais: ['Dois Fitness: The Gym no 4º pavimento e The Sky Gym by Matrix no rooftop', 'Wellness Center com sauna, massage e yoga', 'Private Pool House e Sky Gourmet com Sky Barbecue para receber', 'Contrapiso acústico nos quartos, na sala e no terraço social', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes e câmera Wi-Fi na sala', 'Infraestrutura para ar-condicionado, churrasqueira no terraço, triturador e geladeira com água embutida', 'Mini Market 24 horas no condomínio'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'Living Nazaré Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LNR + 'planta-47.webp', nome: '47 m² · padrão', meta: '1 suíte · 1 vaga' },
+          { src: LNR + 'planta-47-opcao.webp', nome: '47 m² · opção', meta: '1 suíte, cozinha integrada · 1 vaga' },
+          { src: LNR + 'planta-69.webp', nome: '69 m² · padrão', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LNR + 'planta-69-opcao.webp', nome: '69 m² · opção', meta: '2 dormitórios, 1 suíte, cozinha integrada · 1 vaga' },
+          { src: LNR + 'planta-75.webp', nome: '75 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LNR + 'planta-75-opcao.webp', nome: '75 m² · opção', meta: '2 suítes, cozinha integrada · 1 vaga' },
+          { src: LNR + 'planta-88a.webp', nome: '88 m² bloco A · padrão', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LNR + 'planta-88a-opcao.webp', nome: '88 m² bloco A · opção', meta: '2 suítes, cozinha integrada · 1 vaga' },
+          { src: LNR + 'planta-88b.webp', nome: '88 m² bloco B', meta: '2 suítes · 1 vaga' }
+        ],
+        implantacao: [
+          { src: LNR + 'implantacao.webp', nome: 'Térreo e 4º pavimento', meta: 'Acessos, lobby, Party Lounge, Private Pool House, Poker & Games, Kids e o Wellness Center' },
+          { src: LNR + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'The Sky Gym, Sky Outside Gym, Sky Gourmet e Sky Barbecue' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Av. Berrini e Av. Santo Amaro', 'no bairro'], ['Estações Berrini e Vila Olímpia', 'no bairro'], ['Shopping Vila Olímpia, JK Iguatemi e Morumbi Shopping', 'no bairro']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora Living Nazaré Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 3 na matrícula 318.385 do 15º Registro de Imóveis de São Paulo. Área não contaminada (CETESB 45/00320/25). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira, água quente, lavabo, interruptores inteligentes, triturador e ponto de água para geladeira entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de outubro de 2025. Lançamento em dezembro de 2025 e entrega prevista para setembro de 2029, pela corretagem.',
+        torre: LNR + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN,
+        fotos: [
+          fotoLNR('fachada', 'Fachada', true),
+          fotoLNR('portaria', 'Portaria'),
+          fotoLNR('embasamento', 'Embasamento'),
+          fotoLNR('the-lobby', 'The Lobby'),
+          fotoLNR('party-lounge', 'The Party Lounge'),
+          fotoLNR('private-pool-house', 'The Private Pool House'),
+          fotoLNR('private-pool-house-2', 'The Private Pool House'),
+          fotoLNR('swimming-pool', 'The Swimming Pool'),
+          fotoLNR('poker-games-lounge', 'Poker & Games Lounge'),
+          fotoLNR('the-gym', 'The Gym by Matrix'),
+          fotoLNR('yoga', 'Yoga'),
+          fotoLNR('wellness-massage', 'Wellness Massage'),
+          fotoLNR('sauna', 'Sauna'),
+          fotoLNR('kids-place', 'Kids Place'),
+          fotoLNR('playground', 'Playground'),
+          fotoLNR('sky-gym', 'The Sky Gym by Matrix, rooftop'),
+          fotoLNR('sky-gourmet', 'The Sky Gourmet, rooftop'),
+          fotoLNR('sky-barbecue', 'The Sky Barbecue, rooftop'),
+          fotoLNR('living-88', 'Living do apartamento de 88 m²'),
+          fotoLNR('terreno-aereo', 'Foto aérea do terreno, maio de 2025')
+        ]
+      },
+      {
+        nome: 'The Residence Brooklin by Living',
+        cidade: 'São Paulo, capital',
+        bairro: 'Brooklin',
+        resumo: '2 dormitórios a 3 suítes · 71 a 127 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Indiana, 74, onde a vibração da Avenida Santo Amaro encontra a serenidade arborizada do Brooklin: torre única em dois blocos, com apartamentos de 71 a 127 m², de 2 dormitórios a 3 suítes, e churrasqueira no terraço social. No térreo, The Lobby, coworking, Mini Market, Delivery e Pet Place; no 5º pavimento, The Party Lounge, Kids Place, The Gym e Outside Gym, The Swimming Pool com Pool Deck, Pool Garden e solarium, playground, The Court e The Private Pool House. Entrega prevista para junho de 2028.',
+        area: ['71 m²: 2 dormitórios com 1 suíte (padrão) ou 2 suítes (opção), 1 vaga', '88 m²: 2 suítes (padrão) ou 3 dormitórios com 1 suíte (opção), 1 vaga', '111 m²: 3 suítes, 2 vagas', '127 m²: 3 suítes (padrão) ou 4 dormitórios com 2 suítes (opção), 2 vagas'],
+        tipologia: '2 dormitórios a 3 suítes, de 71 a 127 m²',
+        banheiros: 'Banheiros ventilados, com ralo linear, infraestrutura para água quente, toalheiro aquecido e desembaçador; lavabo em todas as plantas',
+        vagas: '1 vaga no 71 e no 88 m², 2 vagas no 111 e no 127 m²; vaga dupla determinada nos finais 1A, 2A, 1B e 2B do 6º ao 26º pavimento, solta determinada nos finais 3B e 4B do 11º ao 26º, por sorteio nas demais',
+        torres: 'Torre única em dois blocos, A e B, de 26 pavimentos',
+        unidades: ['168 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: Social Entrance, Service Entrance, Garage Entrance, Pet Place, The Lobby, coworking, Mini Market e Delivery', '5º pavimento, lazer: The Party Lounge, Kids Place, The Gym, Outside Gym, The Swimming Pool, Pool Deck, Pool Garden, solarium, playground, The Court e The Private Pool House'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Indiana, 74 · Brooklin, São Paulo',
+        infra: {
+          piscina: 'The Swimming Pool com Pool Deck, Pool Garden e solarium no 5º pavimento',
+          academia: 'The Gym e Outside Gym',
+          festas: 'The Party Lounge',
+          gourmet: 'The Private Pool House',
+          kids: 'Kids Place e playground',
+          quadra: 'The Court',
+          portaria: 'Social Entrance, Service Entrance e Garage Entrance separadas, The Lobby',
+          coworking: 'Coworking, Mini Market 24 horas, Delivery e Pet Place'
+        },
+        lazer: ['Social Entrance', 'Service Entrance', 'Garage Entrance', 'Pet Place', 'The Lobby', 'Coworking', 'Mini Market', 'Delivery', 'The Party Lounge', 'Kids Place', 'The Gym', 'Outside Gym', 'The Swimming Pool', 'Pool Deck', 'Pool Garden', 'Solarium', 'Playground', 'The Court', 'The Private Pool House'],
+        diferenciais: ['The Court e The Private Pool House no lazer elevado', 'Churrasqueira no terraço social e contrapiso acústico', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmera Wi-Fi na sala', 'Infraestrutura para ar-condicionado, triturador, geladeira com água embutida, toalheiro aquecido e desembaçador', 'Rouparia no 88 m², banheira e cuba dupla na suíte master do 127 m²', 'Mini Market 24 horas no condomínio'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos Associados'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'CBR 198 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LRB + 'planta-71.webp', nome: '71 m² · padrão', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LRB + 'planta-71-opcao.webp', nome: '71 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LRB + 'planta-88.webp', nome: '88 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LRB + 'planta-88-opcao.webp', nome: '88 m² · opção', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LRB + 'planta-111.webp', nome: '111 m²', meta: '3 suítes · 2 vagas' },
+          { src: LRB + 'planta-127.webp', nome: '127 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LRB + 'planta-127-opcao.webp', nome: '127 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LRB + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo e 5º pavimento, com os 15 espaços de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Av. Santo Amaro', 'na esquina'], ['Av. Berrini e Av. dos Bandeirantes', 'no bairro'], ['Estações Berrini, Vila Olímpia e Brooklin', 'no bairro'], ['Shopping Vila Olímpia, JK Iguatemi e Morumbi Shopping', 'no bairro']]]
+          ],
+          nota: 'O book não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Incorporadora CBR 198 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação. Área não contaminada (CETESB 45/05317/24); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2025/0001450-0). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira, água quente, lavabo, interruptores inteligentes, triturador, geladeira com água e toalheiro aquecido entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de junho de 2025. Lançamento em junho de 2025 e entrega prevista para junho de 2028 pela corretagem (outra fonte diz outubro de 2028); 168 unidades pela corretagem.',
+        torre: LRB + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_BROOKLIN,
+        fotos: [
+          fotoLRB('fachada', 'Fachada', true),
+          fotoLRB('embasamento', 'Embasamento'),
+          fotoLRB('embasamento-2', 'Embasamento'),
+          fotoLRB('the-lobby', 'The Lobby', true),
+          fotoLRB('coworking', 'Coworking'),
+          fotoLRB('party-lounge', 'The Party Lounge'),
+          fotoLRB('private-pool-house', 'The Private Pool House'),
+          fotoLRB('swimming-pool', 'The Swimming Pool'),
+          fotoLRB('the-court', 'The Court'),
+          fotoLRB('the-gym', 'The Gym'),
+          fotoLRB('kids-place', 'Kids Place'),
+          fotoLRB('terreno-aereo', 'Foto aérea do terreno, maio de 2025')
         ]
       }
     ]
