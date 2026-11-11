@@ -28,7 +28,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=EB+Garamond:ital,wght@0,600;0,700;1,600&family=Jost:wght@500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <style>
@@ -41,8 +41,9 @@
     --onix-alto: #131316;
     --linha-clara: rgba(245, 242, 236, 0.11);
     --linha-escura: rgba(11, 11, 12, 0.14);
-    --texto-fraco: rgba(245, 242, 236, 0.58);
+    --texto-fraco: rgba(245, 242, 236, 0.78);
     --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --serif-texto: 'EB Garamond', Georgia, 'Times New Roman', serif;
     --sans: 'Jost', Avenir, 'Helvetica Neue', Arial, sans-serif;
     --margem: clamp(22px, 6.5vw, 130px);
     --secao: clamp(84px, 13vh, 160px);
@@ -56,7 +57,7 @@
     background: var(--onix);
     color: var(--marfim);
     font-family: var(--sans);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 17px;
     line-height: 1.62;
     -webkit-font-smoothing: antialiased;
@@ -81,9 +82,9 @@
     color: var(--champagne);
   }
 
-  h1, h2, h3 { font-family: var(--serif); font-weight: 300; line-height: 1.02; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.02; text-wrap: balance; }
   h2 { font-size: clamp(30px, 4.6vw, 56px); }
-  h3 { font-size: clamp(22px, 2.3vw, 30px); font-weight: 400; line-height: 1.12; }
+  h3 { font-size: clamp(22px, 2.3vw, 30px); font-weight: 600; line-height: 1.12; }
   p { max-width: 66ch; }
 
   .botao {
@@ -151,7 +152,7 @@
   /* sem cor declarada, o nome herdava o azul de link do navegador */
   .marca-nome {
     font-family: var(--sans);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 11.5px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -227,7 +228,7 @@
     font-size: 10.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.6);
+    color: rgba(245, 242, 236, 0.8);
     font-variant-numeric: tabular-nums;
   }
 
@@ -256,11 +257,11 @@
 
   .cabeca-texto p {
     display: inline;
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(19px, 2.1vw, 30px);
+    font-family: var(--serif-texto);
+    font-weight: 600;
+    font-size: clamp(18px, 2.1vw, 28px);
     line-height: 1.38;
-    color: rgba(245, 242, 236, 0.6);
+    color: rgba(245, 242, 236, 0.8);
     max-width: none;
   }
 
@@ -325,7 +326,7 @@
     font-family: var(--sans);
     font-size: 9.5px;
     letter-spacing: 0.18em;
-    color: rgba(245, 242, 236, 0.5);
+    color: rgba(245, 242, 236, 0.8);
     font-variant-numeric: tabular-nums;
     transition: color 0.8s var(--curva);
   }
@@ -366,7 +367,7 @@
 
   .leque-item.aberto .leque-ficha { opacity: 1; transform: none; }
 
-  .leque-nome { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; white-space: nowrap; }
+  .leque-nome { font-family: var(--serif); font-weight: 600; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; white-space: nowrap; }
 
   .leque-entrar {
     margin-top: 4px;
@@ -387,7 +388,7 @@
     padding-top: 11px;
     border-top: 1px solid rgba(245, 242, 236, 0.18);
     font-size: 12.5px;
-    color: rgba(245, 242, 236, 0.66);
+    color: rgba(245, 242, 236, 0.8);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
@@ -397,7 +398,7 @@
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245, 242, 236, 0.34);
+    color: rgba(245, 242, 236, 0.45);
     font-variant-numeric: tabular-nums;
   }
 
@@ -506,7 +507,7 @@
   .nota-num {
     display: block;
     font-family: var(--serif);
-    font-weight: 300;
+    font-weight: 600;
     font-size: clamp(30px, 3.6vw, 52px);
     line-height: 1;
     color: var(--champagne);
@@ -516,7 +517,7 @@
 
   .nota-corpo { display: grid; gap: 9px; }
   .nota h3 { font-size: clamp(22px, 2.3vw, 30px); color: var(--marfim); }
-  .nota p { font-size: 15.5px; color: rgba(245, 242, 236, 0.76); max-width: 42ch; }
+  .nota p { font-size: 15.5px; color: rgba(245, 242, 236, 0.8); max-width: 42ch; }
 
   /* ---- o fecho ---- */
   /* O fecho passou a ser a pausa clara da pagina, como no imovel.html: a secao
@@ -547,7 +548,7 @@
   .outra:last-child { border-bottom: 1px solid var(--linha-escura); }
   .outra { border-top-color: var(--linha-escura); }
   .outra:hover { padding-left: 10px; }
-  .outra-nome { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 24px); color: var(--grafite); transition: color 0.5s var(--curva); }
+  .outra-nome { font-family: var(--serif-texto); font-weight: 600; font-size: clamp(18px, 1.8vw, 22.5px); color: var(--grafite); transition: color 0.5s var(--curva); }
   .outra:hover .outra-nome { color: var(--onix); }
   .outra-pais { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(58, 58, 60, 0.6); }
 
@@ -563,7 +564,7 @@
   }
 
   footer img { height: 40px; width: auto; opacity: 0.8; }
-  .rodape-texto { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 242, 236, 0.4); }
+  .rodape-texto { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 242, 236, 0.6); }
 
   /* --------------------------------------------------------------- recado -- */
   .recado { padding: clamp(150px, 26vh, 260px) var(--margem) var(--secao); }
