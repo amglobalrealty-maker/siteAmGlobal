@@ -771,6 +771,16 @@
   // plantas legiveis), Living In (studios do mesmo registro), Only (out/2023) e Living Ipiranga (slides so de imagem, nomeados pela folha)
   var LAD = L + 'address/', LAI = L + 'altoipiranga/', LIA = L + 'inaltoipiranga/', LOY = L + 'only/', LIP = L + 'ipiranga/';
   var fotoLAD = fotoEm(LAD), fotoLAI = fotoEm(LAI), fotoLIA = fotoEm(LIA), fotoLOY = fotoEm(LOY), fotoLIP = fotoEm(LIP);
+  // (11/11/2026) Nova Klabin, rodada 2: Grand Living (jul/2021), Living Infinity (fev/2022) e Living In (slides so de imagem)
+  var LGK = L + 'grandklabin/', LIF = L + 'infinity/', LIK = L + 'inklabin/';
+  var fotoLGK = fotoEm(LGK), fotoLIF = fotoEm(LIF), fotoLIK = fotoEm(LIK);
+  var ZS_NOVA_KLABIN = {
+    titulo: 'A região · Nova Klabin',
+    texto: 'Entre o Ipiranga, a Vila Mariana e o Cursino, a Nova Klabin é o bairro novo que nasceu em torno da Estação Santos-Imigrantes da Linha 2-Verde, com a Chácara Klabin e a Alto do Ipiranga a poucos minutos e as saídas pela Rua Vergueiro, pela Avenida Ricardo Jafet e pela Rodovia dos Imigrantes. Ruas planas e tranquilas, torres novas, a Leroy Merlin, o St. Marché e o Tateno na porta, e o Aquário, o Parque da Independência, o Parque da Aclimação e o Shopping Metrô Santa Cruz por perto.',
+    numeros: [['4 min', 'a pé da Estação Santos-Imigrantes'], ['3', 'projetos da Living no bairro: Grand, Infinity e Living In'], ['25 m', 'de raia na piscina do Infinity'], ['9 m', 'de altura do lazer do Grand, acima da rua']],
+    polos: 'Por perto: estações Santos-Imigrantes, Chácara Klabin e Alto do Ipiranga, Aquário de São Paulo, Parque da Independência, Parque da Aclimação, Shopping Metrô Santa Cruz, PUC Ipiranga, Leroy Merlin Ricardo Jafet e os hospitais Einstein Klabin, Sepaco e Santa Cruz.',
+    fonte: 'Fonte: books da Living para o Grand Living, o Living Infinity e o Living In Nova Klabin, com tempos do próprio material.'
+  };
   var ZS_ALTO_IPIRANGA = {
     titulo: 'A região · Alto do Ipiranga, Rua Marquês de Olinda',
     texto: 'A Rua Marquês de Olinda é a rua mais procurada do Ipiranga: a 4 minutos a pé da Estação Alto do Ipiranga da Linha 2-Verde, com as estações Santos-Imigrantes, Chácara Klabin e Sacomã a poucos minutos, e as saídas pela Nazaré, pela Ricardo Jafet e pela Vergueiro. O bairro onde São Paulo viu o primeiro bonde elétrico, com 12 construções centenárias tombadas, o Museu e o Parque da Independência, o Aquário de São Paulo, o Sesc Ipiranga, a PUC e os hospitais Sepaco e Santa Cruz por perto.',
@@ -4411,6 +4421,218 @@
           fotoLIP('brinquedoteca', 'Brinquedoteca'),
           fotoLIP('playground', 'Playground'),
           fotoLIP('mapa', 'Mapa de localização')
+        ]
+      },
+      {
+        nome: 'Grand Living Nova Klabin',
+        cidade: 'São Paulo, capital',
+        bairro: 'Nova Klabin',
+        resumo: '2 suítes a 4 quartos · 71 a 121 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Caçador de Esmeraldas, 219, a 4 minutos a pé da Estação Santos-Imigrantes: áreas comuns amplas com pé-direito duplo, lazer elevado a 9 m da rua e terraços com vista. Apartamentos de 71, 100 e 121 m², de 2 suítes a 4 quartos, com churrasqueira na varanda, vagas determinadas e depósito. Vinte e dois espaços de lazer: Family House com apoio, salão de festas, espaço gourmet, Fitness interno e externo, jogos adulto, Jogos Teen com Blogger Space, brinquedoteca, playground, quadra recreativa, estar externo, solarium, piscinas adulto e infantil com deck molhado e SPA na piscina. Entregue em agosto de 2024.',
+        area: ['71 m²: 2 suítes e 1 vaga', '100 m²: 3 quartos com 1 suíte (padrão) ou 2 suítes com sala ampliada (opção), 2 vagas determinadas', '121 m²: 3 suítes com sala ampliada (padrão) ou 4 quartos com 2 suítes (opção), 2 vagas determinadas'],
+        tipologia: '2 suítes a 4 quartos, de 71 a 121 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo em todas as plantas',
+        vagas: '1 vaga no 71 m² (10 unidades por sorteio) e 2 vagas determinadas no 100 e no 121 m²; depósito',
+        torres: 'Torre única, com lazer elevado',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos de pedestres e de veículos, Pet Place, hall social, lobby, Mini Market e Car Sharing', 'Pavimento lazer, a 9 m da rua: espaço gourmet, salão de festas, Family House com apoio, Fitness, Fitness externo, playground, brinquedoteca, Jogos Teen com Blogger Space, quadra recreativa, jogos adulto, estar externo, solarium, piscina adulto e infantil com deck molhado e SPA'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Caçador de Esmeraldas, 219 · Nova Klabin, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto e infantil com deck molhado, SPA na piscina e solarium',
+          academia: 'Fitness interno e Fitness externo',
+          festas: 'Salão de festas e Family House com apoio',
+          gourmet: 'Espaço gourmet e churrasqueira na varanda de cada apartamento',
+          kids: 'Brinquedoteca, Jogos Teen com Blogger Space e playground',
+          quadra: 'Quadra recreativa',
+          portaria: 'Acessos de pedestres e de veículos separados, hall social e lobby com pé-direito duplo',
+          coworking: 'Jogos adulto, estar externo, Mini Market 24 horas, Car Sharing e Pet Place'
+        },
+        lazer: ['Acesso de pedestres', 'Acesso de veículos', 'Pet Place', 'Hall social', 'Lobby', 'Mini Market', 'Espaço Gourmet', 'Salão de Festas', 'Family House', 'Apoio Family House', 'Fitness', 'Fitness externo', 'Playground', 'Brinquedoteca', 'Jogos Teen com Blogger Space', 'Quadra recreativa', 'Jogos Adulto', 'Estar externo', 'Solarium', 'Piscina adulto com deck molhado', 'Piscina infantil com deck molhado', 'SPA na piscina', 'Car Sharing'],
+        diferenciais: ['Lazer elevado a 9 m da rua, com vistas da cidade', 'Vagas determinadas e depósito', 'Churrasqueira na varanda e contrapiso com atenuação acústica', 'Infraestrutura para ar-condicionado nos quartos e para automação das persianas', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmeras na sala e nos quartos', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing', 'Pronto para morar, entregue em agosto de 2024'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Sesso & Dalanezi Arquitetura'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'Garibaldi Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LGK + 'planta-71.webp', nome: '71 m²', meta: '2 suítes · 1 vaga' },
+          { src: LGK + 'planta-100.webp', nome: '100 m² · padrão', meta: '3 quartos, 1 suíte · 2 vagas' },
+          { src: LGK + 'planta-100-opcao.webp', nome: '100 m² · opção', meta: '2 suítes, sala ampliada · 2 vagas' },
+          { src: LGK + 'planta-121.webp', nome: '121 m² · padrão', meta: '3 suítes, sala ampliada · 2 vagas' },
+          { src: LGK + 'planta-121-opcao.webp', nome: '121 m² · opção', meta: '4 quartos, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LGK + 'implantacao.webp', nome: 'Implantação', meta: 'Os 22 espaços do térreo e do pavimento de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Santos-Imigrantes', '4 min a pé'], ['Estação Chácara Klabin', '4 min'], ['Estação Alto do Ipiranga', '4 min']]],
+            ['Compras', [['Pão de Açúcar', '4 min'], ['St. Marché Chácara Klabin', '4 min'], ['Mercado Municipal do Ipiranga', '6 min'], ['Tateno', '8 min']]],
+            ['Gastronomia', [['Fiorella Pães e Doces', '4 min'], ['Santa Pasta, Seu Oswaldo e Bar do Nico', '5 min']]],
+            ['Educação', [['PUC Campus Ipiranga', '3 min'], ['ETEC Getúlio Vargas', '4 min'], ['Colégio Objetivo e Anhembi Morumbi', '5 min']]],
+            ['Lazer', [['Aquário de São Paulo', '3 min'], ['Sesc Ipiranga e Parque da Independência', '6 min'], ['Parque da Aclimação', '8 min']]]
+          ],
+          nota: 'Tempos de carro, salvo a estação, a pé, conforme o material da Living (Google Maps, 2021).'
+        },
+        legal: 'Incorporadora Garibaldi Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 243.596 do 6º Oficial de Registro de Imóveis de São Paulo, em 30 de junho de 2021. Terreno reabilitado para fins residenciais, com plano de intervenção aprovado (CETESB 45/00418/20); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2020/0007592-5). As unidades de 71 m² têm 1 vaga, 10 delas por sorteio; as de 100 e 121 m² têm 2 vagas determinadas. Ar-condicionado, água quente, persianas automatizadas e interruptores inteligentes entregues como infraestrutura. Comercialização e realização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de julho de 2021. Entrega em agosto de 2024, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LGK + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_NOVA_KLABIN,
+        fotos: [
+          fotoLGK('fachada', 'Fachada', true),
+          fotoLGK('portaria', 'Portaria'),
+          fotoLGK('lobby', 'Lobby, pé-direito duplo', true),
+          fotoLGK('salao-de-festas', 'Salão de festas'),
+          fotoLGK('espaco-gourmet', 'Espaço gourmet'),
+          fotoLGK('family-house', 'Family House'),
+          fotoLGK('piscina', 'Piscina com deck molhado'),
+          fotoLGK('fitness', 'Fitness'),
+          fotoLGK('jogos-adulto', 'Jogos adulto'),
+          fotoLGK('jogos-teen', 'Jogos Teen com Blogger Space'),
+          fotoLGK('brinquedoteca', 'Brinquedoteca'),
+          fotoLGK('playground', 'Playground'),
+          fotoLGK('regiao-aerea', 'Foto aérea da região, julho de 2021')
+        ]
+      },
+      {
+        nome: 'Living Infinity Nova Klabin',
+        cidade: 'São Paulo, capital',
+        bairro: 'Nova Klabin',
+        resumo: '2 a 4 dormitórios · 67 a 108 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Vergueiro, 5.194, a 4 minutos a pé da Estação Santos-Imigrantes: duas torres de 26 pavimentos num terreno de 5.499 m², com mall no condomínio e lazer elevado com mais de 15 itens. Piscina com raia de 25 m, quadra de beach tennis, Fitness com vista panorâmica, Espaço Luta e Crossfit, Pub Jogos, sauna e descanso, Family Space com SPA externo, coworking, brinquedoteca, Jogos Teen com área Blogger e playground. Apartamentos de 67 a 108 m², de 2 a 4 dormitórios, com churrasqueira e ponto de TV na varanda, e unidades com serviço de hospedagem para visitas. Entregue em 2025.',
+        area: ['67 m²: 2 dormitórios com 1 suíte e 1 vaga', '71 m²: 2 suítes e 1 vaga determinada', '83 m²: 2 dormitórios com 1 suíte (padrão) ou 3 dormitórios com 1 suíte (opção), 1 vaga determinada', '92 m²: 2 suítes (padrão) ou 3 dormitórios com 1 suíte (opção), 2 vagas determinadas', '108 m²: 3 suítes (padrão) ou 4 dormitórios com 2 suítes (opção), 2 vagas determinadas'],
+        tipologia: '2 a 4 dormitórios, de 67 a 108 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo a partir do 71 m²',
+        vagas: '1 vaga no 67 (25 unidades vinculadas, 57 por sorteio), no 71 e no 83 m²; 2 vagas determinadas no 92 e no 108 m²',
+        torres: '2 torres de 26 pavimentos, com mall',
+        unidades: ['289 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: acessos social e de veículos, mall, salão de festas com terraço e churrasqueira, Family Space com SPA externo e churrasqueira, Coworking 1 e 2, Espaço Delivery, Mini Market, Car Sharing e bicicletário', '2º pavimento: Fitness, Espaço Luta e Espaço Crossfit Funcional', '3º pavimento, lazer: brinquedoteca, Jogos Teen com área Blogger, playground, praça central, quadra de beach tennis, churrasqueira, Pub Jogos, sauna e descanso, piscina adulto com raia de 25 m, piscina infantil e solário'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Vergueiro, 5.194 · Nova Klabin, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 25 m, piscina infantil e solário no 3º pavimento',
+          academia: 'Fitness com vista panorâmica, Espaço Luta e Crossfit Funcional no 2º pavimento',
+          festas: 'Salão de festas com terraço e churrasqueira, Pub Jogos',
+          gourmet: 'Family Space com SPA externo e churrasqueira, churrasqueira do lazer',
+          kids: 'Brinquedoteca, Jogos Teen com área Blogger e playground',
+          quadra: 'Quadra de beach tennis',
+          portaria: 'Acessos social e de veículos separados, lobby',
+          coworking: 'Coworking 1 e 2, mall, Mini Market 24 horas, Espaço Delivery, Car Sharing, recarga para carro elétrico, bicicletário e unidades de hospedagem'
+        },
+        lazer: ['Mall', 'Lobby', 'Salão de Festas', 'Family Space com SPA', 'Coworking', 'Espaço Delivery', 'Mini Market', 'Car Sharing', 'Bicicletário', 'Fitness', 'Espaço Luta', 'Crossfit Funcional', 'Brinquedoteca', 'Jogos Teen com área Blogger', 'Playground', 'Praça central', 'Quadra de beach tennis', 'Churrasqueira', 'Pub Jogos', 'Sauna e descanso', 'Piscina adulto, raia de 25 m', 'Piscina infantil', 'Solário'],
+        diferenciais: ['Lazer elevado com mais de 15 itens, piscina de 25 m e beach tennis', 'Mall no condomínio', 'Unidades com serviço de hospedagem para receber visitas', 'Churrasqueira e ponto de TV na varanda, contrapiso acústico na sala e nos dormitórios', 'Infraestrutura para ar-condicionado nos dormitórios', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para carro elétrico', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing', 'Pronto para morar'],
+        creditos: [['Arquitetura', 'Salinas e Freitas Arquitetos Associados'], ['Interiores das áreas comuns', 'Chris Silveira e Arquitetos Associados'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Realização', 'Living e MagikLZ'], ['Incorporação', 'CBR Magik LZ 08 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LIF + 'planta-67.webp', nome: '67 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LIF + 'planta-71.webp', nome: '71 m²', meta: '2 suítes · 1 vaga determinada' },
+          { src: LIF + 'planta-83.webp', nome: '83 m² · padrão', meta: '2 dormitórios, 1 suíte · 1 vaga determinada' },
+          { src: LIF + 'planta-83-opcao.webp', nome: '83 m² · opção', meta: '3 dormitórios, 1 suíte · 1 vaga determinada' },
+          { src: LIF + 'planta-92.webp', nome: '92 m² · padrão', meta: '2 suítes · 2 vagas determinadas' },
+          { src: LIF + 'planta-92-opcao.webp', nome: '92 m² · opção', meta: '3 dormitórios, 1 suíte · 2 vagas determinadas' },
+          { src: LIF + 'planta-108.webp', nome: '108 m² · padrão', meta: '3 suítes · 2 vagas determinadas' },
+          { src: LIF + 'planta-108-opcao.webp', nome: '108 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas determinadas' }
+        ],
+        implantacao: [
+          { src: LIF + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo com mall, 2º pavimento de esportes e 3º pavimento de lazer, entre a Rua Vergueiro e a Av. Ricardo Jafet' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Estação Santos-Imigrantes', '4 min a pé'], ['Estações Chácara Klabin e Alto do Ipiranga', '4 min'], ['Estação Vila Mariana', '6 min']]],
+            ['Conveniência', [['Leroy Merlin, Tateno, Shimada Hortifruti e Petz', '2 min'], ['St. Marché, Padaria Fiorella e Da Villa Hortifruti', '3 min'], ['Swift e Padaria Iracema', '4 min'], ['Minuto Pão de Açúcar', '6 min'], ['Mercado Municipal do Ipiranga', '7 min']]],
+            ['Gastronomia', [['Churrascaria Novilho de Prata', '2 min'], ['Kiikai Sushi, Minami, Bar do Nico e Esfiha Imigrantes', '4 min'], ['Seu Oswaldo, Paellas Pepe, Picanharia dos Amigos e Santa Pasta', '6 min']]],
+            ['Educação', [['Baby Home Klabin', '3 min'], ['Jardim Escola Chácara Klabin, Liceu Pasteur, ETEC e PUC Ipiranga', '4 min'], ['Unesp Ipiranga e Escola Della Nocce', '5 min'], ['Colégio Objetivo', '6 min'], ['Maple Bear e UniPaulistana', '8 min'], ['Belas Artes e ESPM', '9 min']]],
+            ['Saúde', [['Hospital Israelita Albert Einstein e Delboni Auriemo', '3 min'], ['Hospital Sepaco e Fleury', '4 min'], ['Hospitais Santa Cruz e São Camilo', '5 min']]],
+            ['Lazer', [['Aquário de São Paulo', '3 min'], ['Parque da Independência', '5 min'], ['Sesc Ipiranga, Museu do Ipiranga e Casa Modernista', '8 min'], ['Parque da Aclimação e Shopping Metrô Santa Cruz', '9 min'], ['Parque Ibirapuera', '15 min']]]
+          ],
+          nota: 'Tempos de carro, salvo a estação, a pé, conforme o material da Living (Google Maps, 2022).'
+        },
+        legal: 'Incorporadora CBR Magik LZ 08 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 237.531 do 14º Registro de Imóveis de São Paulo. Área em processo de reabilitação para fins residenciais, com plano de intervenção aprovado (CETESB 45/00949/20); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2021/0001305-0). Todas as unidades de 71, 83, 92 e 108 m² têm vagas vinculadas; das de 67 m², 25 têm vaga vinculada e 57 por sorteio. Ar-condicionado, água quente e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de fevereiro de 2022. Entrega em maio de 2025 pela corretagem (outra fonte diz abril de 2026); 289 unidades e terreno de 5.499 m² pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LIF + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_NOVA_KLABIN,
+        fotos: [
+          fotoLIF('fachada', 'Fachada', true),
+          fotoLIF('mall', 'Mall'),
+          fotoLIF('portaria', 'Portaria'),
+          fotoLIF('lobby', 'Lobby'),
+          fotoLIF('salao-de-festas', 'Salão de festas'),
+          fotoLIF('churrasqueira', 'Churrasqueira'),
+          fotoLIF('family-space', 'Family Space'),
+          fotoLIF('spa-family-space', 'SPA do Family Space'),
+          fotoLIF('piscina', 'Piscina com raia de 25 m'),
+          fotoLIF('beach-tennis', 'Quadra de beach tennis'),
+          fotoLIF('coworking', 'Coworking'),
+          fotoLIF('fitness', 'Fitness'),
+          fotoLIF('espaco-luta', 'Espaço Luta'),
+          fotoLIF('pub-jogos', 'Pub Jogos'),
+          fotoLIF('sauna', 'Sauna e descanso'),
+          fotoLIF('jogos-teen', 'Jogos Teen com área Blogger'),
+          fotoLIF('brinquedoteca', 'Brinquedoteca'),
+          fotoLIF('playground', 'Playground'),
+          fotoLIF('decorado', 'Decorado'),
+          fotoLIF('regiao-aerea', 'Foto aérea da região, janeiro de 2022')
+        ]
+      },
+      {
+        nome: 'Living In Nova Klabin',
+        cidade: 'São Paulo, capital',
+        bairro: 'Nova Klabin',
+        resumo: '1 a 2 dormitórios · 27 a 40 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Santa Aurélia, 35, a 400 m da Estação Santos-Imigrantes: torre única de térreo mais 8 andares, com 64 apartamentos compactos de 27 a 40 m², de 1 e 2 dormitórios, em versões residencial e não residencial, com piso laminado nos quartos, infraestrutura para ar-condicionado e possibilidade de ampliar a sala. Lazer com lobby, salão de festas de 100 m² para 41 pessoas, gourmet, fitness de 40 m² com área externa, SPA com deck e churrasqueira para 17 pessoas com chopeira e cervejeira. Entregue em agosto de 2024.',
+        area: ['27 m²: 1 dormitório, residencial ou não residencial', '32 m²: 1 dormitório, residencial', '37 m²: 2 dormitórios, residencial ou não residencial', '40 m²: 2 dormitórios, residencial ou não residencial'],
+        tipologia: '1 a 2 dormitórios, de 27 a 40 m²',
+        banheiros: '1 por unidade, com ponto para chuveiro elétrico',
+        vagas: 'Sob consulta',
+        torres: 'Torre única, térreo mais 8 andares',
+        unidades: ['64 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: lobby, salão de festas, gourmet e churrasqueira', 'Lazer: fitness, fitness externo e SPA com deck'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Santa Aurélia, 35 · Nova Klabin, São Paulo',
+        infra: {
+          piscina: 'SPA com deck',
+          academia: 'Fitness de 40 m² e fitness externo',
+          festas: 'Salão de festas de 100 m², para 41 pessoas',
+          gourmet: 'Gourmet para 8 pessoas e churrasqueira para 17, com chopeira e cervejeira',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby',
+          coworking: 'Unidades não residenciais para trabalhar ou alugar'
+        },
+        lazer: ['Lobby', 'Salão de Festas', 'Gourmet', 'Fitness', 'Fitness externo', 'SPA com deck', 'Churrasqueira'],
+        diferenciais: ['A 400 m da Estação Santos-Imigrantes', 'Plantas residenciais e não residenciais, para morar, trabalhar ou alugar', 'Possibilidade de ampliação da sala e terraço técnico', 'Piso laminado nos quartos, infraestrutura para ar-condicionado, tomadas USB e persianas de enrolar', 'Pronto para morar, entregue em agosto de 2024'],
+        creditos: [['Realização', 'Living, marca do Grupo Cyrela']],
+        plantas: [
+          { src: LIK + 'planta-27.webp', nome: '27 m² · residencial', meta: '1 dormitório' },
+          { src: LIK + 'planta-27-nr.webp', nome: '27 m² · não residencial', meta: '1 dormitório' },
+          { src: LIK + 'planta-32.webp', nome: '32 m² · residencial', meta: '1 dormitório' },
+          { src: LIK + 'planta-37.webp', nome: '37 m² · residencial', meta: '2 dormitórios' },
+          { src: LIK + 'planta-37-nr.webp', nome: '37 m² · não residencial', meta: '2 dormitórios' },
+          { src: LIK + 'planta-40.webp', nome: '40 m² · residencial', meta: '2 dormitórios' },
+          { src: LIK + 'planta-40-nr.webp', nome: '40 m² · não residencial', meta: '2 dormitórios' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Santos-Imigrantes', '400 m'], ['Estações Chácara Klabin e Alto do Ipiranga', 'no bairro'], ['Rua Vergueiro e Av. Ricardo Jafet', 'no bairro'], ['Aquário de São Paulo, Parque da Independência e Parque da Aclimação', 'no bairro']]]
+          ],
+          nota: 'A apresentação é só de imagens e não traz distâncias; a estação vem da corretagem. Confirmar com a Living.'
+        },
+        legal: 'Empreendimento da Living, marca do Grupo Cyrela. A apresentação recebida é só de imagens e não traz a incorporadora nem o memorial de incorporação. Ar-condicionado entregue como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Imagens ilustrativas. Endereço, 64 unidades e entrega em agosto de 2024 pela corretagem e pelo site da Living; unidades disponíveis a confirmar.',
+        torre: LIK + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_NOVA_KLABIN,
+        fotos: [
+          fotoLIK('fachada', 'Fachada', true),
+          fotoLIK('portaria', 'Portaria'),
+          fotoLIK('lobby', 'Lobby'),
+          fotoLIK('salao-de-festas', 'Salão de festas, 100 m²'),
+          fotoLIK('gourmet', 'Gourmet'),
+          fotoLIK('churrasqueira', 'Churrasqueira'),
+          fotoLIK('fitness', 'Fitness, 40 m²'),
+          fotoLIK('fitness-externo', 'Fitness externo'),
+          fotoLIK('spa', 'SPA com deck')
         ]
       }
     ]
