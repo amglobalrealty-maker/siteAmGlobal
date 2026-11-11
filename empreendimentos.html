@@ -760,6 +760,17 @@
   // (11/11/2026) e os dois Home Boutique que ela mandou em PDF (Downloads): Campo Belo e Ipiranga, fotos tiradas dos books
   var LHC = L + 'hbcampobelo/', LHI = L + 'hbipiranga/';
   var fotoLHC = fotoEm(LHC), fotoLHI = fotoEm(LHI);
+  // (11/11/2026) e o United Living Ipiranga: o PDF dela era so imagem em baixa; fotos e texto vieram do book oficial
+  // da Living (meuliving.com.br, marco/2023), baixado por mim
+  var LUN = L + 'united/';
+  var fotoLUN = fotoEm(LUN);
+  var ZS_IPIRANGA_BUENO = {
+    titulo: 'A região · Ipiranga, Silva Bueno',
+    texto: 'Na esquina da Rua Silva Bueno com a Rua dos Sorocabanos, o pedaço do Ipiranga que fica entre o Parque da Independência e o Parque da Aclimação, a 950 m da Estação Ipiranga da CPTM e a 10 minutos da Avenida do Estado e da Ricardo Jafet. Bairro histórico com infraestrutura completa: o Museu do Ipiranga, o Aquário de São Paulo, o Clube Atlético Ypiranga, o Mooca Plaza Shopping e os hospitais São Camilo, Monumento e Cruz Azul por perto.',
+    numeros: [['950 m', 'da Estação Ipiranga, CPTM'], ['6 min', 'do Parque da Independência'], ['10 min', 'da Av. do Estado e da Ricardo Jafet'], ['9 mil m²', 'de lazer no condomínio']],
+    polos: 'Por perto: Parque da Independência e Museu do Ipiranga, Aquário de São Paulo, Clube Atlético Ypiranga, Mooca Plaza Shopping, Estação Ipiranga, Av. do Estado, Av. Nazaré e os hospitais São Camilo, Monumento e Cruz Azul.',
+    fonte: 'Fonte: book do United Living Ipiranga (março de 2023), com tempos do próprio material; distância da estação pela corretagem.'
+  };
   var ZS_CAMPO_BELO = {
     titulo: 'A região · Campo Belo',
     texto: 'Entre as avenidas Vereador José Diniz, Santo Amaro, Roberto Marinho e dos Bandeirantes, o Campo Belo é o bairro residencial que liga o Brooklin a Moema: ruas arborizadas, as estações Eucaliptos e Campo Belo da Linha 5-Lilás, o Shopping Ibirapuera a 4 minutos, a Sociedade Hípica Paulista a 5 e o Parque Ibirapuera a 9, com os hospitais Alemão Oswaldo Cruz e Blanc, o Insper e colégios como o Magno e o Vértice por perto. Alto padrão consolidado, com a gastronomia da Rua Gabriele D\'Annunzio e as lojas de Moema ao lado.',
@@ -3823,6 +3834,83 @@
           fotoLHI('private-studio', 'Private Studio para convidados'),
           fotoLHI('living-decorado', 'Decorado de 156 m², fotomontagem'),
           fotoLHI('av-nazare', 'Avenida Nazaré, foto da região (2024)')
+        ]
+      },
+      {
+        nome: 'United Living Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Ipiranga',
+        resumo: '2 a 4 dormitórios · 75 a 123 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Silva Bueno, esquina com a Rua dos Sorocabanos, no Ipiranga: três torres de 15 andares sobre um térreo com mall de lojas e lobby de pé-direito triplo, inspiradas em três hotéis de Londres, o Café Royal, o The Londoner e o The Ned. Mais de 9 mil m² de lazer: Lounge, salão de festas, Pub, Gourmet e Lounge Gourmet, churrasqueira, Fitness interno e externo, Funcional, quadra de tênis, piscinas adulto e infantil, SPA, Private Pool House, brinquedoteca, Jogos Teen e playground. Apartamentos de 75, 100 e 123 m², de 2 a 4 dormitórios, com 1 ou 2 vagas. Lançado em abril de 2023 e entregue em julho de 2026.',
+        area: ['75 m²: 2 suítes e 1 vaga', '100 m²: 3 dormitórios com 1 suíte (padrão) ou 2 suítes (opção), 2 vagas', '123 m²: 3 suítes (padrão) ou 4 dormitórios com 2 suítes (opção), 2 vagas'],
+        tipologia: '2 a 4 dormitórios, de 75 a 123 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo em todas as plantas',
+        vagas: '1 vaga no 75 m² e 2 vagas no 100 e no 123 m²; vagas determinadas e por sorteio, conforme o memorial',
+        torres: '3 torres de térreo mais 15 andares',
+        unidades: ['261 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: Porte-Cochère, acessos social, de serviço e de veículos, lobby de pé-direito triplo, acesso ao mall, mall, Pet Place, Car Sharing, ponto de recarga para carro elétrico, Espaço Delivery e bicicletário', 'Pavimento lazer: Lounge, praça de acesso às torres, halls sociais, salão de festas, churrasqueira, Gourmet, Lounge Gourmet, Pub, Jogos Teen, brinquedoteca, playground, Private Pool House, quadra de tênis, Funcional, Fitness, Fitness externo, piscinas adulto e infantil, SPA e solarium'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Silva Bueno, 200 a 250, esquina com a Rua dos Sorocabanos · Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto, piscina infantil, SPA e solarium, e a Private Pool House com piscina própria',
+          academia: 'Fitness, Fitness externo e Funcional',
+          festas: 'Salão de festas e Pub com sinuca, inspirados no The Londoner',
+          gourmet: 'Gourmet inspirado no The Ned, Lounge Gourmet e churrasqueira',
+          kids: 'Brinquedoteca com piscina de bolinhas, Jogos Teen e playground',
+          quadra: 'Quadra de tênis',
+          portaria: 'Porte-Cochère, acessos social, de serviço e de veículos, lobby de pé-direito triplo',
+          coworking: 'Mall de lojas no térreo, Living Mini Market 24 horas, Car Sharing, recarga para carro elétrico, Espaço Delivery, bicicletário e Pet Place'
+        },
+        lazer: ['Porte-Cochère', 'Lobby', 'Mall', 'Pet Place', 'Car Sharing', 'Recarga para carro elétrico', 'Espaço Delivery', 'Bicicletário', 'Lounge', 'Praça de acesso às torres', 'Hall social', 'Salão de Festas', 'Churrasqueira', 'Gourmet', 'Lounge Gourmet', 'Pub', 'Jogos Teen', 'Brinquedoteca', 'Playground', 'Private Pool House', 'Quadra de tênis', 'Funcional', 'Fitness', 'Fitness externo', 'Piscina adulto', 'Piscina infantil', 'SPA', 'Solarium', 'Mini Market'],
+        diferenciais: ['Lazer inspirado em três hotéis de Londres: Café Royal, The Londoner e The Ned', 'Mall de lojas no térreo, aberto ao bairro', 'Lobby com pé-direito triplo e Private Pool House para receber', 'Quadra de tênis e mais de 9 mil m² de áreas comuns', 'Contrapiso com atenuação acústica e infraestrutura para ar-condicionado em todas as plantas', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmera na sala', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing', 'Pronto para morar, entregue em julho de 2026'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Chris Silveira Arquitetura e Design de Interiores'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Realização', 'Living e MagikLZ'], ['Incorporação', 'CBR Magik LZ 17 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LUN + 'planta-75.webp', nome: '75 m²', meta: '2 suítes · 1 vaga' },
+          { src: LUN + 'planta-100.webp', nome: '100 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LUN + 'planta-100-opcao.webp', nome: '100 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LUN + 'planta-123.webp', nome: '123 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LUN + 'planta-123-opcao.webp', nome: '123 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LUN + 'implantacao.webp', nome: 'Implantação', meta: 'Os 28 espaços do térreo e do pavimento de lazer, entre a Rua Silva Bueno e a Rua dos Sorocabanos' }
+        ],
+        perto: {
+          grupos: [
+            ['Acessibilidade', [['Av. do Estado', '10 min'], ['Av. Dr. Ricardo Jafet', '10 min'], ['Estação Ipiranga, CPTM', '13 min'], ['Av. Nazaré', '14 min']]],
+            ['Lazer', [['Clube Atlético Ypiranga', '5 min'], ['Parque da Independência', '6 min'], ['Aquário de São Paulo', '8 min'], ['Riviera Beach Tennis', '12 min'], ['Mooca Plaza Shopping', '14 min'], ['Museu do Ipiranga', '15 min']]],
+            ['Saúde', [['A+ Medicina Diagnóstica', '7 min'], ['Hospital São Camilo', '7 min'], ['Hospital Monumento', '9 min'], ['Hospital Cruz Azul', '9 min']]],
+            ['Educação', [['Colégio Notre Dame', '5 min'], ['Fisk Ipiranga', '7 min'], ['Athena Escola', '8 min']]],
+            ['Conveniência', [['Minuto Pão de Açúcar', '6 min'], ['Drogaria São Paulo', '6 min'], ['Natural da Terra', '6 min'], ['Droga Raia', '8 min'], ['Leroy Merlin', '9 min'], ['Carrefour Hipermercado', '9 min']]],
+            ['Gastronomia', [['Dr. Levain', '2 min'], ['Hambúrguer Seu Osvaldo', '6 min'], ['Paellas Pepe', '6 min'], ['Oakberry', '6 min'], ['Panificadora Patriopan', '7 min'], ['Seu Quintal', '10 min'], ['Big Bread Ipiranga', '14 min'], ['Nico Pasta e Basta', '14 min'], ['Konkai Sushi', '15 min']]]
+          ],
+          nota: 'Tempos conforme o material da Living (Google Maps, 2023); a Estação Ipiranga fica a 950 m, pela corretagem.'
+        },
+        legal: 'Incorporadora CBR Magik LZ 17 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 253.283 do 14º Oficial de Registro de Imóveis de São Paulo. Área em processo de reabilitação para fins residenciais, com plano de intervenção aprovado (CETESB 45/01223/21); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2022/0001056-8). Terreno na Rua Silva Bueno, 200, 230 e 250, e na Rua dos Sorocabanos, 624 a 692. Vagas determinadas e por sorteio, conforme o memorial; a planta de 4 dormitórios do 123 m² é opção de personalização, com custo. Pet Place na área comum do subcondomínio comercial. Ar-condicionado, churrasqueira, água quente, lavabo e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de março de 2023. Lançamento em abril de 2023 e entrega em julho de 2026, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LUN + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_IPIRANGA_BUENO,
+        fotos: [
+          fotoLUN('fachada', 'Fachada', true),
+          fotoLUN('portaria', 'Portaria residencial, lobby de pé-direito triplo'),
+          fotoLUN('mall', 'Mall, esquina da Silva Bueno com a Sorocabanos'),
+          fotoLUN('mall-2', 'Mall, praça com lojas'),
+          fotoLUN('lobby', 'Lobby, inspirado no Café Royal', true),
+          fotoLUN('lounge', 'Lounge, inspirado no Café Royal'),
+          fotoLUN('salao-de-festas', 'Salão de festas, inspirado no The Londoner'),
+          fotoLUN('pub', 'Pub, inspirado no The Londoner'),
+          fotoLUN('fitness', 'Fitness, inspirado no The Londoner'),
+          fotoLUN('gourmet', 'Gourmet, inspirado no The Ned'),
+          fotoLUN('private-pool-house', 'Private Pool House'),
+          fotoLUN('private-pool-house-externa', 'Private Pool House, piscina'),
+          fotoLUN('brinquedoteca', 'Brinquedoteca'),
+          fotoLUN('jogos-teen', 'Jogos Teen'),
+          fotoLUN('playground', 'Playground'),
+          fotoLUN('churrasqueira', 'Churrasqueira'),
+          fotoLUN('quadra-de-tenis', 'Quadra de tênis'),
+          fotoLUN('piscina', 'Piscina adulto'),
+          fotoLUN('regiao-aerea', 'Foto aérea da região, com o terreno marcado')
         ]
       }
     ]
