@@ -767,12 +767,16 @@
   // (11/11/2026) e o Living Heredita Alto do Ipiranga (book out/2021) e o Living Full Conceicao (folhetao ago/2026), PDFs dela
   var LHE = L + 'heredita/', LFC = L + 'fullconceicao/';
   var fotoLHE = fotoEm(LHE), fotoLFC = fotoEm(LFC);
+  // (11/11/2026) Ipiranga, rodada 1 do lote de 26 PDFs dela: Address (mar/2023), Alto do Ipiranga (nov/2020, book em 829 px, sem
+  // plantas legiveis), Living In (studios do mesmo registro), Only (out/2023) e Living Ipiranga (slides so de imagem, nomeados pela folha)
+  var LAD = L + 'address/', LAI = L + 'altoipiranga/', LIA = L + 'inaltoipiranga/', LOY = L + 'only/', LIP = L + 'ipiranga/';
+  var fotoLAD = fotoEm(LAD), fotoLAI = fotoEm(LAI), fotoLIA = fotoEm(LIA), fotoLOY = fotoEm(LOY), fotoLIP = fotoEm(LIP);
   var ZS_ALTO_IPIRANGA = {
     titulo: 'A região · Alto do Ipiranga, Rua Marquês de Olinda',
     texto: 'A Rua Marquês de Olinda é a rua mais procurada do Ipiranga: a 4 minutos a pé da Estação Alto do Ipiranga da Linha 2-Verde, com as estações Santos-Imigrantes, Chácara Klabin e Sacomã a poucos minutos, e as saídas pela Nazaré, pela Ricardo Jafet e pela Vergueiro. O bairro onde São Paulo viu o primeiro bonde elétrico, com 12 construções centenárias tombadas, o Museu e o Parque da Independência, o Aquário de São Paulo, o Sesc Ipiranga, a PUC e os hospitais Sepaco e Santa Cruz por perto.',
-    numeros: [['4 min', 'a pé da Estação Alto do Ipiranga'], ['3 min', 'do Aquário de São Paulo'], ['7 min', 'do Museu e do Parque da Independência'], ['10 min', 'do Parque da Aclimação e do Shopping Metrô Santa Cruz']],
+    numeros: [['4 min', 'a pé da Estação Alto do Ipiranga'], ['5', 'projetos da Living no mesmo quarteirão: Heredità, Address, Alto do Ipiranga, Living In e Only'], ['7 min', 'do Museu e do Parque da Independência'], ['10 min', 'do Parque da Aclimação e do Shopping Metrô Santa Cruz']],
     polos: 'Por perto: estações Alto do Ipiranga, Santos-Imigrantes, Chácara Klabin e Sacomã, Museu do Ipiranga, Parque da Independência, Aquário de São Paulo, Sesc Ipiranga, PUC Ipiranga, Colégio São Camilo, Shopping Metrô Santa Cruz e os hospitais Sepaco e Santa Cruz.',
-    fonte: 'Fonte: book do Living Heredità Alto do Ipiranga (outubro de 2021), com tempos do próprio material.'
+    fonte: 'Fonte: books da Living para o Heredità, o Address, o Alto do Ipiranga, o Living In e o Only, com tempos do próprio material.'
   };
   var ZS_CONCEICAO = {
     titulo: 'A região · Conceição, Jabaquara',
@@ -4080,6 +4084,333 @@
           fotoLFC('sky-garden', 'Sky Garden, rooftop'),
           fotoLFC('studio-decorado', 'Studio, imagem ilustrativa'),
           fotoLFC('ceic', 'Centro Empresarial Itaú Conceição, foto da região')
+        ]
+      },
+      {
+        nome: 'Living Address Alto do Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Alto do Ipiranga',
+        resumo: '1 suíte a 3 dormitórios · 43 a 87 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Marquês de Olinda, 65, num terreno de mais de 5.000 m² com frente para quatro ruas, a 4 minutos a pé do Metrô Alto do Ipiranga: um high urban resort inspirado no hotel The Address Sky View, de Dubai. Dois blocos com apartamentos de 43 a 87 m², de 1 suíte a 3 dormitórios. Lazer em três níveis com mais de 3.000 m² externos: no térreo, lobby, salão de festas, coworking, quadra de beach tennis oficial, Pet Place e Mini Market; no 2º pavimento, Fitness; no 4º, piscina com raia de 40 m acima do nível da rua, Private Pool House, Confraria, SPA & Massage, Blogger Space, brinquedoteca, Jogos Teens, churrasqueira e playground. Certificação ambiental AQUA-HQE. Entregue em junho de 2026.',
+        area: ['43 m²: 1 suíte, 1 vaga nas unidades determinadas', '63 m²: 2 dormitórios com 1 suíte e 1 vaga', '69 m²: 2 dormitórios com 1 suíte e 1 vaga', '75 m²: 2 suítes e 1 vaga', '87 m²: 3 dormitórios com 1 suíte (padrão) ou 2 suítes (opção), 1 vaga'],
+        tipologia: '1 suíte a 3 dormitórios, de 43 a 87 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo a partir do 63 m²',
+        vagas: '1 vaga; determinada nos finais 1A, 2A, 1B e 2B do 22º ao 25º pavimento, por sorteio nas demais; finais 5A e 6A do 2º ao 7º sem vaga',
+        torres: 'Dois blocos, A e B, de 25 pavimentos',
+        unidades: ['357 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: acessos social, de serviço e de veículos, lobby, salão de festas, coworking, quadra de beach tennis, Pet Place, Espaço Delivery, Mini Market, Car Sharing e pontos de recarga para carro e bike elétricos', '2º pavimento: Fitness', '4º pavimento, lazer: hall social, Private Pool House, Confraria, brinquedoteca, SPA & Massage, Blogger Space, Jogos Teens, churrasqueira, playground, piscina adulto com raia de 40 m, piscina infantil, solarium e Pool Lounge'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Marquês de Olinda, 65 · Alto do Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 40 m, piscina infantil, solarium e Pool Lounge no 4º pavimento',
+          academia: 'Fitness no 2º pavimento e SPA & Massage no 4º',
+          festas: 'Salão de festas e Confraria',
+          gourmet: 'Private Pool House e churrasqueira',
+          kids: 'Brinquedoteca, Jogos Teens e playground',
+          quadra: 'Quadra de beach tennis oficial',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby',
+          coworking: 'Coworking, Blogger Space, Mini Market 24 horas, Car Sharing, recarga para carro e bike elétricos, Espaço Delivery e Pet Place'
+        },
+        lazer: ['Lobby', 'Salão de Festas', 'Coworking', 'Quadra de beach tennis', 'Pet Place', 'Mini Market', 'Car Sharing', 'Recarga para carro elétrico', 'Recarga para bike elétrica', 'Espaço Delivery', 'Fitness', 'Hall social', 'Private Pool House', 'Confraria', 'Brinquedoteca', 'SPA & Massage', 'Blogger Space', 'Jogos Teens', 'Churrasqueira', 'Playground', 'Piscina adulto, raia de 40 m', 'Piscina infantil', 'Solarium', 'Pool Lounge'],
+        diferenciais: ['Piscina com raia de 40 m, elevada acima do nível da rua', 'Quadra de beach tennis oficial e mais de 3.000 m² de lazer externo, com 1.000 m² de área verde', 'Certificação AQUA-HQE: desempenho acústico, infraestrutura para aquecimento solar, redução de água e energia', 'Inspirado no The Address Sky View, de Dubai', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmeras Wi-Fi na sala', 'Infraestrutura para ar-condicionado e churrasqueira na varanda; piso laminado nos quartos no 43 e no 63 m², contrapiso acústico nos demais', 'Mini Market 24 horas com 3% das vendas para o condomínio', 'Pronto para morar, entregue em junho de 2026'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Living'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'CBR 103 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LAD + 'planta-43.webp', nome: '43 m²', meta: '1 suíte · 1 vaga nas unidades determinadas' },
+          { src: LAD + 'planta-63.webp', nome: '63 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LAD + 'planta-69.webp', nome: '69 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LAD + 'planta-75.webp', nome: '75 m²', meta: '2 suítes · 1 vaga' },
+          { src: LAD + 'planta-87.webp', nome: '87 m² · padrão', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LAD + 'planta-87-opcao.webp', nome: '87 m² · opção', meta: '2 suítes · 1 vaga' }
+        ],
+        implantacao: [
+          { src: LAD + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo, 2º e 4º pavimento, entre a Marquês de Olinda, a Eduardo Carlos Pereira, a Elísio de Castro e a Adalgiso Pereira' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Alto do Ipiranga', '4 min a pé'], ['Estações Chácara Klabin, Santos-Imigrantes e Sacomã', 'por perto'], ['Av. Nazaré, Av. Ricardo Jafet, Rua Vergueiro, Av. do Cursino, Rua Bom Pastor e Rua Saioá', 'vias de acesso']]],
+            ['Compras e serviços', [['Extra, Hirota Express, Pão de Açúcar e St. Marché', 'por perto'], ['Cobasi e Petz', 'por perto']]],
+            ['Gastronomia e lazer', [['Aquário de São Paulo, Parque da Independência, Museu do Ipiranga e Sesc Ipiranga', 'por perto'], ['Parque da Aclimação e Shopping Metrô Santa Cruz', 'por perto'], ['Bar do Nico, Paellas Pepe, Big Bread, Fiorella, Seu Oswaldo e Boteco São Jorge', 'por perto']]],
+            ['Educação e saúde', [['Colégio São Camilo, Fatec Ipiranga, Santa Helena, PUC, Escola Futura e Liceu Pasteur', 'por perto'], ['Hospitais Dom Antônio Alvarenga, Sepaco, São Camilo e Santa Cruz; Fleury, Delboni e Papaiz', 'por perto']]]
+          ],
+          nota: 'O book traz os pontos no croqui, sem tempos; só a estação vem com 4 minutos a pé.'
+        },
+        legal: 'Incorporadora CBR 103 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação. Área não contaminada (CETESB 45/00177/22). Vagas determinadas e por sorteio, conforme o memorial; finais 5A e 6A do 2º ao 7º pavimento sem direito a vaga. Ar-condicionado, água quente, lavabo e interruptores inteligentes entregues como infraestrutura; churrasqueira na varanda como infraestrutura, exceto nos finais 5 e 6 do bloco A. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de março de 2023. Entrega em junho de 2026 e 357 unidades, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LAD + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ALTO_IPIRANGA,
+        fotos: [
+          fotoLAD('fachada', 'Fachada', true),
+          fotoLAD('portaria', 'Portaria'),
+          fotoLAD('lobby', 'Lobby'),
+          fotoLAD('salao-de-festas', 'Salão de festas'),
+          fotoLAD('coworking', 'Coworking'),
+          fotoLAD('piscina-40m', 'Piscina com raia de 40 m'),
+          fotoLAD('piscina', 'Piscina'),
+          fotoLAD('piscina-2', 'Piscina, solarium'),
+          fotoLAD('beach-tennis', 'Quadra de beach tennis'),
+          fotoLAD('fitness', 'Fitness'),
+          fotoLAD('pool-house', 'Private Pool House, interna'),
+          fotoLAD('pool-house-externa', 'Private Pool House, externa'),
+          fotoLAD('confraria', 'Confraria'),
+          fotoLAD('spa', 'SPA & Massage'),
+          fotoLAD('spa-2', 'SPA & Massage'),
+          fotoLAD('brinquedoteca', 'Brinquedoteca'),
+          fotoLAD('jogos-teen', 'Jogos Teens'),
+          fotoLAD('churrasqueira', 'Churrasqueira'),
+          fotoLAD('playground', 'Playground'),
+          fotoLAD('terreno-aereo', 'Terreno de 5.000 m², fotomontagem aérea')
+        ]
+      },
+      {
+        nome: 'Living Alto do Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Alto do Ipiranga',
+        resumo: '2 suítes a 4 suítes e duplex · 72 a 240 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na esquina da Rua Dr. Elísio de Castro com a Rua Salvador Simões, a 5 minutos a pé da Estação Alto do Ipiranga: torre única de 148 apartamentos num terreno de 3.200 m², com lojas e coworking no térreo, o primeiro andar a mais de 20 m do chão e o lazer a 7 m de altura, com privacidade. Apartamentos de 72, 98 e 125 m², de 2 suítes a 4 quartos, e duplex de 187 e 240 m² com SPA, todos com churrasqueira e ponto de TV na varanda. Piscina com raia de 20 m, deck molhado, SPA, quadra recreativa, academia, salão de festas, jogos adulto e teen, brinquedoteca, playground e churrasqueira. Entregue em outubro de 2023.',
+        area: ['72 m²: 2 suítes e 1 vaga', '98 m²: 3 quartos com 1 suíte (padrão) ou 2 suítes com sala ampliada (opção), 2 vagas', '125 m²: 3 suítes com sala ampliada (padrão) ou 4 quartos com 2 suítes (opção), 2 vagas', '187 m² duplex: 3 suítes, SPA e 2 vagas', '240 m² duplex: 4 suítes, SPA e 3 vagas'],
+        tipologia: '2 suítes a 4 quartos, de 72 a 125 m², e duplex de 187 e 240 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo a partir do 72 m²',
+        vagas: '1 vaga no 72 m², 2 vagas no 98, no 125 e no duplex de 187 m², 3 vagas no duplex de 240 m²',
+        torres: 'Torre única, com lojas no térreo',
+        unidades: ['148 apartamentos'],
+        pavimentos: ['Térreo: acessos de pedestres e de veículos, Espaço Delivery, hall social, coworking e lojas', 'Pavimento lazer, a 7 m de altura: Mini Market, hall social, salão de festas, academia, Jogos Teen, jogos adulto, brinquedoteca, playground, churrasqueira, piscina infantil, solarium, deck molhado, SPA, piscina com raia de 20 m e quadra recreativa'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Dr. Elísio de Castro, 199, esquina com a Rua Salvador Simões · Alto do Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscina com raia de 20 m, deck molhado, SPA, piscina infantil e solarium',
+          academia: 'Academia',
+          festas: 'Salão de festas com hall social',
+          gourmet: 'Churrasqueira',
+          kids: 'Brinquedoteca, playground e Jogos Teen',
+          quadra: 'Quadra recreativa',
+          portaria: 'Acessos de pedestres e de veículos separados, hall social de pé-direito alto',
+          coworking: 'Coworking e lojas no térreo, jogos adulto, Mini Market 24 horas e Espaço Delivery'
+        },
+        lazer: ['Acesso de pedestres', 'Acesso de veículos', 'Espaço Delivery', 'Hall social', 'Coworking', 'Lojas', 'Mini Market', 'Salão de Festas', 'Academia', 'Jogos Teen', 'Jogos Adulto', 'Brinquedoteca', 'Playground', 'Churrasqueira', 'Piscina infantil', 'Solarium', 'Deck molhado', 'SPA', 'Piscina, raia de 20 m', 'Quadra recreativa'],
+        diferenciais: ['Primeiro andar a mais de 20 m do térreo e lazer a 7 m de altura, com privacidade', 'Churrasqueira e ponto de TV na varanda em todas as plantas', 'Lojas e coworking no térreo', 'Piso laminado e infraestrutura para ar-condicionado nos quartos', 'Smart Home: Wi-Fi otimizado, tomadas USB e ponto para câmeras na sala e nos quartos', 'Mini Market 24 horas com 3% das vendas para o condomínio', 'Pronto para morar, entregue em outubro de 2023'],
+        creditos: [['Arquitetura', 'MCAA Arquitetura'], ['Interiores das áreas comuns', 'Cilene Monteiro Lupi'], ['Paisagismo', 'Cardim Arquitetura Paisagística'], ['Incorporação', 'CBR 057 Empreendimentos Imobiliários']],
+        plantas: [],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Alto do Ipiranga', '5 min a pé'], ['Rua Vergueiro', '4 min'], ['Estação Santos-Imigrantes', '5 min'], ['Av. Nazaré', 'por perto']]],
+            ['Lazer', [['Aquário de São Paulo', '3 min'], ['Museu do Ipiranga', '6 min'], ['Parque da Independência', '6 min'], ['Sesc Ipiranga, Bar do Nico, Paellas Pepe, Seu Oswaldo, Santa Pasta e Damp Sorvetes', 'no bairro']]],
+            ['Educação e saúde', [['Colégio São Francisco, ETEC e Centro Universitário São Camilo', 'no bairro'], ['Fleury Ipiranga e Mercado Municipal', 'no bairro']]]
+          ],
+          nota: 'Tempos de carro, salvo a estação, a pé, conforme o material da Living (Google Maps, 2020).'
+        },
+        legal: 'Incorporadora CBR 057 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 241.288 do 6º Oficial de Registro de Imóveis de São Paulo, em 6 de novembro de 2020. Área não contaminada (CETESB 45/01055/19); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2020/0001207-9). Terreno nas ruas Dr. Elísio de Castro, 199, Salvador Simões, 584 a 590, e Eduardo Pereira, 455. Ar-condicionado e água quente entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; folhetão de novembro de 2020, em baixa resolução, sem as plantas legíveis. Lançamento em dezembro de 2020 e entrega em outubro de 2023, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LAI + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ALTO_IPIRANGA,
+        fotos: [
+          fotoLAI('fachada', 'Fachada', true),
+          fotoLAI('portaria', 'Portaria'),
+          fotoLAI('hall', 'Hall'),
+          fotoLAI('coworking', 'Coworking'),
+          fotoLAI('salao-de-festas', 'Salão de festas'),
+          fotoLAI('piscina', 'Piscina com raia de 20 m'),
+          fotoLAI('churrasqueira', 'Churrasqueira'),
+          fotoLAI('academia', 'Academia'),
+          fotoLAI('jogos-adulto', 'Jogos adulto'),
+          fotoLAI('jogos-teen', 'Jogos Teen'),
+          fotoLAI('brinquedoteca', 'Brinquedoteca'),
+          fotoLAI('playground', 'Playground'),
+          fotoLAI('decorado', 'Decorado de 125 m²'),
+          fotoLAI('museu-piscina', 'Museu do Ipiranga com a piscina, fotomontagem')
+        ]
+      },
+      {
+        nome: 'Living In Alto do Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Alto do Ipiranga',
+        resumo: 'Studios · 21 a 40 m²',
+        tipo: 'Studio',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Salvador Simões, 590, a 5 minutos a pé da Estação Alto do Ipiranga: os studios do Living Alto do Ipiranga, de 21 a 40 m², no bloco baixo do mesmo condomínio, pensados para morar e para investir. Padrão de hotelaria com conforto de casa: self check-in, serviços sob demanda, limpeza e lavanderia, com a plataforma Charlie administrando a locação de curto e médio prazo e a venda. Espaço multiuso, academia, bicicletário e Mini Market. Entregue em agosto de 2025.',
+        area: ['25 m²: studio com sala e dormitório integrados', '34 m²: studio com dormitório separado', 'Demais metragens de 21 a 40 m², sob consulta'],
+        tipologia: 'Studios de 21 a 40 m²',
+        banheiros: '1 por unidade',
+        vagas: 'Sem vaga de garagem; bicicletário',
+        torres: 'Bloco de studios do Living Alto do Ipiranga, mesmo registro',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos, bicicletário e Mini Market', 'Lazer: espaço multiuso e academia'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Salvador Simões, 590 · Alto do Ipiranga, São Paulo',
+        infra: {
+          piscina: '',
+          academia: 'Academia',
+          festas: 'Espaço multiuso',
+          gourmet: '',
+          kids: '',
+          quadra: '',
+          portaria: 'Self check-in e atendimento 24 horas pela plataforma Charlie',
+          coworking: 'Espaço multiuso, Mini Market, bicicletário, serviços de limpeza e lavanderia sob demanda'
+        },
+        lazer: ['Espaço multiuso', 'Academia', 'Bicicletário', 'Mini Market', 'Self check-in', 'Serviço de limpeza', 'Serviço de lavanderia', 'Atendimento 24 h'],
+        diferenciais: ['Operação com a plataforma Charlie: gestão da hospitalidade, da limpeza, da lavanderia e da manutenção, com acompanhamento online', 'Locação de curto e médio prazo, com rendimento de 30% a 50% acima do aluguel tradicional, segundo o material', 'Infraestrutura para ar-condicionado, tomadas USB e ponto para câmera de monitoramento', 'A 5 minutos a pé do metrô e das lojas do térreo do Living Alto do Ipiranga', 'Pronto para morar, entregue em agosto de 2025'],
+        creditos: [['Arquitetura', 'MCAA Arquitetura'], ['Interiores das áreas comuns', 'Cilene Monteiro Lupi'], ['Paisagismo', 'Cardim Arquitetura Paisagística'], ['Operação', 'Charlie'], ['Incorporação', 'CBR 057 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LIA + 'planta-25.webp', nome: '25 m²', meta: 'Studio, sala e dormitório integrados' },
+          { src: LIA + 'planta-34.webp', nome: '34 m²', meta: 'Studio com dormitório separado' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Alto do Ipiranga', '5 min a pé, 400 m'], ['Rua Vergueiro', '4 min'], ['Estação Santos-Imigrantes', '5 min']]],
+            ['Lazer', [['Aquário de São Paulo', '3 min'], ['Museu do Ipiranga e Parque da Independência', '6 min'], ['Sesc Ipiranga', 'no bairro']]]
+          ],
+          nota: 'Tempos conforme o material do Living Alto do Ipiranga (Google Maps, 2020).'
+        },
+        legal: 'Incorporadora CBR 057 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 1 na matrícula 241.288 do 6º Oficial de Registro de Imóveis de São Paulo, em 6 de novembro de 2020, o mesmo registro do Living Alto do Ipiranga. Área não contaminada (CETESB 45/01055/19). Ar-condicionado entregue como infraestrutura. A operação pela Charlie é um serviço contratado à parte, conforme o material. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração. Lançamento em novembro de 2022 e entrega em agosto de 2025, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LIA + 'capa.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ALTO_IPIRANGA,
+        fotos: [
+          fotoLIA('capa', 'Bloco dos studios, perspectiva'),
+          fotoLIA('espaco-multiuso', 'Espaço multiuso'),
+          fotoLIA('academia', 'Academia')
+        ]
+      },
+      {
+        nome: 'Living Only Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Ipiranga',
+        resumo: '2 a 3 dormitórios e duplex · 70 a 163 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Marquesa de Santos, 41, uma rua sem saída a 600 m e 6 minutos a pé da Estação Alto do Ipiranga: poucas unidades, vista livre para o horizonte e lazer elevado. Apartamentos de 70 e 84 m², de 2 a 3 dormitórios, e duplex de 163 m² com 3 suítes e SPA. No térreo, salão de festas, jogos adultos, Kids Space, Fitness interno e externo, playground, solarium, Pool Garden, piscina adulto com deck molhado, piscina infantil, Lounge Grill e uma Pool House com piscina e churrasqueira próprias para receber; no 2º subsolo, lobby, delivery e Mini Market. Entrega prevista para dezembro de 2026.',
+        area: ['70 m²: 2 dormitórios com 1 suíte e 1 vaga', '84 m²: 3 dormitórios com 1 suíte (padrão) ou 2 suítes (opção), 1 vaga', '163 m² duplex: 3 suítes, SPA no pavimento superior e 2 vagas determinadas'],
+        tipologia: '2 a 3 dormitórios, de 70 a 84 m², e duplex de 163 m²',
+        banheiros: 'Banheiros ventilados; lavabo como infraestrutura',
+        vagas: '1 vaga no 70 e no 84 m² e 2 no duplex; determinadas nos finais 1 e 2 do 13º ao 19º pavimento e no final 1 do 12º, por sorteio nas demais',
+        torres: 'Torre única em dois blocos, A e B, de 19 pavimentos',
+        unidades: ['Sob consulta; o book fala em poucas e exclusivas unidades'],
+        pavimentos: ['2º subsolo: acessos social, de serviço e de veículos, lobby, Delivery e Mini Market', 'Térreo, lazer: salão de festas, jogos adultos, Kids Space, Fitness, Fitness externo, playground, solarium, Pool Garden, piscina adulto com deck molhado, piscina infantil, Lounge Grill e Pool House interna e externa'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Marquesa de Santos, 41 · Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com deck molhado, piscina infantil, solarium e Pool Garden',
+          academia: 'Fitness interno e Fitness externo',
+          festas: 'Salão de festas e jogos adultos',
+          gourmet: 'Lounge Grill e Pool House interna e externa, com piscina e churrasqueira próprias',
+          kids: 'Kids Space e playground',
+          quadra: '',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby no 2º subsolo',
+          coworking: 'Mini Market 24 horas, Delivery e Car Sharing'
+        },
+        lazer: ['Acesso social', 'Acesso de serviço', 'Acesso de veículos', 'Lobby', 'Delivery', 'Mini Market', 'Salão de Festas', 'Jogos Adultos', 'Kids Space', 'Fitness', 'Fitness externo', 'Playground', 'Solarium', 'Pool Garden', 'Piscina adulto com deck molhado', 'Piscina infantil', 'Lounge Grill', 'Pool House interna', 'Pool House externa', 'Car Sharing'],
+        diferenciais: ['Rua sem saída, a 600 m do metrô', 'Pool House com piscina e churrasqueira próprias, reservada por unidade', 'Piso laminado nos quartos e infraestrutura para ar-condicionado nos dormitórios', 'Infraestrutura para churrasqueira e ponto de TV no terraço social', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmeras na sala', 'Contrapiso com atenuação acústica no duplex', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing'],
+        creditos: [['Arquitetura', 'Marcelo Bartolo Arquitetos'], ['Interiores das áreas comuns', 'Débora Dalanezi Arquitetura'], ['Paisagismo', 'Rossin + Tramontina Desenho da Paisagem'], ['Incorporação', 'CBR 058 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LOY + 'planta-70.webp', nome: '70 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LOY + 'planta-84.webp', nome: '84 m² · padrão', meta: '3 dormitórios, 1 suíte · 1 vaga' },
+          { src: LOY + 'planta-84-opcao.webp', nome: '84 m² · opção', meta: '2 suítes · 1 vaga' },
+          { src: LOY + 'duplex-163-inferior.webp', nome: 'Duplex 163 m² · inferior', meta: '3 suítes · 2 vagas' },
+          { src: LOY + 'duplex-163-superior.webp', nome: 'Duplex 163 m² · superior', meta: 'Suíte, estar e SPA' }
+        ],
+        implantacao: [
+          { src: LOY + 'implantacao.webp', nome: 'Implantação', meta: 'Os 16 espaços do 2º subsolo e do térreo, entre a Marquesa de Santos e a Salvador Simões' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte', [['Estação Alto do Ipiranga', '6 min a pé, 600 m'], ['Av. Nazaré', '5 min'], ['Estação Sacomã', '6 min'], ['Estação Santos-Imigrantes', '7 min'], ['Rua Bom Pastor', '8 min'], ['Av. Dr. Ricardo Jafet', '10 min'], ['Estação Chácara Klabin', '10 min']]],
+            ['Restaurantes', [['China In Box e Ragazzo', '2 min'], ['Matsuya, Esteio Grill e Fiorella', '4 min'], ['Mercatto, Mimi Grill, Burger King e McDonald\'s', '6 min'], ['Cantina do Magrão, Paellas Pepe e Habib\'s', '7 min'], ['Sala VIP, Kaskata\'s, Nakato e Santa Pasta', '9 min'], ['Big Bread', '10 min']]],
+            ['Saúde', [['Hospital Bosque da Saúde e Dom Antônio de Alvarenga', '5 min'], ['Papaiz', '7 min'], ['Lavoisier', '8 min'], ['Hospitais Santa Cruz, São Camilo e Sepaco; Delboni', '9 min'], ['Hospital Green Hill', '10 min']]],
+            ['Educação', [['Cene Colégio e Fatec Ipiranga', '3 min'], ['Colégio Santa Helena', '4 min'], ['Colégios Cardeal Lizarte, Super Nova Geração e São Camilo', '5 min'], ['Vicentino Padre Chico, PUC e Senai', '6 min'], ['Maria Imaculada e Piero Roversi', '7 min'], ['Objetivo', '8 min']]],
+            ['Conveniência e lazer', [['Aquário de São Paulo', '5 min'], ['Supermercado Dia e Cobasi', '7 min'], ['Mini Extra e Petz', '8 min'], ['Pão de Açúcar, St Marché e Sesc Ipiranga', '9 min'], ['Museu do Ipiranga', '11 min'], ['Shopping Metrô Santa Cruz', '13 min']]]
+          ],
+          nota: 'Tempos de carro, salvo a estação, a pé, conforme o material da Living (Google Maps, 2023).'
+        },
+        legal: 'Incorporadora CBR 058 Empreendimentos Imobiliários Ltda. Empreendimento em processo de registro, prenotado sob nº 819.703 no 6º Registro de Imóveis de São Paulo em 6 de outubro de 2023. Área não contaminada (CETESB 45/00771/21). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, churrasqueira, bancada da cozinha, lavabo, tanque e interruptores inteligentes entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de outubro de 2023. Em obras, com entrega prevista para dezembro de 2026, pela corretagem.',
+        torre: LOY + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ALTO_IPIRANGA,
+        fotos: [
+          fotoLOY('fachada', 'Fachada', true),
+          fotoLOY('portaria', 'Portaria', true),
+          fotoLOY('lobby', 'Lobby'),
+          fotoLOY('salao-de-festas', 'Salão de festas'),
+          fotoLOY('jogos-adultos', 'Jogos adultos'),
+          fotoLOY('fitness', 'Fitness'),
+          fotoLOY('kids-space', 'Kids Space'),
+          fotoLOY('pool-house', 'Pool House, interna'),
+          fotoLOY('pool-house-externa', 'Pool House, externa'),
+          fotoLOY('lounge-grill', 'Lounge Grill'),
+          fotoLOY('piscina', 'Piscina adulto com deck molhado'),
+          fotoLOY('pool-garden', 'Pool Garden')
+        ]
+      },
+      {
+        nome: 'Living Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Ipiranga',
+        resumo: '2 a 4 quartos · 67 a 119 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Avenida Nazaré, 2118, esquina com a Avenida Dr. Gentil de Moura, a 400 m da Estação Alto do Ipiranga: torre única num terreno de 3.733 m², de frente para o eixo do Museu do Ipiranga. Apartamentos de 67 a 119 m², de 2 a 4 quartos, com churrasqueira na varanda, piso laminado nos quartos e Smart Home. Lazer com hall de 94 m², coworking, salão de festas de 95 m², gourmet para 23 pessoas, churrasqueira para 30, fitness de 90 m², jogos adulto e teen, brinquedoteca de 66 m², playground e piscina. Entregue em setembro de 2023.',
+        area: ['67 m²: 2 quartos com 1 suíte e 1 vaga', '71 m²: 2 quartos com 1 suíte e 1 vaga', '93 m²: 3 quartos com 1 suíte (padrão) ou 2 suítes com sala ampliada (opção), 2 vagas', '119 m²: 4 quartos com 2 suítes (padrão) ou 3 suítes com sala ampliada (opção), 2 vagas'],
+        tipologia: '2 a 4 quartos, de 67 a 119 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente',
+        vagas: '1 vaga no 67 e no 71 m², 2 vagas no 93 e no 119 m²',
+        torres: 'Torre única',
+        unidades: ['100 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: acessos e hall de 94 m²', 'Lazer: coworking (24 m²), jogos adulto (30 m²), fitness (90 m²), salão de festas (95 m²), gourmet (50 m², 23 pessoas), jogos teen (14 m²), brinquedoteca (66 m²), playground, piscina e churrasqueira (30 pessoas)'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Nazaré, 2118, esquina com a Av. Dr. Gentil de Moura · Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck',
+          academia: 'Fitness de 90 m²',
+          festas: 'Salão de festas de 95 m² e hall de 94 m²',
+          gourmet: 'Gourmet para 23 pessoas e churrasqueira para 30',
+          kids: 'Brinquedoteca de 66 m², jogos teen e playground',
+          quadra: '',
+          portaria: 'Acessos e hall de pé-direito alto',
+          coworking: 'Coworking e jogos adulto'
+        },
+        lazer: ['Hall', 'Coworking', 'Jogos Adulto', 'Fitness', 'Salão de Festas', 'Gourmet', 'Jogos Teen', 'Brinquedoteca', 'Playground', 'Piscina', 'Churrasqueira'],
+        diferenciais: ['A 400 m da Estação Alto do Ipiranga, na Avenida Nazaré', 'Churrasqueira na varanda, piso laminado nos quartos e infraestrutura para ar-condicionado', 'Smart Home: Wi-Fi otimizado, tomadas USB e ponto para câmeras na sala e nos quartos', 'Pronto para morar, entregue em setembro de 2023'],
+        creditos: [['Realização', 'Living, marca do Grupo Cyrela']],
+        plantas: [
+          { src: LIP + 'planta-67.webp', nome: '67 m²', meta: '2 quartos, 1 suíte · 1 vaga' },
+          { src: LIP + 'planta-71.webp', nome: '71 m²', meta: '2 quartos, 1 suíte · 1 vaga' },
+          { src: LIP + 'planta-93.webp', nome: '93 m² · padrão', meta: '3 quartos, 1 suíte · 2 vagas' },
+          { src: LIP + 'planta-93-opcao.webp', nome: '93 m² · opção', meta: '2 suítes, sala ampliada · 2 vagas' },
+          { src: LIP + 'planta-119.webp', nome: '119 m² · padrão', meta: '4 quartos, 2 suítes · 2 vagas' },
+          { src: LIP + 'planta-119-opcao.webp', nome: '119 m² · opção', meta: '3 suítes, sala ampliada · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LIP + 'implantacao.webp', nome: 'Implantação', meta: 'Terreno de 3.733,75 m², na esquina da Av. Nazaré com a Av. Dr. Gentil de Moura' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Estação Alto do Ipiranga', '400 m'], ['Museu do Ipiranga e Parque da Independência', 'pela Av. Nazaré'], ['Aquário de São Paulo', 'pela Rua Gama Lobo'], ['Bar do Nico e Hambúrguer Seu Oswaldo', 'no bairro'], ['Estações Ipiranga e Sacomã, Expresso Tiradentes e Mooca Plaza Shopping', 'no mapa do material']]]
+          ],
+          nota: 'A apresentação traz só o mapa, sem tempos. Confirmar com a Living.'
+        },
+        legal: 'Empreendimento da Living, marca do Grupo Cyrela. A apresentação recebida é só de imagens e não traz a incorporadora nem o memorial de incorporação. Ar-condicionado e água quente entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Imagens ilustrativas. Lançamento em junho de 2020 e entrega em setembro de 2023, pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LIP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_IPIRANGA,
+        fotos: [
+          fotoLIP('fachada', 'Fachada', true),
+          fotoLIP('fachada-museu', 'Embasamento, com o Museu do Ipiranga ao fundo'),
+          fotoLIP('embasamento', 'Embasamento', true),
+          fotoLIP('portaria', 'Portaria'),
+          fotoLIP('hall', 'Hall'),
+          fotoLIP('salao-de-festas', 'Salão de festas'),
+          fotoLIP('gourmet', 'Gourmet'),
+          fotoLIP('churrasqueira', 'Churrasqueira'),
+          fotoLIP('piscina', 'Piscina'),
+          fotoLIP('fitness', 'Fitness'),
+          fotoLIP('coworking', 'Coworking'),
+          fotoLIP('jogos-adulto', 'Jogos adulto'),
+          fotoLIP('jogos-teen', 'Jogos teen'),
+          fotoLIP('brinquedoteca', 'Brinquedoteca'),
+          fotoLIP('playground', 'Playground'),
+          fotoLIP('mapa', 'Mapa de localização')
         ]
       }
     ]
