@@ -777,6 +777,16 @@
   // (11/11/2026) Vila Mariana e Aclimacao, rodada 3: Leven (nov/2025), The Edition (jan/2024) e Wellness Aclimacao (set/2022)
   var LLV = L + 'leven/', LED = L + 'edition/', LWA = L + 'wellness/';
   var fotoLLV = fotoEm(LLV), fotoLED = fotoEm(LED), fotoLWA = fotoEm(LWA);
+  // (11/11/2026) Panamby, rodada 4: Wish, Dream e Concept (slides so de imagem, nomeados pela folha; vizinhos na Av. Alberto Augusto Alves)
+  var LWP = L + 'wish/', LDP = L + 'dream/', LCP = L + 'concept/';
+  var fotoLWP = fotoEm(LWP), fotoLDP = fotoEm(LDP), fotoLCP = fotoEm(LCP);
+  var ZS_PANAMBY = {
+    titulo: 'A região · Panamby',
+    texto: 'Na Zona Sul, entre o Morumbi e a Vila Andrade, o Panamby é o bairro de torres novas em torno do Parque Burle Marx e do Palácio Tangará, com o Colégio Porto Seguro e o Pentágono, o Shopping Jardim Sul e o Morumbi Town, e a ligação pela Avenida Giovanni Gronchi e pela Marginal Pinheiros. Na Avenida Alberto Augusto Alves, a Living construiu três condomínios lado a lado: o Wish, o Dream e o Concept, todos entregues.',
+    numeros: [['3', 'condomínios da Living na mesma avenida: Wish, Dream e Concept'], ['7.260 m²', 'de terreno no Wish, com mall de 14 lojas'], ['25 m', 'de raia na piscina do Dream'], ['25 a 201 m²', 'do studio ao duplex, entre os três']],
+    polos: 'Por perto: Parque Burle Marx, Palácio Tangará, Colégio Porto Seguro, Colégio Pentágono, Shopping Jardim Sul, Morumbi Town, St Marche, Pão de Açúcar, Carrefour e Záffari.',
+    fonte: 'Fonte: apresentações da Living para o Wish, o Dream e o Concept Panamby; os mapas não trazem distâncias.'
+  };
   var ZS_VILA_MARIANA = {
     titulo: 'A região · Vila Mariana',
     texto: 'A Vila Mariana é o bairro de ruas arborizadas entre a Avenida Domingos de Morais e a Rua Vergueiro, servido pelas linhas 1-Azul e 5-Lilás do metrô (Santa Cruz, Praça da Árvore, Chácara Klabin e Vila Mariana), com ciclofaixa, o Shopping Metrô Santa Cruz, o Parque da Aclimação e o Ibirapuera a poucos minutos. Colégios tradicionais como o Marista Arquidiocesano, faculdades como a ESPM e a Belas Artes, e uma vida de bairro que resolve tudo a pé.',
@@ -4878,6 +4888,197 @@
           fotoLWA('playground', 'Playground'),
           fotoLWA('pet-park', 'Pet Park'),
           fotoLWA('parque-aclimacao', 'Parque da Aclimação, fotomontagem')
+        ]
+      },
+      {
+        nome: 'Living Wish Panamby',
+        cidade: 'São Paulo, capital',
+        bairro: 'Panamby',
+        resumo: '2 a 4 dormitórios e duplex · 67 a 201 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Avenida Alberto Augusto Alves, 220, no Panamby: duas torres num terreno de 7.260 m², com mall de 14 lojas no térreo e lazer elevado. A torre A tem 64 apartamentos de 110 m², de 3 suítes ou 4 dormitórios, e 4 duplex de 201 m²; a torre B tem 141 apartamentos de 67 e 84 m², de 2 e 3 dormitórios. Todas as unidades com 1 ou 2 vagas determinadas, depósito e varanda com churrasqueira e ponto de TV. Entregue em julho de 2022.',
+        area: ['67 m²: 2 quartos com 1 suíte, 1 ou 2 vagas com depósito (torre B)', '84 m²: 3 quartos com 1 suíte (padrão) ou 2 quartos com 1 suíte e sala ampliada (opção), 2 vagas com depósito (torre B)', '110 m²: 3 suítes com sala ampliada (padrão) ou 4 quartos com 2 suítes (opção), 2 vagas com depósito (torre A)', '201 m² duplex: 4 unidades na torre A, 2 vagas'],
+        tipologia: '2 a 4 dormitórios, de 67 a 110 m², e duplex de 201 m²',
+        banheiros: 'Banheiros ventilados, com ponto de água quente; lavabo no 110 m²',
+        vagas: '1 vaga em 34 unidades de 67 m² e 2 vagas nas demais, todas determinadas, com depósito para todas as unidades',
+        torres: '2 torres: torre A com 16 pavimentos mais duplex e 2 elevadores, torre B com 17 pavimentos e 4 elevadores',
+        unidades: ['209 unidades', 'Torre A: 4 por andar, 64 de 110 m² e 4 duplex de 201 m²', 'Torre B: 8 por andar, 71 de 84 m² e 70 de 67 m²'],
+        pavimentos: ['Térreo: mall com 14 lojas e acessos', 'Lazer elevado: salão de festas, espaço gourmet com churrasqueira, fitness, brinquedoteca e piscina'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Alberto Augusto Alves, 220 · Panamby, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck, no lazer elevado',
+          academia: 'Fitness',
+          festas: 'Salão de festas',
+          gourmet: 'Espaço gourmet com churrasqueira, e churrasqueira na varanda de cada apartamento',
+          kids: 'Brinquedoteca',
+          quadra: '',
+          portaria: 'Portaria com acessos separados e lobby',
+          coworking: 'Mall com 14 lojas no térreo, depósito por unidade'
+        },
+        lazer: ['Mall com 14 lojas', 'Lobby', 'Salão de Festas', 'Espaço Gourmet', 'Fitness', 'Brinquedoteca', 'Piscina', 'Depósito'],
+        diferenciais: ['Mall com 14 lojas no térreo do condomínio', 'Vagas determinadas e depósito em todas as unidades', 'Varanda com churrasqueira e ponto de TV, piso laminado nos quartos', 'Infraestrutura para ar-condicionado nos quartos e Smart Home com câmeras e Wi-Fi otimizado', 'Pronto para morar, entregue em julho de 2022'],
+        creditos: [['Realização', 'Living, marca do Grupo Cyrela']],
+        plantas: [
+          { src: LWP + 'planta-67.webp', nome: '67 m²', meta: '2 quartos, 1 suíte · 1 ou 2 vagas com depósito' },
+          { src: LWP + 'planta-84.webp', nome: '84 m² · padrão', meta: '3 quartos, 1 suíte · 2 vagas com depósito' },
+          { src: LWP + 'planta-84-opcao.webp', nome: '84 m² · opção', meta: '2 quartos, 1 suíte, sala ampliada · 2 vagas' },
+          { src: LWP + 'planta-110.webp', nome: '110 m² · padrão', meta: '3 suítes, sala ampliada · 2 vagas' },
+          { src: LWP + 'planta-110-opcao.webp', nome: '110 m² · opção', meta: '4 quartos, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LWP + 'implantacao.webp', nome: 'Implantação e ficha técnica', meta: 'Terreno de 7.260 m², 2 torres, 209 unidades e mall' },
+          { src: LWP + 'implantacao-torres.webp', nome: 'As duas torres', meta: 'Torre A com 4 unidades por andar; torre B com 8' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Parque Burle Marx e Palácio Tangará', 'no mapa do material'], ['Colégio Porto Seguro e Colégio Pentágono', 'no mapa do material'], ['Shopping Jardim Sul e Morumbi Town', 'no mapa do material'], ['St Marche, Pão de Açúcar, Carrefour e Záffari', 'no mapa do material'], ['Av. Giovanni Gronchi e Estação Brooklin', 'no mapa do material']]]
+          ],
+          nota: 'A apresentação traz só o mapa, sem tempos. Confirmar com a Living.'
+        },
+        legal: 'Empreendimento da Living, marca do Grupo Cyrela. A apresentação recebida é só de imagens e não traz a incorporadora nem o memorial de incorporação; a ficha técnica (terreno, torres, unidades e vagas) é do próprio material. Ar-condicionado e água quente entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Imagens ilustrativas. Endereço pelo site da Living (a corretagem registra o nº 180) e entrega em julho de 2022 pela corretagem; unidades disponíveis a confirmar.',
+        torre: LWP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_PANAMBY,
+        fotos: [
+          fotoLWP('fachada', 'Fachada', true),
+          fotoLWP('embasamento', 'Embasamento e mall'),
+          fotoLWP('portaria', 'Portaria'),
+          fotoLWP('salao-de-festas', 'Salão de festas'),
+          fotoLWP('gourmet', 'Espaço gourmet'),
+          fotoLWP('piscina', 'Piscina'),
+          fotoLWP('fitness', 'Fitness'),
+          fotoLWP('brinquedoteca', 'Brinquedoteca'),
+          fotoLWP('mapa', 'Mapa de localização')
+        ]
+      },
+      {
+        nome: 'Living Dream Panamby',
+        cidade: 'São Paulo, capital',
+        bairro: 'Panamby',
+        resumo: '2 a 3 quartos · 62 a 76 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Avenida Alberto Augusto Alves, 270, no Panamby, ao lado do Wish e do Concept: apartamentos de 62 a 76 m², de 2 a 3 quartos com 1 suíte, varanda com churrasqueira e ponto de TV, piso laminado nos quartos e Smart Home. Lazer no 3º pavimento com piscina de raia de 25 m, deck molhado, piscina infantil, academia, funcional, salão de festas com estar, gourmet, churrasqueira, jogos adulto e teen, brinquedoteca, playground e quadra recreativa; no térreo, alameda de acesso e churrasqueira com forno para pizza.',
+        area: ['62 m²: 2 quartos com 1 suíte e 1 vaga', '64 m²: 2 quartos com 1 suíte e 1 vaga', '65 m²: 2 quartos com 1 suíte e 1 vaga', '76 m²: 3 quartos com 1 suíte (padrão) ou 2 quartos com 1 suíte e sala ampliada (opção), 2 vagas'],
+        tipologia: '2 a 3 quartos, de 62 a 76 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente',
+        vagas: '1 vaga no 62, no 64 e no 65 m²; 2 vagas no 76 m²',
+        torres: 'Torre única',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos de veículos e de pedestres, alameda de acesso, acesso ao lobby e churrasqueira com forno para pizza', '3º pavimento, lazer: hall, Jogos Teen, jogos adulto, brinquedoteca, gourmet, playground, estar festas, salão de festas, funcional, academia, solarium, piscina com raia de 25 m, deck molhado, piscina infantil, churrasqueira e quadra recreativa'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Alberto Augusto Alves, 270 · Panamby, São Paulo',
+        infra: {
+          piscina: 'Piscina com raia de 25 m, deck molhado, piscina infantil e solarium',
+          academia: 'Academia e funcional',
+          festas: 'Salão de festas com estar festas',
+          gourmet: 'Gourmet, churrasqueira e churrasqueira com forno para pizza no térreo',
+          kids: 'Brinquedoteca, playground e Jogos Teen',
+          quadra: 'Quadra recreativa',
+          portaria: 'Acessos de veículos e de pedestres separados, alameda e lobby',
+          coworking: 'Jogos adulto'
+        },
+        lazer: ['Acesso de veículos', 'Acesso de pedestres', 'Alameda de acesso', 'Lobby', 'Churrasqueira com forno para pizza', 'Hall', 'Jogos Teen', 'Jogos Adulto', 'Brinquedoteca', 'Gourmet', 'Playground', 'Estar festas', 'Salão de Festas', 'Funcional', 'Academia', 'Solarium', 'Piscina, raia de 25 m', 'Deck molhado', 'Piscina infantil', 'Churrasqueira', 'Quadra recreativa'],
+        diferenciais: ['Piscina com raia de 25 m e quadra recreativa no lazer elevado', 'Churrasqueira com forno para pizza no térreo', 'Varanda com churrasqueira e ponto de TV, piso laminado nos quartos', 'Infraestrutura para ar-condicionado nos quartos e Smart Home com câmeras e Wi-Fi otimizado', 'Pronto para morar'],
+        creditos: [['Realização', 'Living, marca do Grupo Cyrela']],
+        plantas: [
+          { src: LDP + 'planta-62.webp', nome: '62 m²', meta: '2 quartos, 1 suíte · 1 vaga' },
+          { src: LDP + 'planta-64.webp', nome: '64 m²', meta: '2 quartos, 1 suíte · 1 vaga' },
+          { src: LDP + 'planta-65.webp', nome: '65 m²', meta: '2 quartos, 1 suíte · 1 vaga' },
+          { src: LDP + 'planta-76.webp', nome: '76 m² · padrão', meta: '3 quartos, 1 suíte · 2 vagas' },
+          { src: LDP + 'planta-76-opcao.webp', nome: '76 m² · opção', meta: '2 quartos, 1 suíte, sala ampliada · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LDP + 'implantacao.webp', nome: 'Implantação', meta: 'Os 21 espaços do térreo e do 3º pavimento de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Parque Burle Marx', 'no mapa do material'], ['Colégio Porto Seguro e Colégio Pentágono', 'no mapa do material'], ['Shopping Jardim Sul e Morumbi Town', 'no mapa do material'], ['St Marche, Pão de Açúcar, Carrefour e Záffari', 'no mapa do material'], ['Av. Giovanni Gronchi', 'no mapa do material']]]
+          ],
+          nota: 'A apresentação traz só o mapa, sem tempos. Confirmar com a Living.'
+        },
+        legal: 'Empreendimento da Living, marca do Grupo Cyrela. A apresentação recebida é só de imagens e não traz a incorporadora, o memorial de incorporação nem o número de unidades. Ar-condicionado e água quente entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Imagens ilustrativas. Endereço e entrega pela corretagem, que já anuncia unidades no condomínio pronto; o site da Living registra o nº 200. Unidades disponíveis a confirmar.',
+        torre: LDP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_PANAMBY,
+        fotos: [
+          fotoLDP('fachada', 'Fachada', true),
+          fotoLDP('portaria', 'Portaria'),
+          fotoLDP('salao-de-festas', 'Salão de festas'),
+          fotoLDP('piscina', 'Piscina com raia de 25 m'),
+          fotoLDP('academia', 'Academia'),
+          fotoLDP('jogos', 'Jogos adulto e teen'),
+          fotoLDP('playground', 'Playground'),
+          fotoLDP('regiao-aerea', 'Foto aérea da região'),
+          fotoLDP('mapa', 'Mapa de localização')
+        ]
+      },
+      {
+        nome: 'Living Concept Panamby',
+        cidade: 'São Paulo, capital',
+        bairro: 'Panamby',
+        resumo: 'Studios e 1 a 2 dormitórios · 25 a 50 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Avenida Alberto Augusto Alves, 320, no Panamby: torre única de térreo mais 16 andares, com 100 unidades compactas de 25 a 50 m², studios e 1 a 2 dormitórios, com ponto grill, piso laminado nos quartos e Smart Home. No térreo, hall, coworking, Pub, festas com apoio, playground, Pet Place e espaço piquenique; no 1º pavimento, lavanderia, vending machine e bicicletário; no 2º, academia, jogos adulto e teens, espaço de descanso, churrasqueira, solarium, deck molhado, SPA e piscina com raia de 20 m. Entregue em novembro de 2022.',
+        area: ['25 m²: studio', '38 m²: 1 dormitório', '50 m²: 2 dormitórios'],
+        tipologia: 'Studios e 1 a 2 dormitórios, de 25 a 50 m²',
+        banheiros: '1 por unidade',
+        vagas: 'Sob consulta',
+        torres: 'Torre única, térreo mais 16 andares',
+        unidades: ['100 unidades, pela corretagem'],
+        pavimentos: ['Térreo: acessos de veículos e de pedestres, Espaço Delivery, hall, coworking, Pub, festas com apoio, playground, Pet Place e piquenique', '1º pavimento: lavanderia, espaço vending machine e bicicletário', '2º pavimento, lazer: hall, academia, jogos adulto, Jogos Teens, espaço de descanso, churrasqueira, solarium, deck molhado, SPA e piscina com raia de 20 m'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Alberto Augusto Alves, 320 · Panamby, São Paulo',
+        infra: {
+          piscina: 'Piscina com raia de 20 m, deck molhado, SPA e solarium no 2º pavimento',
+          academia: 'Academia',
+          festas: 'Festas com apoio e Pub',
+          gourmet: 'Churrasqueira e espaço piquenique',
+          kids: 'Playground e Jogos Teens',
+          quadra: '',
+          portaria: 'Acessos de veículos e de pedestres separados, hall e Espaço Delivery',
+          coworking: 'Coworking, lavanderia, vending machine, bicicletário, jogos adulto, espaço de descanso e Pet Place'
+        },
+        lazer: ['Acesso de veículos', 'Acesso de pedestres', 'Espaço Delivery', 'Hall', 'Coworking', 'Pub', 'Festas', 'Apoio festas', 'Playground', 'Pet Place', 'Piquenique', 'Lavanderia', 'Vending machine', 'Bicicletário', 'Academia', 'Jogos Adulto', 'Jogos Teens', 'Espaço de descanso', 'Churrasqueira', 'Solarium', 'Deck molhado', 'SPA', 'Piscina, raia de 20 m'],
+        diferenciais: ['Unidades compactas de 25 a 50 m² para morar, trabalhar ou alugar', 'Coworking, Pub, lavanderia e vending machine no condomínio', 'Piscina com raia de 20 m e SPA no lazer elevado', 'Ponto grill, manta acústica, piso laminado nos quartos e infraestrutura para ar-condicionado', 'Smart Home com câmeras, tomadas USB e Wi-Fi otimizado', 'Pronto para morar, entregue em novembro de 2022'],
+        creditos: [['Realização', 'Living, marca do Grupo Cyrela']],
+        plantas: [
+          { src: LCP + 'planta-25.webp', nome: 'Studio · 25 m²', meta: 'Sala e dormitório integrados' },
+          { src: LCP + 'planta-38.webp', nome: '38 m²', meta: '1 dormitório' },
+          { src: LCP + 'planta-50.webp', nome: '50 m²', meta: '2 dormitórios' }
+        ],
+        implantacao: [
+          { src: LCP + 'implantacao-terreo.webp', nome: 'Térreo e 1º pavimento', meta: 'Acessos, hall, coworking, Pub, festas, playground, Pet Place, piquenique, lavanderia e bicicletário' },
+          { src: LCP + 'implantacao-lazer.webp', nome: '2º pavimento, lazer', meta: 'Academia, jogos, descanso, churrasqueira, solarium, deck molhado, SPA e piscina de 20 m' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Parque Burle Marx', 'no mapa do material'], ['Colégio Porto Seguro e Colégio Pentágono', 'no mapa do material'], ['Shopping Jardim Sul e Morumbi Town', 'no mapa do material'], ['St Marche, Pão de Açúcar, Carrefour e Záffari', 'no mapa do material'], ['Av. Giovanni Gronchi', 'no mapa do material']]]
+          ],
+          nota: 'A apresentação traz só o mapa, sem tempos. Confirmar com a Living.'
+        },
+        legal: 'Empreendimento da Living, marca do Grupo Cyrela. A apresentação recebida é só de imagens e não traz a incorporadora nem o memorial de incorporação. Ar-condicionado entregue como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Imagens ilustrativas. Endereço, 100 unidades e entrega em novembro de 2022 pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LCP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_PANAMBY,
+        fotos: [
+          fotoLCP('fachada', 'Fachada', true),
+          fotoLCP('portaria', 'Portaria'),
+          fotoLCP('coworking', 'Coworking'),
+          fotoLCP('pub', 'Pub'),
+          fotoLCP('festas', 'Festas'),
+          fotoLCP('piscina', 'Piscina com raia de 20 m'),
+          fotoLCP('descanso', 'Espaço de descanso e solarium'),
+          fotoLCP('churrasqueira', 'Churrasqueira'),
+          fotoLCP('piquenique', 'Piquenique'),
+          fotoLCP('academia', 'Academia'),
+          fotoLCP('jogos-adulto', 'Jogos adulto'),
+          fotoLCP('jogos-teens', 'Jogos Teens'),
+          fotoLCP('lavanderia', 'Lavanderia'),
+          fotoLCP('mapa', 'Mapa de localização')
         ]
       }
     ]
