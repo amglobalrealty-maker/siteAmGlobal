@@ -774,6 +774,23 @@
   // (11/11/2026) Nova Klabin, rodada 2: Grand Living (jul/2021), Living Infinity (fev/2022) e Living In (slides so de imagem)
   var LGK = L + 'grandklabin/', LIF = L + 'infinity/', LIK = L + 'inklabin/';
   var fotoLGK = fotoEm(LGK), fotoLIF = fotoEm(LIF), fotoLIK = fotoEm(LIK);
+  // (11/11/2026) Vila Mariana e Aclimacao, rodada 3: Leven (nov/2025), The Edition (jan/2024) e Wellness Aclimacao (set/2022)
+  var LLV = L + 'leven/', LED = L + 'edition/', LWA = L + 'wellness/';
+  var fotoLLV = fotoEm(LLV), fotoLED = fotoEm(LED), fotoLWA = fotoEm(LWA);
+  var ZS_VILA_MARIANA = {
+    titulo: 'A região · Vila Mariana',
+    texto: 'A Vila Mariana é o bairro de ruas arborizadas entre a Avenida Domingos de Morais e a Rua Vergueiro, servido pelas linhas 1-Azul e 5-Lilás do metrô (Santa Cruz, Praça da Árvore, Chácara Klabin e Vila Mariana), com ciclofaixa, o Shopping Metrô Santa Cruz, o Parque da Aclimação e o Ibirapuera a poucos minutos. Colégios tradicionais como o Marista Arquidiocesano, faculdades como a ESPM e a Belas Artes, e uma vida de bairro que resolve tudo a pé.',
+    numeros: [['15 min', 'a pé das linhas Azul e Lilás'], ['4 min', 'do Shopping Metrô Santa Cruz'], ['1 min', 'da ciclofaixa'], ['15 min', 'do Parque Ibirapuera']],
+    polos: 'Por perto: estações Santa Cruz, Praça da Árvore, Chácara Klabin e Vila Mariana, Shopping Metrô Santa Cruz, Parque da Aclimação, Parque Ibirapuera, Marista Arquidiocesano, ESPM, Belas Artes e os hospitais Rubem Berta e Santa Catarina.',
+    fonte: 'Fonte: book do Leven by Living Vila Mariana (novembro de 2025), com tempos do próprio material.'
+  };
+  var ZS_ACLIMACAO = {
+    titulo: 'A região · Aclimação e Jardim da Glória',
+    texto: 'Entre a Vila Mariana e o Ipiranga, a Aclimação e o Jardim da Glória têm a calma de interior com as facilidades da metrópole: o Parque da Aclimação a poucos quadras, as estações Ana Rosa, Vila Mariana e Chácara Klabin, a Avenida Lins de Vasconcelos e a Ricardo Jafet, e a Paulista a 12 minutos. Hospitais São Camilo, Einstein, Cruz Azul e Santa Joana, a Cinemateca, o Sesc Vila Mariana e colégios como o Bandeirantes e o São Luís por perto.',
+    numeros: [['4 min', 'do Parque da Aclimação e das estações Vila Mariana, Chácara Klabin e Ana Rosa'], ['2', 'projetos da Living: The Edition e Wellness Aclimação'], ['9 mil m²', 'de lazer no Wellness Aclimação'], ['12 min', 'da Avenida Paulista']],
+    polos: 'Por perto: Parque da Aclimação, Parque da Independência, Aquário de São Paulo, Cinemateca, Sesc Vila Mariana, estações Ana Rosa, Vila Mariana, Paraíso e Chácara Klabin, hospitais São Camilo, Einstein, Cruz Azul e Santa Joana, colégios Bandeirantes e São Luís, FMU e ESPM.',
+    fonte: 'Fonte: books do The Edition by Living (janeiro de 2024) e do Living Wellness Aclimação (setembro de 2022), com tempos do próprio material.'
+  };
   var ZS_NOVA_KLABIN = {
     titulo: 'A região · Nova Klabin',
     texto: 'Entre o Ipiranga, a Vila Mariana e o Cursino, a Nova Klabin é o bairro novo que nasceu em torno da Estação Santos-Imigrantes da Linha 2-Verde, com a Chácara Klabin e a Alto do Ipiranga a poucos minutos e as saídas pela Rua Vergueiro, pela Avenida Ricardo Jafet e pela Rodovia dos Imigrantes. Ruas planas e tranquilas, torres novas, a Leroy Merlin, o St. Marché e o Tateno na porta, e o Aquário, o Parque da Independência, o Parque da Aclimação e o Shopping Metrô Santa Cruz por perto.',
@@ -4633,6 +4650,234 @@
           fotoLIK('fitness', 'Fitness, 40 m²'),
           fotoLIK('fitness-externo', 'Fitness externo'),
           fotoLIK('spa', 'SPA com deck')
+        ]
+      },
+      {
+        nome: 'Leven by Living Vila Mariana',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Mariana',
+        resumo: '1 a 3 dormitórios · 69 a 93 m²',
+        tipo: 'Apartamento',
+        status: 'Lançamento',
+        texto: 'Na Rua Martim de Sá, 65, a menos de 15 minutos a pé das linhas Azul e Lilás do metrô e a 1 minuto da ciclofaixa: inspirado em Amsterdam e no Pillows Grand Boutique Hotel, onde tudo se resolve em 15 minutos para sobrar tempo para o que importa. Apartamentos de 69 a 93 m², de 1 suíte a 3 dormitórios, com infraestrutura para churrasqueira no terraço. Lazer em três níveis: no térreo, lobby, Party Lounge, Garden Lounge e Pet Place; no 1º pavimento, The Gym by Matrix, Yoga e Wellness Massage; no 2º, Private Pool House, Wine Bar, Wellness Lounge e sauna, Gourmet Lounge, Lounge Barbecue, Kids Place, playground, quadra de pickleball e The Swimming Pool com Kids Pool e Pool SPA. Lançamento de novembro de 2025.',
+        area: ['69 m²: 2 dormitórios com 1 suíte (padrão) ou 1 suíte com sala ampliada (opção), 1 vaga', '79 m²: 2 suítes e lavabo, 1 vaga', '89 m²: 2 suítes e lavabo, 1 vaga', '93 m²: 2 suítes com cozinha integrada (padrão) ou 3 dormitórios com 1 suíte e cozinha fechada (opção), lavabo, 1 vaga'],
+        tipologia: '1 suíte a 3 dormitórios, de 69 a 93 m²',
+        banheiros: 'Banheiros com ralo linear e infraestrutura para água quente; lavabo a partir do 79 m²',
+        vagas: '1 vaga por apartamento',
+        torres: 'Blocos A e B',
+        unidades: ['Sob consulta'],
+        pavimentos: ['1º subsolo: Garage Entrance', 'Térreo: Social Entrance, Service Entrance, Garden Lounge, Pet Place, lobby, Party Lounge, Delivery e Minimarket', '1º pavimento: The Gym by Matrix, Yoga e Wellness Massage', '2º pavimento, lazer: Private Pool House, Wine Bar, Wellness Lounge, sauna, Kids Place, Gourmet Lounge, Lounge Barbecue, playground, Pickleball Court, solarium, Pool Deck, The Swimming Pool, Kids Pool e Pool SPA'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Martim de Sá, 65 · Vila Mariana, São Paulo',
+        infra: {
+          piscina: 'The Swimming Pool com Pool Deck, Kids Pool, Pool SPA e solarium no 2º pavimento',
+          academia: 'The Gym by Matrix, Yoga e Wellness Massage no 1º pavimento; Wellness Lounge e sauna no 2º',
+          festas: 'Party Lounge no térreo e Wine Bar',
+          gourmet: 'Gourmet Lounge, Lounge Barbecue e Private Pool House',
+          kids: 'Kids Place e playground',
+          quadra: 'Quadra de pickleball',
+          portaria: 'Social Entrance e Service Entrance separadas, Garage Entrance no subsolo, lobby',
+          coworking: 'Garden Lounge, Minimarket 24 horas, Delivery e Pet Place'
+        },
+        lazer: ['Garage Entrance', 'Social Entrance', 'Service Entrance', 'Garden Lounge', 'Pet Place', 'Lobby', 'Party Lounge', 'Delivery', 'Minimarket', 'The Gym by Matrix', 'Yoga', 'Wellness Massage', 'Private Pool House', 'Wine Bar', 'Wellness Lounge', 'Sauna', 'Kids Place', 'Gourmet Lounge', 'Lounge Barbecue', 'Playground', 'Pickleball Court', 'Solarium', 'Pool Deck', 'The Swimming Pool', 'Kids Pool', 'Pool SPA'],
+        diferenciais: ['Inspirado em Amsterdam, a cidade dos 15 minutos, e no Pillows Grand Boutique Hotel', 'Quadra de pickleball, The Gym by Matrix, Yoga e Wellness Massage', 'Private Pool House e Wine Bar para receber', 'Contrapiso acústico nos quartos, na sala e no terraço social', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmera Wi-Fi na sala', 'Infraestrutura para ar-condicionado nas suítes, nos dormitórios e na sala, e para churrasqueira no terraço', 'Minimarket 24 horas no condomínio'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Living Empreendimentos'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Incorporação', 'Living Loreto Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LLV + 'planta-69.webp', nome: '69 m² · padrão', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LLV + 'planta-69-opcao.webp', nome: '69 m² · opção', meta: '1 suíte, sala ampliada · 1 vaga' },
+          { src: LLV + 'planta-79.webp', nome: '79 m²', meta: '2 suítes, lavabo · 1 vaga' },
+          { src: LLV + 'planta-89.webp', nome: '89 m²', meta: '2 suítes, lavabo · 1 vaga' },
+          { src: LLV + 'planta-93.webp', nome: '93 m² · padrão', meta: '2 suítes, cozinha integrada · 1 vaga' },
+          { src: LLV + 'planta-93-opcao.webp', nome: '93 m² · opção', meta: '3 dormitórios, 1 suíte, cozinha fechada · 1 vaga' }
+        ],
+        implantacao: [
+          { src: LLV + 'implantacao.webp', nome: 'Implantação', meta: 'Subsolo, térreo, 1º e 2º pavimento, com os 19 espaços de lazer' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Ciclofaixa', '1 min'], ['Linhas Azul e Lilás do metrô', '10 min, menos de 15 a pé'], ['Rua Luís Góis', '3 min'], ['Av. Domingos de Morais', '4 min'], ['Rua Loefgren', '7 min'], ['Rua Vergueiro', '8 min']]],
+            ['Conveniência', [['Shopping Metrô Santa Cruz', '4 min'], ['Minuto Pão de Açúcar e Oba Hortifruti', '6 min'], ['Petz', '8 min'], ['Cobasi', '11 min'], ['Swift', '14 min']]],
+            ['Lazer', [['Smart Fit', '10 min'], ['Velocity', '12 min'], ['Parque da Aclimação', '13 min'], ['Parque Ibirapuera', '15 min']]],
+            ['Educação e saúde', [['Colégio Nossa Senhora do Rosário', '6 min'], ['Hospital Rubem Berta', '9 min'], ['Marista Arquidiocesano e ESPM', '12 min'], ['Belas Artes', '13 min'], ['Hospital Santa Catarina Paulista', '14 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2025).'
+        },
+        legal: 'Incorporadora Living Loreto Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado em 14 de novembro de 2025 sob nº 977.798 no 14º Registro de Imóveis de São Paulo. Área não contaminada (CETESB 45/05557/24); manejo arbóreo e plantio compensatório autorizados (SEI 6027.2025/0006526-0). Ar-condicionado, churrasqueira, água quente, lavabo, ralo linear e interruptores inteligentes entregues como infraestrutura; opções de planta na personalização. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de novembro de 2025. Entrega prevista para maio de 2029, pela corretagem.',
+        torre: LLV + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_VILA_MARIANA,
+        fotos: [
+          fotoLLV('fachada', 'Fachada'),
+          fotoLLV('embasamento', 'Embasamento'),
+          fotoLLV('lobby', 'Lobby'),
+          fotoLLV('party-lounge', 'Party Lounge'),
+          fotoLLV('private-pool-house', 'Private Pool House'),
+          fotoLLV('private-pool-house-interna', 'Private Pool House, interna'),
+          fotoLLV('wine-bar', 'Wine Bar'),
+          fotoLLV('gourmet-lounge', 'Gourmet Lounge'),
+          fotoLLV('lounge-barbecue', 'Lounge Barbecue'),
+          fotoLLV('swimming-pool', 'The Swimming Pool'),
+          fotoLLV('pickleball', 'Pickleball Court'),
+          fotoLLV('the-gym', 'The Gym by Matrix'),
+          fotoLLV('yoga', 'Yoga'),
+          fotoLLV('wellness-massage', 'Wellness Massage'),
+          fotoLLV('wellness-lounge-sauna', 'Wellness Lounge e sauna'),
+          fotoLLV('kids-place', 'Kids Place'),
+          fotoLLV('playground', 'Playground'),
+          fotoLLV('living-79', 'Living do apartamento de 79 m²'),
+          fotoLLV('living-93', 'Living do apartamento de 93 m²'),
+          fotoLLV('regiao-aerea', 'Foto aérea da região, novembro de 2025')
+        ]
+      },
+      {
+        nome: 'The Edition by Living Vila Mariana',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jardim da Glória, Vila Mariana',
+        resumo: '2 a 3 suítes · 87 a 135 m²',
+        tipo: 'Apartamento',
+        status: 'Em obras',
+        texto: 'Na Rua Cláudio Rossi, 189, no Jardim da Glória, a 4 minutos do Parque da Aclimação e das estações Vila Mariana, Chácara Klabin e Ana Rosa: uma edição limitada inspirada no The Dubai Edition, com design minimalista, elegância e privacidade. Torre única com poucas unidades, 90 apartamentos de 87, 106 e 135 m², de 2 a 3 suítes, com a planta de 135 m² sendo a maior já feita pela Living. Lazer com quadra de tênis gramada, Swimming Pool quase particular, Lounge Festas, Gourmet, Poker & Snooker Bar, Fitness, Private Garden & Grill, Kids Place e playground. Entrega prevista para dezembro de 2026.',
+        area: ['87 m²: 2 suítes (padrão) ou 1 suíte com 2 dormitórios (opção), 1 vaga', '106 m²: 1 suíte com 2 dormitórios (padrão) ou 2 suítes com living estendido (opção), 2 vagas', '135 m²: 3 suítes, padrão ou opção, 2 vagas'],
+        tipologia: '2 a 3 suítes, de 87 a 135 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo em todas as plantas e lavabo de serviço no 135 m²',
+        vagas: '2 vagas determinadas nos finais 1, 2, 5 e 6; 1 vaga por sorteio nos finais 3 e 4',
+        torres: 'Torre única de 15 pavimentos, 6 apartamentos por andar',
+        unidades: ['90 apartamentos, pela corretagem'],
+        pavimentos: ['Subsolo: acessos social, de serviço e de veículos, Pet Place, Private Garden & Grill, lobby, Mini Market e Delivery', 'Térreo: Lounge Festas, Gourmet, Poker & Snooker Bar, Fitness, Kids Place, playground, Tennis Court e Swimming Pool'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Cláudio Rossi, 189 · Jardim da Glória, São Paulo',
+        infra: {
+          piscina: 'Swimming Pool',
+          academia: 'Fitness',
+          festas: 'Lounge Festas e Poker & Snooker Bar',
+          gourmet: 'Gourmet e Private Garden & Grill',
+          kids: 'Kids Place e playground',
+          quadra: 'Tennis Court gramada',
+          portaria: 'Acessos social, de serviço e de veículos separados, lobby',
+          coworking: 'Mini Market 24 horas, Delivery, Car Sharing e Pet Place'
+        },
+        lazer: ['Acesso social', 'Acesso de serviço', 'Acesso de veículos', 'Pet Place', 'Private Garden & Grill', 'Lobby', 'Mini Market', 'Delivery', 'Lounge Festas', 'Gourmet', 'Poker & Snooker Bar', 'Fitness', 'Kids Place', 'Playground', 'Tennis Court', 'Swimming Pool', 'Car Sharing'],
+        diferenciais: ['Edição limitada: torre única com 90 apartamentos e lazer quase particular', 'Quadra de tênis gramada e Private Garden & Grill', 'Planta de 135 m² com 3 suítes, a maior da Living', 'Churrasqueira na varanda e contrapiso acústico', 'Infraestrutura para ar-condicionado nas suítes, nos dormitórios e na sala', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e câmera Wi-Fi na sala', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Chris Silveira'], ['Paisagismo', 'Beth Miyazaki Paisagismo'], ['Incorporação', 'CBR 076 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LED + 'planta-87.webp', nome: '87 m² · padrão', meta: '2 suítes · 1 vaga' },
+          { src: LED + 'planta-87-opcao.webp', nome: '87 m² · opção', meta: '1 suíte, 2 dormitórios · 1 vaga' },
+          { src: LED + 'planta-106.webp', nome: '106 m² · padrão', meta: '1 suíte, 2 dormitórios · 2 vagas' },
+          { src: LED + 'planta-106-opcao.webp', nome: '106 m² · opção', meta: '2 suítes, living estendido · 2 vagas' },
+          { src: LED + 'planta-135.webp', nome: '135 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LED + 'planta-135-opcao.webp', nome: '135 m² · opção', meta: '3 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LED + 'implantacao.webp', nome: 'Implantação', meta: 'Subsolo com lobby e Private Garden & Grill; térreo com o lazer e a quadra de tênis' }
+        ],
+        perto: {
+          grupos: [
+            ['Transporte e vias', [['Av. Lins de Vasconcelos', '2 min'], ['Estações Vila Mariana, Chácara Klabin e Ana Rosa', '4 min'], ['Estação Paraíso e Rua Joaquim Távora', '5 min'], ['Rua Vergueiro', '6 min'], ['Estação Santos-Imigrantes, Av. Ricardo Jafet e Av. 23 de Maio', '7 min'], ['Av. do Estado e Rua Sena Madureira', '8 min'], ['Av. Paulista', '12 min']]],
+            ['Conveniência', [['Primícia dos Pães', '2 min'], ['Pão de Açúcar e Parisiense Prime', '3 min'], ['Swift, St. Marché, Leroy Merlin, Fiorella Klabin e Extra', '4 min'], ['Petz', '5 min'], ['Cobasi', '7 min'], ['Smart Fit', '8 min']]],
+            ['Lazer e compras', [['Parque da Aclimação', '4 min'], ['Parque da Independência e Aquário de São Paulo', '5 min'], ['Cinemateca, Shopping Pátio Paulista e Shopping Santa Cruz', '6 min'], ['Parque Ibirapuera', '8 min'], ['Sesc Paulista', '9 min'], ['Sesc Vila Mariana, Itaú Cultural e Mooca Plaza', '10 min']]],
+            ['Educação', [['Escola Waldorf Berta e Emil Molt', '1 min'], ['Pueri Nidus e Colégio Júlio Pereira Borges', '2 min'], ['Planeta Criança e Maple Bear', '3 min'], ['FMU', '4 min'], ['ETAPA', '5 min'], ['ESPM', '6 min'], ['Belas Artes, Colégio São Luís e Senac', '7 min'], ['Colégio Bandeirantes', '8 min'], ['UNIP', '9 min']]],
+            ['Saúde', [['Hospital São Camilo', '4 min'], ['Sepaco, Einstein e Cruz Azul', '5 min'], ['Santa Joana', '6 min'], ['Oswaldo Cruz e A+', '7 min'], ['Delboni', '9 min']]],
+            ['Gastronomia', [['La Mamma Cucina, Filé, Zio Vito e Matsuya', '2 min'], ['Magic Chicken e Charada Burguer', '3 min'], ['Maria Namoradeira e Veloso Bar', '4 min'], ['La Cucina Artezanalle, Moah e London Coffee Station', '5 min'], ['Cão Véio Vila Mariana', '8 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2023).'
+        },
+        legal: 'Incorporadora CBR 076 Empreendimentos Imobiliários Ltda. O empreendimento só será comercializado após o registro do Memorial de Incorporação, prenotado sob nº 643.078 no 16º Oficial de Registro de Imóveis. Área não contaminada (CETESB 45/00454/22). Vagas determinadas e por sorteio, conforme o memorial. Ar-condicionado, água quente, churrasqueira, lavabo, interruptores inteligentes e bancada da cozinha entregues como infraestrutura; opções de planta na personalização, com custo. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de janeiro de 2024. Em obras, com entrega prevista para dezembro de 2026 pela corretagem (outra fonte diz fevereiro de 2027); 90 unidades e 15 pavimentos pela corretagem.',
+        torre: LED + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ACLIMACAO,
+        fotos: [
+          fotoLED('fachada', 'Fachada frontal', true),
+          fotoLED('portaria', 'Portaria'),
+          fotoLED('lobby', 'Lobby'),
+          fotoLED('lounge-festas', 'Lounge Festas'),
+          fotoLED('lounge-festas-2', 'Lounge Festas'),
+          fotoLED('gourmet', 'Gourmet'),
+          fotoLED('poker-snooker-bar', 'Poker & Snooker Bar'),
+          fotoLED('private-garden-grill', 'Private Garden & Grill'),
+          fotoLED('swimming-pool', 'Swimming Pool'),
+          fotoLED('tennis-court', 'Tennis Court'),
+          fotoLED('fitness', 'Fitness'),
+          fotoLED('kids-place', 'Kids Place'),
+          fotoLED('playground', 'Playground'),
+          fotoLED('regiao-aerea', 'Foto aérea da região, janeiro de 2024')
+        ]
+      },
+      {
+        nome: 'Living Wellness Aclimação',
+        cidade: 'São Paulo, capital',
+        bairro: 'Aclimação',
+        resumo: '2 a 4 dormitórios · 75 a 125 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Coronel Diogo, 873, a poucas quadras do Parque da Aclimação: a linha Luxury Wellness Residences da Living, inspirada nos resorts Six Senses, com mais de 9 mil m² de lazer para reconexão. Duas torres com apartamentos de 75 a 125 m², de 2 suítes a 4 dormitórios, com churrasqueira na varanda. Beach House com lounge e solarium, Country House, Guest Lounge, Lounge Coworking, Poker Bar, Fitness & Massage com Fitness Deck, quadra de tênis, Beach Arena, Pool & SPA, Kids Pool, Kids Place, playground, Relax Park e Pet Park. Entregue em 2025.',
+        area: ['75 m²: 2 suítes e 1 vaga', '108 m²: 3 suítes (padrão) ou 2 suítes (opção), 2 vagas vinculadas', '110 m²: 3 dormitórios com 1 suíte (padrão) ou 2 suítes (opção), 2 vagas vinculadas', '125 m²: 3 suítes (padrão) ou 4 dormitórios com 2 suítes (opção na personalização), 2 vagas vinculadas'],
+        tipologia: '2 suítes a 4 dormitórios, de 75 a 125 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo como infraestrutura em todas as unidades',
+        vagas: '1 vaga no 75 m²; 2 vagas vinculadas no 108, no 110 e no 125 m²',
+        torres: '2 torres de 17 pavimentos',
+        unidades: ['232 apartamentos, pela corretagem'],
+        pavimentos: ['Térreo: Social Entrance, Secondary Entrance, Garage Entrance, Delivery, Minimarket, lobby de cada torre e Lounge Coworking', 'Lazer, mais de 9 mil m²: Pool & SPA, Kids Pool, Beach House com lounge e solarium, Guest Lounge, Country House, Poker Bar, Kids Place, playground, Fitness & Massage, Fitness Deck, Tennis Court, Beach Arena, Relax Park e Pet Park'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Coronel Diogo, 873 · Aclimação, São Paulo',
+        infra: {
+          piscina: 'Pool & SPA, Kids Pool e Beach House com solarium',
+          academia: 'Fitness & Massage e Fitness Deck',
+          festas: 'Guest Lounge e Poker Bar',
+          gourmet: 'Beach House Lounge e Country House',
+          kids: 'Kids Place, Kids Pool e playground',
+          quadra: 'Tennis Court e Beach Arena',
+          portaria: 'Social Entrance, Secondary Entrance, Garage Entrance e lobby por torre',
+          coworking: 'Lounge Coworking, Minimarket 24 horas, Delivery, Car Sharing, Relax Park e Pet Park'
+        },
+        lazer: ['Social Entrance', 'Secondary Entrance', 'Garage Entrance', 'Delivery', 'Minimarket', 'Lobby', 'Lounge Coworking', 'Pool & SPA', 'Kids Pool', 'Beach House Lounge', 'Beach House Solarium', 'Guest Lounge', 'Country House', 'Poker Bar', 'Kids Place', 'Playground', 'Fitness & Massage', 'Fitness Deck', 'Tennis Court', 'Beach Arena', 'Relax Park', 'Pet Park', 'Car Sharing'],
+        diferenciais: ['Linha Luxury Wellness Residences, inspirada nos resorts Six Senses', 'Mais de 9 mil m² de lazer, com quadra de tênis e Beach Arena', 'Beach House e Country House: a casa de praia e a de campo dentro do condomínio', 'Churrasqueira na varanda e contrapiso com atenuação acústica', 'Infraestrutura para ar-condicionado nos dormitórios e amplo espaço para armários', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmera na sala', 'Minimarket 24 horas com 3% das vendas para o condomínio e Car Sharing', 'Pronto para morar'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores das áreas comuns', 'Sesso & Dalanezi'], ['Paisagismo', 'Beth Miyazaki Arquitetura Paisagística'], ['Realização', 'Living e CYMA'], ['Incorporação', 'CYMA 10 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LWA + 'planta-75.webp', nome: '75 m²', meta: '2 suítes · 1 vaga' },
+          { src: LWA + 'planta-108.webp', nome: '108 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LWA + 'planta-108-opcao.webp', nome: '108 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LWA + 'planta-110.webp', nome: '110 m² · padrão', meta: '3 dormitórios, 1 suíte · 2 vagas' },
+          { src: LWA + 'planta-110-opcao.webp', nome: '110 m² · opção', meta: '2 suítes · 2 vagas' },
+          { src: LWA + 'planta-125.webp', nome: '125 m² · padrão', meta: '3 suítes · 2 vagas' },
+          { src: LWA + 'planta-125-opcao.webp', nome: '125 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas' }
+        ],
+        implantacao: [
+          { src: LWA + 'implantacao.webp', nome: 'Implantação', meta: 'As duas torres e os 23 espaços de lazer, entre a Coronel Diogo, a Basílio da Cunha e a Professor Pascoal Pacchi' }
+        ],
+        perto: {
+          grupos: [
+            ['Acessos e transporte', [['Av. Lins de Vasconcelos e Av. Ricardo Jafet', '5 min'], ['Estação Ana Rosa', '7 min'], ['Rua Vergueiro', '10 min'], ['Estação Paraíso', '11 min'], ['Av. Paulista, Rua Sena Madureira e Av. 23 de Maio', '15 min']]],
+            ['Lazer', [['Parque da Aclimação', 'por perto, 14 min de carro'], ['Centro Cultural de São Paulo', '12 min'], ['Parque da Independência e Praça da Liberdade', '15 min'], ['Itaú Cultural', '20 min']]],
+            ['Gastronomia', [['La Mamma Cucina', '3 min'], ['Filé, Charada Burguer, Balaiada, Moah e Matsuya', '7 min'], ['Temakeria Lins e Coffeetown', '10 min'], ['Zio Vito e Maria Namoradeira', '11 min'], ['The Garden', '14 min']]],
+            ['Conveniência', [['Primícia dos Pães', '3 min'], ['St Marché', '6 min'], ['Pão de Açúcar, Leroy Merlin, Extra, Cobasi e Petz', '8 min'], ['Droga Raia e Minimercado Extra', '9 min']]],
+            ['Saúde', [['Hospital São Camilo', '3 min'], ['Hospital Cruz Azul', '5 min'], ['Einstein e Delboni', '6 min'], ['Santa Joana e A+', '9 min'], ['Sepaco e Fleury', '10 min'], ['Beneficência Portuguesa e Oswaldo Cruz', '14 min']]],
+            ['Educação', [['Pueri Nidus, Maple Bear, Planeta Criança e Malibu Park', '5 min'], ['Colégio Júlio Pereira Lopes', '6 min'], ['UNIP e FMU', '10 min'], ['Belas Artes e ESPM', '12 min']]]
+          ],
+          nota: 'Tempos de carro, conforme o material da Living (Google Maps, 2022).'
+        },
+        legal: 'Incorporadora CYMA 10 Empreendimentos Imobiliários Ltda., realização Living e CYMA. Empreendimento registrado sob nº 2 na matrícula 251.821 do 6º Oficial de Registro de Imóveis de São Paulo. Área não contaminada (CETESB 124794/2021-12); manejo arbóreo e plantio compensatório autorizados (6027.2022/0004064-5). Todas as unidades de 108, 110 e 125 m² têm duas vagas vinculadas. Ar-condicionado, água quente, lavabo, churrasqueira e interruptores inteligentes entregues como infraestrutura; a planta de 4 dormitórios do 125 m² é opção de personalização. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de setembro de 2022. Entrega em setembro de 2025 pela corretagem (outra fonte diz março de 2026); 232 unidades e 17 pavimentos pela corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LWA + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_ACLIMACAO,
+        fotos: [
+          fotoLWA('fachada', 'Fachada'),
+          fotoLWA('portaria', 'Portaria'),
+          fotoLWA('lounge-coworking', 'Lounge Coworking'),
+          fotoLWA('guest-lounge', 'Guest Lounge'),
+          fotoLWA('beach-house-lounge', 'Beach House, lounge'),
+          fotoLWA('beach-house-solarium', 'Beach House, solarium', true),
+          fotoLWA('country-house', 'Country House'),
+          fotoLWA('poker-bar', 'Poker Bar'),
+          fotoLWA('pool-spa', 'Pool & SPA'),
+          fotoLWA('pool-spa-2', 'Pool & SPA'),
+          fotoLWA('tennis-court', 'Tennis Court'),
+          fotoLWA('beach-arena', 'Beach Arena'),
+          fotoLWA('fitness-massage', 'Fitness & Massage'),
+          fotoLWA('fitness-massage-2', 'Fitness & Massage', true),
+          fotoLWA('kids-place', 'Kids Place'),
+          fotoLWA('playground', 'Playground'),
+          fotoLWA('pet-park', 'Pet Park'),
+          fotoLWA('parque-aclimacao', 'Parque da Aclimação, fotomontagem')
         ]
       }
     ]
