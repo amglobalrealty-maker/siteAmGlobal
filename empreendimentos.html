@@ -2883,15 +2883,24 @@
     }
     return saida;
   }
-  // (10/11/2026) uma construtora pode ter empreendimentos em mais de uma cidade do estado (a Living, no
-  // ABC e na capital): o campo `cidade` de cada empreendimento diz a qual cidade ele pertence (o `nome`
-  // da cidade em PAISES); os que nao tem o campo aparecem em toda cidade em que a construtora esta
+  // (11/11/2026) uma construtora pode ter empreendimentos em mais de uma cidade do estado (a Living, no
+  // ABC e na capital). Ela pediu "deixe tudo em um": a lista da construtora e sempre a COMPLETA, e o
+  // campo `cidade` de cada empreendimento so serve para dizer, no cartao do estado, em que cidades
+  // a construtora esta (cidadesDaParceira)
   function empreendimentosDe(parceira, cidade) {
-    var lista = EMPREENDIMENTOS[parceira];
-    if (!lista) return empreendimentosExemplo(parceira, cidade);
-    if (!cidade) return lista;
-    var daCidade = lista.filter(function (em) { return !em.cidade || em.cidade === cidade.nome; });
-    return daCidade.length ? daCidade : lista;
+    return EMPREENDIMENTOS[parceira] || empreendimentosExemplo(parceira, cidade);
+  }
+  // as cidades do estado em que a parceira aparece (no ar), na ordem das cidades
+  function cidadesDaParceira(e, nome) {
+    return e.cidades.filter(function (c) { return parceriasDe(c).some(function (x) { return x.nome === nome; }); });
+  }
+  // as parcerias do estado sem repetir a construtora: cada uma com a primeira cidade em que aparece
+  function parceriasDoEstado(e) {
+    var vistas = {}, lista = [];
+    e.cidades.forEach(function (c, ci) {
+      parceriasDe(c).forEach(function (x) { if (!vistas[x.nome]) { vistas[x.nome] = true; lista.push({ nome: x.nome, ci: ci, ni: x.ni, c: c }); } });
+    });
+    return lista;
   }
   function fotosDe(em) { return em.fotos && em.fotos.length ? em.fotos : (em.foto ? [{ src: em.foto, legenda: '' }] : []); }
 
@@ -2899,7 +2908,7 @@
   var $ = function (id) { return document.getElementById(id); };
   function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function plural(n, um, varios) { return n + ' ' + (n === 1 ? um : varios); }
-  function totalEstado(e) { return e.cidades.reduce(function (s, c) { return s + parceriasDe(c).length; }, 0); }   // so as que aparecem
+  function totalEstado(e) { return parceriasDoEstado(e).length; }   // so as que aparecem, sem repetir a construtora entre cidades
   function totalPais(p) { return p.estados.reduce(function (s, e) { return s + totalEstado(e); }, 0); }
   function cidadesDe(e) { return e.cidades.map(function (c) { return c.lista ? c.lista : [c.curta || c.nome]; }).reduce(function (a, b) { return a.concat(b); }, []); }
   function listaTexto(nomes) { return nomes.join(', ').replace(/, ([^,]*)$/, ' e $1'); }
@@ -2918,10 +2927,12 @@
   (function () {
     // conta o que a pessoa vai ver: com NO_AR, so as parcerias no ar (e os empreendimentos delas), nao as guardadas
     var estados = 0, cidades = 0, parceiras = 0, ems = 0;
-    PAISES.forEach(function (p) { p.estados.forEach(function (e) { estados++; e.cidades.forEach(function (c) {
-      cidades += (c.quantas || 1);
-      parceriasDe(c).forEach(function (x) { parceiras++; ems += empreendimentosDe(x.nome, c).length; });
-    }); }); });
+    PAISES.forEach(function (p) { p.estados.forEach(function (e) {
+      estados++;
+      e.cidades.forEach(function (c) { cidades += (c.quantas || 1); });
+      // (11/11) a construtora conta uma vez por estado, mesmo em mais de uma cidade
+      parceriasDoEstado(e).forEach(function (x) { parceiras++; ems += empreendimentosDe(x.nome, x.c).length; });
+    }); });
     $('capaMeta').innerHTML = '<span>' + plural(PAISES.length, 'país', 'países') + '</span><span>' + plural(estados, 'estado', 'estados') + '</span><span>' + plural(cidades, 'cidade', 'cidades') + '</span><span>' + plural(parceiras, 'parceria', 'parcerias') + '</span>'
       + (filtrado ? '<span>' + plural(ems, 'empreendimento', 'empreendimentos') + '</span>' : '');
   })();
@@ -2990,13 +3001,13 @@
     var cabeca = '<div class="nivel-cabeca"><h2><small>' + esc(p.nome) + ' · ' + e.uf + '</small>' + esc(e.nome) + '</h2>' + (parceiras ? '' : '<p>Parcerias em ' + listaEm(cidades) + ', <b>a anunciar</b>.</p>') + '</div>'
       + (comFoto ? '<figure class="faixa-foto"><img src="' + esc(e.foto) + '" alt="' + esc(e.nome) + '"><figcaption>' + listaEm(cidades) + '</figcaption></figure>' : '');
     if (filtrado && parceiras) {
-      var comTexto = null, cartoes = [], semParceria = [];
-      e.cidades.forEach(function (c, ci) {
-        var ps = parceriasDe(c);
-        if (!ps.length) { semParceria.push(c); return; }
+      var comTexto = null, semParceria = [];
+      e.cidades.forEach(function (c) {
+        if (!parceriasDe(c).length) { semParceria.push(c); return; }
         if (!comTexto && c.texto) comTexto = c;
-        ps.forEach(function (x) { cartoes.push(cartaoParceria(x.nome, ci, x.ni, c)); });
       });
+      // (11/11) um cartao por construtora, mesmo que ela esteja em mais de uma cidade (ela: "deixe tudo em um")
+      var cartoes = parceriasDoEstado(e).map(function (x) { return cartaoParceria(x.nome, x.ci, x.ni, x.c, e); });
       return '<div class="nivel">' + cabeca
         + (comTexto ? '<div class="cidade"><div class="cidade-nome"><h3 class="notranslate">' + esc(comTexto.nome) + '</h3></div>' + textoDe(comTexto) + '</div>' : '')
         + '<div class="faixa-bloco faixa-bloco-vitrine"><span class="rotulo">As construtoras</span>'
@@ -3027,11 +3038,12 @@
   }
   // o cartao de uma parceria no ar, dentro da cidade: so a logo para clicar, a contagem e o convite
   // (09/11/2026: as 4 fachadas sairam a pedido dela, para caberem varias construtoras lado a lado)
-  function cartaoParceria(nome, ci, ni, c) {
+  function cartaoParceria(nome, ci, ni, c, e) {
     var lista = empreendimentosDe(nome, c);
+    // (11/11) o rotulo do cartao e a lista das cidades em que a construtora esta ("Sao Paulo · Grande ABC")
+    var onde = e ? cidadesDaParceira(e, nome).map(function (x) { return x.curta || x.nome; }).join(' · ') : (c.curta || c.nome);
     return '<li><button type="button" class="vitrine-cartao" data-c="' + ci + '" data-n="' + ni + '" aria-label="' + esc(nome) + ': ver os empreendimentos">'
-      // (10/11) o rotulo do cartao e a cidade, porque as construtoras de todas as cidades do estado ficam na mesma faixa
-      + '<span><span class="vitrine-onde notranslate">' + esc(c.curta || c.nome) + '</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
+      + '<span><span class="vitrine-onde notranslate">' + esc(onde) + '</span>' + (logoDe(nome, 'vitrine-logo') || '<span class="vitrine-nome notranslate">' + esc(nome) + '</span>') + '</span>'
       + '<span><span class="vitrine-conta">' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
       + '</button></li>';
   }
@@ -3045,7 +3057,8 @@
     // parceira ainda sem nenhuma foto: os cartoes viram texto, sem a caixa da foto
     var comFotos = lista.some(function (x) { return fotosDe(x).length > 0; });
     return '<div class="nivel">'
-      + '<div class="nivel-cabeca"><h2><small>' + esc(c.curta || c.nome) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + (logoDe(parceira, 'parceira-logo') || esc(parceira)) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. Toque em um para abrir; as setas percorrem a lista.</p></div>'
+      // (11/11) o rotulo acima da logo lista as cidades da construtora no estado ("Sao Paulo · Grande ABC · Sao Paulo")
+      + '<div class="nivel-cabeca"><h2><small>' + esc(cidadesDaParceira(e, parceira).map(function (x) { return x.curta || x.nome; }).join(' · ') || (c.curta || c.nome)) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + (logoDe(parceira, 'parceira-logo') || esc(parceira)) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. Toque em um para abrir; as setas percorrem a lista.</p></div>'
       + '<div class="parceira">'
       // (09/11/2026) a fileira unica com setas; o bloco inteiro (rotulo + faixa) e o alvo da rolagem ao tocar num cartao
       +   '<div class="faixa-bloco" id="faixaBloco"><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span>'
