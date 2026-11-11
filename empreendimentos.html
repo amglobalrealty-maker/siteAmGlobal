@@ -795,6 +795,16 @@
   var MT = 'fotos/parcerias/mitre/';
   var MAL = MT + 'althea/', MRC = MT + 'raizescb/', MHC = MT + 'hauscb/', MCP = MT + 'casaparque/';
   var fotoMAL = fotoEm(MAL), fotoMRC = fotoEm(MRC), fotoMHC = fotoEm(MHC), fotoMCP = fotoEm(MCP);
+  // (11/11/2026, ~15h) Haus Mitre Station Moema, book "STUDIOS_FINAL" (uso interno), Torre Velazquez
+  var MSM = MT + 'stationmoema/';
+  var fotoMSM = fotoEm(MSM);
+  var ZS_MOEMA = {
+    titulo: 'A região · Moema',
+    texto: 'Entre o Parque Ibirapuera, a Avenida dos Bandeirantes e o Aeroporto de Congonhas, Moema é um dos bairros mais completos de São Paulo: ruas arborizadas com nomes de pássaros e de índios, o Shopping Ibirapuera, as estações Moema e Eucaliptos da Linha 5-Lilás, a Avenida Ibirapuera e a Santo Amaro, galerias, teatros e livrarias, colégios de alto padrão e os hospitais Moriah, Santa Paula e Ruben Berta. Atrai famílias, estudantes das universidades da região e quem trabalha na Berrini e na Faria Lima.',
+    numeros: [['450 m', 'da Estação Eucaliptos, 4 minutos a pé'], ['290 m', 'do Shopping Ibirapuera, 2 minutos a pé'], ['6 min', 'do Aeroporto de Congonhas, de carro'], ['9 min', 'do Parque Ibirapuera, de carro']],
+    polos: 'Por perto: Parque Ibirapuera, Shopping Ibirapuera, estações Eucaliptos e Moema, Av. Ibirapuera, Av. dos Bandeirantes, Aeroporto de Congonhas, Esporte Clube Sírio, Clube Atlético Monte Líbano, Colégio Itatiaia, Colégio Augusto Laranja, Unifesp e os hospitais Moriah, Santa Paula e Ruben Berta.',
+    fonte: 'Fonte: book do Haus Mitre Station Moema (2025), com tempos do próprio material.'
+  };
   var ZS_CAMPO_BELO = {
     titulo: 'A região · Campo Belo',
     texto: 'Entre o Brooklin, Moema e o Aeroporto de Congonhas, o Campo Belo é um bairro de ruas arborizadas e casas que viraram prédios de médio e alto padrão, servido pelas estações Campo Belo e Eucaliptos da Linha 5-Lilás, pela Avenida Vereador José Diniz, pela Santo Amaro e pela Jornalista Roberto Marinho, a poucos minutos do Shopping Ibirapuera e do Parque Ibirapuera. Colégios como o Vértice e a Aubrick, os hospitais Oswaldo Cruz, Moriah e Santa Paula, e uma vida de bairro de padarias, bares e restaurantes. A Mitre tem três projetos ali: o Haus Mitre Campo Belo, o Raízes Premium e o Althea.',
@@ -6202,6 +6212,81 @@
           fotoMRC('studio-38', 'Studio de 38 m²'),
           fotoMRC('regiao-aerea', 'Campo Belo, foto aérea')
         ]
+      },
+      {
+        nome: 'Haus Mitre Station Moema',
+        cidade: 'São Paulo, capital',
+        bairro: 'Moema',
+        resumo: 'Studios e 1 dormitório · 23 a 35 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Alameda dos Maracatins, 1.545, a 450 metros da Estação Eucaliptos e a 290 do Shopping Ibirapuera: a Torre Velázquez, inspirada em Madrid, com studios e apartamentos de 1 dormitório de 23 a 35 m², sem vaga, para morar ou investir. Térreo com lobby, Delivery, Pet Place e Pool Lounge; 1º pavimento com fitness Technogym e aulas da Team Training, salão de festas, gourmet, coworking, Beauty Space operado pela Bluma e spa com massagem; Lavanderia by OMO e parceria com o Airbnb para locação com consultoria e app do condomínio. Lançamento de julho de 2025, entrega prevista para fevereiro de 2029 pela corretagem.',
+        area: ['23 m²: studio, final 2', '31 m²: 1 dormitório, final 21', 'Até 35 m², pelo book'],
+        tipologia: 'Studios e 1 dormitório, de 23 a 35 m²',
+        banheiros: '1 banheiro por unidade, pela corretagem',
+        vagas: 'Sem vagas',
+        torres: 'Torre única, a Torre Velázquez',
+        unidades: ['Número de unidades não informado no book'],
+        pavimentos: ['Térreo: lobby, Delivery, Pool Lounge e Pet Place', '1º pavimento: fitness, salão de festas, gourmet, coworking, Beauty Space e spa'],
+        valores: 'Sob consulta',
+        endereco: 'Alameda dos Maracatins, 1.545 · Moema, São Paulo',
+        infra: {
+          piscina: 'Pool Lounge, no térreo',
+          academia: 'Fitness com esteiras Technogym e aulas em grupo da Team Training',
+          festas: 'Salão de festas',
+          gourmet: 'Gourmet',
+          kids: '',
+          quadra: '',
+          portaria: 'Lobby e Delivery com armários inteligentes',
+          coworking: 'Coworking, Beauty Space pela Bluma, spa com massagem, Lavanderia by OMO e Pet Place'
+        },
+        lazer: ['Lobby', 'Delivery', 'Fitness', 'Salão de Festas', 'Gourmet', 'Coworking', 'Beauty Space', 'Spa', 'Pool Lounge', 'Pet Place', 'Lavanderia by OMO'],
+        diferenciais: ['A 450 m da Estação Eucaliptos e a 290 m do Shopping Ibirapuera', 'Parceria com o Airbnb: locação com consultoria, certificação e app para o condomínio', 'Serviços pay-per-use: Lavanderia by OMO, Beauty Space pela Bluma, armários inteligentes para encomendas, lavagem de estofados', 'Fitness Technogym com aulas da Team Training', 'Mitre Personal Home: opções de planta e acabamentos durante a obra', 'Edifício 20% mais eficiente em energia e água, com certificação AQUA-HQE'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Design de interiores', 'Carlos Rossi Arquitetura'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Mitre Realty']],
+        plantas: [
+          { src: MSM + 'planta-23.webp', nome: '23 m² · final 2', meta: 'Studio · sem vaga' },
+          { src: MSM + 'planta-31.webp', nome: '31 m² · final 21', meta: '1 dormitório · sem vaga' }
+        ],
+        implantacao: [
+          { src: MSM + 'implantacao-terreo.webp', nome: 'Implantação · térreo', meta: 'Lobby, Delivery, Pool Lounge e Pet Place' },
+          { src: MSM + 'implantacao-1pav.webp', nome: 'Implantação · 1º pavimento', meta: 'Fitness, salão de festas, gourmet, coworking, Beauty Space e spa' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Ibirapuera', '3 min a pé'], ['Estação Eucaliptos', '4 min a pé'], ['Aeroporto de Congonhas', '6 min'], ['Estação Moema', '7 min'], ['Av. Berrini', '10 min'], ['Av. Faria Lima', '20 min']]],
+            ['Serviços e lazer', [['Shopping Ibirapuera', '2 min a pé'], ['Drogaria São Paulo', '3 min a pé'], ['Esporte Clube Sírio', '6 min'], ['Clube Atlético Monte Líbano', '8 min'], ['Parque Ibirapuera', '9 min'], ['Shopping JK', '13 min']]],
+            ['Saúde e ensino', [['Colégio Itatiaia', '3 min'], ['Colégio Augusto Laranja', '3 min'], ['Colégio Catamaran', '4 min'], ['Hospital Moriah', '5 min'], ['Estácio', '5 min'], ['Colégio Vértice', '6 min'], ['Hospital Santa Paula', '7 min'], ['Hospital Ruben Berta', '7 min'], ['Unifesp', '10 min'], ['Hospital São Paulo', '10 min'], ['Marista Arquidiocesano', '13 min']]],
+            ['Gastronomia', [['NB Steak', '3 min'], ['Outback', '3 min'], ['Toro Sushi', '3 min'], ['Gusto Cuccina', '4 min'], ['Kome Moema', '4 min'], ['Fogo de Chão', '4 min'], ['Hannover', '6 min'], ['Osteria Zucco', '8 min']]]
+          ],
+          nota: 'Tempos do próprio book, de carro, salvo onde diz a pé.'
+        },
+        legal: 'O empreendimento só será comercializado após a aprovação do Projeto de Edificação Nova pela municipalidade e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. Mitre Vendas Corretagem de Imóveis Ltda., CNPJ 21.677.690/0001-98, Creci J-26794. O book recebido (studios, Torre Velázquez) está marcado como de uso interno e projeto em desenvolvimento, sujeito a alterações; verificar o memorial descritivo após o registro. Parcerias de serviços (Team Training, Bluma, OMO, Airbnb) em negociação, podem ser modificadas; serviços obrigatórios e pay-per-use conforme a convenção. Imagens meramente ilustrativas e perspectivas preliminares. Pela corretagem: lançamento em julho de 2025, em construção, entrega prevista para fevereiro de 2029, torre única, sem vagas.',
+        torre: MSM + 'fachada-torre.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_MOEMA,
+        fotos: [
+          fotoMSM('fachada-torre', 'Torre Velázquez, perspectiva preliminar', true),
+          fotoMSM('fachada', 'Fachada, perspectiva preliminar'),
+          fotoMSM('lobby', 'Lobby'),
+          fotoMSM('hall-elevadores', 'Hall dos elevadores'),
+          fotoMSM('festas-gourmet', 'Festas Gourmet'),
+          fotoMSM('gourmet', 'Gourmet'),
+          fotoMSM('gourmet-2', 'Gourmet, bancada'),
+          fotoMSM('fitness', 'Fitness'),
+          fotoMSM('fitness-2', 'Fitness, esteiras Technogym'),
+          fotoMSM('spa', 'Spa'),
+          fotoMSM('massagem', 'Massagem'),
+          fotoMSM('lounge-externo', 'Lounge externo'),
+          fotoMSM('pool-lounge', 'Pool Lounge'),
+          fotoMSM('coworking', 'Coworking'),
+          fotoMSM('sala-de-reuniao', 'Sala de reunião do coworking'),
+          fotoMSM('lavanderia', 'Lavanderia by OMO'),
+          fotoMSM('unidade-sala', 'Unidade decorada, sala'),
+          fotoMSM('unidade-cozinha', 'Unidade decorada, cozinha'),
+          fotoMSM('unidade-banho', 'Unidade decorada, banho'),
+          fotoMSM('unidade-dormitorio', 'Unidade decorada, dormitório'),
+          fotoMSM('terreno-aereo', 'Vista aérea do terreno')
+        ]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
@@ -6209,7 +6294,6 @@
       ['Haus Mitre Edition NY Soho Apartments', 'Brooklin', '1 e 2 dormitórios', '23 a 92 m²', 'Em construção'],
       ['Haus Mitre Edition NY', 'Brooklin', '4 dormitórios', '164 m²', 'Em construção'],
       ['Haus Mitre Station Brooklin', 'Brooklin', 'Studios a 2 dormitórios', '26 a 64 m²', 'Em construção'],
-      ['Haus Mitre Station Moema', 'Moema', 'Studios e 1 dormitório', '23 a 35 m²', 'Em construção'],
       ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
       ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
       ['GIO Jardins', 'Jardins', 'Studios e 2 dormitórios', '23 e 178 m²', 'Em construção'],
