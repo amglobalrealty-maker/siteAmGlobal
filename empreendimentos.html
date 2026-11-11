@@ -754,6 +754,23 @@
   // (11/11/2026) e os da Zona Oeste, do zip "ZONA OESTE (2)" dela (extraido em Downloads\ZONA OESTE extraida)
   var LFP = L + 'fullpinheiros/', LFE = L + 'fulleldorado/', LON = L + 'one/';
   var fotoLFP = fotoEm(LFP), fotoLFE = fotoEm(LFE), fotoLON = fotoEm(LON);
+  // (11/11/2026) e os dois da Zona Sul que ela mandou so em PDF (fotos tiradas dos books): Unique Saude e Exclusive (Socorro)
+  var LUS = L + 'uniquesaude/', LES = L + 'exclusivesocorro/';
+  var fotoLUS = fotoEm(LUS), fotoLES = fotoEm(LES);
+  var ZS_SAUDE = {
+    titulo: 'A região · Saúde',
+    texto: 'Entre a Avenida Jabaquara e o Parque Ibirapuera, a Saúde é um bairro de ruas calmas e arborizadas, com quatro estações da Linha 1-Azul (Praça da Árvore, Saúde, São Judas e Santa Cruz), o Shopping Metrô Santa Cruz e o Plaza Sul, os hospitais da região da Unifesp e colégios tradicionais como o Marista Arquidiocesano. O Ibirapuera a 7 minutos e a Avenida Paulista a 16, de carro.',
+    numeros: [['3 min', 'da Avenida Jabaquara'], ['6 min', 'do Shopping Metrô Santa Cruz'], ['7 min', 'do Parque Ibirapuera'], ['4', 'estações da Linha 1-Azul no bairro']],
+    polos: 'Por perto: estações Praça da Árvore, Saúde, São Judas e Santa Cruz, Shopping Metrô Santa Cruz, Plaza Sul, Parque Ibirapuera, Esporte Clube Sírio, hospitais da Unifesp e Colégio Marista Arquidiocesano.',
+    fonte: 'Fonte: book do Living Unique Saúde (junho de 2022), com tempos do próprio material.'
+  };
+  var ZS_SOCORRO = {
+    titulo: 'A região · Socorro, Interlagos',
+    texto: 'Na esquina da Rua Olívia Guedes Penteado com a Avenida do Rio Bonito, no Socorro, a Zona Sul das famílias que querem apartamento novo perto da Avenida Interlagos, do Shopping Interlagos e das estações Socorro e Jurubatuba da Linha 9-Esmeralda, com a Marginal Pinheiros e o Autódromo a poucos minutos. Bairro de comércio de rua, escolas e condomínios-clube de preço acessível.',
+    numeros: [['188', 'apartamentos em torre única'], ['18', 'andares'], ['2.372 m²', 'de terreno'], ['52 a 62 m²', '2 dormitórios, com ou sem suíte']],
+    polos: 'Por perto: Avenida Interlagos, Shopping Interlagos, estações Socorro e Jurubatuba (Linha 9), Marginal Pinheiros, Autódromo de Interlagos e Parque Severo Gomes.',
+    fonte: 'Fonte: apresentação do Living Exclusive; os pontos por perto são do bairro, o material não traz distâncias.'
+  };
   var ZO_PINHEIROS = {
     titulo: 'A região · Pinheiros, eixo Faria Lima',
     texto: 'Entre a Rua dos Pinheiros, a Marginal e a Avenida Faria Lima, o pedaço de Pinheiros que virou o endereço dos studios para quem trabalha no eixo financeiro: Terminal e Estação Pinheiros a 3 minutos, Estação Faria Lima a 5, Shopping Eldorado a 5 minutos a pé e o JK Iguatemi e o Parque do Povo a 7. Demanda de locação constante, de executivos, estudantes e profissionais da saúde do Hospital das Clínicas.',
@@ -3510,6 +3527,135 @@
           fotoLON('brinquedoteca', 'Brinquedoteca'),
           fotoLON('playground', 'Playground'),
           fotoLON('pet-place', 'Pet Place')
+        ]
+      },
+      {
+        nome: 'Living Unique Saúde',
+        cidade: 'São Paulo, capital',
+        bairro: 'Saúde',
+        resumo: '2 dormitórios a 3 suítes · 67 a 125 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Avenida Afonso Mariano Fagundes, na Saúde, a 3 minutos da Avenida Jabaquara e a 7 do Parque Ibirapuera: torre única com lobby de pé-direito duplo e lazer inspirado nos hotéis 1 Hotel de Nova York, com madeira, vegetação e concreto. Piscina adulto com raia de 20 m, deck molhado com bangalô, piscina infantil, solarium, Fitness, salão de festas, churrasqueira, jogos adulto, espaço teen, coworking, brinquedoteca, playground, Mini Market e, no rooftop, Family House interna e externa com SPA. Apartamentos de 67 a 125 m², de 2 dormitórios a 3 suítes, com 1 ou 2 vagas. Entregue em agosto de 2025.',
+        area: ['67 m²: 2 dormitórios com 1 suíte e 1 vaga', '69 m²: 2 dormitórios com 1 suíte, closet e 1 vaga', '82 m²: 3 dormitórios com 1 suíte e lavabo, ou 2 suítes, e 1 vaga', '125 m²: 3 suítes com closet, ou 4 dormitórios com 2 suítes, e 2 vagas determinadas'],
+        tipologia: '2 dormitórios a 3 suítes, de 67 a 125 m²',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo no 82 e no 125 m²',
+        vagas: '1 vaga até 82 m² e 2 vagas determinadas no 125 m²; vagas vinculadas e por sorteio, conforme o memorial',
+        torres: 'Torre única, com rooftop',
+        unidades: ['Sob consulta'],
+        pavimentos: ['Térreo: acessos de veículos, social e de serviço, Espaço Delivery e lobby com pé-direito duplo', 'Pavimento lazer: Caminho das Fontes, Fitness, Espaço Teen, Coworking, Mini Market, hall social, brinquedoteca, jogos adulto, salão de festas, churrasqueira, lounge externo, playground, solarium, deck molhado com bangalô, piscina adulto com raia de 20 m e piscina infantil', 'Rooftop: Family House interna e externa e SPA'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Afonso Mariano Fagundes, 417 · Saúde, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com raia de 20 m, deck molhado com bangalô, piscina infantil e solarium',
+          academia: 'Fitness',
+          festas: 'Salão de festas com hall social',
+          gourmet: 'Churrasqueira, lounge externo e Family House no rooftop',
+          kids: 'Brinquedoteca, playground e Espaço Teen',
+          quadra: '',
+          portaria: 'Acessos social, de serviço e de veículos separados, Espaço Delivery e lobby de pé-direito duplo',
+          coworking: 'Coworking, Jogos Adulto, Mini Market 24 horas, Car Sharing e SPA'
+        },
+        lazer: ['Acesso de veículos', 'Acesso social', 'Acesso de serviço', 'Espaço Delivery', 'Lobby', 'Caminho das Fontes', 'Fitness', 'Espaço Teen', 'Coworking', 'Mini Market', 'Hall social', 'Brinquedoteca', 'Jogos Adulto', 'Salão de Festas', 'Churrasqueira', 'Lounge externo', 'Playground', 'Solarium', 'Deck molhado com bangalô', 'Piscina adulto, raia de 20 m', 'Piscina infantil', 'Family House', 'SPA', 'Car Sharing'],
+        diferenciais: ['Lazer inspirado nos hotéis 1 Hotel de Nova York, com madeira, vegetação e concreto', 'Lobby com pé-direito duplo e Family House no rooftop com SPA', 'Smart Home 2.0: Wi-Fi otimizado, interruptores inteligentes, tomadas USB e ponto para câmeras', 'Contrapiso com atenuação acústica e infraestrutura para ar-condicionado em todas as plantas', 'Mini Market 24 horas com 3% das vendas para o condomínio e Car Sharing', 'Entregue em agosto de 2025'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos & Associados'], ['Interiores das áreas comuns', 'Carlos Rossi Arquitetura'], ['Paisagismo', 'Rossin + Tramontina Desenho da Paisagem'], ['Incorporação', 'CBR 029 Empreendimentos Imobiliários']],
+        plantas: [
+          { src: LUS + 'planta-67.webp', nome: '67 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' },
+          { src: LUS + 'planta-69.webp', nome: '69 m²', meta: '2 dormitórios, 1 suíte com closet · 1 vaga' },
+          { src: LUS + 'planta-82.webp', nome: '82 m² · padrão', meta: '3 dormitórios, 1 suíte, lavabo · 1 vaga' },
+          { src: LUS + 'planta-82-opcao.webp', nome: '82 m² · opção', meta: '2 suítes, lavabo · 1 vaga' },
+          { src: LUS + 'planta-125.webp', nome: '125 m² · padrão', meta: '3 suítes, closet · 2 vagas determinadas' },
+          { src: LUS + 'planta-125-opcao.webp', nome: '125 m² · opção', meta: '4 dormitórios, 2 suítes · 2 vagas determinadas' }
+        ],
+        implantacao: [
+          { src: LUS + 'implantacao-lazer.webp', nome: 'Térreo e lazer', meta: 'Os 21 espaços do térreo e do pavimento de lazer, com a piscina de 20 m' },
+          { src: LUS + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Family House interna e externa e SPA' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Jabaquara', '3 min'], ['Av. 23 de Maio', '12 min'], ['Av. Paulista', '16 min'], ['Metrô Praça da Árvore, Saúde, São Judas e Santa Cruz', 'no bairro']]],
+            ['Compras e lazer', [['Shopping Metrô Santa Cruz', '6 min'], ['Parque do Ibirapuera', '7 min'], ['Plaza Sul Shopping e Shopping Ibirapuera', 'no bairro'], ['Esporte Clube Sírio e Zoo Safari', 'no bairro']]],
+            ['Saúde e educação', [['Hospitais Rubem Berta, Cruz Vermelha, Unifesp, Graacc e Moriah', 'no bairro'], ['Colégios Santa Amália, Conte, Arcádia e Marista Arquidiocesano', 'no bairro']]]
+          ],
+          nota: 'Tempos de carro conforme o book da Living; os demais pontos são da lista do próprio material.'
+        },
+        legal: 'Incorporadora CBR 029 Empreendimentos Imobiliários Ltda. Memorial de Incorporação prenotado sob nº 858.635 no 14º Oficial de Registro de Imóveis de São Paulo. Terreno não contaminado (CETESB 45/01007/21); manejo arbóreo autorizado (SVMA 6027.2022/0001873-9). Vagas vinculadas e por sorteio. Ar-condicionado, água quente, churrasqueira e interruptores inteligentes entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar, sujeito a alteração; book de junho de 2022. Entrega em agosto de 2025 conforme a corretagem; unidades disponíveis a confirmar com a Living.',
+        torre: LUS + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_SAUDE,
+        fotos: [
+          fotoLUS('fachada', 'Fachada', true),
+          fotoLUS('portaria', 'Portaria'),
+          fotoLUS('lobby', 'Lobby com pé-direito duplo'),
+          fotoLUS('piscina', 'Piscina com raia de 20 m'),
+          fotoLUS('salao-de-festas', 'Salão de festas'),
+          fotoLUS('churrasqueira', 'Churrasqueira'),
+          fotoLUS('family-house', 'Family House interna, rooftop'),
+          fotoLUS('family-house-externa', 'Family House externa, rooftop'),
+          fotoLUS('jogos-adulto', 'Jogos adulto'),
+          fotoLUS('espaco-teen', 'Espaço Teen'),
+          fotoLUS('coworking', 'Coworking'),
+          fotoLUS('brinquedoteca', 'Brinquedoteca'),
+          fotoLUS('playground', 'Playground')
+        ]
+      },
+      {
+        nome: 'Living Exclusive',
+        cidade: 'São Paulo, capital',
+        bairro: 'Socorro, Interlagos',
+        resumo: '2 dormitórios · 52 a 62 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Olívia Guedes Penteado, esquina com a Avenida do Rio Bonito, no Socorro: torre única de 18 andares com 188 apartamentos de 2 dormitórios, de 52 a 62 m², todos com vaga de garagem coberta e varanda integrada à cozinha. Lazer com piscina adulto, salão de festas para 33 pessoas, academia de 71 m², churrasqueira com forno de pizza e Cantinho dos Pequenos; Smart Home com Wi-Fi no lazer, monitoramento da área infantil e tomadas USB. Lançado em 2017 e entregue em 2020.',
+        area: ['52 m²: 2 dormitórios e 1 vaga', '54 m²: 2 dormitórios e 1 vaga', '62 m²: 2 dormitórios com 1 suíte, banheiro ventilado, e 1 vaga'],
+        tipologia: '2 dormitórios, com ou sem suíte, de 52 a 62 m²',
+        banheiros: '1 banheiro no 52 e no 54 m²; 2 no 62 m², com banheiro ventilado',
+        vagas: '1 vaga de garagem coberta por apartamento',
+        torres: 'Torre única de 18 andares',
+        unidades: ['188 apartamentos'],
+        pavimentos: ['Térreo: portaria, hall e acessos pela Rua Olívia Guedes Penteado e pela Avenida do Rio Bonito', 'Lazer: salão de festas de 97 m², academia de 71 m², Cantinho dos Pequenos de 25 m², churrasqueira com forno de pizza e piscina adulto'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Olívia Guedes Penteado, 1470 · Socorro, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com deck',
+          academia: 'Academia de 71 m²',
+          festas: 'Salão de festas de 97 m², para 33 pessoas sentadas',
+          gourmet: 'Churrasqueira com forno de pizza',
+          kids: 'Cantinho dos Pequenos, de 25 m², com monitoramento',
+          quadra: '',
+          portaria: 'Portaria com guarita e hall decorado',
+          coworking: 'Varanda multiuso nos apartamentos, para home office, pet ou horta'
+        },
+        lazer: ['Portaria', 'Hall', 'Salão de Festas', 'Academia', 'Cantinho dos Pequenos', 'Churrasqueira com forno de pizza', 'Piscina adulto'],
+        diferenciais: ['Vaga de garagem coberta em todos os apartamentos', 'Varanda integrada à cozinha, multiuso', 'Smart Home: Wi-Fi no lazer, monitoramento da área infantil, tomadas USB e ponto para câmeras nos quartos e na sala', 'Piso laminado e persianas de enrolar nos quartos', 'Pronto para morar, entregue em 2020'],
+        creditos: [['Realização', 'Living, marca do Grupo Cyrela']],
+        plantas: [
+          { src: LES + 'planta-52.webp', nome: '52 m²', meta: '2 dormitórios · 1 vaga' },
+          { src: LES + 'planta-54.webp', nome: '54 m²', meta: '2 dormitórios · 1 vaga' },
+          { src: LES + 'planta-62.webp', nome: '62 m²', meta: '2 dormitórios, 1 suíte · 1 vaga' }
+        ],
+        implantacao: [
+          { src: LES + 'implantacao.webp', nome: 'Implantação', meta: 'Acessos pela Rua Olívia Guedes Penteado e pela Avenida do Rio Bonito' }
+        ],
+        perto: {
+          grupos: [
+            ['Por perto', [['Av. Interlagos e Shopping Interlagos', 'no bairro'], ['Estações Socorro e Jurubatuba, Linha 9-Esmeralda', 'no bairro'], ['Marginal Pinheiros', 'no bairro'], ['Autódromo de Interlagos', 'no bairro']]]
+          ],
+          nota: 'A apresentação não traz as distâncias; os pontos acima são do bairro. Confirmar com a Living.'
+        },
+        legal: 'Empreendimento da Living, marca do Grupo Cyrela. A apresentação recebida não traz o memorial de incorporação nem a incorporadora; lançado em dezembro de 2017 e entregue em dezembro de 2020, conforme a corretagem. Ar-condicionado, câmeras e Wi-Fi entregues como infraestrutura. Comercialização: Cyrela, Creci J-17.592. Imagens ilustrativas; unidades disponíveis a confirmar com a Living.',
+        torre: LES + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_SOCORRO,
+        fotos: [
+          fotoLES('fachada', 'Fachada'),
+          fotoLES('portaria', 'Portaria'),
+          fotoLES('hall', 'Hall'),
+          fotoLES('piscina', 'Piscina adulto'),
+          fotoLES('salao-de-festas', 'Salão de festas, 97 m²'),
+          fotoLES('academia', 'Academia, 71 m²'),
+          fotoLES('churras-e-pizza', 'Churrasqueira com forno de pizza'),
+          fotoLES('cantinho-dos-pequenos', 'Cantinho dos Pequenos')
         ]
       }
     ]
