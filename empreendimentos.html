@@ -845,6 +845,34 @@
     polos: 'Por perto: Colégio Emilie de Villeneuve, Av. Vereador João de Luca, Av. Washington Luís, Av. Jornalista Roberto Marinho, Av. dos Bandeirantes, Aeroporto de Congonhas, Metrô Brooklin, Metrô Jabaquara, Shopping Morumbi, Market Place, Shopping Ibirapuera, Chácara Flora, Parque Ibirapuera, Av. Berrini e os hospitais Moriah, São Luiz e São Luiz Jabaquara.',
     fonte: 'Fonte: book do Raízes Vila Mascote, com tempos do próprio material, de carro.'
   };
+  // (12/11/2026) Zona Leste e Ipiranga: Raizes Reserve Mooca, Raizes Premium Mooca, Raizes Vila Prudente, Raizes L'Avenir,
+  // Raizes Tatuape (so as lojas), Raizes VM Vila Matilde, Raizes Guilhermina-Esperanca, Origem Penha, Origem Guilhermina,
+  // Haus Mitre Santa Cruz e Haus Mitre Plato Ipiranga (material de treinamento, sem perspectivas)
+  var MRE = MT + 'reservemooca/', MPM = MT + 'premiummooca/', MVP = MT + 'vilaprudente/', MLA = MT + 'lavenir/', MTA = MT + 'tatuape/';
+  var MRT = MT + 'raizesvmatilde/', MRG = MT + 'raizesguilhermina/', MOP = MT + 'origempenha/', MOG = MT + 'origemguilhermina/', MSC = MT + 'santacruz/', MPL = MT + 'plato/';
+  var fotoMRE = fotoEm(MRE), fotoMPM = fotoEm(MPM), fotoMVP = fotoEm(MVP), fotoMLA = fotoEm(MLA), fotoMTA = fotoEm(MTA);
+  var fotoMRT = fotoEm(MRT), fotoMRG = fotoEm(MRG), fotoMOP = fotoEm(MOP), fotoMOG = fotoEm(MOG), fotoMSC = fotoEm(MSC), fotoMPL = fotoEm(MPL);
+  var ZL_MOOCA_MITRE = {
+    titulo: 'A região · Mooca e Vila Prudente',
+    texto: 'O lado mais tradicional da Zona Leste, de vilas operárias que viraram bairros de família italiana: as cantinas e a esfiha da Mooca, o Clube Atlético Juventus e o Estádio Conde Rodolfo Crespi, a Padaria Di Cunto, o Mooca Plaza Shopping, a Universidade São Judas e a Anhembi Morumbi. A Avenida Paes de Barros e a Professor Luiz Ignácio Anhaia Mello são os eixos, com a Estação Vila Prudente das linhas 2-Verde e 15-Prata do monotrilho, o Parque Ecológico da Vila Prudente e a Avenida do Estado e a Radial Leste para o centro; a Avenida Paulista fica a 16 minutos de metrô. A Mitre tem ali quatro projetos da linha Raízes.',
+    numeros: [['700 m', 'da Estação Vila Prudente, o Raízes Reserve Mooca'], ['350 m', 'do monotrilho, o Raízes Vila Prudente'], ['16 min', 'de metrô até a Avenida Paulista'], ['24 a 139 m²', 'do studio ao apartamento de 3 suítes']],
+    polos: 'Por perto: Estação Vila Prudente (linhas 2-Verde e 15-Prata), Estação Oratório, Av. Paes de Barros, Av. Professor Luiz Ignácio Anhaia Mello, Av. Salim Farah Maluf, Av. do Estado, Mooca Plaza Shopping, Shopping Anália Franco, Clube Atlético Juventus, Parque Ecológico da Vila Prudente, Colégio João XXIII, Universidade São Judas, Anhembi Morumbi e os hospitais São Cristóvão, Santa Maggiore e San Gennaro.',
+    fonte: 'Fonte: books do Raízes Reserve Mooca, do Raízes Premium Mooca, do Raízes Vila Prudente e do Raízes L\'Avenir, com tempos do próprio material.'
+  };
+  var ZL_PENHA_MITRE = {
+    titulo: 'A região · Penha, Vila Matilde, Guilhermina e Tatuapé',
+    texto: 'O eixo da Linha 3-Vermelha do metrô e da Radial Leste: a Penha da Basílica, do Centro Cultural e das lojas da Avenida Penha de França; a Vila Matilde e a Guilhermina-Esperança, bairros residenciais com estações a poucos minutos a pé, o Parque Linear Tiquatira e a Neo Química Arena por perto; e o Tatuapé, com o Shopping Metrô Tatuapé, o Boulevard e o Anália Franco. Da Estação Penha à Sé são 15 minutos de metrô, sem trocar de linha; a Mitre tem cinco projetos no eixo, entre a linha Raízes e a linha Origem.',
+    numeros: [['150 m', 'da Estação Guilhermina-Esperança, o Raízes Guilhermina'], ['450 m', 'das estações Penha e Vila Matilde, o Origem Penha e o Raízes VM'], ['15 min', 'da Estação Penha à Sé, de metrô'], ['22 a 84 m²', 'do studio ao apartamento de 3 dormitórios']],
+    polos: 'Por perto: estações Penha, Vila Matilde, Guilhermina-Esperança e Tatuapé da Linha 3-Vermelha, Radial Leste, Marginal Tietê, Shopping Penha, Shopping Metrô Tatuapé, Boulevard Tatuapé, Shopping Anália Franco, Shopping Aricanduva, Basílica da Penha, Centro Cultural da Penha, Teatro Martins Penna, Parque Linear Tiquatira, Neo Química Arena, Etec Aprígio Gonzaga, Senac Penha, Colégio La Salle, Hospital Santa Clara e Hospital São Luiz Anália Franco.',
+    fonte: 'Fonte: books e folhetos do Origem Penha (2022), do Origem Guilhermina (2023), do Raízes Guilhermina-Esperança (2019), do Raízes VM e das lojas do Raízes Tatuapé, com tempos do próprio material.'
+  };
+  var ZS_IPIRANGA_MITRE = {
+    titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
+    texto: 'Entre o Ipiranga e a Vila Mariana, em volta da Estação Alto do Ipiranga da Linha 2-Verde, que leva à Avenida Paulista em 12 minutos: a Rua Santa Cruz com o comércio do bairro, o Museu Paulista e o Parque da Independência, o Sesc Ipiranga, o Mercado Municipal do Ipiranga, o Hospital São Camilo e a unidade do Einstein, os supermercados Hirota e Marché e restaurantes de bairro. A Rodovia dos Imigrantes e a Avenida Ricardo Jafet saem dali para o litoral e o ABC.',
+    numeros: [['160 m', 'do Metrô Alto do Ipiranga, o Haus Mitre Platô'], ['450 m', 'da mesma estação, o Haus Mitre Santa Cruz'], ['12 min', 'de metrô até a Avenida Paulista'], ['19 a 138 m²', 'do studio ao garden de 4 dormitórios']],
+    polos: 'Por perto: Estação Alto do Ipiranga, Rua Santa Cruz, Av. Ricardo Jafet, Av. Dr. Gentil de Moura, Av. Nazaré, Rodovia dos Imigrantes, Parque da Independência, Museu Paulista, Sesc Ipiranga, Mercado Municipal do Ipiranga, Shopping Metrô Santa Cruz, Parque da Aclimação, Hospital São Camilo, unidade do Einstein, Centro Universitário São Camilo e Colégio Marista Arquidiocesano.',
+    fonte: 'Fonte: book do Haus Mitre Santa Cruz e material de treinamento do Haus Mitre Platô Ipiranga, com tempos do próprio material.'
+  };
   var ZS_CAMPO_BELO = {
     titulo: 'A região · Campo Belo',
     texto: 'Entre o Brooklin, Moema e o Aeroporto de Congonhas, o Campo Belo é um bairro de ruas arborizadas e casas que viraram prédios de médio e alto padrão, servido pelas estações Campo Belo e Eucaliptos da Linha 5-Lilás, pela Avenida Vereador José Diniz, pela Santo Amaro e pela Jornalista Roberto Marinho, a poucos minutos do Shopping Ibirapuera e do Parque Ibirapuera. Colégios como o Vértice e a Aubrick, os hospitais Oswaldo Cruz, Moriah e Santa Paula, e uma vida de bairro de padarias, bares e restaurantes. A Mitre tem três projetos ali: o Haus Mitre Campo Belo, o Raízes Premium e o Althea.',
@@ -7154,28 +7182,747 @@
           fotoMRM('fitness-studios', 'Fitness dos studios'),
           fotoMRM('lavanderia-studios', 'Lavanderia dos studios')
         ]
+      },
+      {
+        nome: 'Raízes Reserve Mooca',
+        cidade: 'São Paulo, capital',
+        bairro: 'Mooca',
+        resumo: 'Studios a 3 suítes · 24 a 119 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua José Zappi, a um minuto do Colégio João XXIII e a 9 minutos a pé da Estação Vila Prudente: o maior Raízes da Mitre, num terreno de 5.896 m² com quatro torres e acessos independentes. As torres residenciais Jequitibá (119 m², 3 suítes e 2 vagas), Angelim (85 m², 3 dormitórios) e Ypê Roxo (67 a 69 m², 2 dormitórios) têm lazer no rooftop com três piscinas, churrasqueira, gourmet, sports bar, sauna e lareira; a torre Ypê Amarelo tem 179 studios de 24 a 27 m², residenciais e com serviços pay-per-use da Atlantica. Quatro lojas no térreo. Arquitetura de Jonas Birger, interiores da Archiave e paisagismo de Beth Miyazaki. Lançado em fevereiro de 2023 e entregue em maio de 2026, pela corretagem.',
+        area: ['119 m²: 3 suítes e 2 vagas determinadas, ou 2 suítes com living ampliado (torre Jequitibá, 96 unidades)', '85 m²: 3 dormitórios com 1 suíte e 1 vaga determinada, ou 2 suítes com living ampliado (torre Angelim, 96 unidades)', '67 a 69 m²: 2 dormitórios com 1 suíte e 1 vaga, ou living ampliado (torre Ypê Roxo, 166 unidades)', 'Studios de 24 a 27 m² (torre Ypê Amarelo, 179 unidades)', '4 lojas de 33 a 448 m²'],
+        tipologia: 'Studios e apartamentos de 2 dormitórios a 3 suítes',
+        banheiros: 'Lavabo nos apartamentos, bacia com válvula dual flux, chuveiros por aquecedor de passagem e misturador na bancada da cozinha',
+        vagas: '2 vagas determinadas no 119 m², 1 nos de 85 e 67 a 69 m²; studios sem vaga',
+        torres: '4 torres em terreno de 5.896 m²: Jequitibá e Angelim (28 pavimentos com rooftop), Ypê Roxo e a torre de studios Ypê Amarelo',
+        unidades: ['358 apartamentos, 179 studios e 4 lojas'],
+        pavimentos: ['1º subsolo: lojas, estacionamento e lazer residencial', 'Térreo: lojas, acesso dos studios e lazer residencial', '1º ao 3º: estacionamento', 'Torres Jequitibá e Angelim: unidades do 4º ao 27º e rooftop no 28º com piscinas, solário e churrasqueira ou gourmet', 'Torre Ypê Roxo: unidades do 4º ao 26º; rooftop com churrasqueira, sports bar, sauna, lareira, piscinas e solário', 'Torre Ypê Amarelo: studios com serviços do 2º ao 10º, residenciais no 11º e 12º e lazer dos studios'],
+        valores: 'Sob consulta',
+        endereco: 'Rua José Zappi · Mooca, São Paulo',
+        infra: {
+          piscina: 'Três piscinas de uso residencial nos rooftops das torres Jequitibá, Angelim e Ypê Roxo, com solário',
+          academia: 'Fitness no setor residencial',
+          festas: 'Salão de festas, gourmet festas e sports bar',
+          gourmet: 'Espaço gourmet e churrasqueiras com terraço descoberto',
+          kids: '',
+          quadra: '',
+          portaria: 'Acessos independentes para apartamentos e studios',
+          coworking: 'Pet place, dog wash, lareira, sauna e área para delivery'
+        },
+        lazerGrupos: [
+          ['Rooftops', ['3 piscinas', 'Solário', 'Churrasqueira com terraço', 'Espaço gourmet', 'Sports bar', 'Sauna', 'Lareira']],
+          ['Térreo e subsolo', ['Salão de festas', 'Gourmet festas', 'Fitness', 'Pet place', 'Dog wash', 'Delivery']],
+          ['Studios', ['Lazer próprio da torre Ypê Amarelo', 'Serviços pay-per-use da Atlantica']]
+        ],
+        diferenciais: ['Mitre Personal Home: opções de planta e acabamentos, com fechadura eletrônica', 'Carga elétrica e dreno para ar-condicionado nos dormitórios e sala, com área técnica para a condensadora', 'Piso nivelado entre living e terraço (exceto gardens); churrasqueira a carvão nos de 3 dormitórios e elétrica nos de 2, oferecidas no Personal', 'Água quente nas bancadas da cozinha e da suíte master; pontos para lava e seca, lava-louças e forno elétrico', 'Studios entregues com piso laminado'],
+        creditos: [['Arquitetura', 'Jonas Birger'], ['Interiores', 'Archiave'], ['Paisagismo', 'Beth Miyazaki'], ['Serviços dos studios', 'Atlantica Residences'], ['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MRE + 'planta-119-3-suites.webp', nome: '119 m² · 3 suítes', meta: 'Torre Jequitibá · 2 vagas determinadas' },
+          { src: MRE + 'planta-119-2-suites.webp', nome: '119 m² · living ampliado', meta: '2 suítes · 2 vagas determinadas' },
+          { src: MRE + 'planta-85-3-dorms.webp', nome: '85 m² · 3 dormitórios', meta: 'Torre Angelim · 1 suíte · 1 vaga' },
+          { src: MRE + 'planta-85-2-suites.webp', nome: '85 m² · living ampliado', meta: '2 suítes · 1 vaga' },
+          { src: MRE + 'planta-68-2-dorms.webp', nome: '68 m² · 2 dormitórios', meta: 'Torre Ypê Roxo · 1 suíte · 1 vaga' },
+          { src: MRE + 'planta-68-ampliado.webp', nome: '68 m² · living ampliado', meta: '1 suíte · 1 vaga' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Paes de Barros', '2 min'], ['Estação Vila Prudente', '9 min a pé'], ['Av. Salim Farah Maluf', '12 min'], ['Av. do Estado', '12 min'], ['Centro', '15 min'], ['Av. Paulista, de metrô', '16 min']]],
+            ['Compras e lazer', [['Supermercado Yamauchi', '2 min'], ['Clube Atlético Juventus', '5 min'], ['Parque Sabesp', '5 min'], ['Mooca Plaza Shopping', '6 min'], ['Padaria Di Cunto', '8 min'], ['Pizzaria do Angelo', '10 min']]],
+            ['Saúde e ensino', [['Colégio João XXIII', '1 min'], ['Hospital São Cristóvão', '3 min'], ['Hospital Santa Maggiore', '8 min'], ['Hospital San Gennaro', '8 min'], ['Universidade São Judas', '14 min'], ['Anhembi Morumbi', '20 min']]]
+          ],
+          nota: 'Tempos do próprio book.'
+        },
+        legal: 'O book não traz o texto de registro nem data. Piso interno não entregue pela construtora; churrasqueiras e fechadura eletrônica são itens oferecidos no Personal Home; áreas de lazer do setor residencial de uso exclusivo dos apartamentos. Pela corretagem (apto.vc): lançamento em fevereiro de 2023 e entrega em maio de 2026, pronto para morar, na Rua José Zappi (o portal também o lista como "Raízes Reserve", na Vila Prudente); disponibilidade sob consulta.',
+        torre: MRE + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA_MITRE,
+        fotos: [
+          fotoMRE('fachada', 'Fachada das torres Jequitibá e Angelim', true),
+          fotoMRE('torres-ype', 'Torres Ypê Roxo e Ypê Amarelo', true),
+          fotoMRE('regiao-aerea', 'A região, foto aérea'),
+          fotoMRE('piscina-jequitiba', 'Piscina da torre Jequitibá'),
+          fotoMRE('piscina-angelim', 'Piscina da torre Angelim'),
+          fotoMRE('piscina-ype-roxo', 'Piscina da torre Ypê Roxo'),
+          fotoMRE('lareira', 'Lareira'),
+          fotoMRE('churrasqueira', 'Churrasqueira'),
+          fotoMRE('espaco-gourmet', 'Espaço gourmet'),
+          fotoMRE('gourmet-festas', 'Gourmet festas'),
+          fotoMRE('salao-de-festas', 'Salão de festas'),
+          fotoMRE('sports-bar', 'Sports bar'),
+          fotoMRE('fitness', 'Fitness'),
+          fotoMRE('pet-place', 'Pet place'),
+          fotoMRE('dog-wash', 'Dog wash'),
+          fotoMRE('living-119', 'Living do apartamento de 119 m²'),
+          fotoMRE('terraco-119', 'Terraço do apartamento de 119 m²'),
+          fotoMRE('living-85', 'Living do apartamento de 85 m²'),
+          fotoMRE('terraco-85', 'Terraço do apartamento de 85 m²'),
+          fotoMRE('living-68', 'Living do apartamento de 68 m²'),
+          fotoMRE('terraco-68', 'Terraço do apartamento de 68 m²')
+        ]
+      },
+      {
+        nome: 'Raízes Premium Mooca',
+        cidade: 'São Paulo, capital',
+        bairro: 'Mooca',
+        resumo: 'Studios a 4 dormitórios · 24 a 139 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'A chegada da linha Raízes à Mooca, na Rua Jupuruchita, a 2 minutos da Avenida Paes de Barros e do Hospital São Cristóvão: torre única de 25 pavimentos num terreno de 2.941 m², com 126 apartamentos de 2, 3 e 4 dormitórios, de 82 a 139 m², e 134 studios de 24 a 34 m², 84 deles com serviços pay-per-use da Atlantica Residences (m/ode) e 50 residenciais, mais uma loja de 315 m². Lazer residencial no rooftop; coworking, lavanderia e fitness próprios dos studios. Projeto com certificação EDGE. Entregue em dezembro de 2024, pela corretagem.',
+        area: ['Residenciais: 126 unidades de 82 a 139 m², de 2 a 4 dormitórios, 8 por andar (6 no 24º)', 'Studios com serviços: 84 unidades de 24 a 34 m²', 'Studios residenciais: 50 unidades de 24 a 34 m²', '1 loja de 314,91 m²'],
+        tipologia: 'Studios e apartamentos de 2, 3 e 4 dormitórios',
+        banheiros: 'Bacia com válvula dual flux e ponto de água quente nas bancadas da cozinha e da suíte master',
+        vagas: 'Pela corretagem, 1 ou 2 vagas nos apartamentos; studios sem vaga',
+        torres: 'Torre única de 25 pavimentos em terreno de 2.941 m²: térreo, 1º e 2º de estacionamento com lazer, 4 de studios com serviços, 2 de studios residenciais, 16 residenciais e a cobertura de lazer no 24º',
+        unidades: ['261 unidades: 126 apartamentos, 134 studios e 1 loja'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Jupuruchita · Mooca, São Paulo',
+        infra: {
+          piscina: 'Lazer residencial no rooftop',
+          academia: 'Fitness dos studios',
+          festas: '',
+          gourmet: '',
+          kids: '',
+          quadra: '',
+          portaria: 'Torre única com setores separados',
+          coworking: 'Coworking e lavanderia dos studios; área para delivery'
+        },
+        lazerGrupos: [
+          ['Residencial', ['Lazer no rooftop']],
+          ['Studios', ['Coworking', 'Lavanderia', 'Fitness', 'Serviços pay-per-use da Atlantica']]
+        ],
+        diferenciais: ['Mitre Personal Home: opções de planta e acabamentos, com fechadura eletrônica', 'Ponto elétrico e dreno para ar-condicionado e piso nivelado entre living e terraço', 'Água quente nas bancadas da cozinha e da suíte master no residencial e nos studios', 'Churrasqueira a carvão nas unidades residenciais', 'Serviço pay-per-use da Atlantica Residences, para morar, alugar ou investir', 'Certificação EDGE e projeto pensado para ciclistas'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Serviços dos studios', 'Atlantica Residences (m/ode)'], ['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MPM + 'planta-studio-24.webp', nome: '24 m² · studio', meta: 'Studio com serviços ou residencial' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Paes de Barros', '2 min'], ['Av. do Estado', '8 min'], ['Av. Salim Farah Maluf', '10 min'], ['Centro', '15 min']]],
+            ['Compras e lazer', [['Parque Sabesp', '4 min'], ['Mooca Plaza Shopping', '6 min'], ['Clube Atlético Juventus', '8 min'], ['Shopping Anália Franco', '10 min']]],
+            ['Saúde e ensino', [['Hospital São Cristóvão', '2 min'], ['Colégio João XXIII', '4 min'], ['Universidade São Judas', '8 min'], ['Anhembi Morumbi', '10 min']]]
+          ],
+          nota: 'Tempos da apresentação.'
+        },
+        legal: 'A apresentação de vendas não traz o texto de registro nem data, e mostra só o setor de studios em detalhe; piso interno não entregue pela construtora; a parceria com a Atlantica não garante rentabilidade. Pela corretagem (apto.vc e EDGE Buildings): entregue em dezembro de 2024, pronto para morar, na Rua Jupuruchita, 173 a 223; disponibilidade sob consulta.',
+        torre: MPM + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA_MITRE,
+        fotos: [
+          fotoMPM('fachada', 'Fachada', true),
+          fotoMPM('regiao-aerea', 'A região, foto aérea'),
+          fotoMPM('coworking-studios', 'Coworking dos studios'),
+          fotoMPM('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMPM('fitness-studios', 'Fitness dos studios')
+        ]
+      },
+      {
+        nome: 'Raízes Vila Prudente',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Prudente',
+        resumo: 'Studios a 3 dormitórios · 26 a 78 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Avenida Professor Luiz Ignácio Anhaia Mello, 3.660 e 3.680, a 350 metros do monotrilho da Linha 15-Prata e ao lado do Extra: torre única de 26 andares com 190 apartamentos de 2 dormitórios (62 m²) e 3 dormitórios (78 m²) e 79 studios com serviços de 26 e 28 m², com lobby e lazer independentes. A cobertura 360º tem piscinas adulto e infantil, deck molhado, fire pit, churrasqueira gourmet, fitness, pilates, zooteca, sports bar, cinema and game room e espaço wellness; no térreo, coworking, dois salões de festas, bicicletário, playground, pet place, churrasqueira e quadra gramada. Entregue em dezembro de 2022, pela corretagem.',
+        area: ['62 m²: 2 dormitórios (114 unidades)', '78 m²: 3 dormitórios ou opção com sala ampliada (76 unidades)', 'Studios com serviços: 73 de 26 m² e 6 de 28 m²'],
+        tipologia: 'Studios e apartamentos de 2 e 3 dormitórios',
+        banheiros: 'Revestimento até o teto e bacia com válvula dual flux',
+        vagas: '190 vagas residenciais, mais 2 PNE e 14 de motos; studios sem vaga',
+        torres: 'Torre única de 26 andares: térreo, 3 sobressolos, 3 pavimentos de studios, 19 residenciais e a cobertura de lazer',
+        unidades: ['269 unidades: 190 apartamentos e 79 studios com serviços'],
+        pavimentos: ['Térreo: lobbies independentes; coworking dos studios; lazer residencial com coworking, 2 salões de festas, bicicletário, playground, pet place, churrasqueira e quadra recreativa gramada', '3 sobressolos: vagas residenciais, lavanderia e coworking dos studios', '4º: studios e lazer dos studios com sala de jogos, fitness, piscina descoberta e churrasqueira em pergolado', '5º e 6º: studios de 24 a 30 m²', '7º ao 25º: apartamentos de 62 e 78 m²', '26º, cobertura 360º: fitness, pilates, zooteca, sports bar, cinema and game room, espaço wellness, piscinas adulto e infantil, deck molhado, fire pit e churrasqueira gourmet'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Professor Luiz Ignácio Anhaia Mello, 3.660 e 3.680 · Vila Prudente, São Paulo',
+        infra: {
+          piscina: 'Piscinas adulto e infantil com deck molhado na cobertura; piscina descoberta dos studios',
+          academia: 'Fitness e pilates na cobertura; fitness dos studios',
+          festas: '2 salões de festas, sports bar e cinema and game room',
+          gourmet: 'Churrasqueira gourmet e fire pit na cobertura; churrasqueira no térreo e nos studios',
+          kids: 'Playground e zooteca',
+          quadra: 'Quadra recreativa gramada',
+          portaria: 'Lobbies independentes para residencial e studios',
+          coworking: '2 coworkings, lavanderia dos studios, espaço wellness, sauna, bicicletário, pet place e car wash'
+        },
+        lazerGrupos: [
+          ['Cobertura 360º', ['Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Fire pit', 'Churrasqueira gourmet', 'Fitness', 'Pilates', 'Zooteca', 'Sports bar', 'Cinema and game room', 'Espaço wellness', 'Sauna']],
+          ['Térreo', ['Coworking', '2 salões de festas', 'Bicicletário', 'Playground', 'Pet place', 'Churrasqueira', 'Quadra recreativa gramada', 'Pomar']],
+          ['Studios', ['Lobby', 'Coworking', 'Lavanderia', 'Sala de jogos', 'Fitness', 'Piscina', 'Churrasqueira']]
+        ],
+        diferenciais: ['Kits de personalização com porta e fechadura eletrônica', 'Ponto elétrico e dreno para ar-condicionado, com espaço para a condensadora', 'Sala e terraço com piso nivelado, churrasqueira e bancada com pia', 'Ponto para lavadora e secadora e persianas de enrolar', 'Ponto para carro elétrico, car wash, reúso de água de chuva, LED e previsão de wi-fi nas áreas comuns'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MVP + 'planta-62.webp', nome: '62 m² · 2 dormitórios', meta: 'Mesa para 6 lugares no terraço' },
+          { src: MVP + 'planta-78.webp', nome: '78 m² · 3 dormitórios', meta: 'Mesa para 9 lugares' },
+          { src: MVP + 'planta-78-ampliada.webp', nome: '78 m² · sala ampliada', meta: 'Opção com 2 dormitórios' },
+          { src: MVP + 'planta-studio-26.webp', nome: '26 m² · studio com serviços', meta: 'Office no terraço técnico' },
+          { src: MVP + 'planta-studio-28.webp', nome: '28 m² · studio com serviços', meta: 'Office no terraço técnico' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Monotrilho, Estação Oratório', '4 min'], ['Av. Paes de Barros', '5 min'], ['Av. do Estado', '7 min'], ['Av. Salim Farah Maluf', '8 min']]],
+            ['Compras e lazer', [['Hipermercado Extra', 'ao lado'], ['Padaria Cepam', '3 min'], ['Parque Ecológico', '6 min'], ['Mooca Plaza Shopping', '6 min'], ['Clube Juventus', '8 min']]],
+            ['Ensino', [['Colégio João XXIII', '6 min']]]
+          ],
+          nota: 'Tempos do próprio book.'
+        },
+        legal: 'O book não traz o texto de registro nem data; itens de porta personalizada, fechadura e revestimentos são oferecidos nos kits de personalização. Pela corretagem (apto.vc): entregue em dezembro de 2022, pronto para morar; disponibilidade sob consulta.',
+        torre: MVP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA_MITRE,
+        fotos: [
+          fotoMVP('fachada', 'Fachada', true),
+          fotoMVP('regiao-aerea', 'A região, foto aérea'),
+          fotoMVP('piscina', 'Piscina da cobertura'),
+          fotoMVP('churrasqueira-gourmet', 'Churrasqueira gourmet'),
+          fotoMVP('coworking', 'Coworking'),
+          fotoMVP('salao-de-festas', 'Salão de festas'),
+          fotoMVP('salao-de-festas-2', 'Segundo salão de festas'),
+          fotoMVP('zooteca', 'Zooteca'),
+          fotoMVP('fitness', 'Fitness'),
+          fotoMVP('pilates', 'Pilates'),
+          fotoMVP('sauna', 'Sauna'),
+          fotoMVP('sport-bar', 'Sports bar'),
+          fotoMVP('cinema-game', 'Cinema and game room'),
+          fotoMVP('espaco-wellness', 'Espaço wellness'),
+          fotoMVP('bicicletario', 'Bicicletário'),
+          fotoMVP('playground', 'Playground'),
+          fotoMVP('quadra-gramada', 'Quadra gramada'),
+          fotoMVP('pet-place', 'Pet place'),
+          fotoMVP('varanda-62', 'Varanda do apartamento de 62 m²'),
+          fotoMVP('living-78', 'Living ampliado do apartamento de 78 m²'),
+          fotoMVP('varanda-78', 'Varanda do apartamento de 78 m²'),
+          fotoMVP('hall-studios', 'Hall dos studios'),
+          fotoMVP('coworking-studios', 'Coworking dos studios'),
+          fotoMVP('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMVP('lazer-studios', 'Lazer dos studios, 4º pavimento'),
+          fotoMVP('piscina-studios', 'Piscina dos studios'),
+          fotoMVP('churrasqueira-studios', 'Churrasqueira dos studios'),
+          fotoMVP('fitness-studios', 'Fitness dos studios'),
+          fotoMVP('jogos-studios', 'Salão de jogos dos studios'),
+          fotoMVP('studio-26', 'Studio com serviços de 26 m²'),
+          fotoMVP('studio-28', 'Studio com serviços de 28 m²')
+        ]
+      },
+      {
+        nome: 'Raízes L\'Avenir',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Prudente',
+        resumo: '3 e 4 dormitórios · 82 a 132 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Rua José dos Reis, 297, na Vila Prudente: a linha Raízes num desenho de arcos e tons de verde e dourado, com apartamentos de 82 m² (3 dormitórios, 1 suíte), 109 m² (3 suítes), 125 m² (4 dormitórios ou 3 suítes) e 132 m² (4 dormitórios ou 3 suítes, com depósito de uso exclusivo), todos com plantas ampliadas como opção. Lazer de clube com piscina, espaço família com churrasqueira, praça, salões de festas adulto e infantil, salão de jogos, lounge teen, fitness, pilates, brinquedoteca, quadra e playground. Previsão de entrega em abril de 2028, pela corretagem.',
+        area: ['82 m²: 3 dormitórios com 1 suíte e 1 vaga determinada, ou 2 dormitórios com 1 suíte (planta ampliada)', '109 m²: 3 suítes, ou planta ampliada com lavabo e despensa, ou 2 suítes com home office', '125 m²: 4 dormitórios com 2 suítes (padrão) ou 3 suítes (ampliada)', '132 m²: 4 dormitórios com 2 suítes (padrão) ou 3 suítes (ampliada), com depósito de uso exclusivo'],
+        tipologia: 'Apartamentos de 3 e 4 dormitórios, de 1 a 3 suítes',
+        banheiros: 'De 2 banheiros no 82 m² a 3 suítes e lavabo nas plantas maiores',
+        vagas: '1 vaga determinada no 82 m²; 2 vagas determinadas nas plantas de 109 m² em diante',
+        torres: 'Torre residencial com lazer no térreo e na cobertura',
+        valores: 'Sob consulta',
+        endereco: 'Rua José dos Reis, 297 · Vila Prudente, São Paulo',
+        infra: {
+          piscina: 'Piscina com deck e espreguiçadeiras',
+          academia: 'Fitness e espaço pilates',
+          festas: 'Salão de festas e salão de festas infantil',
+          gourmet: 'Espaço família com churrasqueira e mesas',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra poliesportiva',
+          portaria: 'Portaria com arcos e lobby decorado',
+          coworking: 'Praça, salão de jogos e lounge teen'
+        },
+        lazerGrupos: [
+          ['Lazer', ['Piscina', 'Espaço família', 'Praça', 'Salão de festas', 'Salão de festas infantil', 'Lobby', 'Salão de jogos', 'Lounge teen', 'Fitness', 'Espaço pilates', 'Brinquedoteca', 'Quadra', 'Playground']]
+        ],
+        creditos: [['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MLA + 'planta-82-3-dorms.webp', nome: '82 m² · 3 dormitórios', meta: '1 suíte · 1 vaga determinada' },
+          { src: MLA + 'planta-82-ampliada.webp', nome: '82 m² · planta ampliada', meta: '2 dormitórios · 1 suíte' },
+          { src: MLA + 'planta-109-3-suites.webp', nome: '109 m² · 3 suítes', meta: '2 vagas determinadas' },
+          { src: MLA + 'planta-109-ampliada-lavabo.webp', nome: '109 m² · planta ampliada', meta: '3 suítes com lavabo e despensa' },
+          { src: MLA + 'planta-109-home-office.webp', nome: '109 m² · 2 suítes', meta: 'Planta ampliada com home office' },
+          { src: MLA + 'planta-125-4-dorms.webp', nome: '125 m² · 4 dormitórios', meta: '2 suítes · planta padrão' },
+          { src: MLA + 'planta-125-3-suites.webp', nome: '125 m² · 3 suítes', meta: 'Planta ampliada' },
+          { src: MLA + 'planta-132-4-dorms.webp', nome: '132 m² · 4 dormitórios', meta: '2 suítes · depósito de uso exclusivo' },
+          { src: MLA + 'planta-132-3-suites.webp', nome: '132 m² · 3 suítes', meta: 'Planta ampliada · depósito de uso exclusivo' }
+        ],
+        legal: 'Raízes L\'Avenir: o empreendimento imobiliário só será comercializado após a devida aprovação do Projeto de Edificação Nova perante a municipalidade e o registro do Memorial de Incorporação no cartório de registro de imóveis competente, nos termos da Lei nº 4.591/1964. Futura intermediação: Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Book digital só de imagens; perspectivas ilustrativas. Pela corretagem (apto.vc): em construção, previsão de entrega em abril de 2028; disponibilidade sob consulta.',
+        torre: MLA + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_MOOCA_MITRE,
+        fotos: [
+          fotoMLA('fachada', 'Fachada', true),
+          fotoMLA('portaria', 'Portaria'),
+          fotoMLA('piscina', 'Piscina'),
+          fotoMLA('espaco-familia', 'Espaço família'),
+          fotoMLA('praca', 'Praça'),
+          fotoMLA('salao-de-festas', 'Salão de festas'),
+          fotoMLA('salao-de-festas-kids', 'Salão de festas infantil'),
+          fotoMLA('lobby', 'Lobby'),
+          fotoMLA('salao-de-jogos', 'Salão de jogos'),
+          fotoMLA('lounge-teen', 'Lounge teen'),
+          fotoMLA('fitness', 'Fitness'),
+          fotoMLA('espaco-pilates', 'Espaço pilates'),
+          fotoMLA('brinquedoteca', 'Brinquedoteca'),
+          fotoMLA('quadra', 'Quadra'),
+          fotoMLA('playground', 'Playground'),
+          fotoMLA('living-109', 'Living do apartamento de 109 m², planta ampliada'),
+          fotoMLA('living-132', 'Living do apartamento de 132 m², planta ampliada')
+        ]
+      },
+      {
+        nome: 'Raízes Tatuapé',
+        cidade: 'São Paulo, capital',
+        bairro: 'Tatuapé',
+        resumo: '2 e 3 dormitórios e lojas · 47 a 498 m²',
+        tipo: ['Apartamento', 'Lojas de fachada ativa'],
+        status: 'Pronto para morar',
+        texto: 'Na Rua Soriano de Souza, 70, a 450 metros da Estação Shopping Metrô Tatuapé: complexo de duas torres com 642 unidades, de 2 e 3 dormitórios pela corretagem, e lojas de fachada ativa voltadas para a rua, num trecho de alto fluxo de pedestres e veículos entre o Shopping Tatuapé e o Boulevard. O material que temos é o das lojas, de janeiro de 2022: seis lojas de 70 a 498 m², com pé-direito de 4,12 a 5,18 m (7,72 m no trecho duplo da loja 06), fachada em vidro e acesso direto à rua. Lançado em março de 2022 e entregue em dezembro de 2024, pela corretagem.',
+        area: ['Apartamentos de 47 a 75 m², de 2 e 3 dormitórios, pela corretagem', 'Loja 01: 497,63 m², pé-direito de 5,18 m', 'Loja 02: 265,93 m², pé-direito de 4,86 m', 'Lojas 03, 04 e 05: 110,12, 206,67 e 242,66 m², pé-direito de 4,20 a 4,75 m', 'Loja 06: 70,43 m², pé-direito de 4,12 m sob o mezanino e 7,72 m no trecho duplo'],
+        tipologia: 'Apartamentos de 2 e 3 dormitórios, até 1 suíte (corretagem)',
+        torres: '2 torres em terreno de 5.308 m² (corretagem)',
+        unidades: ['642 unidades; o material de janeiro de 2022 cita 58% vendidas e 3 lojas na ficha, 6 nas plantas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Soriano de Souza, 70 · Tatuapé, São Paulo',
+        infra: {
+          piscina: '',
+          academia: '',
+          festas: '',
+          gourmet: '',
+          kids: '',
+          quadra: '',
+          portaria: 'Lojas de fachada ativa com acesso direto à rua; o material das áreas comuns dos apartamentos não veio',
+          coworking: ''
+        },
+        perto: {
+          grupos: [
+            ['Mobilidade e compras', [['Estação Shopping Metrô Tatuapé', '450 m'], ['Shopping Tatuapé e Boulevard', 'perto']]]
+          ],
+          nota: 'Distância do material das lojas.'
+        },
+        diferenciais: ['Lojas com fachada em vidro e acesso direto à rua', 'Contrapiso nivelado, sem forro de gesso', 'Pontos de elétrica, hidráulica e detecção de fumaça; distribuição interna pelo lojista', 'Dreno para futura interligação de ar-condicionado', 'Banheiros das lojas entregues acabados, com louças e metais'],
+        legal: 'Material de lojas da Mitre Realty, última atualização em janeiro de 2022; as informações podem sofrer alterações de obra. Pela corretagem (apto.vc): lançamento em março de 2022 e entrega em dezembro de 2024, pronto para morar, apartamentos de 47 a 75 m²; disponibilidade sob consulta.',
+        torre: MTA + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_PENHA_MITRE,
+        fotos: [
+          fotoMTA('fachada', 'Fachada', true),
+          fotoMTA('lojas-01-02', 'Lojas 01 e 02'),
+          fotoMTA('lojas-03-05', 'Lojas 03, 04 e 05', true),
+          fotoMTA('loja-06', 'Loja 06', true)
+        ]
+      },
+      {
+        nome: 'Raízes VM',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Matilde',
+        resumo: 'Studios, 2 e 3 dormitórios · 26 a 80 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'A sexta edição da linha Raízes, e a volta da Mitre à Vila Matilde, na Rua Coronel Pedro Dias de Campos, a 450 metros do metrô: torre de 26 pavimentos com 226 unidades e uma loja, entre 80 apartamentos de 2 dormitórios (64 m², 1 vaga), 80 de 3 dormitórios (80 m², 1 vaga) e 66 studios com serviços de 26 a 35 m², com gardens no 7º andar. Rooftop residencial com piscina adulto com spa e infantil, churrasqueira, salão de festas, espaço gourmet, fitness e brinquedoteca; pet place e playground no 2º; lavanderia, fitness e coworking dos studios no 3º. Projeto LE Arquitetos, paisagismo de Neusa Nakata e interiores da Archiave. Entregue em novembro de 2023, pela corretagem.',
+        area: ['64,44 m²: 2 dormitórios com suíte, 1 vaga (80 unidades)', '79,97 m²: 3 dormitórios com suíte, ou living ampliado, 1 vaga (80 unidades)', 'Studios com serviços de 26,58 a 34,72 m² (66 unidades)', '4 gardens de 2 e 4 de 3 dormitórios no 7º pavimento', '1 loja de 83 m², 1 vaga'],
+        tipologia: 'Studios e apartamentos de 2 e 3 dormitórios',
+        vagas: '1 vaga nos apartamentos e na loja; studios sem vaga',
+        torres: 'Torre única de 26 pavimentos: térreo, 2 sobressolos, 3 de studios com serviços, 20 de apartamentos e a cobertura; 4 elevadores no residencial e 2 nos studios',
+        unidades: ['226 unidades e 1 loja'],
+        pavimentos: ['Térreo: acessos residencial e de studios, bicicletário, lobby com coworking e loja', '1º e 2º sobressolos: vagas; lazer residencial com pet place e playground no 2º', '3º ao 6º: studios com serviços; lavanderia, fitness e coworking dos studios no 3º', '7º: gardens de 2 e 3 dormitórios', '8º ao 25º: apartamentos', '26º, rooftop residencial: piscina adulto com spa e infantil, churrasqueira, salão de festas, apoio festas, espaço gourmet, fitness, apoio fitness e brinquedoteca'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Coronel Pedro Dias de Campos · Vila Matilde, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto com spa e infantil no rooftop',
+          academia: 'Fitness no rooftop e fitness dos studios',
+          festas: 'Salão de festas com apoio',
+          gourmet: 'Espaço gourmet e churrasqueira no rooftop',
+          kids: 'Brinquedoteca e playground',
+          quadra: '',
+          portaria: 'Acessos independentes para residencial e studios',
+          coworking: 'Lobby com coworking, coworking e lavanderia dos studios, bicicletário e pet place'
+        },
+        lazerGrupos: [
+          ['Rooftop residencial', ['Piscina adulto com spa', 'Piscina infantil', 'Churrasqueira', 'Salão de festas', 'Espaço gourmet', 'Fitness', 'Brinquedoteca']],
+          ['Térreo e 2º pavimento', ['Lobby com coworking', 'Bicicletário', 'Pet place', 'Playground']],
+          ['Studios', ['Hall', 'Lavanderia', 'Fitness', 'Coworking']]
+        ],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Neusa Nakata'], ['Interiores', 'Archiave'], ['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MRT + 'planta-79-3-dorms.webp', nome: '79 m² · 3 dormitórios', meta: 'Planta tipo · suíte · 1 vaga' },
+          { src: MRT + 'planta-79-ampliada.webp', nome: '79 m² · living ampliado', meta: 'Opção com suíte' },
+          { src: MRT + 'planta-64-2-dorms.webp', nome: '64 m² · 2 dormitórios', meta: 'Planta tipo · suíte · 1 vaga' },
+          { src: MRT + 'planta-studio-27.webp', nome: '27 m² · studio', meta: 'Studio com serviços' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Radial Leste', '2 min a pé'], ['Metrô Vila Matilde', '5 min a pé'], ['Av. Paulista, de metrô', '38 min']]],
+            ['Compras e lazer', [['Praça da Toco', '3 min'], ['Extra Tiquatira', '10 min'], ['Parque Tiquatira', '12 min'], ['Shopping Aricanduva', '16 min'], ['Shopping Metrô Tatuapé', '19 min'], ['Shopping Anália Franco', '21 min']]],
+            ['Saúde e ensino', [['Colégio São José', '2 min'], ['Hospital São Luiz', '15 min']]]
+          ],
+          nota: 'Tempos da apresentação de vendas, de carro, salvo indicação.'
+        },
+        legal: 'Apresentação de vendas para corretores, sem o texto de registro do memorial nem data; a Mitre a descreve como "projeto aprovado" e sexta edição da linha Raízes. Perspectivas ilustrativas. Pela corretagem (apto.vc): entregue em novembro de 2023, pronto para morar, na Rua Coronel Pedro Dias de Campos, torre de térreo mais 26 andares com 226 residências; disponibilidade sob consulta. Não confundir com o Raízes Vila Matilde, outro empreendimento da linha.',
+        torre: MRT + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_PENHA_MITRE,
+        fotos: [
+          fotoMRT('fachada', 'Fachada', true),
+          fotoMRT('regiao-aerea', 'A região, foto aérea'),
+          fotoMRT('rooftop', 'Lazer residencial na cobertura'),
+          fotoMRT('piscina', 'Piscina com deck molhado'),
+          fotoMRT('salao-gourmet-festas', 'Salão gourmet e salão de festas'),
+          fotoMRT('fitness', 'Fitness'),
+          fotoMRT('lobby-coworking', 'Lobby com coworking'),
+          fotoMRT('bicicletario', 'Bicicletário'),
+          fotoMRT('brinquedoteca', 'Brinquedoteca'),
+          fotoMRT('playground', 'Playground'),
+          fotoMRT('pet-place', 'Pet place'),
+          fotoMRT('living-79', 'Living ampliado do apartamento de 3 dormitórios'),
+          fotoMRT('terraco-79', 'Terraço do apartamento de 3 dormitórios'),
+          fotoMRT('hall-studios', 'Hall dos studios com serviços'),
+          fotoMRT('fitness-studios', 'Fitness dos studios'),
+          fotoMRT('coworking-studios', 'Coworking dos studios'),
+          fotoMRT('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMRT('studio', 'Studio com serviços')
+        ]
+      },
+      {
+        nome: 'Raízes Guilhermina-Esperança',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Esperança',
+        resumo: 'Studios a 3 dormitórios · 20 a 84 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Tapari, 158, na Vila Esperança, com a Estação Guilhermina-Esperança da Linha 3-Vermelha a 150 metros: a linha Raízes com apartamentos de 2 dormitórios (60 a 70 m²) e 3 dormitórios (72 a 84 m²) e studios residenciais e com serviços de 20 a 36 m². Lazer completo em quatro pavimentos, de uso dos apartamentos: piscinas adulto e infantil e spa com sauna na cobertura, três churrasqueiras, sports bar, fitness, pilates, dois salões de festas, brinquedoteca, quadra gramada, playground, pet place, bosque de árvores frutíferas, horta, redário, lavanderia, car wash e lobby office. Entregue em março de 2022, pela corretagem.',
+        area: ['2 dormitórios: 60,15 a 70,05 m²', '3 dormitórios: 71,91 a 83,91 m², com opção de planta ampliada', 'Studios residenciais: 20,09 a 25,79 m²', 'Studios com serviços (não residenciais): 20,26 a 35,94 m²'],
+        tipologia: 'Studios e apartamentos de 2 e 3 dormitórios',
+        vagas: '1 vaga nos apartamentos, pela corretagem; studios sem vaga',
+        torres: 'Torre com lazer em 4 pavimentos: cobertura, 12º pavimento, térreo e 2º subsolo',
+        valores: 'Sob consulta',
+        endereco: 'Rua Tapari, 158 · Vila Esperança, São Paulo',
+        infra: {
+          piscina: 'Piscinas adulto e infantil na cobertura, com spa e sauna',
+          academia: 'Fitness e pilates; fitness próprio dos studios com serviços',
+          festas: '2 salões de festas e sports bar',
+          gourmet: '3 churrasqueiras: na cobertura, no 12º pavimento e no 2º subsolo',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra gramada',
+          portaria: 'Hall residencial com lobby office e hall próprio dos studios com serviços',
+          coworking: 'Lobby office, lavanderia, car wash, bicicletário, pet place, horta e bosque de árvores frutíferas'
+        },
+        lazerGrupos: [
+          ['Residencial', ['Piscina adulto', 'Piscina infantil', 'Spa com sauna', '3 churrasqueiras', 'Sports bar', 'Fitness', 'Pilates', '2 salões de festas', 'Brinquedoteca', 'Playground', 'Quadra gramada', 'Pet place', 'Bosque com árvores frutíferas', 'Horta', 'Redário', 'Lavanderia', 'Car wash', 'Bicicletário', 'Lobby office']],
+          ['Studios com serviços', ['Hall', 'Lavanderia', 'Fitness']]
+        ],
+        diferenciais: ['Piso nivelado no terraço dos apartamentos', 'Previsão de ar-condicionado no salão de festas, sports bar, fitness, lavanderia, portaria, recepção e brinquedoteca', 'Carro compartilhado, ponto para carro elétrico e car wash com equipamentos', 'Wi-fi nas áreas comuns, LED, reúso de água de chuva e depósito de lixo reciclável', 'Bacias com válvula dual flux; copa e vestiário para funcionários'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MRG + 'planta-60.webp', nome: '60 m² · 2 dormitórios', meta: 'Planta tipo' },
+          { src: MRG + 'planta-72.webp', nome: '72 m² · 3 dormitórios', meta: 'Planta tipo' },
+          { src: MRG + 'planta-72-ampliada.webp', nome: '72 m² · planta ampliada', meta: 'Opção de planta' },
+          { src: MRG + 'planta-studio-22.webp', nome: '22 m² · studio', meta: 'Studio com serviços' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Estação Guilhermina-Esperança', '150 m, 2 min'], ['Av. Amador Bueno da Veiga', 'perto'], ['Marginal Tietê', 'perto']]],
+            ['Compras', [['Extra Hipermercado', '7 min'], ['Shopping Metrô Tatuapé', '13 min']]]
+          ],
+          nota: 'Tempos do próprio book; percursos de metrô pelo aplicativo do Metrô-SP.'
+        },
+        legal: 'Comercializado após a aprovação do Projeto de Edificação Nova pela municipalidade e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964; projeto protocolado na Prefeitura de São Paulo em 9 de março de 2018. Intermediação Mitre Vendas, Creci J-26794. As áreas de lazer são de uso exclusivo das unidades residenciais; os studios com serviços só acessam o próprio hall, a lavanderia e o fitness. Material preliminar, impresso em março de 2019. Pela corretagem (apto.vc): entregue em março de 2022, pronto para morar; disponibilidade sob consulta.',
+        torre: MRG + 'fachada-2.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_PENHA_MITRE,
+        fotos: [
+          fotoMRG('fachada-2', 'Fachada', true),
+          fotoMRG('fachada', 'Fachada, de dia'),
+          fotoMRG('regiao-aerea', 'A região e a Estação Guilhermina-Esperança'),
+          fotoMRG('cobertura', 'Lazer na cobertura', true),
+          fotoMRG('cobertura-2', 'Cobertura, voo de pássaro', true),
+          fotoMRG('piscina', 'Piscina na cobertura'),
+          fotoMRG('spa', 'Spa'),
+          fotoMRG('pilates', 'Pilates'),
+          fotoMRG('fitness', 'Fitness'),
+          fotoMRG('churrasqueira-externa', 'Churrasqueira do 12º pavimento, área externa'),
+          fotoMRG('churrasqueira-12', 'Churrasqueira do 12º pavimento'),
+          fotoMRG('churrasqueira-ss', 'Churrasqueira do 2º subsolo'),
+          fotoMRG('brinquedoteca', 'Brinquedoteca'),
+          fotoMRG('sports-bar', 'Sports bar'),
+          fotoMRG('playground', 'Playground'),
+          fotoMRG('quadra-gramada', 'Quadra gramada'),
+          fotoMRG('pet-place', 'Pet place'),
+          fotoMRG('hall-lobby-office', 'Hall residencial com lobby office'),
+          fotoMRG('salao-de-festas', 'Salão de festas'),
+          fotoMRG('salao-de-festas-2', 'Segundo salão de festas'),
+          fotoMRG('bicicletario', 'Bicicletário'),
+          fotoMRG('lavanderia', 'Lavanderia do residencial'),
+          fotoMRG('car-wash', 'Car wash'),
+          fotoMRG('hall-studios', 'Hall dos studios com serviços'),
+          fotoMRG('fitness-studios', 'Fitness dos studios com serviços'),
+          fotoMRG('studio', 'Studio com serviços'),
+          fotoMRG('terraco-60', 'Terraço do apartamento de 2 dormitórios'),
+          fotoMRG('living-72', 'Living do apartamento de 3 dormitórios, opção ampliada')
+        ]
+      },
+      {
+        nome: 'Origem Penha',
+        cidade: 'São Paulo, capital',
+        bairro: 'Penha de França',
+        resumo: 'Studios e 2 dormitórios · 25 a 49 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Mapu, 10, a 450 metros do Metrô Penha (3 minutos a pé) e a um minuto de carro da Etec Aprígio Gonzaga: a linha Origem da Mitre, com torres de acessos independentes, uma de apartamentos de 2 dormitórios de 45 a 49 m² e outra de studios de 25 m² com serviços. Lazer residencial com piscina adulto e infantil, salão de festas integrável ao espaço gourmet e à churrasqueira, academia, brinquedoteca, playground, espaço pet, salão de jogos, coworking, bicicletário, delivery e mini market; os studios têm academia, gourmet com churrasqueira, coworking e lavanderia próprios. Lançado em junho de 2022 e entregue em setembro de 2025, pela corretagem.',
+        area: ['49 m²: 2 dormitórios, planta do decorado (final 8)', '48 e 46 m²: 2 dormitórios (finais 11 e 10)', 'Studios de 25 m² com serviços, não residenciais'],
+        tipologia: 'Studios e apartamentos de 2 dormitórios',
+        banheiros: '1 banheiro, chuveiro com aquecimento a gás; studios com bacia dual flux',
+        vagas: 'Vaga para carro elétrico nas unidades residenciais; pela corretagem, unidades sem vaga',
+        torres: 'Torres de acessos independentes: torre 1 residencial e torre 2 de studios com serviços',
+        unidades: ['260 residências, pela corretagem'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Mapu, 10 · Penha de França, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto e piscina infantil',
+          academia: 'Academia residencial e academia dos studios',
+          festas: 'Salão de festas, integrável ao gourmet e à churrasqueira, e salão de jogos',
+          gourmet: 'Espaço gourmet e churrasqueira; gourmet com churrasqueira dos studios',
+          kids: 'Brinquedoteca e playground',
+          quadra: '',
+          portaria: 'Entradas independentes para o setor residencial e o de studios; previsão de alarme perimetral e CFTV',
+          coworking: 'Coworking nos dois setores, lavanderia dos studios, bicicletário, espaço pet, delivery e mini market'
+        },
+        lazerGrupos: [
+          ['Residencial', ['Piscina adulto', 'Piscina infantil', 'Salão de festas', 'Espaço gourmet', 'Churrasqueira', 'Academia', 'Brinquedoteca', 'Playground', 'Espaço pet', 'Salão de jogos', 'Coworking', 'Bicicletário', 'Espaço delivery', 'Mini market']],
+          ['Studios com serviços (12º pavimento e térreo)', ['Espaço gourmet com churrasqueira', 'Academia', 'Coworking', 'Lavanderia', 'Espaço delivery']]
+        ],
+        diferenciais: ['Áreas comuns entregues decoradas, conforme memorial descritivo', 'Terraço nivelado com a sala, ponto grill e persianas de enrolar nos dormitórios', 'Carga elétrica e dreno para ar-condicionado no dormitório 1', 'Piso laminado nos dormitórios e ponto para lava e seca', 'Studios com ponto para cooktop e forno elétrico', 'Gerador de emergência, reúso de água de chuva, previsão de aquecimento solar e medidores de água individuais'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Decoração', 'Paula Aveiro Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Incorporação', 'Mitre Realty, linha Origem']],
+        plantas: [
+          { src: MOP + 'planta-49.webp', nome: '49 m² · 2 dormitórios', meta: 'Final 8 · planta do decorado' },
+          { src: MOP + 'planta-48.webp', nome: '48 m² · 2 dormitórios', meta: 'Final 11' },
+          { src: MOP + 'planta-46.webp', nome: '46 m² · 2 dormitórios', meta: 'Final 10' },
+          { src: MOP + 'planta-studio-25.webp', nome: '25 m² · studio com serviços', meta: 'Ponto para cooktop e forno elétrico' }
+        ],
+        implantacao: [
+          { src: MOP + 'implantacao-studios.webp', nome: 'Implantação', meta: 'Térreo e 12º pavimento do setor de studios' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Metrô Penha', '1 min de carro, 450 m'], ['Terminal Penha', '6 min'], ['Radial Leste', '9 min'], ['Metrô Guilhermina-Esperança', '10 min'], ['Sé, de metrô', '15 min']]],
+            ['Compras e lazer', [['Shopping Penha', '4 min'], ['Centro Cultural da Penha', '4 min'], ['Basílica N. S. da Penha', '5 min'], ['Teatro Martins Penna', '5 min'], ['Mercado Municipal da Penha', '8 min'], ['Carrefour Penha', '11 min']]],
+            ['Saúde e ensino', [['Etec Aprígio Gonzaga', '1 min'], ['Senac Penha', '2 min'], ['Colégio Penha de França', '5 min'], ['Hospital Dia Penha', '6 min'], ['Unicid', '10 min']]]
+          ],
+          nota: 'Tempos de carro pelo Google Maps, segundo o folheto.'
+        },
+        legal: 'Comercializado após a aprovação do Projeto perante a municipalidade e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. Áreas do setor residencial de uso exclusivo da torre 1 e do setor de serviços de moradia, da torre 2; studios não residenciais com serviços obrigatórios e pay-per-use; aquecedor a gás e equipamentos de ar-condicionado a cargo do comprador. Folheto impresso em abril de 2022. Pela corretagem (apto.vc): lançamento em junho de 2022 e entrega em setembro de 2025, pronto para morar; disponibilidade sob consulta.',
+        torre: MOP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_PENHA_MITRE,
+        fotos: [
+          fotoMOP('fachada', 'Fachada', true),
+          fotoMOP('regiao-aerea', 'A região, foto aérea'),
+          fotoMOP('piscina', 'Piscina'),
+          fotoMOP('salao-de-festas', 'Salão de festas'),
+          fotoMOP('espaco-gourmet', 'Espaço gourmet'),
+          fotoMOP('churrasqueira', 'Churrasqueira'),
+          fotoMOP('academia', 'Academia'),
+          fotoMOP('brinquedoteca', 'Brinquedoteca'),
+          fotoMOP('playground', 'Playground'),
+          fotoMOP('espaco-pet', 'Espaço pet', true),
+          fotoMOP('salao-de-jogos', 'Salão de jogos'),
+          fotoMOP('coworking', 'Coworking'),
+          fotoMOP('delivery', 'Bicicletário'),
+          fotoMOP('living-49', 'Living do decorado de 49 m²'),
+          fotoMOP('terraco-49', 'Terraço do decorado de 49 m²'),
+          fotoMOP('loja-portaria', 'Loja e portaria dos studios'),
+          fotoMOP('academia-studios', 'Academia dos studios'),
+          fotoMOP('gourmet-studios', 'Espaço gourmet com churrasqueira dos studios'),
+          fotoMOP('coworking-studios', 'Coworking dos studios'),
+          fotoMOP('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMOP('studio', 'Studio com serviços')
+        ]
+      },
+      {
+        nome: 'Origem Guilhermina',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Guilhermina',
+        resumo: 'Studios a 2 dormitórios · 24 a 54 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Rua Abadiânia, 192, entre as estações Guilhermina-Esperança e Vila Matilde da Linha 3-Vermelha e a um minuto da Radial Leste: a linha Origem com duas torres de portarias independentes, uma residencial de 1 e 2 dormitórios (40 a 54 m², pela corretagem) e a torre Azaleia, de studios residenciais e com serviços a partir de 24 m². O folheto que temos é o do setor de studios, com churrasqueira, fitness, coworking, delivery e lavanderia OMO compartilhada, áreas comuns entregues decoradas e gerador de emergência. Previsão de entrega em outubro de 2026, pela corretagem.',
+        area: ['Studios residenciais e com serviços a partir de 24 m², torre Azaleia', 'Apartamentos de 1 e 2 dormitórios de 40 a 54 m², pela corretagem'],
+        tipologia: 'Studios e apartamentos de 1 e 2 dormitórios',
+        banheiros: 'Studios com bacia dual flux e previsão de chuveiro elétrico',
+        vagas: 'Studios sem vaga',
+        torres: '2 torres com portarias independentes: residencial e a torre Azaleia, de studios',
+        valores: 'Sob consulta',
+        endereco: 'Rua Abadiânia, 192 · Vila Guilhermina, São Paulo',
+        infra: {
+          piscina: '',
+          academia: 'Fitness dos studios',
+          festas: '',
+          gourmet: 'Churrasqueira dos studios',
+          kids: '',
+          quadra: '',
+          portaria: 'Portarias independentes, com ar-condicionado; previsão de alarme perimetral e CFTV',
+          coworking: 'Coworking, delivery e lavanderia compartilhada OMO, pay-per-use'
+        },
+        lazerGrupos: [
+          ['Torre Azaleia, studios', ['Churrasqueira', 'Fitness', 'Coworking', 'Delivery', 'Lavanderia']]
+        ],
+        diferenciais: ['Áreas comuns internas e externas entregues decoradas', 'Carga elétrica e dreno para ar-condicionado e área para a condensadora', 'Ponto para cooktop elétrico e ponto para grill', 'Piso laminado entregue e piso nivelado entre living e terraço', 'Gerador de emergência, reúso de água de chuva, medidores individuais de água e previsão de aquecimento solar'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Áreas comuns', 'Archiave Design e Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Incorporação', 'Mitre Realty, linha Origem']],
+        plantas: [
+          { src: MOG + 'planta-studio-servicos.webp', nome: '24 m² · studio com serviços', meta: 'Final 7' },
+          { src: MOG + 'planta-studio-residencial.webp', nome: '24 m² · studio residencial', meta: 'Final 7' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Radial Leste', '1 min'], ['Metrô Guilhermina-Esperança', '7 min, ou 1 min de carro'], ['Metrô Vila Matilde', '14 min, ou 5 min de carro'], ['Terminal Vila Matilde', '6 min'], ['Av. Aricanduva e Av. Itaquera', '8 min']]],
+            ['Compras e lazer', [['Panificadora São Francisco de Assis', '3 min'], ['Carrefour e Oba Hortifruti', '7 min'], ['Neo Química Arena', '9 min'], ['Shopping Penha', '12 min'], ['Parque Linear Tiquatira', '12 min'], ['Shopping Metrô Itaquera', '15 min']]],
+            ['Saúde e ensino', [['Colégio La Salle', '2 min'], ['Colégio Objetivo Vila Matilde', '3 min'], ['Hospital Santa Clara', '5 min'], ['Hospital São Luiz Anália Franco', '15 min']]]
+          ],
+          nota: 'Tempos pelo Google Maps, segundo o folheto.'
+        },
+        legal: 'O Memorial de Incorporação do Empreendimento "Origem Guilhermina" encontra-se registrado sob o R.2 na matrícula nº 197.075 do 16º Oficial de Registro de Imóveis de São Paulo. Intermediação: LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Imagens ilustrativas; folheto do setor de studios, impresso em fevereiro de 2023. Pela corretagem: em construção, entrega prevista para outubro de 2026 (os portais citam também a Rua Aguaquente); disponibilidade sob consulta.',
+        torre: MOG + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZL_PENHA_MITRE,
+        fotos: [
+          fotoMOG('fachada', 'Torre Azaleia', true),
+          fotoMOG('regiao-aerea', 'A região, foto aérea'),
+          fotoMOG('churrasqueira', 'Churrasqueira dos studios'),
+          fotoMOG('fitness', 'Fitness dos studios'),
+          fotoMOG('coworking', 'Coworking dos studios'),
+          fotoMOG('lavanderia', 'Lavanderia dos studios'),
+          fotoMOG('studio-servicos', 'Studio com serviços'),
+          fotoMOG('studio-residencial', 'Studio residencial')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Santa Cruz',
+        cidade: 'São Paulo, capital',
+        bairro: 'Vila Gumercindo',
+        resumo: 'Studios a 4 dormitórios · 27 a 138 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Assungui, 121, na Vila Gumercindo, a 100 metros da Rua Santa Cruz e a 450 metros do Metrô Alto do Ipiranga: a linha Haus Mitre com 60 apartamentos de 131 m² (4 dormitórios com 2 suítes, ou 3 suítes) e 138 m² (gardens), sempre com 2 vagas, e 96 studios e unidades de 1 dormitório de 27 a 35 m², metade com serviços. Rooftop residencial no 25º com piscinas de vista, pool bar, deck molhado, solário, salão de festas, espaço gourmet e academia; lounge de jogos, brinquedoteca, playground, pet place e pet care nos sobressolos; terraço gourmet, academia, coworking e lavanderia próprios dos studios. Arquitetura MCAA, interiores de Claudia Albertini e paisagismo de Benedito Abbud. Lançado em setembro de 2021 e entregue em novembro de 2024, pela corretagem.',
+        area: ['131 m²: 4 dormitórios com 2 suítes (padrão) ou 3 suítes (opção), 2 vagas determinadas (56 unidades)', '138 m²: garden de 4 dormitórios com 2 suítes, 2 vagas determinadas (4 unidades)', 'Studios com serviços: 12 de 27 m² e 36 de 32 a 35 m²', 'Studios residenciais: 12 de 27 m² e 36 de 32 m² com 1 dormitório', '2 lojas, de 64 e 438 m²'],
+        tipologia: 'Studios, 1 dormitório e apartamentos de 4 dormitórios ou 3 suítes',
+        banheiros: 'Iluminação e ventilação natural, duas cubas na suíte master, água quente nas bancadas (exceto lavabo) e bacia dual flux',
+        vagas: '2 vagas determinadas nos apartamentos; studios e 1 dormitório sem vaga',
+        torres: 'Torre única de 25 pavimentos em terreno de 1.978,77 m², com 4 apartamentos por andar do 10º ao 24º',
+        unidades: ['156 unidades: 60 apartamentos e 96 studios e 1 dormitório, mais 2 lojas'],
+        pavimentos: ['Térreo: lobby residencial, delivery, mini mercado, 2 lojas e lobby e delivery dos studios com serviços', '1º ao 3º sobressolos: garagem e bicicletário residencial; lazer com jogos, playground, brinquedoteca, pet place e pet care; lazer dos studios com terraço gourmet, academia, coworking e lavanderia', '1º ao 9º: studios e 1 dormitório (com serviços do 4º ao 6º, residenciais do 7º ao 9º)', '10º ao 24º: 4 apartamentos por andar', '25º, rooftop residencial: salão de festas, espaço gourmet, academia, deck molhado, solário, piscinas com vista e pool bar'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Assungui, 121 · Vila Gumercindo, São Paulo',
+        infra: {
+          piscina: 'Piscinas com vista cinematográfica, deck molhado, solário e pool bar no rooftop',
+          academia: 'Academia de 59 m² no rooftop e academia de 66 m² dos studios',
+          festas: 'Salão de festas de 53 m² e lounge de jogos de 36 m²',
+          gourmet: 'Espaço gourmet de 54 m² e terraço gourmet de 56 m² dos studios',
+          kids: 'Brinquedoteca de 31 m² e playground',
+          quadra: '',
+          portaria: 'Lobbies independentes para residencial e studios; sala de segurança, previsão de segurança perimetral e CFTV',
+          coworking: 'Coworking e lavanderia dos studios, mini market, delivery, 2 bicicletários, pet place e pet care, car wash'
+        },
+        lazerGrupos: [
+          ['Rooftop residencial', ['Piscinas', 'Pool bar', 'Deck molhado', 'Solário', 'Salão de festas', 'Espaço gourmet', 'Academia']],
+          ['Sobressolos e térreo', ['Lounge de jogos', 'Brinquedoteca', 'Playground', 'Pet place e pet care', 'Bicicletário', 'Mini market', 'Delivery', 'Car wash']],
+          ['Studios e 1 dormitório', ['Terraço gourmet', 'Academia', 'Coworking', 'Lavanderia', 'Delivery']]
+        ],
+        diferenciais: ['Mitre Personal Home: opções de planta e acabamentos', 'Rede frigorígena, ponto elétrico e dreno para ar-condicionado nos dormitórios e salas, com área técnica', 'Terraço com churrasqueira a carvão e espaço para mesa de 8 lugares; ponto para grill nos studios com terraço', 'Fechadura eletrônica (personalização), persianas de enrolar e piso nivelado entre living e terraço', 'Serviço pay-per-use by Atlantica, tomada para carro elétrico, reúso de água de chuva e previsão de aquecimento solar'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Interiores', 'Claudia Albertini'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Mitre Realty, linha Haus Mitre']],
+        plantas: [
+          { src: MSC + 'planta-131-3-suites.webp', nome: '131 m² · 3 suítes', meta: 'Opção com living ampliado · 2 vagas' },
+          { src: MSC + 'planta-131-4-dorms.webp', nome: '131 m² · 4 dormitórios', meta: '2 suítes · 2 vagas determinadas' },
+          { src: MSC + 'planta-32-1-dorm.webp', nome: '32 m² · 1 dormitório', meta: 'Residencial · terraço com ponto para grill' },
+          { src: MSC + 'planta-32-integrado.webp', nome: '32 m² · integrado', meta: 'Opção com dormitório integrado' },
+          { src: MSC + 'planta-32-ampliado.webp', nome: '32 m² · studio ampliado', meta: 'Com serviços' },
+          { src: MSC + 'planta-27-residencial.webp', nome: '27 m² · studio residencial', meta: 'Sem vaga' },
+          { src: MSC + 'planta-27-servicos.webp', nome: '27 m² · studio com serviços', meta: 'Sem vaga' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Rua Santa Cruz', '1 min'], ['Metrô Alto do Ipiranga', '4 min, 450 m'], ['Av. Ricardo Jafet', '3 min'], ['Imigrantes', '5 min'], ['Av. Paulista', '12 min'], ['Centro', '16 min']]],
+            ['Compras e lazer', [['Shopping Metrô Santa Cruz', '4 min'], ['Parque da Independência', '5 min'], ['Parque da Aclimação', '8 min'], ['Aquário de São Paulo', '10 min'], ['Pátio Paulista', '15 min']]],
+            ['Saúde e ensino', [['Centro Universitário São Camilo', '6 min'], ['Hospital Albert Einstein, Chácara Klabin', '8 min'], ['Colégio Marista Arquidiocesano', '12 min']]]
+          ],
+          nota: 'Tempos do próprio book.'
+        },
+        legal: 'Book de vendas sem o texto de registro nem data; imagens preliminares, sujeitas a alteração. Rede frigorígena e fechadura eletrônica são itens de personalização; piso interno dos studios não entregue pela construtora; áreas de lazer residencial de uso exclusivo. Pela corretagem (apto.vc): lançamento em setembro de 2021 e entrega em novembro de 2024, pronto para morar; disponibilidade sob consulta.',
+        torre: MSC + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZS_IPIRANGA_MITRE,
+        fotos: [
+          fotoMSC('fachada', 'Fachada', true),
+          fotoMSC('detalhe-fachada', 'Detalhe da fachada'),
+          fotoMSC('regiao-aerea', 'A região, foto aérea'),
+          fotoMSC('rooftop', 'Rooftop'),
+          fotoMSC('rooftop-pool', 'Rooftop pool, voo de pássaro'),
+          fotoMSC('rooftop-2', 'Rooftop'),
+          fotoMSC('espaco-gourmet', 'Espaço gourmet'),
+          fotoMSC('salao-de-festas', 'Salão de festas'),
+          fotoMSC('academia', 'Academia'),
+          fotoMSC('bicicletario', 'Bicicletário'),
+          fotoMSC('lounge-jogos', 'Lounge de jogos'),
+          fotoMSC('brinquedoteca', 'Brinquedoteca'),
+          fotoMSC('playground', 'Playground'),
+          fotoMSC('pet-place', 'Pet place e pet care'),
+          fotoMSC('mini-market', 'Mini market'),
+          fotoMSC('delivery', 'Delivery'),
+          fotoMSC('living-131', 'Living ampliado do apartamento de 131 m²'),
+          fotoMSC('terraco-131', 'Terraço e living ampliado do apartamento de 131 m²'),
+          fotoMSC('terraco-gourmet-studios', 'Terraço gourmet dos studios'),
+          fotoMSC('academia-studios', 'Academia dos studios'),
+          fotoMSC('coworking-studios', 'Coworking dos studios'),
+          fotoMSC('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMSC('apto-1-dorm', 'Apartamento de 1 dormitório'),
+          fotoMSC('studio-residencial', 'Studio residencial')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Platô Ipiranga',
+        cidade: 'São Paulo, capital',
+        bairro: 'Ipiranga',
+        resumo: 'Studios e 3 dormitórios · 19 a 105 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Gama Lobo, 1.983, esquina com a Rua Dona Leopoldina, a 160 metros do Metrô Alto do Ipiranga: dois condomínios independentes da linha Haus Mitre, a torre 1 com apartamentos de 3 dormitórios de 79 e 105 m² e a torre 2 com residences de 19 a 25 m², com serviços e residenciais. Piscinas climatizadas (adulto, infantil e a dos studios), quadra recreativa, fitness, brinquedoteca, salão de festas, gourmet, salão de jogos e coworking, com o lazer residencial no 2º, no 26º e no 27º pavimento. O material que temos é o de treinamento de corretores, com 47 perguntas e respostas. Entregue em novembro de 2023, pela corretagem.',
+        area: ['79 m²: 3 dormitórios, vaga indeterminada (garden com vaga determinada)', '105 m²: 3 dormitórios, vagas vinculadas e determinadas', 'Residences com serviços e residenciais de 19 a 25 m², sem vaga'],
+        tipologia: 'Studios e apartamentos de 3 dormitórios',
+        vagas: 'Vagas de 2,30 por 4,50 m; vinculadas e determinadas no 105 m², indeterminadas no 79 m²; studios sem vaga; sem vagas de visitantes',
+        torres: 'Torre 1, de apartamentos, com 27 pavimentos; torre 2, de studios, com 10 pavimentos; acessos independentes',
+        pavimentos: ['1º subsolo: loja 3 e estacionamento da torre 1', 'Térreo: lojas 1 e 2, acessos, coworking e pet place', '1º: estacionamento e bicicletários', 'Torre 1: lazer residencial no 2º, apartamentos do 3º ao 25º, lazer no 26º e lazer descoberto no 27º', 'Torre 2: studios com serviços e lazer no 2º, com serviços do 3º ao 6º, residenciais do 7º ao 9º e lazer dos studios no 10º'],
+        peDireito: ['Apartamentos: 2,50 m nas áreas secas e 2,30 m nos banheiros', 'Studios do 9º pavimento: até 5,03 m nas áreas secas', 'Halls de entrada: 5,70 m'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Gama Lobo, 1.983, esquina com a Rua Dona Leopoldina · Ipiranga, São Paulo',
+        infra: {
+          piscina: 'Piscinas climatizadas: adulto de 16,35 m, infantil e a dos studios, de 15 m',
+          academia: 'Sala de ginástica residencial e fitness dos studios, entregues com ar-condicionado',
+          festas: 'Salão de festas e salão de jogos',
+          gourmet: 'Espaço gastronômico e gourmet',
+          kids: 'Brinquedoteca',
+          quadra: 'Quadra recreativa de 13,50 por 7,35 m',
+          portaria: 'Guarita blindada, portão de clausura, gerador de emergência e previsão de CFTV e segurança perimetral',
+          coworking: 'Coworking, pet place, bicicletários e recepção dos studios com serviços'
+        },
+        diferenciais: ['Churrasqueira a carvão nos terraços de 3 dormitórios; ponto para grill nos studios com terraço', 'Ponto elétrico, dreno e rede frigorígena para ar-condicionado: 4 pontos nos de 3 dormitórios, 1 nos studios', 'Água quente nas torneiras do banheiro e da cozinha, tubulação PEX', 'Fechadura diferenciada e interfone para unidades, áreas comuns e portaria', 'Pisos da sala e do terraço nivelados (exceto gardens); medição individual de água e luz', 'Reaproveitamento de água de chuva e infraestrutura para wi-fi nas áreas comuns'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Haus Mitre']],
+        legal: 'Haus Mitre Platô Ipiranga somente será comercializado após o registro do Memorial de Incorporação no 6º Cartório de Registro de Imóveis de São Paulo, nos termos da Lei 4.591/1964. Intermediação: LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Material de treinamento de corretores, sem perspectivas do projeto. Pela corretagem (apto.vc): entregue em novembro de 2023, pronto para morar; disponibilidade sob consulta.',
+        torre: MPL + 'tipologias.webp',
+        regiao: ZS_IPIRANGA_MITRE,
+        fotos: [
+          fotoMPL('tipologias', 'Tipologias do Haus Mitre Platô Ipiranga', true),
+          fotoMPL('capa', 'Capa do material de treinamento', true)
+        ]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
       ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
       ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
       ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
-      ['Raízes L\'Avenir', 'Vila Prudente', '3 e 4 dormitórios', '109 e 132 m²', 'Em construção'],
       ['Raízes Jardim São Paulo', 'Jardim São Paulo', '3 e 4 dormitórios', '106 e 127 m²', 'Em construção'],
-      ['Origem Guilhermina', 'Vila Guilhermina', '2 dormitórios', '40 e 54 m²', 'Em construção'],
       ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
       ['Haus Mitre Perdizes', 'Perdizes', '1 dormitório', '38 m²', 'Pronto para morar'],
       ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
       ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
-      ['Raízes Premium Mooca', 'Mooca', '3 dormitórios', '82 m²', 'Pronto para morar'],
-      ['Raízes Reserve Mooca', 'Mooca', '3 dormitórios', '85 m²', 'Pronto para morar'],
-      ['Raízes Tatuapé', 'Tatuapé', '2 dormitórios', '49 e 57 m²', 'Pronto para morar'],
       ['Raízes Premium Butantã', 'Butantã', '1 e 3 dormitórios', '39 e 119 m²', 'Pronto para morar'],
-      ['Raízes Reserve', 'Vila Prudente', 'Studios a 3 dormitórios', '26 a 119 m²', 'Pronto para morar'],
-      ['Raízes Vila Prudente', 'Vila Prudente', '1 e 2 dormitórios', '26 e 62 m²', 'Pronto para morar'],
       ['Raízes Alto Freguesia do Ó', 'Vila Primavera', 'Studios', '25 m²', 'Pronto para morar'],
       ['Raízes Tucuruvi Jacarandá', 'Tucuruvi', '1 dormitório', '26 m²', 'Pronto para morar'],
-      ['Origem Penha', 'Penha de França', '2 dormitórios', '46 m²', 'Pronto para morar']
     ].map(function (x) {
       return { nome: x[0], bairro: x[1], tipologia: x[2], area: x[3], status: x[4], cidade: x[5] || 'São Paulo, capital', valores: 'Sob consulta' };
     })).concat([
