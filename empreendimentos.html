@@ -866,6 +866,23 @@
     polos: 'Por perto: estações Penha, Vila Matilde, Guilhermina-Esperança e Tatuapé da Linha 3-Vermelha, Radial Leste, Marginal Tietê, Shopping Penha, Shopping Metrô Tatuapé, Boulevard Tatuapé, Shopping Anália Franco, Shopping Aricanduva, Basílica da Penha, Centro Cultural da Penha, Teatro Martins Penna, Parque Linear Tiquatira, Neo Química Arena, Etec Aprígio Gonzaga, Senac Penha, Colégio La Salle, Hospital Santa Clara e Hospital São Luiz Anália Franco.',
     fonte: 'Fonte: books e folhetos do Origem Penha (2022), do Origem Guilhermina (2023), do Raízes Guilhermina-Esperança (2019), do Raízes VM e das lojas do Raízes Tatuapé, com tempos do próprio material.'
   };
+  // (12/11/2026, tarde) Raizes Jardim Sao Paulo (book de parcerias) e Haus Mitre Perdizes (book A3, jun/2020)
+  var MJS = MT + 'jardimsp/', MHP = MT + 'hmperdizes/';
+  var fotoMJS = fotoEm(MJS), fotoMHP = fotoEm(MHP);
+  var ZN_JARDIM_SP_MITRE = {
+    titulo: 'A região · Jardim São Paulo',
+    texto: 'Um dos bairros mais charmosos e cobiçados da Zona Norte, de ruas arborizadas e casas, entre Santana e o Tucuruvi: a Estação Jardim São Paulo-Ayrton Senna da Linha 1-Azul a 6 minutos a pé, o Parque Domingos Luís e o Mirante de Santana no bairro, o Sesc Santana e o Shopping Center Norte perto, e o Parque Estadual da Cantareira a 13 minutos. A Avenida Luiz Dumont Villares, o corredor Norte-Sul, leva ao centro e à Marginal Tietê.',
+    numeros: [['6 min', 'a pé da Estação Jardim São Paulo-Ayrton Senna'], ['2 min', 'do corredor Norte-Sul, de carro'], ['13 min', 'do Parque da Cantareira'], ['3.078 m²', 'de terreno do Raízes Jardim São Paulo']],
+    polos: 'Por perto: Estação Jardim São Paulo-Ayrton Senna, Av. Luiz Dumont Villares, Av. Leôncio de Magalhães, Av. Braz Leme, Av. Nova Cantareira, Marginal Tietê, Sesc Santana, Mirante de Santana, Parque Domingos Luís, Parque da Cantareira, Shopping Center Norte, Anhembi, Pão de Açúcar, Colégio Mirante, Maple Bear, Colégio Santa Maria, Hospital HSANP e Hospital Presidente.',
+    fonte: 'Fonte: book do Raízes Jardim São Paulo, com tempos estimados pelo Google Maps.'
+  };
+  var ZO_PERDIZES_MITRE = {
+    titulo: 'A região · Perdizes',
+    texto: 'O ponto alto de Perdizes, entre a PUC, o Pacaembu e a Avenida Sumaré: ruas em ladeira com prédios residenciais e casas, o Parque Linear da Sumaré, o TUCA e a vida universitária, o Estádio do Pacaembu e a FAAP a poucos minutos. A estação Sumaré da Linha 2-Verde, a Avenida Dr. Arnaldo e a Rebouças ligam o bairro à Paulista, a Pinheiros e ao Hospital das Clínicas; o Samaritano e o Shopping Higienópolis ficam a 6 e 7 minutos.',
+    numeros: [['150 m', 'da PUC'], ['200 m', 'do Parque Linear da Av. Sumaré'], ['4 min', 'do Metrô Sumaré'], ['7 min', 'da Avenida Paulista']],
+    polos: 'Por perto: PUC, TUCA, Capela da PUC, Parque Linear da Av. Sumaré, Metrô Sumaré, Av. Dr. Arnaldo, Av. Rebouças, Estádio do Pacaembu, FAAP, Praça Buenos Aires, Shopping Higienópolis, Hospital Samaritano e Hospital das Clínicas.',
+    fonte: 'Fonte: book do Haus Mitre Perdizes (junho de 2020), com distâncias pelo Google.'
+  };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
     texto: 'Entre o Ipiranga e a Vila Mariana, em volta da Estação Alto do Ipiranga da Linha 2-Verde, que leva à Avenida Paulista em 12 minutos: a Rua Santa Cruz com o comércio do bairro, o Museu Paulista e o Parque da Independência, o Sesc Ipiranga, o Mercado Municipal do Ipiranga, o Hospital São Camilo e a unidade do Einstein, os supermercados Hirota e Marché e restaurantes de bairro. A Rodovia dos Imigrantes e a Avenida Ricardo Jafet saem dali para o litoral e o ABC.',
@@ -7909,15 +7926,177 @@
           fotoMPL('tipologias', 'Tipologias do Haus Mitre Platô Ipiranga', true),
           fotoMPL('capa', 'Capa do material de treinamento', true)
         ]
+      },
+      {
+        nome: 'Raízes Jardim São Paulo',
+        cidade: 'São Paulo, capital',
+        bairro: 'Jardim São Paulo',
+        resumo: '3 suítes e 4 dormitórios · 106 a 129 m²',
+        tipo: 'Apartamento',
+        status: 'Em construção',
+        texto: 'Na Rua George Oetterer, 21, no Jardim São Paulo, a 6 minutos a pé da Estação Jardim São Paulo-Ayrton Senna: a linha Raízes com "atmosfera de casa", num terreno de 3.078 m² com duas torres e apartamentos de 106 m² (3 suítes, ou 2 suítes com living ampliado), 128 m² (4 dormitórios com 2 suítes) e 129 m² (3 suítes com living ampliado), sempre com 2 vagas determinadas e terraço gourmet com churrasqueira a carvão. Lazer no térreo com piscina adulto e infantil, SPA com hidromassagem, solário e deck molhado, festas integrado ao gourmet, poker lounge, jogos, brinquedoteca, fitness, sauna, ducha, sala de massagem, churrasqueira com forno de pizza, quadra recreativa e playground; horta e pet place no 3º subsolo. Arquitetura de Alexandre Milleu, interiores de Paula Aveiro e paisagismo do Núcleo Arquitetura da Paisagem. Previsão de entrega em maio de 2027, pela corretagem.',
+        area: ['106 m²: 3 suítes, ou 2 suítes com living ampliado (opção com lavabo e despensa), 2 vagas determinadas', '128 m²: 4 dormitórios com 2 suítes, 2 vagas determinadas', '129 m²: 3 suítes com living ampliado, 2 vagas determinadas'],
+        tipologia: 'Apartamentos de 3 suítes e de 4 dormitórios com 2 suítes',
+        banheiros: 'Lavabo em todas as unidades, água quente na bancada do banho da suíte master (duas cubas nas de 128 e 129 m²) e bacias com válvula dual flux',
+        vagas: '2 vagas determinadas em todas as plantas',
+        torres: '2 torres em terreno de 3.078 m², com lazer no térreo e no 3º subsolo',
+        valores: 'Sob consulta',
+        endereco: 'Rua George Oetterer, 21 · Jardim São Paulo, São Paulo',
+        infra: {
+          piscina: 'Piscina adulto e infantil, SPA com hidromassagem, solário e deck molhado',
+          academia: 'Fitness, sauna, ducha e sala de massagem',
+          festas: 'Festas com integração ao gourmet, poker lounge e jogos',
+          gourmet: 'Gourmet e churrasqueira com forno de pizza',
+          kids: 'Brinquedoteca e playground',
+          quadra: 'Quadra recreativa',
+          portaria: 'Entradas social, de serviço e de veículos; lobby e delivery',
+          coworking: 'Hall externo, dois lounges externos, horta e pet place no 3º subsolo'
+        },
+        lazerGrupos: [
+          ['Áreas internas', ['Delivery', 'Lobby', 'Jogos', 'Brinquedoteca', 'Gourmet', 'Festas com integração ao gourmet', 'Copa do espaço festas', 'Poker lounge', 'Sala de massagem', 'Sauna', 'Ducha', 'Fitness']],
+          ['Áreas externas', ['Hall externo', 'Lounge externo', 'Churrasqueira com forno de pizza', 'Quadra recreativa', 'Playground', 'Piscina adulto', 'Piscina infantil', 'Solário', 'Deck molhado', 'SPA com hidromassagem']],
+          ['3º subsolo', ['Horta', 'Pet place']]
+        ],
+        diferenciais: ['Terraço gourmet com churrasqueira a carvão entregue, laje nivelada com a sala e ponto para TV', 'Ponto elétrico e dreno para ar-condicionado na sala e nos dormitórios, com área técnica independente para as condensadoras', 'Cozinha ampla com espaço para geladeira side by side, água quente na bancada e ponto para lava-louças', 'Caixilhos amplos com persiana de enrolar e ponto para lavadora ou lava e seca', 'Espaço para despensa ou WC de serviço nas plantas maiores'],
+        creditos: [['Arquitetura', 'Alexandre Milleu'], ['Interiores', 'Paula Aveiro'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [
+          { src: MJS + 'planta-106-3-suites.webp', nome: '106 m² · 3 suítes', meta: '2 vagas determinadas' },
+          { src: MJS + 'planta-106-2-suites.webp', nome: '106 m² · living ampliado', meta: '2 suítes · opção lavabo e despensa' },
+          { src: MJS + 'planta-128-4-dorms.webp', nome: '128 m² · 4 dormitórios', meta: '2 suítes · 2 vagas determinadas' },
+          { src: MJS + 'planta-129-3-suites.webp', nome: '129 m² · 3 suítes', meta: 'Living ampliado · 2 vagas determinadas' }
+        ],
+        implantacao: [
+          { src: MJS + 'implantacao.webp', nome: 'Implantação do térreo', meta: '28 itens de lazer e acessos' }
+        ],
+        perto: {
+          grupos: [
+            ['Mobilidade', [['Av. Luiz Dumont Villares (corredor Norte-Sul)', '2 min'], ['Av. Leôncio de Magalhães', '2 min'], ['Estação Jardim São Paulo-Ayrton Senna', '6 min a pé'], ['Av. Nova Cantareira', '9 min'], ['Marginal Tietê', '12 min'], ['Av. Braz Leme', '15 min'], ['Centro de São Paulo', '20 min']]],
+            ['Compras e lazer', [['Café no Jardim', '2 min'], ['Mirante de Santana', '3 min'], ['Sesc Santana', '4 min'], ['Pão de Açúcar', '5 min'], ['Parque Domingos Luís', '7 min a pé'], ['Shopping Center Norte', '9 min'], ['Anhembi', '10 min'], ['Parque da Cantareira', '13 min']]],
+            ['Saúde e ensino', [['Colégio Mirante', '3 min'], ['Colégio Tema Novo', '2 min'], ['Maple Bear', '4 min'], ['Colégio Jardim São Paulo', '5 min'], ['Hospital HSANP', '5 min'], ['Hospital Presidente', '7 min'], ['Senac', '7 min'], ['Universidade São Judas Tadeu', '10 min']]]
+          ],
+          nota: 'Tempos de carro estimados pelo Google Maps, salvo indicação, segundo o book.'
+        },
+        legal: 'Book de vendas da Mitre Vendas Parcerias, sem o texto de registro do memorial nem data; perspectivas ilustradas. Pela corretagem (apto.vc): em construção, previsão de entrega em maio de 2027; disponibilidade sob consulta.',
+        torre: MJS + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZN_JARDIM_SP_MITRE,
+        fotos: [
+          fotoMJS('fachada', 'Fachada', true),
+          fotoMJS('detalhe-fachada', 'Detalhe da fachada'),
+          fotoMJS('regiao-aerea', 'A região, foto aérea'),
+          fotoMJS('piscina', 'Piscina com deck molhado'),
+          fotoMJS('lobby', 'Lobby'),
+          fotoMJS('salao-de-festas', 'Salão de festas'),
+          fotoMJS('gourmet', 'Gourmet'),
+          fotoMJS('poker-lounge', 'Poker lounge'),
+          fotoMJS('poker-lounge-2', 'Poker lounge, sinuca e bar'),
+          fotoMJS('jogos', 'Jogos'),
+          fotoMJS('brinquedoteca', 'Brinquedoteca'),
+          fotoMJS('fitness', 'Fitness'),
+          fotoMJS('sala-de-massagem', 'Sala de massagem'),
+          fotoMJS('sauna', 'Sauna'),
+          fotoMJS('churrasqueira-forno-pizza', 'Churrasqueira com forno de pizza'),
+          fotoMJS('churrasqueira-externa', 'Churrasqueira com forno de pizza, área externa'),
+          fotoMJS('quadra-recreativa', 'Quadra recreativa'),
+          fotoMJS('playground', 'Playground'),
+          fotoMJS('pet-place', 'Pet place'),
+          fotoMJS('living-106', 'Living do apartamento de 106 m²'),
+          fotoMJS('living-129', 'Living do apartamento de 129 m²')
+        ]
+      },
+      {
+        nome: 'Haus Mitre Perdizes',
+        cidade: 'São Paulo, capital',
+        bairro: 'Perdizes',
+        resumo: 'Studios a 3 suítes · 26 a 105 m²',
+        tipo: 'Apartamento',
+        status: 'Pronto para morar',
+        texto: 'Na Rua Ministro Godói, 1.213, esquina com a Rua Caiubi, a 150 metros da PUC e ao lado do Parque Linear da Avenida Sumaré: uma torre com dois módulos sobrepostos, com entradas, lazer e estrutura independentes. Embaixo, 138 studios e unidades de 1 dormitório de 26 a 38 m², residenciais e com serviços, com piscina, hall, área de convivência, fitness, lavanderia, churrasqueira e dois coworkings; em cima, 90 apartamentos de 2 dormitórios (66 m²) e 3 suítes ou 2 suítes (105 m²), com lazer no 8º e no 24º: piscina de borda com vista, fire pit lounge, espaço gourmet, salão de festas, sports bar, grand fitness, pilates, wellness, brinquedoteca e playground. Pet place no 1º pavimento e lojas no térreo. Lançado em agosto de 2020 e entregue em dezembro de 2023, pela corretagem.',
+        area: ['105 m²: 3 suítes, ou 2 suítes com banheiro sr. e sra., 2 vagas', '66 m²: 2 dormitórios com 1 suíte', 'Studios residenciais e com serviços a partir de 26 m² e unidades de 1 dormitório de 38 m²', '2 coberturas no 24º pavimento'],
+        tipologia: 'Studios, 1 dormitório e apartamentos de 2 dormitórios e 3 suítes',
+        banheiros: 'Ducha higiênica, bacia com válvula dual flux e água quente nas pias; duas cubas na suíte master do 105 m²',
+        vagas: '2 vagas no 105 m²; acesso a vagas pelo 1º pavimento e pelos dois subsolos',
+        torres: 'Torre única com dois módulos sobrepostos: 24 pavimentos, com studios do 2º ao 7º e apartamentos do 9º ao 23º',
+        unidades: ['228 unidades: 138 studios e 1 dormitório e 90 apartamentos de 2 e 3 dormitórios, mais 2 coberturas e lojas (235 residências pela corretagem)'],
+        pavimentos: ['Subsolos: vagas, com 3 lojas e vagas das lojas no nível da rua', 'Térreo: lazer dos studios e lobbies residencial e de studios', '1º: vagas, pet place e 1 loja', '2º ao 7º: 138 studios e 1 dormitório de 26 a 38 m², com coworkings no 2º e no 5º', '8º: lazer residencial coberto e descoberto', '9º ao 23º: 90 apartamentos de 2 e 3 dormitórios', '24º: lazer residencial coberto e descoberto e 2 coberturas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Ministro Godói, 1.213, esquina com a Rua Caiubi · Perdizes, São Paulo',
+        infra: {
+          piscina: 'Piscina de borda com vista no 24º; piscina dos studios no térreo',
+          academia: 'Grand fitness, pilates e wellness; fitness dos studios',
+          festas: 'Salão de festas e sports bar',
+          gourmet: 'Espaço gourmet com adega e fire pit lounge; churrasqueira dos studios',
+          kids: 'Brinquedoteca e playground',
+          quadra: '',
+          portaria: 'Lobbies residencial e de studios independentes, com hall residencial de pé-direito duplo',
+          coworking: 'Dois coworkings, área de convivência e lavanderia dos studios, pet place'
+        },
+        lazerGrupos: [
+          ['Residencial, 8º e 24º', ['Piscina', 'Fire pit lounge', 'Espaço gourmet', 'Salão de festas', 'Sports bar', 'Grand fitness', 'Pilates', 'Wellness', 'Brinquedoteca', 'Playground', 'Hall residencial']],
+          ['Studios', ['Piscina', 'Hall', 'Área de convivência', 'Fitness', 'Lavanderia', 'Churrasqueira', 'Coworking']],
+          ['1º pavimento', ['Pet place']]
+        ],
+        diferenciais: ['Fechadura eletrônica, tratamento acústico de piso e persianas de enrolar', 'Ponto para ar-condicionado e terraço técnico', 'Terraço com churrasqueira a carvão no 105 m², elétrica no 66 m² e ponto para grill nos studios', 'Piso nivelado entre living e terraço e ponto para lavadora e secadora', 'Água quente nas pias da cozinha e dos banheiros'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Haus Mitre'], ['Futura intermediação', 'Mitre Vendas e Lopes']],
+        plantas: [
+          { src: MHP + 'planta-105-3-suites.webp', nome: '105 m² · 3 suítes', meta: '2 vagas' },
+          { src: MHP + 'planta-105-2-suites.webp', nome: '105 m² · 2 suítes', meta: 'Banheiro sr. e sra. · 2 vagas' },
+          { src: MHP + 'planta-66.webp', nome: '66 m² · 2 dormitórios', meta: '1 suíte · churrasqueira elétrica' },
+          { src: MHP + 'planta-38.webp', nome: '38 m² · 1 dormitório', meta: 'Terraço com ponto para grill' },
+          { src: MHP + 'planta-studio-26-residencial.webp', nome: '26 m² · studio residencial', meta: 'Terraço com ponto para grill' },
+          { src: MHP + 'planta-studio-26-servicos.webp', nome: '26 m² · studio com serviços', meta: 'Terraço com ponto para grill' }
+        ],
+        implantacao: [
+          { src: MHP + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lazer dos studios e lobbies' },
+          { src: MHP + 'implantacao-8.webp', nome: '8º pavimento', meta: 'Lazer residencial, imagem preliminar' },
+          { src: MHP + 'implantacao-24.webp', nome: '24º pavimento', meta: 'Piscina e coberturas' }
+        ],
+        perto: {
+          grupos: [
+            ['A pé', [['PUC', '150 m, 2 min'], ['Av. Sumaré', '200 m, 2 min'], ['TUCA', '350 m, 5 min'], ['Capela da PUC', '6 min']]],
+            ['De carro', [['Metrô Sumaré', '4 min'], ['FAAP', '4 min'], ['Av. Dr. Arnaldo', '4 min'], ['Hospital das Clínicas', '5 min'], ['Av. Rebouças', '6 min'], ['Estádio do Pacaembu', '6 min'], ['Hospital Samaritano', '6 min'], ['Shopping Higienópolis', '7 min'], ['Av. Paulista', '7 min'], ['Praça Buenos Aires', '12 min']]]
+          ],
+          nota: 'Distâncias pelo Google, segundo o book.'
+        },
+        legal: 'Informações preliminares, sujeitas a alteração. O empreendimento imobiliário só será comercializado após a devida aprovação do Projeto de Edificação Nova perante a municipalidade e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. LPS São Paulo Consultoria de Imóveis Ltda., Creci-SP 24073-J, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Studios residenciais e com serviços. Book impresso em junho de 2020. Pela corretagem (apto.vc): lançamento em agosto de 2020 e entrega em dezembro de 2023 (o MySide cita agosto de 2023), pronto para morar; disponibilidade sob consulta.',
+        torre: MHP + 'fachada.webp',
+        notaImagens: NOTA_PERSPECTIVA,
+        regiao: ZO_PERDIZES_MITRE,
+        fotos: [
+          fotoMHP('fachada', 'Fachada', true),
+          fotoMHP('detalhe-fachada', 'Fachada, embasamento e studios'),
+          fotoMHP('detalhe-fachada-2', 'Detalhe da fachada'),
+          fotoMHP('regiao-aerea', 'O ponto alto de Perdizes, foto aérea'),
+          fotoMHP('piscina', 'Piscina'),
+          fotoMHP('fire-pit-lounge', 'Fire pit lounge'),
+          fotoMHP('espaco-gourmet', 'Espaço gourmet'),
+          fotoMHP('salao-de-festas', 'Salão de festas'),
+          fotoMHP('sports-bar', 'Sports bar'),
+          fotoMHP('grand-fitness', 'Grand fitness'),
+          fotoMHP('pilates', 'Pilates'),
+          fotoMHP('wellness', 'Wellness'),
+          fotoMHP('brinquedoteca', 'Brinquedoteca'),
+          fotoMHP('playground', 'Playground'),
+          fotoMHP('hall-residencial', 'Hall residencial', true),
+          fotoMHP('pet-place', 'Pet place'),
+          fotoMHP('living-105', 'Living da unidade de 105 m²'),
+          fotoMHP('terraco-66', 'Terraço da unidade de 66 m²'),
+          fotoMHP('piscina-studios', 'Piscina dos studios'),
+          fotoMHP('hall-studios', 'Hall dos studios', true),
+          fotoMHP('convivencia-studios', 'Área de convivência dos studios'),
+          fotoMHP('fitness-studios', 'Fitness dos studios'),
+          fotoMHP('lavanderia-studios', 'Lavanderia dos studios'),
+          fotoMHP('churrasqueira-studios', 'Churrasqueira dos studios'),
+          fotoMHP('coworking', 'Coworking'),
+          fotoMHP('studio-residencial', 'Studio residencial')
+        ]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
       ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
       ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
       ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
-      ['Raízes Jardim São Paulo', 'Jardim São Paulo', '3 e 4 dormitórios', '106 e 127 m²', 'Em construção'],
       ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
-      ['Haus Mitre Perdizes', 'Perdizes', '1 dormitório', '38 m²', 'Pronto para morar'],
       ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
       ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
       ['Raízes Premium Butantã', 'Butantã', '1 e 3 dormitórios', '39 e 119 m²', 'Pronto para morar'],
