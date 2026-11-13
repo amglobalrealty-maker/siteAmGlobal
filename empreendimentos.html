@@ -8295,7 +8295,9 @@
     // (10/11/2026) tirada em vetor do book e pintada no dourado do logo que ela mandou; 2x (200 px de altura)
     'Living': { src: 'fotos/parcerias/living.png', w: 367, h: 200 },
     // (11/11/2026) ela mandou branca no preto; invertida e recortada por amglobal-logo.cjs (opcao "inverter")
-    'Mitre': { src: 'fotos/parcerias/mitre.png', w: 406, h: 103 }
+    'Mitre': { src: 'fotos/parcerias/mitre.png', w: 406, h: 103 },
+    // (13/11/2026) ela mandou em cor no branco; fundo tirado mantendo o leao dourado
+    'Lavvi': { src: 'fotos/parcerias/lavvi.png', w: 800, h: 156 }
   };
 
   /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
@@ -8305,7 +8307,8 @@
      fora desta lista somem, e os lugares sem nenhuma aparecem como "a anunciar". As outras
      continuam em PAISES, guardadas com os exemplos: para trazer uma de volta, ponha o nome aqui
      e os empreendimentos dela em EMPREENDIMENTOS. Lista vazia = todas aparecem, em texto. */
-  var NO_AR = ['Vitacon', 'Living', 'Mitre'];
+  // (13/11/2026) Lavvi entra na lista; so aparece quando tiver EMPREENDIMENTOS['Lavvi']
+  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi'];
   var filtrado = NO_AR.length > 0;
   // as parcerias que aparecem numa cidade, cada uma com o indice original (o do endereco #pais/uf/cidade/indice)
   function parceriasDe(c) {
