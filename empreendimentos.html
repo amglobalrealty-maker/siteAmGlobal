@@ -616,7 +616,12 @@
       { nome: 'Santo André, São Bernardo do Campo e São Caetano do Sul', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo', 'São Caetano do Sul'], quantas: 3, texto: [
         'Santo André e São Bernardo do Campo formam o coração do Grande ABC, a região industrial que se tornou um dos mercados residenciais mais fortes da Grande São Paulo: 1,6 milhão de habitantes nas duas cidades, a 30 minutos do centro da capital pelas linhas 10-Turquesa e 18, pela Anchieta e pela Imigrantes, com universidades como a UFABC, hospitais de referência e o Parque Central e o Parque Celso Daniel entre os maiores da região.',
         'Em Santo André, o bairro Jardim concentra o alto padrão, ao redor do Parque Celso Daniel e do Grand Plaza Shopping; em São Bernardo, o Rudge Ramos faz divisa com a capital e com São Caetano, perto da Universidade Metodista. São bairros de ruas arborizadas e comércio consolidado, onde os lançamentos com lazer completo, serviços no condomínio e plantas de 2 a 4 dormitórios atendem famílias que querem ficar na região e investidores que buscam locação estável. São Caetano do Sul, a menor das três cidades e a de maior IDH do país, completa o trio com o bairro Cerâmica e o Espaço Cerâmica, na divisa com o Ipiranga.'
-      ], construtoras: ['Living', 'Mitre'] }
+      ], construtoras: ['Living', 'Mitre'] },
+      // (13/11/2026) Jaguariuna entrou com o Residencial Haras Patente, loteamento da Cyrela Urbanismo; textos meus, a confirmar
+      { nome: 'Jaguariúna', texto: [
+        'Jaguariúna fica na Região Metropolitana de Campinas, a cerca de 130 km da capital pela Rodovia Anhanguera e pela SP-340, com pouco mais de 60 mil habitantes, o Rio Jaguari e a Maria Fumaça que liga a cidade a Campinas. É conhecida pelos rodeios, pelos haras e por um polo de empresas de tecnologia e de alimentos.',
+        'O mercado imobiliário da cidade é de loteamentos fechados e casas, procurados por quem quer espaço e natureza perto de Campinas, do Aeroporto de Viracopos e das rodovias que levam à capital.'
+      ], construtoras: ['Cyrela'] }
     ] },
     { uf: 'RJ', nome: 'Rio de Janeiro', foto: 'fotos/lugares/rj.webp', cidades: [
       { nome: 'Rio de Janeiro', texto: [
@@ -889,6 +894,34 @@
   var fotoLGS = fotoEm(LGS), fotoLGL = fotoEm(LGL), fotoLGV = fotoEm(LGV), fotoLVT = fotoEm(LVT), fotoLEB = fotoEm(LEB), fotoLEP = fotoEm(LEP), fotoLCW = fotoEm(LCW), fotoLCE = fotoEm(LCE), fotoLLR = fotoEm(LLR), fotoLLS = fotoEm(LLS), fotoLHP = fotoEm(LHP), fotoLHR = fotoEm(LHR), fotoLHW = fotoEm(LHW), fotoLHA = fotoEm(LHA), fotoLJH = fotoEm(LJH), fotoLSX = fotoEm(LSX), fotoLPZ = fotoEm(LPZ), fotoLPT = fotoEm(LPT), fotoLPM = fotoEm(LPM), fotoLSF = fotoEm(LSF), fotoLSL = fotoEm(LSL), fotoLSE = fotoEm(LSE), fotoLTM = fotoEm(LTM), fotoLVD = fotoEm(LVD), fotoLVV = fotoEm(LVV), fotoLVR = fotoEm(LVR), fotoLVM = fotoEm(LVM), fotoLWL = fotoEm(LWL), fotoLWB = fotoEm(LWB), fotoLWR = fotoEm(LWR), fotoLWS = fotoEm(LWS);
   // (13/11/2026) lote Cyrela/Living: prefixos C01..C41 pelo numero do book
   var CY = 'fotos/parcerias/cyrela/';
+  // (13/11/2026) lote D: prefixos D01..D51 pelo numero do book (scratchpad/pdfs/cy2/mapa.txt)
+  var D01 = L + 'elegance/', fotoD01 = fotoEm(D01);
+  var D02 = L + 'wishtatuape/', fotoD02 = fotoEm(D02);
+  var D03 = CY + 'haraspatente/', fotoD03 = fotoEm(D03);
+  var D06 = L + 'harmony/', fotoD06 = fotoEm(D06);
+  var D07 = L + 'wishmooca/', fotoD07 = fotoEm(D07);
+  var D08 = CY + 'iconyc/', fotoD08 = fotoEm(D08);
+  var D12 = L + 'grandwishleopoldina/', fotoD12 = fotoEm(D12);
+  var D14 = L + 'nordview/', fotoD14 = fotoEm(D14);
+  var D15 = L + 'privilege/', fotoD15 = fotoEm(D15);
+  var D17 = CY + 'bothanicapartments/', fotoD17 = fotoEm(D17);
+  var D19 = CY + 'foryoumoema/', fotoD19 = fotoEm(D19);
+  var D21 = L + 'vitasaomiguel/', fotoD21 = fotoEm(D21);
+  var D22 = CY + 'legacy/', fotoD22 = fotoEm(D22);
+  var D24 = L + 'liber/', fotoD24 = fotoEm(D24);
+  var D25 = CY + 'isla/', fotoD25 = fotoEm(D25);
+  var D27 = CY + 'atmosfera/', fotoD27 = fotoEm(D27);
+  var D28 = CY + 'legacyklabin/', fotoD28 = fotoEm(D28);
+  var D31 = CY + 'auramoemaresidencial/', fotoD31 = fotoEm(D31);
+  var D32 = CY + 'foryouvilamariana/', fotoD32 = fotoEm(D32);
+  var D35 = CY + 'mond/', fotoD35 = fotoEm(D35);
+  var D38 = CY + 'thera/', fotoD38 = fotoEm(D38);
+  var D42 = L + 'classico/', fotoD42 = fotoEm(D42);
+  var D43 = CY + 'casasenses/', fotoD43 = fotoEm(D43);
+  var D44 = CY + 'epic/', fotoD44 = fotoEm(D44);
+  var D46 = CY + 'ontheskybelacintra/', fotoD46 = fotoEm(D46);
+  var D48 = L + 'homeboutiquestudios/', fotoD48 = fotoEm(D48);
+  var D49 = CY + 'zen/', fotoD49 = fotoEm(D49);
   var C01 = CY + 'greengarden/', fotoC01 = fotoEm(C01);
   var C02 = CY + 'escapeeden/', fotoC02 = fotoEm(C02);
   var C03 = CY + 'lismoema/', fotoC03 = fotoEm(C03);
@@ -1254,6 +1287,181 @@
     numeros: [['2', 'parques por perto: Ibirapuera e Aclimação'], ['3', 'shoppings: Pátio Paulista, Cidade São Paulo e Metrô Santa Cruz'], ['5', 'hospitais no mapa do book'], ['3', 'níveis de lazer suspensos']],
     polos: 'Por perto: estação Vila Mariana, Parque Ibirapuera, Parque da Aclimação, Shopping Pátio Paulista, Shopping Metrô Santa Cruz, HCor, Hospital Santa Catarina, Colégio Etapa, ESPM e Unifesp.',
     fonte: 'Fonte: mapa ilustrativo do book do Secret Garden (Google Maps).'
+  };
+  var REG_D01 = {
+    titulo: 'A região · Pari, perto do Brás',
+    texto: 'Na Rua Silva Teles, no Pari, a cerca de 850 metros da Estação Brás do Metrô e da CPTM: o Mercado Municipal e o Centro a poucos minutos, a Universidade Anhembi Morumbi a 11, o Anhembi a 14, o Shopping D a 11 e a Rodoviária do Tietê a 15. Bairro tradicional que se renova com empreendimentos residenciais, com fácil acesso à Marginal Tietê, à Radial Leste e à Avenida do Estado.',
+    numeros: [['850 m', 'da Estação Brás do Metrô e da CPTM'], ['4.563 m²', 'de terreno'], ['287', 'apartamentos em 2 torres'], ['59 e 69 m²', 'de 2 e 3 quartos']],
+    polos: 'Por perto: estação Brás (Metrô e CPTM), Mercado Municipal, Universidade Anhembi Morumbi, Anhembi, Shopping D, Associação Portuguesa de Desportos, Centro Médico São Francisco e Rodoviária do Tietê.',
+    fonte: 'Fonte: material do Living Elegance, com tempos do próprio material; endereço e datas pela corretagem (apto.vc, Lopes).'
+  };
+  var REG_D02 = {
+    titulo: 'A região · Tatuapé, ao lado do Parque do Piqueri',
+    texto: 'Na Rua São Felipe, no Tatuapé, ao lado do Parque do Piqueri e perto das estações Tatuapé e Carrão da Linha 3-Vermelha: os shoppings Metrô Tatuapé e Boulevard Tatuapé, colégios como o Agostiniano Mendel e o Esperanto, a UNIP Tatuapé, o Parque Municipal do Tatuapé, o Parque Estadual do Belém, o Sesc Belenzinho e a Marginal Tietê, num bairro consolidado da Zona Leste.',
+    numeros: [['2', 'estações de metrô por perto: Tatuapé e Carrão'], ['5.207 m²', 'de terreno'], ['1.100 m²', 'de área verde privativa'], ['193', 'apartamentos em 2 torres']],
+    polos: 'Por perto: estações Tatuapé e Carrão, Shopping Metrô Tatuapé, Shopping Metrô Boulevard Tatuapé, Parque do Piqueri, Parque Municipal do Tatuapé, Parque Estadual do Belém, Sesc Belenzinho, UNIP Tatuapé e Hospital Santa Virgínia.',
+    fonte: 'Fonte: book do Living Wish Tatuapé (agosto de 2019), croqui do próprio material.'
+  };
+  var REG_D03 = {
+    titulo: 'A região · Jaguariúna, perto de Campinas',
+    texto: 'Em Jaguariúna, no interior de São Paulo, a cerca de 10 minutos de Campinas e uma hora da capital, com acesso fácil às rodovias: o Residencial Haras Patente ocupa a área do antigo Haras Patente, dos irmãos Forelli, com árvores centenárias, alamedas existentes e as construções históricas do haras preservadas para o hipismo de lazer.',
+    numeros: [['30 mil m²', 'de espelho d’água'], ['1.500 m²', 'de sede do clube'], ['1.000 m²', 'de academia, com piscina coberta e aquecida'], ['900 a 1.105 m²', 'por lote, pela corretagem']],
+    polos: 'Por perto: Campinas, rodovias da região e o centro de Jaguariúna.',
+    fonte: 'Fonte: book do Residencial Haras Patente; distâncias e lotes pela corretagem.'
+  };
+  var REG_D06 = {
+    titulo: 'A região · Sacomã, no Ipiranga',
+    texto: 'Entre as ruas Salvador Pires de Lima, Alencar Araripe e Araújo Gondim, no Sacomã, distrito do Ipiranga: a estação Sacomã da Linha 2-Verde e o Expresso Tiradentes, a Rodovia Anchieta e a Avenida do Estado por perto, com fácil acesso ao Alto do Ipiranga, ao Parque da Independência e ao ABC.',
+    numeros: [['3', 'ruas de acesso: Salvador Pires de Lima, Alencar Araripe e Araújo Gondim'], ['61 a 116 m²', 'de 2 e 3 quartos ao garden'], ['20', 'espaços de lazer na implantação'], ['2018', 'entrega, pela corretagem']],
+    polos: 'Por perto: estação Sacomã (Linha 2-Verde e Expresso Tiradentes), Rodovia Anchieta, Av. do Estado, Av. Presidente Wilson, Parque da Independência e Museu do Ipiranga.',
+    fonte: 'Fonte: book do Living Harmony (maio de 2017); entorno a confirmar.'
+  };
+  var REG_D07 = {
+    titulo: 'A região · Mooca',
+    texto: 'Na Rua Visconde de Cairu, na Mooca, um dos bairros mais tradicionais e queridos de São Paulo: a estação Juventus da CPTM a 6 minutos, a Bresser-Mooca do Metrô a 10, o Parque da Mooca a 7, o Clube Atlético Juventus a 6, o Mooca Plaza Shopping a 10, a Universidade São Judas a 8, o Teatro Artur Azevedo a 8 e cantinas e padarias tradicionais como a Di Cunto a 3.',
+    numeros: [['6 min', 'da estação Juventus da CPTM'], ['10 min', 'da estação Bresser-Mooca do Metrô'], ['6.627 m²', 'de terreno'], ['177', 'apartamentos em 2 torres']],
+    polos: 'Por perto: estações Juventus, Mooca e Brás da CPTM, Bresser-Mooca do Metrô, Parque da Mooca, Clube Atlético Juventus, Mooca Plaza Shopping, Universidade São Judas Tadeu, Sesc Belenzinho, Teatro Artur Azevedo e Di Cunto.',
+    fonte: 'Fonte: book do Living Wish Mooca (maio de 2019), com tempos do próprio material.'
+  };
+  var REG_D08 = {
+    titulo: 'A região · Vila Clementino, ao lado do Ibirapuera',
+    texto: 'Na Rua Loefgren, 2.527, a poucos metros do Parque Ibirapuera, entre a Vila Clementino e a Vila Mariana: ruas arborizadas, a Avenida Ibirapuera e a Avenida 23 de Maio por perto, o polo de hospitais e universidades da Vila Clementino e o comércio da Vila Mariana. O book apresenta o projeto como um cartão-postal de Nova York entre o Ibirapuera e a cidade.',
+    numeros: [['158 a 269 m²', 'do apartamento de 4 dormitórios ao duplex'], ['2', 'vagas vinculadas no apartamento de 158 m²'], ['25 m', 'de raia na piscina adulto do 2º pavimento'], ['2023', 'entrega, pela corretagem']],
+    polos: 'Por perto: Parque Ibirapuera, Av. Ibirapuera, Av. 23 de Maio, Rua Pedro de Toledo, os hospitais e universidades da Vila Clementino e o comércio da Vila Mariana.',
+    fonte: 'Fonte: book do Cyrela Iconyc The Residences (novembro de 2019); entrega pela corretagem; pontos próximos por localização, a confirmar.'
+  };
+  var REG_D12 = {
+    titulo: 'A região · Vila Leopoldina, perto do Villa-Lobos',
+    texto: 'Na Rua Fröben, na Vila Leopoldina, a 5 minutos de carro do Parque Villa-Lobos: um dos parques mais amplos de São Paulo, com 732 mil m², ciclovia, quadras, campos de futebol, pistas de cooper, playground e anfiteatro. Ao lado ficam o Shopping Villa-Lobos, com praça de alimentação, cinema e teatro, a Beacon School, escola bilíngue reconhecida como IB World School, e o Sesi Vila Leopoldina, com biblioteca e quadras. Supermercados, hortifrútis, academias e padarias completam a rotina do bairro.',
+    numeros: [['5 min', 'de carro do Parque Villa-Lobos'], ['732 mil m²', 'de área do Parque Villa-Lobos'], ['4.300 m²', 'de terreno, com mais de 4.300 m²'], ['71 a 119 m²', 'de 2 suítes a 4 quartos']],
+    polos: 'Por perto: Parque Villa-Lobos, Parque Leopoldina, Shopping Villa-Lobos, Beacon School, Escola Vera Cruz, Sesi Vila Leopoldina, Pão de Açúcar, St. Marche, Oba Hortifruti, Sam\'s Club, Carrefour e Smart Fit.',
+    fonte: 'Fonte: book do empreendimento (agosto de 2020), tempo pelo Google Maps citado no próprio material.'
+  };
+  var REG_D14 = {
+    titulo: 'A região · Santana, Zona Norte',
+    texto: 'Santana é o bairro mais tradicional da Zona Norte de São Paulo: ruas residenciais arborizadas, comércio forte na Rua Voluntários da Pátria, a Linha 1-Azul do metrô com as estações Santana e Jardim São Paulo, o Shopping Center Norte e o Lar Center por perto e acesso rápido ao Centro pela Avenida Cruzeiro do Sul. O Living Nord View fica numa rua tranquila do bairro, com duas torres baixas e lazer completo.',
+    numeros: [['3.645,05 m²', 'de terreno'], ['2', 'torres baixas, térreo mais 8 pavimentos'], ['139', 'unidades, 11 delas gardens'], ['64 a 80 m²', 'de 2 a 3 quartos, com 1 ou 2 vagas']],
+    polos: 'Por perto: estações Santana e Jardim São Paulo da Linha 1-Azul, Rua Voluntários da Pátria, Avenida Cruzeiro do Sul, Shopping Center Norte, Lar Center, Parque da Juventude e Horto Florestal.',
+    fonte: 'Fonte: material de vendas do Living Nord View; polos da região por conhecimento geral, a confirmar.'
+  };
+  var REG_D15 = {
+    titulo: 'A região · Barra Funda e Água Branca',
+    texto: 'Na Rua Iporanga, entre a Barra Funda e a Água Branca, na Zona Oeste: um bairro em transformação, com o Parque da Água Branca, o Memorial da América Latina e o Allianz Parque por perto, e acesso rápido ao Terminal Barra Funda, que reúne metrô, trens da CPTM e ônibus intermunicipais, às marginais e ao centro.',
+    numeros: [['8.344 m²', 'de terreno'], ['3', 'torres, em 4 blocos'], ['258', 'apartamentos'], ['61 a 93 m²', 'de 2 a 3 quartos']],
+    polos: 'Por perto: Parque da Água Branca, Terminal Barra Funda (metrô, CPTM e rodoviária), Memorial da América Latina, Allianz Parque, Shopping West Plaza e Marginal Tietê.',
+    fonte: 'Fonte: material de treinamento do Living Privilège; os pontos da região são de localização geral, a confirmar.'
+  };
+  var REG_D17 = {
+    titulo: 'A região · Campo Belo',
+    texto: 'Campo Belo é um bairro residencial e arborizado da Zona Sul, entre Moema, o Brooklin e o Aeroporto de Congonhas, com ruas tranquilas, comércio de bairro, restaurantes e acesso rápido às avenidas Vereador José Diniz, Santo Amaro e Washington Luís. O Bothanic fica entre a Rua Antônio Comparato e a Rua Domingos Lopes, a poucos minutos da estação Eucaliptos da Linha 5-Lilás.',
+    numeros: [['14 min', 'da estação Eucaliptos da Linha 5-Lilás, pela corretagem'], ['6,85 m', 'de altura do lazer elevado'], ['75 m²', 'de lobby com pé-direito duplo'], ['30 e 42 m²', 'as unidades das perspectivas']],
+    polos: 'Por perto: estações Eucaliptos e Campo Belo da Linha 5-Lilás, Av. Vereador José Diniz, Av. Santo Amaro, Av. Washington Luís, Aeroporto de Congonhas, Moema e o Brooklin.',
+    fonte: 'Fonte: material de vendas do Bothanic Campo Belo; distância do metrô pelo apto.vc; polos por conhecimento geral, a confirmar.'
+  };
+  var REG_D19 = {
+    titulo: 'A região · Moema, Eucaliptos',
+    texto: 'Na esquina da Alameda dos Arapanés com a Avenida dos Eucaliptos, em Moema: a dez passos da estação Eucaliptos da Linha 5-Lilás, a uma faixa de pedestres do Shopping Ibirapuera e a poucas pedaladas do Parque Ibirapuera, num bairro arborizado com 9,8 km de ciclovia e o Aeroporto de Congonhas a seis minutos.',
+    numeros: [['10 passos', 'da estação Eucaliptos, Linha 5-Lilás'], ['6 min', 'do Aeroporto de Congonhas'], ['1 faixa', 'de pedestres até o Shopping Ibirapuera'], ['9,8 km', 'de ciclovia no bairro']],
+    polos: 'Por perto: estação Eucaliptos, Shopping Ibirapuera, Parque Ibirapuera, Av. Ibirapuera, Av. dos Bandeirantes e Aeroporto de Congonhas.',
+    fonte: 'Fonte: book do Cyrela For You Moema (julho de 2020).'
+  };
+  var REG_D21 = {
+    titulo: 'A região · Vila Jacuí, São Miguel Paulista',
+    texto: 'Na Vila Jacuí, perto da Avenida São Miguel, em frente à Praça Morumbizinho: supermercados, escolas e o comércio da Avenida São Miguel por perto, a estação São Miguel Paulista da CPTM e o acesso ao Parque Ecológico do Tietê e ao Centro Cultural Tietê, na Zona Leste.',
+    numeros: [['4.371 m²', 'de terreno'], ['2', 'torres de térreo e 8 pavimentos'], ['138', 'apartamentos'], ['54 e 66 m²', 'de 2 e 3 dormitórios']],
+    polos: 'Por perto: Praça Morumbizinho, Av. São Miguel, Estrada d\'Ávila, Parque Ecológico do Tietê, Centro Cultural Tietê, estação São Miguel Paulista da CPTM e supermercados.',
+    fonte: 'Fonte: book do Vita São Miguel (2011); endereço pela corretagem (QuintoAndar e apto.vc).'
+  };
+  var REG_D22 = {
+    titulo: 'A região · Brooklin, Rua Laplace',
+    texto: 'Na Rua Laplace, entre o Brooklin e o Campo Belo: bairro residencial de ruas arborizadas na Zona Sul, perto das avenidas Santo Amaro, Vereador José Diniz e Roberto Marinho, da Linha 5-Lilás do metrô e dos centros de negócios da Berrini e da Chucri Zaidan, com comércio, restaurantes e escolas a poucos minutos.',
+    numeros: [['1.777 m²', 'de terreno total'], ['2', 'apartamentos por andar, com elevador social privativo'], ['54', 'unidades na torre residencial'], ['165 a 330 m²', 'do apartamento-tipo ao duplex']],
+    polos: 'Por perto: Av. Santo Amaro, Av. Vereador José Diniz, Av. Roberto Marinho, Linha 5-Lilás do metrô, Berrini, Chucri Zaidan e Aeroporto de Congonhas.',
+    fonte: 'Fonte: ficha técnica do book (terreno, unidades e metragens); descrição do bairro geral, a confirmar.'
+  };
+  var REG_D24 = {
+    titulo: 'A região · Vila Prudente e Vila Alpina',
+    texto: 'Na divisa da Vila Prudente com a Vila Alpina, na Zona Leste, perto da Mooca, do Ipiranga e do Tatuapé e no caminho de Santo André e São Caetano do Sul: bairro residencial com comércio de rua, supermercados, a Linha 2-Verde e a Linha 15-Prata do metrô na estação Vila Prudente e acesso à Avenida Professor Luiz Ignácio Anhaia Mello.',
+    numeros: [['43 a 60 m²', 'de 2 quartos a 3 quartos com suíte'], ['7', 'espaços de lazer, com piscina e quadra'], ['2', 'linhas de metrô na estação Vila Prudente'], ['ABC', 'Santo André e São Caetano por perto']],
+    polos: 'Por perto: estação Vila Prudente (linhas 2-Verde e 15-Prata), Av. Professor Luiz Ignácio Anhaia Mello, Mooca, Ipiranga, Tatuapé, Santo André e São Caetano do Sul.',
+    fonte: 'Fonte: mapa da apresentação do Liber; endereço pelo QuintoAndar; polos por conhecimento geral, a confirmar.'
+  };
+  var REG_D25 = {
+    titulo: 'A região · Santo Amaro, perto da Avenida João Dias',
+    texto: 'Na Rua Bento Branco de Andrade Filho, em Santo Amaro: região revitalizada e em expansão entre a Avenida João Dias, a Rua Laguna e a Marginal Pinheiros, com o Shopping Market Place, o Morumbi Shopping, o Parque Burle Marx, o Parque da Cidade e o Severo Gomes, o Hospital Albert Einstein e o Clube Hípico por perto.',
+    numeros: [['15 mil m²', 'de terreno'], ['4 mil m²', 'de área verde, com mais de 500 árvores plantadas'], ['+ de 20', 'itens de lazer'], ['3', 'torres, em duas fases']],
+    polos: 'Por perto: Av. João Dias, Rua Laguna, Ponte Laguna, Marginal Pinheiros, Shopping Market Place, Morumbi Shopping, Parque Burle Marx, Parque da Cidade, Parque Severo Gomes, Hospital Albert Einstein e Clube Hípico de Santo Amaro.',
+    fonte: 'Fonte: foto aérea da região e textos do book.'
+  };
+  var REG_D27 = {
+    titulo: 'A região · Vila Mariana, perto da Ana Rosa',
+    texto: 'Na Rua Gregório Serrão, na Vila Mariana, entre o Parque da Aclimação e a Avenida Paulista: a 500 metros da estação Ana Rosa e a 800 metros da estação Vila Mariana do metrô, com bares tradicionais como o Bar Veloso, faculdades como ESPM, FMU e Belas Artes e os hospitais Oswaldo Cruz, Santa Catarina e HCor a poucos quilômetros.',
+    numeros: [['500 m', 'da estação Ana Rosa do metrô'], ['1,9 km', 'do Parque da Aclimação'], ['9 min', 'da Avenida Paulista'], ['65 a 131 m²', 'de 2 dormitórios a 3 suítes']],
+    polos: 'Por perto: estações Ana Rosa e Vila Mariana, Bar Veloso, ESPM, FMU, Belas Artes, SESC Vila Mariana, Shopping Paulista, HCor, Hospital Oswaldo Cruz, Hospital Santa Catarina, Parque da Aclimação e Parque Ibirapuera.',
+    fonte: 'Fonte: mapa de localização do material do Cyrela Atmosfera Vila Mariana.'
+  };
+  var REG_D28 = {
+    titulo: 'A região · Chácara Klabin, Rua Davi Hume',
+    texto: 'Na Rua Davi Hume, na Chácara Klabin, entre a Vila Mariana e o Ipiranga: bairro residencial de ruas arborizadas, perto da estação Chácara Klabin, onde se cruzam as linhas 2-Verde e 5-Lilás do metrô, do Parque da Aclimação, do Museu do Ipiranga e da Rua Vergueiro, com acesso rápido à Avenida Ricardo Jafet e à Imigrantes.',
+    numeros: [['2.878 m²', 'de terreno, em três subcondomínios'], ['20', 'pavimentos sobre o térreo'], ['78', 'apartamentos, 4 por andar'], ['147,5 m²', 'com 3 suítes e 2 vagas']],
+    polos: 'Por perto: estação Chácara Klabin (linhas 2-Verde e 5-Lilás), Rua Vergueiro, Parque da Aclimação, Parque da Independência, Museu do Ipiranga, Av. Ricardo Jafet e Rodovia dos Imigrantes.',
+    fonte: 'Fonte: ficha técnica do book (terreno e unidades); descrição do bairro geral, a confirmar.'
+  };
+  var REG_D32 = {
+    titulo: 'A região · Vila Mariana, Rua Carlos Petit',
+    texto: 'Na Rua Carlos Petit, na Vila Mariana: bairro tradicional e bem servido, perto das estações Santa Cruz e Ana Rosa do metrô, da Rua Domingos de Morais, do Shopping Santa Cruz, do Parque Ibirapuera e do Parque da Aclimação, com universidades, hospitais e comércio de bairro a poucos minutos.',
+    numeros: [['2.079 m²', 'de terreno'], ['19', 'pavimentos-tipo, com 15 unidades por andar'], ['239', 'unidades na ficha técnica'], ['25 a 46 m²', 'do studio ao 1 dormitório']],
+    polos: 'Por perto: estações Santa Cruz e Ana Rosa, Rua Domingos de Morais, Shopping Santa Cruz, Parque Ibirapuera, Parque da Aclimação e Av. 23 de Maio.',
+    fonte: 'Fonte: ficha técnica do book (terreno e unidades); descrição do bairro geral, a confirmar.'
+  };
+  var REG_D35 = {
+    titulo: 'A região · Vila Leopoldina',
+    texto: 'Na Rua Lauriano Fernandes Júnior, na Vila Leopoldina, Zona Oeste: bairro em transformação entre a Marginal Pinheiros, a Lapa e o Alto de Pinheiros, com ruas residenciais, parques próximos e acesso rápido à Marginal e às avenidas da região. O terreno tem 210 metros de frente e cerca de 12 mil m², com mais de 2.900 m² de área verde e centenas de árvores.',
+    numeros: [['12.000 m²', 'de terreno, com 210 m de frente'], ['2.900 m²', 'de área verde, com centenas de árvores'], ['30%', 'a mais de luz natural que outros projetos da Cyrela, pela simulação do CTE'], ['69 e 88 m²', 'de 2 e 3 dormitórios']],
+    polos: 'Por perto: Marginal Pinheiros, Ceagesp, Parque Villa-Lobos, Lapa, Alto de Pinheiros e a estação Villa-Lobos/Jaguaré da CPTM.',
+    fonte: 'Fonte: book do Cyrela Mond (abril de 2019); entorno descrito pela localização.'
+  };
+  var REG_D38 = {
+    titulo: 'A região · Ibirapuera, Vila Clementino',
+    texto: 'Entre a Vila Clementino e o Ibirapuera, perto do Parque Ibirapuera e do polo de saúde da região, com hospitais, clínicas e laboratórios de referência, o metrô da Linha 5-Lilás e as avenidas Ibirapuera, República do Líbano e 23 de Maio.',
+    numeros: [['27 e 35 m²', 'nos studios'], ['60 a 77 m²', 'nos apartamentos'], ['26º', 'pavimento com piscina de raia de 20 m e o Diamond Prism'], ['112', 'studios, pela corretagem']],
+    polos: 'Por perto: Parque Ibirapuera, Av. Ibirapuera, Av. República do Líbano, Av. 23 de Maio, Shopping Ibirapuera e os hospitais da Vila Clementino.',
+    fonte: 'Fonte: book do Thera e corretagem (apto.vc); entorno descrito pela localização.'
+  };
+  var REG_D42 = {
+    titulo: 'A região · Barra Funda, Zona Oeste',
+    texto: 'A Barra Funda une o Terminal Intermodal (metrô Linha 3-Vermelha, CPTM e rodoviária), o Memorial da América Latina, a Allianz Parque e o Sesc Pompeia num bairro que se renovou com prédios residenciais e serviços, a minutos da Água Branca, de Perdizes e da Lapa. O Living Clássico fica na Rua Anhanguera, numa quadra residencial do bairro.',
+    numeros: [['4.093 m²', 'de terreno'], ['228', 'apartamentos'], ['19', 'andares, 12 unidades por andar'], ['67 e 83 m²', 'de 2 e 3 dormitórios com suíte']],
+    polos: 'Por perto: Terminal Barra Funda (metrô, CPTM e rodoviária), Memorial da América Latina, Allianz Parque, Sesc Pompeia, Parque da Água Branca, Shopping West Plaza, Perdizes e a Lapa.',
+    fonte: 'Fonte: comparativo de vendas da Living; polos por conhecimento geral, a confirmar.'
+  };
+  var REG_D43 = {
+    titulo: 'A região · Brooklin',
+    texto: 'Na Rua Flórida, no Brooklin, perto da Avenida Berrini e da Marginal Pinheiros: o centro das oportunidades da Zona Sul, com o Shopping JK Iguatemi, o Insper, escolas bilíngues, o Hospital Albert Einstein e a estação Campo Belo da Linha 5-Lilás a poucos minutos, e a ciclovia da Berrini e a Sociedade Hípica Paulista por perto.',
+    numeros: [['7 min', 'da estação Campo Belo, Linha 5-Lilás'], ['9 min', 'do Shopping JK Iguatemi'], ['12 min', 'do Insper'], ['14 min', 'do Aeroporto de Congonhas']],
+    polos: 'Por perto: Laboratório Fleury, Hospital Albert Einstein, Hospital São Luiz e Vila Nova Star, Shopping JK Iguatemi, Shopping Cidade Jardim, Morumbi Shopping, Senses Montessori School, Colégio Stockler, Pueri Domus, Sociedade Hípica Paulista e Parque do Povo.',
+    fonte: 'Fonte: book do Casa Senses Apartments, com tempos do próprio material.'
+  };
+  var REG_D44 = {
+    titulo: 'A região · Pinheiros',
+    texto: 'Na Rua dos Pinheiros, entre a Rua Joaquim Antunes e a Avenida Rebouças, no coração do bairro mais desejado da cidade: restaurantes, cafés, bares, lojas e galerias, o Instituto Tomie Ohtake, a Praça Benedito Calixto, o MIS e a Casa Natura Musical, com as estações Fradique Coutinho e Oscar Freire da Linha 4-Amarela e as avenidas Brigadeiro Faria Lima, Rebouças e Europa a poucos minutos.',
+    numeros: [['24,5 a 32 m²', 'nos studios e apartamentos'], ['14º', 'pavimento com piscina, pool house e solarium'], ['2', 'estações da Linha 4-Amarela por perto'], ['371', 'na Rua dos Pinheiros']],
+    polos: 'Por perto: estações Fradique Coutinho e Oscar Freire, Av. Brigadeiro Faria Lima, Av. Rebouças, Av. Europa, Rua Henrique Schaumann, Shopping Iguatemi, Shopping Eldorado, Mercado Municipal de Pinheiros, Instituto Tomie Ohtake e Praça Benedito Calixto.',
+    fonte: 'Fonte: book do Epic Apartments.'
+  };
+  var REG_D46 = {
+    titulo: 'A região · Consolação, entre a Paulista, Higienópolis e os Jardins',
+    texto: 'Na Rua Bela Cintra, com frente também para a Rua da Consolação, a poucos passos da Avenida Paulista: região de universidades, hospitais e cultura, com três estações de metrô por perto (Paulista, Consolação e Higienópolis-Mackenzie), o Masp, o Shopping Cidade São Paulo e o Shopping Higienópolis, e acesso rápido à Avenida Rebouças, à Avenida Doutor Arnaldo e à Avenida 23 de Maio.',
+    numeros: [['3', 'estações de metrô por perto: Paulista, Consolação e Higienópolis-Mackenzie'], ['5', 'faculdades e colégios no mapa do book: PUC, Mackenzie, FAAP, FGV e Dante Alighieri'], ['29 a 119,5 m²', 'do studio ao garden'], ['9º', 'andar do lazer do The Apartments']],
+    polos: 'Por perto: Av. Paulista, Masp, Shopping Cidade São Paulo, Shopping Higienópolis, Hospital Sírio-Libanês, PUC Consolação, Mackenzie, FAAP, FGV, Colégio Dante Alighieri, São Paulo Athletic Club, Club Homs e o Estádio do Pacaembu.',
+    fonte: 'Fonte: mapa de localização do book do On The Sky Bela Cintra The Apartments.'
+  };
+  var REG_D49 = {
+    titulo: 'A região · Ibirapuera',
+    texto: 'Na Rua Leopoldo de Bulhões, entre a Avenida Ibirapuera, a Rua Ipê e a Rua Dra. Neyde Aparecida Sollitto, ao lado do Parque Ibirapuera: ruas arborizadas e residenciais entre Moema e a Vila Nova Conceição, com o parque, o Shopping Ibirapuera, o metrô da Linha 5-Lilás e as avenidas República do Líbano e Brasil por perto.',
+    numeros: [['2', 'torres'], ['320,75 m²', 'na Torre 1, com elevador panorâmico'], ['277,10 m²', 'na Torre 2, com elevador privativo'], ['25 m', 'de raia na piscina coberta']],
+    polos: 'Por perto: Parque Ibirapuera, Av. Ibirapuera, Av. República do Líbano, Shopping Ibirapuera, estações Eucaliptos e Moema da Linha 5-Lilás e Clube Atlético Monte Líbano.',
+    fonte: 'Fonte: book do Zen Cyrela & Yoo; entorno descrito pela localização.'
   };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
@@ -6497,6 +6705,261 @@
         legal: 'Incorporadora CBR 033 Empreendimentos Imobiliários Ltda. Empreendimento registrado sob nº 2 na matrícula 201.600 do 4º Cartório de Registro de Imóveis de São Paulo. Área não contaminada (CETESB 45/00679/21). Ar-condicionado entregue só como infraestrutura, em um ambiente. Comercialização: Cyrela, Creci J-17.592. Material preliminar de agosto de 2022, sujeito a alteração. Pela corretagem (apto.vc): lançado em fevereiro de 2023 e entregue em outubro de 2025 (outro portal cita junho de 2025); disponibilidade sob consulta.',
         torre: C31 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_C31,
         fotos: [fotoC31('fachada', 'Fachada', true), fotoC31('acesso', 'Acesso'), fotoC31('praca-central', 'Praça central'), fotoC31('coffee-lounge', 'Coffee Lounge'), fotoC31('bar-beach-tennis', 'Bar Beach Tennis'), fotoC31('beach-tennis', 'Beach Tennis'), fotoC31('fitness', 'Fitness'), fotoC31('coworking', 'Coworking'), fotoC31('laundry', 'Laundry'), fotoC31('piscina', 'Piscina'), fotoC31('sky-lounge', 'Sky Lounge'), fotoC31('sky-deck', 'Sky Deck'), fotoC31('sky-garden-grill', 'Sky Garden & Grill')]
+      },
+      {
+        nome: 'Home Boutique by Living Campo Belo Studios',
+        cidade: 'São Paulo, capital', bairro: 'Campo Belo',
+        resumo: 'Studios · 24 e 25 m²',
+        tipo: 'Studio', status: 'Lançamento',
+        texto: 'Os studios do Home Boutique by Living Campo Belo, na Rua Barão do Triunfo, esquina com a Rua Rita Joana de Souza, perto da Rua Gabriele D’Annunzio e de Moema: studios de alto padrão com foco em rentabilidade, no 2º e no 3º pavimento da torre, com a mesma proposta de hotel boutique do residencial, o The Lobby de pé-direito duplo e lavanderia. Plantas de 24 e 25 m², com espaço para ar-condicionado, ponto para cooktop e chuveiro elétricos e tomadas USB. Lançado em setembro de 2025, pela corretagem.',
+        area: ['Studio de 24 m²', 'Studio de 25 m²'],
+        tipologia: 'Studios',
+        vagas: 'Studios sem vaga',
+        torres: 'Studios do 2º e do 3º pavimento da torre única de 24 pavimentos do Home Boutique by Living Campo Belo',
+        valores: 'Sob consulta',
+        endereco: 'Rua Barão do Triunfo, 2017 · Campo Belo, São Paulo',
+        infra: { piscina: '', academia: '', festas: '', gourmet: '', kids: '', quadra: '', portaria: 'The Lobby com pé-direito duplo, entradas social e de serviço', coworking: 'Lavanderia' },
+        lazerGrupos: [['Para os studios', ['The Lobby', 'Lavanderia']]],
+        diferenciais: ['Studios com foco em rentabilidade, na região mais valorizada do Campo Belo', 'Espaço para ar-condicionado', 'Ponto para cooktop e chuveiro elétricos', 'Tomadas USB'],
+        creditos: [['Incorporação e construção', 'Living']],
+        plantas: [{ src: D48 + 'planta-24.webp', nome: '24 m² · studio', meta: 'Planta padrão' }, { src: D48 + 'planta-25.webp', nome: '25 m² · studio', meta: 'Planta padrão' }],
+        implantacao: [],
+        legal: 'Material de vendas da Living (book dos studios), sem o texto de registro. Pelo memorial do Home Boutique by Living Campo Belo (Living Colombo Empreendimentos Imobiliários Ltda., prenotado sob nº 1.094.299 no 15º Oficial de Registro de Imóveis de São Paulo): studios dos finais 1 a 12, do 2º ao 3º pavimento, sem direito a vaga; o studio de final 3 do 2º pavimento é unidade do subcondomínio 1, para hóspedes dos moradores. Pela corretagem: lançamento em setembro de 2025 e entrega prevista para 2028/2029; disponibilidade sob consulta.',
+        torre: D48 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_CAMPO_BELO,
+        fotos: [fotoD48('fachada', 'Fachada', true), fotoD48('embasamento', 'Embasamento'), fotoD48('acesso', 'Acesso pela rua arborizada'), fotoD48('portal', 'O portal de entrada'), fotoD48('portal-2', 'O portal de entrada'), fotoD48('lobby', 'The Lobby'), fotoD48('lavanderia', 'Lavanderia')]
+      },
+      {
+        nome: 'Liber Vila Prudente',
+        cidade: 'São Paulo, capital', bairro: 'Vila Alpina',
+        resumo: '2 e 3 quartos · 43 a 60 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Costa Barros, entre a Vila Prudente e a Vila Alpina, na Zona Leste: apartamentos de 2 quartos (43 e 44,20 m²) e de 3 quartos com suíte (59,63 m²), com lazer de piscina, quadra, salão de festas, salão de jogos, fitness, espaço mulher e brinquedoteca. Realização Cytec, construção Tecnum, comercialização Habitcasa e Living. Empreendimento já entregue.',
+        area: ['43 m²: 2 quartos', '44,20 m²: 2 quartos', '59,63 m²: 3 quartos com suíte'],
+        tipologia: 'Apartamentos de 2 e 3 quartos',
+        vagas: 'Sob consulta',
+        torres: 'Sob consulta',
+        valores: 'Sob consulta',
+        endereco: 'Rua Costa Barros, 2363 · Vila Alpina, São Paulo',
+        infra: { piscina: 'Piscina', academia: 'Fitness', festas: 'Salão de festas e salão de jogos', gourmet: '', kids: 'Brinquedoteca', quadra: 'Quadra', portaria: '', coworking: 'Espaço mulher' },
+        lazerGrupos: [['Lazer', ['Piscina', 'Quadra', 'Salão de festas', 'Salão de jogos', 'Fitness', 'Espaço mulher', 'Brinquedoteca']]],
+        diferenciais: ['Espaço mulher', 'Quadra e piscina no térreo'],
+        creditos: [['Realização', 'Cytec'], ['Construção', 'Tecnum'], ['Comercialização', 'Habitcasa e Living']],
+        plantas: [{ src: D24 + 'planta-43.webp', nome: '43 m² · 2 quartos', meta: 'Planta tipo' }, { src: D24 + 'planta-44.webp', nome: '44,20 m² · 2 quartos', meta: 'Planta tipo' }, { src: D24 + 'planta-60.webp', nome: '59,63 m² · 3 quartos', meta: 'Suíte' }],
+        implantacao: [],
+        legal: 'Apresentação de vendas antiga, só com imagens, sem texto de registro nem data; não há fachada no material, a imagem principal é a da piscina com a torre ao fundo. Endereço e faixa de 42 a 72 m² pelo QuintoAndar ("Condomínio Liber Vila Prudente"). A corretagem não informa datas; o empreendimento está entregue. Disponibilidade sob consulta.',
+        torre: D24 + 'piscina.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D24,
+        fotos: [fotoD24('piscina', 'Piscina'), fotoD24('quadra', 'Quadra'), fotoD24('salao-de-festas', 'Salão de festas'), fotoD24('salao-de-jogos', 'Salão de jogos'), fotoD24('fitness', 'Fitness'), fotoD24('espaco-mulher', 'Espaço mulher'), fotoD24('brinquedoteca', 'Brinquedoteca')]
+      },
+      {
+        nome: 'Living Clássico',
+        cidade: 'São Paulo, capital', bairro: 'Barra Funda',
+        resumo: '2 e 3 dormitórios · 67 e 83 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Anhanguera, 416, na Barra Funda: torre única com dois blocos (Bayard e Fontaine), 19 andares e 12 unidades por andar, num terreno de 4.093 m², com 228 apartamentos de 2 dormitórios com suíte (67 m²) e de 3 dormitórios com suíte (83 m²), 1 ou 2 vagas no subsolo. Varanda integrada com espaço para sofá ou mesa de 8 lugares, cozinha integrada à varanda, smart home e piso laminado. Lazer com piscina, área de convivência, churrasqueira, lobby, salão de festas, espaço gourmet, salão de jogos, academia, brinquedoteca e jardim. Lançado em março de 2020 e entregue, pela corretagem.',
+        area: ['67 m²: 2 dormitórios com suíte', '83 m²: 3 dormitórios com suíte'],
+        tipologia: 'Apartamentos de 2 e 3 dormitórios',
+        banheiros: 'Suíte e banheiro social, os dois com ventilação natural',
+        vagas: '1 ou 2 vagas, no subsolo',
+        torres: 'Torre única com dois blocos (Bayard e Fontaine), 19 andares e 12 unidades por andar (6 por bloco), 6 elevadores',
+        unidades: ['228 apartamentos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Anhanguera, 416 · Barra Funda, São Paulo',
+        infra: { piscina: 'Piscina', academia: 'Academia', festas: 'Salão de festas e salão de jogos', gourmet: 'Churrasqueira e espaço gourmet', kids: 'Brinquedoteca', quadra: '', portaria: 'Lobby e acesso de serviço independente', coworking: 'Área de convivência e jardim' },
+        lazerGrupos: [['Lazer', ['Lobby', 'Piscina', 'Área de convivência', 'Churrasqueira', 'Salão de festas', 'Espaço gourmet', 'Salão de jogos', 'Academia', 'Brinquedoteca', 'Jardim']]],
+        diferenciais: ['Varanda integrada, com espaço para sofá ou mesa de 8 lugares', 'Suíte e dormitórios maiores que a média da região, segundo o material', 'Smart home e piso laminado', 'Dois banheiros ventilados'],
+        creditos: [['Incorporação', 'Living']],
+        plantas: [{ src: D42 + 'planta-67.webp', nome: '67 m² · 2 dormitórios', meta: 'Suíte' }, { src: D42 + 'planta-83.webp', nome: '83 m² · 3 dormitórios', meta: 'Suíte' }],
+        implantacao: [{ src: D42 + 'implantacao.webp', nome: 'Implantação', meta: '' }],
+        legal: 'Dados e imagens tirados de um comparativo interno de vendas da Living (o material também mostra um concorrente, que não entrou). O material dá entrega em março de 2022; pela corretagem (apto.vc), lançado em março de 2020, com entrega prevista para dezembro de 2021 e pronto para morar. As imagens são pequenas, do próprio comparativo. Disponibilidade sob consulta.',
+        torre: D42 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D42,
+        fotos: [fotoD42('fachada', 'Fachada', true), fotoD42('piscina', 'Piscina'), fotoD42('convivencia', 'Convivência'), fotoD42('churrasqueira', 'Churrasqueira'), fotoD42('jardim', 'Jardim'), fotoD42('lobby', 'Lobby'), fotoD42('salao-de-festas', 'Salão de festas'), fotoD42('gourmet', 'Gourmet'), fotoD42('salao-de-jogos', 'Salão de jogos'), fotoD42('academia', 'Academia'), fotoD42('brinquedoteca', 'Brinquedoteca')]
+      },
+      {
+        nome: 'Living Elegance São Paulo',
+        cidade: 'São Paulo, capital', bairro: 'Pari',
+        resumo: '2 e 3 quartos · 59 a 69 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Silva Teles, no Pari, a cerca de 850 metros da Estação Brás: duas torres de 20 e 21 pavimentos num terreno de 4.563 m², com 287 apartamentos de 59 m² (2 quartos com suíte, 1 vaga) e 69 m² (3 quartos com suíte, ou 2 quartos com sala ampliada, 2 vagas), todos com churrasqueira na varanda, além de unidades garden no 3º pavimento e duas unidades especiais no 20º. Lazer no 3º pavimento com piscina com raia de 18 m, academia de 118 m², salão de festas de 100 m², pub, churrasqueira, brinquedoteca, games, sala de poker e quadra. Lançado em junho de 2019 e entregue em junho de 2021, pela corretagem.',
+        area: ['59 m²: 2 quartos com suíte e churrasqueira na varanda, 1 vaga (143 unidades)', '69 m²: 3 quartos com suíte, ou 2 quartos com suíte e sala ampliada, churrasqueira na varanda, 2 vagas (140 unidades)', 'Gardens no 3º pavimento de 84,8 e 153,3 m², 2 vagas', 'No 20º pavimento, unidades de 124,12 m² (2 vagas) e 73,77 m² (1 vaga), com área descoberta'],
+        tipologia: 'Apartamentos de 2 e 3 quartos com suíte, gardens e unidades especiais',
+        banheiros: 'Suíte com infraestrutura para ar-condicionado; banheiro ventilado no 69 m²',
+        vagas: '1 vaga no 59 m² e 2 vagas no 69 m², nos gardens e na unidade de 124 m²; 430 vagas no total',
+        torres: '2 torres: A com 20 pavimentos e B com 21, com 3 elevadores cada',
+        unidades: ['287 apartamentos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Silva Teles · Pari, São Paulo',
+        infra: { piscina: 'Piscina com raia de 18 m', academia: 'Academia de 118 m²', festas: 'Salão de festas de 100 m² e pub de 69 m²', gourmet: 'Churrasqueira para 16 pessoas', kids: 'Brinquedoteca', quadra: 'Quadra', portaria: 'Portaria e hall', coworking: 'Games e sala de poker' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Hall']], ['3º pavimento, lazer', ['Piscina com raia de 18 m', 'Academia', 'Salão de festas', 'Pub', 'Churrasqueira', 'Brinquedoteca', 'Games', 'Poker', 'Quadra']]],
+        diferenciais: ['Churrasqueira na varanda', 'Smart home, ponto USB e infraestrutura para câmeras e Wi-Fi', 'Infraestrutura para ar-condicionado na suíte', 'Piso laminado e persiana de enrolar nos quartos'],
+        creditos: [['Incorporação e construção', 'Living']],
+        plantas: [{ src: D01 + 'planta-59-churrasqueira.webp', nome: '59 m² · 2 quartos', meta: 'Suíte, churrasqueira na varanda, 1 vaga' }, { src: D01 + 'planta-59.webp', nome: '59 m² · 2 quartos', meta: 'Suíte, 1 vaga' }, { src: D01 + 'planta-69-3q.webp', nome: '69 m² · 3 quartos', meta: 'Suíte, churrasqueira na varanda, 2 vagas' }, { src: D01 + 'planta-69-ampliada.webp', nome: '69 m² · 2 quartos', meta: 'Suíte e sala ampliada, 2 vagas' }],
+        implantacao: [{ src: D01 + 'implantacao.webp', nome: 'Implantação', meta: 'Terreno de 4.563 m²' }, { src: D01 + 'implantacao-piscina.webp', nome: 'Piscina', meta: 'Raia de 18 m' }],
+        legal: 'Material interno de treinamento, sem o texto de registro; perspectivas ilustrativas. Endereço pela corretagem (Rua Silva Teles; os portais citam os números 933 e 951). Pela corretagem (apto.vc): lançado em junho de 2019 e entregue em junho de 2021; disponibilidade sob consulta.',
+        torre: D01 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D01,
+        fotos: [fotoD01('fachada', 'Fachada', true), fotoD01('portaria', 'Portaria'), fotoD01('hall', 'Hall'), fotoD01('piscina', 'Piscina com raia de 18 m'), fotoD01('academia', 'Academia'), fotoD01('salao-de-festas', 'Salão de festas'), fotoD01('pub', 'Pub'), fotoD01('churrasqueira', 'Churrasqueira'), fotoD01('brinquedoteca', 'Brinquedoteca'), fotoD01('games', 'Games'), fotoD01('poker', 'Poker'), fotoD01('quadra', 'Quadra')]
+      },
+      {
+        nome: 'Living Grand Wish Vila Leopoldina',
+        cidade: 'São Paulo, capital', bairro: 'Vila Leopoldina',
+        resumo: '2 suítes a 4 quartos · 71 a 119 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Fröben, 77, na Vila Leopoldina, a 5 minutos do Parque Villa-Lobos: torre única num terreno de mais de 4.300 m², com apartamentos de 71 m² (2 suítes), 93 m² (3 quartos com 1 suíte, ou 2 suítes com sala ampliada) e 119 m² (3 suítes, ou 4 quartos com 2 suítes), todos com 2 vagas determinadas e churrasqueira na varanda. Lazer com bosque com churrasqueira, pet place, salão de festas, churrasqueira, academia com espaço crossfit, salão de jogos, brinquedoteca, playground, praça com espelho-d\'água, piscinas adulto e infantil com deck molhado e solarium, e quadra de tênis. Arquitetura do MCAA, decoração de Sesso & Dalanezi e paisagismo da Takeda Design. Lançado em agosto de 2020 e entregue em agosto de 2023, pela corretagem.',
+        area: ['71,79 m²: 2 suítes, 2 vagas', '93,50 m²: 3 quartos com 1 suíte, ou 2 suítes com sala ampliada, 2 vagas', '119,84 m²: 3 suítes, ou 4 quartos com 2 suítes, 2 vagas'],
+        tipologia: 'Apartamentos de 2 suítes a 4 quartos',
+        banheiros: 'Banheiros ventilados, lavabo e ponto para água quente',
+        vagas: '2 vagas determinadas (uma unidade com 1 vaga; algumas com vagas sorteadas)',
+        torres: 'Torre única em terreno de mais de 4.300 m²',
+        valores: 'Sob consulta',
+        endereco: 'Rua Fröben, 77 · Vila Leopoldina, São Paulo',
+        infra: { piscina: 'Piscinas adulto e infantil, deck molhado e solarium', academia: 'Academia com espaço crossfit e apoio externo', festas: 'Salão de festas e salão de jogos', gourmet: 'Churrasqueira e bosque com churrasqueira', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis', portaria: 'Acessos social, de serviço e de veículos, hall social', coworking: 'Praça com espelho-d\'água, estar e pet place' },
+        lazerGrupos: [['Térreo', ['Acesso social de pedestres', 'Acesso de serviço', 'Acesso de veículos', 'Bosque com churrasqueira', 'Pet place']], ['Pavimento de lazer', ['Hall social', 'Salão de festas', 'Churrasqueira', 'Academia com espaço crossfit', 'Apoio externo da academia', 'Salão de jogos', 'Brinquedoteca', 'Playground', 'Praça com espelho-d\'água', 'Estar', 'Piscina adulto', 'Deck molhado', 'Solarium', 'Piscina infantil', 'Quadra de tênis']]],
+        diferenciais: ['A 5 minutos do Parque Villa-Lobos e do Shopping Villa-Lobos', 'Churrasqueira e ponto de TV na varanda', '2 vagas determinadas', 'Piso laminado nos quartos, persiana de enrolar e infraestrutura para ar-condicionado', 'Smart home: Wi-Fi nas áreas de lazer, tomadas USB e pontos para câmeras'],
+        creditos: [['Arquitetura', 'MCAA Arquitetura'], ['Decoração', 'Sesso & Dalanezi'], ['Paisagismo', 'Takeda Design Paisagismo e Design Urbano'], ['Incorporação', 'Cyrela Polinésia'], ['Marca', 'Living']],
+        plantas: [{ src: D12 + 'planta-71.webp', nome: '71 m² · 2 suítes', meta: '2 vagas determinadas' }, { src: D12 + 'planta-93.webp', nome: '93 m² · 3 quartos', meta: '1 suíte · 2 vagas' }, { src: D12 + 'planta-93-opcao.webp', nome: '93 m² · opção', meta: '2 suítes, sala ampliada' }, { src: D12 + 'planta-119.webp', nome: '119 m² · 3 suítes', meta: '2 vagas determinadas' }, { src: D12 + 'planta-119-opcao.webp', nome: '119 m² · opção', meta: '4 quartos, 2 suítes' }],
+        implantacao: [{ src: D12 + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo e pavimento de lazer' }],
+        legal: 'Incorporadora: Cyrela Polinésia Empreendimentos Imobiliários Ltda. Memorial de Incorporação prenotado sob nº 527.267 no 10º Cartório de Registro de Imóveis de São Paulo. Terreno reabilitado para uso residencial (CETESB 45/00579/19). Ar-condicionado e água quente entregues só com infraestrutura. Comercialização: Cyrela, Creci J-17.592. Material preliminar de agosto de 2020, sujeito a alteração. Pela corretagem (apto.vc, como "Living Grand Wish"): lançado em agosto de 2020 e entregue em agosto de 2023; disponibilidade sob consulta.',
+        torre: D12 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D12,
+        fotos: [fotoD12('fachada', 'Fachada', true), fotoD12('portaria', 'Portaria'), fotoD12('hall', 'Hall', true), fotoD12('regiao', 'A região'), fotoD12('salao-de-festas', 'Salão de festas'), fotoD12('salao-de-jogos', 'Salão de jogos'), fotoD12('brinquedoteca', 'Brinquedoteca'), fotoD12('academia', 'Academia'), fotoD12('churrasqueira', 'Churrasqueira'), fotoD12('playground', 'Playground'), fotoD12('bosque', 'Bosque'), fotoD12('quadra-de-tenis', 'Quadra de tênis'), fotoD12('praca-espelho-dagua', 'Praça com espelho-d\'água'), fotoD12('piscina', 'Piscina')]
+      },
+      {
+        nome: 'Living Harmony Sacomã',
+        cidade: 'São Paulo, capital', bairro: 'Sacomã',
+        resumo: '2 e 3 quartos e garden · 61 a 116 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'No Sacomã, com acessos pela Rua Salvador Pires de Lima e pela Rua Alencar Araripe: apartamentos de 61 m² (2 quartos com suíte e varanda grill), 64 m² (2 quartos com suíte e churrasqueira), 74 m² (3 quartos com suíte, ou 2 quartos com sala ampliada, churrasqueira e 2 vagas) e gardens de 116 m² com quintal. Lazer com piscinas adulto e infantil, lugar de curtir o sol, academia, sala de dança e luta, street ball, salão de festas, cozinha do chef, churras e pizza, bar dos amigos, games, cantinho dos pequenos, cantinho da brincadeira, praças e pet play. Entregue em abril de 2018, pela corretagem.',
+        area: ['61,63 m²: 2 quartos com suíte e varanda grill', '64,19 m²: 2 quartos com suíte e churrasqueira', '74 m²: 3 quartos com suíte, ou 2 quartos com suíte e sala ampliada, com churrasqueira e 2 vagas', 'Garden de 116,29 m²: 2 quartos com suíte, churrasqueira e quintal'],
+        tipologia: 'Apartamentos de 2 e 3 quartos e gardens',
+        banheiros: 'Banheiros ventilados no 64 e no 74 m²',
+        vagas: '1 vaga; 2 vagas só no 74 m²',
+        torres: 'Condomínio com lazer completo no térreo',
+        valores: 'Sob consulta',
+        endereco: 'Rua Salvador Pires de Lima, 316 · Sacomã, São Paulo',
+        infra: { piscina: 'Piscina dos adultos, piscina dos pequenos e lugar de curtir o sol', academia: 'Academia e sala de dança e luta', festas: 'Festas e games', gourmet: 'Cozinha do chef, churras e pizza e bar dos amigos', kids: 'Cantinho dos pequenos, cantinho da brincadeira e praça das mamães', quadra: 'Street ball', portaria: 'Acessos de pedestres e de carro e hall', coworking: 'Praça boas-vindas, praça de encontro e pet play' },
+        lazerGrupos: [['Lazer', ['Hall', 'Praça boas-vindas', 'Festas', 'Cozinha do chef', 'Churras e pizza', 'Praça de encontro', 'Academia', 'Street ball', 'Pet play', 'Bar dos amigos', 'Games', 'Cantinho dos pequenos', 'Dança e luta', 'Praça das mamães', 'Cantinho da brincadeira', 'Piscina dos pequenos', 'Piscina dos adultos', 'Lugar de curtir o sol']]],
+        diferenciais: ['Varanda grill no 61 m² e churrasqueira no 64 e no 74 m²', 'Garden com quintal', 'Tomadas USB e persianas de enrolar'],
+        creditos: [['Incorporação', 'Living, com comercialização Cyrela']],
+        plantas: [{ src: D06 + 'planta-61.webp', nome: '61 m² · 2 quartos', meta: 'Suíte e varanda grill' }, { src: D06 + 'planta-64.webp', nome: '64 m² · 2 quartos', meta: 'Suíte e churrasqueira' }, { src: D06 + 'planta-74.webp', nome: '74 m² · 3 quartos', meta: 'Suíte, churrasqueira, 2 vagas' }, { src: D06 + 'planta-74-opcao.webp', nome: '74 m² · opção', meta: '2 quartos com sala ampliada, 2 vagas' }, { src: D06 + 'planta-garden-116.webp', nome: 'Garden 116 m²', meta: '2 quartos, churrasqueira e quintal' }],
+        implantacao: [{ src: D06 + 'implantacao.webp', nome: 'Implantação', meta: 'Áreas de lazer' }],
+        legal: 'Incorporadora Living Ribeirão Empreendimentos Imobiliários Ltda.; empreendimento registrado em 19/11/2014 sob o R.2 na matrícula 210.119 do 6º Cartório de Registro de Imóveis de São Paulo. Terreno reutilizado para fins residenciais com plano de intervenção aprovado pela CETESB. Churrasqueira só no 64 e no 74 m²; 2 vagas só no 74 m². Material impresso em maio de 2017. Número 316 pela corretagem. Pela corretagem (apto.vc): entregue em abril de 2018; disponibilidade sob consulta.',
+        torre: D06 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D06,
+        fotos: [fotoD06('fachada', 'Fachada', true), fotoD06('portaria', 'Portaria'), fotoD06('piscina', 'Piscina'), fotoD06('festas', 'Festas'), fotoD06('cozinha-do-chef', 'Cozinha do chef'), fotoD06('churras-e-pizza', 'Churras e pizza'), fotoD06('bar-dos-amigos', 'Bar dos amigos'), fotoD06('games', 'Games'), fotoD06('academia', 'Academia'), fotoD06('danca-e-luta', 'Dança e luta'), fotoD06('cantinho-dos-pequenos', 'Cantinho dos pequenos'), fotoD06('cantinho-da-brincadeira', 'Cantinho da brincadeira')]
+      },
+      {
+        nome: 'Living Nord View',
+        cidade: 'São Paulo, capital', bairro: 'Santana',
+        resumo: '2 e 3 quartos · 64 a 80 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Dr. Orlando Zamitti Mammana, em Santana, na Zona Norte: duas torres baixas, de térreo mais 8 pavimentos e 8 unidades por andar, num terreno de 3.645,05 m², com 139 apartamentos de 2 quartos com suíte (64,96 e 67,69 m², 1 vaga), de 3 quartos com suíte ou 2 quartos com sala ampliada (80 m², 2 vagas) e 11 gardens de 106 a 214 m². Varanda entregue com churrasqueira, smart home, piso laminado e ar-condicionado nos quartos. Lazer com transfer, alameda de acesso às torres, piscina adulto e infantil, solarium, churrasqueira com forno de pizza, salão de festas para 42 pessoas, terraço festas, academia, brinquedoteca, jogos teen e playground. Lançado em novembro de 2018 e entregue em dezembro de 2021, pela corretagem.',
+        area: ['64,96 m²: 2 quartos com suíte, 1 vaga (64 unidades)', '67,69 m²: 2 quartos com suíte, 1 vaga (32 unidades)', '80 m²: 3 quartos com suíte, ou 2 quartos com suíte e sala ampliada, 2 vagas (32 unidades)', '11 gardens de 106,09 a 214 m²'],
+        tipologia: 'Apartamentos de 2 e 3 quartos e gardens',
+        vagas: '1 vaga no 64 e no 67 m²; 2 vagas no 80 m²; todas cobertas, em 2 sobressolos',
+        torres: '2 torres baixas, térreo mais 8 pavimentos, 8 unidades por andar e 2 elevadores por torre',
+        unidades: ['139 unidades, sendo 11 gardens'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Dr. Orlando Zamitti Mammana · Santana, São Paulo',
+        infra: { piscina: 'Piscina adulto, piscina infantil e solarium', academia: 'Academia de 61 m²', festas: 'Salão de festas de 81 m² e terraço festas', gourmet: 'Churrasqueira com forno de pizza', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Acessos de pedestres e de veículos, transfer e hall social', coworking: 'Jogos teen' },
+        lazerGrupos: [['Lazer', ['Acesso de pedestres', 'Acesso de veículos', 'Transfer', 'Alameda de acesso às torres', 'Hall social', 'Playground', 'Brinquedoteca', 'Academia', 'Terraço festas', 'Salão de festas', 'Solarium', 'Piscina infantil', 'Piscina adulto', 'Jogos teen', 'Churrasqueira com forno de pizza']]],
+        diferenciais: ['Varanda entregue com churrasqueira', 'Smart home', 'Piso laminado e ar-condicionado nos quartos', 'Todas as vagas cobertas; 2 vagas nas unidades de 80 m²'],
+        creditos: [['Incorporação', 'Living']],
+        plantas: [{ src: D14 + 'planta-64.webp', nome: '64 m² · 2 quartos', meta: 'Suíte · 1 vaga' }, { src: D14 + 'planta-67.webp', nome: '67 m² · 2 quartos', meta: 'Suíte · 1 vaga' }, { src: D14 + 'planta-80.webp', nome: '80 m² · 3 quartos', meta: 'Suíte · 2 vagas' }, { src: D14 + 'planta-80-ampliada.webp', nome: '80 m² · sala ampliada', meta: '2 quartos com suíte · 2 vagas' }],
+        implantacao: [{ src: D14 + 'implantacao.webp', nome: 'Implantação', meta: '' }],
+        legal: 'Material de vendas da Living, sem o texto de registro nem data. Pela corretagem (apto.vc, como "Nord View"): lançado em novembro de 2018 e entregue em dezembro de 2021; o número 81 da rua vem do QuintoAndar, que põe o condomínio no Jardim Paraíso. Disponibilidade sob consulta.',
+        torre: D14 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D14,
+        fotos: [fotoD14('fachada', 'Fachada'), fotoD14('acesso', 'Acesso'), fotoD14('transfer', 'Transfer'), fotoD14('piscina', 'Piscina'), fotoD14('churrasqueira', 'Churrasqueira com forno de pizza'), fotoD14('terraco-festas', 'Terraço festas'), fotoD14('salao-de-festas', 'Salão de festas'), fotoD14('academia', 'Academia'), fotoD14('jogos-teen', 'Jogos teen'), fotoD14('brinquedoteca', 'Brinquedoteca'), fotoD14('playground', 'Playground')]
+      },
+      {
+        nome: 'Living Privilège',
+        cidade: 'São Paulo, capital', bairro: 'Barra Funda',
+        resumo: '2 e 3 quartos · 61 a 93 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Iporanga, 250, na Barra Funda: 3 torres em 4 blocos, com térreo e 8 pavimentos, num terreno de 8.344,55 m². São 258 apartamentos: nos blocos A e D, 70 de 93 m² (3 quartos com suíte, 2 vagas) e 66 de 68 m² (2 quartos com suíte, 1 vaga); nos blocos B e C, 122 de 61 a 64 m² (2 quartos com suíte, 1 vaga). Lazer com estar com pergolado, lobby, espaço games, piscinas adulto e infantil com solarium e deck molhado, playground, espaço gourmet, fitness, salão de festas, churrasqueira com forno para pizza, espaço office, brinquedoteca, espaço de jogos adulto e mirante. Lançado em dezembro de 2019, pela corretagem.',
+        area: ['93 m²: 3 quartos com suíte, 2 vagas (70 unidades, blocos A e D), com opção de 2 suítes e living ampliado', '68 m²: 2 quartos com suíte, 1 vaga (66 unidades, blocos A e D)', '61 a 64 m²: 2 quartos com suíte, 1 vaga (122 unidades, blocos B e C)'],
+        tipologia: 'Apartamentos de 2 e 3 quartos',
+        vagas: '1 vaga nos apartamentos de 61 a 68 m² e 2 vagas no de 93 m²',
+        torres: '3 torres (4 blocos) em terreno de 8.344,55 m², térreo e 8 pavimentos, 4 elevadores por torre, 6 e 8 unidades por andar',
+        unidades: ['258 unidades'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Iporanga, 250 · Barra Funda, São Paulo',
+        infra: { piscina: 'Piscinas adulto e infantil, solarium e deck molhado', academia: 'Fitness', festas: 'Salão de festas e espaço de jogos adulto', gourmet: 'Espaço gourmet e churrasqueira com forno para pizza', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Portaria e acessos de pedestres e de veículos', coworking: 'Espaço office, espaço games, estar com pergolado e mirante' },
+        lazerGrupos: [['Lazer', ['Acesso de pedestres', 'Portaria', 'Acesso de veículos', 'Estar com pergolado', 'Lobby', 'Espaço games', 'Piscina infantil', 'Solarium', 'Deck molhado', 'Piscina adulto', 'Playground', 'Espaço gourmet', 'Fitness', 'Salão de festas', 'Churrasqueira com forno para pizza', 'Espaço office', 'Brinquedoteca', 'Espaço de jogos adulto', 'Mirante']]],
+        diferenciais: ['Piso laminado nos quartos e persiana de enrolar', 'Infraestrutura para ar-condicionado e para otimização do Wi-Fi', 'Pontos USB nos quartos e de tomada para câmeras de monitoramento', 'Churrasqueira na varanda no apartamento de 68 e de 93 m²'],
+        creditos: [['Incorporação e construção', 'Cyrela'], ['Marca', 'Living']],
+        plantas: [{ src: D15 + 'planta-93.webp', nome: '93 m² · 3 quartos', meta: '1 suíte · 2 vagas' }, { src: D15 + 'planta-93-ampliada.webp', nome: '93 m² · opção', meta: '2 suítes, living ampliado' }, { src: D15 + 'planta-68.webp', nome: '68 m² · 2 quartos', meta: '1 suíte · 1 vaga' }, { src: D15 + 'planta-64.webp', nome: '64 m² · 2 quartos', meta: '1 suíte · 1 vaga' }, { src: D15 + 'planta-62.webp', nome: '62 m² · 2 quartos', meta: '1 suíte · 1 vaga' }, { src: D15 + 'planta-61.webp', nome: '61 m² · 2 quartos', meta: '1 suíte · 1 vaga' }],
+        implantacao: [{ src: D15 + 'implantacao.webp', nome: 'Implantação', meta: '3 torres e lazer, Rua Iporanga' }],
+        legal: 'Material de treinamento da Living, sem o texto de registro do empreendimento. Pela corretagem (apto.vc): lançado em dezembro de 2019, pronto para morar; a página dá entrega prevista para 11/2020, data que parece cedo para o lançamento e fica a confirmar. Disponibilidade sob consulta.',
+        torre: D15 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D15,
+        fotos: [fotoD15('fachada', 'Fachada'), fotoD15('portaria', 'Portaria'), fotoD15('piscina', 'Piscina'), fotoD15('espaco-games', 'Espaço games'), fotoD15('playground', 'Playground'), fotoD15('espaco-gourmet', 'Espaço gourmet'), fotoD15('fitness', 'Fitness'), fotoD15('salao-de-festas', 'Salão de festas'), fotoD15('churrasqueira', 'Churrasqueira'), fotoD15('brinquedoteca', 'Brinquedoteca'), fotoD15('jogos-adulto', 'Espaço de jogos adulto')]
+      },
+      {
+        nome: 'Living Wish Mooca',
+        cidade: 'São Paulo, capital', bairro: 'Mooca',
+        resumo: '2 a 4 quartos e duplex · 69 a 109 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Visconde de Cairu, 190, na Mooca, perto das estações Juventus e Bresser-Mooca e do Parque da Mooca: duas torres de 18 e 17 andares num terreno de 6.627 m², com 177 apartamentos de 69 m² (2 quartos com suíte), 83 m² (3 quartos com suíte, ou 2 quartos com sala ampliada) e 109 m² (4 quartos com 2 suítes, ou 3 suítes com sala ampliada), e duplex de 4 suítes, todos com 2 vagas determinadas, varanda com churrasqueira e smart home. Lazer elevado com praça de chegada, praça espelho d\'água, piscina adulto com raia de 20 m, piscina infantil, deck molhado, solarium, terraço e salão de festas, salão de jogos, brinquedoteca, playground, academia com funcional, quadra gramada, churrasqueira e pet place. Arquitetura do MCAA, paisagismo da Takeda e decoração de Chris Silveira. Entregue em maio de 2025, pela corretagem.',
+        area: ['69 m²: 2 quartos com suíte, 2 vagas', '83 m²: 3 quartos com suíte, ou 2 quartos com suíte e sala ampliada, 2 vagas e depósito privativo', '109 m²: 4 quartos com 2 suítes, ou 3 suítes com sala ampliada, 2 vagas e depósito privativo', 'Duplex de 4 suítes, 3 vagas e depósito privativo'],
+        tipologia: 'Apartamentos de 2 a 4 quartos com suíte e duplex',
+        banheiros: 'Banheiros ventilados; infraestrutura para ar-condicionado na suíte e nos quartos',
+        vagas: '2 vagas determinadas; 3 no duplex',
+        torres: '2 torres: A com 18 andares e B com 17, em terreno de 6.627 m²',
+        unidades: ['177 apartamentos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Visconde de Cairu, 190 · Mooca, São Paulo',
+        infra: { piscina: 'Piscina adulto com raia de 20 m, piscina infantil, deck molhado e solarium', academia: 'Academia com funcional', festas: 'Salão de festas, terraço festas e salão de jogos', gourmet: 'Churrasqueira', kids: 'Brinquedoteca e playground', quadra: 'Quadra gramada', portaria: 'Acessos de veículos e de pedestres, praça de chegada, transfer e hall social', coworking: 'Praça espelho d\'água e pet place' },
+        lazerGrupos: [['Chegada', ['Acesso de veículos', 'Acesso de pedestres', 'Praça de chegada', 'Transfer', 'Alameda de acesso às torres', 'Hall social']], ['Lazer elevado', ['Terraço festas', 'Salão de festas', 'Brinquedoteca', 'Salão de jogos', 'Academia com funcional', 'Praça espelho d\'água', 'Piscina adulto com raia de 20 m', 'Deck molhado', 'Solarium', 'Piscina infantil', 'Playground', 'Quadra gramada', 'Churrasqueira', 'Pet place']]],
+        diferenciais: ['2 vagas determinadas em todas as unidades', 'Varanda com churrasqueira e ponto de TV', 'Smart home e piso laminado nos quartos', 'Depósito privativo (exceto no 69 m²)'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Takeda Paisagismo & Design Urbano'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Living, com realização Cyrela']],
+        plantas: [{ src: D07 + 'planta-69.webp', nome: '69 m² · 2 quartos', meta: 'Suíte, 2 vagas' }, { src: D07 + 'planta-83.webp', nome: '83 m² · 3 quartos', meta: 'Suíte, 2 vagas, depósito' }, { src: D07 + 'planta-83-ampliada.webp', nome: '83 m² · sala ampliada', meta: '2 quartos com suíte, 2 vagas, depósito' }, { src: D07 + 'planta-109-4q.webp', nome: '109 m² · 4 quartos', meta: '2 suítes, 2 vagas, depósito' }, { src: D07 + 'planta-109-3s.webp', nome: '109 m² · 3 suítes', meta: 'Sala ampliada, 2 vagas, depósito' }, { src: D07 + 'planta-duplex-inferior.webp', nome: 'Duplex · inferior', meta: '4 suítes, 3 vagas' }, { src: D07 + 'planta-duplex-superior.webp', nome: 'Duplex · superior', meta: '' }],
+        implantacao: [{ src: D07 + 'implantacao.webp', nome: 'Implantação', meta: 'Terreno de 6.627 m²' }],
+        legal: 'Incorporadora Cyrela Córdoba Empreendimentos Imobiliários Ltda.; empreendimento registrado sob o nº 8 na matrícula 168.157 do 7º Cartório de Registro de Imóveis de São Paulo, em 5/4/2019. Terreno em reabilitação com plano de intervenção aprovado pela CETESB. Ar-condicionado entregue só como infraestrutura; as unidades de 69 m² não têm depósito. Material de maio de 2019. Pela corretagem (apto.vc): entrega em maio de 2025, pronto para morar; disponibilidade sob consulta.',
+        torre: D07 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D07,
+        fotos: [fotoD07('fachada', 'Fachada', true), fotoD07('acesso', 'Praça de chegada'), fotoD07('lazer-externo', 'Praça espelho d\'água'), fotoD07('hall-social', 'Hall social'), fotoD07('piscina', 'Piscina adulto com raia de 20 m'), fotoD07('salao-de-festas', 'Salão de festas'), fotoD07('lounge', 'Lounge'), fotoD07('brinquedoteca', 'Brinquedoteca'), fotoD07('playground', 'Playground'), fotoD07('academia', 'Academia com funcional'), fotoD07('salao-de-jogos', 'Salão de jogos'), fotoD07('decorado-109', 'Living do decorado de 109 m²'), fotoD07('regiao', 'A Mooca')]
+      },
+      {
+        nome: 'Living Wish Tatuapé',
+        cidade: 'São Paulo, capital', bairro: 'Tatuapé',
+        resumo: '2 a 4 quartos e duplex · 67 a 215 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua São Felipe, 330, no Tatuapé, ao lado do Parque do Piqueri e perto das estações Tatuapé e Carrão: duas torres num terreno de 5.207 m² com 193 apartamentos de 67 m² (2 quartos com suíte, 1 vaga), 84 m² (3 quartos com suíte, ou 2 quartos com sala ampliada, 2 vagas) e 110 m² (4 quartos com 2 suítes, ou 3 suítes com sala ampliada, 2 vagas), e duplex de 215 m² com 4 suítes e 3 vagas, todos com varanda com churrasqueira e smart home. Lazer no térreo elevado e no pavimento de lazer, a mais de 6 m da rua, com piscina com raia de 25 m, spa, sauna, academia, salão de festas, espaço gourmet, coworking, brinquedoteca, jogos, playground, quadra recreativa e pet place, e 1.100 m² de área verde privativa. Arquitetura do MCAA, paisagismo da Cardim e decoração de Carlos Rossi. Lançado em setembro de 2019 e entregue em setembro de 2022, pela corretagem.',
+        area: ['67 m²: 2 quartos com suíte, 1 vaga', '84 m²: 3 quartos com suíte, ou 2 quartos com suíte e sala ampliada, 2 vagas', '110 m²: 4 quartos com 2 suítes, ou 3 suítes com sala ampliada, 2 vagas', 'Duplex de 215 m²: 4 suítes, 3 vagas e depósito'],
+        tipologia: 'Apartamentos de 2 a 4 quartos e duplex',
+        banheiros: 'Banheiros ventilados, com infraestrutura para água quente; lavabo no 110 m² e no duplex',
+        vagas: '1 vaga no 67 m², 2 no 84 e no 110 m² e 3 no duplex, determinadas',
+        torres: '2 torres em terreno de 5.207,60 m²',
+        unidades: ['193 apartamentos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua São Felipe, 330 · Tatuapé, São Paulo',
+        infra: { piscina: 'Piscina com raia de 25 m, piscina infantil, deck molhado e solarium', academia: 'Academia, spa e sauna seca', festas: 'Salão de festas e jogos adulto', gourmet: 'Espaço gourmet, churrasqueiras e piquenique', kids: 'Brinquedoteca, mini play, playground e jogos teen', quadra: 'Quadra recreativa', portaria: 'Acessos de pedestres e de veículos, alameda de acesso e halls', coworking: 'Coworking e apoio festas, estar e pet place' },
+        lazerGrupos: [['Térreo elevado e pavimento de lazer', ['Alameda de acesso', 'Hall', 'Salão de festas', 'Churrasqueira', 'Academia', 'Gourmet', 'Mini play', 'Estar', 'Sauna seca', 'Piscina com raia de 25 m', 'Piscina infantil', 'Deck molhado', 'Spa', 'Solarium', 'Pet place', 'Brinquedoteca', 'Jogos teen', 'Jogos adulto', 'Coworking e apoio festas', 'Piquenique', 'Playground', 'Quadra recreativa']]],
+        diferenciais: ['Ao lado do Parque do Piqueri', 'Lazer a mais de 6 m da rua e 1.100 m² de área verde privativa', 'Varanda com churrasqueira e ponto de TV', 'Smart home e infraestrutura para ar-condicionado nos quartos'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Cardim Arquitetura Paisagística'], ['Decoração', 'Carlos Rossi Arquitetura'], ['Incorporação', 'Living, com realização Cyrela']],
+        plantas: [{ src: D02 + 'planta-67.webp', nome: '67 m² · 2 quartos', meta: 'Suíte, 1 vaga' }, { src: D02 + 'planta-84.webp', nome: '84 m²', meta: '2 vagas' }, { src: D02 + 'planta-84-opcao.webp', nome: '84 m² · opção', meta: '2 vagas' }, { src: D02 + 'planta-110.webp', nome: '110 m²', meta: '2 vagas' }, { src: D02 + 'planta-110-opcao.webp', nome: '110 m² · opção', meta: '2 vagas' }, { src: D02 + 'planta-duplex-inferior.webp', nome: 'Duplex 215 m² · inferior', meta: '4 suítes, 3 vagas' }, { src: D02 + 'planta-duplex-superior.webp', nome: 'Duplex 215 m² · superior', meta: '' }],
+        implantacao: [{ src: D02 + 'implantacao-terreo.webp', nome: 'Térreo elevado', meta: '' }, { src: D02 + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: '' }],
+        legal: 'Incorporadora Living Jacarandá Empreendimentos Imobiliários Ltda.; Memorial de Incorporação prenotado sob nº 620.595 no 9º Cartório de Registro de Imóveis. Terreno em reabilitação com plano de intervenção aprovado pela CETESB (029937/2018-98). Ar-condicionado e água quente entregues só como infraestrutura. Realização Cyrela (Creci J-17.592). Material preliminar de agosto de 2019, sujeito a alteração. Pela corretagem (apto.vc): lançado em setembro de 2019 e entregue em setembro de 2022; disponibilidade sob consulta.',
+        torre: D02 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D02,
+        fotos: [fotoD02('fachada', 'Fachada', true), fotoD02('portaria', 'Portaria'), fotoD02('festas', 'Salão de festas'), fotoD02('espaco-gourmet', 'Espaço gourmet'), fotoD02('academia', 'Academia'), fotoD02('jogos-adulto', 'Jogos adulto'), fotoD02('brinquedoteca', 'Brinquedoteca'), fotoD02('piscina', 'Piscina com raia de 25 m'), fotoD02('regiao', 'O Tatuapé visto do alto')]
+      },
+      {
+        nome: 'Vita São Miguel',
+        cidade: 'São Paulo, capital', bairro: 'Vila Jacuí',
+        resumo: '2 e 3 dormitórios · 54 e 66 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Vila Jacuí, em frente à Praça Morumbizinho e perto da Avenida São Miguel: duas torres de térreo e 8 pavimentos num terreno de 4.371 m², com 138 apartamentos de 54 m² (2 dormitórios com suíte e varanda grill, 1 vaga) e 66 m² (3 dormitórios com suíte e varanda grill, ou opção com sala ampliada, 1 ou 2 vagas). Lazer de clube com piscinas adulto e infantil, solário, salão de festas adulto, churrasqueira com forno de pizza, salão de festas infantil, brinquedoteca e salão de jogos, fitness e fitness externo, playground, quadra recreativa e praça central. Arquitetura de Marcelo Bartolo e paisagismo de Marcelo Faisal. Pronto para morar, pela corretagem.',
+        area: ['54,66 m²: 2 dormitórios com suíte e varanda grill, 1 vaga', '66,76 m²: 3 dormitórios com suíte e varanda grill, ou opção com sala ampliada, 1 ou 2 vagas'],
+        tipologia: 'Apartamentos de 2 e 3 dormitórios com suíte',
+        vagas: '1 vaga no 54 m²; 1 ou 2 vagas no 66 m²',
+        torres: '2 torres de térreo e 8 pavimentos, 8 apartamentos por andar e 2 elevadores por torre',
+        unidades: ['138 apartamentos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua João Felisberto Moreira, 174 · Vila Jacuí, São Paulo',
+        infra: { piscina: 'Piscina adulto, piscina infantil e solário', academia: 'Fitness e fitness externo', festas: 'Salão de festas adulto e salão de festas infantil', gourmet: 'Churrasqueira com forno para pizza', kids: 'Playground, brinquedoteca e salão de jogos', quadra: 'Quadra recreativa', portaria: 'Portaria', coworking: 'Praça central' },
+        lazerGrupos: [['Lazer', ['Portaria', 'Praça central', 'Playground', 'Salão de festas adulto', 'Churrasqueira com forno para pizza', 'Quadra recreativa', 'Fitness externo', 'Fitness', 'Salão de festas infantil', 'Brinquedoteca e salão de jogos', 'Solário', 'Piscina adulto', 'Piscina infantil']]],
+        diferenciais: ['Em frente à Praça Morumbizinho', 'Varanda grill em todos os apartamentos', 'Lazer de clube em mais de 4.300 m²'],
+        creditos: [['Arquitetura', 'Marcelo Bartolo'], ['Paisagismo', 'Marcelo Faisal'], ['Incorporação', 'Living, do grupo Cyrela']],
+        plantas: [{ src: D21 + 'planta-54.webp', nome: '54 m² · 2 dormitórios', meta: 'Suíte e varanda grill, 1 vaga' }, { src: D21 + 'planta-66.webp', nome: '66 m² · 3 dormitórios', meta: 'Suíte e varanda grill' }, { src: D21 + 'planta-66-ampliada.webp', nome: '66 m² · sala ampliada', meta: 'Opção' }],
+        implantacao: [{ src: D21 + 'implantacao.webp', nome: 'Implantação', meta: 'Mais de 4.300 m² de área total' }],
+        legal: 'Material de vendas de 2011 (Living, grupo Cyrela), sem o texto de registro; acabamentos e equipamentos conforme o Memorial Descritivo; paisagismo entregue com mudas. O book situa o empreendimento em frente à Praça Morumbizinho, perto da Av. São Miguel; endereço pela corretagem (QuintoAndar, apto.vc), que também diverge nas metragens. Pela corretagem (apto.vc): pronto para morar; disponibilidade sob consulta.',
+        torre: D21 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D21,
+        fotos: [fotoD21('fachada', 'Fachada', true), fotoD21('piscina', 'Piscina'), fotoD21('salao-de-festas', 'Salão de festas adulto'), fotoD21('churrasqueira', 'Churrasqueira com forno para pizza'), fotoD21('playground', 'Playground'), fotoD21('quadra', 'Quadra recreativa'), fotoD21('festas-infantil', 'Salão de festas infantil'), fotoD21('brinquedoteca', 'Brinquedoteca'), fotoD21('fitness', 'Fitness'), fotoD21('fitness-externo', 'Fitness externo'), fotoD21('salao-de-jogos', 'Salão de jogos'), fotoD21('regiao', 'A região vista do alto')]
       }
     ],
     /* (11/11/2026) MITRE REALTY: ela mandou a logo e disse "outra construtora de sp". Ainda sem
@@ -7786,6 +8249,380 @@
         legal: 'Material de pré-lançamento com imagens, fotomontagens e plantas ilustrativas. Incorporadora: CBR 248 Empreendimentos Imobiliários Ltda.; Memorial de Incorporação prenotado sob nº 425.221 no 13º Oficial de Registro de Imóveis de São Paulo, projeto aprovado sob nº 66687-26-SP-ALV; só será comercializado após o registro. Pela corretagem (apto.vc): lançamento previsto para dezembro de 2026 e entrega estimada em dezembro de 2030; datas a confirmar pela incorporadora.',
         torre: C35 + 'torre.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_C35,
         fotos: [fotoC35('torre', 'A torre de 150 m (fotomontagem)'), fotoC35('embasamento', 'Embasamento'), fotoC35('lobby', 'Lobby'), fotoC35('living-365', 'Living do apartamento de 365 m²'), fotoC35('living-365-2', 'Living do apartamento de 365 m²'), fotoC35('living-284', 'Living do apartamento de 284 m²'), fotoC35('salao-de-festas', 'Salão de festas'), fotoC35('salao-de-festas-2', 'Salão de festas'), fotoC35('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoC35('piscina', 'Piscina descoberta'), fotoC35('piscina-2', 'Piscina descoberta'), fotoC35('private-pool-house', 'Private pool house'), fotoC35('private-pool-house-2', 'Private pool house'), fotoC35('fitness', 'Fitness'), fotoC35('quadra-de-tenis', 'Quadra de tênis'), fotoC35('brinquedoteca', 'Brinquedoteca e playground'), fotoC35('the-lounge', 'The Lounge')]
+      },
+      {
+        nome: 'Aura Moema by Cyrela',
+        cidade: 'São Paulo, capital', bairro: 'Moema',
+        resumo: '3 e 4 suítes a duplex · 251 a 452 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Em frente à praça da igreja de Moema, a Praça Nossa Senhora Aparecida, rodeado de praça e parques: torre residencial do Aura Moema, ao lado do Aura Moema Studios, com apenas 48 residências de 251 m² (4 suítes, ou 3 suítes com sala íntima, ou 3 suítes com suíte master ampliada) e duplex de 452 m² com 4 suítes, terraço externo e piscina. No térreo, lobby, party foyer, party lounge, pet place e dois private gardens, um deles com piscina, em mais de 400 m²; no pavimento de lazer, sobre a copa das árvores, piscina, jacuzzi, solarium, pool lounge, indoor spa, sauna, gym, kids place, kids pool, kids court e playground. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração das áreas comuns de Cássia Kroeff. Entrega prevista para julho de 2026, pela corretagem.',
+        area: ['251 m²: 4 suítes (planta padrão)', '251 m²: 3 suítes e sala íntima (opção 1)', '251 m²: 3 suítes com suíte master ampliada (opção 3)', 'Duplex de 452 m²: 4 suítes, terraço externo e piscina'],
+        tipologia: 'Apartamentos de 3 e 4 suítes e duplex',
+        banheiros: 'Todos os banhos com ventilação natural; infraestrutura para banheira e dois chuveiros na suíte master',
+        vagas: 'Sob consulta',
+        torres: 'Torre residencial com 48 residências, ao lado da torre de studios do mesmo terreno',
+        unidades: ['48 residências'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Jamaris, 59 e 71 x Alameda Iraé, 606 x Av. Divino Salvador · Moema, São Paulo',
+        infra: { piscina: 'Piscina, jacuzzi, solarium, kids pool e private pool garden', academia: 'Gym, indoor spa e sauna', festas: 'Party foyer e party lounge', gourmet: 'Pool lounge e ponto de churrasqueira a carvão nos apartamentos', kids: 'Kids place, kids court e playground', quadra: 'Kids court', portaria: 'Lobby, delivery, acesso de serviço e car entrance', coworking: 'Private gardens e pet place' },
+        lazerGrupos: [['Térreo, The green invite', ['Lobby', 'Delivery', 'Service access', 'Car entrance', 'Party foyer', 'Party lounge', 'Private pool garden', 'Private garden', 'Pet place']], ['Pavimento de lazer, Over the trees', ['Hall', 'Sauna', 'Indoor spa', 'Kids place', 'Playground', 'Kids court', 'Kids pool', 'Pool lounge', 'Jacuzzi', 'Swimming pool', 'Solarium', 'Gym']]],
+        diferenciais: ['Apenas 48 residências, em frente à praça da igreja de Moema', 'Hall privativo com controle de acesso e infraestrutura para aspiração central', 'Infraestrutura para persiana automatizada nos dormitórios', 'Terraço íntimo na suíte master e ponto de churrasqueira a carvão em ilha'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Cássia Kroeff'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D31 + 'planta-251.webp', nome: '251 m² · 4 suítes', meta: 'Planta padrão' }, { src: D31 + 'planta-251-opcao-1.webp', nome: '251 m² · 3 suítes e sala íntima', meta: 'Opção 1' }, { src: D31 + 'planta-251-opcao-3.webp', nome: '251 m² · 3 suítes', meta: 'Opção 3, suíte master ampliada' }, { src: D31 + 'planta-duplex-452-inferior.webp', nome: 'Duplex 452 m² · inferior', meta: '4 suítes' }, { src: D31 + 'planta-duplex-452-superior.webp', nome: 'Duplex 452 m² · superior', meta: 'Terraço externo e piscina' }],
+        implantacao: [{ src: D31 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'The green invite' }, { src: D31 + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: 'Over the trees' }],
+        legal: 'Incorporadora: CBR 127 Empreendimentos Imobiliários Ltda. Memorial de Incorporação na matrícula nº 246.729 do 14º Oficial de Registro de Imóveis de São Paulo, prenotado sob o protocolo nº 884.928 de 02/06/2023. Comercialização: Cyrela (Creci 17.592-J) e GHI Negócios Imobiliários (Creci 25.687-J). Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc, endereço na Praça Nossa Senhora Aparecida): em construção, entrega prevista para julho de 2026. Disponibilidade sob consulta.',
+        torre: D31 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_C11,
+        fotos: [fotoD31('fachada', 'Fachada', true), fotoD31('acesso', 'Main entrance'), fotoD31('lobby', 'Lobby', true), fotoD31('jardim', 'O caminho verde até a torre'), fotoD31('private-pool-garden', 'Private pool garden'), fotoD31('private-pool-garden-2', 'Private pool garden e private garden'), fotoD31('party-lounge', 'Party lounge'), fotoD31('piscina', 'Piscina e jacuzzi'), fotoD31('spa', 'Indoor spa'), fotoD31('fitness', 'Gym'), fotoD31('kids-place', 'Kids place'), fotoD31('living-251', 'Living do apartamento de 251 m²'), fotoD31('praca', 'A Praça Nossa Senhora Aparecida'), fotoD31('regiao', 'A praça e a igreja de Moema'), fotoD31('vista', 'Vista para a praça')]
+      },
+      {
+        nome: 'Casa Senses Apartments',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: 'Studios e 1 dormitório · 31 e 32 m²',
+        tipo: 'Studio', status: 'Lançamento',
+        texto: 'Na Rua Flórida, no Brooklin, a Cyrela e a Hines apresentam o Casa Senses Apartments: torre de apartamentos de 31 e 32 m², de 1 dormitório ou studio, para morar ou investir, com unidades HIS-2 no 4º e 5º pavimentos e HMP do 6º ao 22º. No térreo, lobby, delivery, bicicletário e pet place; no lazer, piscina descoberta com solarium, coworking e gourmet, fitness e lavanderia. Arquitetura do LE Arquitetos e paisagismo de Benedito Abbud. Início de vendas em fevereiro de 2026 pelo livro; entrega prevista para dezembro de 2031, pela corretagem.',
+        area: ['31,50 m²: 1 dormitório', '31,50 m²: studio (opção)', '32 m²: 1 dormitório'],
+        tipologia: 'Studios e apartamentos de 1 dormitório (HIS-2 e HMP)',
+        banheiros: 'Água quente na APA e no banho',
+        vagas: 'Sem vagas, pela corretagem',
+        torres: 'Torre única com unidades HIS-2 no 4º e 5º pavimentos e HMP do 6º ao 22º',
+        unidades: ['12 unidades HIS-2 e 104 unidades HMP'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Flórida · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina descoberta e solarium', academia: 'Fitness', festas: '', gourmet: 'Coworking e gourmet', kids: '', quadra: '', portaria: 'Acessos social e de serviço, delivery e lobby', coworking: 'Coworking, lavanderia, bicicletário e pet place' },
+        lazerGrupos: [['Térreo', ['Acesso social', 'Acesso de serviço', 'Delivery', 'Lobby', 'Bicicletário', 'Pet place']], ['Pavimento de lazer', ['Piscina descoberta', 'Solarium', 'Coworking e gourmet', 'Fitness', 'Lavanderia']]],
+        diferenciais: ['Cyrela e Hines', 'Infraestrutura para ar-condicionado na sala e no dormitório', 'Pontos para máquinas de lavar roupa e louça', 'Certificação AQUA-HQE, com redução de consumo de água e energia'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Cyrela e Hines']],
+        plantas: [{ src: D43 + 'planta-31-1-dorm.webp', nome: '31,50 m² · 1 dormitório', meta: 'Torre 2, final 5, planta padrão' }, { src: D43 + 'planta-31-studio.webp', nome: '31,50 m² · studio', meta: 'Torre 2, final 5, opção' }],
+        implantacao: [{ src: D43 + 'implantacao-terreo.webp', nome: 'Pavimento térreo', meta: '' }, { src: D43 + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: '' }],
+        legal: 'Empreendimento com unidades HIS-2 e HMP, conforme tabela de distribuição de unidades da Cyrela; início de vendas previsto no livro para 01/02/2026. Arquitetura do LE Arquitetos; paisagismo de Benedito Abbud; o livro cita a Rua Flórida, Itaim Bibi. Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc, Casa Senses Apartaments, Brooklin): lançamento, entrega prevista para dezembro de 2031. Disponibilidade sob consulta.',
+        torre: D43 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D43,
+        fotos: [fotoD43('fachada', 'Fachada', true), fotoD43('portaria', 'Portaria'), fotoD43('lobby', 'Lobby'), fotoD43('piscina', 'Piscina descoberta'), fotoD43('piscina-2', 'Piscina descoberta'), fotoD43('fitness', 'Fitness'), fotoD43('coworking-gourmet', 'Coworking e gourmet'), fotoD43('regiao', 'O Brooklin e a Marginal Pinheiros'), fotoD43('localizacao', 'Localização')]
+      },
+      {
+        nome: 'Cyrela Atmosfera Vila Mariana',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: '2 dormitórios a 3 suítes · 65 a 131 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Gregório Serrão, 232, a 500 metros da estação Ana Rosa: torre única da Cyrela num terreno de 2.973 m², com 140 apartamentos do 9º ao 25º pavimento, 8 por andar, de 65 m² (1 vaga), 104 m² e 131 m² (2 vagas), e quatro unidades garden no 9º (75, 112 e 120 m²). No térreo, lobby residencial de 140 m² com trecho de pé-direito duplo e private garden de 355 m² com pet place e mesas de piquenique; no 3º pavimento, o Lounge Atmosfera de 190 m² (gourmet, festas e jogos integrados), brinquedoteca e playground; na cobertura do 26º, piscina adulto com raia de 25 m, piscina com SPA, acqua lounge, solarium, deck molhado, piscina infantil, churrasqueira com lareira, fitness interno e externo e mirante. Arquitetura do MCAA, paisagismo da Mera e decoração de Chris Silveira. Entregue em maio de 2023, pela corretagem.',
+        area: ['65 m²: 2 dormitórios com suíte, ou 1 suíte com sala ampliada; 1 vaga (66 unidades)', '104 m²: 3 dormitórios com suíte, ou opção ampliada; 2 vagas (32 unidades)', '131 m²: 3 suítes, com opção de planta; 2 vagas (34 unidades)', 'Unidades garden no 9º pavimento: 75 m² (2), 112 m² e 120 m²'],
+        tipologia: 'Apartamentos de 2 dormitórios a 3 suítes e unidades garden',
+        banheiros: 'Banheiros sociais e da suíte ventilados, misturador de água nos banheiros e na cozinha',
+        vagas: '1 vaga no 65 m²; 2 vagas vinculadas no 104 e no 131 m²',
+        torres: 'Torre única: térreo e 2 sobressolos de garagem, lazer no 3º, studios do 3º ao 8º (outro condomínio), residencial do 9º ao 25º e cobertura de lazer no 26º',
+        unidades: ['140 apartamentos: 66 de 65 m², 32 de 104 m², 34 de 131 m² e 4 garden'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Gregório Serrão, 232 · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina adulto com raia de 25 m, piscina com SPA, acqua lounge, piscina infantil, solarium e deck molhado na cobertura', academia: 'Fitness interno e externo na cobertura', festas: 'Lounge Atmosfera de 190 m²: gourmet, festas e jogos integrados', gourmet: 'Churrasqueira com lareira na cobertura e lounge gourmet', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Lobby residencial de 140 m², acessos de pedestres e de veículos', coworking: 'Private garden de 355 m² com pet place e mirante na cobertura' },
+        lazerGrupos: [['Térreo', ['Lobby residencial', 'Private garden com pet place e piquenique', 'Lounge de convivência']], ['3º pavimento', ['Lounge Atmosfera gourmet', 'Lounge Atmosfera festas', 'Lounge Atmosfera jogos', 'Brinquedoteca', 'Playground']], ['Cobertura (26º)', ['Solarium', 'Deck molhado', 'Piscina infantil', 'SPA', 'Piscina adulto com raia de 25 m', 'Acqua lounge', 'Churrasqueira', 'Lareira', 'Fitness', 'Fitness externo', 'Mirante']]],
+        diferenciais: ['Terraço social com bancada e churrasqueira entregues', 'Ponto para ar-condicionado na sala e nos dormitórios', 'Espaço para fogão de 6 bocas', 'Hall social exclusivo nas unidades de 104 e 131 m²', 'Lazer na cobertura com vista da cidade'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Mera Arquitetura Paisagística'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D27 + 'planta-131.webp', nome: '131 m² · 3 suítes', meta: 'Padrão · 2 vagas' }, { src: D27 + 'planta-131-opcao.webp', nome: '131 m² · 3 suítes', meta: 'Opção' }, { src: D27 + 'planta-104.webp', nome: '104 m² · 3 dormitórios', meta: 'Padrão · 1 suíte · 2 vagas' }, { src: D27 + 'planta-104-opcao.webp', nome: '104 m² · opção', meta: 'Sala ampliada' }, { src: D27 + 'planta-65.webp', nome: '65 m² · 2 dormitórios', meta: 'Padrão · 1 suíte · 1 vaga' }, { src: D27 + 'planta-65-opcao.webp', nome: '65 m² · 1 suíte', meta: 'Opção · sala ampliada' }],
+        implantacao: [{ src: D27 + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: D27 + 'implantacao-lazer.webp', nome: '3º pavimento · lazer', meta: '' }, { src: D27 + 'implantacao-cobertura.webp', nome: 'Cobertura · 26º pavimento', meta: '' }],
+        legal: 'Material de vendas com perspectivas e plantas ilustrativas, sem o texto de registro. Os studios do 3º ao 8º pavimento são outro condomínio e não fazem parte desta ficha. Pela corretagem (apto.vc): entregue em maio de 2023; o Lopes cita o mesmo endereço no bairro Aclimação. Disponibilidade sob consulta.',
+        torre: D27 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D27,
+        fotos: [fotoD27('fachada', 'Fachada', true), fotoD27('acesso', 'Acesso de pedestres'), fotoD27('lobby', 'Lobby residencial'), fotoD27('private-garden', 'Private garden'), fotoD27('lounge-gourmet', 'Lounge Atmosfera · gourmet'), fotoD27('lounge-festas', 'Lounge Atmosfera · festas'), fotoD27('lounge-jogos', 'Lounge Atmosfera · jogos'), fotoD27('brinquedoteca', 'Brinquedoteca'), fotoD27('fitness', 'Fitness'), fotoD27('churrasqueira', 'Churrasqueira'), fotoD27('mirante', 'Mirante'), fotoD27('piscina-spa', 'Piscina com SPA'), fotoD27('piscina-raia', 'Piscina com raia de 25 m'), fotoD27('acqua-lounge', 'Acqua lounge')]
+      },
+      {
+        nome: 'Cyrela Bothanic Campo Belo Apartments',
+        cidade: 'São Paulo, capital', bairro: 'Campo Belo',
+        resumo: 'Unidades compactas · 30 a 42 m²',
+        tipo: 'Studio', status: 'Pronto para morar',
+        texto: 'Na quadra entre a Rua Antônio Comparato e a Rua Domingos Lopes, no Campo Belo: a torre de apartamentos compactos do Bothanic, da Cyrela, com unidades de 30 m² e de 42 m² (com opção de sala ampliada), fachadas ativas no térreo, paredes verdes, brises metálicos e serviços de hospedagem. O lazer fica elevado a 6,85 m da rua, com lobby de 75 m² e pé-direito duplo de 5,85 m, espaço festas e gourmet de 65 m², fitness de 80 m² e piscina. Lançado em junho de 2021 e pronto desde julho de 2024, pela corretagem.',
+        area: ['Unidades de 30 m²', 'Unidades de 42 m², com opção de sala ampliada'],
+        tipologia: 'Apartamentos compactos de 1 e 2 dormitórios',
+        vagas: 'Sob consulta',
+        torres: 'Torre de apartamentos do complexo Bothanic, com fachadas ativas e lazer elevado',
+        valores: 'Sob consulta',
+        endereco: 'Rua Domingos Lopes · Campo Belo, São Paulo',
+        infra: { piscina: 'Piscina no lazer elevado', academia: 'Fitness de 80 m²', festas: 'Festas e gourmet de 65 m²', gourmet: 'Espaço gourmet integrado às festas', kids: '', quadra: '', portaria: 'Lobby de 75 m² com pé-direito duplo, acessos social e de serviço', coworking: 'Serviços de hospedagem' },
+        lazerGrupos: [['Lazer elevado', ['Lobby com pé-direito duplo', 'Festas e gourmet', 'Fitness', 'Piscina']], ['Serviços', ['Serviços de hospedagem', 'Fachadas ativas no térreo']]],
+        diferenciais: ['Lobby de 75 m² com pé-direito duplo de 5,85 m', 'Lazer elevado a 6,85 m da rua', 'Paredes verdes e brises metálicos na fachada', 'Ponto de água quente na bancada da suíte, persiana de enrolar nos dormitórios e previsão de carga para ar-condicionado'],
+        creditos: [['Incorporação', 'Cyrela']],
+        plantas: [{ src: D17 + 'planta-2-dorms.webp', nome: '2 dormitórios', meta: 'Planta decorada' }, { src: D17 + 'planta-sala-ampliada.webp', nome: '1 dormitório · sala ampliada', meta: 'Planta decorada' }, { src: D17 + 'planta-tecnica-1.webp', nome: 'Planta técnica', meta: '' }, { src: D17 + 'planta-tecnica-2.webp', nome: 'Planta técnica · 2 dormitórios', meta: '' }],
+        implantacao: [],
+        legal: 'Material de vendas da Cyrela, sem o texto de registro nem data. Pela corretagem (apto.vc, como "Bothanic Campo Belo - Apartaments", Rua Domingos Lopes): lançado em junho de 2021 e pronto em julho de 2024. O Bothanic Campo Belo Residences, do mesmo complexo, não tem book neste lote. Disponibilidade sob consulta.',
+        torre: D17 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D17,
+        fotos: [fotoD17('fachada', 'Fachada', true), fotoD17('fachadas-ativas', 'Fachadas ativas e lazer elevado'), fotoD17('lobby', 'Lobby'), fotoD17('festas-gourmet', 'Festas e gourmet'), fotoD17('fitness', 'Fitness'), fotoD17('piscina', 'Piscina'), fotoD17('unidade-30', 'Unidade de 30 m²'), fotoD17('unidade-42-ampliada', 'Unidade de 42 m² ampliada'), fotoD17('vista-comparato', 'Vista do 16º pavimento, Rua Antônio Comparato'), fotoD17('vista-domingos-lopes', 'Vista do 16º pavimento, Rua Domingos Lopes')]
+      },
+      {
+        nome: 'Cyrela For You Moema',
+        cidade: 'São Paulo, capital', bairro: 'Moema',
+        resumo: 'Studios a duplex · 29,5 a 73 m²',
+        tipo: 'Studio', status: 'Pronto para morar',
+        texto: 'Na esquina da Alameda dos Arapanés com a Avenida dos Eucaliptos, a dez passos da estação Eucaliptos da Linha 5-Lilás e em frente ao Shopping Ibirapuera: o Cyrela For You, porta de entrada para o universo Cyrela, com studios de 29,5 e 36 m², apartamentos de 1 dormitório com 43 m² e duplex de 61 e 73 m², todos com floreira na varanda entregue com irrigação automatizada. No térreo, lobby bar, coworking, sala de reuniões, lounge festas e jogos, lounge externo, pet place e bicicletário; no rooftop, piscina com raia de 25 m, spa, sauna, lounge bar, lavanderia, fitness e sala de spinning. Arquitetura de Aflalo/Gasperini, decoração das áreas comuns de Chris Silveira e paisagismo da Mera. Entregue em julho de 2023, pela corretagem.',
+        area: ['Studio de 29,5 m²', 'Studio de 36 m², com caixilho em L', 'Apartamento de 1 dormitório com 43 m²', 'Duplex de 61 m²', 'Duplex de 73 m², com lavabo'],
+        tipologia: 'Studios, apartamentos de 1 dormitório e duplex',
+        banheiros: 'Banheiro com ventilação natural nos studios de 36 m²; lavabo no duplex de 73 m²',
+        vagas: 'Sem vagas, pela corretagem',
+        torres: 'Torre única de térreo e 16 andares, com rooftop de lazer',
+        unidades: ['314 residências, pela corretagem'],
+        valores: 'Sob consulta',
+        endereco: 'Alameda dos Arapanés x Avenida dos Eucaliptos · Moema, São Paulo',
+        infra: { piscina: 'Piscina com raia de 25 m e spa no rooftop', academia: 'Fitness, sala de spinning e sauna', festas: 'Lounge festas e jogos e lounge bar no rooftop', gourmet: 'Lobby bar e copa', kids: '', quadra: '', portaria: 'Portaria, acessos social e de serviço e delivery room', coworking: 'Coworking, sala de reuniões, lavanderia, bicicletário e pet place' },
+        lazerGrupos: [['Térreo', ['Acesso social', 'Acesso de serviço', 'Portaria', 'Delivery room', 'Lobby bar', 'Coworking', 'Sala de reuniões', 'Bicicletário', 'Copa', 'Lounge festas e jogos', 'Lounge externo', 'Pet place', 'Fruição pública']], ['Rooftop', ['Piscina com raia de 25 m', 'Spa', 'Sauna', 'Lounge bar', 'Lavanderia', 'Fitness', 'Sala de spinning']]],
+        diferenciais: ['Floreira na varanda entregue com irrigação automatizada', 'Ponto de tomada USB e previsão de carga e dreno para ar-condicionado', 'Rooftop com vista panorâmica e piscina com raia de 25 m'],
+        creditos: [['Arquitetura', 'Aflalo/Gasperini Arquitetos'], ['Paisagismo', 'Mera Arquitetura Paisagística'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D19 + 'planta-studio-29.webp', nome: '29,5 m² · studio', meta: '' }, { src: D19 + 'planta-studio-36.webp', nome: '36 m² · studio', meta: 'Caixilho em L' }, { src: D19 + 'planta-43.webp', nome: '43 m² · 1 dormitório', meta: '' }, { src: D19 + 'planta-duplex-61-inferior.webp', nome: 'Duplex 61 m² · inferior', meta: '' }, { src: D19 + 'planta-duplex-61-superior.webp', nome: 'Duplex 61 m² · superior', meta: '' }, { src: D19 + 'planta-duplex-73-inferior.webp', nome: 'Duplex 73 m² · inferior', meta: '' }, { src: D19 + 'planta-duplex-73-superior.webp', nome: 'Duplex 73 m² · superior', meta: '' }],
+        implantacao: [{ src: D19 + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: D19 + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: '' }],
+        legal: 'Incorporadora: Cyrela Pamplona Empreendimentos Imobiliários Ltda. Memorial de Incorporação prenotado sob o nº 794.636 no 14º Cartório de Registro de Imóveis de São Paulo. Material de julho de 2020; perspectivas e plantas ilustrativas. Pela corretagem (apto.vc): torre única, 314 residências de 42 a 73 m², sem vagas, entrega em julho de 2023 e pronto para morar; os portais citam a Alameda dos Arapanés, 815 e 1.441. Disponibilidade sob consulta.',
+        torre: D19 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D19,
+        fotos: [fotoD19('fachada', 'Fachada com floreira', true), fotoD19('fachada-2', 'Fachada'), fotoD19('regiao', 'Moema e o Shopping Ibirapuera'), fotoD19('coworking', 'Coworking'), fotoD19('lounge-festas-jogos', 'Lounge festas e jogos'), fotoD19('lounge-festas-jogos-2', 'Lounge festas e jogos'), fotoD19('lavanderia', 'Lavanderia'), fotoD19('lounge-bar-rooftop', 'Lounge bar no rooftop'), fotoD19('piscina', 'Piscina com raia de 25 m'), fotoD19('sauna', 'Sauna'), fotoD19('fitness', 'Fitness'), fotoD19('studio-29', 'Studio de 29,5 m²'), fotoD19('studio-36', 'Studio de 36 m²'), fotoD19('living-43', 'Living do apartamento de 43 m²'), fotoD19('duplex-61', 'Duplex de 61 m²')]
+      },
+      {
+        nome: 'Cyrela For You Vila Mariana',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: 'Studios e 1 dormitório · 25 a 46 m²',
+        tipo: 'Studio', status: 'Pronto para morar',
+        texto: 'Na Rua Carlos Petit, na Vila Mariana: torre da linha For You da Cyrela, a mesma do For You Perdizes, com studios de 25, 28, 36 e 38 m² e apartamentos de 46 m² com terraço, 15 por andar. Térreo com portaria blindada, loja e acessos separados; no 1º pavimento, lazer com lobby, lounge e salão de festas que podem ser integrados, fitness com sala de ginástica e espaço zen, living room, lavanderia, terraço com horta, churrasqueira e piscina com spa e deck molhado. Fechadura digital entregue e ponto USB no dormitório. Arquitetura do LE Arquitetos, paisagismo de Beth Miyazaki e decoração da Triart Arquitetura. Lançado em novembro de 2019 e entregue em novembro de 2022, pela corretagem.',
+        area: ['Studios de 25 m² (112 unidades) e 28 m² (31)', 'Studios de 36 m² (35) e 38 m² (34), com possibilidade de separar sala e dormitório', '46 m² (27 unidades), com terraço e lavabo'],
+        tipologia: 'Studios e apartamentos compactos',
+        banheiros: 'Banheiro com ventilação natural nas plantas indicadas; lavabo no 46 m²',
+        vagas: '1 vaga, não vinculada, para as unidades de 46 e 47 m²; as demais sem vaga',
+        torres: 'Torre única: térreo, 1º pavimento de lazer e 19 pavimentos-tipo, em terreno de 2.079,72 m²',
+        unidades: ['239 unidades na ficha técnica; a corretagem conta 281 residências'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Carlos Petit, 215 · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina de 13 x 5 m com spa e deck molhado', academia: 'Fitness de 66 m², sala de ginástica e espaço zen', festas: 'Salão de festas de 140 m², integrável ao lobby e ao lounge', gourmet: 'Churrasqueira de 70 m²', kids: '', quadra: '', portaria: 'Portaria blindada e acessos separados de pedestres e de serviço', coworking: 'Lounge de 110 m², living room, lavanderia e terraço com horta' },
+        lazerGrupos: [['Térreo', ['Portaria blindada', 'Acesso social', 'Acesso de serviço', 'Loja']], ['1º pavimento', ['Lobby', 'Lounge', 'Salão de festas', 'Fitness', 'Sala de ginástica', 'Espaço zen', 'Living room', 'Lavanderia', 'Terraço com horta', 'Churrasqueira', 'Piscina com spa e deck molhado']]],
+        diferenciais: ['Fechadura digital entregue', 'Ponto USB no dormitório', 'Previsão para ar-condicionado e para máquina de lavar', 'Lobby, lounge e salão de festas integráveis'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Beth Miyazaki'], ['Decoração', 'Triart Arquitetura'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D32 + 'planta-25.webp', nome: '25 m² · studio', meta: 'Planta padrão' }, { src: D32 + 'planta-28.webp', nome: '28,5 m² · studio', meta: 'Planta padrão' }, { src: D32 + 'planta-38.webp', nome: '38,5 m² · studio', meta: 'Opção de separar sala e dormitório' }, { src: D32 + 'planta-46.webp', nome: '46 m²', meta: 'Com terraço e lavabo' }],
+        implantacao: [],
+        legal: 'Ficha de produto, sem o texto de registro nem data; o nome vem da logo da capa e o número 215, da corretagem. Perspectivas ilustrativas. Pela corretagem (apto.vc, "Cyrela for You", Vila Mariana): lançado em novembro de 2019 e entregue em novembro de 2022; o apto.vc conta 281 residências e a ficha técnica do book, 239 unidades; disponibilidade sob consulta.',
+        torre: D32 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D32,
+        fotos: [fotoD32('fachada', 'Fachada', true), fotoD32('embasamento', 'Embasamento'), fotoD32('portaria', 'Portaria na Rua Carlos Petit'), fotoD32('lobby', 'Lobby'), fotoD32('lounge', 'Lounge'), fotoD32('salao-de-festas', 'Salão de festas'), fotoD32('fitness', 'Fitness'), fotoD32('living-room', 'Living room'), fotoD32('lavanderia', 'Lavanderia'), fotoD32('terraco-horta', 'Terraço com horta'), fotoD32('churrasqueira', 'Churrasqueira'), fotoD32('piscina', 'Piscina com spa e deck molhado'), fotoD32('studio-25', 'Studio de 25 m²'), fotoD32('living-38', 'Living do studio de 38,5 m²'), fotoD32('living-46', 'Living do apartamento de 46 m²')]
+      },
+      {
+        nome: 'Cyrela Iconyc The Residences',
+        cidade: 'São Paulo, capital', bairro: 'Vila Clementino',
+        resumo: '3 suítes e 4 dormitórios a duplex · 158 a 269 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Loefgren, 2.527, a poucos metros do Ibirapuera: torre da Cyrela inspirada em Nova York, com apartamentos de 158,5 m² (4 dormitórios com 2 suítes, ou 3 suítes com sala ampliada e cozinha aberta), 2 vagas vinculadas, e duplex de 269,5 m² com 3 suítes, terraço com churrasqueira e previsão para spa. No térreo, entrada social com jardim, lobby, salão de festas, The Bar (entregue decorado, preparado para futura operação de conveniência) e pet place; no 1º subsolo, piscina coberta; no 2º pavimento, fitness, pilates, brinquedoteca, salão de jogos, churrasqueira, playground, piscina adulto com raia de 25 m, piscina infantil, solarium, deck molhado e lounge. Arquitetura do MCAA, decoração das áreas comuns de Fernanda Marques e paisagismo de Benedito Abbud. Entregue em novembro de 2023, pela corretagem.',
+        area: ['158,5 m²: 4 dormitórios com 2 suítes (padrão), ou 3 suítes com sala ampliada (opção); 2 vagas vinculadas', 'Duplex de 269,5 m²: 3 suítes, terraço com bancada e churrasqueira e previsão para spa'],
+        tipologia: 'Apartamentos de 3 suítes ou 4 dormitórios e duplex',
+        banheiros: 'Banhos sociais e da suíte ventilados, banho master com 2 cubas e misturador de água nos banheiros',
+        vagas: '2 vagas vinculadas no apartamento de 158 m²',
+        torres: 'Torre única, com lazer no térreo, piscina coberta no 1º subsolo e lazer no 2º pavimento',
+        valores: 'Sob consulta',
+        endereco: 'Rua Loefgren, 2.527 · Vila Clementino, São Paulo',
+        infra: { piscina: 'Piscina coberta no 1º subsolo; piscina adulto com raia de 25 m, piscina infantil, solarium e deck molhado', academia: 'Fitness e pilates', festas: 'Salão de festas e salão de jogos', gourmet: 'The Bar e churrasqueira', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Portaria, lobby e acessos social, de serviço e de veículos', coworking: 'Lounge e pet place' },
+        lazerGrupos: [['Térreo', ['Acesso de pedestres social', 'Portaria', 'Acesso de pedestres serviço', 'Lobby', 'The Bar', 'Salão de festas', 'Pet place']], ['1º subsolo', ['Piscina coberta']], ['2º pavimento', ['Fitness', 'Pilates', 'Brinquedoteca', 'Salão de jogos', 'Churrasqueira', 'Playground', 'Piscina infantil', 'Piscina adulto com raia de 25 m', 'Solarium', 'Deck molhado', 'Lounge']]],
+        diferenciais: ['Hall social privativo', 'Terraço social com bancada e churrasqueira entregues', 'Ponto para ar-condicionado na sala e nas 3 suítes', 'Espaço para fogão de 6 bocas e terraço integrado à cozinha', 'The Bar entregue decorado'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Decoração', 'Fernanda Marques Arquitetos Associados'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D08 + 'planta-158.webp', nome: '158 m² · 4 dormitórios', meta: 'Padrão · 2 suítes · 2 vagas' }, { src: D08 + 'planta-158-opcao.webp', nome: '158 m² · 3 suítes', meta: 'Opção · sala ampliada' }, { src: D08 + 'planta-duplex-269-inferior.webp', nome: 'Duplex 269 m² · inferior', meta: '3 suítes' }, { src: D08 + 'planta-duplex-269-superior.webp', nome: 'Duplex 269 m² · superior', meta: 'Terraço e previsão para spa' }],
+        implantacao: [{ src: D08 + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: D08 + 'implantacao-lazer.webp', nome: '2º pavimento · lazer', meta: '' }],
+        legal: 'Book de vendas impresso em novembro de 2019, com perspectivas e plantas ilustrativas. Incorporadora: CBR 048 Empreendimentos Imobiliários Ltda.; Memorial de Incorporação registrado em 24/10/2019, sob nº 1 na matrícula nº 229.827 do 14º Cartório de Registro de Imóveis de São Paulo. Terreno em processo de reabilitação para uso misto, com plano de intervenção aprovado pela CETESB (processo 044625/2018-91). As fotos de Nova York e do Ibirapuera do book são ilustrativas. Pela corretagem (MySide): entregue em novembro de 2023; disponibilidade sob consulta.',
+        torre: D08 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D08,
+        fotos: [fotoD08('fachada', 'Fachada', true), fotoD08('entrada-social', 'Entrada social'), fotoD08('boulevard', 'O jardim da entrada'), fotoD08('lobby', 'Lobby'), fotoD08('salao-de-festas', 'Salão de festas'), fotoD08('the-bar', 'The Bar'), fotoD08('piscina-coberta', 'Piscina coberta'), fotoD08('salao-de-jogos', 'Salão de jogos'), fotoD08('brinquedoteca', 'Brinquedoteca'), fotoD08('churrasqueira', 'Churrasqueira'), fotoD08('piscina-raia', 'Piscina com raia de 25 m'), fotoD08('fitness', 'Fitness'), fotoD08('pilates', 'Pilates'), fotoD08('living-158', 'Living do apartamento de 158 m²'), fotoD08('terraco-duplex', 'Vista do terraço do duplex'), fotoD08('ibirapuera', 'O Ibirapuera, foto ilustrativa')]
+      },
+      {
+        nome: 'Cyrela Legacy',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '3 suítes a duplex · 165 a 330 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Laplace, no Brooklin, inspirado no Plaza Athénée de Paris: arquitetura atemporal, clássica e contemporânea, com molduras e frisos na torre e no embasamento, lobby transfer com pé-direito de 6 m e lazer elevado. Torre residencial de 26 andares-tipo mais duplex, com dois apartamentos por andar e elevador social privativo: 51 apartamentos de 165,5 e 166,5 m², um garden de 303,5 m² e dois duplex de 329 e 330 m². No pavimento de lazer, passarela transfer, main lobby, brinquedoteca, lounge bar, gourmet spot com pergolado retrátil, lounge externo, playground, fitness, piscina com deck molhado, spa, piscina infantil e solarium. Arquitetura de Marcelo Bartolo, paisagismo da Mera e decoração de Chris Silveira. Entregue em julho de 2024, pela corretagem.',
+        area: ['165,5 e 166,5 m²: 51 apartamentos, 2 vagas', 'Garden de 303,5 m² (138 m² descobertos), 2 vagas', 'Duplex de 329 e 330 m² (47,42 m² descobertos), 3 vagas'],
+        tipologia: 'Apartamentos, garden e duplex',
+        banheiros: 'Banhos ventilados, misturador na cozinha e nos banhos, banho master com previsão para banheira ou dois chuveiros',
+        vagas: '2 vagas nos apartamentos e no garden, 3 nos duplex; vinculadas, exceto do 1º ao 3º pavimento',
+        torres: 'Torre residencial de 2 subsolos, térreo, pavimento de lazer, 26 tipos e duplex, em terreno de 1.777,39 m²; uma segunda torre, de studios, não estava à venda no material',
+        unidades: ['54 unidades residenciais'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Laplace · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina com deck molhado, spa, piscina infantil e solarium', academia: 'Fitness de 62 m²', festas: 'Lounge bar de 100 m² e lounge externo de 98 m²', gourmet: 'Gourmet spot com pergolado retrátil', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Portaria, acessos separados de pedestres e veículos e lobby transfer com pé-direito de 6 m', coworking: '' },
+        lazerGrupos: [['Pavimento de acesso', ['Acesso de veículos', 'Acesso social de pedestres', 'Acesso de serviço', 'Lobby transfer']], ['Pavimento de lazer', ['Passarela transfer', 'Main lobby', 'Brinquedoteca', 'Lounge bar', 'Gourmet spot', 'Lounge externo', 'Playground', 'Fitness', 'Piscina com deck molhado', 'Spa', 'Piscina infantil', 'Solarium']]],
+        diferenciais: ['Dois apartamentos por andar, com elevador social privativo e hall privativo', 'Terraço social com bancada e churrasqueira entregues', 'Suíte master com walk-in closet e opções de despensa, rouparia ou closet linear', 'Persiana embutida nos dormitórios e infraestrutura para ar-condicionado na sala e nos dormitórios', 'Fachada ativa no térreo'],
+        creditos: [['Arquitetura', 'Marcelo Bartolo Arquitetura'], ['Paisagismo', 'Mera Arquitetura Paisagística'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D22 + 'planta-165.webp', nome: '165,5 m² · planta padrão', meta: 'Final 1 · 2 vagas' }, { src: D22 + 'planta-165-despensa.webp', nome: '165,5 m² · opção', meta: 'Despensa e closet linear' }, { src: D22 + 'planta-165-rouparia.webp', nome: '165,5 m² · opção', meta: 'Rouparia' }, { src: D22 + 'planta-duplex-329-inferior.webp', nome: 'Duplex 329 m² · inferior', meta: '3 vagas' }, { src: D22 + 'planta-duplex-329-superior.webp', nome: 'Duplex 329 m² · superior', meta: 'Terraço com churrasqueira' }, { src: D22 + 'planta-duplex-329-inferior-opcao.webp', nome: 'Duplex 329 m² · inferior, opção', meta: 'Área de serviço e closet linear' }, { src: D22 + 'planta-duplex-329-superior-opcao.webp', nome: 'Duplex 329 m² · superior, opção', meta: 'Terraço de serviço' }],
+        implantacao: [{ src: D22 + 'implantacao-acesso.webp', nome: 'Pavimento de acesso', meta: '' }, { src: D22 + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: '' }],
+        legal: 'Material de vendas de 18/11/2020, sem o texto de registro; o nome vem da logo da capa e da corretagem. Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc, "Cyrela Legacy", Rua Laplace): entregue em julho de 2024, pronto para morar; disponibilidade sob consulta.',
+        torre: D22 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D22,
+        fotos: [fotoD22('fachada', 'Fachada', true), fotoD22('portaria', 'Portaria e fachada ativa'), fotoD22('lobby-transfer', 'Lobby transfer'), fotoD22('fitness', 'Fitness'), fotoD22('brinquedoteca', 'Brinquedoteca'), fotoD22('lounge-externo', 'Lounge externo'), fotoD22('lounge-bar', 'Lounge bar'), fotoD22('gourmet-spot', 'Gourmet spot'), fotoD22('piscina', 'Piscina com deck molhado e spa'), fotoD22('living', 'Living do apartamento-tipo'), fotoD22('terraco', 'Terraço do apartamento-tipo')]
+      },
+      {
+        nome: 'Cyrela Mond',
+        cidade: 'São Paulo, capital', bairro: 'Vila Leopoldina',
+        resumo: '2 e 3 dormitórios · 69 e 88 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Lauriano Fernandes Júnior, na Vila Leopoldina: um terreno de cerca de 12 mil m² com 210 metros de frente, mais de 2.900 m² de área verde e centenas de árvores, para apartamentos de 69 m² (2 dormitórios com 1 suíte, ou 1 suíte com sala ampliada) e 88 m² (3 dormitórios com 2 suítes, ou sala ampliada), todos com terraço social com bancada e churrasqueira. Lazer em praças e jardins: praça central e praça de chegada, piscinas adulto e infantil com deck molhado e solarium, trilha, redário, pet place, quadra poliesportiva, churrasqueira com forno de pizza, espaço gourmet, salões de festas adulto e infantil, salão de jogos, vídeo lounge, brinquedoteca, playgrounds, fitness e saunas seca e úmida. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração de Chris Silveira. Entregue, pela corretagem.',
+        area: ['69 m²: 2 dormitórios com 1 suíte, ou 1 suíte com sala ampliada', '88 m²: 3 dormitórios com 2 suítes, ou 1 suíte com sala ampliada'],
+        tipologia: 'Apartamentos de 2 e 3 dormitórios',
+        banheiros: 'Banheiros com ventilação natural e misturador de água',
+        vagas: 'Sob consulta',
+        torres: 'Torres num terreno de cerca de 12 mil m², com acesso pela praça central',
+        valores: 'Sob consulta',
+        endereco: 'Rua Lauriano Fernandes Júnior · Vila Leopoldina, São Paulo',
+        infra: { piscina: 'Piscina adulto, piscina infantil, deck molhado e solarium', academia: 'Fitness e saunas seca e úmida', festas: 'Salões de festas adulto e infantil, salão de jogos adulto e vídeo lounge', gourmet: 'Churrasqueira com forno de pizza e espaço gourmet', kids: 'Brinquedoteca, playground infantil e playground baby', quadra: 'Quadra poliesportiva recreativa descoberta', portaria: 'Acessos de pedestres social e de serviço, portaria e lobby', coworking: 'Praça central, trilha, redário e pet place' },
+        lazerGrupos: [['Praças e jardins', ['Praça de chegada', 'Praça central', 'Trilha', 'Redário', 'Pet place', 'Playground infantil', 'Playground baby', 'Quadra poliesportiva recreativa', 'Churrasqueira', 'Espaço gourmet', 'Lounge jogos']], ['Piscinas', ['Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Solarium']], ['Áreas cobertas', ['Lobby', 'Fitness', 'Sauna seca e sauna úmida', 'Brinquedoteca', 'Salão de festas infantil', 'Salão de festas adulto', 'Vídeo lounge', 'Salão de jogos adulto']]],
+        diferenciais: ['Terreno de cerca de 12 mil m² com 210 m de frente e centenas de árvores', 'Terraço social com bancada e churrasqueira', 'Espaço para fogão de 6 bocas e misturador de água na cozinha', 'Previsão de carga e dreno para ar-condicionado e tomada USB nos dormitórios'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D35 + 'planta-69.webp', nome: '69 m² · 2 dormitórios', meta: '1 suíte, planta-tipo' }, { src: D35 + 'planta-69-opcao.webp', nome: '69 m² · opção', meta: '1 suíte e sala ampliada' }, { src: D35 + 'planta-88.webp', nome: '88 m² · 3 dormitórios', meta: '2 suítes, planta-tipo' }, { src: D35 + 'planta-88-opcao.webp', nome: '88 m² · opção', meta: '1 suíte e sala ampliada' }],
+        implantacao: [{ src: D35 + 'implantacao.webp', nome: 'Implantação', meta: 'Rua Lauriano Fernandes Júnior, 210 m de frente' }],
+        legal: 'Incorporadora do Lote 2: Cyrela Greenwood de Investimentos. Incorporação registrada em 27/3/2019, sob o nº 7, na matrícula nº 106.297 do 10º Cartório de Registro de Imóveis de São Paulo. O livro dá o número 10 da Rua Lauriano Fernandes Júnior; os anúncios citam o 130 e chamam o condomínio de Green Mond ou Grand Mond, entregue em 2022. Material preliminar de abril de 2019; perspectivas ilustrativas. Disponibilidade sob consulta.',
+        torre: D35 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D35,
+        fotos: [fotoD35('fachada', 'Fachadas'), fotoD35('portaria', 'Portaria'), fotoD35('lobby', 'Lobby'), fotoD35('piscinas', 'Piscinas'), fotoD35('praca-central', 'Praça central'), fotoD35('churrasqueira', 'Churrasqueira com forno para pizza'), fotoD35('fitness', 'Fitness'), fotoD35('salao-de-festas', 'Salão de festas gourmet'), fotoD35('quadra', 'Quadra poliesportiva'), fotoD35('living-69', 'Living do apartamento de 69 m², sala ampliada'), fotoD35('vista-do-terreno', 'Vista do terreno')]
+      },
+      {
+        nome: 'Epic Apartments',
+        cidade: 'São Paulo, capital', bairro: 'Pinheiros',
+        resumo: 'Studios e 1 dormitório · 24,5 a 32 m²',
+        tipo: 'Studio', status: 'Lançamento',
+        texto: 'Na Rua dos Pinheiros, 371, entre a Rua Joaquim Antunes e a Avenida Rebouças: a Cyrela e a J. Safra Properties apresentam o Epic Apartments, para morar e investir no meio da efervescência cultural de Pinheiros, com studios de 24,5 e 26,5 m² e apartamentos HMP de 1 dormitório com 31 e 32 m², todos com terraço social. No térreo, portaria, delivery, acesso social e lobby com coworking; no 14º pavimento, lazer elevado com piscina descoberta, pool house, solarium, fitness e lavanderia. Arquitetura do MCAA e paisagismo de Benedito Abbud. Datas sob consulta.',
+        area: ['Studio de 24,5 m²', 'Studio de 26,5 m²', 'Apartamento HMP de 1 dormitório com 31 m²', 'Apartamento HMP de 1 dormitório com 32 m²'],
+        tipologia: 'Studios e apartamentos de 1 dormitório (R2V e HMP)',
+        banheiros: 'Água quente na APA e no banho; banho ventilado em parte das plantas',
+        vagas: 'Sob consulta',
+        torres: 'Torre única com lazer no 14º pavimento; finais 7, 8 e 9 de uso R2V e os demais HMP',
+        valores: 'Sob consulta',
+        endereco: 'Rua dos Pinheiros, 371 · Pinheiros, São Paulo',
+        infra: { piscina: 'Piscina descoberta, pool house e solarium no 14º pavimento', academia: 'Fitness', festas: '', gourmet: 'Pool house', kids: '', quadra: '', portaria: 'Portaria, delivery e acesso social', coworking: 'Lobby com coworking e lavanderia' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Delivery', 'Acesso social', 'Lobby e coworking']], ['14º pavimento', ['Piscina descoberta', 'Pool house', 'Solarium', 'Fitness', 'Lavanderia']]],
+        diferenciais: ['Cyrela e J. Safra Properties', 'Terraço social nos studios', 'Infraestrutura para ar-condicionado e pontos para máquinas de lavar roupa e louça', 'Lazer elevado no 14º pavimento'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Cyrela e J. Safra Properties']],
+        plantas: [{ src: D44 + 'planta-studio-24-a.webp', nome: '24,5 m² · studio', meta: 'Planta padrão' }, { src: D44 + 'planta-studio-24-b.webp', nome: '24,5 m² · studio', meta: 'Outro final' }, { src: D44 + 'planta-studio-26.webp', nome: '26,5 m² · studio', meta: '' }, { src: D44 + 'planta-31-a.webp', nome: '31 m² · 1 dormitório', meta: 'HMP' }, { src: D44 + 'planta-31-b.webp', nome: '31 m² · 1 dormitório', meta: 'HMP, outro final' }, { src: D44 + 'planta-31-c.webp', nome: '31 m² · 1 dormitório', meta: 'HMP, outro final' }, { src: D44 + 'planta-32.webp', nome: '32 m² · 1 dormitório', meta: 'HMP' }],
+        implantacao: [{ src: D44 + 'implantacao-acesso.webp', nome: 'Térreo', meta: 'Acesso' }, { src: D44 + 'implantacao-lazer.webp', nome: '14º pavimento', meta: 'Lazer' }],
+        legal: 'Incorporadora: Ariège Empreendimentos e Participações S.A. Memorial de Incorporação registrado na matrícula 178.022 do 10º Oficial de Registro de Imóveis de São Paulo; projeto aprovado sob o nº 34161-23-SP-ALV. Empreendimento com unidades HMP e R2V. Perspectivas e plantas ilustrativas. A corretagem não lista este produto; o Epic Jardim Europa, das mesmas empresas na Rua Joaquim Antunes, é outro empreendimento. Datas e disponibilidade sob consulta.',
+        torre: D44 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D44,
+        fotos: [fotoD44('fachada', 'Fachada', true), fotoD44('fachada-2', 'Fachada', true), fotoD44('piscina', 'Piscina descoberta'), fotoD44('piscina-2', 'Piscina descoberta'), fotoD44('lobby-coworking', 'Lobby e coworking'), fotoD44('lobby-coworking-2', 'Lobby e coworking'), fotoD44('fitness', 'Fitness'), fotoD44('localizacao', 'Entre a Rua Joaquim Antunes e a Rua dos Pinheiros')]
+      },
+      {
+        nome: 'Isla by Cyrela',
+        cidade: 'São Paulo, capital', bairro: 'Santo Amaro',
+        resumo: '3 dormitórios a duplex · 113 a 267 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Bento Branco de Andrade Filho, 477, em Santo Amaro: condomínio de três torres num terreno de 15 mil m², com 4 mil m² de área verde e mais de 500 árvores, pensado como um resort particular, "all inclusive", com um ano de atividades esportivas e recreativas incluídas. Apartamentos de 113 m² na Torre 1 (3 dormitórios com 1 suíte, ou 2 suítes) e de 136 m² nas Torres 2 e 3 (4 dormitórios com 2 suítes, ou 3 suítes), além de duplex de 224 e 267 m², com terraço gourmet e churrasqueira entregues. Mais de 20 itens de lazer: piscina com raia de 25 m, Isla bar, sunset e sunrise grill, praça com espelho d’água, horta e redário, playground, pet place, quadras, brinquedoteca, coworking, sala de jogos, fitness, spinning, ginástica funcional e sauna. Arquitetura do MCAA, decoração de Chris Silveira e paisagismo da Takeda Design. Entregue em outubro de 2023, pela corretagem.',
+        area: ['113 m² (Torre 1): 3 dormitórios com 1 suíte, ou 2 suítes, 2 vagas', '136 m² (Torres 2 e 3): 4 dormitórios com 2 suítes, ou 3 suítes, 2 vagas', 'Duplex de 224 m² (3 suítes) e 267 m² (4 suítes), 3 vagas'],
+        tipologia: 'Apartamentos de 3 e 4 dormitórios e duplex',
+        banheiros: 'Ventilação natural em todos os banhos e misturador de água quente no banho master',
+        vagas: '2 vagas vinculadas nos apartamentos e 3 nos duplex, além de vagas de visitante',
+        torres: '3 torres em terreno de 15 mil m², lazer em duas fases',
+        valores: 'Sob consulta',
+        endereco: 'Rua Bento Branco de Andrade Filho, 477 · Santo Amaro, São Paulo',
+        infra: { piscina: 'Piscina com raia de 25 m, piscina infantil, deck molhado, solarium e Isla bar', academia: 'Espaço fitness, sala de spinning, ginástica funcional e sauna com descanso', festas: 'Lounge festas', gourmet: 'Espaço gourmet, sunset grill e sunrise grill', kids: 'Brinquedoteca e Isla magic playground', quadra: 'Quadra recreativa e mini quadra recreativa', portaria: 'Portaria com segurança 24 horas, hall com transfer e vagas de visitante', coworking: 'Coworking, sala de jogos, horta, redário e Isla pet place' },
+        lazerGrupos: [['Fase 1', ['Portaria', 'Hall com transfer', 'Solarium', 'Deck molhado', 'Piscina com raia de 25 m', 'Isla bar', 'Piscina infantil', 'Praça com espelho d’água', 'Espaço gourmet', 'Lobby da Torre 1', 'Sauna e descanso', 'Espaço fitness', 'Sala de spinning', 'Ginástica funcional', 'Lounge festas', 'Sunrise grill', 'Sunset grill']], ['Fase 2', ['Isla magic playground', 'Sala de jogos', 'Horta e redário', 'Mini quadra recreativa', 'Coworking', 'Quadra recreativa', 'Isla pet place', 'Brinquedoteca']]],
+        diferenciais: ['Um ano de atividades incluídas, como escola de futebol, ballet, pilates, judô e spinning', 'Terraço gourmet com bancada e churrasqueira entregues', 'Tomada USB em todos os dormitórios e espaço para fogão de 6 bocas', 'Infraestrutura para ar-condicionado na sala e nos dormitórios', '4 mil m² de área verde e mais de 500 árvores plantadas'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Takeda Design'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D25 + 'planta-113.webp', nome: '113 m² · 3 dormitórios', meta: 'Torre 1 · 2 vagas' }, { src: D25 + 'planta-113-opcao.webp', nome: '113 m² · 2 suítes', meta: 'Opção, Torre 1' }, { src: D25 + 'planta-136.webp', nome: '136 m² · 4 dormitórios', meta: 'Torres 2 e 3 · 2 vagas' }, { src: D25 + 'planta-136-opcao.webp', nome: '136 m² · 3 suítes', meta: 'Opção, Torres 2 e 3' }, { src: D25 + 'planta-duplex-224-inferior.webp', nome: 'Duplex 224 m² · inferior', meta: '3 suítes · 3 vagas' }, { src: D25 + 'planta-duplex-224-superior.webp', nome: 'Duplex 224 m² · superior', meta: '' }, { src: D25 + 'planta-duplex-267-inferior.webp', nome: 'Duplex 267 m² · inferior', meta: '4 suítes · 3 vagas' }, { src: D25 + 'planta-duplex-267-superior.webp', nome: 'Duplex 267 m² · superior', meta: '' }],
+        implantacao: [{ src: D25 + 'implantacao.webp', nome: 'Implantação', meta: 'Fases 1 e 2' }],
+        legal: 'Incorporadora Ravenna Emp. Imob. Ltda.; Memorial de Incorporação registrado em 3/2/2020, sob nº 4, na matrícula nº 411.647 do 11º Registro de Imóveis de São Paulo. Terreno sem potencial de contaminação (CETESB 33/00615/13). Material impresso em setembro de 2020; atividades incluídas conforme a Convenção de Condomínio. Perspectivas ilustrativas. Pela corretagem (apto.vc, "Isla by Cyrela"): entregue em outubro de 2023, pronto para morar; disponibilidade sob consulta.',
+        torre: D25 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D25,
+        fotos: [fotoD25('fachada', 'Entrada principal e as torres'), fotoD25('alameda', 'Alameda do térreo'), fotoD25('piscina-raia', 'Piscina com raia de 25 m'), fotoD25('isla-bar', 'Isla bar'), fotoD25('praca-espelho-dagua', 'Praça com espelho d’água'), fotoD25('sunset-grill', 'Sunset grill'), fotoD25('sunset-grill-2', 'Sunset grill'), fotoD25('horta-redario', 'Horta e redário'), fotoD25('playground', 'Isla magic playground'), fotoD25('pet-place-quadra', 'Pet place e quadra recreativa'), fotoD25('brinquedoteca', 'Brinquedoteca'), fotoD25('lobby', 'Lobby da Torre 1'), fotoD25('espaco-gourmet', 'Espaço gourmet'), fotoD25('lounge-festas', 'Lounge festas'), fotoD25('coworking', 'Coworking'), fotoD25('sala-de-jogos', 'Sala de jogos'), fotoD25('fitness', 'Espaço fitness e spinning'), fotoD25('ginastica-funcional', 'Ginástica funcional'), fotoD25('sauna', 'Sauna e descanso'), fotoD25('living-136', 'Living ampliado do 136 m²'), fotoD25('regiao', 'Foto aérea da região')]
+      },
+      {
+        nome: 'Legacy Klabin',
+        cidade: 'São Paulo, capital', bairro: 'Chácara Klabin',
+        resumo: '3 suítes · 143,5 e 147,5 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Davi Hume, na Chácara Klabin: torre única de 20 pavimentos sobre o térreo, com 78 apartamentos de 3 suítes, quatro por andar, 76 deles de 147,5 m² e dois de 143,5 m² no 1º pavimento, todos com 2 vagas vinculadas. Planta com hall privativo, lavabo, ampla cozinha, suíte master com closet, banheiros com ventilação natural e amplo terraço com opção de churrasqueira. No térreo e no pavimento de lazer, portaria, lobby externo, salão de festas com lounge externo, fitness, piscina e salão de jogos. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração de Debora Aguiar. Pronto para morar, pela corretagem.',
+        area: ['147,5 m²: 3 suítes, 2 vagas (76 unidades)', '143,5 m²: 3 suítes, 2 vagas (2 unidades no 1º pavimento)'],
+        tipologia: 'Apartamentos de 3 suítes',
+        banheiros: 'Banheiros com ventilação natural, lavabo e WC de serviço',
+        vagas: '2 vagas vinculadas por unidade, em 2 subsolos',
+        torres: 'Torre única: 2 subsolos, térreo e 20 pavimentos, 2 unidades no 1º e 4 por andar do 2º ao 20º',
+        unidades: ['78 apartamentos'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Davi Hume, 25 · Chácara Klabin, São Paulo',
+        infra: { piscina: 'Piscina', academia: 'Fitness', festas: 'Salão de festas com lounge externo e salão de jogos', gourmet: 'Terraço do apartamento com opção de churrasqueira', kids: '', quadra: '', portaria: 'Portaria e lobby externo de entrada', coworking: '' },
+        lazerGrupos: [['Lazer', ['Portaria', 'Lobby externo', 'Salão de festas', 'Lounge externo', 'Fitness', 'Piscina', 'Salão de jogos']]],
+        diferenciais: ['Hall privativo', 'Suíte master com closet', 'Terraço técnico para ar-condicionado', 'Amplo terraço com opção de churrasqueira (bancada e churrasqueira à parte, com custo adicional)'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Debora Aguiar'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D28 + 'planta-147.webp', nome: '147,5 m² · 3 suítes', meta: 'Planta-tipo padrão · 2 vagas' }],
+        implantacao: [],
+        legal: 'Ficha técnica de vendas, sem o texto de registro nem data; o nome vem da logo da capa e o número 25 da rua, dos anúncios da corretagem. Perspectivas ilustrativas; a churrasqueira, a bancada, a cuba e a torneira do terraço não fazem parte do contrato. A corretagem não publica a data de entrega; os anúncios tratam o prédio como pronto (de 2022); disponibilidade sob consulta.',
+        torre: D28 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D28,
+        fotos: [fotoD28('fachada', 'Fachada', true), fotoD28('portaria', 'Portaria'), fotoD28('lobby-externo', 'Lobby externo de entrada'), fotoD28('salao-de-festas', 'Salão de festas'), fotoD28('lounge-externo', 'Lounge externo do salão de festas'), fotoD28('fitness', 'Fitness'), fotoD28('piscina', 'Piscina'), fotoD28('salao-de-jogos', 'Salão de jogos'), fotoD28('living-147', 'Living do apartamento de 147,5 m²'), fotoD28('terraco-147', 'Terraço do apartamento de 147,5 m²')]
+      },
+      {
+        nome: 'On The Sky Bela Cintra The Apartments',
+        cidade: 'São Paulo, capital', bairro: 'Consolação',
+        resumo: 'Studios e 1 dormitório · 29 a 119,5 m²',
+        tipo: 'Studio', status: 'Em construção',
+        texto: 'Na Rua Bela Cintra, 506 e 538, com frente também para a Rua da Consolação, 1.855, perto da Avenida Paulista, de Higienópolis e dos Jardins: o The Apartments é a parte de studios e apartamentos de 1 dormitório do On The Sky Bela Cintra, da Cyrela, com unidades de 29 a 55,5 m² e gardens de 55 e 119,5 m² com amplo terraço descoberto, entre studios residenciais (HMP) e não residenciais. No térreo, boulevard de acesso, lobby, lavanderia e delivery; no 9º andar, coworking e festas, fitness, piscina e lounge externo. Empreendimento com certificação AQUA-HQE. Arquitetura do LE Arquitetos, paisagismo de Benedito Abbud e decoração de Chris Silveira. Lançado em dezembro de 2024, com entrega prevista para maio de 2029, pela corretagem.',
+        area: ['Studios de 29,5 a 41 m², residenciais (HMP) e não residenciais', '1 dormitório de 48 e 55,5 m²', 'Gardens não residenciais de 55 e 119,5 m², com terraço descoberto'],
+        tipologia: 'Studios, apartamentos de 1 dormitório e gardens',
+        banheiros: 'Misturador e bancada entregues no banho social; ponto para misturador na pia',
+        vagas: 'Sob consulta',
+        torres: 'The Apartments: lobby próprio no térreo e lazer no 9º andar, no conjunto do On The Sky Bela Cintra',
+        valores: 'Sob consulta',
+        endereco: 'Rua Bela Cintra, 506 · Consolação, São Paulo',
+        infra: { piscina: 'Piscina descoberta no 9º andar', academia: 'Fitness', festas: 'Coworking e festas', gourmet: '', kids: '', quadra: '', portaria: 'Acesso social, lobby, delivery e boulevard de acesso', coworking: 'Coworking, lavanderia e lounge externo' },
+        lazerGrupos: [['Térreo', ['Acesso social', 'Lobby', 'Lavanderia', 'Delivery', 'Boulevard de acesso']], ['9º andar', ['Coworking e festas', 'Fitness', 'Piscina', 'Lounge externo']]],
+        diferenciais: ['Certificação AQUA-HQE, com metas de redução de 20% no consumo de água e de energia', 'Infraestrutura para ar-condicionado', 'Floreira privativa nas unidades', 'Gardens com amplo terraço descoberto'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D46 + 'planta-studio-a.webp', nome: 'Studio de 29,5 ou 31 m²', meta: 'HMP ou não residencial' }, { src: D46 + 'planta-studio-b.webp', nome: 'Studio de 29,5 ou 31 m²', meta: 'HMP ou não residencial' }, { src: D46 + 'planta-41-a.webp', nome: 'Studio de 41 m²', meta: 'HMP ou não residencial' }, { src: D46 + 'planta-41-b.webp', nome: 'Studio de 41 m²', meta: 'HMP ou não residencial' }, { src: D46 + 'planta-1dorm-a.webp', nome: '1 dormitório · 48 ou 55,5 m²', meta: 'Não residencial' }, { src: D46 + 'planta-1dorm-b.webp', nome: '1 dormitório · 48 ou 55,5 m²', meta: 'Não residencial' }, { src: D46 + 'planta-garden-55.webp', nome: 'Garden de 55 m²', meta: 'Não residencial, terraço descoberto' }, { src: D46 + 'planta-garden-119.webp', nome: 'Garden de 119,5 m²', meta: 'Não residencial, terraço descoberto' }],
+        implantacao: [{ src: D46 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'The Apartments' }, { src: D46 + 'implantacao-lazer.webp', nome: 'Lazer no 9º andar', meta: 'The Apartments' }],
+        legal: 'Incorporadora CBR 162 Empreendimentos Imobiliários Ltda.; Memorial de Incorporação prenotado sob nº 397.073, na matrícula nº 114.330 do 13º Oficial de Registro de Imóveis de São Paulo, em 11/11/2024. Área em processo de reabilitação para fins residenciais, com plano de intervenção aprovado (CETESB 45/03744/24). Endereço: Rua Bela Cintra, 506 e 538, e Rua da Consolação, 1.855. Perspectivas e plantas ilustrativas; o book não diz a qual final pertence cada planta de studio e de 1 dormitório. Pela corretagem: lançamento em dezembro de 2024 (apto.vc) e entrega prevista para maio de 2029 (MySide, para o conjunto On The Sky Bela Cintra); disponibilidade sob consulta.',
+        torre: D46 + 'torre.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D46,
+        fotos: [fotoD46('torre', 'A torre', true), fotoD46('embasamento', 'Embasamento'), fotoD46('lobby', 'Lobby'), fotoD46('coworking-festas', 'Coworking e festas'), fotoD46('piscina', 'Piscina'), fotoD46('fitness', 'Fitness'), fotoD46('studio-29', 'Studio de 29 m²')]
+      },
+      {
+        nome: 'Residencial Haras Patente',
+        cidade: 'Jaguariúna', bairro: 'Tanquinho Velho',
+        resumo: 'Lotes de 900 a 1.105 m² · loteamento com clube e hípica',
+        tipo: 'Lote', status: 'Em construção',
+        texto: 'Em Jaguariúna, na área do antigo Haras Patente, criado pelos irmãos Forelli e casa de garanhões como Xaveco e Zephir: loteamento da Cyrela Urbanismo com a Antonio Andrade, com as construções históricas do haras revitalizadas para o hipismo de lazer (sede, baias, picadeiro, redondel, piquetes e pista equestre). Em torno de um espelho d’água de 30 mil m², sede do clube de 1.500 m² com salão de festas e restaurante, piscina com borda infinita de cerca de 800 m², piscina infantil e academia de cerca de 1.000 m² com piscina coberta e aquecida de três raias e saunas. Campo de futebol, quadras de tênis, quadras poliesportivas, vôlei de areia, praça central, bosque, pista de cooper e caminhada, alamedas arborizadas com fiação subterrânea, portaria com controle de acesso e mall de conveniência. Projeto de Fernanda Amaral e paisagismo de Marcelo Novaes. Em construção, com entrega prevista para dezembro de 2027, pela corretagem.',
+        area: ['Lotes de 900 a 1.105 m², pela corretagem'],
+        tipologia: 'Lotes residenciais em loteamento fechado',
+        vagas: 'Sob consulta',
+        torres: 'Loteamento horizontal com clube, complexo hípico e área esportiva, em duas fases',
+        unidades: ['320 residências, pela corretagem'],
+        valores: 'Sob consulta',
+        endereco: 'Avenida Haras Patente · Tanquinho Velho, Jaguariúna (SP)',
+        infra: { piscina: 'Piscina com borda infinita, piscina infantil e piscina coberta aquecida com 3 raias', academia: 'Academia de cerca de 1.000 m², com musculação, ginástica e saunas seca e a vapor', festas: 'Sede do clube com salão de festas e restaurante', gourmet: 'Espaço gourmet e bar da piscina', kids: 'Playground e espaço kids (2ª fase)', quadra: 'Campo de futebol, futebol society, quadras de tênis, quadras poliesportivas e vôlei de areia', portaria: 'Portaria com controle de acesso, monitoramento do perímetro e sede administrativa', coworking: 'Complexo hípico, espelho d’água, bosque e pista de cooper' },
+        lazerGrupos: [['Clube', ['Sede do clube', 'Restaurante e salão de festas', 'Piscina com borda infinita', 'Piscina infantil', 'Bar da piscina', 'Espaço gourmet', 'Prainha e ilha com pergolado no espelho d’água', 'Academia com piscina coberta aquecida', 'Saunas', 'Playground']], ['Esportes', ['Campo de futebol', 'Futebol society', 'Quadras de tênis', 'Quadras poliesportivas', 'Vôlei de areia', 'Pista de cooper e caminhada']], ['Hípica', ['Sede do clube hípico', 'Baias', 'Picadeiro', 'Redondel', 'Piquetes', 'Pista equestre']], ['Acesso e serviços', ['Portaria', 'Mall de conveniência', 'Administração', 'Bosque central', 'Praça central']]],
+        diferenciais: ['Área do antigo Haras Patente, com árvores centenárias e construções históricas preservadas', 'Espelho d’água de 30 mil m²', 'Fiação subterrânea em todas as alamedas', 'Complexo hípico para hipismo de lazer'],
+        creditos: [['Projeto', 'Fernanda Amaral'], ['Paisagismo', 'Marcelo Novaes'], ['Realização', 'Antonio Andrade e Cyrela Urbanismo']],
+        plantas: [],
+        implantacao: [{ src: D03 + 'implantacao.webp', nome: 'Implantação', meta: 'Loteamento e clube' }],
+        legal: 'Book de vendas sem o texto de registro nem data. Perspectivas ilustrativas e fotos do local. Pela corretagem (apto.vc, "Residencial Haras Patente", Jaguariúna): lançamento da Antonio Andrade em setembro de 2025, com 320 residências, lotes de 900 a 1.105 m² e entrega prevista para dezembro de 2027; disponibilidade sob consulta.',
+        torre: '', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D03,
+        fotos: [fotoD03('espelho-dagua', 'O espelho d’água e o clube'), fotoD03('portaria', 'Portaria'), fotoD03('praca-central', 'Praça central'), fotoD03('sede-do-clube', 'Sede do clube'), fotoD03('piscina', 'Piscina com borda infinita'), fotoD03('academia', 'Academia'), fotoD03('baias', 'As baias do haras (foto do local)'), fotoD03('alameda', 'Alameda (foto do local)'), fotoD03('campo-de-futebol', 'Campo de futebol'), fotoD03('quadras-de-tenis', 'Quadras de tênis'), fotoD03('quadra-poliesportiva', 'Quadra poliesportiva'), fotoD03('sede-administrativa', 'Sede administrativa'), fotoD03('alameda-fiacao', 'Alameda com fiação subterrânea'), fotoD03('piquetes', 'Piquetes (foto do local)'), fotoD03('paisagem', 'Paisagem do haras (foto do local)')]
+      },
+      {
+        nome: 'Thera Ibirapuera by Yoo',
+        cidade: 'São Paulo, capital', bairro: 'Vila Clementino',
+        resumo: 'Studios a apartamentos garden · 27 a 130 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Uma edição consagrada da Cyrela na região do Ibirapuera, com dois produtos e lobbies independentes: The Apartments, com apartamentos de 60, 65 e 77 m² e unidades garden de 92,50 a 130,50 m², e The Studios, com studios de 27,50 e 35 m² e pé-direito de 2,85 m. Térreo com port-cochère, portaria e espelho d’água; no 3º pavimento, salão de festas gourmet com terraço, lounge externo e jardim dos studios e os gardens dos apartamentos; no 26º, a cobertura de lazer com piscina de raia de 20 m, solarium, piscina infantil, terraço coberto, salão de festas gourmet, brinquedoteca e fitness, coroada pelo Diamond Prism, além da lavanderia com cinco máquinas profissionais e do fitness dos studios. Pronto para morar, pela corretagem.',
+        area: ['The Studios: 27,50 m² (66 unidades) e 35 m² (46 unidades), sem vaga', 'The Apartments: 60 m² (45 unidades), 65 m² (44 unidades) e 77 m² (22 unidades)', 'Gardens: 92,50, 95,40, 115,40 e 130,50 m²'],
+        tipologia: 'Studios, apartamentos e gardens',
+        vagas: 'Apartamentos com vaga; studios sem vaga',
+        torres: 'The Apartments e The Studios, com lobbies independentes',
+        unidades: ['112 studios', '111 apartamentos e unidades garden'],
+        valores: 'Sob consulta',
+        endereco: 'Vila Clementino, região do Ibirapuera · São Paulo (endereço sob consulta)',
+        infra: { piscina: 'Piscina com raia de 20 m, piscina infantil e solarium no 26º pavimento', academia: 'Fitness dos apartamentos e fitness dos studios', festas: 'Salões de festas gourmet com terraço, um para cada produto', gourmet: 'Terraço festas gourmet e Diamond Prism', kids: 'Brinquedoteca', quadra: '', portaria: 'Port-cochère, portaria, lobby The Apartments e lobby The Studios', coworking: 'Lavanderia com 5 máquinas profissionais, lounge externo e jardim' },
+        lazerGrupos: [['Térreo', ['Acesso de veículos com port-cochère', 'Acessos de pedestres social e de serviço', 'Portaria', 'Espelho d’água', 'Lobby The Apartments', 'Lobby The Studios']], ['3º pavimento', ['Salão de festas gourmet The Studios', 'Terraço festas gourmet', 'Lounge externo', 'Jardim', 'Gardens The Apartments']], ['26º pavimento', ['Salão de festas gourmet The Apartments', 'Terraço festas gourmet', 'Brinquedoteca', 'Fitness The Apartments', 'Terraço coberto', 'Piscina infantil', 'Solarium', 'Piscina com raia de 20 m', 'Diamond Prism', 'Lavanderia The Studios', 'Fitness The Studios']]],
+        diferenciais: ['Dois produtos com lobbies próprios', 'Cobertura de lazer no 26º pavimento com o Diamond Prism', 'Studios com pé-direito de 2,85 m', 'Lavanderia com cinco máquinas profissionais'],
+        creditos: [['Design', 'YOO'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D38 + 'planta-studio-27.webp', nome: '27,50 m² · studio', meta: 'Pé-direito de 2,85 m' }, { src: D38 + 'planta-studio-35.webp', nome: '35 m² · studio', meta: 'Pé-direito de 2,85 m' }],
+        implantacao: [{ src: D38 + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: D38 + 'implantacao-3-pavimento.webp', nome: '3º pavimento', meta: 'Lazer dos studios e gardens' }, { src: D38 + 'implantacao-26-pavimento.webp', nome: '26º pavimento', meta: 'Lazer' }],
+        legal: 'O livro é uma apresentação sem texto de registro nem data; perspectivas ilustrativas. Nome, bairro e situação pela corretagem (apto.vc, Thera Ibirapuera By Yoo Studios e Apartaments): 112 studios de 27 a 35 m², sem vaga, prontos para morar. O endereço não aparece no material. Disponibilidade sob consulta.',
+        torre: D38 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D38,
+        fotos: [fotoD38('fachada', 'Fachada', true), fotoD38('fachada-2', 'Fachada', true), fotoD38('diamond-prism', 'Diamond Prism no 26º pavimento'), fotoD38('rooftop', 'Lazer no 26º pavimento'), fotoD38('acesso', 'Acesso residencial e espelho d’água'), fotoD38('lobby', 'Lobby'), fotoD38('jardim-studios', 'Lounge externo e jardim dos studios'), fotoD38('festas-gourmet-studios', 'Salão de festas gourmet The Studios'), fotoD38('lavanderia-studios', 'Lavanderia The Studios'), fotoD38('studio-35', 'Studio de 35 m²'), fotoD38('vista', 'Vista da região')]
+      },
+      {
+        nome: 'Zen Cyrela & Yoo',
+        cidade: 'São Paulo, capital', bairro: 'Ibirapuera',
+        resumo: '3 e 4 suítes · 277 e 320 m²',
+        tipo: 'Apartamento', status: 'Lançamento',
+        texto: 'Na Rua Leopoldo de Bulhões, ao lado do Parque Ibirapuera: a Cyrela se une à YOO Studios num projeto inspirado no zen, minimalista e cercado de verde, com duas torres. Na Torre 1, apartamentos de 320,75 m² com 4 suítes e sala íntima, ou 3 suítes com cozinha e sala ampliadas, e elevador panorâmico com vista para o parque; na Torre 2, apartamentos de 277,10 m² com 4 suítes, ou 3 suítes com sala íntima, e elevador privativo. No térreo, lobby com pé-direito duplo, salão de festas, piscina coberta com raia de 25 m, spa e saunas; no pavimento de lazer, piscina descoberta, zen pool house, private pool house, duas private houses, fitness, quadras recreativa e de tênis, espaço teen, brinquedoteca e playground. Arquitetura do LE Arquitetos, paisagismo de Benedito Abbud e decoração das áreas comuns de Fernanda Marques. Lançado em janeiro de 2026, com entrega prevista para dezembro de 2029, pela corretagem.',
+        area: ['320,75 m² (Torre 1, final 1): 4 suítes e sala íntima, ou 3 suítes com cozinha e sala ampliadas', '277,10 m² (Torre 2, final 2): 4 suítes com master de banho Sr. e Sra., ou 3 suítes com sala íntima, ou 3 suítes com sala e cozinha ampliadas'],
+        tipologia: 'Apartamentos de 3 e 4 suítes',
+        banheiros: 'Banho Sr. e Sra. na suíte master e infraestrutura para banheira',
+        vagas: 'Sob consulta',
+        torres: '2 torres, com elevador panorâmico na Torre 1 e elevador privativo na Torre 2',
+        valores: 'Sob consulta',
+        endereco: 'Rua Leopoldo de Bulhões, 40 e 80 · Ibirapuera, São Paulo',
+        infra: { piscina: 'Piscina coberta com raia de 25 m, piscina descoberta, piscina infantil e spa', academia: 'Fitness e saunas seca e úmida', festas: 'Salão de festas com lounge externo e duas private houses', gourmet: 'Zen pool house e private pool house', kids: 'Brinquedoteca, playground e espaço teen', quadra: 'Quadra recreativa e quadra de tênis com lounge', portaria: 'Portaria, delivery, acessos social e de serviço e lobby com pé-direito duplo', coworking: 'Pet place' },
+        lazerGrupos: [['Térreo', ['Acesso de veículos', 'Acesso de serviço', 'Portaria', 'Delivery', 'Acesso social', 'Lobby com pé-direito duplo', 'Salão de festas', 'Lounge externo', 'Piscina coberta com raia de 25 m', 'Spa', 'Sauna seca', 'Sauna úmida', 'Pet place (1º subsolo)']], ['Pavimento de lazer', ['Private house A', 'Private house B', 'Piscina descoberta', 'Zen pool house', 'Piscina infantil', 'Private pool house', 'Fitness', 'Quadra recreativa', 'Quadra de tênis', 'Lounge tênis', 'Espaço teen', 'Brinquedoteca', 'Playground']]],
+        diferenciais: ['Assinatura internacional da YOO Studios', 'Elevador panorâmico com vista para o Parque Ibirapuera na Torre 1', 'Hall privativo com controle de acesso e floreira com irrigação automatizada', 'Persiana automatizada nos dormitórios e infraestrutura para churrasqueira a gás'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Fernanda Marques'], ['Design', 'YOO Studios'], ['Incorporação', 'Cyrela']],
+        plantas: [{ src: D49 + 'planta-320.webp', nome: '320 m² · 4 suítes', meta: 'Torre 1, final 1, planta padrão' }, { src: D49 + 'planta-320-opcao.webp', nome: '320 m² · 3 suítes', meta: 'Torre 1, opção 1, cozinha e sala ampliadas' }, { src: D49 + 'planta-277-a.webp', nome: '277 m² · Torre 2', meta: 'Padrão (4 suítes) ou opção 1 (3 suítes e sala íntima)' }, { src: D49 + 'planta-277-b.webp', nome: '277 m² · Torre 2', meta: 'Padrão (4 suítes) ou opção 1 (3 suítes e sala íntima)' }, { src: D49 + 'planta-277-opcao-4.webp', nome: '277 m² · 3 suítes', meta: 'Torre 2, opção 4, sala e cozinha ampliadas' }],
+        implantacao: [{ src: D49 + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: D49 + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: '' }],
+        legal: 'Incorporadora: CBR 181 Empreendimentos Imobiliários Ltda. Memorial de Incorporação prenotado sob o nº 971.880 do 14º Oficial de Registro de Imóveis de São Paulo em 24/09/2025. Comercialização: Cyrela (Creci 17.592-J). Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc, Zen Cyrela e Yoo): lançado em janeiro de 2026, entrega prevista para dezembro de 2029. Disponibilidade sob consulta.',
+        torre: D49 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_D49,
+        fotos: [fotoD49('fachada', 'Fachada da Torre 2'), fotoD49('embasamento', 'Embasamento e acessos'), fotoD49('lobby', 'Lobby com pé-direito duplo'), fotoD49('salao-de-festas', 'Salão de festas'), fotoD49('salao-de-festas-2', 'Salão de festas'), fotoD49('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoD49('private-house', 'Private house B'), fotoD49('piscina', 'Piscina descoberta'), fotoD49('private-pool-house', 'Private pool house'), fotoD49('private-pool-house-2', 'Private pool house'), fotoD49('fitness', 'Fitness'), fotoD49('quadra-recreativa', 'Quadra recreativa'), fotoD49('quadra-de-tenis', 'Lounge e quadra de tênis'), fotoD49('espaco-teen', 'Espaço teen'), fotoD49('brinquedoteca-playground', 'Brinquedoteca e playground'), fotoD49('living-320', 'Apartamento de 320,75 m²'), fotoD49('living-277', 'Apartamento de 277,10 m²'), fotoD49('regiao', 'O Parque Ibirapuera')]
       }
     ],
     'Mitre': [
@@ -10127,7 +10964,7 @@
   var filtrado = NO_AR.length > 0;
   // (13/11/2026) parceria no ar so em algumas cidades: a Cyrela tambem esta nas listas de Porto Alegre e do Rio,
   // mas os empreendimentos dela que temos sao todos da capital; nas outras cidades ela continua guardada
-  var SO_NAS_CIDADES = { 'Cyrela': ['São Paulo, capital'] };
+  var SO_NAS_CIDADES = { 'Cyrela': ['São Paulo, capital', 'Jaguariúna'] };
   // as parcerias que aparecem numa cidade, cada uma com o indice original (o do endereco #pais/uf/cidade/indice)
   function parceriasDe(c) {
     return c.construtoras.map(function (nome, ni) { return { nome: nome, ni: ni }; })
