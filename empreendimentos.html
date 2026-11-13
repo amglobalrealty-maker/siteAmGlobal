@@ -922,6 +922,23 @@
     polos: 'Por perto: Praça da Árvore, Clube Atlético Monte Líbano, Parque das Bicicletas, Av. Jabaquara e as estações Praça da Árvore e Saúde.',
     fonte: 'Fonte: book do Grand Square.'
   };
+  // (13/11/2026) Mitre: Haus Mitre Alto Butanta, Raizes Premium Butanta, Haus Mitre Pinheiros e Essencia Brasileira
+  var MAB = MT + 'altobutanta/', MPB = MT + 'raizespremiumbutanta/', MPN = MT + 'hmpinheiros/', MEB = MT + 'essencia/';
+  var fotoMAB = fotoEm(MAB), fotoMPB = fotoEm(MPB), fotoMPN = fotoEm(MPN), fotoMEB = fotoEm(MEB);
+  var ZO_BUTANTA_MITRE = {
+    titulo: 'A região · Butantã',
+    texto: 'Entre a Cidade Universitária, o Jockey Club e a Marginal Pinheiros, o Butantã é um bairro arborizado e de ruas tranquilas, servido pela estação Butantã da Linha 4-Amarela, pela Avenida Vital Brasil, pela Francisco Morato e pela Eliseu de Almeida. A Faria Lima, o Shopping Eldorado e o Iguatemi ficam a poucos minutos; o Parque Villa-Lobos e o Instituto Butantan, logo ao lado.',
+    numeros: [['350 m', 'do Metrô Butantã, o Haus Mitre Alto Butantã'], ['750 m', 'da mesma estação, o Raízes Premium Butantã'], ['8 min', 'da Avenida Faria Lima'], ['24 a 119 m²', 'do studio ao apartamento de 3 suítes']],
+    polos: 'Por perto: Metrô Butantã, Cidade Universitária, Jockey Club, Av. Vital Brasil, Av. Francisco Morato, Av. Eliseu de Almeida, Marginal Pinheiros, Av. Faria Lima, Shopping Eldorado, Shopping Iguatemi, Parque Villa-Lobos e Hospital Sancta Maggiore.',
+    fonte: 'Fonte: books do Haus Mitre Alto Butantã (2019) e do Raízes Premium Butantã, com tempos do próprio material.'
+  };
+  var ZO_PINHEIROS_MITRE = {
+    titulo: 'A região · Pinheiros, Rua Capote Valente',
+    texto: 'Na parte alta de Pinheiros, entre o Metrô Sumaré, a Avenida Dr. Arnaldo e a Rebouças, a Rua Capote Valente liga o bairro ao Jardim América e à Oscar Freire: ruas de casas, restaurantes, o Hospital das Clínicas e o Hospital Sírio perto, e a Avenida Paulista a poucos minutos. A Mitre tem ali dois projetos vizinhos.',
+    numeros: [['250 m', 'do Metrô Sumaré, o Haus Mitre Pinheiros'], ['2', 'projetos da Mitre na mesma rua'], ['24 a 221 m²', 'do studio ao garden'], ['2027', 'entrega prevista do Essência Brasileira, pela corretagem']],
+    polos: 'Por perto: Metrô Sumaré, Metrô Oscar Freire, Rua Oscar Freire, Rua Cardeal Arcoverde, Av. Dr. Arnaldo, Av. Rebouças, Av. Henrique Schaumann, Av. Teodoro Sampaio, Hospital das Clínicas e Av. Paulista.',
+    fonte: 'Fonte: books do Haus Mitre Pinheiros e do Essência Brasileira (agosto de 2023).'
+  };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
     texto: 'Entre o Ipiranga e a Vila Mariana, em volta da Estação Alto do Ipiranga da Linha 2-Verde, que leva à Avenida Paulista em 12 minutos: a Rua Santa Cruz com o comércio do bairro, o Museu Paulista e o Parque da Independência, o Sesc Ipiranga, o Mercado Municipal do Ipiranga, o Hospital São Camilo e a unidade do Einstein, os supermercados Hirota e Marché e restaurantes de bairro. A Rodovia dos Imigrantes e a Avenida Ricardo Jafet saem dali para o litoral e o ABC.',
@@ -8322,16 +8339,104 @@
           fotoMHP('coworking', 'Coworking'),
           fotoMHP('studio-residencial', 'Studio residencial')
         ]
+      },
+      {
+        nome: 'Haus Mitre Alto Butantã',
+        cidade: 'São Paulo, capital', bairro: 'Butantã',
+        resumo: 'Studios a 3 dormitórios · 24 a 78 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'A quinta edição da linha Haus Mitre, na Rua Sapetuba, 228, a 350 metros do Metrô Butantã, entre a USP e o Jockey Club: torre única com studios com serviços de 24 m², apartamentos de 1 dormitório (37 m²) e de 3 dormitórios (78 m²), com estrutura e lazer independentes para os residenciais e para os studios. Lazer residencial com piscina, fitness, wellness, adega, espaço gourmet, salão de festas, sports bar, brinquedoteca, playground, hall e car wash; os studios têm piscina, churrasqueira, sports bar, fitness, lavanderia e coworking. Quatro lojas de conveniência no térreo. Lançado em novembro de 2019 e entregue em outubro de 2022, pela corretagem.',
+        area: ['78 m²: 3 dormitórios, com opção de living ampliado', '37 m²: 1 dormitório', 'Studios com serviços de 24 m²'],
+        tipologia: 'Studios, 1 dormitório e apartamentos de 3 dormitórios',
+        banheiros: 'Água quente nas pias dos banheiros e da cozinha e bacias com válvula dual flux',
+        torres: 'Torre única com setores residencial e de studios independentes e 4 lojas no térreo',
+        valores: 'Sob consulta',
+        endereco: 'Rua Sapetuba, 228 · Butantã, São Paulo',
+        infra: { piscina: 'Piscina residencial e piscina dos studios', academia: 'Fitness e wellness residenciais; fitness dos studios', festas: 'Salão de festas e sports bar', gourmet: 'Espaço gourmet, adega e churrasqueira dos studios', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Hall e acessos independentes', coworking: 'Coworking e lavanderia dos studios, car wash e bike parking' },
+        lazerGrupos: [['Residencial', ['Piscina', 'Fitness', 'Wellness', 'Adega', 'Espaço gourmet', 'Salão de festas', 'Sports bar', 'Brinquedoteca', 'Playground', 'Hall', 'Car wash', 'Bicicletário']], ['Studios com serviços', ['Piscina', 'Churrasqueira', 'Sports bar', 'Fitness', 'Lavanderia', 'Coworking']]],
+        diferenciais: ['Mitre Personal Home: opções de plantas e acabamentos', 'Fechadura eletrônica, tratamento acústico no piso e nivelamento entre living e terraço', 'Infraestrutura para ar-condicionado e terraço com churrasqueira a carvão nos de 3 dormitórios', 'Tomada para carro elétrico e bike parking', 'Áreas comuns decoradas por designers'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Haus Mitre']],
+        plantas: [{ src: MAB + 'planta-78.webp', nome: '78 m² · 3 dormitórios', meta: '' }, { src: MAB + 'planta-78-ampliado.webp', nome: '78 m² · living ampliado', meta: '' }, { src: MAB + 'planta-37.webp', nome: '37 m² · 1 dormitório', meta: '' }, { src: MAB + 'planta-24.webp', nome: '24 m² · studio com serviços', meta: '' }],
+        legal: 'Memorial de Incorporação registrado sob o nº R.2 da matrícula nº 251.833 do 18º Registro de Imóveis de São Paulo, em 22/11/2019. Intermediação: Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794, e LPS São Paulo Consultoria de Imóveis Ltda., Creci/SP J-24073. Book impresso em novembro de 2019. Pela corretagem (apto.vc): lançamento em novembro de 2019 e entrega em outubro de 2022, pronto para morar; disponibilidade sob consulta.',
+        torre: MAB + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZO_BUTANTA_MITRE,
+        fotos: [fotoMAB('fachada', 'Fachada', true), fotoMAB('regiao', 'A região à noite'), fotoMAB('piscina', 'Piscina residencial'), fotoMAB('fitness', 'Fitness residencial'), fotoMAB('adega', 'Adega'), fotoMAB('gourmet-festas', 'Espaço gourmet e salão de festas'), fotoMAB('salao-de-festas', 'Salão de festas'), fotoMAB('espaco-gourmet', 'Espaço gourmet'), fotoMAB('sports-bar', 'Sports bar'), fotoMAB('brinquedoteca', 'Brinquedoteca'), fotoMAB('playground', 'Playground'), fotoMAB('hall', 'Hall'), fotoMAB('car-wash', 'Car wash'), fotoMAB('piscina-studios', 'Piscina dos studios'), fotoMAB('churrasqueira-studios', 'Churrasqueira dos studios'), fotoMAB('sports-bar-studios', 'Sports bar dos studios'), fotoMAB('fitness-studios', 'Fitness dos studios'), fotoMAB('lavanderia-studios', 'Lavanderia dos studios'), fotoMAB('coworking-studios', 'Coworking dos studios')]
+      },
+      {
+        nome: 'Raízes Premium Butantã',
+        cidade: 'São Paulo, capital', bairro: 'Butantã',
+        resumo: 'Studios a 3 suítes · 26 a 119 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Santa Rosa Júnior, 283, a 750 metros do Metrô Butantã e a 8 minutos da Faria Lima: três torres em dois condomínios independentes, num terreno de 6.871 m², com sete lojas. As torres Eucalipto (3 suítes de 115 a 119 m², 2 vagas, e 3 dormitórios de 83 a 85 m²) e Jatobá (3 dormitórios com suíte) dividem o lazer do 4º pavimento: piscinas adulto e infantil, bar da piscina, mirante, terraços parrilla e yoga, churrasqueira, quadra, playground, fitness, sauna, SPA, festas, gourmet, jogos, coworking e brinquedoteca. A torre Araucária, com studios de 26 a 39 m², 1 dormitório de 39 m² e 2 dormitórios de 65 m², tem lazer próprio com piscina com raia de 20 m e pool house. Entrega em 2026, pela corretagem.',
+        area: ['115 a 119 m²: 3 suítes, 2 vagas', '83 a 85 m²: 3 dormitórios com suíte, 1 vaga, com opção de living ampliado', '65 m²: 2 dormitórios com suíte, 1 vaga', '39 m²: 1 dormitório, residencial ou com serviços', 'Studios de 26 a 39 m², residenciais e com serviços', '7 lojas de 378 a 493 m²'],
+        tipologia: 'Studios, 1 e 2 dormitórios e apartamentos de 3 dormitórios e 3 suítes',
+        vagas: '2 vagas no 115 m², 1 vaga nos de 85, 65 e 39 m²',
+        torres: '3 torres em terreno de 6.871,56 m²: Eucalipto e Jatobá (5º ao 27º residencial) e Araucária (5º ao 19º)',
+        unidades: ['651 residências pela corretagem e 7 lojas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Santa Rosa Júnior, 283 · Butantã, São Paulo',
+        infra: { piscina: 'Piscinas adulto e infantil, deck molhado e bar da piscina; piscina com raia de 20 m na Araucária', academia: 'Fitness, sauna e SPA', festas: 'Espaço festas e salão de jogos', gourmet: 'Espaço gourmet, churrasqueira e terraço parrilla', kids: 'Brinquedoteca e playground', quadra: 'Quadra recreativa', portaria: 'Acessos de pedestre e delivery independentes por condomínio', coworking: 'Coworking, lounge, mirante, terraço yoga, mini market, bicicletário e pet place' },
+        lazerGrupos: [['Torres Eucalipto e Jatobá, 4º pavimento', ['Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Solário', 'Bar da piscina', 'Praça de chegada', 'Playground', 'Quadra', 'Churrasqueira', 'Mirante', 'Terraço parrilla', 'Terraço yoga', 'Fitness', 'Sauna', 'Brinquedoteca', 'Jogos', 'Festas', 'Espaço gourmet', 'SPA', 'Coworking', 'Lounge']], ['Torre Araucária', ['Piscina com raia de 20 m', 'Piscina infantil', 'Pool house', 'Coworking', 'Fitness', 'Lavanderia', 'Brinquedoteca', 'Festas e gourmet']], ['Térreo e sobressolos', ['Lobby', 'Delivery', 'Pet place', 'Mini market', 'Bicicletário']]],
+        diferenciais: ['Mitre Personal Home com opção de acabamentos', 'Ar-condicionado instalado no fitness, salão de festas, gourmet e portaria', 'Ponto elétrico e dreno para ar-condicionado nos dormitórios, sala e terraço', 'Terraço com churrasqueira a carvão e espaço para mesa de 8 lugares no 115 m²', 'Água quente e duas cubas na suíte master, piso nivelado entre living e terraço'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Interiores', 'Cláudia Albertini'], ['Incorporação', 'Mitre Realty, linha Raízes']],
+        plantas: [{ src: MPB + 'planta-85.webp', nome: '85 m² · 3 dormitórios', meta: '1 suíte · 1 vaga' }, { src: MPB + 'planta-85-ampliado.webp', nome: '85 m² · living ampliado', meta: '1 suíte · 1 vaga' }, { src: MPB + 'planta-39.webp', nome: '39 m² · 1 dormitório', meta: 'Residencial' }],
+        implantacao: [{ src: MPB + 'implantacao.webp', nome: 'Implantação', meta: 'As três torres' }],
+        legal: 'Book de vendas sem o texto de registro nem data; perspectivas ilustradas e preliminares. Pela corretagem: entrega entre junho e agosto de 2026 (os portais divergem), na Rua Santa Rosa Júnior, 283, com 3 torres e 651 residências; disponibilidade sob consulta.',
+        torre: MPB + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZO_BUTANTA_MITRE,
+        fotos: [fotoMPB('fachada', 'Fachada', true), fotoMPB('fachada-2', 'Fachada', true), fotoMPB('regiao', 'A região'), fotoMPB('piscina', 'Piscina'), fotoMPB('piscina-2', 'Piscina e bar da piscina'), fotoMPB('lobby', 'Lobby'), fotoMPB('mirante', 'Mirante'), fotoMPB('churrasqueira', 'Churrasqueira'), fotoMPB('espaco-festas', 'Espaço festas'), fotoMPB('espaco-gourmet', 'Espaço gourmet'), fotoMPB('coworking', 'Coworking'), fotoMPB('salao-de-jogos', 'Salão de jogos'), fotoMPB('fitness', 'Fitness'), fotoMPB('delivery', 'Delivery'), fotoMPB('bicicletario', 'Bicicletário'), fotoMPB('spa', 'SPA'), fotoMPB('quadra', 'Quadra recreativa'), fotoMPB('brinquedoteca', 'Brinquedoteca'), fotoMPB('playground', 'Playground'), fotoMPB('pet-place', 'Pet place'), fotoMPB('living-115', 'Living do apartamento de 115 m²'), fotoMPB('terraco-115', 'Terraço do apartamento de 115 m²'), fotoMPB('living-85', 'Living do apartamento de 85 m²'), fotoMPB('terraco-85', 'Terraço do apartamento de 85 m²'), fotoMPB('piscina-araucaria', 'Piscina da torre Araucária'), fotoMPB('pool-house-araucaria', 'Pool house da torre Araucária'), fotoMPB('festas-gourmet-araucaria', 'Festas e gourmet da Araucária'), fotoMPB('fitness-araucaria', 'Fitness da Araucária'), fotoMPB('coworking-araucaria', 'Coworking da Araucária'), fotoMPB('brinquedoteca-araucaria', 'Brinquedoteca da Araucária'), fotoMPB('lavanderia-araucaria', 'Lavanderia da Araucária'), fotoMPB('living-65', 'Apartamento de 2 dormitórios'), fotoMPB('apto-39', 'Apartamento de 1 dormitório'), fotoMPB('studio', 'Studio')]
+      },
+      {
+        nome: 'Haus Mitre Pinheiros',
+        cidade: 'São Paulo, capital', bairro: 'Pinheiros',
+        resumo: 'Studios e 3 dormitórios · 26 a 114 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Capote Valente, 1.000, esquina com a Rua Galeno de Almeida, a 250 metros do Metrô Sumaré: torre única de 22 pavimentos num terreno de 1.357 m², com 91 studios com serviços de 26 e 27 m² do 2º ao 8º e 50 apartamentos de 3 dormitórios de 98 m² com 2 vagas, mais 2 gardens de 114 m². Rooftop 360º com piscina e adega; fitness, wellness, sauna, salão de festas, brinquedoteca e pet care para os residenciais; hall, fitness e lavanderia próprios dos studios. Três lojas no 1º pavimento e uma no térreo. Arquitetura de arquiteto premiado, interiores de arquiteta renomada e paisagismo de Benedito Abbud.',
+        area: ['98 m²: 3 dormitórios com 2 suítes, 2 vagas (48 unidades)', 'Gardens de 114 m² no 9º pavimento (2 unidades)', 'Studios com serviços de 26 e 27 m² (91 unidades)'],
+        tipologia: 'Studios com serviços e apartamentos de 3 dormitórios',
+        banheiros: 'Banhos com iluminação natural e ducha higiênica',
+        vagas: '2 vagas nos apartamentos (106 vagas residenciais); studios sem vaga',
+        torres: 'Torre única de 22 pavimentos em terreno de 1.357,63 m², com 2 subsolos',
+        unidades: ['145 unidades: 91 studios e 50 apartamentos, mais lojas'],
+        pavimentos: ['Térreo: hall residencial e loja 1', '1º: hall dos studios, 3 lojas e lazer residencial', '2º: 9 studios e lazer dos studios', '3º ao 8º: studios', '9º: 2 apartamentos e 2 gardens', '10º ao 20º: 4 apartamentos por andar', '21º: 2 apartamentos e lazer residencial', '22º: rooftop 360º'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Capote Valente, 1.000, esquina com a Rua Galeno de Almeida · Pinheiros, São Paulo',
+        infra: { piscina: 'Piscina no rooftop 360º', academia: 'Fitness no 21º, wellness e sauna; fitness dos studios', festas: 'Salão de festas', gourmet: 'Adega no rooftop', kids: 'Brinquedoteca', quadra: '', portaria: 'Halls independentes para residencial e studios', coworking: 'Lavanderia dos studios e pet care' },
+        lazerGrupos: [['Residencial', ['Piscina no rooftop', 'Adega', 'Fitness', 'Wellness', 'Sauna', 'Salão de festas', 'Brinquedoteca', 'Pet care']], ['Studios', ['Hall', 'Fitness', 'Lavanderia']]],
+        creditos: [['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Mitre Realty, linha Haus Mitre']],
+        plantas: [{ src: MPN + 'planta-studio-26.webp', nome: '26 m² · studio com serviços', meta: '' }],
+        legal: 'Material preliminar, sujeito a alterações: comercializado após a aprovação do Projeto de Edificação Nova e o registro do Memorial de Incorporação, nos termos da Lei 4.591/1964. LPS São Paulo Consultoria de Imóveis Ltda., Creci/SP J-24073; futura intermediação Mitre Vendas, Creci J-26794. Pela corretagem: condomínio pronto, cadastrado na Rua Capote Valente, 996; disponibilidade sob consulta.',
+        torre: MPN + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZO_PINHEIROS_MITRE,
+        fotos: [fotoMPN('fachada', 'Fachada', true), fotoMPN('rooftop', 'Rooftop 360º'), fotoMPN('piscina-rooftop', 'Piscina no rooftop'), fotoMPN('adega', 'Adega no rooftop'), fotoMPN('fitness', 'Fitness no 21º andar'), fotoMPN('wellness', 'Wellness no rooftop'), fotoMPN('salao-de-festas', 'Salão de festas'), fotoMPN('sauna', 'Sauna'), fotoMPN('pet-care', 'Pet care'), fotoMPN('brinquedoteca', 'Brinquedoteca', true), fotoMPN('hall-studios', 'Hall dos studios'), fotoMPN('fitness-studios', 'Fitness dos studios'), fotoMPN('lavanderia-studios', 'Lavanderia dos studios')]
+      },
+      {
+        nome: 'Essência Brasileira by Haus Mitre',
+        cidade: 'São Paulo, capital', bairro: 'Pinheiros',
+        resumo: 'Studios a 4 suítes · 24 a 221 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Na Rua Capote Valente, 860, esquina com a Rua Cardeal Arcoverde, em Pinheiros: torre única com dois setores independentes. A torre Trancoso, residencial, tem 94 apartamentos de 82 m² (3 dormitórios, 1 vaga), 130 m² (4 dormitórios ou 3 suítes), 144 m² (4 dormitórios ou 3 dormitórios com living ampliado) e 164 m² (4 suítes), estes com elevador privativo e 2 vagas, além de 4 gardens; a torre Caraíva tem 104 studios e unidades de 1 dormitório, residenciais e com serviços. Lazer residencial no térreo e na cobertura: piscinas adulto e infantil, SPA, sala de massagem, sauna, lounge, salão de festas com terraço, espaço gourmet, churrasqueira com forno de pizza, salão de jogos, brinquedoteca, fitness, bosque com redário, playground e pet place. Entrega prevista para setembro de 2027, pela corretagem.',
+        area: ['82 m²: 3 dormitórios com suíte, ou 2 dormitórios com living ampliado, 1 vaga (36 unidades)', '130 m²: 4 dormitórios com 2 suítes, ou 3 suítes com living ampliado, 2 vagas (34 unidades)', '144 m²: 4 dormitórios com 2 suítes, ou 3 dormitórios com living ampliado, 2 vagas (9 unidades)', '164 m²: 4 suítes, 2 vagas (11 unidades)', 'Gardens de 92 a 221 m² (4 unidades)', 'Studios a partir de 24 m² e 1 dormitório a partir de 34 m² (104 unidades)'],
+        tipologia: 'Studios, 1 dormitório e apartamentos de 3 e 4 dormitórios',
+        banheiros: 'Ventilação e iluminação naturais nos banhos das suítes, duas cubas na suíte master e água quente nas bancadas',
+        vagas: '1 vaga no 82 m², 2 vagas de 130 m² em diante',
+        torres: 'Torre única em terreno de 2.539,49 m²: 4 subsolos, térreo, 25 pavimentos e lazer na cobertura',
+        unidades: ['94 apartamentos, 104 studios e 1 dormitório, e 2 lojas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Capote Valente, 860 · Pinheiros, São Paulo',
+        infra: { piscina: 'Piscinas adulto e infantil no 27º; piscina dos studios no 9º', academia: 'Fitness, wellness, SPA, sauna e sala de massagem', festas: 'Salão de festas com terraço e salão de jogos', gourmet: 'Espaço gourmet e churrasqueira com forno de pizza', kids: 'Brinquedoteca e playground', quadra: '', portaria: 'Portarias blindadas, acessos e delivery independentes, biometria nos elevadores privativos', coworking: 'Bosque com redário, pet place, espaço multiúso, lavanderia e sala de reunião dos studios' },
+        lazerGrupos: [['Torre Trancoso, térreo', ['Lounge', 'Salão de festas com terraço', 'Espaço gourmet', 'Salão de jogos', 'Brinquedoteca', 'Fitness', 'Churrasqueira com forno de pizza', 'Bosque com redário', 'Playground', 'Pet place', 'Bicicletário']], ['Torre Trancoso, 27º', ['Lounge externo', 'Wellness', 'SPA', 'Sauna', 'Sala de massagem', 'Piscina adulto', 'Piscina infantil', 'Solarium']], ['Torre Caraíva, studios', ['Espaço multiúso', 'Lavanderia', 'Sala de reunião', 'Fitness', 'Piscina']]],
+        diferenciais: ['Elevador privativo nas unidades de 130, 144 e 164 m²', 'Terraço com churrasqueira a carvão (elétrica no 82 m²) e mesa para 8 a 10 lugares', 'Carga elétrica e dreno para ar-condicionado nos dormitórios, sala e terraço', 'Fechadura eletrônica e Personal Home by Mitre', 'Controle de acesso e infraestrutura para CFTV'],
+        creditos: [['Incorporação', 'Mitre Realty, linha Haus Mitre']],
+        plantas: [{ src: MEB + 'planta-164.webp', nome: '164 m² · 4 suítes', meta: '2 vagas · elevador privativo' }, { src: MEB + 'planta-144-4-dorms.webp', nome: '144 m² · 4 dormitórios', meta: '2 suítes' }, { src: MEB + 'planta-144-ampliado.webp', nome: '144 m² · living ampliado', meta: '3 dormitórios' }, { src: MEB + 'planta-130-4-dorms.webp', nome: '130 m² · 4 dormitórios', meta: '2 suítes' }, { src: MEB + 'planta-130-3-suites.webp', nome: '130 m² · 3 suítes', meta: 'Living ampliado' }, { src: MEB + 'planta-82.webp', nome: '82 m² · 3 dormitórios', meta: '1 suíte · 1 vaga' }, { src: MEB + 'planta-82-ampliado.webp', nome: '82 m² · living ampliado', meta: '2 dormitórios' }, { src: MEB + 'planta-studio-25.webp', nome: '25 m² · studio residencial', meta: '' }],
+        implantacao: [{ src: MEB + 'implantacao.webp', nome: 'Implantação do térreo', meta: '' }, { src: MEB + 'implantacao-27.webp', nome: '27º pavimento', meta: 'Lazer residencial' }, { src: MEB + 'implantacao-9.webp', nome: '9º pavimento', meta: 'Lazer dos studios' }],
+        legal: 'O Memorial de Incorporação do empreendimento "Essência Brasileira" encontra-se registrado sob o R.5 na matrícula nº 110.899 do 13º Oficial de Registro de Imóveis de São Paulo. Intermediação: LPS São Paulo Consultoria de Imóveis Ltda., Creci/SP J-24073, e Mitre Vendas Corretagem de Imóveis Ltda., Creci J-26794. Imagens meramente ilustrativas; book impresso em agosto de 2023. Pela corretagem (apto.vc): em construção, entrega prevista para setembro de 2027; disponibilidade sob consulta.',
+        torre: MEB + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZO_PINHEIROS_MITRE,
+        fotos: [fotoMEB('fachada', 'Fachada', true), fotoMEB('embasamento', 'Embasamento'), fotoMEB('regiao', 'A região'), fotoMEB('piscina', 'Piscina no 27º pavimento'), fotoMEB('sala-de-massagem', 'Sala de massagem'), fotoMEB('churrasqueira', 'Churrasqueira com forno de pizza'), fotoMEB('salao-de-festas', 'Salão de festas'), fotoMEB('lounge', 'Lounge no térreo'), fotoMEB('living-144', 'Living do apartamento de 144 m²'), fotoMEB('suite', 'Suíte')]
       }
     ].concat([
       ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
       ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
       ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
-      ['Essência Brasileira by Haus Mitre', 'Pinheiros', '4 dormitórios', '130 a 164 m²', 'Em construção'],
       ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
-      ['Haus Mitre Pinheiros', 'Pinheiros', 'Studios', '26 m²', 'Pronto para morar'],
       ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
-      ['Raízes Premium Butantã', 'Butantã', '1 e 3 dormitórios', '39 e 119 m²', 'Pronto para morar'],
       ['Raízes Alto Freguesia do Ó', 'Vila Primavera', 'Studios', '25 m²', 'Pronto para morar'],
       ['Raízes Tucuruvi Jacarandá', 'Tucuruvi', '1 dormitório', '26 m²', 'Pronto para morar'],
     ].map(function (x) {
