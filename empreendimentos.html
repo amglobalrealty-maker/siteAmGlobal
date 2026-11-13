@@ -883,6 +883,45 @@
     polos: 'Por perto: PUC, TUCA, Capela da PUC, Parque Linear da Av. Sumaré, Metrô Sumaré, Av. Dr. Arnaldo, Av. Rebouças, Estádio do Pacaembu, FAAP, Praça Buenos Aires, Shopping Higienópolis, Hospital Samaritano e Hospital das Clínicas.',
     fonte: 'Fonte: book do Haus Mitre Perdizes (junho de 2020), com distâncias pelo Google.'
   };
+  // (13/11/2026) LAVVI, 8 empreendimentos dos books dela (materiais internos de venda)
+  var LV = 'fotos/parcerias/lavvi/';
+  var LGS = LV + 'grandsquare/', LGK = LV + 'galleria/', LGV = LV + 'greenview/', LVT = LV + 'grandvitrali/', LEB = LV + 'edenbrooklin/', LEP = LV + 'edenpark/', LCW = LV + 'casaedenwest/', LCE = LV + 'casaedeneast/';
+  var fotoLGS = fotoEm(LGS), fotoLGK = fotoEm(LGK), fotoLGV = fotoEm(LGV), fotoLVT = fotoEm(LVT), fotoLEB = fotoEm(LEB), fotoLEP = fotoEm(LEP), fotoLCW = fotoEm(LCW), fotoLCE = fotoEm(LCE);
+  var ZS_EDEN_BROOKLIN = {
+    titulo: 'A região · Brooklin, Eden Park by Dror',
+    texto: 'No terreno da antiga fábrica da Kibon, entre a Avenida Roque Petroni Júnior, a Berrini e a Marginal Pinheiros, a Cyrela, a Lavvi e a Hines desenham um bairro novo em volta de um parque privativo de uso público assinado pelo designer israelense Dror Benshetrit com o paisagismo de Benedito Abbud: torres residenciais, mall com fachada ativa e o Casa Eden by YOO. Ao redor, o eixo corporativo da Chucri Zaidan e da Berrini, a Ponte Estaiada, a estação Morumbi da CPTM, o Shopping Morumbi, o Market Place e o Rochavera.',
+    numeros: [['4', 'empreendimentos no complexo, entre Eden Brooklin, Eden Park e Casa Eden by YOO'], ['77 a 438 m²', 'do apartamento de 2 dormitórios ao duplex de 4 suítes'], ['3', 'incorporadoras: Cyrela, Lavvi e Hines'], ['2027', 'entrega prevista do Casa Eden, pela corretagem']],
+    polos: 'Por perto: Av. Roque Petroni Júnior, Av. Berrini, Av. Chucri Zaidan, Marginal Pinheiros, Ponte Estaiada, estação Morumbi da CPTM, Shopping Morumbi, Market Place, Rochavera e Hines Morumbi.',
+    fonte: 'Fonte: books do Eden Brooklin, do Eden Park by Dror e do Casa Eden by YOO.'
+  };
+  var ZS_MOEMA_LAVVI = {
+    titulo: 'A região · Moema',
+    texto: 'Bairro plano e arborizado entre o Parque Ibirapuera e a Avenida dos Bandeirantes, com ruas de nomes indígenas e de pássaros, as estações Moema e Eucaliptos da Linha 5-Lilás, a Avenida Ibirapuera, o Shopping Ibirapuera e o Parque das Bicicletas. Recebe quem vem do Paraíso, da Vila Mariana, da Vila Olímpia e do Campo Belo.',
+    numeros: [['62 m', 'de frente para a Avenida dos Jamaris, o Grand Vitrali'], ['2', 'estações de metrô por perto: Moema e Eucaliptos'], ['25 a 61 m²', 'do studio ao apartamento de 2 suítes'], ['406', 'unidades no Grand Vitrali']],
+    polos: 'Por perto: estações Moema e Eucaliptos, Av. Ibirapuera, Av. dos Bandeirantes, Shopping Ibirapuera, Parque das Bicicletas e Parque Ibirapuera.',
+    fonte: 'Fonte: book do Grand Vitrali.'
+  };
+  var ZS_KLABIN_LAVVI = {
+    titulo: 'A região · Vila Mariana e Chácara Klabin',
+    texto: 'Entre as estações Chácara Klabin e Santos-Imigrantes da Linha 2-Verde, a 600 metros de cada uma, a parte residencial mais alta da Vila Mariana: ruas de casas e prédios de alto padrão, o Parque das Bicicletas e o Shopping Metrô Santa Cruz por perto, a Avenida Paulista a poucas estações.',
+    numeros: [['600 m', 'das estações Chácara Klabin e Santos-Imigrantes'], ['5.701 m²', 'de terreno do Galleria Klabin'], ['42', 'pavimentos e 124 m de altura'], ['166 a 480 m²', 'do apartamento de 4 dormitórios à penthouse']],
+    polos: 'Por perto: estações Chácara Klabin, Santos-Imigrantes e Santa Cruz, Shopping Metrô Santa Cruz, Parque das Bicicletas, Rua Embuaçu e Rua Charles Astor.',
+    fonte: 'Fonte: book do Galleria Klabin.'
+  };
+  var ZO_BUTANTA_LAVVI = {
+    titulo: 'A região · Butantã e USP',
+    texto: 'Ao lado do Portão 1 da Cidade Universitária e a 350 metros da estação Butantã da Linha 4-Amarela, a Rua Alvarenga liga o bairro à Marginal Pinheiros e a Pinheiros. Vida universitária, o Instituto Butantan, o Parque Villa-Lobos e o Jockey a poucos minutos.',
+    numeros: [['350 m', 'da estação Butantã, Linha 4-Amarela'], ['750 m', 'do Portão 1 da USP'], ['4.536 m²', 'de terreno do Green View'], ['22 a 300 m²', 'do studio à cobertura']],
+    polos: 'Por perto: estação Butantã, Portão 1 da USP, Instituto Butantan, Marginal Pinheiros, Pinheiros e Parque Villa-Lobos.',
+    fonte: 'Fonte: book do Green View.'
+  };
+  var ZS_CHACARA_INGLESA_LAVVI = {
+    titulo: 'A região · Chácara Inglesa e Praça da Árvore',
+    texto: 'Bairro residencial da Saúde entre a Praça da Árvore e a Avenida Jabaquara, perto do Clube Atlético Monte Líbano, do Parque das Bicicletas e das estações Praça da Árvore e Saúde da Linha 1-Azul.',
+    numeros: [['3.501 m²', 'de terreno do Grand Square'], ['18', 'pavimentos residenciais e 3 de flats'], ['32 a 79 m²', 'do studio ao apartamento de 3 dormitórios'], ['3', 'lojas de fachada ativa']],
+    polos: 'Por perto: Praça da Árvore, Clube Atlético Monte Líbano, Parque das Bicicletas, Av. Jabaquara e as estações Praça da Árvore e Saúde.',
+    fonte: 'Fonte: book do Grand Square.'
+  };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
     texto: 'Entre o Ipiranga e a Vila Mariana, em volta da Estação Alto do Ipiranga da Linha 2-Verde, que leva à Avenida Paulista em 12 minutos: a Rua Santa Cruz com o comércio do bairro, o Museu Paulista e o Parque da Independência, o Sesc Ipiranga, o Mercado Municipal do Ipiranga, o Hospital São Camilo e a unidade do Einstein, os supermercados Hirota e Marché e restaurantes de bairro. A Rodovia dos Imigrantes e a Avenida Ricardo Jafet saem dali para o litoral e o ABC.',
@@ -6063,6 +6102,199 @@
        material: a lista e a de imoveis a venda da propria Mitre na corretagem (apto.vc), so com
        nome, bairro, tipologia, metragem e status; fotos, plantas e ficha entram com os books.
        [nome, bairro, tipologia, metragem, status, cidade (capital se vazio)] */
+    // (13/11/2026) LAVVI: 8 books dela. Alive Home Resort e Palace by Pracas da Cidade (tambem Lavvi) seguem na Living,
+    // e o "Casa Ceramica" e o Casa Parque Ceramica, ja na Mitre: nao repetidos.
+    'Lavvi': [
+      {
+        nome: 'Casa Eden by YOO · East',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '3 suítes a 4 dormitórios · 166 a 396 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'A torre East do Casa Eden by YOO, no complexo Eden da Avenida Roque Petroni Júnior, ao lado do parque desenhado por Dror Benshetrit: 120 apartamentos de alto padrão com interiores do YOO Design Studio, arquitetura do LE Arquitetos e paisagismo de Benedito Abbud. Plantas de 166 a 169 m² com 3 suítes e 2 vagas, de 204 a 212 m² com 4 dormitórios e 3 vagas, gardens de 199 e 227 m² e duplex de 326 e 396 m² com piscina no terraço. Fachada com floreiras irrigadas, lobby de pé direito triplo, piscina coberta com cobertura retrátil, piscina externa, quadras de tênis e beach tennis, pool house, party lounge, academia e kids place; um mall de 1.700 m² no embasamento. Entrega prevista para novembro de 2027, pela corretagem.',
+        area: ['166 a 169 m²: 3 suítes, 2 vagas vinculadas (57 unidades)', '204 a 212 m²: 4 dormitórios, 3 vagas vinculadas (57 unidades)', 'Gardens no 5º: 227,50 m² (3 vagas) e 199 m² (2 vagas)', 'Duplex no 34º e 35º: 326 m² e 396 m², 4 vagas vinculadas'],
+        tipologia: 'Apartamentos de 3 suítes a 4 dormitórios, gardens e duplex',
+        banheiros: 'Infraestrutura para banheira e dois chuveiros no banho master, toalheiro aquecido e espelho anti embaçante',
+        vagas: '2 a 4 vagas vinculadas, conforme a planta',
+        torres: 'Torre East de 35 pavimentos, 4 unidades por andar, em terreno de 3.709,74 m²; garagem do 1º ao 3º, lazer no 4º',
+        unidades: ['120 unidades, mais o mall de 1.700 m² com fachada ativa'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Roque Petroni Júnior · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina coberta de 150 m² com cobertura retrátil, piscina externa e lounge bar pool', academia: 'The Gym, 122 m²', festas: 'Party lounge de 138 m²', gourmet: 'Pool house de 80 m²', kids: 'The Kids Place', quadra: 'Quadra de tênis e quadra de beach tennis', portaria: 'Acesso residencial com pé direito triplo e lobby', coworking: 'Parque do complexo Eden ao lado' },
+        lazerGrupos: [['Lazer', ['Lobby', 'Party lounge', 'Piscina coberta com cobertura retrátil', 'Piscina externa', 'Lounge bar pool', 'Pool house', 'The Gym', 'Kids place', 'Quadra de tênis', 'Quadra de beach tennis']]],
+        diferenciais: ['Unidades entregues sem acabamento, exceto o WC de serviço, para a personalização do cliente', 'Carga elétrica e dreno para ar-condicionado nas suítes, sala e terraço', 'Floreiras entregues com plantio e irrigação automatizada', 'Sem desnível entre sala e terraço; infraestrutura para churrasqueira a carvão', 'Infraestrutura para aquecimento a gás, solar e recirculação de água quente', 'Pontos para automação de persianas, triturador e câmeras; elevadores com controle de acesso'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Interiores', 'YOO Design Studio'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Cyrela, Lavvi e Hines']],
+        plantas: [
+          { src: LCE + 'planta-212.webp', nome: '212 m² · 4 dormitórios', meta: '3 vagas' }, { src: LCE + 'planta-204.webp', nome: '204 m² · 4 dormitórios', meta: '3 vagas' },
+          { src: LCE + 'planta-208.webp', nome: '208 m² · 4 dormitórios', meta: '3 vagas' }, { src: LCE + 'planta-169.webp', nome: '169 m² · 3 suítes', meta: '2 vagas' },
+          { src: LCE + 'planta-166.webp', nome: '166 m² · 3 suítes', meta: '2 vagas' }, { src: LCE + 'planta-166-opcao.webp', nome: '166 m² · opção', meta: '2 vagas' },
+          { src: LCE + 'planta-duplex-396.webp', nome: 'Duplex 396 m²', meta: '4 suítes · 4 vagas' }, { src: LCE + 'planta-duplex-326.webp', nome: 'Duplex 326 m²', meta: '4 vagas' }
+        ],
+        implantacao: [{ src: LCE + 'implantacao-terreo.webp', nome: 'Implantação do térreo', meta: '' }, { src: LCE + 'implantacao-lazer.webp', nome: 'Implantação do lazer', meta: '' }, { src: LCE + 'mapa-do-parque.webp', nome: 'O complexo Eden', meta: 'Parque e empreendimentos' }],
+        legal: 'Book de vendas da Cyrela sem o texto de registro nem data; perspectivas ilustrativas. Pela corretagem (apto.vc): em construção, entrega prevista para novembro de 2027, na Av. Roque Petroni Júnior; disponibilidade sob consulta.',
+        torre: LCE + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_EDEN_BROOKLIN,
+        fotos: [fotoLCE('fachada', 'Fachada', true), fotoLCE('torre', 'Torre East', true), fotoLCE('embasamento', 'Embasamento', true), fotoLCE('embasamento-2', 'Embasamento e acesso'), fotoLCE('parque', 'O parque do complexo Eden'), fotoLCE('entrada', 'Entrada principal'), fotoLCE('lobby', 'Lobby de pé direito triplo', true), fotoLCE('party-lounge', 'Party lounge'), fotoLCE('party-lounge-2', 'Party lounge'), fotoLCE('piscina-coberta', 'Piscina coberta'), fotoLCE('piscina-coberta-2', 'Piscina coberta'), fotoLCE('lounge-bar-pool', 'Lounge bar pool'), fotoLCE('pool-house', 'Pool house'), fotoLCE('fitness', 'The Gym'), fotoLCE('kids-place', 'Kids place'), fotoLCE('piscina-tenis-beach', 'Piscina externa, tênis e beach tennis'), fotoLCE('deck-do-parque', 'Vista para o parque'), fotoLCE('living-166', 'Living do apartamento de 166 m²'), fotoLCE('living-204', 'Living do apartamento de 204 m²')]
+      },
+      {
+        nome: 'Casa Eden by YOO · West',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '4 suítes · 263 a 438 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'A torre West do Casa Eden by YOO, a mais exclusiva do complexo Eden, na Avenida Roque Petroni Júnior: 74 apartamentos de 4 suítes com dois por andar, de 263 m² com 3 vagas, um garden de 332 m² e dois duplex de 438 m² com piscina, numa torre de 41 pavimentos e 132 metros. Interiores do YOO Design Studio, arquitetura do LE Arquitetos e paisagismo de Benedito Abbud. Lazer elevado no 3º pavimento com piscina externa de 25 m, piscina coberta, terrace lounge, party lounge e party terrace, pool house, academia, kids place e quadra de tênis. Entrega prevista para novembro de 2027, pela corretagem.',
+        area: ['263 m²: 4 suítes, 3 vagas vinculadas (71 unidades)', 'Garden de 332,30 m² no 4º pavimento, com 70 m² de terraço descoberto', 'Duplex de 438 m² no 40º e 41º, 4 vagas vinculadas, com piscina'],
+        tipologia: 'Apartamentos de 4 suítes, garden e duplex',
+        banheiros: 'Infraestrutura para banheira e dois chuveiros no banho master, toalheiro aquecido e espelho anti embaçante',
+        vagas: '3 vagas vinculadas no 263 m²; 4 nos duplex',
+        torres: 'Torre West de 41 pavimentos e 132 m, 2 unidades por andar, em terreno de 2.988,98 m²',
+        unidades: ['74 unidades'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Roque Petroni Júnior · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina externa de 25 m e piscina coberta de 115 m²', academia: 'The Gym, 80 m²', festas: 'Party lounge de 78 m² e party terrace de 155 m²', gourmet: 'Pool house e terrace lounge de 158 m²', kids: 'The Kids Place', quadra: 'Quadra de tênis', portaria: 'Lobby de pé direito duplo, 160 m²', coworking: 'Parque do complexo Eden ao lado' },
+        lazerGrupos: [['Lazer elevado', ['Lobby', 'Party lounge', 'Party terrace', 'Piscina externa de 25 m', 'Piscina coberta', 'Terrace lounge', 'Pool house', 'The Gym', 'Kids place', 'Quadra de tênis']]],
+        diferenciais: ['Unidades entregues sem acabamento, exceto o WC de serviço', 'Carga elétrica e dreno para ar-condicionado nas suítes, sala e terraço', 'Floreiras com plantio e irrigação automatizada', 'Piscina elevada nos duplex, com 1,10 m de profundidade', 'Pontos para automação de persianas, triturador e câmeras'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Interiores', 'YOO Design Studio'], ['Paisagismo', 'Benedito Abbud'], ['Incorporação', 'Cyrela, Lavvi e Hines']],
+        plantas: [{ src: LCW + 'planta-263.webp', nome: '263 m² · 4 suítes', meta: '3 vagas' }, { src: LCW + 'planta-263-variacao.webp', nome: '263 m² · 16º ao 27º', meta: 'Variação de terraço' }, { src: LCW + 'planta-duplex-438.webp', nome: 'Duplex 438 m²', meta: 'Piscina no terraço · 4 vagas' }],
+        implantacao: [{ src: LCW + 'implantacao-terreo.webp', nome: 'Implantação do térreo', meta: '' }, { src: LCW + 'implantacao-lazer.webp', nome: 'Implantação do lazer', meta: '' }, { src: LCW + 'mapa-do-parque.webp', nome: 'O complexo Eden', meta: '' }],
+        legal: 'Book de vendas da Cyrela sem o texto de registro nem data; perspectivas ilustrativas. Pela corretagem (apto.vc): em construção, entrega prevista para novembro de 2027; disponibilidade sob consulta.',
+        torre: LCW + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_EDEN_BROOKLIN,
+        fotos: [fotoLCW('fachada', 'Torre West', true), fotoLCW('fachada-2', 'Fachada', true), fotoLCW('torre', 'Torre', true), fotoLCW('embasamento', 'Embasamento', true), fotoLCW('parque', 'O parque do complexo Eden'), fotoLCW('entrada', 'Entrada principal'), fotoLCW('lobby', 'Lobby'), fotoLCW('party-lounge', 'Party lounge'), fotoLCW('party-terrace', 'Party terrace'), fotoLCW('piscina-externa', 'Piscina externa'), fotoLCW('terrace-lounge', 'Terrace lounge'), fotoLCW('terrace-lounge-2', 'Terrace lounge'), fotoLCW('pool-house', 'Pool house'), fotoLCW('piscina-coberta', 'Piscina coberta'), fotoLCW('fitness', 'The Gym'), fotoLCW('kids-place', 'Kids place'), fotoLCW('quadra-de-tenis', 'Quadra de tênis'), fotoLCW('living-263', 'Living do apartamento de 263 m²')]
+      },
+      {
+        nome: 'Eden Brooklin',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '2 e 3 dormitórios a duplex · 94 a 270 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Duas torres residenciais de 34 pavimentos no complexo Eden, perto da Avenida Roque Petroni Júnior, da Ponte Estaiada e do Shopping Morumbi, num terreno de 8.973 m² com fachada ativa. Na torre 2, apartamentos de 94 m² (3 dormitórios com suíte, ou 2 suítes com sala ampliada) e 134 m² (3 suítes, ou 2 suítes com sala ampliada), gardens de 113 e 138 m² e duplex de 270 m². Lazer no térreo com indoor pool de 197 m², piscina externa, spa e saunas, gourmet, party lounge, lounge bar, fitness de 225 m², kids place, quadra recreativa, beach tennis, pet place e playground. Arquitetura do LE Arquitetos, paisagismo do parque por Dror e Benedito Abbud e decoração de Chris Silveira.',
+        area: ['94,98 m²: 3 dormitórios com 1 suíte, ou 2 dormitórios, ou 2 suítes com sala ampliada, 2 vagas', '134,69 m²: 3 suítes, ou 2 suítes com sala ampliada, 2 vagas', 'Gardens no 1º: 113,10 e 138,56 m²', 'Duplex no 33º e 34º: 270,42 m², 3 vagas'],
+        tipologia: 'Apartamentos de 2 e 3 dormitórios, gardens e duplex',
+        banheiros: 'Água quente com misturador nas pias dos banhos, banho com ventilação natural, lavabo',
+        vagas: '2 vagas vinculadas; 3 nos duplex',
+        torres: '2 torres de 34 pavimentos, 8 unidades por andar, em terreno de 8.973,71 m², com fachada ativa',
+        valores: 'Sob consulta',
+        endereco: 'Complexo Eden, região da Av. Roque Petroni Júnior · Brooklin, São Paulo',
+        infra: { piscina: 'Indoor pool de 197 m², piscina externa, kids pool, deck molhado e solarium', academia: 'Fitness de 225 m², spa e saunas seca e úmida', festas: 'Party lounge de 168 m² e lounge bar', gourmet: 'Gourmet e churrasqueira descoberta', kids: 'Kids place e playground', quadra: 'Quadra recreativa e quadra de beach tennis', portaria: 'Portarias e lobbies independentes por torre', coworking: 'The Gamer, pet place e gazebos' },
+        lazerGrupos: [['Térreo', ['Gourmet', 'Lounge bar', 'Fitness', 'Sauna úmida', 'Spa', 'Sauna seca', 'Indoor pool', 'Outdoor pool', 'Deck molhado', 'Solarium', 'Gazebos', 'Kids pool', 'Quadra de beach tennis', 'Playground', 'Quadra recreativa', 'Pet place', 'Churrasqueira', 'Party lounge', 'The Gamer', 'Kids place']]],
+        diferenciais: ['Previsão para ar-condicionado na sala e dormitórios', 'Pontos para lava-louças e depurador; água quente na cozinha', 'Previsão para automação das persianas', 'Terraço social com churrasqueira no 134 m² e ponto para grill no 94 m²'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud; parque por Dror'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Cyrela, Lavvi e Hines']],
+        plantas: [{ src: LEB + 'planta-134.webp', nome: '134 m² · 3 suítes', meta: 'Decorado' }, { src: LEB + 'planta-134-opcao.webp', nome: '134 m² · opção', meta: '2 suítes, sala ampliada' }, { src: LEB + 'planta-94.webp', nome: '94 m² · 3 dormitórios', meta: '1 suíte' }, { src: LEB + 'planta-94-opcao-1.webp', nome: '94 m² · opção 1', meta: 'Decorado, 2 dormitórios' }, { src: LEB + 'planta-94-opcao-2.webp', nome: '94 m² · opção 2', meta: '2 suítes' }],
+        implantacao: [{ src: LEB + 'implantacao.webp', nome: 'Implantação', meta: '25 itens de lazer' }],
+        legal: 'Book de vendas da Cyrela sem o texto de registro nem data; plantas ilustradas com sugestão de decoração, medidas internas de face a face. Disponibilidade e datas sob consulta.',
+        torre: LEB + 'fachada-praca.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_EDEN_BROOKLIN,
+        fotos: [fotoLEB('fachada-praca', 'Fachada e praça'), fotoLEB('regiao-aerea', 'A região'), fotoLEB('embasamento', 'Embasamento'), fotoLEB('embasamento-2', 'Embasamento'), fotoLEB('churrasqueira', 'Churrasqueira descoberta'), fotoLEB('quadra-recreativa', 'Quadra recreativa'), fotoLEB('beach-tennis', 'Beach tennis'), fotoLEB('spa', 'Spa e saunas'), fotoLEB('spa-2', 'Spa'), fotoLEB('indoor-pool', 'Indoor pool'), fotoLEB('indoor-pool-2', 'Indoor pool'), fotoLEB('kids-place', 'Kids place'), fotoLEB('gourmet', 'Gourmet'), fotoLEB('party-lounge', 'Party lounge'), fotoLEB('lounge-bar', 'Lounge bar'), fotoLEB('fitness', 'Fitness')]
+      },
+      {
+        nome: 'Eden Park by Dror',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '2 e 3 dormitórios · 77 e 124 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'O primeiro residencial do complexo Eden, no Brooklin, à volta do parque de mais de 40 mil m² desenhado pelo designer israelense Dror Benshetrit, numa parceria da Cyrela, da Lavvi e da Hines. Torres com apartamentos de 77 m² e 124 m², ambos com 2 vagas demarcadas, mall com fachada ativa e um lazer com piscinas coberta e externa, spa, fitness, kids place, party lounge, lounge bar, churrasqueira e beach tennis. O projeto busca as certificações LEED e AQUA.',
+        area: ['77 m², 2 vagas demarcadas', '124 m², 2 vagas demarcadas'],
+        tipologia: 'Apartamentos de 77 e 124 m²',
+        vagas: '2 vagas demarcadas',
+        torres: 'Torres residenciais com mall de fachada ativa no complexo Eden',
+        valores: 'Sob consulta',
+        endereco: 'Complexo Eden · Brooklin, São Paulo',
+        infra: { piscina: 'Indoor pool e piscina externa', academia: 'Fitness e spa', festas: 'Party lounge e lounge bar', gourmet: 'Churrasqueira e lounge externo', kids: 'Kids place', quadra: 'Quadra de beach tennis', portaria: '', coworking: 'Parque de Dror Benshetrit e mall com fachada ativa' },
+        lazerGrupos: [['Lazer', ['Lounge', 'Lounge externo', 'Party lounge', 'Lounge bar', 'Churrasqueira', 'Kids place', 'Spa', 'Indoor pool', 'Piscina', 'Fitness', 'Beach tennis']]],
+        creditos: [['Parque', 'Dror Benshetrit'], ['Incorporação', 'Cyrela, Lavvi e Hines']],
+        plantas: [{ src: LEP + 'planta-77.webp', nome: '77 m²', meta: '2 vagas demarcadas' }, { src: LEP + 'planta-124.webp', nome: '124 m²', meta: '2 vagas demarcadas' }],
+        implantacao: [{ src: LEP + 'implantacao.webp', nome: 'Implantação', meta: '' }, { src: LEP + 'mapa-do-parque.webp', nome: 'O complexo e o parque', meta: '' }],
+        legal: 'Book só de imagens, sem o texto de registro nem data; perspectivas ilustrativas. Disponibilidade e datas sob consulta.',
+        torre: LEP + 'torres.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_EDEN_BROOKLIN,
+        fotos: [fotoLEP('torres', 'As torres e o parque'), fotoLEP('parque', 'Um pulmão verde no Brooklin'), fotoLEP('mall', 'Mall com fachada ativa'), fotoLEP('lounge', 'Lounge'), fotoLEP('lounge-externo', 'Lounge externo'), fotoLEP('party-lounge', 'Party lounge'), fotoLEP('lounge-bar', 'Lounge bar'), fotoLEP('churrasqueira', 'Churrasqueira'), fotoLEP('kids-place', 'Kids place'), fotoLEP('spa', 'Spa'), fotoLEP('spa-2', 'Spa'), fotoLEP('indoor-pool', 'Indoor pool'), fotoLEP('piscina', 'Piscina'), fotoLEP('fitness', 'Fitness'), fotoLEP('beach-tennis', 'Beach tennis')]
+      },
+      {
+        nome: 'Galleria Klabin',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: '4 dormitórios a penthouse · 166 a 480 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Na Rua Embuaçu, a 600 metros das estações Chácara Klabin e Santos-Imigrantes da Linha 2-Verde: torre única de 42 pavimentos e 124 metros num terreno de 5.701 m², com apartamentos de 166 m² (4 dormitórios, 2 vagas) e 234 m² (4 suítes, 3 vagas), duplex de 327 e 459 m² e duas penthouses de 457 e 480 m². No térreo, piscina coberta, saunas e quadra de tênis; no 4º pavimento, salão de festas com terraço, churrasqueira, fitness, spinning, salão de jogos, brinquedoteca, piscina com raia de 25 m, quadras recreativa e de beach tennis, praça central e playground. Cinco lojas de fachada ativa. Arquitetura do LE Arquitetos, paisagismo de Benedito Abbud e decoração de Cassia Kroeff. Entrega prevista para dezembro de 2026, pela corretagem.',
+        area: ['166,49 m²: 4 dormitórios, 2 vagas (68 unidades)', '234,26 m²: 4 suítes, 3 vagas (68 unidades)', 'Duplex no 39º e 40º: 327,08 m² (3 suítes) e 459,28 m² (4 suítes), 4 vagas', 'Penthouses de 457,51 e 480,31 m², 4 suítes, 4 vagas', '5 lojas de 58 a 197 m²'],
+        tipologia: 'Apartamentos de 4 dormitórios e 4 suítes, duplex e penthouses',
+        vagas: '2 vagas no 166 m², 3 no 234 m² e 4 nos duplex e penthouses',
+        torres: 'Torre única de 42 pavimentos e cerca de 124 m em terreno de 5.701,33 m²',
+        unidades: ['142 unidades residenciais e 5 lojas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Embuaçu · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina coberta no térreo; piscina com raia de 25 m, piscina infantil, solário e deck molhado', academia: 'Fitness com terraço, spinning e saunas seca e úmida', festas: 'Salão de festas com terraço e salão de jogos', gourmet: 'Churrasqueira', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis, quadra recreativa e quadra de beach tennis', portaria: 'Portaria, lobby, delivery e acessos independentes', coworking: 'Bicicletário e praça central' },
+        lazerGrupos: [['Térreo', ['Lobby', 'Delivery', 'Bicicletário', 'Piscina coberta', 'Sauna úmida', 'Sauna seca', 'Quadra de tênis']], ['Pavimento de lazer', ['Salão de festas com terraço', 'Churrasqueira', 'Fitness com terraço', 'Spinning', 'Salão de jogos', 'Brinquedoteca', 'Piscina com raia de 25 m', 'Solário', 'Deck molhado', 'Piscina infantil', 'Quadra recreativa', 'Praça central', 'Playground', 'Quadra de beach tennis']]],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Cassia Kroeff'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LGK + 'planta-234.webp', nome: '234 m² · 4 suítes', meta: '3 vagas' }, { src: LGK + 'planta-234-opcao.webp', nome: '234 m² · opção', meta: '' }, { src: LGK + 'planta-166.webp', nome: '166 m² · 4 dormitórios', meta: '2 vagas' }, { src: LGK + 'planta-166-opcao.webp', nome: '166 m² · opção', meta: '' }, { src: LGK + 'planta-penthouse-480.webp', nome: 'Penthouse 480 m²', meta: '4 suítes · 4 vagas' }, { src: LGK + 'planta-duplex-459-inferior.webp', nome: 'Duplex 459 m² · inferior', meta: '' }, { src: LGK + 'planta-duplex-459-superior.webp', nome: 'Duplex 459 m² · superior', meta: '' }, { src: LGK + 'planta-duplex-327-inferior.webp', nome: 'Duplex 327 m² · inferior', meta: '' }, { src: LGK + 'planta-duplex-327-superior.webp', nome: 'Duplex 327 m² · superior', meta: '' }],
+        implantacao: [{ src: LGK + 'implantacao-terreo.webp', nome: 'Pavimento térreo', meta: '' }, { src: LGK + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: '' }],
+        legal: 'Material interno de vendas, sujeito a alterações, sem o texto de registro nem data. Pela corretagem (apto.vc, como "Galleria Residence"): em construção, entrega prevista para dezembro de 2026; disponibilidade sob consulta.',
+        torre: LGK + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_KLABIN_LAVVI,
+        fotos: [fotoLGK('fachada', 'Fachada', true), fotoLGK('fachada-acesso', 'Fachada e acesso'), fotoLGK('voo-lazer', 'Lazer, voo de pássaro'), fotoLGK('lobby', 'Lobby'), fotoLGK('piscina-coberta', 'Piscina coberta'), fotoLGK('saunas', 'Saunas'), fotoLGK('quadra-de-tenis', 'Quadra de tênis'), fotoLGK('salao-de-festas', 'Salão de festas'), fotoLGK('salao-de-festas-2', 'Salão de festas'), fotoLGK('churrasqueira', 'Churrasqueira'), fotoLGK('fitness', 'Fitness'), fotoLGK('spinning', 'Spinning'), fotoLGK('brinquedoteca', 'Brinquedoteca'), fotoLGK('salao-de-jogos', 'Salão de jogos'), fotoLGK('beach-tennis', 'Quadra de beach tennis'), fotoLGK('playground', 'Playground'), fotoLGK('quadra-recreativa', 'Quadra recreativa'), fotoLGK('piscina', 'Piscina com raia de 25 m'), fotoLGK('piscina-2', 'Piscina')]
+      },
+      {
+        nome: 'Grand Square',
+        cidade: 'São Paulo, capital', bairro: 'Chácara Inglesa',
+        resumo: 'Studios a 3 dormitórios · 32 a 79 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Araré, na Chácara Inglesa, perto da Praça da Árvore e do Clube Atlético Monte Líbano: torre única com 174 apartamentos de 2 dormitórios (65 m², 1 vaga), 73 de 3 dormitórios (79 m², 1 vaga), 93 flats de 32 e 45 m² e três lojas de fachada ativa. Lazer no térreo com piscina de raia de 25 m, piscina infantil, bar da piscina, área gourmet, praça central, playground, quadra recreativa, salão de festas, coworking, brinquedoteca, fitness, spinning, lavanderia e bicicletário. Arquitetura do LE Arquitetos, paisagismo de Benedito Abbud e decoração de Chris Silveira. Entregue em maio de 2026, pela corretagem.',
+        area: ['65 m²: 2 dormitórios, 1 vaga (174 unidades), com opção ampliada', '79 m²: 3 dormitórios, 1 vaga (73 unidades), com opção ampliada', 'Flats não residenciais de 32 m² (78) e 45 m² (15), sem vaga', '3 lojas de 72 a 176 m²'],
+        tipologia: 'Flats e apartamentos de 2 e 3 dormitórios',
+        banheiros: 'Água quente na bancada do banho da suíte; banho com ventilação natural',
+        vagas: '1 vaga nos apartamentos; flats e lojas sem vaga',
+        torres: 'Torre única em terreno de 3.501,77 m²: 2 subsolos, térreo de lazer e lojas, flats do 1º ao 3º e apartamentos do 4º ao 18º',
+        unidades: ['340 unidades e 3 lojas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Araré · Chácara Inglesa, São Paulo',
+        infra: { piscina: 'Piscina com raia de 25 m, piscina infantil e bar da piscina', academia: 'Fitness e spinning', festas: 'Salão de festas', gourmet: 'Área gourmet', kids: 'Brinquedoteca e playground', quadra: 'Quadra recreativa', portaria: 'Lobby e acesso pela Rua Araré', coworking: 'Coworking, lavanderia, bicicletário e praça central' },
+        lazerGrupos: [['Lazer', ['Lobby', 'Lounge', 'Coworking', 'Brinquedoteca', 'Salão de festas', 'Fitness', 'Spinning', 'Lavanderia', 'Bicicletário', 'Praça central', 'Playground', 'Piscina com raia de 25 m', 'Bar da piscina', 'Piscina infantil', 'Área gourmet', 'Quadra recreativa']]],
+        diferenciais: ['Sala com 4 m de largura e terraço amplo', 'Janela com persiana de enrolar nos dormitórios', 'Terraço técnico para o ar-condicionado', 'Flats com APA, espaço para geladeira e água quente no banho'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LGS + 'planta-79.webp', nome: '79 m² · 3 dormitórios', meta: 'Padrão · 1 vaga' }, { src: LGS + 'planta-79-ampliada.webp', nome: '79 m² · ampliada', meta: '' }, { src: LGS + 'planta-65.webp', nome: '65 m² · 2 dormitórios', meta: 'Padrão · 1 vaga' }, { src: LGS + 'planta-65-ampliada.webp', nome: '65 m² · ampliada', meta: '' }, { src: LGS + 'planta-45.webp', nome: '45 m² · flat', meta: 'Padrão' }, { src: LGS + 'planta-45-opcao.webp', nome: '45 m² · flat', meta: 'Opção com suíte' }, { src: LGS + 'planta-32.webp', nome: '32 m² · flat', meta: 'Padrão' }, { src: LGS + 'planta-33.webp', nome: '33 m² · flat', meta: 'Ampliada' }],
+        implantacao: [{ src: LGS + 'implantacao.webp', nome: 'Implantação do térreo', meta: '' }],
+        legal: 'Material interno de vendas, sujeito a alterações, sem o texto de registro nem data. Pela corretagem (MySide, como "Grand Square Praça da Árvore", Rua Araré, 171): entregue em maio de 2026; disponibilidade sob consulta.',
+        torre: LGS + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_CHACARA_INGLESA_LAVVI,
+        fotos: [fotoLGS('fachada', 'Fachada', true), fotoLGS('fachada-2', 'Fachada', true), fotoLGS('acesso', 'Acesso'), fotoLGS('voo-lazer', 'Lazer, voo de pássaro'), fotoLGS('lobby', 'Lobby'), fotoLGS('lounge', 'Lounge'), fotoLGS('coworking', 'Coworking'), fotoLGS('brinquedoteca', 'Brinquedoteca'), fotoLGS('salao-de-festas', 'Salão de festas'), fotoLGS('fitness', 'Fitness'), fotoLGS('fitness-2', 'Fitness'), fotoLGS('spinning', 'Spinning'), fotoLGS('lavanderia', 'Lavanderia', true), fotoLGS('praca-central', 'Praça central'), fotoLGS('playground', 'Playground'), fotoLGS('piscina-raia', 'Piscina com raia de 25 m'), fotoLGS('bar-da-piscina', 'Bar da piscina'), fotoLGS('piscina-infantil', 'Piscina'), fotoLGS('area-gourmet', 'Área gourmet'), fotoLGS('quadra', 'Quadra recreativa')]
+      },
+      {
+        nome: 'Grand Vitrali',
+        cidade: 'São Paulo, capital', bairro: 'Moema',
+        resumo: 'Studios a 2 suítes · 25 a 61 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Avenida dos Jamaris, em Moema, perto da Avenida Ibirapuera, do Parque das Bicicletas, do Shopping Ibirapuera e das estações Moema e Eucaliptos: torre de 27 pavimentos com 346 unidades residenciais (260 studios de 25 e 26 m², 64 de 1 dormitório com 41 m² e 22 de 2 suítes com 61 m², todas sem vaga) e 60 flats de 28 a 43 m², mais duas lojas. Lazer no térreo e no 1º pavimento com salão de festas gourmet de 220 m², lounge externo, coworking, lavanderia, fitness com pilates de 280 m², spinning, piscina, solário, deck molhado, praça da lareira e churrasqueira; rooftop com spa aquecido, saunas seca e úmida e lounge com lareira. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração de Chris Silveira. Entregue em agosto de 2024, pela corretagem.',
+        area: ['Studios residenciais de 25 e 26 m² (260 unidades)', '1 dormitório de 41 m² (64 unidades)', '2 suítes de 61 m² (22 unidades)', 'Flats de 28 a 43 m² (60 unidades)', '2 lojas de 665 e 53 m²'],
+        tipologia: 'Studios, flats e apartamentos de 1 dormitório e 2 suítes',
+        vagas: 'Unidades residenciais sem vaga',
+        torres: 'Torre única de 27 pavimentos em terreno de 2.110,30 m²: lazer no térreo e no 1º, flats do 2º ao 5º, residencial do 6º ao 26º e rooftop',
+        unidades: ['406 unidades e 2 lojas'],
+        valores: 'Sob consulta',
+        endereco: 'Av. dos Jamaris · Moema, São Paulo',
+        infra: { piscina: 'Piscina descoberta, solário, deck molhado e spa aquecido no rooftop', academia: 'Fitness com pilates de 280 m², spinning e saunas', festas: 'Salão de festas gourmet de 220 m² e lounge festas', gourmet: 'Churrasqueira e praça da lareira', kids: '', quadra: '', portaria: 'Portaria, lobby, delivery e bicicletário', coworking: 'Coworking, lavanderia e lounges com lareira' },
+        lazerGrupos: [['Térreo e 1º pavimento', ['Lobby', 'Delivery', 'Bicicletário', 'Salão de festas gourmet', 'Lounge externo', 'Lavanderia', 'Coworking', 'Lounge coberto', 'Fitness com pilates', 'Spinning', 'Piscina', 'Solário', 'Deck molhado', 'Praça da lareira', 'Churrasqueira']], ['Rooftop', ['Sauna úmida', 'Sauna seca', 'Spa aquecido', 'Descanso', 'Lounge com lareira']]],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LVT + 'planta-61.webp', nome: '61 m² · 2 suítes', meta: 'Residencial' }, { src: LVT + 'planta-41.webp', nome: '41 m² · 1 dormitório', meta: 'Residencial' }, { src: LVT + 'planta-41-decorado.webp', nome: '41 m² · decorado', meta: '' }, { src: LVT + 'planta-studio-26.webp', nome: '26 m² · studio', meta: 'Residencial' }, { src: LVT + 'planta-studio-decorado.webp', nome: 'Studio · decorado', meta: '' }, { src: LVT + 'planta-flat-29.webp', nome: '29 m² · flat', meta: 'Não residencial' }, { src: LVT + 'planta-flat-42.webp', nome: '42 m² · flat', meta: 'Não residencial, PNE' }],
+        implantacao: [{ src: LVT + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LVT + 'implantacao-lazer.webp', nome: '1º pavimento, lazer', meta: '' }],
+        legal: 'Material interno de vendas, sujeito a alterações, sem o texto de registro nem data. Pela corretagem (apto.vc): entregue em agosto de 2024, pronto para morar; disponibilidade sob consulta.',
+        torre: LVT + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_MOEMA_LAVVI,
+        fotos: [fotoLVT('fachada', 'Fachada', true), fotoLVT('acesso', 'Acesso'), fotoLVT('lobby', 'Lobby'), fotoLVT('festas', 'Festas'), fotoLVT('lounge-festas', 'Lounge festas'), fotoLVT('coworking', 'Coworking'), fotoLVT('lavanderia', 'Lavanderia'), fotoLVT('lounge-lareira', 'Lounge com lareira'), fotoLVT('fitness', 'Fitness'), fotoLVT('spinning', 'Spinning'), fotoLVT('pilates', 'Pilates'), fotoLVT('churrasqueira', 'Churrasqueira'), fotoLVT('praca-da-lareira', 'Praça da lareira'), fotoLVT('piscina', 'Piscina'), fotoLVT('piscina-voo', 'Piscina, voo de pássaro'), fotoLVT('spa', 'Spa')]
+      },
+      {
+        nome: 'Green View',
+        cidade: 'São Paulo, capital', bairro: 'Butantã',
+        resumo: 'Studios a 4 dormitórios · 22 a 300 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Alvarenga, 1.238 e 1.260, a 350 metros da estação Butantã da Linha 4-Amarela e perto do Portão 1 da USP: dois condomínios independentes. O Green View Residence, torre de 38 andares com 64 apartamentos de 132,85 m² (3 suítes) e 64 de 159,94 m² (4 dormitórios, ou 3 suítes), 2 vagas, e duplex de 242 e 300 m² no alto; e o Green View Studios, de 21 andares com 269 studios residenciais e não residenciais de 22 a 26 m². Lazer residencial no 4º pavimento com piscina de raia de 25 m, piscina infantil, SPA, pool house, quadra de tênis, praça central, churrasqueira, salão de festas, salão de jogos, brinquedoteca, fitness, spinning e playground; pet place no térreo e sete lojas. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração de Chris Silveira. Entregue, pela corretagem.',
+        area: ['132,85 m²: 3 suítes, 2 vagas (64 unidades), com opção ampliada', '159,94 m²: 4 dormitórios com 2 suítes, ou 3 suítes, 2 vagas (64 unidades)', 'Duplex de 242,64 m² (4 dormitórios, 3 vagas) e 300 m² (4 dormitórios, 4 vagas)', 'Studios de 22 a 26 m², residenciais e não residenciais (269 unidades)', '7 lojas de 52 a 499 m²'],
+        tipologia: 'Studios e apartamentos de 3 e 4 dormitórios',
+        banheiros: 'Banhos com ventilação e iluminação natural, lavabo e WC de serviço',
+        vagas: '2 vagas nos apartamentos; 3 e 4 nos duplex',
+        torres: '2 torres em terreno de 4.536,90 m²: Residence de 38 andares e Studios de 21 andares',
+        unidades: ['132 apartamentos, 269 studios e 7 lojas'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Alvarenga, 1.238 e 1.260 · Butantã, São Paulo',
+        infra: { piscina: 'Piscina com raia de 25 m, piscina infantil, SPA, solário e deck molhado', academia: 'Fitness e sala de spinning', festas: 'Salão de festas e salão de jogos', gourmet: 'Churrasqueira e pool house', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis e recreativa', portaria: 'Condomínios independentes com acessos próprios', coworking: 'Praça central e pet place' },
+        lazerGrupos: [['Residence, 4º pavimento', ['Praça central', 'Playground', 'Quadra de tênis', 'Solário', 'Deck molhado', 'Piscina com raia de 25 m', 'Piscina infantil', 'SPA', 'Pool house', 'Churrasqueira', 'Salão de festas', 'Salão de jogos', 'Brinquedoteca', 'Spinning', 'Fitness', 'Pet place']]],
+        diferenciais: ['Hall privativo nos apartamentos', 'Suíte com terraço e amplo closet', 'Passagem gourmet e terraço técnico'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LGV + 'planta-159-4-dorms.webp', nome: '159 m² · 4 dormitórios', meta: '2 suítes · 2 vagas' }, { src: LGV + 'planta-159-3-suites.webp', nome: '159 m² · 3 suítes', meta: 'Ampliada' }, { src: LGV + 'planta-132.webp', nome: '132 m² · 3 suítes', meta: '2 vagas' }, { src: LGV + 'planta-132-ampliada.webp', nome: '132 m² · ampliada', meta: '' }],
+        implantacao: [{ src: LGV + 'implantacao.webp', nome: 'Implantação', meta: 'Residence e Studios' }],
+        legal: 'Material interno de vendas, sujeito a alterações, sem o texto de registro nem data. Pela corretagem: Green View Residence entregue em novembro de 2025 e Green View Studios em fevereiro de 2026 (os portais divergem); disponibilidade sob consulta.',
+        torre: LGV + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZO_BUTANTA_LAVVI,
+        fotos: [fotoLGV('fachada', 'Fachada do Residence', true), fotoLGV('acesso', 'Acesso residencial'), fotoLGV('lobby', 'Lobby'), fotoLGV('salao-de-festas', 'Salão de festas'), fotoLGV('fitness', 'Fitness'), fotoLGV('spinning', 'Sala de spinning'), fotoLGV('quadra-de-tenis', 'Quadra de tênis'), fotoLGV('churrasqueira', 'Churrasqueira'), fotoLGV('praca-central', 'Praça central'), fotoLGV('piscina', 'Piscina'), fotoLGV('pool-house', 'Pool house'), fotoLGV('playground', 'Playground'), fotoLGV('pet-place', 'Pet place')]
+      }
+    ],
     'Mitre': [
       /* (11/11/2026) os quatro books que ela mandou: Althea (out/2026), Casa Parque Ceramica (so imagem; ficha pela
          corretagem), Raizes Premium Campo Belo (2025) e, no fim da lista, Haus Mitre Campo Belo (abr/2021, entregue 2024) */
