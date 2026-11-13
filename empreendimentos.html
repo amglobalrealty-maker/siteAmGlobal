@@ -885,8 +885,8 @@
   };
   // (13/11/2026) LAVVI, 8 empreendimentos dos books dela (materiais internos de venda)
   var LV = 'fotos/parcerias/lavvi/';
-  var LGS = LV + 'grandsquare/', LGL = LV + 'galleria/', LGV = LV + 'greenview/', LVT = LV + 'grandvitrali/', LEB = LV + 'edenbrooklin/', LEP = LV + 'edenpark/', LCW = LV + 'casaedenwest/', LCE = LV + 'casaedeneast/', LLR = LV + 'lumiereresidence/', LLS = LV + 'lumierestudios/', LHP = LV + 'heavenapts/', LHR = LV + 'heavenres/', LHW = LV + 'highwonder/', LHA = LV + 'hipicaapts/', LJH = LV + 'jardimhipica/', LSX = LV + 'lesix/';
-  var fotoLGS = fotoEm(LGS), fotoLGL = fotoEm(LGL), fotoLGV = fotoEm(LGV), fotoLVT = fotoEm(LVT), fotoLEB = fotoEm(LEB), fotoLEP = fotoEm(LEP), fotoLCW = fotoEm(LCW), fotoLCE = fotoEm(LCE), fotoLLR = fotoEm(LLR), fotoLLS = fotoEm(LLS), fotoLHP = fotoEm(LHP), fotoLHR = fotoEm(LHR), fotoLHW = fotoEm(LHW), fotoLHA = fotoEm(LHA), fotoLJH = fotoEm(LJH), fotoLSX = fotoEm(LSX);
+  var LGS = LV + 'grandsquare/', LGL = LV + 'galleria/', LGV = LV + 'greenview/', LVT = LV + 'grandvitrali/', LEB = LV + 'edenbrooklin/', LEP = LV + 'edenpark/', LCW = LV + 'casaedenwest/', LCE = LV + 'casaedeneast/', LLR = LV + 'lumiereresidence/', LLS = LV + 'lumierestudios/', LHP = LV + 'heavenapts/', LHR = LV + 'heavenres/', LHW = LV + 'highwonder/', LHA = LV + 'hipicaapts/', LJH = LV + 'jardimhipica/', LSX = LV + 'lesix/', LPZ = LV + 'palazzo/', LPT = LV + 'petra/', LPM = LV + 'pracamooca/', LSF = LV + 'saffire/', LSL = LV + 'soleil/', LSE = LV + 'eliesaab/', LTM = LV + 'tom/', LVD = LV + 'verdant/';
+  var fotoLGS = fotoEm(LGS), fotoLGL = fotoEm(LGL), fotoLGV = fotoEm(LGV), fotoLVT = fotoEm(LVT), fotoLEB = fotoEm(LEB), fotoLEP = fotoEm(LEP), fotoLCW = fotoEm(LCW), fotoLCE = fotoEm(LCE), fotoLLR = fotoEm(LLR), fotoLLS = fotoEm(LLS), fotoLHP = fotoEm(LHP), fotoLHR = fotoEm(LHR), fotoLHW = fotoEm(LHW), fotoLHA = fotoEm(LHA), fotoLJH = fotoEm(LJH), fotoLSX = fotoEm(LSX), fotoLPZ = fotoEm(LPZ), fotoLPT = fotoEm(LPT), fotoLPM = fotoEm(LPM), fotoLSF = fotoEm(LSF), fotoLSL = fotoEm(LSL), fotoLSE = fotoEm(LSE), fotoLTM = fotoEm(LTM), fotoLVD = fotoEm(LVD);
   var ZS_EDEN_BROOKLIN = {
     titulo: 'A região · Brooklin, Eden Park by Dror',
     texto: 'No terreno da antiga fábrica da Kibon, entre a Avenida Roque Petroni Júnior, a Berrini e a Marginal Pinheiros, a Cyrela, a Lavvi e a Hines desenham um bairro novo em volta de um parque privativo de uso público assinado pelo designer israelense Dror Benshetrit com o paisagismo de Benedito Abbud: torres residenciais, mall com fachada ativa e o Casa Eden by YOO. Ao redor, o eixo corporativo da Chucri Zaidan e da Berrini, a Ponte Estaiada, a estação Morumbi da CPTM, o Shopping Morumbi, o Market Place e o Rochavera.',
@@ -966,6 +966,55 @@
     numeros: [['5.353 m²', 'de terreno do Condomínio Le Six'], ['27', 'pavimentos residenciais por torre'], ['156 a 521 m²', 'do apartamento de 4 dormitórios ao duplex'], ['CBRE', 'na gestão dos serviços do condomínio']],
     polos: 'Por perto: Avenida Paulista, Parque Ibirapuera, Jardins, Alameda Santos, HCor, Beneficência Portuguesa e Hospital Santa Catarina.',
     fonte: 'Fonte: book do Le Six Residences.'
+  };
+  var ZS_PALAZZO_LAVVI = {
+    titulo: 'A região · Vila Mariana, entre o Paraíso e a Ana Rosa',
+    texto: 'Na Rua Eça de Queiroz, esquina com a Rua Coronel Oscar Porto, no trecho da Vila Mariana mais próximo do Paraíso: a poucas quadras das estações Paraíso e Ana Rosa do Metrô, perto da Avenida 23 de Maio, do Sesc Vila Mariana e do Parque Ibirapuera, com a Avenida Paulista a uma estação.',
+    numeros: [['2.619 m²', 'de terreno'], ['18', 'andares-tipo e penthouse'], ['163 m²', '3 suítes, 2 vagas'], ['87', 'unidades residenciais']],
+    polos: 'Por perto: estações Paraíso e Ana Rosa, Avenida Paulista, Avenida 23 de Maio, Sesc Vila Mariana, Parque Ibirapuera, Parque da Aclimação, Hospital e Maternidade Santa Joana e ESPM.',
+    fonte: 'Fonte: book do Palazzo Vila Mariana.'
+  };
+  var ZS_PETRA_LAVVI = {
+    titulo: 'A região · Brooklin',
+    texto: 'Na Rua Prof. Dr. José Marques da Cruz, no Brooklin, perto da Avenida Roque Petroni Júnior: a região que mais cresce na cidade, com um novo eixo comercial, ampla oferta de serviços, opções de lazer e acesso fácil a qualquer ponto da capital. Um bairro jovem, que molda um novo jeito de viver em São Paulo.',
+    numeros: [['162 a 199 m²', 'residências com hall privativo'], ['4', 'apartamentos por andar'], ['3', 'piscinas, uma coberta com raia de 25 m'], ['Boca do Lobo', 'na curadoria do mobiliário das áreas comuns']],
+    polos: 'Por perto: Avenida Roque Petroni Júnior, Avenida Engenheiro Luís Carlos Berrini, Avenida das Nações Unidas e o eixo comercial do Brooklin.',
+    fonte: 'Fonte: book do Petra by Boca do Lobo.'
+  };
+  var ZL_PRACAMOOCA_LAVVI = {
+    titulo: 'A região · Mooca, na divisa com o Brás',
+    texto: 'Na Rua Ernesto de Castro, na Mooca, junto ao Brás: o bairro tradicional da Zona Leste que vem trocando antigos galpões por condomínios com lazer completo, a poucos minutos do Centro e com acesso fácil à Radial Leste, à Rua da Mooca e às estações do Metrô e da CPTM da região. O Praça da Mooca faz parte do complexo Praças da Cidade, da Lavvi.',
+    numeros: [['25 m', 'de raia na piscina adulto'], ['185 m²', 'de espaço fitness'], ['140 m²', 'de salão de festas'], ['55 a 94 m²', 'de 2 a 3 dormitórios']],
+    polos: 'Por perto: Rua da Mooca, Avenida Alcântara Machado (Radial Leste), Rua Bresser, Brás e Centro.',
+    fonte: 'Fonte: book do Praça da Mooca; endereço pela corretagem.'
+  };
+  var ZS_ELIESAAB_LAVVI = {
+    titulo: 'A região · Moema, na Avenida Indianópolis',
+    texto: 'Na Avenida Indianópolis, entre as alamedas dos Nhambiquaras e dos Maracatins, com frente também para a Avenida Açocê: o lado mais residencial de Moema, a poucos minutos do Parque Ibirapuera, do Parque das Bicicletas e do Clube Monte Líbano, com o Shopping Ibirapuera e o Esporte Clube Sírio por perto e acesso rápido à Vila Nova Conceição, ao Itaim Bibi e à Avenida Rubem Berta.',
+    numeros: [['6.900 m²', 'de terreno do complexo'], ['3', 'torres: duas do Saffire e uma de studios'], ['52', 'residências no Saffire'], ['18 x 36 m', 'da quadra de tênis oficial']],
+    polos: 'Por perto: Parque Ibirapuera, Parque das Bicicletas, Clube Monte Líbano, Esporte Clube Sírio, Shopping Ibirapuera, Avenida República do Líbano, Avenida Rubem Berta, Vila Nova Conceição e Itaim Bibi.',
+    fonte: 'Fonte: material interno de vendas do Saffire by Elie Saab.'
+  };
+  var ZS_SOLEIL_LAVVI = {
+    titulo: 'A região · Chácara Klabin, em frente à Praça Kant',
+    texto: 'Na Rua Garapeba, 75, em frente à Praça Kant, um grande espaço arborizado no coração da Chácara Klabin, na Vila Mariana: a tranquilidade de um bairro residencial com acesso fácil às principais regiões de São Paulo, perto de estações de metrô, escolas, hospitais e de todas as conveniências de um bairro completo.',
+    numeros: [['246 m²', 'no apartamento de 4 suítes'], ['2', 'apartamentos por andar, com hall privativo'], ['41', 'pavimentos, com duplex no 40º e 41º'], ['25 m', 'de raia na piscina coberta']],
+    polos: 'Por perto: Praça Kant, estações Chácara Klabin e Santos-Imigrantes da Linha 2-Verde, Rua Ernesto de Oliveira e o comércio da Vila Mariana.',
+    fonte: 'Fonte: book do Soleil by Boca do Lobo.'
+  };
+  var ZS_TOM_LAVVI = {
+    titulo: 'A região · Paraíso, entre a Paulista e o Ibirapuera',
+    texto: 'Na Rua Desembargador Eliseu Guilherme, entre as ruas Tomás Carvalhal e Afonso de Freitas, no Paraíso: uma das regiões mais completas e conectadas de São Paulo, perto da Avenida Paulista e do Parque Ibirapuera, cercada de centros empresariais, hospitais de referência, escolas, gastronomia e cultura, com metrô e os grandes eixos da cidade a poucos minutos.',
+    numeros: [['4 min', 'da estação Paraíso e do HCor'], ['7 min', 'da Av. Paulista e da Av. 23 de Maio'], ['8 min', 'do Shopping Pátio Paulista'], ['901', 'unidades numa torre de 28 pavimentos']],
+    polos: 'Por perto: estações Paraíso e Brigadeiro, Avenida Paulista, Avenida 23 de Maio, Shopping Pátio Paulista, Parque Ibirapuera, Parque da Aclimação, HCor, Hospital Oswaldo Cruz, Beneficência Portuguesa, Hospital Santa Catarina e Maternidade Santa Joana.',
+    fonte: 'Fonte: book e material de treinamento do T.O.M. Paraíso (tempos pelo Google Maps).'
+  };
+  var ZN_VERDANT_LAVVI = {
+    titulo: 'A região · Tucuruvi, Zona Norte',
+    texto: 'Na Avenida Nova Cantareira, 2.466, no Tucuruvi: bairro residencial e arborizado da Zona Norte, perto da estação Tucuruvi da Linha 1-Azul e do Shopping Metrô Tucuruvi, no caminho do Horto Florestal e da Serra da Cantareira. O condomínio tem acessos de pedestres e de veículos pela Avenida Nova Cantareira e lojas voltadas para a avenida e para a Rua Pataiba.',
+    numeros: [['8.937 m²', 'de terreno do Verdant Parque Resort'], ['3', 'torres residenciais'], ['50 m', 'de raia na piscina'], ['129 a 305 m²', 'do apartamento de 3 suítes ao duplex']],
+    polos: 'Por perto: estação Tucuruvi (Linha 1-Azul), Shopping Metrô Tucuruvi, Avenida Nova Cantareira, Rua Pataiba, Horto Florestal e Serra da Cantareira.',
+    fonte: 'Fonte: material interno do Verdant Parque Resort.'
   };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
@@ -6518,6 +6567,190 @@
         legal: 'Material preliminar de vendas, sujeito a alteração. Incorporadora responsável: Lavvi Miami Empreendimentos Imobiliários Ltda., com participação da Cyrela; registro conforme Lei nº 4.591/64. Pela corretagem (apto.vc): lançado em março de 2022 e entregue em março de 2024; disponibilidade sob consulta.',
         torre: LLS + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_KLABIN_LAVVI,
         fotos: [fotoLLS('fachada', 'Fachada', true), fotoLLS('port-cochere', 'Port-cochère'), fotoLLS('lojas', 'Lojas'), fotoLLS('vista-25-andar', 'Vista do 25º andar'), fotoLLS('lobby', 'Lobby'), fotoLLS('piscina', 'Piscina com raia de 25 m'), fotoLLS('churrasqueira', 'Churrasqueira'), fotoLLS('lounge-rooftop', 'Lounge no rooftop'), fotoLLS('salao-de-festas', 'Salão de festas'), fotoLLS('coworking', 'Coworking'), fotoLLS('fitness-r', 'Fitness'), fotoLLS('fitness-nr', 'Fitness'), fotoLLS('lavanderia', 'Lavanderia')]
+      },
+      {
+        nome: 'Palazzo Vila Mariana',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: '3 suítes e penthouses · 163 a 212 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Eça de Queiroz, 325, na Vila Mariana, a poucas quadras das estações Paraíso e Ana Rosa: torre única num terreno de 2.619 m², com térreo de loja e garagem, três pavimentos de garagem, pavimento de lazer, 18 andares-tipo e penthouse. São 72 apartamentos de 163 m² com 3 suítes e 2 vagas, duas penthouses de 204 e 212 m² e uma vila de 13 studios de 20,60 m² no térreo. No lazer, piscina adulto e infantil, sala de ginástica, salão de festas com praça de apoio, churrasqueira, lounges, gramado multifunções, brinquedoteca e playground; pet place no térreo. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração de Chris Silveira. Entregue, pela corretagem.',
+        area: ['163,15 m²: 3 suítes, 2 vagas (72 unidades), com opção de cozinha integrada', 'Penthouses de 204,05 e 212,00 m² (2 unidades)', 'Studios de 20,60 m² na vila do térreo (13 unidades)'],
+        tipologia: 'Apartamentos de 3 suítes, penthouses e studios',
+        banheiros: 'Banhos com iluminação e ventilação natural, lavabo e banho de serviço',
+        vagas: '2 vagas por apartamento de 163 m² (163 vagas no total)',
+        torres: 'Torre única: térreo com loja e garagem, 3 pavimentos de garagem, pavimento de lazer, 18 andares-tipo e penthouse',
+        unidades: ['87 unidades residenciais e loja no térreo'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Eça de Queiroz, 325 · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina adulto e piscina infantil', academia: 'Sala de ginástica', festas: 'Salão de festas com praça de apoio', gourmet: 'Churrasqueira e lounges', kids: 'Brinquedoteca e playground', quadra: 'Gramado multifunções', portaria: 'Acessos social e de serviço pela Rua Eça de Queiroz', coworking: 'Pet place no térreo' },
+        lazerGrupos: [['Térreo', ['Hall', 'Pet place', 'Vila de studios']], ['Pavimento de lazer', ['Piscina adulto', 'Piscina infantil', 'Playground', 'Brinquedoteca', 'Sala de ginástica', 'Churrasqueira', 'Salão de festas', 'Gramado multifunções', 'Praça de apoio ao salão de festas', 'Lounges']]],
+        diferenciais: ['Hall social privativo', 'Suíte master com closet e amplo terraço', 'Terraço gourmet com kit churrasqueira', 'Aquecimento central, sem aquecedor na unidade', 'Infraestrutura para ar-condicionado nos dormitórios e na sala', 'Contrapiso com atenuação de ruídos de impacto e persiana de enrolar nos dormitórios'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LPZ + 'planta-163.webp', nome: '163 m² · 3 suítes', meta: '2 vagas' }, { src: LPZ + 'planta-163-opcao.webp', nome: '163 m² · opção', meta: '' }, { src: LPZ + 'planta-163-cozinha-integrada.webp', nome: '163 m² · cozinha integrada', meta: 'Opção' }],
+        implantacao: [{ src: LPZ + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LPZ + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: '' }],
+        legal: 'Book de vendas só de imagens, sem o texto de registro; perspectivas ilustrativas. Pela corretagem (apto.vc): lançado em dezembro de 2018, entrega prevista para dezembro de 2021; disponibilidade sob consulta.',
+        torre: LPZ + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_PALAZZO_LAVVI,
+        fotos: [fotoLPZ('fachada', 'Fachada', true), fotoLPZ('embasamento', 'Embasamento'), fotoLPZ('regiao', 'Rua Eça de Queiroz e Rua Coronel Oscar Porto'), fotoLPZ('hall', 'Hall', true), fotoLPZ('piscina', 'Piscina'), fotoLPZ('churrasqueira', 'Churrasqueira'), fotoLPZ('lounge', 'Lounge'), fotoLPZ('gramado', 'Gramado multifunções'), fotoLPZ('fitness', 'Sala de ginástica'), fotoLPZ('living', 'Living do apartamento'), fotoLPZ('suite', 'Suíte master'), fotoLPZ('suite-2', 'Suíte')]
+      },
+      {
+        nome: 'Petra by Boca do Lobo',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '3 e 4 suítes · 162 a 199 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Na Rua Prof. Dr. José Marques da Cruz, 389, no Brooklin: torre única de térreo e 27 pavimentos, com quatro residências por andar e hall privativo, de 162 m² (4 dormitórios com 2 suítes, ou 3 suítes) e 199 m² (4 suítes, ou 3 suítes). É o primeiro residencial do mundo com a assinatura do atelier português Boca do Lobo, que faz a curadoria do mobiliário feito à mão nas áreas comuns. Lazer no 4º pavimento com três piscinas (coberta com raia de 25 m, externa e infantil), quadra de tênis e futebol, fitness, spa, saunas seca e úmida, salão de festas, praça festas, lounge gourmet, brinquedoteca e playground; no térreo, lobby e lojas. Lançado em outubro de 2024, com entrega prevista para dezembro de 2028, pela corretagem.',
+        area: ['162 m²: 4 dormitórios com 2 suítes, ou 3 suítes (opção)', '199 m²: 4 suítes, ou 3 suítes (opção)'],
+        tipologia: 'Apartamentos de 3 e 4 suítes com hall privativo',
+        vagas: '2 a 3 vagas, pela corretagem',
+        torres: 'Torre única de térreo e 27 pavimentos, 4 apartamentos por andar, em terreno de cerca de 4.367 m² (pela corretagem)',
+        valores: 'Sob consulta',
+        endereco: 'Rua Prof. Dr. José Marques da Cruz, 389 · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina coberta com raia de 25 m, piscina externa e piscina infantil', academia: 'Fitness, spa e saunas seca e úmida', festas: 'Salão de festas e praça festas', gourmet: 'Lounge gourmet', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis e futebol (sem recuos oficiais)', portaria: 'Lobby, acessos social e de serviço de pedestres e acesso de veículos', coworking: 'Lojas no térreo' },
+        lazerGrupos: [['Térreo', ['Lobby', 'Acesso social de pedestres', 'Acesso de serviço de pedestres', 'Acesso de veículos', 'Lojas']], ['4º pavimento, lazer', ['Piscina coberta com raia de 25 m', 'Piscina externa', 'Piscina infantil', 'Salão de festas', 'Quadra de tênis e futebol', 'Fitness', 'Lounge gourmet', 'Playground', 'Praça festas', 'Brinquedoteca', 'Saunas seca e úmida', 'Spa', 'Apoio da quadra']]],
+        diferenciais: ['Primeiro residencial do mundo com assinatura Boca do Lobo', 'Mobiliário feito à mão por artesãos às margens do Rio Douro nas áreas comuns', 'Hall privativo em todos os apartamentos', 'Três piscinas'],
+        creditos: [['Mobiliário das áreas comuns', 'Boca do Lobo'], ['Incorporação e construção', 'Lavvi']],
+        plantas: [{ src: LPT + 'planta-199.webp', nome: '199 m² · 4 suítes', meta: 'Final 2' }, { src: LPT + 'planta-199-opcao.webp', nome: '199 m² · 3 suítes', meta: 'Opção' }, { src: LPT + 'planta-162.webp', nome: '162 m² · 4 dormitórios', meta: '2 suítes, final 3' }, { src: LPT + 'planta-162-opcao.webp', nome: '162 m² · 3 suítes', meta: 'Opção' }],
+        implantacao: [{ src: LPT + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LPT + 'implantacao-lazer.webp', nome: '4º pavimento, lazer', meta: '' }],
+        legal: 'Material preliminar de julho de 2024, sujeito a alterações. Incorporadora responsável: Lavvi Noruega Empreendimentos Imobiliários Ltda. O empreendimento será comercializado somente após o registro do Memorial de Incorporação, nos termos da Lei nº 4.591/64. Quadra de tênis sem recuos oficiais. Futura intermediação: Lior, Creci 30.906-J. Pela corretagem (apto.vc, como "Petra", na Av. Roque Petroni Júnior): lançado em outubro de 2024, em construção, entrega prevista para dezembro de 2028; disponibilidade sob consulta.',
+        torre: LPT + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_PETRA_LAVVI,
+        fotos: [fotoLPT('fachada', 'Fachada', true), fotoLPT('embasamento', 'Embasamento'), fotoLPT('arquitetura', 'Arquitetura'), fotoLPT('lobby', 'Lobby', true), fotoLPT('piscina-externa', 'Piscina externa'), fotoLPT('piscina-externa-2', 'Piscina externa'), fotoLPT('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoLPT('quadra', 'Quadra de tênis e futebol'), fotoLPT('lounge-gourmet', 'Lounge gourmet'), fotoLPT('salao-de-festas', 'Salão de festas'), fotoLPT('salao-de-festas-2', 'Salão de festas'), fotoLPT('salao-de-festas-3', 'Salão de festas'), fotoLPT('praca-festas', 'Praça festas'), fotoLPT('playground', 'Playground'), fotoLPT('brinquedoteca', 'Brinquedoteca'), fotoLPT('spa-saunas', 'Spa e saunas'), fotoLPT('fitness', 'Fitness'), fotoLPT('fitness-2', 'Fitness'), fotoLPT('living-199', 'Living decorado, 199 m²'), fotoLPT('living-162', 'Living decorado, 162 m²')]
+      },
+      {
+        nome: 'Praça da Mooca',
+        cidade: 'São Paulo, capital', bairro: 'Mooca',
+        resumo: '2 e 3 dormitórios · 55 a 94 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Ernesto de Castro, na Mooca, divisa com o Brás: condomínio do complexo Praças da Cidade, da Lavvi, com apartamentos de 55 m² (2 dormitórios com suíte), 67 m² (3 dormitórios com suíte, ou 2 dormitórios) e 94 m² (3 dormitórios com 2 suítes, ou 2 suítes com sala ampliada). No pavimento de acesso, hall do transfer, praça de gentileza urbana, playground, churrasqueira, quadra gramada, pista de caminhada e pet place; no térreo elevado, praça de chegada com fonte, praça central com espelho d\'água, piscina adulto com raia de 25 m, piscina infantil, solarium, salão de festas de 140 m², fitness de 185 m², sala de jogos adulto de 76 m², espaço gourmet, sala de cinema, sala de jogos e brinquedoteca. Bicicletário no 2º subsolo. Lançado em março de 2019 e entregue, pela corretagem.',
+        area: ['55 m²: 2 dormitórios com suíte, 1 vaga (13 unidades com depósito)', '67 m²: 3 dormitórios com suíte, ou 2 dormitórios, 1 vaga determinada e coberta, depósito em 90% das unidades', '94 m²: 3 dormitórios com 2 suítes, ou 2 suítes com sala ampliada, 2 vagas, depósito privativo'],
+        tipologia: 'Apartamentos de 2 e 3 dormitórios',
+        banheiros: 'Iluminação e ventilação natural',
+        vagas: '1 vaga no 55 m² (indeterminada) e no 67 m² (determinada e coberta); 2 vagas duplas, determinadas e cobertas, no 94 m²',
+        torres: 'Condomínio do complexo Praças da Cidade, com lazer no pavimento de acesso e no térreo elevado',
+        valores: 'Sob consulta',
+        endereco: 'Rua Ernesto de Castro · Mooca, São Paulo',
+        infra: { piscina: 'Piscina adulto com raia de 25 m, piscina infantil, solarium e espelho d\'água', academia: 'Fitness de 185 m²', festas: 'Salão de festas de 140 m², sala de jogos adulto de 76 m², sala de cinema e sala de jogos', gourmet: 'Espaço gourmet com área de apoio e churrasqueira', kids: 'Brinquedoteca e playground', quadra: 'Quadra gramada e pista de caminhada', portaria: 'Hall do transfer, praça de chegada e hall das torres', coworking: 'Bicicletário, pet place e praça de gentileza urbana' },
+        lazerGrupos: [['Pavimento de acesso', ['Hall do transfer', 'Gentileza urbana', 'Playground', 'Churrasqueira', 'Quadra gramada', 'Pista de caminhada', 'Pet place']], ['Térreo elevado', ['Praça de chegada com fonte', 'Praça central', 'Espelho d\'água', 'Hall das torres', 'Sala de jogos adulto', 'Salão de festas', 'Brinquedoteca', 'Fitness', 'Piscina adulto com raia de 25 m', 'Piscina infantil', 'Solarium', 'Espaço gourmet', 'Sala de cinema', 'Sala de jogos']], ['2º subsolo', ['Bicicletário']]],
+        diferenciais: ['Persiana de enrolar nos dormitórios', 'Infraestrutura para ar-condicionado na suíte (e na sala, no 94 m²)', 'Armário em "L" nos dormitórios', 'Depósito privativo no 94 m² e na maior parte do 67 m²', 'Kit churrasqueira opcional no 94 m²'],
+        creditos: [['Incorporação', 'Lavvi']],
+        plantas: [{ src: LPM + 'planta-94.webp', nome: '94 m² · 3 dormitórios', meta: '2 suítes · 2 vagas' }, { src: LPM + 'planta-94-opcao.webp', nome: '94 m² · opção', meta: '2 suítes, sala ampliada' }, { src: LPM + 'planta-67-ponta.webp', nome: '67 m² · ponta', meta: '3 dormitórios · 1 vaga' }, { src: LPM + 'planta-67-ponta-opcao.webp', nome: '67 m² · ponta, opção', meta: '2 dormitórios' }, { src: LPM + 'planta-67-meio.webp', nome: '67 m² · meio', meta: '3 dormitórios · 1 vaga' }, { src: LPM + 'planta-67-meio-opcao.webp', nome: '67 m² · meio, opção', meta: '2 dormitórios' }, { src: LPM + 'planta-55.webp', nome: '55 m² · 2 dormitórios', meta: '1 suíte · 1 vaga' }],
+        implantacao: [{ src: LPM + 'implantacao-acesso.webp', nome: 'Pavimento de acesso', meta: '' }, { src: LPM + 'implantacao-terreo-elevado.webp', nome: 'Térreo elevado', meta: '' }],
+        legal: 'Material de vendas sem o texto de registro nem data; perspectivas ilustrativas. Pela corretagem (apto.vc): lançado em março de 2019, entrega prevista para outubro de 2021, pronto para morar; endereço Rua Ernesto de Castro, 235, pelo QuintoAndar (o apto.vc cita a Rua Piratininga). Disponibilidade sob consulta.',
+        torre: LPM + 'gentileza-urbana.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZL_PRACAMOOCA_LAVVI,
+        fotos: [fotoLPM('gentileza-urbana', 'Gentileza urbana'), fotoLPM('hall-transfer', 'Hall do transfer'), fotoLPM('praca-de-chegada', 'Praça de chegada com fonte'), fotoLPM('espelho-dagua', 'Espelho d\'água'), fotoLPM('hall-transfer-elevado', 'Hall do transfer, térreo elevado'), fotoLPM('hall-das-torres', 'Hall das torres'), fotoLPM('piscina-raia', 'Piscina com raia de 25 m'), fotoLPM('piscina', 'Piscinas e solarium'), fotoLPM('salao-de-festas', 'Salão de festas'), fotoLPM('espaco-gourmet', 'Espaço gourmet'), fotoLPM('sala-de-jogos-adulto', 'Sala de jogos adulto'), fotoLPM('cinema', 'Sala de cinema'), fotoLPM('fitness', 'Fitness'), fotoLPM('fitness-2', 'Fitness'), fotoLPM('brinquedoteca', 'Brinquedoteca'), fotoLPM('playground', 'Playground'), fotoLPM('churrasqueira', 'Churrasqueira'), fotoLPM('quadra-gramada', 'Quadra gramada'), fotoLPM('pista-de-caminhada', 'Pista de caminhada e pet place'), fotoLPM('bicicletario', 'Bicicletário')]
+      },
+      {
+        nome: 'Saffire by Elie Saab',
+        cidade: 'São Paulo, capital', bairro: 'Moema',
+        resumo: '359 a 868 m² · duplex no alto',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Na Avenida Indianópolis, em Moema, perto do Parque Ibirapuera e do Parque das Bicicletas: residências com a assinatura de Elie Saab, em duas torres num terreno de 6.900 m². A Torre 1 tem 24 apartamentos de 493 m² (5 vagas) e 2 duplex de 868,60 m² (6 vagas); a Torre 2, 24 apartamentos de 359,59 m² (4 vagas) e 2 duplex de 649,41 m² (5 vagas), sempre dois por andar. No térreo, port-cochère, lobbies, salão de festas de 290 m² com piano, festas bar e terraço, brinquedoteca, playground, praça central, piscina coberta com raia de 25 m, spa com saunas seca e úmida, fitness de 310 m² com spinning; no 1º pavimento, piscina com raia de 25 m, piscina infantil, pool houses, solário, praça, private pool house, quadra de tênis oficial e beach tennis. Áreas comuns entregues decoradas com mobiliário Elie Saab. Arquitetura do MCAA e paisagismo de Benedito Abbud. Em construção, pela corretagem.',
+        area: ['Torre 1: 493 m², 5 vagas (24 unidades), com opções de closet e sala íntima ampliados ou 5 suítes', 'Torre 1: duplex de 868,60 m², 6 vagas (2 unidades)', 'Torre 2: 359,59 m², 4 vagas (24 unidades), com opções de closet ampliado e sala íntima', 'Torre 2: duplex de 649,41 m², 5 vagas (2 unidades)'],
+        tipologia: 'Apartamentos de alto padrão e duplex',
+        vagas: '4 a 6 vagas por unidade, vinculadas; 27 vagas extras e 10 de visitantes',
+        torres: '2 torres de cerca de 53 m, com 2 apartamentos por andar do 1º ao 12º, duplex no alto e 3 subsolos de garagem, em terreno de 6.900 m²',
+        unidades: ['52 residências: 26 em cada torre'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Indianópolis · Moema, São Paulo',
+        infra: { piscina: 'Piscina coberta com raia de 25 m, piscina descoberta com raia de 25 m, piscina infantil, deck molhado e solário', academia: 'Fitness de 310 m² com spinning e spa com saunas seca e úmida', festas: 'Salão de festas de 290 m² com piano, festas bar e terraço festas', gourmet: 'Private house, private pool house e pool houses', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis oficial e quadra de beach tennis', portaria: 'Port-cochère, portaria e lobbies das torres 1 e 2', coworking: 'Praça central, praça e lobby transfer' },
+        lazerGrupos: [['Térreo', ['Port-cochère', 'Portaria', 'Lobby da Torre 1', 'Lobby da Torre 2', 'Salão de festas', 'Festas bar', 'Piano festas', 'Terraço festas', 'Playground', 'Brinquedoteca', 'Praça central', 'Lobby transfer', 'Piscina coberta com raia de 25 m', 'Deck molhado', 'Spa', 'Sauna seca', 'Sauna úmida', 'Descanso', 'Fitness', 'Spinning']], ['1º pavimento', ['Praça', 'Pool houses', 'Solário', 'Deck molhado', 'Piscina infantil', 'Piscina com raia de 25 m', 'Quadra de tênis', 'Private pool house', 'Beach tennis']]],
+        diferenciais: ['Residências com assinatura de Elie Saab e áreas comuns decoradas com mobiliário da marca', 'Dois apartamentos por andar', 'Tomada para carro elétrico prevista em cada unidade', 'Gerador para elevadores, áreas comuns e unidades', 'Espaço previsto para depósito'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Design de interiores', 'Elie Saab'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LSF + 'planta-493.webp', nome: '493 m² · Torre 1', meta: '5 vagas' }, { src: LSF + 'planta-493-opcao.webp', nome: '493 m² · opção', meta: '' }, { src: LSF + 'planta-duplex-868-inferior.webp', nome: 'Duplex 868 m² · inferior', meta: '6 vagas' }, { src: LSF + 'planta-duplex-868-superior.webp', nome: 'Duplex 868 m² · superior', meta: '' }, { src: LSF + 'planta-pavimento-torre-1.webp', nome: 'Torre 1 · pavimento tipo', meta: '1º ao 12º' }, { src: LSF + 'planta-359.webp', nome: '359 m² · Torre 2', meta: '4 vagas' }, { src: LSF + 'planta-359-opcao.webp', nome: '359 m² · opção', meta: '' }, { src: LSF + 'planta-duplex-649-inferior.webp', nome: 'Duplex 649 m² · inferior', meta: '5 vagas' }, { src: LSF + 'planta-duplex-649-superior.webp', nome: 'Duplex 649 m² · superior', meta: '' }, { src: LSF + 'planta-pavimento-torre-2.webp', nome: 'Torre 2 · pavimento tipo', meta: '1º ao 12º' }],
+        implantacao: [{ src: LSF + 'implantacao.webp', nome: 'Implantação geral', meta: '' }, { src: LSF + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LSF + 'implantacao-1-pavimento.webp', nome: '1º pavimento', meta: '' }],
+        legal: 'Material interno de vendas, sujeito a alterações, sem o texto de registro nem data. Pela corretagem: lançado em maio de 2023, na Av. Indianópolis, 394; entrega prevista para novembro de 2026 (MySide) ou agosto de 2026 (apto.vc), os portais divergem; disponibilidade sob consulta.',
+        torre: LSF + 'torre-1.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_ELIESAAB_LAVVI,
+        fotos: [fotoLSF('torre-1', 'Torre 1', true), fotoLSF('torre-2', 'Torre 2', true), fotoLSF('vista-aerea', 'Vista aérea'), fotoLSF('port-cochere', 'Port-cochère'), fotoLSF('lobby-torre-1', 'Lobby residencial · Torre 1'), fotoLSF('lobby-torre-2', 'Lobby residencial · Torre 2'), fotoLSF('lobby-transfer', 'Lobby transfer'), fotoLSF('festas-bar', 'Festas bar'), fotoLSF('salao-de-festas', 'Salão de festas'), fotoLSF('salao-de-festas-piano', 'Salão de festas', true), fotoLSF('piano-festas', 'Piano festas'), fotoLSF('salao-de-festas-2', 'Salão de festas'), fotoLSF('salao-de-festas-3', 'Salão de festas'), fotoLSF('terraco-festas', 'Terraço festas'), fotoLSF('brinquedoteca', 'Brinquedoteca'), fotoLSF('praca-central', 'Praça central'), fotoLSF('fitness', 'Fitness'), fotoLSF('fitness-2', 'Fitness'), fotoLSF('piscina-coberta-raia', 'Piscina coberta com raia de 25 m'), fotoLSF('piscina-coberta', 'Piscina coberta', true), fotoLSF('spa', 'Spa'), fotoLSF('spa-2', 'Spa'), fotoLSF('praca', 'Praça'), fotoLSF('piscina-raia-25', 'Piscina com raia de 25 m'), fotoLSF('quadra-de-tenis', 'Quadra de tênis'), fotoLSF('private-house', 'Private house'), fotoLSF('private-pool-house', 'Private pool house'), fotoLSF('beach-tennis', 'Beach tennis')]
+      },
+      {
+        nome: 'Soleil by Boca do Lobo',
+        cidade: 'São Paulo, capital', bairro: 'Chácara Klabin',
+        resumo: '4 suítes a duplex · 246 a 487 m²',
+        tipo: 'Apartamento', status: 'Em construção',
+        texto: 'Na Rua Garapeba, 75, em frente à Praça Kant, na Chácara Klabin: torre de alto padrão com design inspirado no atelier português Boca do Lobo, que assina uma curadoria de mobiliário feito à mão às margens do Rio Douro. Dois apartamentos de 246 m² por andar, com 4 suítes (ou 3 na opção) e hall privativo, do 5º ao 39º pavimento, e duplex de 487 m² com 4 suítes no 40º e 41º. No térreo, hall de acesso, lobby, piscina coberta com raia de 25 m, saunas seca e úmida, SPA, salão de festas, lounge externo festas, brinquedoteca e playground; no 2º pavimento, fitness, piscina descoberta, piscina infantil, solário e quadra de tênis. A mesma torre tem um segundo setor, o Soleil Apartments, com acesso pela Rua Ernesto de Oliveira. Entrega prevista para março de 2029, pela corretagem.',
+        area: ['246,86 m²: 4 suítes, ou 3 suítes na opção, do 5º ao 39º pavimento', 'Duplex de 487,62 m², 4 suítes, no 40º e 41º pavimento'],
+        tipologia: 'Apartamentos de 3 e 4 suítes e duplex',
+        vagas: '3 e 4 vagas, pela corretagem',
+        torres: 'Torre única com dois setores: Soleil Residences (Rua Garapeba) e Soleil Apartments (Rua Ernesto de Oliveira)',
+        valores: 'Sob consulta',
+        endereco: 'Rua Garapeba, 75 · Chácara Klabin, São Paulo',
+        infra: { piscina: 'Piscina coberta com raia de 25 m, piscina descoberta, piscina infantil e solário', academia: 'Fitness, saunas seca e úmida e SPA', festas: 'Salão de festas e lounge externo festas', gourmet: '', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis', portaria: 'Hall de acesso, lobby e acessos social, de serviço e de veículos', coworking: '' },
+        lazerGrupos: [['Térreo', ['Acesso social', 'Hall de acesso', 'Lobby', 'Piscina coberta com raia de 25 m', 'Sauna seca', 'Sauna úmida', 'SPA', 'Salão de festas', 'Lounge externo festas', 'Brinquedoteca', 'Playground']], ['2º pavimento', ['Fitness', 'Piscina descoberta', 'Piscina infantil', 'Solário', 'Quadra de tênis']]],
+        diferenciais: ['Design inspirado no atelier português Boca do Lobo', 'Dois apartamentos por andar, com hall privativo', 'Em frente à Praça Kant, área verde arborizada'],
+        creditos: [['Design', 'Boca do Lobo'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LSL + 'planta-246.webp', nome: '246 m² · 4 suítes', meta: 'Planta-tipo, final 1' }, { src: LSL + 'planta-246-decorado.webp', nome: '246 m² · 3 suítes', meta: 'Opção do decorado' }, { src: LSL + 'planta-duplex-487-inferior.webp', nome: 'Duplex 487 m² · inferior', meta: '4 suítes' }, { src: LSL + 'planta-duplex-487-superior.webp', nome: 'Duplex 487 m² · superior', meta: '' }],
+        implantacao: [{ src: LSL + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LSL + 'implantacao-2-pavimento.webp', nome: '2º pavimento', meta: '' }],
+        legal: 'Breve lançamento. Incorporadora responsável: Lavvi Japão Empreendimentos Imobiliários Ltda. Projeto aprovado sob o nº 35309-23; o empreendimento será comercializado após o registro do Memorial de Incorporação, nos termos da Lei nº 4.591/64. O Setor 2 (Soleil Apartments) tem 73 unidades HMP. Material preliminar sujeito a alteração. Futura intermediação: Lior, Creci 30.906-J. Pela corretagem (apto.vc): em construção, entrega prevista para março de 2029 (o MySide indica abril de 2029); disponibilidade sob consulta.',
+        torre: LSL + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_SOLEIL_LAVVI,
+        fotos: [fotoLSL('fachada', 'Fachada', true), fotoLSL('acesso', 'Acesso'), fotoLSL('lobby', 'Lobby'), fotoLSL('salao-de-festas', 'Salão de festas'), fotoLSL('salao-de-festas-2', 'Salão de festas'), fotoLSL('lounge-externo-festas', 'Lounge externo festas'), fotoLSL('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoLSL('piscina-coberta-2', 'Piscina coberta com raia de 25 m'), fotoLSL('brinquedoteca', 'Brinquedoteca'), fotoLSL('piscina-descoberta', 'Piscina descoberta'), fotoLSL('quadra-de-tenis', 'Quadra de tênis'), fotoLSL('fitness', 'Fitness'), fotoLSL('fitness-2', 'Fitness'), fotoLSL('living-decorado', 'Living do decorado'), fotoLSL('jantar-decorado', 'Sala de jantar do decorado')]
+      },
+      {
+        nome: 'Studios Elie Saab',
+        cidade: 'São Paulo, capital', bairro: 'Moema',
+        resumo: 'Studios de 28 a 35 m²',
+        tipo: 'Studio', status: 'Em construção',
+        texto: 'Na Avenida Açocê, em Moema, na torre 3 do complexo do Saffire by Elie Saab: 97 studios não residenciais de 28,49 a 35,37 m², todos sem vaga, com decoração assinada por Elie Saab. No térreo, portaria, acessos social e de serviço, delivery, hall, lobby, lounge e terraço; na cobertura do 12º pavimento, piscina com solário, fitness e lounge gourmet com vista aberta. Studios do 3º ao 10º pavimento, dez por andar. Em construção, entrega prevista para outubro de 2026, pela corretagem.',
+        area: ['28,49 m² (18 unidades) e 28,58 m² (18)', '29,30 m² (20 unidades)', '31,09 m² (20 unidades)', '34,33 m² (17 unidades)', '34,63, 34,87 e 35,37 m² (4 unidades)'],
+        tipologia: 'Studios não residenciais',
+        vagas: 'Studios sem vaga',
+        torres: 'Torre única de cerca de 45 m, a Torre 3 do complexo: térreo de acesso e lazer, studios do 3º ao 10º e cobertura de lazer no 12º',
+        unidades: ['97 studios não residenciais'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Açocê · Moema, São Paulo',
+        infra: { piscina: 'Piscina com solário na cobertura', academia: 'Fitness na cobertura', festas: '', gourmet: 'Lounge gourmet na cobertura', kids: '', quadra: '', portaria: 'Portaria, acessos social e de serviço, delivery, hall e lobby', coworking: 'Lounge e terraço no térreo' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Acesso social', 'Acesso de serviço', 'Delivery', 'Hall', 'Lobby', 'Lounge', 'Terraço']], ['Cobertura, 12º pavimento', ['Piscina', 'Solário', 'Fitness', 'Lounge gourmet']]],
+        diferenciais: ['Decoração assinada por Elie Saab', 'Mesmo complexo do Saffire by Elie Saab', 'Lazer na cobertura com vista aberta'],
+        creditos: [['Design', 'Elie Saab'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LSE + 'planta-29.webp', nome: '29 m² · studio', meta: 'Não residencial · sem vaga' }, { src: LSE + 'planta-31.webp', nome: '31 m² · studio', meta: 'Não residencial · sem vaga' }, { src: LSE + 'planta-34.webp', nome: '34 m² · studio', meta: 'Não residencial · sem vaga' }, { src: LSE + 'planta-pavimento-tipo.webp', nome: 'Pavimento tipo', meta: '3º ao 10º · 10 studios por andar' }],
+        implantacao: [{ src: LSE + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LSE + 'implantacao-cobertura.webp', nome: 'Cobertura, 12º pavimento', meta: '' }],
+        legal: 'Material interno de vendas, preliminar e sujeito a alterações, sem o texto de registro nem data. Pela corretagem (Chaves na Mão, Av. Açocê, 419): em construção, entrega prevista para outubro de 2026; disponibilidade sob consulta.',
+        torre: LSE + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_ELIESAAB_LAVVI,
+        fotos: [fotoLSE('fachada', 'Fachada', true), fotoLSE('acesso', 'Acesso'), fotoLSE('lounge', 'Lounge'), fotoLSE('lounge-gourmet', 'Lounge gourmet'), fotoLSE('fitness', 'Fitness'), fotoLSE('piscina', 'Piscina')]
+      },
+      {
+        nome: 'T.O.M. Paraíso',
+        cidade: 'São Paulo, capital', bairro: 'Paraíso',
+        resumo: 'Studios e 1 dormitório · 25 a 43 m²',
+        tipo: 'Studio', status: 'Breve lançamento',
+        texto: 'Na Rua Desembargador Eliseu Guilherme, no Paraíso, perto da Avenida Paulista e do Parque Ibirapuera: torre única de 28 pavimentos, com cerca de 85 m, num terreno de 2.909 m², com 901 unidades sem vaga: 175 apartamentos de 1 dormitório (38 a 43 m²), 339 studios residenciais (25 a 40 m²), 99 studios HMP e 288 studios HIS. Lazer de clube no térreo, com piscina coberta com raia de 25 m, spa, saunas seca e úmida, fitness, pilates, dois salões de festas, espaço gourmet, lounge coworking, salas de trabalho e reunião, lounge com lareira, quadra de beach tennis, churrasqueira, espaço pet, mini market, lavanderia e delivery; no 22º pavimento, rooftop com piscina descoberta com raia de 25 m, deck molhado, solário e pool bar. Arquitetura do MCAA, paisagismo do Núcleo e decoração da Triplex.',
+        area: ['1 dormitório residencial de 38,34 a 43,85 m² (175 unidades)', 'Studios residenciais de 25,87 a 40,80 m² (339 unidades)', 'Studios HMP de 25 a 35 m² (99 unidades, do 15º ao 19º pavimento)', 'Studios HIS-2 de 25 a 35 m² (288 unidades, do 1º ao 14º pavimento)'],
+        tipologia: 'Studios e apartamentos de 1 dormitório',
+        vagas: 'Unidades sem vaga',
+        torres: 'Torre única de 28 pavimentos, cerca de 85 m, em terreno de 2.909,12 m²; lazer no térreo e no 22º pavimento',
+        unidades: ['901 unidades: 175 de 1 dormitório, 339 studios residenciais, 99 studios HMP e 288 studios HIS'],
+        valores: 'Sob consulta',
+        endereco: 'Rua Desembargador Eliseu Guilherme · Paraíso, São Paulo',
+        infra: { piscina: 'Piscina coberta com raia de 25 m no térreo; piscina descoberta com raia de 25 m, deck molhado, solário e pool bar no rooftop', academia: 'Fitness, pilates, spa e saunas seca e úmida', festas: 'Salões de festas 1 e 2 e espaço gourmet', gourmet: 'Churrasqueira, lounge com lareira e pool bar', kids: '', quadra: 'Quadra de beach tennis, futmesa e tênis de mesa', portaria: 'Clausura social, lobby, delivery e acesso pela Rua Desembargador Eliseu Guilherme', coworking: 'Lounge coworking, salas de trabalho e reunião, lounge externo coworking, lavanderia, mini market e espaço pet' },
+        lazerGrupos: [['Térreo', ['Clausura social', 'Lobby', 'Salão de festas 1', 'Salão de festas 2', 'Espaço gourmet', 'Lounge coworking', 'Salas de reunião e de trabalho', 'Piscina coberta com raia de 25 m', 'Sauna úmida', 'Spa', 'Sauna seca', 'Fitness', 'Pilates', 'Lavanderia', 'Delivery', 'Mini market', 'Lounge externo coworking', 'Lounge com lareira', 'Espaço pet', 'Jardim com futmesa', 'Bosque com tênis de mesa', 'Quadra de beach tennis', 'Churrasqueira']], ['Rooftop, 22º pavimento', ['Piscina descoberta com raia de 25 m', 'Deck molhado', 'Solário', 'Pool bar']]],
+        diferenciais: ['Duas piscinas com raia de 25 m, uma coberta e outra no rooftop', 'Infraestrutura para ar-condicionado na sala e no dormitório', 'Aquecimento central a gás', 'Medição individualizada de água'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Núcleo'], ['Decoração', 'Triplex'], ['Incorporação e construção', 'Lavvi']],
+        plantas: [{ src: LTM + 'planta-43.webp', nome: '43 m² · 1 dormitório', meta: 'Final 14A, do 2º ao 20º' }, { src: LTM + 'planta-40.webp', nome: '40 m² · 1 dormitório', meta: 'Final 01B, do 1º ao 28º' }, { src: LTM + 'planta-40-opcao.webp', nome: '40 m² · opção', meta: '' }, { src: LTM + 'planta-38.webp', nome: '38 m² · 1 dormitório', meta: 'Final 15A, do 2º ao 20º' }, { src: LTM + 'planta-35.webp', nome: '35 m² · studio', meta: 'Final 14A, do 23º ao 28º' }, { src: LTM + 'planta-35-his-hmp.webp', nome: '35 m² · studio adaptável', meta: 'HIS-2 e HMP, final 12A' }, { src: LTM + 'planta-34.webp', nome: '34 m² · studio', meta: 'Residencial e HIS-2, final 16B' }, { src: LTM + 'planta-33.webp', nome: '33 m² · studio', meta: 'Residencial e HMP, final 13A' }, { src: LTM + 'planta-27.webp', nome: '27 m² · studio', meta: 'Final 13B, do 2º ao 20º' }, { src: LTM + 'planta-25-07a.webp', nome: '25 m² · studio', meta: 'Residencial, HMP e HIS-2, final 07A' }, { src: LTM + 'planta-25-07b.webp', nome: '25 m² · studio', meta: 'Residencial, HMP e HIS-2, final 07B' }, { src: LTM + 'planta-25-07b-opcao.webp', nome: '25 m² · opção', meta: 'Final 07B' }],
+        implantacao: [{ src: LTM + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LTM + 'implantacao-22.webp', nome: 'Rooftop, 22º pavimento', meta: '' }],
+        legal: 'Breve lançamento. Incorporadora responsável: Lavvi Reino Unido Empreendimentos Imobiliários Ltda. Projeto em fase de estudo: o empreendimento será comercializado após o registro do Memorial de Incorporação, nos termos da Lei nº 4.591/64. Setor único com uma torre de apartamentos residenciais R2V, HMP (99 unidades, do 15º ao 19º pavimento) e HIS-2 (288 unidades, do 1º ao 14º), estas destinadas ao público-alvo definido pelo Plano Diretor Estratégico de São Paulo. Futura intermediação: Lior, Creci 30.906-J. Material preliminar, sujeito a alterações; datas e disponibilidade sob consulta.',
+        torre: LTM + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZS_TOM_LAVVI,
+        fotos: [fotoLTM('fachada', 'Fachada', true), fotoLTM('lobby', 'Lobby'), fotoLTM('rooftop', 'Lazer no rooftop'), fotoLTM('piscina-descoberta', 'Piscina descoberta com raia de 25 m'), fotoLTM('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoLTM('spa-saunas', 'Spa e saunas'), fotoLTM('fitness', 'Fitness'), fotoLTM('pilates', 'Pilates'), fotoLTM('beach-tennis', 'Quadra de beach tennis'), fotoLTM('lazer-externo', 'Lazer externo'), fotoLTM('churrasqueira', 'Churrasqueira'), fotoLTM('lounge-lareira', 'Lounge com lareira'), fotoLTM('espaco-pet', 'Espaço pet'), fotoLTM('salao-de-festas-1', 'Salão de festas 1'), fotoLTM('salao-de-festas-2-gourmet', 'Salão de festas 2 e espaço gourmet'), fotoLTM('lounge-coworking', 'Lounge coworking'), fotoLTM('salas-de-trabalho', 'Salas de trabalho e reunião'), fotoLTM('lounge-externo-coworking', 'Lounge externo coworking'), fotoLTM('lavanderia', 'Lavanderia'), fotoLTM('delivery', 'Delivery'), fotoLTM('regiao-paulista', 'Avenida Paulista'), fotoLTM('regiao-ibirapuera', 'Parque Ibirapuera'), fotoLTM('regiao-aerea', 'A região')]
+      },
+      {
+        nome: 'Verdant Parque Resort',
+        cidade: 'São Paulo, capital', bairro: 'Tucuruvi',
+        resumo: '3 suítes a duplex · 129 a 305 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Avenida Nova Cantareira, 2.466, no Tucuruvi: condomínio residencial de três torres num terreno de 8.937 m², com um setor de lojas independente. Apartamentos de 3 suítes de 129, 133 e 155 m², gardens de 163 m² e giardinos de 130 a 257 m² no térreo, e duplex de 261 e 305 m² no alto, todos com 2 ou 3 vagas. Lazer de resort: piscina com raia de 50 m, piscina infantil, deck molhado, solário, pool house, SPA com sauna, quadra poliesportiva, quadra de beach tennis, churrasqueira, salão de festas com terraço, salão de festas gourmet, salão de jogos, brinquedoteca, fitness, sala de spinning, playground, praça central e, no subsolo, bosque, circuito floresta, pista de caminhada, área de piquenique, fitness externo, redário e pet place. Arquitetura do MCAA, paisagismo de Benedito Abbud e decoração de Chris Silveira. Entregue em dezembro de 2025, pela corretagem.',
+        area: ['3 suítes: 129,27 m² (56 unidades), 132,95 m² (26) e 155 m² (74)', 'Gardens de 163 m² (4 unidades) no 1º pavimento da Torre 1', 'Giardinos de 130,16 m² (2), 253,90 m² (1) e 256,80 m² (1) no térreo', 'Duplex de 261,07 m² (2) e 305 m² (6), 2 suítes e 2 dormitórios', '2 lojas'],
+        tipologia: 'Apartamentos de 3 suítes, gardens, giardinos e duplex',
+        banheiros: 'Banhos com ventilação e iluminação natural e WC de funcionários',
+        vagas: '2 vagas nos apartamentos, gardens e giardinos; 3 nos duplex',
+        torres: '3 torres em terreno de 8.937,08 m²: Torres 1 e 2 com térreo, 13 pavimentos-tipo e duplex no 14º e 15º; Torre 3 com térreo e 14 pavimentos-tipo',
+        unidades: ['172 unidades residenciais e 2 lojas, em subcondomínios independentes'],
+        valores: 'Sob consulta',
+        endereco: 'Av. Nova Cantareira, 2.466 · Tucuruvi, São Paulo',
+        infra: { piscina: 'Piscina com raia de 50 m, piscina infantil, deck molhado, solário e pool house', academia: 'Fitness com lounge, sala de spinning, fitness externo e SPA com sauna', festas: 'Salão de festas com terraço, salão de festas gourmet com lounge e salão de jogos', gourmet: 'Churrasqueiras e área de piquenique', kids: 'Brinquedoteca e playground', quadra: 'Quadra poliesportiva e quadra de beach tennis', portaria: 'Portaria, delivery, praça de acesso e acessos social, de serviço e de veículos', coworking: 'Bosque, circuito floresta, pista de caminhada, redário, pet place e bicicletário' },
+        lazerGrupos: [['Térreo', ['Praça de acesso', 'Portaria', 'Delivery', 'Salão de festas com terraço', 'Fitness', 'Lounge fitness', 'Sala de spinning', 'Quadra poliesportiva', 'Churrasqueira', 'Praça quadra', 'Salão de jogos', 'Brinquedoteca', 'Salão de festas gourmet', 'Lounge festas gourmet', 'SPA com sauna', 'Praça central', 'Playground', 'Solário', 'Pool house', 'Piscina infantil', 'Deck molhado', 'Piscina com raia de 50 m']], ['2º subsolo', ['Bicicletário', 'Quadra de beach tennis', 'Pet place', 'Circuito floresta', 'Área de piquenique', 'Pista de caminhada', 'Fitness externo', 'Redário']]],
+        diferenciais: ['Hall privativo e suíte com terraço', 'Churrasqueira a carvão e passagem gourmet', 'Amplo closet, ampla área de serviço e terraço técnico', 'Opções de planta integrada e de cozinha aberta'],
+        creditos: [['Arquitetura', 'MCAA Arquitetos'], ['Paisagismo', 'Benedito Abbud'], ['Decoração', 'Chris Silveira'], ['Incorporação', 'Lavvi']],
+        plantas: [{ src: LVD + 'planta-155.webp', nome: '155 m² · 3 suítes', meta: 'Torres 1 e 2 · 2 vagas' }, { src: LVD + 'planta-155-integrada.webp', nome: '155 m² · opção integrada', meta: '' }, { src: LVD + 'planta-133.webp', nome: '133 m² · 3 suítes', meta: 'Torre 2 · 2 vagas' }, { src: LVD + 'planta-133-cozinha-aberta.webp', nome: '133 m² · cozinha aberta', meta: '' }, { src: LVD + 'planta-129.webp', nome: '129 m² · 3 suítes', meta: 'Torre 3 · 2 vagas' }, { src: LVD + 'planta-129-integrada.webp', nome: '129 m² · opção integrada', meta: '' }, { src: LVD + 'planta-duplex-305-inferior.webp', nome: 'Duplex 305 m² · inferior', meta: '3 vagas' }, { src: LVD + 'planta-duplex-305-superior.webp', nome: 'Duplex 305 m² · superior', meta: '' }, { src: LVD + 'planta-duplex-261-inferior.webp', nome: 'Duplex 261 m² · inferior', meta: '3 vagas' }, { src: LVD + 'planta-duplex-261-superior.webp', nome: 'Duplex 261 m² · superior', meta: '' }],
+        implantacao: [{ src: LVD + 'implantacao-terreo.webp', nome: 'Térreo', meta: '' }, { src: LVD + 'implantacao-subsolo-lazer.webp', nome: '2º subsolo, lazer', meta: '' }, { src: LVD + 'corte.webp', nome: 'Corte das torres', meta: '' }],
+        legal: 'Material interno de vendas, sujeito a alterações, sem o texto de registro nem data. A ficha técnica do material dá 129,77 m² para o apartamento da Torre 3 e as plantas dão 129,27 m². Pela corretagem (apto.vc, 176 residências): lançado em abril de 2022 e entregue em dezembro de 2025; disponibilidade sob consulta.',
+        torre: LVD + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: ZN_VERDANT_LAVVI,
+        fotos: [fotoLVD('fachada', 'Fachada da Torre 1', true), fotoLVD('acesso', 'Acesso'), fotoLVD('fachada-loja', 'Fachada da loja'), fotoLVD('praca-de-acesso', 'Praça de acesso'), fotoLVD('praca-central', 'Praça central'), fotoLVD('piscina', 'Piscina'), fotoLVD('piscina-raia-50', 'Piscina com raia de 50 m'), fotoLVD('piscina-infantil', 'Piscina infantil'), fotoLVD('churrasqueira', 'Churrasqueira'), fotoLVD('quadra-poliesportiva', 'Quadra poliesportiva'), fotoLVD('playground', 'Playground'), fotoLVD('beach-tennis', 'Quadra de beach tennis'), fotoLVD('bosque', 'Bosque'), fotoLVD('pet-place', 'Pet place'), fotoLVD('pista-de-caminhada', 'Pista de caminhada'), fotoLVD('lobby', 'Lobby da Torre 2'), fotoLVD('salao-de-festas', 'Salão de festas'), fotoLVD('salao-de-festas-gourmet', 'Salão de festas gourmet'), fotoLVD('fitness', 'Fitness'), fotoLVD('spinning', 'Sala de spinning'), fotoLVD('spa', 'SPA com sauna'), fotoLVD('salao-de-jogos', 'Salão de jogos'), fotoLVD('brinquedoteca', 'Brinquedoteca')]
       }
     ],
     'Mitre': [
