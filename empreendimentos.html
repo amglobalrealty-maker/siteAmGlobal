@@ -900,6 +900,24 @@
   var ON = 'fotos/parcerias/one/';
   // (17/11/2026) EZTEC: prefixos Znn pelo numero do book eNN (scratchpad/pdfs/ev/mapa.txt)
   var EZ = 'fotos/parcerias/eztec/';
+  // (17/11/2026) Even: prefixos Vnn pelo numero do book vNN (scratchpad/pdfs/vn/mapa.txt)
+  var EV = 'fotos/parcerias/even/';
+  var V01 = EV + 'go-balkon/', fotoV01 = fotoEm(V01);
+  var V02 = EV + 'esther-ibirapuera/', fotoV02 = fotoEm(V02);
+  var V03 = EV + 'joaquim-brooklin/', fotoV03 = fotoEm(V03);
+  var V04 = EV + 'modo-ipiranga/', fotoV04 = fotoEm(V04);
+  var V05 = EV + 'mairin-ibirapuera/', fotoV05 = fotoEm(V05);
+  var V06 = EV + 'epic-by-atlantica/', fotoV06 = fotoEm(V06);
+  var V07 = EV + 'marquise-vila-mariana/', fotoV07 = fotoEm(V07);
+  var V08 = EV + 'monumento-sp-morumbi/', fotoV08 = fotoEm(V08);
+  var V09 = EV + 'portugal-587/', fotoV09 = fotoEm(V09);
+  var V10 = EV + 'casa-alto-de-pinheiros/', fotoV10 = fotoEm(V10);
+  var V11 = EV + 'modo-butanta/', fotoV11 = fotoEm(V11);
+  var V12 = EV + 'modo-pompeia/', fotoV12 = fotoEm(V12);
+  var V13 = EV + 'go-madre/', fotoV13 = fotoEm(V13);
+  var V14 = EV + 'madre-mooca/', fotoV14 = fotoEm(V14);
+  var V15 = EV + 'haddock-offices/', fotoV15 = fotoEm(V15);
+  var V16 = EV + 'airport-offices/', fotoV16 = fotoEm(V16);
   var Z01 = EZ + 'agami-park-residences/', fotoZ01 = fotoEm(Z01);
   var Z02 = EZ + 'air-brooklin/', fotoZ02 = fotoEm(Z02);
   var Z03 = EZ + 'alt-studios/', fotoZ03 = fotoEm(Z03);
@@ -2528,6 +2546,104 @@
     numeros: [['180 m', 'da Avenida Ibirapuera'], ['2', 'estações de metrô a pé: Moema e Eucaliptos'], ['1.944', 'empresas na região'], ['6.598', 'estabelecimentos de alimentação']],
     polos: 'Por perto: Shopping Ibirapuera, Parque Ibirapuera (Auditório, Oca, MAM, Bienal, Planetário), estações Moema e Eucaliptos da Linha 5-Lilás e o centro financeiro da Faria Lima.',
     fonte: 'Fonte: folder do Z Ibirapuera (EZTEC).'
+  };
+  var REG_V01 = {
+    titulo: 'A região · Campo Belo',
+    texto: 'O Campo Belo é um dos bairros mais procurados da Zona Sul, entre Moema, o Brooklin e o Aeroporto de Congonhas: comércio e serviços a pé, a Estação Campo Belo do Metrô (Linha 5-Lilás) a 6 minutos e acesso rápido às Avenidas Santo Amaro, dos Bandeirantes, Vereador José Diniz e Roberto Marinho. O Shopping Ibirapuera fica a 5 minutos e o Shopping Morumbi a 7, com a Berrini e a Chucri Zaidan logo adiante.',
+    numeros: [['6 min', 'da Estação Campo Belo do Metrô (Linha 5-Lilás)'], ['5 min', 'do Shopping Ibirapuera'], ['7 min', 'do Shopping Morumbi'], ['1 min', 'da academia Bio Ritmo e da padaria A Trigueira']],
+    polos: 'Por perto: Estação Campo Belo, Shopping Ibirapuera, Shopping Morumbi, Pão de Açúcar, Drogasil, padaria A Trigueira, NB Steak e as avenidas Santo Amaro, Bandeirantes e Roberto Marinho.',
+    fonte: 'Fonte: folhetão do GO. Balkon (Even), com tempos médios do Google Maps (2021) citados no próprio material.'
+  };
+  var REG_V02 = {
+    titulo: 'A região · Ibirapuera e Jardins',
+    texto: 'A Rua Manuel da Nóbrega fica no Paraíso, no encontro do Ibirapuera com os Jardins: o Parque Ibirapuera e o Auditório Ibirapuera estão a cerca de 5 minutos, e a Rua Oscar Freire a 9 minutos de carro. Ao redor, ruas arborizadas, o Clube Paulistano, o Colégio São Luís, a gastronomia autoral dos Jardins e o Shopping JK Iguatemi a pouco mais de 10 minutos.',
+    numeros: [['5 min', 'do Parque Ibirapuera e do Auditório Ibirapuera'], ['9 min', 'de carro até a Rua Oscar Freire'], ['8 min', 'do Clube Paulistano e do Colégio São Luís'], ['13 min', 'do Shopping JK Iguatemi']],
+    polos: 'Por perto: Parque Ibirapuera, Auditório Ibirapuera, Rua Oscar Freire, Shops Jardins, Clube Paulistano, Colégio São Luís, Parque das Bicicletas, Shopping JK Iguatemi e Hospital São Paulo.',
+    fonte: 'Fonte: folhetão do Esther Ibirapuera (Even), com tempos do Google Maps (2023) citados no próprio material.'
+  };
+  var REG_V03 = {
+    titulo: 'A região · Brooklin e Chucri Zaidan',
+    texto: 'A Rua Joaquim Guarani fica no Brooklin, no eixo das Avenidas Chucri Zaidan e Roque Petroni Júnior, que recebe novos empreendimentos residenciais e comerciais perto do Itaim, de Moema, da Vila Olímpia e do Aeroporto de Congonhas. A pé ou em poucos minutos estão o Shopping Morumbi, o Shopping Market Place, a Avenida Berrini, padarias, restaurantes e supermercados; o Parque Bruno Covas, à margem do Rio Pinheiros, e os parques Burle Marx e do Povo completam a região.',
+    numeros: [['3 min', 'do Shopping Morumbi'], ['4 min', 'do Shopping Market Place'], ['5 min', 'da Avenida Engenheiro Luís Carlos Berrini'], ['13 min', 'do Shopping Ibirapuera']],
+    polos: 'Por perto: Shopping Morumbi, Shopping Market Place, Pão de Açúcar, Carrefour, Avenida Berrini, Colégio Adventista, Colégio Anhembi Morumbi, Laboratório Lavoisier, Hospital Santa Paula e Parque do Povo.',
+    fonte: 'Fonte: folhetão do Joaquim (Even), com tempos do Google Maps (2022) citados no próprio material.'
+  };
+  var REG_V04 = {
+    titulo: 'A região · Ipiranga',
+    texto: 'Um dos primeiros bairros de São Paulo, o Ipiranga tem o Museu do Ipiranga, o Parque da Independência e o Sesc Ipiranga, além de comércio, serviços e gastronomia tradicionais. O Modo Ipiranga fica na Rua Vergueiro, a 8 minutos a pé da Estação Santos-Imigrantes do Metrô (Linha 2-Verde), a 3 minutos da Avenida Nazaré e com acesso rápido à Avenida Ricardo Jafet e à Rodovia dos Imigrantes; o Hospital São Camilo, o Centro Universitário São Camilo e o Plaza Sul Shopping ficam a poucos minutos.',
+    numeros: [['8 min', 'a pé da Estação Santos-Imigrantes do Metrô'], ['3 min', 'do Hipermercado Extra e da Avenida Nazaré'], ['8 min', 'do Plaza Sul Shopping e do Hospital São Camilo'], ['9 min', 'do Parque da Independência']],
+    polos: 'Por perto: Estação Santos-Imigrantes, Estação Alto do Ipiranga, Hospital São Camilo, Hospital e Maternidade Sepaco, Centro Universitário São Camilo, Colégio Marista Arquidiocesano, Sesc Ipiranga, Plaza Sul Shopping, Aquário de São Paulo e Parque da Independência.',
+    fonte: 'Fonte: folhetão do Modo Ipiranga (Even), com tempos médios do Google Maps (2020) citados no próprio material.'
+  };
+  var REG_V05 = {
+    titulo: 'A região · Vila Mariana e Ibirapuera',
+    texto: 'A Rua Mairinque fica na Vila Mariana, perto do Parque Ibirapuera, entre os Jardins e Moema e a poucos minutos da Avenida Paulista: um bairro com clima de vizinhança, vasta infraestrutura e acesso rápido pela Avenida 23 de Maio, pela Rua Domingos de Morais e pelo Complexo Viário Ayrton Senna. Ao redor, o Parque das Bicicletas, o Auditório Ibirapuera, o MAC e o MAM, a ESPM, o Hospital São Paulo e restaurantes conhecidos, com a Estação Vila Mariana do Metrô (Linha 1-Azul) por perto.',
+    numeros: [['3 min', 'de carro do Hospital São Paulo'], ['4 min', 'da ESPM'], ['9 min', 'do Shopping Ibirapuera'], ['12 min', 'do Shopping JK Iguatemi']],
+    polos: 'Por perto: Parque Ibirapuera, Parque das Bicicletas, Auditório Ibirapuera, Museu de Arte Contemporânea, Museu de Arte Moderna, ESPM, Hospital São Paulo, Estação Vila Mariana, Shopping Ibirapuera e os restaurantes Bráz, Veloso e Vista.',
+    fonte: 'Fonte: folhetão do Mairin Ibirapuera (Even), com tempos de carro do Google Maps (2022) citados no próprio material.'
+  };
+  var REG_V07 = {
+    titulo: 'A região · Vila Mariana',
+    texto: 'A Rua França Pinto fica no trecho mais procurado da Vila Mariana, entre o Parque Ibirapuera e a Avenida Paulista, com frentes também para a Rua Joaquim Távora. É um bairro de ruas arborizadas, restaurantes tradicionais, escolas e faculdades como a ESPM, vizinho de Moema, do Paraíso e da Vila Clementino, com o Metrô (Linhas 1-Azul e 5-Lilás) e as avenidas Ibirapuera e Brasil a poucos minutos.',
+    numeros: [['3 min', 'do Parque Ibirapuera'], ['4 min', 'da ESPM (Rua Joaquim Távora)'], ['7 min', 'da Avenida Ibirapuera'], ['8 min', 'da Avenida Paulista e do MAC USP']],
+    polos: 'Por perto: Parque Ibirapuera, ESPM, Bar Fortunato, Avenida Ibirapuera, MAC USP, Avenida Paulista, Avenida Brasil, Parque das Bicicletas, Moema, Paraíso e Vila Clementino.',
+    fonte: 'Fonte: folheto do Marquise Vila Mariana (Even), com tempos do Google Maps (2023).'
+  };
+  var REG_V08 = {
+    titulo: 'A região · Morumbi',
+    texto: 'O Monumento São Paulo ocupa um terreno de quase 60 mil m² no Morumbi, entre áreas verdes e ruas de clima fresco, perto do Shopping Jardim Sul, do Morumbi Town e do Parque Burle Marx. A região tem escolas tradicionais como o Colégio Pentágono, o Santo Américo e o Nossa Senhora do Morumbi, os hospitais Notre Dame e São Luiz, mercados e restaurantes, com a Estação Morumbi do Metrô (Linha 4-Amarela) e as pontes para a Marginal Pinheiros a poucos minutos.',
+    numeros: [['8 min', 'do Shopping Morumbi Town'], ['9 min', 'do Shopping Jardim Sul'], ['12 min', 'do Parque Burle Marx'], ['14 min', 'da Estação Morumbi do Metrô']],
+    polos: 'Por perto: Shopping Jardim Sul, Morumbi Town, Parque Burle Marx, Parque dos Eucaliptos, Colégio Pentágono, Colégio Santo Américo, Colégio Nossa Senhora do Morumbi, Faculdade Anhembi Morumbi, Hospital Notre Dame, Hospital São Luiz, St. Marche, Pão de Açúcar e Carrefour.',
+    fonte: 'Fonte: folhetão da 2ª fase do Monumento SP (Even), com tempos médios de percurso do Google Maps (2021).'
+  };
+  var REG_V09 = {
+    titulo: 'A região · Brooklin',
+    texto: 'A Avenida Portugal fica no miolo residencial do Brooklin, de ruas arborizadas como a Guararapes e a Flórida, a poucas quadras do Bosque do Brooklin e do Parque do Povo. Dali se chega rápido aos maiores centros financeiros de São Paulo, nas avenidas Berrini, Faria Lima e Juscelino Kubitschek, à Marginal Pinheiros e ao Aeroporto de Congonhas, e às compras do JK Iguatemi, do Shopping Morumbi e do Shopping Ibirapuera.',
+    numeros: [['2 min', 'do Bosque do Brooklin'], ['5 min', 'do Parque do Povo'], ['11 min', 'da Hípica Paulista'], ['14 min', 'do Shopping JK Iguatemi']],
+    polos: 'Por perto: Bosque do Brooklin, Parque do Povo, Parque Ibirapuera, Shopping JK Iguatemi, Shopping Morumbi, Shopping Ibirapuera, Hípica Paulista, Hospital Santa Paula, Hospital São Luiz, Avenida Eng. Luís Carlos Berrini, Ponte Estaiada e Aeroporto de Congonhas.',
+    fonte: 'Fonte: folhetão do Portugal 587 (Even), com tempos médios de percurso do Google Maps (2021).'
+  };
+  var REG_V10 = {
+    titulo: 'A região · Alto de Pinheiros',
+    texto: 'O Alto de Pinheiros é um dos bairros mais verdes e tranquilos de São Paulo, de baixa densidade e ruas arborizadas, vizinho da Vila Madalena e de Pinheiros. Na Avenida Diógenes Ribeiro de Lima, o empreendimento fica perto da Praça Boaçava, do Parque Villa-Lobos e do Shopping Villa-Lobos, de escolas bilíngues como a Beacon School e a Red House, e do comércio da Avenida São Gualter, com acesso rápido à Marginal Pinheiros e à Avenida Faria Lima.',
+    numeros: [['1 min', 'a pé da Padaria St. Etienne'], ['4 min', 'a pé da Praça Boaçava'], ['8 min', 'a pé do Parque Villa-Lobos'], ['15 min', 'de carro da Avenida Faria Lima']],
+    polos: 'Por perto: Parque Villa-Lobos, Shopping Villa-Lobos, Praça Boaçava, Praça Panamericana, Beacon School, Red House School, Clínica Einstein, St. Marche, Pão de Açúcar, Avenida São Gualter, Vila Madalena, ciclovia da Marginal Pinheiros e Avenida Faria Lima.',
+    fonte: 'Fonte: folheto do Casa Alto de Pinheiros (Even), com tempos do Google Maps (2023).'
+  };
+  var REG_V11 = {
+    titulo: 'A região · Butantã e Vila Sônia',
+    texto: 'Na Avenida Professor Francisco Morato, o Modo Butantã fica a 3 minutos a pé da Estação Vila Sônia da Linha 4-Amarela do Metrô, com acesso rápido à Faria Lima, à Berrini, à Marginal Pinheiros e às rodovias Raposo Tavares e Régis Bittencourt. O bairro tem o Parque Chácara do Jockey e o Parque Previdência, a Cidade Universitária e o Instituto Butantan, os shoppings Butantã, Eldorado, Jardim Sul e Morumbi Town, o Hospital Leforte e uma ampla rede de comércio, mercados e escolas.',
+    numeros: [['3 min', 'a pé da Estação Vila Sônia (Linha 4-Amarela)'], ['3 min', 'do Shopping Butantã'], ['4 min', 'do Parque Chácara do Jockey'], ['7 min', 'do Hospital Leforte']],
+    polos: 'Por perto: Estação Vila Sônia do Metrô, Estação São Paulo-Morumbi, Shopping Butantã, Assaí Atacadista, Supermercado Dia, Cobasi, Colégio João Paulo I, Centro de Educação Albert Einstein, Parque Chácara do Jockey, Parque Previdência, Praça Vinícius de Moraes, Hospital Leforte e Cidade Universitária.',
+    fonte: 'Fonte: folhetão do Modo Butantã (Even), com tempos do Google Maps (2022).'
+  };
+  var REG_V12 = {
+    titulo: 'A região · Pompeia',
+    texto: 'A Pompeia é um dos bairros mais queridos da zona oeste, com ruas tranquilas, cultura, gastronomia e lazer: o Sesc Pompeia, o Allianz Parque, o Parque da Água Branca, o Bourbon Shopping e o West Plaza ficam a poucos minutos. Na Rua Venâncio Aires, o empreendimento está perto da futura Estação Sesc-Pompeia da Linha 6-Laranja, das avenidas Pompeia, Sumaré e Francisco Matarazzo, da PUC-SP e do Hospital São Camilo.',
+    numeros: [['3 min', 'da futura Estação Sesc-Pompeia (Linha 6-Laranja)'], ['3 min', 'do Allianz Parque e do Bourbon Shopping'], ['6 min', 'do Sesc Pompeia'], ['9 min', 'do Parque da Água Branca']],
+    polos: 'Por perto: Sesc Pompeia, Allianz Parque, Parque da Água Branca, Bourbon Shopping, Shopping West Plaza, Hipermercado Zaffari, Pão de Açúcar, Sonda, Hospital São Camilo, Universidade São Camilo, Colégio Américas, PUC-SP, Estação Palmeiras-Barra Funda e Estação Vila Madalena.',
+    fonte: 'Fonte: folhetão do Modo Pompeia (Even), com tempos médios de carro do Google Maps (2021).'
+  };
+  var REG_V14 = {
+    titulo: 'A região · Mooca',
+    texto: 'A Rua Madre de Deus é a síntese da atmosfera acolhedora da Mooca: paralela à Avenida Paes de Barros e ao lado da Rua Guaimbé, reúne cantinas, padarias, cervejarias e a conveniência dos pontos mais procurados do bairro. Por perto estão o Clube Atlético Juventus, a Universidade São Judas Tadeu, o Mooca Plaza Shopping, o Parque Sabesp Mooca e hospitais como o Villa-Lobos e o Sancta Maggiore.',
+    numeros: [['4 min', 'do Hospital Villa-Lobos'], ['5 min', 'do Minuto Pão de Açúcar'], ['7 min', 'do Parque Sabesp Mooca'], ['9 min', 'do Mooca Plaza Shopping']],
+    polos: 'Por perto: Mooca Plaza Shopping, Clube Atlético Juventus, Universidade São Judas Tadeu, Colégio Santa Catarina, Colégio Maple Bear, Parque Sabesp Mooca, Hospital Villa-Lobos, Hospital Sancta Maggiore e Shopping Anália Franco.',
+    fonte: 'Fonte: books do Madre e do GO. Madre (Even), com os tempos do Google Maps citados no próprio material (2023).'
+  };
+  var REG_V15 = {
+    titulo: 'A região · Consolação e Jardins',
+    texto: 'O começo da Rua Haddock Lobo fica entre a Rua da Consolação e a Rua Augusta, a poucas quadras da Avenida Paulista: uma das regiões mais bem servidas de São Paulo para escritórios e consultórios, com metrô, corredores de ônibus, restaurantes, hotéis e serviços a pé.',
+    numeros: [['a pé', 'da Avenida Paulista'], ['a pé', 'da Rua Augusta e da Rua Oscar Freire'], ['metrô', 'Estações Consolação e Paulista por perto'], ['Jardins', 'comércio e serviços no entorno']],
+    polos: 'Por perto: Avenida Paulista, Rua Augusta, Rua Oscar Freire, Shopping Center 3, Estações Consolação e Paulista do metrô e o comércio dos Jardins.',
+    fonte: 'Fonte: localização pelo endereço do material da Even; sem distâncias medidas no material.'
+  };
+  var REG_V16 = {
+    titulo: 'A região · Campo Belo e Congonhas',
+    texto: 'A Rua Vieira de Morais fica no Campo Belo, na zona sul, perto do Aeroporto de Congonhas e das avenidas Washington Luís, Santo Amaro e Vereador José Diniz: região de escritórios, hotéis e serviços ligados ao aeroporto, com o metrô da Linha 5-Lilás no bairro.',
+    numeros: [['perto', 'do Aeroporto de Congonhas'], ['Linha 5', 'metrô Lilás no Campo Belo'], ['acesso', 'às avenidas Washington Luís e Santo Amaro'], ['zona sul', 'escritórios, hotéis e serviços']],
+    polos: 'Por perto: Aeroporto de Congonhas, Avenida Washington Luís, Avenida Santo Amaro, Avenida Vereador José Diniz, Shopping Ibirapuera e as estações da Linha 5-Lilás.',
+    fonte: 'Fonte: localização pelo endereço do material da Even; sem distâncias medidas no material.'
   };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
@@ -13689,6 +13805,376 @@
         fotos: [fotoZ59('fachada', 'Fachada', true), fotoZ59('embasamento', 'Embasamento'), fotoZ59('portaria', 'Portaria'), fotoZ59('lobby-concierge', 'Lobby e concierge'), fotoZ59('rooftop', 'Rooftop com piscina'), fotoZ59('piscina', 'Piscina com borda de transbordo'), fotoZ59('solario', 'Solário'), fotoZ59('voo-lazer', 'Vista aérea do lazer'), fotoZ59('varanda-lazer', 'Varanda lazer'), fotoZ59('salao-de-festas', 'Salão de festas'), fotoZ59('churrasqueira', 'Churrasqueira'), fotoZ59('coliving', 'Coliving'), fotoZ59('lavanderia', 'Lavanderia'), fotoZ59('brinquedoteca', 'Brinquedoteca'), fotoZ59('fitness', 'Fitness'), fotoZ59('fitness-externo', 'Fitness externo'), fotoZ59('terracos', 'Terraços do 4º pavimento'), fotoZ59('living-54', 'Living do apartamento de 54 m²'), fotoZ59('studio-24', 'Studio de 24 m²'), fotoZ59('estacao-moema', 'Estação Moema do metrô')]
       }
     ],
+    // (17/11/2026) Even: folhetoes de 17/11 (scratchpad/pdfs/vn/mapa.txt)
+    'Even': [
+      {
+        nome: 'Airport Offices',
+        cidade: 'São Paulo, capital', bairro: 'Campo Belo',
+        resumo: 'Salas comerciais · cerca de 39 m²',
+        tipo: 'Sala comercial', status: 'Pronto para uso',
+        texto: 'Na Rua Vieira de Morais, 2.110, no Campo Belo, perto do Aeroporto de Congonhas: um edifício comercial da Even com 157 salas em 1º pavimento mais 9 pavimentos tipo, num terreno de 1.560 m², com arquitetura de Jonas Birger e paisagismo da EKF Paisagismo, e 1 vaga por unidade. Lançado em março de 2011 e entregue em 2014 (previsão de abril de 2014), o prédio já funciona e a Even ainda oferece salas, uma delas decorada.',
+        area: ['Salas de cerca de 39 m² privativos, com 1 vaga (a planta dos andares mostra salas de cerca de 30 a 68 m²)'],
+        tipologia: 'Salas comerciais',
+        vagas: '1 vaga por unidade',
+        torres: 'Torre única: 1º pavimento e 9 pavimentos tipo',
+        unidades: '157 salas',
+        valores: 'Sob consulta',
+        endereco: 'Rua Vieira de Morais, 2.110 · Campo Belo, São Paulo',
+        infra: { piscina: '', academia: '', festas: '', gourmet: '', kids: '', quadra: '', portaria: 'Edifício comercial com portaria', coworking: '' },
+        lazerGrupos: [],
+        diferenciais: ['Perto do Aeroporto de Congonhas', 'Prédio pronto, com salas disponíveis direto com a Even', '1 vaga de garagem por sala'],
+        creditos: [['Arquitetura', 'Jonas Birger'], ['Paisagismo', 'EKF Paisagismo'], ['Incorporação', 'Even']],
+        plantas: [{ src: V16 + 'planta-andares.webp', nome: 'Andares', meta: '1º pavimento e 2º ao 10º pavimento, com as metragens das salas' }],
+        implantacao: [],
+        legal: 'Incorporação: Even Construtora e Incorporadora. Ficha técnica da Even: lançamento em março de 2011, previsão de entrega em abril de 2014, 1 torre com 1º pavimento e 9 pavimentos tipo, 157 unidades, 1 vaga por unidade, terreno de 1.560 m². Material da Even de novembro de 2026 (tabela promocional; os valores não são publicados aqui). Disponibilidade sob consulta.',
+        torre: V16 + 'planta-andares.webp', notaImagens: 'Planta ilustrativa do material da Even; o material não traz fotos do prédio.', regiao: REG_V16,
+        fotos: []
+      },
+      {
+        nome: 'Casa Alto de Pinheiros',
+        cidade: 'São Paulo, capital', bairro: 'Alto de Pinheiros',
+        resumo: '3 e 4 suítes · 328 m² · duplex de 577 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Avenida Diógenes Ribeiro de Lima, 2.554, no Alto de Pinheiros, num terreno de quase 5.900 m² com desnível voltado para uma das regiões mais arborizadas da cidade: duas torres de linhas retas e concreto, com fachada ativa em quase todo o perímetro, sem grades nem muros, e apenas 56 residências. São 52 apartamentos tipo de 327,84 m² (4 suítes ou 3 suítes na planta opção), com 4 vagas, e 4 duplex de 577,44 m², com 5 vagas; cada unidade tem um office exclusivo nos subsolos. O lazer tem piscina adulto com deck de madeira, jatos de hidroterapia e deck molhado, sala de massagem e sauna integradas à piscina coberta, quadras de beach tennis, de tênis oficial e para jogos, academia, salão de festas com terraço, pub, espaço gourmet, playground, brinquedoteca, safe storage e pet play. Lançado em abril de 2023; pela corretagem, entregue entre dezembro de 2025 e maio de 2026.',
+        area: ['Apartamento tipo de 327,84 m² (314,51 m² do apartamento e 13,33 m² do office exclusivo), 4 suítes', 'Planta opção de 327,84 m² com 3 suítes', 'Duplex de 577,44 m² (564,11 m² do apartamento e 13,33 m² do office), 4 suítes'],
+        tipologia: 'Apartamentos de 4 suítes (opção com 3 suítes) e duplex de 4 suítes, todos com office exclusivo',
+        vagas: '4 vagas determinadas nos apartamentos tipo e 5 nos duplex',
+        torres: '2 torres: 52 unidades tipo do 1º ao 13º pavimento e 4 duplex no 14º e 15º',
+        unidades: '56 unidades (52 tipo e 4 duplex), com lojas nos subsolos',
+        valores: 'Sob consulta',
+        endereco: 'Avenida Diógenes Ribeiro de Lima, 2.554 · Alto de Pinheiros, São Paulo',
+        infra: { piscina: 'Piscina adulto descoberta com deck de madeira, hidroterapia e deck molhado; piscina coberta', academia: 'Academia com sala multiuso', festas: 'Salão de festas com terraço integrado', gourmet: 'Espaço gourmet com terraço integrado e pub', kids: 'Playground e brinquedoteca', quadra: 'Quadra de beach tennis, quadra de tênis oficial e quadra para jogos', portaria: 'Fachada ativa sem grades nem muros, com gestão de segurança', coworking: 'Office exclusivo de cada apartamento nos subsolos' },
+        lazerGrupos: [['Térreo', ['Praça', 'Salão de festas com terraço', 'Espaço gourmet com terraço', 'Pub', 'Playground', 'Brinquedoteca', 'Pet play']], ['Bem-estar e esporte', ['Piscina adulto descoberta', 'Piscina coberta', 'Sauna seca', 'Sala de massagem', 'Academia', 'Quadra de beach tennis', 'Quadra de tênis', 'Quadra para jogos']], ['Subsolos', ['Offices exclusivos', 'Safe storage', 'Bicicletário', 'Lojas']]],
+        diferenciais: ['Apenas 56 residências em duas torres', 'Vista para uma das regiões mais verdes da cidade', 'Office exclusivo para cada apartamento', 'Quadras de beach tennis e de tênis oficial', 'Fachada ativa, sem grades nem muros', 'A 8 minutos a pé do Parque Villa-Lobos'],
+        creditos: [['Arquitetura', 'Arara Arquitetura'], ['Conceito arquitetônico e interiores', 'Duplex Architects'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Construção', 'Even']],
+        plantas: [{ src: V10 + 'planta-4-suites.webp', nome: '328 m² · 4 suítes', meta: 'Planta tipo' }, { src: V10 + 'planta-3-suites.webp', nome: '328 m² · 3 suítes', meta: 'Planta opção decorada' }],
+        implantacao: [{ src: V10 + 'implantacao-terreo.webp', nome: 'Térreo e lazer', meta: 'Piscinas, quadras e as duas torres' }],
+        legal: 'Construção: Even Construtora e Incorporadora. Incorporação registrada pelo 10º Cartório de Registro de Imóveis de São Paulo sob R.3 na matrícula 165.104 em 21/12/2022; folheto de março de 2023. Terreno de 5.816,59 m². Office exclusivo nos subsolos a partir de 13,33 m²; vagas determinadas em área comum. Perspectivas ilustrativas. Pela corretagem, lançado em abril de 2023 e entregue em dezembro de 2025 (apto.vc) ou maio de 2026 (MySide). Disponibilidade sob consulta.',
+        torre: V10 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V10,
+        fotos: [fotoV10('fachada', 'As duas torres'), fotoV10('acessos', 'Acessos'), fotoV10('detalhe-fachada', 'Detalhe da fachada e a vista'), fotoV10('piscina', 'Piscina adulto descoberta'), fotoV10('sala-de-massagem', 'Sala de massagem'), fotoV10('beach-tennis', 'Quadra de beach tennis'), fotoV10('quadra-de-tenis', 'Quadra de tênis'), fotoV10('quadra', 'Quadra para jogos'), fotoV10('academia', 'Academia'), fotoV10('salao-de-festas', 'Salão de festas com terraço'), fotoV10('pub', 'Pub'), fotoV10('espaco-gourmet', 'Espaço gourmet'), fotoV10('playground', 'Playground'), fotoV10('brinquedoteca', 'Brinquedoteca'), fotoV10('safe-storage', 'Safe storage'), fotoV10('pet-play', 'Pet play'), fotoV10('regiao', 'O Alto de Pinheiros visto do alto')]
+      },
+      {
+        nome: 'epic by Atlantica Residences Ibirapuera',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: 'Studios e 1 dormitório · 26 a 46 m²',
+        tipo: 'Studio', status: 'Pronto para morar',
+        texto: 'Na Rua Mairinque, 120, no mesmo terreno do Mairin Ibirapuera, a 10 minutos a pé do Parque Ibirapuera e a 8 minutos da Estação Santa Cruz do Metrô: o primeiro e/pic by Atlantica Residences de São Paulo, torre de studios e apartamentos de 1 dormitório com serviços de hotel operados pela Atlantica Hospitality, para morar ou investir. Do 2º ao 9º pavimento ficam 168 studios não residenciais; do 11º ao 25º, 257 unidades residenciais (185 studios de 26 a 29 m² e 72 apartamentos de 1 dormitório de 46 m² com vaga). No térreo, portaria, concierge, safe storage e uma loja St. Marche; lazer separado para os residenciais (academia, salão de festas, lavanderia no 10º pavimento e, no rooftop do 26º, piscina com raia de 25 m, lounge bar e restaurante, sauna seca, sala de massagem e coworking) e para os não residenciais (salão de festas e café, academia, coworking, salas de reunião e lavanderia). Incorporação registrada em maio de 2022; pela corretagem, entregue em agosto de 2025.',
+        area: ['Studio residencial de 26,35 a 28,97 m² (185 unidades, do 11º ao 25º pavimento)', 'Apartamento de 1 dormitório de 46,34 m², com vaga (72 unidades)', 'Studio não residencial de 26,35 a 28,97 m² (168 unidades, do 2º ao 9º pavimento)'],
+        tipologia: 'Studios e apartamentos de 1 dormitório com serviços de hotel',
+        vagas: 'Vaga só nos apartamentos de 1 dormitório; studios sem vaga',
+        torres: 'Torre única: térreo com loja St. Marche, studios não residenciais do 2º ao 9º pavimento, lazer no 1º e no 10º, unidades residenciais do 11º ao 25º e rooftop de lazer no 26º',
+        unidades: '425 unidades: 257 residenciais e 168 não residenciais',
+        valores: 'Sob consulta',
+        endereco: 'Rua Mairinque, 120 · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina descoberta com raia de 25 m no rooftop (residencial)', academia: 'Academias residencial e não residencial', festas: 'Salão de festas residencial e salão de festas com café não residencial', gourmet: 'Lounge bar e restaurante no rooftop', kids: '', quadra: '', portaria: 'Portaria, concierge e safe storage', coworking: 'Coworkings residencial e não residencial e salas de reunião' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Hall social', 'Concierge', 'Safe storage', 'Loja St. Marche']], ['1º pavimento · não residencial', ['Salão de festas e café', 'Lavanderia compartilhada', 'Terraço descoberto']], ['10º pavimento', ['Academia (residencial)', 'Salão de festas (residencial)', 'Lavanderia compartilhada (residencial)', 'Academia (não residencial)', 'Coworking (não residencial)', 'Salas de reunião']], ['Rooftop · 26º pavimento (residencial)', ['Piscina descoberta com raia de 25 m', 'Lounge bar e restaurante', 'Sauna seca', 'Sala de massagem', 'Coworking', 'Ducha']]],
+        diferenciais: ['Serviços de hotel da Atlantica Hospitality (Transamerica, Go Inn, eSuites)', 'A 10 minutos a pé do Parque Ibirapuera e a 8 da Estação Santa Cruz', 'Loja St. Marche no térreo do prédio', 'Rooftop com piscina de 25 m e lounge bar com vista para a cidade', 'Gastronomia pay per use com café da manhã e refeições à la carte', 'Projeto de segurança personalizado com câmeras e controle de acesso'],
+        creditos: [['Operação hoteleira', 'Atlantica Hospitality'], ['Incorporação, construção e intermediação', 'Even']],
+        plantas: [{ src: V06 + 'planta-studio-26.webp', nome: 'Studio 26,54 m²', meta: 'Residencial, unidade 4B do 16º pavimento' }, { src: V06 + 'planta-1-dorm-46.webp', nome: '1 dormitório 46,11 m²', meta: 'Residencial, unidade 8A do 14º pavimento' }, { src: V06 + 'planta-studio-nr-26.webp', nome: 'Studio 26,35 m²', meta: 'Não residencial, unidade 5A do 2º ao 9º pavimento' }],
+        implantacao: [{ src: V06 + 'implantacao-terreo.webp', nome: 'Implantação', meta: 'Térreo com portaria, concierge e St. Marche' }],
+        legal: 'Incorporação, construção e intermediação: Even. Incorporação registrada sob R.2 na matrícula 239.923 do 14º Cartório de Registro de Imóveis de São Paulo em 19/05/2022 (a mesma do Mairin Ibirapuera, no mesmo terreno). Serviços prestados por parceiros comerciais da Atlantica, na modalidade pay per use. Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc): entregue em agosto de 2025. Disponibilidade sob consulta.',
+        torre: V06 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V05,
+        fotos: [fotoV06('fachada', 'Fachada', true), fotoV06('detalhe-fachada', 'Detalhe da fachada'), fotoV06('acesso', 'Acesso', true), fotoV06('acesso-2', 'Acesso e paisagismo'), fotoV06('loja-st-marche', 'Loja St. Marche no térreo'), fotoV06('hall-social', 'Hall social', true), fotoV06('hall-social-2', 'Hall social', true), fotoV06('safe-storage', 'Safe storage', true), fotoV06('piscina-rooftop', 'Piscina com raia de 25 m no rooftop', true), fotoV06('lounge-bar', 'Lounge bar e restaurante'), fotoV06('sauna-seca', 'Sauna seca'), fotoV06('sala-de-massagem', 'Sala de massagem'), fotoV06('coworking', 'Coworking residencial'), fotoV06('academia', 'Academia residencial'), fotoV06('salao-de-festas', 'Salão de festas residencial', true), fotoV06('lavanderia', 'Lavanderia compartilhada'), fotoV06('salao-de-festas-cafe', 'Salão de festas e café'), fotoV06('academia-nr', 'Academia não residencial'), fotoV06('coworking-nr', 'Coworking não residencial'), fotoV06('lavanderia-nr', 'Lavanderia compartilhada', true)]
+      },
+      {
+        nome: 'Esther Ibirapuera',
+        cidade: 'São Paulo, capital', bairro: 'Paraíso',
+        resumo: '3 e 4 suítes · 251 a 642 m²',
+        tipo: 'Apartamento', status: 'Em obras',
+        texto: 'Na Rua Manuel da Nóbrega, 950, a 5 minutos do Parque Ibirapuera e perto dos Jardins: duas torres residenciais e uma torre de offices exclusivos num terreno de mais de 5 mil m², com arquitetura de Königsberger Vannucchi, paisagismo da Tagu e conceito arquitetônico e interiores de Gui Mattos. A Torre A tem apartamentos de 334 m² com 4 suítes e a Torre B de 251 m² com 3 suítes, além de duplex de 476 e 642 m², todos com terraços amplos voltados para o verde. Lazer completo no térreo: piscina adulto com deck, piscina coberta com raia de 25 m, spa, saunas seca e úmida, sala de massagem, academia e academia funcional, quadra de tênis com medidas oficiais, salão de festas com gourmet, brinquedoteca, playground e pet play. Pela corretagem, lançado em dezembro de 2023, com entrega prevista para maio de 2027.',
+        area: ['Torre A: apartamento de 334,70 m², 4 suítes (opção de 3 suítes), 4 vagas', 'Torre A: duplex de 641,73 m², 4 suítes, 6 vagas', 'Torre B: apartamento de 251,49 m², 3 suítes, 3 vagas', 'Torre B: duplex de 475,52 m², 4 suítes, 5 vagas', 'Torre C: offices exclusivos a partir de 12,56 m²'],
+        tipologia: 'Apartamentos de 3 e 4 suítes e duplex, com offices exclusivos para os moradores',
+        vagas: '3 a 6 vagas por apartamento, conforme a tipologia',
+        torres: 'Três torres: A e B residenciais (24 apartamentos tipo e 2 duplex cada) e C com 52 offices exclusivos',
+        unidades: '52 apartamentos (48 tipo e 4 duplex) e 52 offices',
+        valores: 'Sob consulta',
+        endereco: 'Rua Manuel da Nóbrega, 950 · Paraíso, São Paulo',
+        infra: { piscina: 'Piscina adulto com deck, piscina infantil e piscina coberta com raia de 25 m integrada ao spa', academia: 'Academia e academia funcional com terraço integrado', festas: 'Salão de festas com gourmet integrado', gourmet: 'Gourmet integrado ao salão de festas e apoio ao lazer', kids: 'Brinquedoteca com terraço, playground e piscina infantil', quadra: 'Quadra de tênis com medidas oficiais e quadra para jogos', portaria: 'Portaria, lobby e safe storage', coworking: 'Offices exclusivos na Torre C' },
+        lazerGrupos: [['Bem-estar', ['Piscina coberta com raia de 25 m', 'Spa com ducha', 'Sauna seca', 'Sauna úmida', 'Sala de massagem', 'Academia', 'Academia funcional com terraço integrado']], ['Lazer ao ar livre', ['Piscina adulto com deck', 'Lounge da piscina', 'Piscina infantil', 'Quadra de tênis', 'Quadra para jogos', 'Apoio ao lazer', 'Pet play']], ['Festas e infantil', ['Salão de festas com gourmet integrado', 'Brinquedoteca com terraço integrado', 'Playground']], ['Acessos', ['Portaria', 'Lobby', 'Safe storage', 'Lojas', 'Offices exclusivos (Torre C)']]],
+        diferenciais: ['A 5 minutos do Parque Ibirapuera e perto dos Jardins', 'Arquitetura de Königsberger Vannucchi, paisagismo da Tagu e interiores de Gui Mattos', 'Piscina coberta com raia de 25 m, spa e saunas', 'Quadra de tênis com medidas oficiais', 'Offices exclusivos para os moradores numa torre própria', 'Gestão de energia com LED e sensores, reúso de água pluvial e paisagismo com plantas nativas', 'Personalização das unidades pelo Studio Excluseven'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi Arquitetos Associados'], ['Paisagismo', 'Tagu'], ['Conceito arquitetônico e interiores', 'Gui Mattos'], ['Construção e incorporação', 'Even']],
+        plantas: [{ src: V02 + 'planta-334-a.webp', nome: '334 m² · 4 suítes', meta: 'Torre A, planta tipo final 01' }, { src: V02 + 'planta-334-b.webp', nome: '334 m² · 3 suítes', meta: 'Torre A, opção de planta' }, { src: V02 + 'planta-250-a.webp', nome: '251 m² · 3 suítes', meta: 'Torre B, planta tipo final 01' }, { src: V02 + 'planta-250-b.webp', nome: '251 m² · 3 suítes', meta: 'Torre B, opção de planta' }],
+        implantacao: [{ src: V02 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Torres A, B e C e o lazer' }, { src: V02 + 'implantacao-terreo-2.webp', nome: 'Térreo · lazer', meta: 'Academia funcional, brinquedoteca, playground e quadra para jogos' }, { src: V02 + 'implantacao-subsolo.webp', nome: '1º subsolo', meta: 'Portaria, lobby, safe storage, lojas e estacionamento' }],
+        legal: 'Construção e incorporação: Even Construtora e Incorporadora S/A. Incorporação registrada pelo 1º Cartório de Registro de Imóveis de São Paulo sob R.02 na matrícula 140.642 em 29/09/2023. Projeto executivo em desenvolvimento; perspectivas e plantas ilustrativas. Pela corretagem (apto.vc e MySide): lançado em dezembro de 2023, entrega prevista para maio de 2027. Disponibilidade sob consulta.',
+        torre: V02 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V02,
+        fotos: [fotoV02('fachada', 'Fachada', true), fotoV02('fachada-2', 'As torres A e B'), fotoV02('detalhe-fachada', 'Detalhe da fachada com terraços'), fotoV02('acesso-residencial', 'Acesso residencial'), fotoV02('acesso-paisagismo', 'Acesso e paisagismo'), fotoV02('piscina-adulto', 'Piscina adulto'), fotoV02('quadra-de-tenis', 'Quadra de tênis'), fotoV02('apoio-ao-lazer', 'Apoio ao lazer'), fotoV02('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV02('spa', 'Spa'), fotoV02('sauna-seca', 'Sauna seca'), fotoV02('sauna-umida', 'Sauna úmida', true), fotoV02('sala-de-massagem', 'Sala de massagem'), fotoV02('academia', 'Academia'), fotoV02('academia-funcional', 'Academia funcional com terraço'), fotoV02('salao-de-festas', 'Salão de festas com gourmet'), fotoV02('salao-de-festas-2', 'Salão de festas'), fotoV02('brinquedoteca', 'Brinquedoteca'), fotoV02('playground', 'Playground'), fotoV02('pet-play', 'Pet play'), fotoV02('regiao', 'Vista do Ibirapuera e dos Jardins')]
+      },
+      {
+        nome: 'GO. Balkon',
+        cidade: 'São Paulo, capital', bairro: 'Campo Belo',
+        resumo: 'Studios · 19 a 27 m²',
+        tipo: 'Studio', status: 'Pronto para morar',
+        texto: 'Na Rua Barão de Jaceguai, 1.543, no Campo Belo, a 6 minutos da Estação Campo Belo do Metrô: torre de studios de 19 a 27 m² da linha GO., da Even, pensada para morar ou investir, com parte das unidades como studios de serviço de moradia. Lazer distribuído em três níveis: no térreo, hall com conveniências e safe storage; no 2º pavimento, academia com terraço coberto integrado assinada pelo consultor André Passoni, coworking, lavanderia compartilhada e lounge externo; e no 15º pavimento, piscina descoberta no rooftop com terraço gourmet. Serviços pay per use (limpeza, personal trainer, pet care, pequenos reparos) e projeto de segurança personalizado. Pela corretagem, lançado em dezembro de 2021 e entregue em agosto de 2024.',
+        area: ['Studios de 19 a 27 m² (planta tipo final 6, bloco A, com 21,20 m²)'],
+        tipologia: 'Studios residenciais e studios de serviço de moradia',
+        vagas: 'Sem vagas',
+        torres: 'Torre única: térreo com hall e conveniências, lazer no 2º pavimento e rooftop com piscina no 15º pavimento',
+        unidades: '197 unidades (pela corretagem)',
+        valores: 'Sob consulta',
+        endereco: 'Rua Barão de Jaceguai, 1.543 · Campo Belo, São Paulo',
+        infra: { piscina: 'Piscina adulto descoberta no rooftop (15º pavimento)', academia: 'Academia com terraço coberto integrado, assinada por André Passoni', festas: '', gourmet: 'Terraço gourmet descoberto no rooftop', kids: '', quadra: '', portaria: 'Hall com clausura, conveniências e safe storage para encomendas', coworking: 'Coworking' },
+        lazerGrupos: [['Térreo', ['Hall', 'Clausura', 'Safe storage', 'Conveniências e vending machine', 'Fachada ativa']], ['2º pavimento', ['Academia com terraço coberto integrado', 'Lounge externo descoberto', 'Coworking', 'Lavanderia compartilhada']], ['Rooftop · 15º pavimento', ['Piscina adulto descoberta', 'Terraço gourmet descoberto']]],
+        diferenciais: ['A 6 minutos da Estação Campo Belo do Metrô', 'Piscina no rooftop com terraço gourmet', 'Serviços pay per use: limpeza, personal trainer, pet care, passadeira e pequenos reparos', 'Wi-Fi nas áreas comuns e vending machine', 'Projeto de segurança com câmeras, controle de acesso e proteção perimetral', 'Personalização das unidades pelo Studio Excluseven, para morar ou alugar'],
+        creditos: [['Academia', 'André Passoni, com decoração de Todos Arquitetura'], ['Incorporação, construção e intermediação', 'Even']],
+        plantas: [{ src: V01 + 'planta-studio-21.webp', nome: 'Studio 21 m²', meta: 'Final 6, bloco A, opção de layout' }],
+        implantacao: [{ src: V01 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Hall, safe storage e conveniências' }, { src: V01 + 'implantacao-lazer.webp', nome: '2º pavimento · lazer', meta: 'Academia, coworking, lavanderia e lounge' }, { src: V01 + 'implantacao-rooftop.webp', nome: '15º pavimento · lazer', meta: 'Piscina e terraço gourmet' }],
+        legal: 'Incorporação, construção e intermediação: Even. Incorporação registrada sob R.01 na matrícula 272.916 do 15º Cartório de Registro de Imóveis de São Paulo em 23/11/2020. Perspectivas e planta ilustrativas; parte das áreas comuns é compartilhada com os studios de serviço de moradia. Pela corretagem (apto.vc e MySide): lançado em dezembro de 2021, entregue em agosto de 2024. Disponibilidade sob consulta.',
+        torre: V01 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V01,
+        fotos: [fotoV01('fachada', 'Fachada', true), fotoV01('fachada-noturna', 'Fachada à noite', true), fotoV01('hall', 'Hall com conveniências'), fotoV01('piscina-rooftop', 'Piscina no rooftop'), fotoV01('terraco-gourmet', 'Terraço gourmet'), fotoV01('academia', 'Academia com terraço integrado'), fotoV01('coworking', 'Coworking'), fotoV01('lavanderia', 'Lavanderia compartilhada'), fotoV01('safe-storage', 'Safe storage')]
+      },
+      {
+        nome: 'GO. Madre',
+        cidade: 'São Paulo, capital', bairro: 'Mooca',
+        resumo: 'Studios e 2 dormitórios · 30 a 68 m²',
+        tipo: 'Studio', status: 'Em obras',
+        texto: 'Na Rua Madre de Deus, na Mooca, paralela à Avenida Paes de Barros: um residencial de studios e apartamentos de 2 dormitórios pensado para morar e para investir, com serviços pay per use, lavanderia compartilhada e lazer com piscina no rooftop. No térreo ficam o lobby, o salão de festas com terraço, a brinquedoteca, o playground, o pet play, a lavanderia e o safe storage; no rooftop, piscinas adulto e infantil, deck, academia e churrasqueira. Divide o terreno com o Madre, a torre de 4 dormitórios da Even. Pela corretagem, está em construção, com entrega prevista para maio de 2027.',
+        area: ['Studio de cerca de 30,45 m² (final 2B)', 'Apartamento de 68,75 m², 2 dormitórios, com 1 vaga (final 1B)'],
+        tipologia: 'Studios e apartamentos de 2 dormitórios; parte dos studios enquadrada como HIS',
+        vagas: 'Vaga determinada para o 2 dormitórios de 68 m²; studios sem vaga',
+        torres: 'Torre única com fachada ativa no térreo e lazer no rooftop',
+        valores: 'Sob consulta',
+        endereco: 'Rua Madre de Deus · Mooca, São Paulo (paralela à Av. Paes de Barros)',
+        infra: { piscina: 'Piscina adulto e infantil no rooftop', academia: 'Academia no rooftop', festas: 'Salão de festas com copa e terraço descoberto', gourmet: 'Churrasqueira descoberta no rooftop', kids: 'Playground e brinquedoteca', quadra: '', portaria: 'Acesso único, portaria com guarita blindada, lobby e safe storage', coworking: '' },
+        lazerGrupos: [['Térreo', ['Acesso único', 'Portaria', 'Lobby', 'Salão de festas com copa e terraço descoberto', 'Lavanderia compartilhada', 'Brinquedoteca', 'Playground', 'Terraço descoberto', 'Safe storage', 'Pet play', 'Fachada ativa']], ['Rooftop', ['Piscina adulto', 'Piscina infantil', 'Deck', 'Academia', 'Área de convivência', 'Churrasqueira descoberta']]],
+        diferenciais: ['Piscina no rooftop com vista da cidade', 'Serviços pay per use: limpeza, personal trainer, pet care, passadoria e pequenos reparos', 'Lavanderia compartilhada e armários inteligentes', 'Segurança com guarita blindada e infraestrutura de câmeras', 'Personalização pelo Studio Excluseven', 'Aplicativo Smarthome Even para o condomínio'],
+        creditos: [['Incorporação, construção e intermediação', 'Even']],
+        plantas: [{ src: V13 + 'planta-studio.webp', nome: 'Studio · cerca de 30 m²', meta: 'Final 2B, com sugestão de decoração' }, { src: V13 + 'planta-2-dorms.webp', nome: '68 m² · 2 dormitórios', meta: 'Final 1B, com 1 vaga' }],
+        implantacao: [{ src: V13 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, salão de festas, lavanderia, brinquedoteca, playground e pet play' }, { src: V13 + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Piscinas, deck, academia e churrasqueira' }],
+        legal: 'Incorporação, construção e intermediação: Even. Incorporação registrada pelo 7º Cartório de Registro de Imóveis de São Paulo sob R.01 na matrícula 225.312 em 26/05/2023 (a mesma do Madre). Studios finais 4A a 7A e 9B a 11B no 1º pavimento e finais 4A a 7A, 10B e 11B do 2º ao 14º pavimento enquadrados como HIS. O book traz o número 455 da Rua Madre de Deus; os anúncios da corretagem citam o 503. Perspectivas ilustrativas; material de agosto de 2023. Pela corretagem (apto.vc), em construção, com entrega prevista para maio de 2027. Disponibilidade sob consulta.',
+        torre: V13 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V14,
+        fotos: [fotoV13('fachada', 'Fachada', true), fotoV13('acesso', 'Acesso'), fotoV13('detalhe-fachada', 'Detalhe da fachada e rooftop'), fotoV13('piscina-rooftop', 'Piscina no rooftop'), fotoV13('academia', 'Academia'), fotoV13('salao-de-festas', 'Salão de festas'), fotoV13('churrasqueira', 'Churrasqueira'), fotoV13('playground', 'Playground'), fotoV13('brinquedoteca', 'Brinquedoteca'), fotoV13('lavanderia', 'Lavanderia compartilhada'), fotoV13('pet-play', 'Pet play')]
+      },
+      {
+        nome: 'Haddock Offices',
+        cidade: 'São Paulo, capital', bairro: 'Consolação · Jardins',
+        resumo: 'Salas comerciais · cerca de 40 m²',
+        tipo: 'Sala comercial', status: 'Pronto para uso',
+        texto: 'Na Rua Haddock Lobo, 131, perto da Avenida Paulista: um edifício comercial da Even com 165 salas em 15 pavimentos, num terreno de 1.836 m², com arquitetura de Basiches Arquitetos Associados e paisagismo da Soma Arquitetos. Lançado em dezembro de 2012 e entregue em 2015 (previsão de agosto de 2015), o prédio já funciona e a Even ainda oferece salas, com 1 vaga.',
+        area: ['Salas de cerca de 40 m² privativos, com 1 vaga (a planta do andar tipo mostra salas de 30 a 93 m²)'],
+        tipologia: 'Salas comerciais',
+        vagas: '1 vaga por sala, conforme a tabela da Even',
+        torres: 'Torre única de 15 pavimentos',
+        unidades: '165 salas',
+        valores: 'Sob consulta',
+        endereco: 'Rua Haddock Lobo, 131 · Consolação, São Paulo',
+        infra: { piscina: '', academia: '', festas: '', gourmet: '', kids: '', quadra: '', portaria: 'Edifício comercial com portaria', coworking: '' },
+        lazerGrupos: [],
+        diferenciais: ['A poucas quadras da Avenida Paulista', 'Prédio pronto, com salas disponíveis direto com a Even', 'Salas com vaga de garagem'],
+        creditos: [['Arquitetura', 'Basiches Arquitetos Associados'], ['Paisagismo', 'Soma Arquitetos'], ['Incorporação', 'Even']],
+        plantas: [{ src: V15 + 'planta-andar-tipo.webp', nome: 'Andar tipo', meta: 'Distribuição das salas e metragens' }],
+        implantacao: [],
+        legal: 'Incorporação: Even Construtora e Incorporadora S/A. Ficha técnica da Even: lançamento em dezembro de 2012, previsão de entrega em agosto de 2015, 1 torre de 15 pavimentos, 165 unidades, terreno de 1.836,06 m². Material da Even de novembro de 2026 (tabela promocional; os valores não são publicados aqui). Disponibilidade sob consulta.',
+        torre: V15 + 'planta-andar-tipo.webp', notaImagens: 'Planta ilustrativa do material da Even; o material não traz fotos do prédio.', regiao: REG_V15,
+        fotos: []
+      },
+      {
+        nome: 'Joaquim Brooklin',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '4 dormitórios · 168 a 295 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Joaquim Guarani, 322, no Brooklin, no eixo das Avenidas Chucri Zaidan e Roque Petroni Júnior e a 3 minutos do Shopping Morumbi: torre residencial de 92 apartamentos de 4 dormitórios num terreno de 3.411 m², com arquitetura de Königsberger Vannucchi, paisagismo do Núcleo Arquitetura da Paisagem e interiores do Sala2. Apartamentos tipo de 168,50 m² e dois gardens de 244 e 295 m², todos com 2 vagas. Térreo com praça de uso privativo, portaria, minimercado autônomo, safe storage e pet play; no 3º pavimento, lazer com piscina adulto e infantil, piscina coberta com raia de 25 m, academias de equipamentos e de aula, sauna seca, sala de massagem, salão de festas, coworking, brinquedoteca, quadra para jogos e playground. Pela corretagem, lançado em fevereiro de 2023 e entregue em fevereiro de 2026.',
+        area: ['Apartamento tipo de 168,50 m², 4 dormitórios, 2 vagas (90 unidades)', 'Garden final 3 de 244,58 m², 4 dormitórios, 2 vagas', 'Garden final 4 de 295,24 m², 4 dormitórios, 2 vagas'],
+        tipologia: 'Apartamentos de 4 dormitórios (opção com 3 suítes) e gardens',
+        vagas: '2 vagas por unidade',
+        torres: 'Torre única com térreo de acessos e lazer no 3º pavimento',
+        unidades: '92 unidades residenciais (90 tipo e 2 gardens)',
+        valores: 'Sob consulta',
+        endereco: 'Rua Joaquim Guarani, 322 · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina adulto, piscina infantil e piscina coberta com raia de 25 m', academia: 'Academia de equipamentos e academia de aula', festas: 'Salão de festas', gourmet: '', kids: 'Brinquedoteca, playground e piscina infantil', quadra: 'Quadra para jogos', portaria: 'Portaria com clausura social e de veículos, hall e safe storage', coworking: 'Coworking' },
+        lazerGrupos: [['Térreo', ['Portaria com clausura', 'Hall social e lobby', 'Minimercado autônomo', 'Safe storage', 'Pet play']], ['3º pavimento · lazer', ['Piscina adulto', 'Piscina infantil', 'Piscina coberta com raia de 25 m', 'Ducha', 'Sauna seca', 'Sala de massagem', 'Área de descanso', 'Academia de equipamentos', 'Academia de aula', 'Salão de festas', 'Coworking', 'Brinquedoteca', 'Quadra para jogos', 'Playground']]],
+        diferenciais: ['A 3 minutos do Shopping Morumbi e a 5 da Avenida Berrini', 'Piscina coberta com raia de 25 m', 'Praça de uso privativo com permeabilidade visual para a rua', 'Fachada contemporânea com diagonais e terraços com vista', 'Gestão de energia com LED e sensores, reúso de água pluvial e paisagismo com plantas nativas', 'Projeto de segurança com consultoria especializada', 'Personalização das unidades pelo Studio Excluseven'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Conceito arquitetônico e interiores', 'Sala2 Arquitetura e Design'], ['Construção e incorporação', 'Even']],
+        plantas: [{ src: V03 + 'planta-168-tipo.webp', nome: '168 m² · 4 dormitórios', meta: 'Planta opção tipo' }, { src: V03 + 'planta-168-decorado.webp', nome: '168 m² · 3 suítes', meta: 'Planta opção do decorado' }],
+        implantacao: [{ src: V03 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Portaria, minimercado, safe storage e estacionamento' }, { src: V03 + 'implantacao-lazer.webp', nome: '3º pavimento · lazer', meta: 'Piscinas, academias, salão de festas e brinquedoteca' }],
+        legal: 'Construção: Even Construtora e Incorporadora. Incorporação registrada sob R.2 na matrícula 279.732 do 15º Cartório de Registro de Imóveis de São Paulo em 21/11/2022. Terreno de 3.411,15 m². Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc): lançado em fevereiro de 2023, entregue em fevereiro de 2026. Disponibilidade sob consulta.',
+        torre: V03 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V03,
+        fotos: [fotoV03('fachada', 'Fachada', true), fotoV03('detalhe-fachada', 'Detalhe da fachada'), fotoV03('acessos', 'Acessos e praça'), fotoV03('piscina-adulto', 'Piscina adulto'), fotoV03('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV03('academia', 'Academia de equipamentos'), fotoV03('academia-de-aula', 'Academia de aula'), fotoV03('sauna-seca', 'Sauna seca', true), fotoV03('sala-de-massagem', 'Sala de massagem'), fotoV03('quadra', 'Quadra para jogos'), fotoV03('brinquedoteca', 'Brinquedoteca'), fotoV03('salao-de-festas', 'Salão de festas'), fotoV03('coworking', 'Coworking')]
+      },
+      {
+        nome: 'Madre Mooca',
+        cidade: 'São Paulo, capital', bairro: 'Mooca',
+        resumo: '4 dormitórios · 157 m²',
+        tipo: 'Apartamento', status: 'Em obras',
+        texto: 'Na Rua Madre de Deus, 503, paralela à Avenida Paes de Barros, na Mooca: uma torre de 40 andares com arquitetura de LE Arquitetos, interiores de Carlos Rossi e paisagismo do Núcleo Arquitetura da Paisagem, num terreno de 5.561,08 m² com calçadas ampliadas e praça com porte-cochère na entrada do lobby. São 152 apartamentos de 157 m² com 4 dormitórios, do 3º ao 40º pavimento, e lazer de clube com piscina adulto com deck molhado, piscina coberta com raia de 25 m, saunas, sala de massagem, academia, salão de festas com terraço, churrasqueira, quadra, playground, brinquedoteca, pet play e pista de corrida. Lançado em julho de 2023; pela corretagem, está em construção, com entrega prevista para 2027.',
+        area: ['Apartamento de 157 m², 4 dormitórios (3 suítes), com planta opção'],
+        tipologia: 'Apartamentos de 4 dormitórios, com personalização pelo Studio Excluseven',
+        vagas: 'Vagas na garagem do subsolo (2 por apartamento pelos anúncios)',
+        torres: 'Torre única de 40 pavimentos: térreo com lojas e lobby, lazer no 2º pavimento e pavimentos tipo do 3º ao 40º',
+        unidades: '152 apartamentos',
+        valores: 'Sob consulta',
+        endereco: 'Rua Madre de Deus, 503 · Mooca, São Paulo',
+        infra: { piscina: 'Piscina adulto com deck molhado, piscina infantil e piscina coberta com raia de 25 m', academia: 'Academia', festas: 'Salão de festas com terraço integrado', gourmet: 'Churrasqueira e minimercado', kids: 'Playground e brinquedoteca', quadra: 'Quadra para jogos e pista de corrida de tiro curto', portaria: 'Praça de entrada, porte-cochère, lobby social e safe storage', coworking: '' },
+        lazerGrupos: [['Térreo', ['Lojas', 'Acesso social', 'Lobby social', 'Porte-cochère', 'Safe storage', 'Pet play']], ['2º pavimento', ['Praça de entrada', 'Churrasqueira', 'Salão de festas com terraço integrado', 'Sauna seca', 'Sauna úmida', 'Ducha', 'Piscina coberta com raia de 25 m', 'Sala de massagem', 'Academia', 'Brinquedoteca', 'Playground', 'Minimercado', 'Piscina adulto com deck molhado', 'Piscina infantil', 'Quadra para jogos', 'Pista de corrida de tiro curto']]],
+        diferenciais: ['Torre de 40 andares com vista ampla da Mooca', 'Terreno de 5.561 m² com praça e porte-cochère na entrada', 'Piscina coberta com raia de 25 m e saunas seca e úmida', 'Serviços pay per use, armários inteligentes e lavagem de veículos', 'Personalização da planta e dos acabamentos pelo Studio Excluseven', 'Iniciativas Morar Even: LED, reúso de águas pluviais no paisagismo e shafts para manutenção'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Interiores e conceito arquitetônico', 'Carlos Rossi'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Incorporação e construção', 'Even']],
+        plantas: [{ src: V14 + 'planta-157.webp', nome: '157 m² · 4 dormitórios', meta: 'Planta opção, com sugestão de decoração' }],
+        implantacao: [{ src: V14 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lojas, acessos, lobby, porte-cochère, safe storage e pet play' }, { src: V14 + 'implantacao-lazer.webp', nome: '2º pavimento', meta: 'Piscinas, quadra, salões, saunas, academia e playground' }],
+        legal: 'Incorporação e construção: Even Construtora e Incorporadora. Incorporação registrada pelo 7º Cartório de Registro de Imóveis de São Paulo sob R.01 na matrícula 225.312 em 26/05/2023 (a mesma matrícula do GO. Madre, vizinho no terreno). Intermediação por imobiliárias cadastradas, incluindo a Evenmob (CRECI J-20242). Perspectivas ilustrativas; material de julho de 2023. Pela corretagem (apto.vc), lançamento em julho de 2023, em construção; anúncios citam entrega em maio de 2027. Disponibilidade sob consulta.',
+        torre: V14 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V14,
+        fotos: [fotoV14('fachada', 'Fachada', true), fotoV14('fachada-conjunto', 'A torre do Madre e o GO. Madre', true), fotoV14('detalhe-fachada', 'Detalhe da fachada'), fotoV14('acessos', 'Acessos e porte-cochère'), fotoV14('piscina', 'Piscina adulto e infantil'), fotoV14('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV14('massagem', 'Sala de massagem'), fotoV14('sauna-umida', 'Sauna úmida'), fotoV14('sauna-seca', 'Sauna seca'), fotoV14('academia', 'Academia'), fotoV14('salao-de-festas', 'Salão de festas com terraço integrado'), fotoV14('churrasqueira', 'Churrasqueira'), fotoV14('quadra', 'Quadra para jogos'), fotoV14('playground', 'Playground'), fotoV14('brinquedoteca', 'Brinquedoteca'), fotoV14('pet-play', 'Pet play'), fotoV14('safe-storage', 'Safe storage'), fotoV14('regiao', 'Vista da Mooca')]
+      },
+      {
+        nome: 'Mairin Ibirapuera',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: '4 dormitórios e 4 suítes · 179 a 380 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Mairinque, 120, na Vila Mariana, perto do Parque Ibirapuera: torre de 102 apartamentos num terreno de 5.679 m², com arquitetura da Arara Arquitetura, paisagismo da Tagü e conceito arquitetônico e interiores de Gui Mattos. São apartamentos de 179 m² com 4 dormitórios e de 232 m² com 4 suítes, além de duplex de 320 e 380 m². No 1º subsolo, spa com piscina coberta com raia de 25 m, saunas seca e úmida, massagem individual e dupla e jardim de descanso; no térreo, piscina adulto com deck e bar, piscina infantil, quadra de tênis com medidas oficiais, quadra recreativa, salão de festas e festas gourmet, duas academias, coworking, brinquedoteca e playground; no 1º pavimento, playground II e lounge de jogos. Incorporação registrada em maio de 2022; pela corretagem, entregue em agosto de 2025.',
+        area: ['Apartamento de 179,48 m², 4 dormitórios (opções com 2 e 3 suítes), 2 vagas (48 unidades)', 'Apartamento de 231,92 m², 4 suítes (opções com 2 e 3 suítes), 3 vagas (50 unidades)', 'Duplex de 320,36 m², 4 dormitórios, 3 vagas (2 unidades)', 'Duplex de 379,58 m², 4 suítes, 4 vagas (2 unidades)'],
+        tipologia: 'Apartamentos de 4 dormitórios e 4 suítes, com opções de planta, e duplex',
+        vagas: '2 a 4 vagas por apartamento, conforme a tipologia',
+        torres: 'Torre única com 1º subsolo de spa, térreo de lazer e 1º pavimento com playground e lounge',
+        unidades: '102 unidades',
+        valores: 'Sob consulta',
+        endereco: 'Rua Mairinque, 120 · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina adulto descoberta com deck e bar de apoio, piscina infantil e piscina coberta com raia de 25 m', academia: 'Academia I e academia II', festas: 'Salão de festas e festas gourmet com copa', gourmet: 'Festas gourmet e bar de apoio da piscina', kids: 'Brinquedoteca, playgrounds I e II e piscina infantil', quadra: 'Quadra de tênis com medidas oficiais e quadra recreativa', portaria: 'Guarita, clausuras social e de serviço e safe storage (expedição)', coworking: 'Coworking e sala de reunião' },
+        lazerGrupos: [['1º subsolo · spa', ['Piscina coberta com raia de 25 m', 'Ducha', 'Sauna seca', 'Sauna úmida', 'Massagem individual', 'Massagem dupla', 'Lounge spa', 'Jardim com área de descanso', 'Pet play', 'Bicicletário']], ['Térreo', ['Piscina adulto descoberta', 'Deck e bar de apoio', 'Piscina infantil', 'Quadra de tênis', 'Quadra recreativa', 'Salão de festas', 'Festas gourmet', 'Academia I', 'Academia II', 'Coworking', 'Sala de reunião', 'Brinquedoteca', 'Playground I', 'Safe storage']], ['1º pavimento', ['Playground II', 'Lounge e jogos']]],
+        diferenciais: ['Perto do Parque Ibirapuera, entre os Jardins e Moema', 'Arquitetura da Arara, paisagismo da Tagü e interiores de Gui Mattos', 'Spa completo com piscina coberta de 25 m, saunas e massagem dupla', 'Quadra de tênis com medidas oficiais', 'Opções de planta com 2, 3 ou 4 suítes', 'Gestão de energia, reúso de água pluvial e paisagismo com plantas nativas', 'Personalização das unidades pelo Studio Excluseven'],
+        creditos: [['Arquitetura', 'Arara Arquitetura'], ['Paisagismo', 'Tagü Construindo Paisagens'], ['Conceito arquitetônico e interiores', 'Gui Mattos'], ['Construção e incorporação', 'Even']],
+        plantas: [{ src: V05 + 'planta-179-tipo.webp', nome: '179 m² · 4 dormitórios', meta: 'Planta tipo' }, { src: V05 + 'planta-179-2-suites.webp', nome: '179 m² · 2 suítes', meta: 'Planta opção' }, { src: V05 + 'planta-179-3-suites.webp', nome: '179 m² · 3 suítes', meta: 'Planta opção' }, { src: V05 + 'planta-231-tipo.webp', nome: '232 m² · 4 suítes', meta: 'Planta tipo' }, { src: V05 + 'planta-231-2-suites.webp', nome: '232 m² · 2 suítes', meta: 'Planta opção' }, { src: V05 + 'planta-231-3-suites.webp', nome: '232 m² · 3 suítes', meta: 'Planta opção' }],
+        implantacao: [{ src: V05 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Piscinas, quadras, salões, academias e brinquedoteca' }, { src: V05 + 'implantacao-subsolo.webp', nome: '1º subsolo', meta: 'Spa, piscina coberta, saunas, massagem e pet play' }, { src: V05 + 'implantacao-1-pavimento.webp', nome: '1º pavimento', meta: 'Playground II e lounge de jogos' }],
+        legal: 'Construção: Even Construtora e Incorporadora. Incorporação registrada sob R.2 na matrícula 239.923 do 14º Cartório de Registro de Imóveis de São Paulo em 19/05/2022 (a mesma do epic by Atlantica, no mesmo terreno). Terreno de 5.679,82 m². Perspectivas e plantas ilustrativas. Pela corretagem (apto.vc e MySide): entregue em agosto de 2025. Disponibilidade sob consulta.',
+        torre: V05 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V05,
+        fotos: [fotoV05('fachada', 'Fachada', true), fotoV05('detalhe-fachada', 'Detalhe da fachada'), fotoV05('acessos', 'Acessos'), fotoV05('piscina-adulto', 'Piscina adulto'), fotoV05('quadra-de-tenis', 'Quadra de tênis'), fotoV05('quadra-recreativa', 'Quadra recreativa'), fotoV05('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV05('spa', 'Spa com área de descanso'), fotoV05('sala-de-massagem', 'Sala de massagem dupla'), fotoV05('academia', 'Academia'), fotoV05('academia-2', 'Academia II'), fotoV05('salao-de-festas', 'Salão de festas'), fotoV05('salao-de-festas-gourmet', 'Festas gourmet'), fotoV05('playground', 'Playground'), fotoV05('brinquedoteca', 'Brinquedoteca'), fotoV05('pet-play', 'Pet play'), fotoV05('safe-storage', 'Safe storage'), fotoV05('coworking', 'Coworking')]
+      },
+      {
+        nome: 'Marquise Vila Mariana',
+        cidade: 'São Paulo, capital', bairro: 'Vila Mariana',
+        resumo: '4 dormitórios · 146 m² · duplex de 263 m²',
+        tipo: 'Apartamento', status: 'Pronto, a confirmar',
+        texto: 'Na Rua França Pinto, 110, com frentes também para a Rua Joaquim Távora, na Vila Mariana, entre o Parque Ibirapuera e a Avenida Paulista: uma torre única de dezoito pavimentos tipo, com arquitetura contemporânea de Königsberger Vannucchi, paisagismo do Núcleo e decoração da Sala2. São 76 unidades: 72 apartamentos de 4 dormitórios (3 suítes) com cerca de 146 m² e 4 duplex de 4 suítes com 263 m². O lazer fica no térreo, entre jardins e calçadas arborizadas, e no 4º pavimento, a mais de 11 metros da rua: piscina coberta com raia de 25 m, piscina adulto descoberta, sauna, academia, salões de festas, espaço gourmet, playground, brinquedoteca, pet play e coworking. Incorporação registrada em junho de 2023; pela corretagem, entrega prevista para meados de 2026.',
+        area: ['Apartamento de 145,91 a 146,07 m², 4 dormitórios', 'Duplex de 262,98 a 263,05 m², 4 suítes'],
+        tipologia: 'Apartamentos de 4 dormitórios (planta opção com 3 suítes) e duplex de 4 suítes',
+        vagas: '2 vagas por apartamento, pela corretagem; 76 ganchos para bicicleta no térreo',
+        torres: 'Torre única com 18 pavimentos tipo; lazer no térreo e no 4º pavimento',
+        unidades: '76 unidades (72 de 4 dormitórios e 4 duplex)',
+        valores: 'Sob consulta',
+        endereco: 'Rua França Pinto, 110 · Vila Mariana, São Paulo',
+        infra: { piscina: 'Piscina coberta com raia de 25 m, piscina adulto descoberta com deck molhado e piscina infantil', academia: 'Academia interna e academia externa', festas: 'Salão de festas com área externa', gourmet: 'Espaço gourmet com área externa descoberta', kids: 'Playground, brinquedoteca e área de convivência infantil e juvenil', quadra: 'Quadra para jogos', portaria: 'Portaria com clausura social e de serviço, lobby e safe storage', coworking: 'Coworking' },
+        lazerGrupos: [['Térreo', ['Lobby', 'Coworking', 'Pet play', 'Espaço gourmet', 'Salão de festas', 'Safe storage', 'Bicicletário']], ['Lazer', ['Piscina coberta com raia de 25 m', 'Piscina adulto com deck molhado', 'Piscina infantil', 'Sauna seca', 'Sala de massagem', 'Academia', 'Academia externa', 'Terraço com área de descanso', 'Quadra para jogos', 'Playground', 'Brinquedoteca', 'Área de convivência infantil e juvenil']]],
+        diferenciais: ['Entre o Parque Ibirapuera e a Avenida Paulista, na parte mais desejada da Vila Mariana', 'Arquitetura de Königsberger Vannucchi e paisagismo do Núcleo', 'Lazer no 4º pavimento, a mais de 11 m do nível da rua', 'Piscina coberta com raia de 25 m', 'Apenas 4 apartamentos por andar e 4 duplex', 'Gestão de energia, coleta seletiva e aproveitamento de água da chuva no paisagismo'],
+        creditos: [['Arquitetura', 'Königsberger Vannucchi Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Decoração', 'Sala2 Arquitetura'], ['Incorporação e construção', 'Even']],
+        plantas: [{ src: V07 + 'planta-4-dorms.webp', nome: '146 m² · 4 dormitórios', meta: 'Planta opção' }, { src: V07 + 'planta-3-suites.webp', nome: '146 m² · 3 suítes', meta: 'Planta opção com living ampliado' }],
+        implantacao: [{ src: V07 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, coworking, salão de festas, espaço gourmet e pet play' }, { src: V07 + 'implantacao-lazer.webp', nome: 'Lazer', meta: 'Piscinas, academia, sauna, quadra e brinquedoteca' }],
+        legal: 'Incorporação e construção: Even Construtora e Incorporadora S/A. Incorporação registrada sob R.1 na matrícula 138.934 do 1º Oficial de Registro de Imóveis de São Paulo em 15/06/2023 (folheto de julho de 2023). Perspectivas ilustrativas, imagens em desenvolvimento. Pela corretagem, entrega prevista para julho de 2026 (MySide) ou agosto de 2026 (apto.vc), sem confirmação da entrega até a publicação. Disponibilidade sob consulta.',
+        torre: V07 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V07,
+        fotos: [fotoV07('fachada', 'Fachada'), fotoV07('detalhe-fachada', 'Detalhe da fachada'), fotoV07('acessos', 'Acessos pela Rua França Pinto'), fotoV07('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV07('piscina', 'Piscina adulto descoberta'), fotoV07('sauna', 'Sauna seca'), fotoV07('academia', 'Academia'), fotoV07('salao-de-festas', 'Salão de festas'), fotoV07('salao-de-festas-2', 'Salão de festas'), fotoV07('playground', 'Playground'), fotoV07('brinquedoteca', 'Brinquedoteca'), fotoV07('pet-play', 'Pet play'), fotoV07('coworking', 'Coworking'), fotoV07('safe-storage', 'Safe storage'), fotoV07('regiao', 'O Parque Ibirapuera e a região')]
+      },
+      {
+        nome: 'Modo Butantã',
+        cidade: 'São Paulo, capital', bairro: 'Butantã (Vila Sônia)',
+        resumo: '1, 2 e 3 dormitórios · 45 a 69 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Avenida Professor Francisco Morato, 4.240, a 3 minutos a pé da Estação Vila Sônia da Linha Amarela: um condomínio de 442 apartamentos de 1, 2 e 3 dormitórios, todos com 1 vaga, com arquitetura de LE Arquitetos, paisagismo do Núcleo e decoração de DP Barros. A praça de chegada aberta, com palmeiras e manacás da serra, leva ao lazer no térreo e no 4º pavimento: piscinas adulto e infantil com deck molhado, churrasqueira, salão de festas, academia assinada por André Passoni, brinquedoteca, playground, quadra para jogos, área de convivência, beauty place com sala de massagem, coworking, safe storage e pet play com agility. Pela corretagem, entregue no início de 2025.',
+        area: ['Apartamento de 45,40 m², 1 dormitório', 'Apartamento de 54,87 m², 2 dormitórios', 'Apartamento de 68,52 m², 3 dormitórios'],
+        tipologia: 'Apartamentos de 1, 2 e 3 dormitórios',
+        vagas: '1 vaga de automóvel em todas as unidades',
+        torres: '2 torres, pela corretagem; lazer no térreo e no 4º pavimento',
+        unidades: '442 unidades (148 de 1, 220 de 2 e 74 de 3 dormitórios)',
+        valores: 'Sob consulta',
+        endereco: 'Avenida Professor Francisco Morato, 4.240 · Butantã, São Paulo',
+        infra: { piscina: 'Piscinas adulto e infantil descobertas com deck molhado', academia: 'Academia assinada por André Passoni, com interiores de DP Barros', festas: 'Salão de festas', gourmet: 'Churrasqueira', kids: 'Brinquedoteca, playground e área de convivência', quadra: 'Quadra para jogos', portaria: 'Portaria com guarita de vidros blindados e central de monitoramento', coworking: 'Coworking' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Praça de chegada', 'Safe storage', 'Pet play', 'Coworking', 'Beauty place com sala de massagem']], ['Lazer · 4º pavimento', ['Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Churrasqueira', 'Salão de festas', 'Academia', 'Brinquedoteca', 'Playground', 'Quadra para jogos', 'Área de convivência']]],
+        diferenciais: ['A 3 minutos a pé da Estação Vila Sônia da Linha Amarela', 'Todas as unidades com 1 vaga', 'Praça de chegada aberta com palmeiras e manacás da serra', 'Beauty place com manicure, podologia e sala de massagem', 'Projeto de segurança com guarita blindada e monitoramento', 'Gestão de energia, coleta seletiva e aproveitamento de água da chuva'],
+        creditos: [['Arquitetura', 'LE Arquitetos'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Decoração', 'DP Barros'], ['Construção', 'Even']],
+        plantas: [{ src: V11 + 'planta-45.webp', nome: '45 m² · 1 dormitório', meta: 'Planta tipo' }, { src: V11 + 'planta-55.webp', nome: '55 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: V11 + 'planta-68.webp', nome: '68 m² · 3 dormitórios', meta: 'Planta tipo' }],
+        implantacao: [{ src: V11 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Portaria, praça de chegada e conveniências' }, { src: V11 + 'implantacao-lazer.webp', nome: 'Lazer · 4º pavimento', meta: 'Piscinas, salões, academia e quadra' }],
+        legal: 'Construção: Even Construtora e Incorporadora S/A. Projeto aprovado pela Prefeitura de São Paulo, Alvará de Aprovação de Edificação Nova nº 2022/00303-00, publicado em 14/01/2022 (folheto de breve lançamento). Terreno de 5.063,76 m². Perspectivas ilustrativas. Pela corretagem, entregue em janeiro de 2025 (MySide) ou fevereiro de 2025 (apto.vc). Disponibilidade sob consulta.',
+        torre: V11 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V11,
+        fotos: [fotoV11('fachada', 'Fachada', true), fotoV11('praca-de-entrada', 'Praça de chegada'), fotoV11('piscina', 'Piscina adulto descoberta'), fotoV11('churrasqueira', 'Churrasqueira'), fotoV11('salao-de-festas', 'Salão de festas'), fotoV11('academia', 'Academia'), fotoV11('brinquedoteca', 'Brinquedoteca'), fotoV11('playground', 'Playground'), fotoV11('quadra', 'Quadra para jogos'), fotoV11('beauty-place', 'Beauty place'), fotoV11('coworking', 'Coworking'), fotoV11('safe-storage', 'Safe storage'), fotoV11('pet-play', 'Pet play')]
+      },
+      {
+        nome: 'Modo Ipiranga',
+        cidade: 'São Paulo, capital', bairro: 'Ipiranga',
+        resumo: '1 a 3 dormitórios · 36 a 75 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Vergueiro, 6.046, no Ipiranga, num terreno de esquina a 8 minutos a pé da Estação Santos-Imigrantes do Metrô: torre de 546 apartamentos de 1 a 3 dormitórios, com terraço em todas as unidades, arquitetura da Arara Arquitetura, paisagismo do Núcleo Arquitetura da Paisagem e decoração da Mandril Arquitetura. Um pavimento elevado com mais de 2 mil m² é todo de lazer: piscina adulto com raia de 25 m, área de recreação e borda infinita, deck molhado, piscina infantil, solarium, duas churrasqueiras com forno de pizza, quadra de esportes, playground, brinquedoteca, salão de festas, espaço gourmet com terraço, pub com sala de jogos, academia assinada por André Passoni, beauty place, sala de massagem e coworking com sala de reunião. Pela corretagem, lançado em dezembro de 2020 e entregue em janeiro de 2024.',
+        area: ['1 dormitório (suíte) de 36,19 a 38,85 m² (364 unidades)', '2 dormitórios de 50,24 a 52,58 m² (130 unidades; algumas com depósito de 3 m²)', '3 dormitórios (1 suíte) de 72,59 a 75,16 m² (52 unidades, com depósito de 3 m²)'],
+        tipologia: 'Apartamentos de 1, 2 e 3 dormitórios, com terraço',
+        vagas: 'Sob consulta',
+        torres: 'Torre única em terreno de esquina, com térreo de acessos e lojas e pavimento elevado de lazer',
+        unidades: '546 apartamentos e 70 depósitos',
+        valores: 'Sob consulta',
+        endereco: 'Rua Vergueiro, 6.046 · Ipiranga, São Paulo',
+        infra: { piscina: 'Piscina adulto com raia de 25 m, área de recreação e borda infinita, deck molhado e piscina infantil', academia: 'Academia com terraço, assinada por André Passoni', festas: 'Salão de festas integrado ao lounge social e ao espaço gourmet', gourmet: 'Espaço gourmet com terraço e duas churrasqueiras com forno de pizza', kids: 'Brinquedoteca, playground e piscina infantil', quadra: 'Quadra de esportes', portaria: 'Portaria com clausura, safe storage e área de embarque e desembarque', coworking: 'Coworking com sala de reunião' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Clausura social e de serviço', 'Hall social', 'Safe storage', 'Minimercado', 'Área de embarque e desembarque', 'Quadra de esportes', 'Pet play', 'Área de convivência', 'Bicicletário', 'Lojas']], ['Pavimento de lazer', ['Piscina adulto com raia de 25 m e borda infinita', 'Deck molhado', 'Piscina infantil', 'Solarium', 'Churrasqueiras', 'Terraço gourmet', 'Espaço gourmet', 'Salão de festas', 'Lounge social', 'Pub e sala de jogos', 'Brinquedoteca', 'Playground', 'Academia com terraço', 'Beauty place', 'Sala de massagem', 'Coworking', 'Sala de reunião', 'Lavanderia coletiva', 'Vending machines']]],
+        diferenciais: ['A 8 minutos a pé da Estação Santos-Imigrantes do Metrô', 'Mais de 2 mil m² de lazer num pavimento elevado', 'Piscina com raia de 25 m e borda infinita', 'Terraço em todas as unidades', 'Serviços pay per use, aulas coletivas e empréstimo de ferramentas', 'Gestão de energia, reúso de água pluvial e paisagismo com plantas nativas', 'Personalização das unidades pelo Studio Excluseven'],
+        creditos: [['Arquitetura', 'Arara Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Decoração', 'Mandril Arquitetura'], ['Academia', 'André Passoni'], ['Construção e incorporação', 'Even']],
+        plantas: [{ src: V04 + 'planta-36-tipo.webp', nome: '36 m² · 1 dormitório', meta: 'Planta tipo' }, { src: V04 + 'planta-36-decorado.webp', nome: '36 m² · 1 dormitório', meta: 'Planta do decorado' }, { src: V04 + 'planta-50-tipo.webp', nome: '50 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: V04 + 'planta-50-decorado.webp', nome: '50 m² · 2 dormitórios', meta: 'Planta do decorado' }, { src: V04 + 'planta-52.webp', nome: '52 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: V04 + 'planta-72.webp', nome: '72 m² · 3 dormitórios', meta: '1 suíte, com depósito' }, { src: V04 + 'planta-75-tipo.webp', nome: '75 m² · 3 dormitórios', meta: '1 suíte, com depósito, planta tipo' }, { src: V04 + 'planta-75-decorado.webp', nome: '75 m² · 3 dormitórios', meta: 'Planta do decorado' }],
+        implantacao: [{ src: V04 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, lojas, quadra e pet play' }, { src: V04 + 'implantacao-lazer.webp', nome: 'Pavimento de lazer', meta: 'Piscinas, churrasqueiras, salão de festas e academia' }],
+        legal: 'Construção: Even Construtora e Incorporadora S/A. Perspectivas e plantas ilustrativas; metragens de algumas unidades incluem o direito de uso de um depósito de 3 m² na área comum. Pela corretagem (apto.vc): lançado em dezembro de 2020, entregue em janeiro de 2024. Disponibilidade sob consulta.',
+        torre: V04 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V04,
+        fotos: [fotoV04('fachada', 'Fachada', true), fotoV04('detalhe-fachada', 'Detalhe da fachada com terraços'), fotoV04('entrada', 'Entrada'), fotoV04('piscinas', 'Piscinas'), fotoV04('solarium', 'Solarium'), fotoV04('churrasqueira', 'Churrasqueira'), fotoV04('quadra-de-esportes', 'Quadra de esportes'), fotoV04('playground', 'Playground'), fotoV04('brinquedoteca', 'Brinquedoteca'), fotoV04('salao-de-festas', 'Salão de festas'), fotoV04('espaco-gourmet', 'Espaço gourmet'), fotoV04('pub-sala-de-jogos', 'Pub e sala de jogos'), fotoV04('academia', 'Academia'), fotoV04('beauty-place', 'Beauty place'), fotoV04('sala-de-massagem', 'Sala de massagem'), fotoV04('coworking', 'Coworking')]
+      },
+      {
+        nome: 'Modo Pompeia',
+        cidade: 'São Paulo, capital', bairro: 'Pompeia',
+        resumo: '1, 2 e 3 dormitórios · 31 a 63 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Rua Venâncio Aires, 930, na Pompeia, a 3 minutos da futura Estação Sesc-Pompeia da Linha Laranja e perto do Allianz Parque e do Sesc Pompeia: torre de 28 pavimentos com 360 apartamentos de 1, 2 e 3 dormitórios, de 31 a 63 m², mais 3 gardens. Arquitetura de Jonas Birger, paisagismo do Núcleo com palmeiras e árvores nativas e decoração do Studio H:M. O lazer tem piscinas adulto e infantil com deck molhado, duas churrasqueiras (uma com forno de pizza), quadra de esportes, playground, salão de festas conectado à churrasqueira, academia assinada por André Passoni, brinquedoteca, coworking, minimercado autônomo, safe storage e pet play. Lançado em agosto de 2021; pela corretagem, entregue entre junho de 2024 e fevereiro de 2025.',
+        area: ['Apartamento de 31,63 a 33,69 m², 1 dormitório', 'Garden de 39,00 a 52,14 m², 1 dormitório', 'Apartamento de 46,91 a 47,42 m², 2 dormitórios', 'Apartamento de 62,66 m², 3 dormitórios'],
+        tipologia: 'Apartamentos de 1, 2 e 3 dormitórios e gardens de 1 dormitório',
+        vagas: '1 vaga por unidade de 2 e 3 dormitórios; 360 ganchos para bicicleta',
+        torres: 'Torre única de 28 pavimentos',
+        unidades: '360 unidades (222 de 1 dormitório, 3 gardens, 81 de 2 e 54 de 3 dormitórios)',
+        valores: 'Sob consulta',
+        endereco: 'Rua Venâncio Aires, 930 · Pompeia, São Paulo',
+        infra: { piscina: 'Piscinas adulto e infantil com deck molhado', academia: 'Academia assinada por André Passoni', festas: 'Salão de festas conectado à churrasqueira', gourmet: 'Duas churrasqueiras, uma com forno de pizza', kids: 'Playground e brinquedoteca', quadra: 'Quadra de esportes', portaria: 'Portaria com clausuras social e de serviço, guarita de vidros blindados e monitoramento', coworking: 'Coworking e sala de convivência' },
+        lazerGrupos: [['Térreo', ['Praça de entrada', 'Portaria', 'Minimercado autônomo', 'Safe storage', 'Coworking e sala de convivência']], ['Lazer', ['Piscina adulto', 'Piscina infantil', 'Deck molhado', 'Churrasqueiras', 'Salão de festas', 'Academia', 'Quadra de esportes', 'Playground', 'Brinquedoteca', 'Pet play']]],
+        diferenciais: ['A 3 minutos da futura Estação Sesc-Pompeia da Linha Laranja', 'Perto do Allianz Parque, do Sesc Pompeia e do Parque da Água Branca', 'Duas churrasqueiras, uma com forno de pizza', 'Minimercado autônomo e safe storage', 'Máquina de gelo, pet care e personal trainer entre as conveniências', 'Projeto de segurança com guarita blindada e monitoramento'],
+        creditos: [['Arquitetura', 'Jonas Birger Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura da Paisagem'], ['Decoração', 'Studio H:M Arquitetura e Design'], ['Construção', 'Even']],
+        plantas: [{ src: V12 + 'planta-31.webp', nome: '31 m² · 1 dormitório', meta: 'Planta tipo' }, { src: V12 + 'planta-47.webp', nome: '47 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: V12 + 'planta-62.webp', nome: '62 m² · 3 dormitórios', meta: 'Planta tipo' }],
+        implantacao: [{ src: V12 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Praça de entrada, portaria e conveniências' }, { src: V12 + 'implantacao-lazer.webp', nome: 'Lazer', meta: 'Piscinas, churrasqueiras, quadra e playground' }],
+        legal: 'Construção: Even Construtora e Incorporadora S/A. Folheto de breve lançamento (venda só após o registro do Memorial de Incorporação). Perspectivas ilustrativas. Pela corretagem, lançado em agosto de 2021 (apto.vc) e entregue em junho de 2024 (MySide) ou fevereiro de 2025 (apto.vc). Disponibilidade sob consulta.',
+        torre: V12 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V12,
+        fotos: [fotoV12('fachada', 'Fachada', true), fotoV12('detalhe-fachada', 'Detalhe da fachada'), fotoV12('piscina', 'Piscina'), fotoV12('churrasqueira', 'Churrasqueira'), fotoV12('quadra', 'Quadra de esportes'), fotoV12('playground', 'Playground'), fotoV12('salao-de-festas', 'Salão de festas'), fotoV12('academia', 'Academia'), fotoV12('brinquedoteca', 'Brinquedoteca'), fotoV12('pet-play', 'Pet play'), fotoV12('safe-storage', 'Safe storage')]
+      },
+      {
+        nome: 'Monumento SP Morumbi · 2ª fase',
+        cidade: 'São Paulo, capital', bairro: 'Morumbi',
+        resumo: '2, 3 e 4 dormitórios · 73 a 129 m²',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'No Morumbi, num terreno de cerca de 60 mil m², o Monumento São Paulo reúne seis torres de térreo e 28 pavimentos e 907 apartamentos. A 2ª fase, deste folheto, são as torres D, E e F, com 454 unidades: 114 de 2 dormitórios (73 m²), 228 de 3 dormitórios (88 m²) e 112 de 4 dormitórios (129 m²). O clube compartilhado tem complexo aquático com 5 piscinas (piscina adulto descoberta, piscina infantil, deck molhado, espelho d’água e piscina coberta com raia de 25 m), academia assinada por André Passoni com interiores de Débora Aguiar, espaço mulher, 4 churrasqueiras, 2 salões de festas, espaço gourmet, 3 brinquedotecas, playgrounds, 2 quadras para jogos e área de caminhada entre árvores. Arquitetura de Jonas Birger e paisagismo do Núcleo. Pela corretagem, a 2ª fase foi entregue em fevereiro de 2025.',
+        area: ['Apartamento de 73,34 m², 2 dormitórios', 'Apartamento de 87,73 m², 3 dormitórios, com opção de living ampliado', 'Apartamento de 129,50 m², 4 dormitórios, com opção de living ampliado'],
+        tipologia: 'Apartamentos de 2, 3 e 4 dormitórios',
+        vagas: 'Sob consulta (78 vagas extras no condomínio)',
+        torres: '6 torres de térreo e 28 pavimentos: torres A, B e C na 1ª fase e D, E e F na 2ª fase',
+        unidades: '907 unidades no total; 454 na 2ª fase (112 de 4, 228 de 3 e 114 de 2 dormitórios)',
+        valores: 'Sob consulta',
+        endereco: 'Rua Doutor Luiz Migliano, 1.870 · Morumbi, São Paulo',
+        infra: { piscina: 'Complexo aquático com 5 piscinas: adulto descoberta, infantil, deck molhado, espelho d’água e piscina coberta com raia de 25 m', academia: 'Academia assinada por André Passoni, com interiores de Débora Aguiar', festas: '2 salões de festas', gourmet: 'Espaço gourmet e 4 churrasqueiras', kids: '3 brinquedotecas, playground infantil e playground juvenil', quadra: '2 quadras para jogos e praça de jogos com tabuleiro de xadrez', portaria: 'Portaria, hall de acesso e praça de entrada, com gestão de segurança', coworking: 'Home office' },
+        lazerGrupos: [['Lazer externo', ['Piscina adulto descoberta', 'Piscina infantil', 'Deck molhado', 'Solário', 'Espelho d’água', 'Boulevard das águas', 'Churrasqueiras', 'Quadra para jogos', 'Canteiro de ervas', 'Jardim dos bambus', 'Praça de jogos', 'Playground infantil e juvenil', 'Área de caminhada']], ['Lazer interno', ['Piscina coberta com raia de 25 m', 'Academia', 'Espaço mulher (pay per use)', 'Salão de festas', 'Espaço gourmet', 'Brinquedoteca', 'Salão de jogos', 'Home office']]],
+        diferenciais: ['Terreno de cerca de 60 mil m² com paisagismo do Núcleo', 'Complexo aquático com 5 piscinas, uma delas coberta com raia de 25 m', 'Academia assinada por André Passoni', 'Áreas comuns da 1ª fase entregues em dezembro de 2019', 'Studio Excluseven para personalizar o apartamento', 'Gestão de energia, coleta seletiva e manutenção facilitada'],
+        creditos: [['Arquitetura', 'Jonas Birger Arquitetura'], ['Paisagismo', 'Núcleo Arquitetura e Paisagem'], ['Decoração', 'Débora Aguiar Arquitetos'], ['Construção', 'Even']],
+        plantas: [{ src: V08 + 'planta-73.webp', nome: '73 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: V08 + 'planta-87.webp', nome: '87 m² · 3 dormitórios', meta: 'Planta tipo' }, { src: V08 + 'planta-129.webp', nome: '129 m² · 4 dormitórios', meta: 'Planta tipo' }],
+        implantacao: [{ src: V08 + 'implantacao.webp', nome: 'Implantação', meta: 'Seis torres, complexo aquático, quadras e área de caminhada' }],
+        legal: 'Construção: Even Construtora e Incorporadora. Incorporação registrada sob o R.6 da matrícula 213.973 do 18º Oficial de Registro de Imóveis de São Paulo em 11/08/2016; folheto da 2ª fase impresso em novembro de 2021. Terreno de 59.922 m². Perspectivas ilustrativas. Endereço pela corretagem (os portais citam Rua Dr. Luiz Migliano, 1.870 ou 1.871). Pela corretagem (apto.vc), 2ª fase entregue em fevereiro de 2025. Disponibilidade sob consulta.',
+        torre: V08 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V08,
+        fotos: [fotoV08('fachada', 'Fachada'), fotoV08('fachadas', 'As seis torres do Monumento'), fotoV08('espelho-dagua', 'Espelho d’água'), fotoV08('piscina', 'Piscina adulto descoberta'), fotoV08('piscina-infantil', 'Piscina infantil'), fotoV08('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV08('academia', 'Academia'), fotoV08('espaco-mulher', 'Espaço mulher'), fotoV08('churrasqueira', 'Churrasqueira'), fotoV08('salao-de-festas', 'Salão de festas'), fotoV08('espaco-gourmet', 'Espaço gourmet'), fotoV08('brinquedoteca', 'Brinquedoteca'), fotoV08('playground', 'Playground infantil'), fotoV08('quadra', 'Quadra para jogos'), fotoV08('area-de-caminhada', 'Área de caminhada')]
+      },
+      {
+        nome: 'Portugal 587',
+        cidade: 'São Paulo, capital', bairro: 'Brooklin',
+        resumo: '4 dormitórios e 4 suítes · 205 a 228 m² · office exclusivo',
+        tipo: 'Apartamento', status: 'Pronto para morar',
+        texto: 'Na Avenida Portugal, 587, no coração residencial do Brooklin, perto do Bosque do Brooklin: torre residencial de arquitetura minimalista, de Jonas Birger, com plantas de 205 a 228 m² e 3 vagas por apartamento. Cada unidade tem ainda um office exclusivo, a partir de 9,44 m², numa segunda torre de escritórios no mesmo condomínio, para home office ou sala de estudos. O lazer, com paisagismo da Tagü e interiores de Gui Mattos, tem piscina adulto e infantil descobertas com deck, quadra de tênis oficial, piscina coberta com raia de 25 m, saunas seca e úmida, sala de massagem, academia assinada por André Passoni, salão de festas, brinquedoteca, playground e pet play. Incorporação registrada em outubro de 2021; pela corretagem, entregue em maio de 2025.',
+        area: ['Apartamento de 205,33 m², 4 dormitórios, com office exclusivo', 'Apartamento de 224,34 e 228,04 m², 4 suítes, com office exclusivo', 'Office exclusivo na Torre 2, a partir de 9,44 m²'],
+        tipologia: 'Apartamentos de 4 dormitórios e de 4 suítes, com opção de living ampliado',
+        vagas: '3 vagas por unidade (1 vaga solta)',
+        torres: 'Torre residencial e Torre 2 com os offices exclusivos',
+        unidades: '64 unidades de 4 suítes e 32 de 4 dormitórios, todas com office exclusivo, conforme a ficha técnica',
+        valores: 'Sob consulta',
+        endereco: 'Avenida Portugal, 587 · Brooklin, São Paulo',
+        infra: { piscina: 'Piscina adulto e infantil descobertas com deck e piscina coberta com raia de 25 m', academia: 'Academia assinada por André Passoni, com interiores de Gui Mattos', festas: 'Salão de festas', gourmet: 'Espaço gourmet integrado ao salão de festas', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis oficial e quadra para jogos', portaria: 'Portaria com clausuras de veículos e de visitantes', coworking: 'Office exclusivo de cada apartamento na Torre 2' },
+        lazerGrupos: [['Térreo', ['Portaria', 'Quadra para jogos descoberta', 'Pet play', 'Hall social']], ['1º pavimento', ['Piscina adulto descoberta', 'Piscina infantil descoberta', 'Deck', 'Piscina coberta com raia de 25 m', 'Sauna seca e úmida', 'Sala de massagem', 'Academia', 'Salão de festas', 'Brinquedoteca', 'Playground', 'Quadra de tênis']]],
+        diferenciais: ['Office exclusivo para cada apartamento, numa torre separada', 'Quadra de tênis com dimensões oficiais', 'Piscina coberta com raia de 25 m', '3 vagas por apartamento', 'Arquitetura de Jonas Birger e paisagismo da Tagü', 'A 2 minutos do Bosque do Brooklin'],
+        creditos: [['Arquitetura', 'Jonas Birger Arquitetura'], ['Paisagismo', 'Tagü Construindo Paisagens'], ['Decoração', 'Gui Mattos'], ['Construção', 'Even']],
+        plantas: [{ src: V09 + 'planta-205.webp', nome: '205 m² · 4 dormitórios', meta: 'Planta tipo' }, { src: V09 + 'planta-228.webp', nome: '228 m² · 4 suítes', meta: 'Planta tipo' }],
+        implantacao: [{ src: V09 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, portaria e quadra' }, { src: V09 + 'implantacao-lazer.webp', nome: 'Lazer · 1º pavimento', meta: 'Piscinas, quadra de tênis, academia e salões' }],
+        legal: 'Construção: Even Construtora e Incorporadora. Incorporação registrada pelo 15º Cartório de Registro de Imóveis de São Paulo em 01/10/2021, sob o R.2 na matrícula 278.956. Metragens da ficha técnica considerando o depósito e a área do office exclusivo. Perspectivas ilustrativas. Pela corretagem (MySide), entregue em maio de 2025. Disponibilidade sob consulta.',
+        torre: V09 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_V09,
+        fotos: [fotoV09('fachada', 'Fachada', true), fotoV09('detalhe-fachada', 'Detalhe da fachada'), fotoV09('acesso', 'Acesso'), fotoV09('piscina', 'Piscina adulto descoberta'), fotoV09('quadra-de-tenis', 'Quadra de tênis'), fotoV09('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV09('sauna', 'Sauna'), fotoV09('academia', 'Academia'), fotoV09('salao-de-festas', 'Salão de festas'), fotoV09('brinquedoteca', 'Brinquedoteca'), fotoV09('playground', 'Playground'), fotoV09('pet-play', 'Pet play')]
+      }
+    ],
     'Mitre': [
       /* (11/11/2026) os quatro books que ela mandou: Althea (out/2026), Casa Parque Ceramica (so imagem; ficha pela
          corretagem), Raizes Premium Campo Belo (2025) e, no fim da lista, Haus Mitre Campo Belo (abr/2021, entregue 2024) */
@@ -16019,7 +16505,9 @@
     // (17/11/2026) ela mandou pequena; refeita do vetor do book Edge Cambui, letras no azul da dela e listras azuis
     'One': { src: 'fotos/parcerias/one.png', w: 600, h: 226 },
     // (17/11/2026) a palavra eztec do vetor do book Casa Nacional, nas cores do logo dela (ez framboesa, tec vinho)
-    'EZTEC': { src: 'fotos/parcerias/eztec.png', w: 418, h: 101 }
+    'EZTEC': { src: 'fotos/parcerias/eztec.png', w: 418, h: 101 },
+    // (17/11/2026) ela mandou em cor no branco; fundo tirado mantendo o verde do v
+    'Even': { src: 'fotos/parcerias/even.png', w: 515, h: 122 }
   };
 
   /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
@@ -16033,7 +16521,8 @@
   // (16/11/2026) Trisul entra (so na lista da capital)
   // (17/11/2026) One Innovation entra (so na lista da capital)
   // (17/11/2026) EZTEC entra (so na lista da capital; o nome la estava 'Ezetec')
-  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi', 'Cyrela', 'Trisul', 'One', 'EZTEC'];
+  // (17/11/2026) Even entra (so na lista da capital)
+  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi', 'Cyrela', 'Trisul', 'One', 'EZTEC', 'Even'];
   var filtrado = NO_AR.length > 0;
   // (13/11/2026) parceria no ar so em algumas cidades: a Cyrela tambem esta nas listas de Porto Alegre e do Rio,
   // mas os empreendimentos dela que temos sao todos da capital; nas outras cidades ela continua guardada
