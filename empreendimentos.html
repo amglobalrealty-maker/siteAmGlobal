@@ -511,6 +511,32 @@
     .topo { gap: 16px; }
     .topo-direita { gap: 18px; }
   }
+  /* (18/11/2026) "Conheca a construtora": texto, numeros e o mapa do Brasil com os estados onde ela atua
+     (referencia que passaram a ela, no estilo da pagina de construtora do apto.vc) */
+  .sobre { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 70px); align-items: center; margin: 0 0 clamp(40px, 6vh, 72px); padding: clamp(26px, 3.4vw, 44px); background: var(--marfim); border: 1px solid var(--linha-leve); }
+  .sobre-texto .rotulo { margin-bottom: 12px; }
+  .sobre-texto h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(28px, 3vw, 42px); line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance; }
+  .sobre-texto p { font-family: var(--serif-texto); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: var(--texto-medio); margin: 0 0 24px; max-width: 60ch; }
+  .sobre-numeros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; border-top: 1px solid var(--linha-escura); }
+  .sobre-numeros div { padding: 16px 14px 4px 0; display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 4px; }
+  .sobre-numeros div + div { padding-left: 14px; border-left: 1px solid var(--linha-leve); }
+  .sobre-numeros dd { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 3vw, 44px); line-height: 1; color: var(--onix); font-variant-numeric: lining-nums tabular-nums; }
+  .sobre-numeros dt { font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.04em; line-height: 1.35; color: var(--texto-fraco); }
+  .sobre-mapa { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .sobre-mapa svg { width: 100%; max-width: 380px; height: auto; display: block; }
+  .sobre-mapa path { fill: #E6DFD3; stroke: var(--marfim); stroke-width: 1.2; stroke-linejoin: round; transition: fill 0.25s ease; }
+  .sobre-mapa path.atua { fill: var(--champagne); }
+  .sobre-mapa path.atua:hover, .sobre-mapa path.atua:focus { fill: var(--champagne-escuro); outline: none; }
+  .sobre-mapa figcaption { font-family: var(--sans); font-size: 12.5px; line-height: 1.5; color: var(--texto-medio); text-align: center; max-width: 42ch; }
+  .sobre-mapa figcaption b { font-weight: 500; color: var(--onix); }
+  .sobre-mapa figcaption small { display: block; margin-top: 4px; font-size: 10.5px; color: var(--texto-fraco); }
+  @media (max-width: 900px) {
+    .sobre { grid-template-columns: 1fr; }
+    .sobre-numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sobre-numeros div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .sobre-numeros div:nth-child(n+3) { border-top: 1px solid var(--linha-leve); }
+    .sobre-mapa svg { max-width: 300px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .nivel, .aberto { animation: none; }
@@ -519,6 +545,8 @@
 </style>
 <!-- (19/10) PT / EN / ES no cabecalho: tradutor automatico, botoes e cookie em idioma.js -->
 <script src="idioma.js" defer></script>
+<!-- (18/11/2026) contorno dos estados para o mapa de atuacao de cada construtora (window.MAPA_BRASIL) -->
+<script src="mapa-brasil.js"></script>
 </head>
 <body>
 
@@ -17777,6 +17805,55 @@
       + '<span><span class="vitrine-conta">' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</span><span class="vitrine-ver">Ver os empreendimentos' + SETA + '</span></span>'
       + '</button></li>';
   }
+  // (18/11/2026) "Conheca a construtora": texto, numeros e mapa da atuacao REAL (pedido dela: "tem que ser a
+  // atuacao real de cada uma"), mesmo quando o site so tem fichas de Sao Paulo. Dados em SOBRE (fonte anotada).
+  // Pesquisa de 18/11/2026 em fontes publicas (site oficial e RI de cada empresa; imprensa so quando a empresa nao diz).
+  // fundacao/sede ficam de fora quando nao ha confirmacao (Mitre e WDS sem ano oficial; One sem sede publicada).
+  var SOBRE = {
+    'Vitacon': { fundacao: 2009, sede: 'SP', ufs: ['SP'], fonte: 'site da Vitacon', texto: 'A Vitacon é uma incorporadora paulistana fundada em 2009, conhecida pelos apartamentos compactos em regiões de boa mobilidade e infraestrutura. Seus projetos combinam unidades de metragem reduzida com áreas e serviços compartilhados, na cidade de São Paulo.' },
+    'Living': { fundacao: 2006, sede: 'SP', ufs: ['SP', 'RJ'], fonte: 'site da Living', texto: 'A Living é a marca do Grupo Cyrela voltada ao médio padrão, criada em 2006. Desenvolve empreendimentos residenciais da concepção à entrega, com projetos na capital paulista, no Grande ABC, em Campinas e no Rio de Janeiro.' },
+    'Mitre': { nome: 'Mitre Realty', sede: 'SP', ufs: ['SP'], fonte: 'RI da Mitre Realty', texto: 'A Mitre Realty é uma incorporadora e construtora paulistana controlada pela família Mitre, que atua há mais de cinco décadas no setor. Trabalha com as linhas Raízes e Haus Mitre e, desde 2022, com a marca Daslu, de alto padrão, em todas as regiões da cidade de São Paulo.' },
+    'Lavvi': { fundacao: 2016, sede: 'SP', ufs: ['SP'], fonte: 'RI da Lavvi', texto: 'A Lavvi, constituída em 2016, desenvolve empreendimentos residenciais e não residenciais para os segmentos médio, médio-alto e alto padrão, em regiões bem localizadas da cidade de São Paulo, onde concentra toda a sua atuação.' },
+    'Cyrela': { fundacao: 1962, sede: 'SP', ufs: ['SP', 'RJ', 'PR', 'RS'], fonte: 'site e RI da Cyrela', texto: 'Fundada em 1962 em São Paulo, a Cyrela atua na incorporação e construção de empreendimentos residenciais e tem ações no Novo Mercado da B3. Reúne as marcas Cyrela, de alto padrão, Living, de médio padrão, e Vivaz, de segmento econômico.' },
+    'Trisul': { fundacao: 2007, sede: 'SP', ufs: ['SP'], fonte: 'RI da Trisul', texto: 'A Trisul é uma incorporadora e construtora paulistana formada em 2007 pela união de duas empresas com origem nas décadas de 1970 e 1980, com ações no Novo Mercado da B3. Desenvolve apartamentos e studios de 1 a 4 dormitórios e concentra sua atuação na cidade de São Paulo.' },
+    'One': { nome: 'One Innovation', fundacao: 2013, ufs: ['SP'], fonte: 'site da One Innovation', texto: 'A One Innovation é uma incorporadora paulistana que começou em 2013 com apartamentos compactos em São Paulo. Desenvolve studios e unidades de 1 e 2 dormitórios, para morar ou investir, com linhas como Nex One, My One e Mobi One.' },
+    'EZTEC': { fundacao: 1979, sede: 'SP', ufs: ['SP'], fonte: 'RI da EZTEC', texto: 'A EZTEC atua em incorporação, construção e engenharia desde 1979, quando foi fundada em São Paulo pela família Zarzur. Desenvolve empreendimentos residenciais e comerciais com foco na Região Metropolitana de São Paulo e tem ações no Novo Mercado da B3 desde 2007.' },
+    'Even': { fundacao: 2002, sede: 'SP', ufs: ['SP'], fonte: 'RI da Even', texto: 'A Even Construtora e Incorporadora nasceu em 2002 da fusão da ABC Investimentos com a Terepins & Kalili. Já atuou no Rio de Janeiro, em Minas Gerais e no Rio Grande do Sul e hoje concentra as operações na cidade de São Paulo, com empreendimentos residenciais de alto padrão.' },
+    'WDS': { nome: 'WDS', sede: 'SP', ufs: ['SP'], fonte: 'site da WDS', texto: 'A WDS Construtora e Incorporadora atua há mais de 30 anos no desenvolvimento imobiliário na cidade de São Paulo. Constrói e incorpora empreendimentos residenciais em bairros como Perdizes, Pinheiros, Brooklin, Bela Vista e Santana, com linhas como W.Stay e WDS Prime.' },
+    'Kallas': { fundacao: 1983, sede: 'SP', ufs: ['SP'], fonte: 'sites do Grupo Kallas e da Kazzas', texto: 'O Grupo Kallas atua em incorporação e construção no estado de São Paulo há mais de 40 anos, a partir de uma operação iniciada em 1983. A marca Kallas atende a média e a alta renda; a Kazzas, com a linha KZ, o segmento econômico, na capital, na Grande São Paulo e no litoral.' }
+  };
+  var SIGLAS = { ac: 'AC', al: 'AL', ap: 'AP', am: 'AM', ba: 'BA', ce: 'CE', df: 'DF', es: 'ES', go: 'GO', ma: 'MA', mt: 'MT', ms: 'MS', mg: 'MG', pa: 'PA', pb: 'PB', pr: 'PR', pe: 'PE', pi: 'PI', rj: 'RJ', rn: 'RN', rs: 'RS', ro: 'RO', rr: 'RR', sc: 'SC', sp: 'SP', se: 'SE', to: 'TO' };
+  function sobreDe(parceira, lista) {
+    var s = (typeof SOBRE !== 'undefined') && SOBRE[parceira];
+    if (!s) return '';
+    var nome = s.nome || parceira, ufs = s.ufs || [];
+    var anos = s.fundacao ? (new Date().getFullYear() - s.fundacao) : null;
+    var reais = lista.filter(function (x) { return !x.exemplo; }).length;
+    var numeros = [
+      [String(reais), reais === 1 ? 'empreendimento na AM Global' : 'empreendimentos na AM Global'],
+      anos ? [String(anos), 'anos de história'] : null,
+      s.sede ? [s.sede, 'localização da sede'] : null,
+      ufs.length ? [String(ufs.length), ufs.length === 1 ? 'estado onde atua' : 'estados onde atua'] : null
+    ].filter(Boolean);
+    var mapa = '';
+    if (window.MAPA_BRASIL && ufs.length) {
+      var M = window.MAPA_BRASIL, marca = {};
+      ufs.forEach(function (u) { marca[u.toLowerCase()] = true; });
+      var nomes = ufs.map(function (u) { var x = M.ufs[u.toLowerCase()]; return x ? x.nome : u; });
+      mapa = '<figure class="sobre-mapa"><svg viewBox="' + M.viewBox + '" role="img" aria-label="Mapa do Brasil com os estados onde a ' + esc(nome) + ' atua: ' + esc(nomes.join(', ')) + '">'
+        + Object.keys(M.ufs).map(function (k) {
+            var u = M.ufs[k], atua = !!marca[k];
+            return '<path d="' + u.d + '"' + (atua ? ' class="atua" tabindex="0"' : '') + '><title>' + esc(u.nome) + (atua ? '' : ' (sem atuação)') + '</title></path>';
+          }).join('')
+        + '</svg><figcaption>Onde a <span class="notranslate">' + esc(nome) + '</span> atua: <b>' + esc(nomes.join(', ')) + '</b>.<small>' + esc(M.credito) + (s.fonte ? ' · Atuação: ' + esc(s.fonte) : '') + '</small></figcaption></figure>';
+    }
+    return '<section class="sobre" aria-label="Sobre a ' + esc(nome) + '"><div class="sobre-texto">'
+      + '<span class="rotulo">A construtora</span>'
+      + '<h3>Conheça a <span class="notranslate">' + esc(nome) + '</span></h3>'
+      + (s.texto ? '<p>' + esc(s.texto) + '</p>' : '')
+      + '<dl class="sobre-numeros">' + numeros.map(function (n) { return '<div><dt>' + esc(n[1]) + '</dt><dd>' + esc(n[0]) + '</dd></div>'; }).join('') + '</dl>'
+      + '</div>' + mapa + '</section>';
+  }
   function nivelParceira() {
     var p = PAISES[onde.p], e = p.estados[onde.e], c = e.cidades[onde.c], parceira = c.construtoras[onde.n];
     var lista = empreendimentosDe(parceira, c);
@@ -17789,6 +17866,7 @@
     return '<div class="nivel">'
       // (11/11) o rotulo acima da logo lista as cidades da construtora no estado ("Sao Paulo · Grande ABC · Sao Paulo")
       + '<div class="nivel-cabeca"><h2><small>' + esc(cidadesDaParceira(e, parceira).map(function (x) { return x.curta || x.nome; }).join(' · ') || (c.curta || c.nome)) + ' · ' + esc(e.nome) + '</small><span class="notranslate">' + (logoDe(parceira, 'parceira-logo') || esc(parceira)) + '</span></h2><p><b>' + plural(lista.length, 'empreendimento', 'empreendimentos') + '</b>' + (em.exemplo ? ' de exemplo' : '') + '. Toque em um para abrir; as setas percorrem a lista.</p></div>'
+      + sobreDe(parceira, lista)
       + '<div class="parceira">'
       // (09/11/2026) a fileira unica com setas; o bloco inteiro (rotulo + faixa) e o alvo da rolagem ao tocar num cartao
       +   '<div class="faixa-bloco" id="faixaBloco"><span class="rotulo empreendimentos-rotulo">Os empreendimentos</span>'
