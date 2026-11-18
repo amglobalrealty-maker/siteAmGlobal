@@ -610,7 +610,7 @@
       { nome: 'São Paulo, capital', curta: 'São Paulo', texto: [
         'São Paulo é a maior cidade da América do Sul, com cerca de 11,5 milhões de habitantes na capital e mais de 20 milhões na região metropolitana, e tem o maior PIB entre os municípios do país. Aqui estão a bolsa de valores, as sedes dos principais bancos e empresas, hospitais e universidades de referência nacional, a maior rede de metrô e trens do Brasil e dois aeroportos, Congonhas e Guarulhos.',
         'No mercado imobiliário, os bairros entre a Avenida Paulista e a Faria Lima lideram a procura: Pinheiros, Jardins, Vila Olímpia, Itaim, Perdizes e Vila Mariana. São ruas arborizadas, com gastronomia, parques, hospitais e estações de metrô, onde os lançamentos compactos, com lazer completo e serviços no prédio, têm alta demanda de moradia e de locação, de executivos, estudantes e profissionais da saúde.'
-      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'EZTEC', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur', 'Living'] },
+      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'EZTEC', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur', 'Living', 'WDS'] },
       // (10/11/2026) a Living (Grupo Cyrela) entrou com tres empreendimentos no ABC paulista; textos meus, a confirmar
       // (11/11/2026) Sao Caetano entrou com o Casa Parque Ceramica, da Mitre com a Basilar
       { nome: 'Santo André, São Bernardo do Campo e São Caetano do Sul', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo', 'São Caetano do Sul'], quantas: 3, texto: [
@@ -902,6 +902,13 @@
   var EZ = 'fotos/parcerias/eztec/';
   // (17/11/2026) Even: prefixos Vnn pelo numero do book vNN (scratchpad/pdfs/vn/mapa.txt)
   var EV = 'fotos/parcerias/even/';
+  // (18/11/2026) WDS: prefixos Wnn pelo numero do book wNN (scratchpad/pdfs/wd/mapa.txt)
+  var WD = 'fotos/parcerias/wds/';
+  var W01 = WD + 'aurum-residence/', fotoW01 = fotoEm(W01);
+  var W02 = WD + 'essencia-perdizes/', fotoW02 = fotoEm(W02);
+  var W03 = WD + 'wstay-perdizes/', fotoW03 = fotoEm(W03);
+  var W05 = WD + 'simao-717-pinheiros/', fotoW05 = fotoEm(W05);
+  var W06 = WD + 'antonio-flor-santana/', fotoW06 = fotoEm(W06);
   var V01 = EV + 'go-balkon/', fotoV01 = fotoEm(V01);
   var V02 = EV + 'esther-ibirapuera/', fotoV02 = fotoEm(V02);
   var V03 = EV + 'joaquim-brooklin/', fotoV03 = fotoEm(V03);
@@ -2644,6 +2651,34 @@
     numeros: [['perto', 'do Aeroporto de Congonhas'], ['Linha 5', 'metrô Lilás no Campo Belo'], ['acesso', 'às avenidas Washington Luís e Santo Amaro'], ['zona sul', 'escritórios, hotéis e serviços']],
     polos: 'Por perto: Aeroporto de Congonhas, Avenida Washington Luís, Avenida Santo Amaro, Avenida Vereador José Diniz, Shopping Ibirapuera e as estações da Linha 5-Lilás.',
     fonte: 'Fonte: localização pelo endereço do material da Even; sem distâncias medidas no material.'
+  };
+  var REG_W01 = {
+    titulo: 'A região · Perdizes',
+    texto: 'Perdizes é um dos bairros mais tradicionais da Zona Oeste, de ruas arborizadas e vida de bairro, ao lado da PUC-SP, de Higienópolis e do Pacaembu. Na esquina da Rua Cardoso de Almeida com a Rua Dr. Homem de Melo, a futura estação PUC-Cardoso de Almeida da Linha 6-Laranja fica a 1 minuto, a Avenida Sumaré a 5 e o Shopping Pátio Higienópolis e o Hospital Albert Einstein a poucos minutos de carro.',
+    numeros: [['1 min', 'da futura estação PUC-Cardoso de Almeida (Linha 6-Laranja)'], ['3 min', 'da PUC-SP e do Shopping Pátio Higienópolis'], ['5 min', 'da Avenida Sumaré e da Avenida Pacaembu'], ['6 min', 'do Hospital Albert Einstein, unidade Perdizes']],
+    polos: 'Por perto: PUC-SP, futuras estações PUC-Cardoso de Almeida e Sumaré, Avenida Sumaré, Shopping Pátio Higienópolis, Shopping Bourbon, Allianz Parque, Parque da Água Branca, Arena Mercado Livre Pacaembu e FAAP.',
+    fonte: 'Fonte: apresentação do Aurum Residence e book do Essência Perdizes (WDS), com tempos de carro do próprio material.'
+  };
+  var REG_W03 = {
+    titulo: 'A região · Perdizes',
+    texto: 'A Rua João Ramalho fica no coração de Perdizes, um dos bairros mais tradicionais e valorizados da Zona Oeste: ruas arborizadas e clima residencial ao lado da Avenida Sumaré e da futura Estação Perdizes do metrô. Ao redor, a PUC, o Hospital Albert Einstein (unidade Perdizes), o Allianz Parque, o Sesc Pompeia, o Shopping Bourbon e o Parque da Água Branca, com acesso rápido à Barra Funda e à Marginal Tietê.',
+    numeros: [['1 min', 'da futura Estação Perdizes do metrô e da Av. Sumaré'], ['3 min', 'do Hospital Albert Einstein'], ['4 min', 'da PUC, do Allianz Parque e do Shopping Bourbon'], ['7 min', 'da Estação Barra Funda']],
+    polos: 'Por perto: futura Estação Perdizes, Avenida Sumaré, PUC-SP, Hospital Albert Einstein, Hospital São Camilo, Allianz Parque, Sesc Pompeia, Shopping Bourbon, Parque da Água Branca, Teatro Tuca e a ciclovia da Sumaré.',
+    fonte: 'Fonte: book do W.Stay Perdizes (WDS), com tempos do Google Maps citados no próprio material.'
+  };
+  var REG_W05 = {
+    titulo: 'A região · Pinheiros',
+    texto: 'A Rua Simão Álvares fica no miolo residencial de Pinheiros, entre a Rua dos Pinheiros, a Teodoro Sampaio e a Cardeal Arcoverde: a poucas quadras das estações Fradique Coutinho e Oscar Freire da Linha 4-Amarela, do Largo da Batata e da Avenida Brigadeiro Faria Lima. Ao redor, a gastronomia e os bares de Pinheiros, a Vila Madalena a poucos minutos e o comércio da Teodoro Sampaio.',
+    numeros: [['600 m', 'da estação Fradique Coutinho (Linha 4-Amarela)'], ['1 km', 'da estação Oscar Freire (Linha 4-Amarela)'], ['1,3 km', 'do Largo da Batata e da Avenida Faria Lima'], ['1,5 km', 'da Vila Madalena']],
+    polos: 'Por perto: estações Fradique Coutinho, Oscar Freire e Faria Lima da Linha 4-Amarela, Largo da Batata, Avenida Brigadeiro Faria Lima, Rua dos Pinheiros, Rua Teodoro Sampaio, Instituto Tomie Ohtake, Vila Madalena e Shopping Eldorado.',
+    fonte: 'Fonte: distâncias aproximadas a partir da Rua Simão Álvares, 717 (Google Maps); o book do Simão não traz mapa da região.'
+  };
+  var REG_W06 = {
+    titulo: 'A região · Santana',
+    texto: 'A esquina da Rua Voluntários da Pátria com a Rua Francisca Júlia fica no centro de Santana, bairro completo da Zona Norte: a Estação Santana do metrô está a 5 minutos, com acesso rápido à Avenida Braz Leme, à Avenida Engenheiro Caetano Álvares e à Marginal Tietê. Ao redor, hospitais, faculdades, supermercados, o Parque da Juventude, o Mirante de Santana, o Campo de Marte e o Shopping Center Norte.',
+    numeros: [['2 min', 'do hospital HSANP'], ['4 min', 'do Parque da Juventude'], ['5 min', 'da Estação Santana do metrô'], ['10 min', 'da Marginal Tietê']],
+    polos: 'Por perto: Estação Santana do metrô, Hospital HSANP, Hospital São Camilo, Hospital Mandaqui, Universidade São Judas, Sesc Santana, Parque da Juventude, Mirante de Santana, Campo de Marte, Shopping Center Norte e Pão de Açúcar.',
+    fonte: 'Fonte: book do Antônio Flôr (WDS), com tempos do Google Maps citados no próprio material.'
   };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
@@ -14175,6 +14210,124 @@
         fotos: [fotoV09('fachada', 'Fachada', true), fotoV09('detalhe-fachada', 'Detalhe da fachada'), fotoV09('acesso', 'Acesso'), fotoV09('piscina', 'Piscina adulto descoberta'), fotoV09('quadra-de-tenis', 'Quadra de tênis'), fotoV09('piscina-coberta', 'Piscina coberta com raia de 25 m'), fotoV09('sauna', 'Sauna'), fotoV09('academia', 'Academia'), fotoV09('salao-de-festas', 'Salão de festas'), fotoV09('brinquedoteca', 'Brinquedoteca'), fotoV09('playground', 'Playground'), fotoV09('pet-play', 'Pet play')]
       }
     ],
+    // (18/11/2026) WDS Construtora e Incorporadora: books de 18/11 (scratchpad/pdfs/wd/mapa.txt)
+    'WDS': [
+      {
+        nome: 'Antônio Flôr Santana',
+        cidade: 'São Paulo, capital', bairro: 'Santana',
+        resumo: '1 e 2 dormitórios · 28 a 63 m²',
+        tipo: 'Apartamento', status: 'Lançamento',
+        texto: 'Na esquina da Rua Voluntários da Pátria com a Rua Francisca Júlia, em Santana, a 5 minutos da Estação Santana do metrô: torre única de 22 pavimentos com 170 apartamentos de 2 dormitórios de 28 a 36 m² e gardens de 1 e 2 dormitórios de 42 a 63 m² no 1º pavimento, além de uma loja no térreo. Parte das unidades é HIS e HMP. Lazer completo entregue equipado e decorado: no térreo, lobby, salão de festas gourmet, piscina com solário e playground; no rooftop, fitness e fitness externo, espaço gourmet com churrasqueira e salão de jogos, lounge com praça de fogo e lavanderia coletiva. Arquitetura da AM4 e decoração de Tayná Milleu. Pela corretagem, lançado em maio de 2026, com entrega prevista para maio de 2028.',
+        area: ['2 dormitórios: 28 a 36 m² (HIS, HIS 2, HMP e R2V)', 'Garden R2V de 1 e 2 dormitórios: 42 a 63 m² (6 unidades no 1º pavimento)', '1 loja no térreo: 462,88 m²'],
+        tipologia: 'Apartamentos de 2 dormitórios e gardens de 1 e 2 dormitórios',
+        vagas: 'Sem vagas de garagem',
+        torres: 'Torre única de 22 pavimentos, 8 apartamentos por andar e 2 elevadores',
+        unidades: '170 apartamentos (20 R2V, 55 HIS 1, 13 HIS 2 e 82 HMP) e 1 loja',
+        valores: 'Sob consulta',
+        endereco: 'Rua Voluntários da Pátria, 2.927, esquina com a Rua Francisca Júlia · Santana, São Paulo',
+        infra: { piscina: 'Piscina adulto de 12 x 3 m com solário', academia: 'Fitness e fitness externo no rooftop', festas: 'Salão de festas gourmet no térreo', gourmet: 'Espaço gourmet com churrasqueira e salão de jogos no rooftop', kids: 'Playground', quadra: '', portaria: 'Portaria virtual com clausura e lobby', coworking: '' },
+        lazerGrupos: [['Térreo', ['Lobby', 'Salão de festas gourmet', 'Piscina com solário', 'Playground']], ['Rooftop', ['Fitness', 'Fitness externo', 'Espaço gourmet com churrasqueira', 'Salão de jogos', 'Lounge com praça de fogo', 'Lavanderia coletiva']]],
+        diferenciais: ['A 5 minutos da Estação Santana do metrô', 'Lazer na cobertura com lounge e praça de fogo', 'Áreas comuns entregues equipadas e decoradas', 'Infraestrutura de ar-condicionado nas áreas internas de lazer', 'Fechamento da sacada e piso nivelado do living', 'Reservatório de reúso da água da chuva', 'Bacia com válvula dual flux e aquecedor de passagem individual'],
+        creditos: [['Arquitetura', 'AM4 Arquitetura'], ['Decoração', 'Tayná Milleu'], ['Incorporação e construção', 'WDS']],
+        plantas: [{ src: W06 + 'planta-36.webp', nome: '36,07 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: W06 + 'planta-35.webp', nome: '35,72 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: W06 + 'planta-28-76.webp', nome: '28,76 m² · 2 dormitórios', meta: 'Planta tipo' }, { src: W06 + 'planta-28-40.webp', nome: '28,40 m² · 2 dormitórios', meta: 'Planta tipo' }],
+        implantacao: [{ src: W06 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Piscina com solário, playground, salão de festas gourmet, lobby e loja' }, { src: W06 + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Lavanderia, fitness, salão de jogos, espaço gourmet e lounge com praça de fogo' }],
+        legal: 'Incorporação e construção: WDS Construtora e Incorporadora (realização, construção e intermediação). Projeto em aprovação conforme o processo administrativo 1020.2025/0012761-2; o empreendimento só será comercializado após o registro da incorporação. Perspectivas e plantas preliminares. O empreendimento tem unidades HIS 1, HIS 2 e HMP, destinadas a famílias com renda dentro dos limites do decreto ou a investidores que aluguem para esse público, sem locação de curta duração. Pela corretagem (apto.vc): lançado em maio de 2026, entrega prevista para maio de 2028. Disponibilidade sob consulta.',
+        torre: W06 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_W06,
+        fotos: [fotoW06('fachada', 'Fachada', true), fotoW06('fachada-noite', 'Fachada ao anoitecer', true), fotoW06('acesso-principal', 'Acesso principal'), fotoW06('acesso-principal-2', 'Acesso principal e loja'), fotoW06('lobby', 'Lobby'), fotoW06('salao-de-festas-gourmet', 'Salão de festas gourmet'), fotoW06('piscina-com-solario', 'Piscina com solário'), fotoW06('espaco-gourmet-jogos', 'Espaço gourmet e salão de jogos'), fotoW06('lounge-praca-de-fogo', 'Lounge com praça de fogo'), fotoW06('fitness', 'Fitness'), fotoW06('lavanderia-coletiva', 'Lavanderia coletiva', true), fotoW06('lavanderia-coletiva-2', 'Lavanderia coletiva', true)]
+      },
+      {
+        nome: 'Aurum Residence',
+        cidade: 'São Paulo, capital', bairro: 'Perdizes',
+        resumo: '3 dormitórios · 112 a 225 m²',
+        tipo: 'Apartamento', status: 'Lançamento',
+        texto: 'Na esquina da Rua Cardoso de Almeida com a Rua Dr. Homem de Melo, em Perdizes, a um minuto da futura estação PUC-Cardoso de Almeida da Linha 6-Laranja: uma torre de 20 pavimentos com 32 apartamentos de 3 dormitórios e 112,89 m², dois gardens de 177,36 m² no 13º pavimento e duas coberturas duplex de 225,78 m², com arquitetura de Alexandre Milleu e decoração de Tayna Milleu. O lazer fica no 12º pavimento, com piscina, bar da piscina, solarium, sky bar com área externa, academia com área fitness descoberta, brinquedoteca, salão de festas e sala de jogos. É uma parceria da WDS, que constrói, com a GKS Incorporadora. Pela corretagem, a entrega está prevista para março de 2029.',
+        area: ['Apartamento tipo de 112,89 m², 3 dormitórios, 2 vagas', 'Garden de 177,36 m² (13º pavimento), 2 vagas', 'Cobertura duplex de 225,78 m², 3 vagas'],
+        tipologia: 'Apartamentos de 3 dormitórios, gardens e coberturas duplex',
+        vagas: '2 vagas (apartamentos e gardens) e 3 vagas (coberturas)',
+        torres: 'Torre única de 20 pavimentos, com 2 elevadores',
+        unidades: '36 unidades: 32 apartamentos, 2 gardens e 2 coberturas duplex',
+        valores: 'Sob consulta',
+        endereco: 'Rua Cardoso de Almeida x Rua Dr. Homem de Melo · Perdizes, São Paulo',
+        infra: { piscina: 'Piscina com bar da piscina e solarium no 12º pavimento', academia: 'Academia com área fitness descoberta', festas: 'Salão de festas com sky bar e área externa', gourmet: 'Sky bar e bar da piscina', kids: 'Brinquedoteca', quadra: '', portaria: 'Portaria, delivery, lobby e hall', coworking: '' },
+        lazerGrupos: [['Lazer · 12º pavimento', ['Piscina', 'Bar da piscina', 'Solarium', 'Sky bar com área externa', 'Academia com área fitness descoberta', 'Vestiário', 'Brinquedoteca', 'Salão de festas', 'Sala de jogos']], ['Térreo', ['Portaria', 'Delivery', 'Lobby', 'Hall']]],
+        diferenciais: ['Esquina da Cardoso de Almeida com a Homem de Melo, a 1 minuto da futura estação da Linha 6-Laranja', 'Lazer no 12º pavimento, com sky bar e piscina com vista', 'Gardens no 13º pavimento e coberturas duplex com elevador social e de serviço nos dois pavimentos', 'Arquitetura de Alexandre Milleu e decoração de Tayna Milleu', 'Parceria WDS e GKS, com construção da WDS'],
+        creditos: [['Arquitetura', 'Alexandre Milleu'], ['Decoração', 'Tayna Milleu'], ['Construção', 'WDS Construtora e Incorporadora'], ['Incorporação', 'WDS e GKS Incorporadora']],
+        plantas: [{ src: W01 + 'planta-112.webp', nome: '112,89 m² · 3 dormitórios', meta: 'Apartamento tipo' }, { src: W01 + 'planta-garden-177.webp', nome: '177,36 m² · garden', meta: '13º pavimento' }, { src: W01 + 'planta-cobertura-inferior.webp', nome: 'Cobertura duplex · pavimento inferior', meta: '225,78 m² no total' }, { src: W01 + 'planta-cobertura-superior.webp', nome: 'Cobertura duplex · pavimento superior', meta: '225,78 m² no total' }],
+        implantacao: [{ src: W01 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Portaria, delivery, lobby e hall' }, { src: W01 + 'implantacao-lazer.webp', nome: 'Lazer · 12º pavimento', meta: 'Piscina, sky bar, bar, academia, vestiário e sala de jogos' }],
+        legal: 'Incorporação: WDS Construtora e Incorporadora e GKS Incorporadora. Construção: WDS Construtora e Incorporadora. Imagens meramente ilustrativas, da apresentação de lançamento. Pela corretagem (MySide e apto.vc, que listam como "Aurum Perdizes"): entrega prevista para março de 2029; no mesmo endereço a WDS anuncia também o Studios Aurum Perdizes, que não está neste material. Disponibilidade sob consulta.',
+        torre: W01 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_W01,
+        fotos: [fotoW01('fachada', 'Fachada', true), fotoW01('embasamento', 'Embasamento e acesso'), fotoW01('fachada-esquina', 'Fachada na esquina'), fotoW01('terracos', 'Terraços'), fotoW01('detalhe-fachada', 'Detalhe da fachada')]
+      },
+      {
+        nome: 'Essência Perdizes',
+        cidade: 'São Paulo, capital', bairro: 'Perdizes',
+        resumo: '3 suítes · 100 m²',
+        tipo: 'Apartamento', status: 'Lançamento',
+        texto: 'Na esquina da Rua Dr. Franco da Rocha com a Rua Bartira, em Perdizes, a 2 minutos da PUC-SP e perto das futuras estações Sumaré e PUC-Cardoso de Almeida: uma torre de 14 pavimentos tipo, com 42 apartamentos de 100,05 m² e 3 suítes, três por andar, com varanda gourmet com churrasqueira e 2 vagas com depósito privativo. Arquitetura de Alfredo Del Bianco, decoração de Sara Porttugg, paisagismo de Martha Gavião e decorado de Sara Almeida. Lobby com pé-direito duplo e lazer no 1º pavimento: piscina spa com conceito onsen, solarium, espaço gourmet com forno de pizza e churrasqueira a carvão, salão de festas com bar e copa, sala gamer, fitness, brinquedoteca e quadra recreativa. Os studios do empreendimento têm acesso, elevadores e lazer separados do residencial. Pela corretagem, lançado em dezembro de 2025, com entrega prevista entre abril e setembro de 2029.',
+        area: ['Apartamento de 100,05 m², 3 suítes, 2 vagas determinadas com depósito privativo'],
+        tipologia: 'Apartamentos de 3 suítes com varanda gourmet',
+        vagas: '2 vagas determinadas por apartamento, com depósito privativo (todas cobertas)',
+        torres: 'Torre única com 14 pavimentos tipo, 3 apartamentos por andar',
+        unidades: '42 apartamentos residenciais, além de studios com acesso independente e 2 lojas',
+        valores: 'Sob consulta',
+        endereco: 'Rua Dr. Franco da Rocha x Rua Bartira · Perdizes, São Paulo',
+        infra: { piscina: 'Piscina spa com conceito onsen e solarium', academia: 'Fitness', festas: 'Salão de festas com bar e copa', gourmet: 'Espaço gourmet com churrasqueira a carvão e forno de pizza', kids: 'Brinquedoteca', quadra: 'Quadra recreativa', portaria: 'Lobby com pé-direito duplo e acesso social independente', coworking: '' },
+        lazerGrupos: [['Lazer · 1º pavimento', ['Piscina spa com conceito onsen', 'Solarium', 'Espaço gourmet com churrasqueira', 'Bar gourmet com copa', 'Salão de festas', 'Fitness', 'Quadra recreativa', 'Brinquedoteca', 'Sala gamer']], ['Térreo', ['Lobby com pé-direito duplo', 'Acesso social de pedestres', 'Depósitos privativos', 'Fachada ativa com 2 lojas']]],
+        diferenciais: ['Esquina com fachada em pedra moledo no térreo', 'Piscina spa com conceito onsen, de inspiração japonesa', 'Varanda gourmet com churrasqueira em todos os apartamentos', 'Residencial com acesso e lazer independentes dos studios', 'Áreas comuns entregues equipadas e decoradas', 'A 2 minutos da PUC-SP e perto das futuras estações Sumaré e PUC-Cardoso de Almeida'],
+        creditos: [['Arquitetura', 'Alfredo Del Bianco'], ['Decoração', 'Sara Porttugg'], ['Paisagismo', 'Martha Gavião'], ['Decorado', 'Sara Almeida'], ['Incorporação e construção', 'WDS Construtora e Incorporadora']],
+        plantas: [{ src: W02 + 'planta-decorado.webp', nome: '100,05 m² · 3 suítes', meta: 'Planta do decorado' }, { src: W02 + 'planta-opcao-1.webp', nome: '100,05 m² · 3 suítes', meta: 'Opção 1' }],
+        implantacao: [{ src: W02 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acesso de veículos, acesso social, lobby e depósitos' }, { src: W02 + 'implantacao-lazer.webp', nome: 'Lazer · 1º pavimento', meta: 'Salão de festas, gourmet, piscina spa, solarium, fitness, quadra, brinquedoteca e sala gamer' }, { src: W02 + 'implantacao-tipo.webp', nome: 'Pavimento tipo', meta: 'Finais 1, 2 e 3 e os studios' }],
+        legal: 'Incorporação e construção: WDS Construtora e Incorporadora (pela corretagem, incorporação da WDS Prime). Imagens ilustrativas, do book de clientes (rev. 01). Pela corretagem (apto.vc e MySide): lançado em dezembro de 2025, entrega prevista para abril de 2029 (MySide) ou setembro de 2029 (apto.vc). Não confundir com o Essência Perdizes by Setin, na Rua Cayowaa. Disponibilidade sob consulta.',
+        torre: W02 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_W01,
+        fotos: [fotoW02('fachada', 'Fachada'), fotoW02('fachada-2', 'A torre na esquina'), fotoW02('embasamento', 'Embasamento e acesso'), fotoW02('lobby', 'Lobby com pé-direito duplo'), fotoW02('piscina', 'Piscina spa com conceito onsen'), fotoW02('espaco-gourmet', 'Espaço gourmet'), fotoW02('salao-de-festas', 'Salão de festas'), fotoW02('salao-de-festas-2', 'Salão de festas'), fotoW02('academia', 'Fitness'), fotoW02('quadra-recreativa', 'Quadra recreativa'), fotoW02('brinquedoteca', 'Brinquedoteca'), fotoW02('sala-gamer', 'Sala gamer'), fotoW02('aerea-lazer', 'Vista aérea do lazer'), fotoW02('sala-de-estar', 'Sala de estar do decorado'), fotoW02('sala-de-estar-2', 'Living e jantar do decorado'), fotoW02('suite-master', 'Suíte master'), fotoW02('regiao', 'Perdizes')]
+      },
+      {
+        nome: 'Simão 717 Pinheiros',
+        cidade: 'São Paulo, capital', bairro: 'Pinheiros',
+        resumo: '3 e 4 dormitórios · 152 a 276 m²',
+        tipo: 'Apartamento', status: 'Breve lançamento',
+        texto: 'Na Rua Simão Álvares, 717, no miolo residencial de Pinheiros: torre única de 15 pavimentos num terreno de 1.200 m², com só 30 unidades, duas por andar. Os apartamentos tipo têm 151,93 m², com plantas de 3 suítes com living ampliado ou 4 dormitórios (2 suítes, com opção de home office); o 1º pavimento tem 2 gardens de 238,44 m² e o alto da torre 2 coberturas duplex de 276,42 m² com piscina privativa. O lazer ocupa o térreo e o 1º pavimento: piscina adulto com raia de 25 m, deck molhado, solarium e bangalôs, academia, quadra de pickleball e recreativa, salão de festas, espaço gourmet, praça de fogo, salão de jogos, brinquedoteca, playground externo, pet place e bicicletário. Na fachada ativa, uma loja de 500 m². Realização e construção da WDS, com participação da Brio Investimentos. Pela corretagem, a entrega está prevista para novembro de 2027.',
+        area: ['Apartamento tipo de 151,93 m²: 3 suítes com living integrado (decorado) ou 4 dormitórios com 2 suítes, com opção de home office, 2 vagas', 'Garden de 238,44 m² (1º pavimento, 2 unidades)', 'Cobertura duplex de 276,42 m² com piscina (2 unidades)'],
+        tipologia: 'Apartamentos de 3 e 4 dormitórios, gardens e coberturas duplex',
+        vagas: '2 vagas determinadas nos apartamentos tipo; 60 vagas no total, em 2 subsolos',
+        torres: 'Torre residencial única de 15 pavimentos, 2 unidades por andar',
+        unidades: '30 unidades',
+        valores: 'Sob consulta',
+        endereco: 'Rua Simão Álvares, 717 · Pinheiros, São Paulo',
+        infra: { piscina: 'Piscina adulto com raia de 25 m, deck molhado, solarium e bangalôs', academia: 'Academia', festas: 'Salão de festas', gourmet: 'Espaço gourmet e praça de fogo', kids: 'Brinquedoteca e playground externo', quadra: 'Quadra de pickleball e recreativa', portaria: 'Guarita blindada, acesso de serviço e lobby com pé-direito duplo', coworking: '' },
+        lazerGrupos: [['Térreo', ['Lobby com pé-direito duplo', 'Salão de jogos', 'Salão de festas', 'Espaço gourmet', 'Praça de fogo', 'Brinquedoteca', 'Playground externo', 'Quadra de pickleball e recreativa', 'Pet place', 'Bicicletário']], ['1º pavimento', ['Piscina adulto com raia de 25 m', 'Deck molhado', 'Solarium', 'Bangalôs', 'Academia']]],
+        diferenciais: ['Só 30 unidades, duas por andar', 'Piscina com raia de 25 m, deck molhado e bangalôs', 'Quadra de pickleball', 'Gardens de 238 m² e coberturas duplex com piscina', 'Guarita blindada', 'A poucas quadras da Linha 4-Amarela e do Largo da Batata'],
+        creditos: [['Realização e construção', 'WDS Construtora e Incorporadora'], ['Participação', 'Brio Investimentos']],
+        plantas: [{ src: W05 + 'planta-decorado.webp', nome: '151,93 m² · 3 suítes', meta: 'Planta do decorado, living e varanda integrados, 2 vagas' }, { src: W05 + 'planta-padrao.webp', nome: '151,93 m² · 4 dormitórios', meta: 'Planta padrão, 2 suítes, 2 vagas' }, { src: W05 + 'planta-home-office.webp', nome: '151,93 m² · 4 dormitórios', meta: '2 suítes e home office, 2 vagas' }, { src: W05 + 'planta-garden.webp', nome: '238,44 m² · garden', meta: '1º pavimento' }, { src: W05 + 'planta-garden-opcao-1.webp', nome: '238,44 m² · garden', meta: 'Opção 1' }, { src: W05 + 'planta-garden-opcao-2.webp', nome: '238,44 m² · garden', meta: 'Opção 2' }, { src: W05 + 'planta-cobertura-inferior.webp', nome: 'Cobertura duplex · pavimento inferior', meta: '276,42 m² no total' }, { src: W05 + 'planta-cobertura-inferior-opcao-1.webp', nome: 'Cobertura duplex · inferior', meta: 'Opção 1' }, { src: W05 + 'planta-cobertura-inferior-opcao-2.webp', nome: 'Cobertura duplex · inferior', meta: 'Opção 2' }, { src: W05 + 'planta-cobertura-superior.webp', nome: 'Cobertura duplex · pavimento superior', meta: 'Com piscina' }],
+        implantacao: [{ src: W05 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Acessos, lobby, salões, gourmet, praça de fogo, brinquedoteca, playground, quadra e pet place' }, { src: W05 + 'implantacao-lazer.webp', nome: '1º pavimento · lazer', meta: 'Academia, piscina com raia de 25 m, deck molhado, solarium e bangalôs' }],
+        legal: 'Breve lançamento. WDS Prime Simão Álvares Empreendimentos Imobiliários Ltda. Realização e construção: WDS Construtora e Incorporadora; participação: Brio Investimentos. O projeto encontra-se em aprovação na Prefeitura de São Paulo e só será comercializado após o registro do memorial de incorporação. Imagens ilustrativas. Pela corretagem (apto.vc e MySide): entrega prevista para novembro de 2027. Disponibilidade sob consulta.',
+        torre: W05 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_W05,
+        fotos: [fotoW05('fachada', 'Fachada'), fotoW05('fachada-noturna', 'Fachada à noite', true), fotoW05('lobby', 'Lobby com pé-direito duplo'), fotoW05('piscina', 'Piscina com raia de 25 m'), fotoW05('solarium-bangalos', 'Deck molhado, solarium e bangalôs'), fotoW05('aerea-lazer', 'Vista aérea do lazer'), fotoW05('quadra-pickleball', 'Quadra de pickleball'), fotoW05('academia', 'Academia'), fotoW05('salao-de-festas', 'Salão de festas'), fotoW05('espaco-gourmet', 'Espaço gourmet e praça de fogo'), fotoW05('salao-de-jogos', 'Salão de jogos'), fotoW05('brinquedoteca', 'Brinquedoteca'), fotoW05('playground', 'Playground externo'), fotoW05('pet-place', 'Pet place'), fotoW05('bicicletario', 'Bicicletário')]
+      },
+      {
+        nome: 'W.Stay Perdizes',
+        cidade: 'São Paulo, capital', bairro: 'Perdizes',
+        resumo: 'Studios e 2 dormitórios · 23 a 46 m²',
+        tipo: 'Studio', status: 'Breve lançamento',
+        texto: 'Na Rua João Ramalho, 1.218, em Perdizes, a um minuto da Avenida Sumaré e da futura Estação Perdizes do metrô: torre única de 28 pavimentos com 686 unidades e um boulevard com 6 lojas no térreo, pensada como ativo de investimento com serviços inspirados na hotelaria (recepção, concierge, maleiro, serviço de valet e áreas comuns entregues equipadas e decoradas). São studios de 23 a 28 m², gardens de 38 a 40 m² e apartamentos de 2 dormitórios de 43 a 46 m², parte deles nas categorias HIS e HMP. O lazer fica no rooftop: piscina com borda infinita, sauna, solarium, sky lounge e sky bar, espaço gourmet/coliving, mini market e fitness interno e externo; no térreo, lobby com recepção, café lounge com terraço, lavanderia coletiva e sala de delivery. Arquitetura da AM4, fachada de Del Bianco e interiores de Sara Porttug Design. Pela corretagem, em fase de breve lançamento, com entrega prevista para dezembro de 2031.',
+        area: ['Studio R2V: 23 a 27 m² (330 unidades)', 'Studio HIS: 26 a 28 m² (236 unidades)', 'Garden R2V: 38 a 40 m² (10 unidades)', '2 dormitórios R2V: 43 a 46 m² (52 unidades)', '2 dormitórios HMP: 46 m² (52 unidades)', '6 lojas no boulevard, 1.638,33 m² no total'],
+        tipologia: 'Studios, gardens e apartamentos de 2 dormitórios, com lojas no térreo',
+        vagas: 'Direito ao uso de vaga apenas para as unidades R2V (vaga não determinada)',
+        torres: 'Torre única de 28 pavimentos',
+        unidades: '686 unidades residenciais e 6 lojas',
+        valores: 'Sob consulta',
+        endereco: 'Rua João Ramalho, 1.218 · Perdizes, São Paulo',
+        infra: { piscina: 'Piscina com borda infinita e sauna no rooftop', academia: 'Fitness interno e fitness externo no rooftop', festas: 'Espaço gourmet/coliving no rooftop', gourmet: 'Espaço gourmet/coliving, sky lounge e sky bar', kids: '', quadra: '', portaria: 'Lobby com recepção, maleiro, serviço de valet e sala de delivery', coworking: 'Gourmet/coliving e café lounge com terraço' },
+        lazerGrupos: [['Rooftop', ['Piscina com borda infinita', 'Sauna', 'Solarium', 'Sky lounge', 'Sky bar', 'Espaço gourmet/coliving', 'Mini market', 'Fitness', 'Fitness externo']], ['Térreo', ['Lobby com recepção e maleiro', 'Café lounge com terraço', 'Lavanderia coletiva', 'Sala de delivery']], ['Boulevard', ['Praça de convivência', '6 lojas no térreo e no 1º subsolo']]],
+        diferenciais: ['A 1 minuto da futura Estação Perdizes do metrô e da Avenida Sumaré', 'Serviços inspirados na hotelaria: recepção, concierge, maleiro e serviço de valet', 'Rooftop com piscina de borda infinita, sky lounge e sky bar', 'Boulevard com lojas e praça de conveniência no térreo', 'Áreas comuns entregues equipadas e decoradas', 'Gerador de energia para as áreas comuns', 'Infraestrutura para ar-condicionado na sala e no dormitório'],
+        creditos: [['Arquitetura', 'AM4 Arquitetura'], ['Projeto de fachada', 'Del Bianco Arquitetura'], ['Interiores', 'Sara Porttug Design'], ['Incorporação e construção', 'WDS']],
+        plantas: [{ src: W03 + 'planta-studio-23-r2v.webp', nome: '23 m² · studio', meta: 'Studio R2V' }, { src: W03 + 'planta-studio-26-his.webp', nome: '26 m² · studio', meta: 'Studio HIS' }, { src: W03 + 'planta-garden-38.webp', nome: '38 m² · garden', meta: 'Garden R2V, 1º e 2º pavimentos' }, { src: W03 + 'planta-garden-40.webp', nome: '40 m² · garden', meta: 'Garden R2V, finais 10 e 14 do 1º pavimento e final 15 do 2º' }, { src: W03 + 'planta-43-r2v.webp', nome: '43 m² · 2 dormitórios', meta: 'R2V, com direito de uso de 1 vaga' }, { src: W03 + 'planta-46-hmp.webp', nome: '46 m² · 2 dormitórios', meta: 'HMP' }],
+        implantacao: [{ src: W03 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lobby, maleiro, lounge, delivery, lavanderia, terraço café e lojas' }, { src: W03 + 'implantacao-subsolo.webp', nome: '1º subsolo', meta: 'Boulevard com lojas' }, { src: W03 + 'implantacao-rooftop.webp', nome: 'Rooftop', meta: 'Piscina, sauna, solarium, sky lounge, gourmet/coliving, mini market e fitness' }],
+        legal: 'Incorporação e construção: WDS Construtora e Incorporadora (realização, construção e intermediação). Projeto em aprovação, sujeito a alteração; perspectivas e plantas ilustrativas. O empreendimento tem unidades HIS e HMP, destinadas a famílias com renda dentro dos limites do decreto ou a investidores que aluguem para esse público, sem locação de curta duração; as demais são R2V. Pela corretagem (apto.vc e MySide): breve lançamento, entrega prevista para dezembro de 2031. Disponibilidade sob consulta.',
+        torre: W03 + 'fachada.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_W03,
+        fotos: [fotoW03('fachada', 'Fachada', true), fotoW03('acesso-principal', 'Acesso principal'), fotoW03('boulevard-lojas', 'Boulevard e lojas'), fotoW03('recepcao-lobby', 'Recepção e lobby'), fotoW03('recepcao', 'Recepção'), fotoW03('hall-elevadores', 'Hall dos elevadores'), fotoW03('recepcao-lounge', 'Recepção e lounge'), fotoW03('boulevard-mall', 'Boulevard com lojas'), fotoW03('lavanderia', 'Lavanderia coletiva'), fotoW03('piscina', 'Piscina com borda infinita no rooftop'), fotoW03('sky-lounge', 'Sky lounge'), fotoW03('sky-bar', 'Sky bar'), fotoW03('espaco-gourmet', 'Espaço gourmet e coliving'), fotoW03('mini-market', 'Mini market'), fotoW03('fitness', 'Fitness'), fotoW03('fitness-2', 'Fitness'), fotoW03('living-2-dorms', 'Living do apartamento de 2 dormitórios'), fotoW03('studio', 'Studio decorado')]
+      }
+    ],
     'Mitre': [
       /* (11/11/2026) os quatro books que ela mandou: Althea (out/2026), Casa Parque Ceramica (so imagem; ficha pela
          corretagem), Raizes Premium Campo Belo (2025) e, no fim da lista, Haus Mitre Campo Belo (abr/2021, entregue 2024) */
@@ -16507,7 +16660,9 @@
     // (17/11/2026) a palavra eztec do vetor do book Casa Nacional, nas cores do logo dela (ez framboesa, tec vinho)
     'EZTEC': { src: 'fotos/parcerias/eztec.png', w: 418, h: 101 },
     // (17/11/2026) ela mandou em cor no branco; fundo tirado mantendo o verde do v
-    'Even': { src: 'fotos/parcerias/even.png', w: 515, h: 122 }
+    'Even': { src: 'fotos/parcerias/even.png', w: 515, h: 122 },
+    // (18/11/2026) ela mandou em cor no branco; fundo tirado mantendo o vermelho da linha de baixo
+    'WDS': { src: 'fotos/parcerias/wds.png', w: 370, h: 176 }
   };
 
   /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
@@ -16522,7 +16677,8 @@
   // (17/11/2026) One Innovation entra (so na lista da capital)
   // (17/11/2026) EZTEC entra (so na lista da capital; o nome la estava 'Ezetec')
   // (17/11/2026) Even entra (so na lista da capital)
-  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi', 'Cyrela', 'Trisul', 'One', 'EZTEC', 'Even'];
+  // (18/11/2026) WDS entra (posta no fim da lista da capital)
+  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi', 'Cyrela', 'Trisul', 'One', 'EZTEC', 'Even', 'WDS'];
   var filtrado = NO_AR.length > 0;
   // (13/11/2026) parceria no ar so em algumas cidades: a Cyrela tambem esta nas listas de Porto Alegre e do Rio,
   // mas os empreendimentos dela que temos sao todos da capital; nas outras cidades ela continua guardada
