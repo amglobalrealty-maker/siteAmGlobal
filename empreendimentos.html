@@ -638,7 +638,7 @@
       { nome: 'São Paulo, capital', curta: 'São Paulo', texto: [
         'São Paulo é a maior cidade da América do Sul, com cerca de 11,5 milhões de habitantes na capital e mais de 20 milhões na região metropolitana, e tem o maior PIB entre os municípios do país. Aqui estão a bolsa de valores, as sedes dos principais bancos e empresas, hospitais e universidades de referência nacional, a maior rede de metrô e trens do Brasil e dois aeroportos, Congonhas e Guarulhos.',
         'No mercado imobiliário, os bairros entre a Avenida Paulista e a Faria Lima lideram a procura: Pinheiros, Jardins, Vila Olímpia, Itaim, Perdizes e Vila Mariana. São ruas arborizadas, com gastronomia, parques, hospitais e estações de metrô, onde os lançamentos compactos, com lazer completo e serviços no prédio, têm alta demanda de moradia e de locação, de executivos, estudantes e profissionais da saúde.'
-      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'EZTEC', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur', 'Living', 'WDS', 'Kallas'] },
+      ], construtoras: ['Cyrela', 'Mitre', 'Even', 'EZTEC', 'Capital Concreto', 'Vitacon', 'Trisul', 'Tegra', 'Lavvi', 'Adolpho Lindenberg', 'JHSF', 'Paulo Mauro', 'Planik', 'Nortis', 'AW Realty', 'Munir Abbud', 'Benx', 'R. Yasbek', 'Bianchi Realty', 'Courchevel Incorporadora', 'One', 'Lampur', 'Living', 'WDS', 'Kallas', 'Meta'] },
       // (10/11/2026) a Living (Grupo Cyrela) entrou com tres empreendimentos no ABC paulista; textos meus, a confirmar
       // (11/11/2026) Sao Caetano entrou com o Casa Parque Ceramica, da Mitre com a Basilar
       { nome: 'Santo André, São Bernardo do Campo e São Caetano do Sul', curta: 'Grande ABC', lista: ['Santo André', 'São Bernardo do Campo', 'São Caetano do Sul'], quantas: 3, texto: [
@@ -934,6 +934,11 @@
   var WD = 'fotos/parcerias/wds/';
   // (18/11/2026) Kallas: prefixos Knn pelo numero do book kNN (scratchpad/pdfs/kl/mapa.txt)
   var KL = 'fotos/parcerias/kallas/';
+  // (19/11/2026) Meta: prefixos MEnn pelo numero do book mNN (scratchpad/pdfs/mt/mapa.txt); MT e da Mitre
+  var ME = 'fotos/parcerias/meta/';
+  var ME01 = ME + 'the-club/', fotoME01 = fotoEm(ME01);
+  var ME02 = ME + 'mawe-braz-leme/', fotoME02 = fotoEm(ME02);
+  var ME03 = ME + 'casa-arbo/', fotoME03 = fotoEm(ME03);
   var K02 = KL + 'vista-parque-ibirapuera/', fotoK02 = fotoEm(K02);
   var K03 = KL + 'kazzas-vila-carrao/', fotoK03 = fotoEm(K03);
   var K04 = KL + 'uniko-vila-olimpia/', fotoK04 = fotoEm(K04);
@@ -2899,6 +2904,27 @@
     numeros: [['2', 'torres'], ['271', 'apartamentos'], ['4.416 m²', 'de terreno'], ['47 e 55 m²', 'de área privativa']],
     polos: 'Por perto: Praia da Enseada, comércio e serviços do bairro da Enseada e o acesso pelas avenidas Odilon da Silva Rodrigues e Salim Farah Maluf.',
     fonte: 'Fonte: book do Enseada 360 (Grupo Kallas). O book não traz tempos de deslocamento; os números são da ficha técnica.'
+  };
+  var REG_ME01 = {
+    titulo: 'A região · Jardim Guedala',
+    texto: 'O Jardim Guedala é um bairro arborizado do Morumbi, perto da Marginal Pinheiros e da Ponte Cidade Jardim, com acesso rápido ao Itaim Bibi, à Faria Lima e à Cidade Jardim. Em volta estão a Praça Vinicius de Moraes, o Parque Alfredo Volpi, o Clube Paineiras, colégios como Miguel de Cervantes, Porto Seguro, Santo Américo, Avenues e Graded, os hospitais Albert Einstein, São Luiz e Leforte, e os shoppings Cidade Jardim, Iguatemi e JK Iguatemi.',
+    numeros: [['400 m', 'do Hospital Leforte'], ['1,0 km', 'da Estação São Paulo-Morumbi'], ['1,4 km', 'da Marginal Pinheiros'], ['2,7 km', 'do Hospital Albert Einstein']],
+    polos: 'Por perto: Estação São Paulo-Morumbi (linha 4-Amarela), Marginal Pinheiros, Avenida Morumbi, Praça Vinicius de Moraes, Parque Alfredo Volpi, Clube Paineiras, Colégio Miguel de Cervantes, Colégio Porto Seguro, Hospital Albert Einstein, Hospital São Luiz, Shopping Cidade Jardim e Shopping JK Iguatemi.',
+    fonte: 'Fonte: book do The Club Jardim Guedala (Meta Incorporadora), com as distâncias citadas no próprio material.'
+  };
+  var REG_ME02 = {
+    titulo: 'A região · Santana e Campo de Marte',
+    texto: 'A Avenida Braz Leme corre ao longo do Campo de Marte, na Zona Norte, entre Santana e a Casa Verde: uma avenida larga e arborizada, com o futuro Parque Campo de Marte ao lado e acesso rápido à Marginal Tietê pela Ponte da Casa Verde. Ao redor, o comércio e os serviços de Santana, a estação Santana do Metrô e, do outro lado do rio, o caminho curto para Higienópolis, o Pacaembu e o centro expandido.',
+    numeros: [['Ao lado', 'do Campo de Marte e do futuro Parque Campo de Marte'], ['3 km', 'do Pacaembu e de Higienópolis, segundo o book'], ['Acesso direto', 'à Marginal Tietê pela Ponte da Casa Verde']],
+    polos: 'Por perto: Campo de Marte e o futuro parque, Avenida Braz Leme, Ponte da Casa Verde e Marginal Tietê, comércio de Santana, estação Santana da Linha 1-Azul, Pacaembu e Higienópolis.',
+    fonte: 'Fonte: book do Mawe Braz Leme (proximidade do Campo de Marte e dos bairros a 3 km); demais referências aproximadas a partir da Av. Braz Leme, 228.'
+  };
+  var REG_ME03 = {
+    titulo: 'A região · Jardim Guedala',
+    texto: 'O Jardim Guedala fica ao lado do Itaim Bibi e da Vila Olímpia, do outro lado do Rio Pinheiros, a cerca de 4 km da Avenida Brigadeiro Faria Lima: ruas arborizadas e residenciais, com a Praça Vinicius de Moraes a 600 m, o Clube Paineiras e o Parque Alfredo Volpi por perto, escolas como Miguel de Cervantes, Porto Seguro, Santo Américo e Avenues, e os hospitais Albert Einstein e São Luiz a menos de 1,5 km.',
+    numeros: [['600 m', 'da Praça Vinicius de Moraes'], ['1,4 km', 'do Hospital Albert Einstein'], ['1,7 km', 'do Clube Paineiras'], ['4 km', 'do JK Iguatemi']],
+    polos: 'Por perto: Praça Vinicius de Moraes, Clube Paineiras, Parque Alfredo Volpi, Clube Pinheiros, Parque do Povo, Colégio Miguel de Cervantes, Colégio Porto Seguro, Colégio Santo Américo, Avenues School, Shopping Cidade Jardim, JK Iguatemi, Shopping Iguatemi, Hospital Albert Einstein, Hospital São Luiz e Laboratório Fleury.',
+    fonte: 'Fonte: book do Casa Arbo (Meta Incorporadora), com as distâncias citadas no próprio material.'
   };
   var ZS_IPIRANGA_MITRE = {
     titulo: 'A região · Alto do Ipiranga e Vila Gumercindo',
@@ -15218,6 +15244,78 @@
         fotos: [fotoK31('fachada', 'Fachada', true), fotoK31('portaria', 'Portaria'), fotoK31('lobby', 'Lobby'), fotoK31('salao-de-festas-coworking', 'Salão de festas e coworking'), fotoK31('fitness-ao-ar-livre', 'Fitness ao ar livre'), fotoK31('lavanderia', 'Lavanderia'), fotoK31('salao-de-festas-jogos', 'Salão de festas e jogos'), fotoK31('espaco-gourmet', 'Espaço gourmet'), fotoK31('terraco-espaco-gourmet', 'Terraço do espaço gourmet'), fotoK31('piscina-solarium', 'Piscina e solarium'), fotoK31('rooftop', 'Rooftop'), fotoK31('regiao-estacao-da-luz', 'A Estação da Luz, vizinha do prédio')]
       }
     ],
+    // (19/11/2026) Meta Incorporadora: books de 19/11 (scratchpad/pdfs/mt/mapa.txt)
+    'Meta': [
+      {
+        nome: 'Casa Arbo',
+        cidade: 'São Paulo, capital', bairro: 'Jardim Guedala',
+        resumo: '4 suítes · 400 a 655 m²',
+        tipo: 'Apartamento', status: 'Em obras',
+        texto: 'Uma torre de 10 residências suspensas numa rua arborizada do Jardim Guedala, com o conforto de uma casa e a segurança de um edifício: apartamentos de 4 suítes de 400 a 655 m², com gardens exclusivos nos primeiros pavimentos, terraço gourmet e 4 a 5 vagas determinadas. Arquitetura da Perkins&Will, com jogo de volumes entre o concreto e a madeira, jardineiras em todos os andares e estrutura que deixa a planta flexível; paisagismo de Cardim e interiores de Silvia Rosenthal e Andrea Barroso. Pela corretagem, o lançamento foi em dezembro de 2024 e a entrega está prevista para maio de 2028.',
+        area: ['Planta tipo de 400 m², 4 suítes', 'Planta tipo de 420 m², 4 suítes', 'Garden 1: duplex de 521 m², 4 suítes', 'Garden 2: duplex de 515 m², 4 suítes', 'O book cita residências de 400 a 655 m²'],
+        tipologia: 'Residências suspensas de 4 suítes e gardens duplex',
+        vagas: '4 a 5 vagas determinadas, com box privativo para bicicletas',
+        torres: '1 torre',
+        unidades: '10 residências',
+        valores: 'Sob consulta',
+        endereco: 'Rua José Jannarelli, 662 · Jardim Guedala, São Paulo',
+        infra: { piscina: 'Piscina com solarium no 2º pavimento', academia: 'Fitness', festas: 'Espaço gourmet', gourmet: 'Espaço gourmet e terraço gourmet nas unidades', kids: 'Brinquedoteca', quadra: '', portaria: 'Sala delivery', coworking: 'Sala de reunião' },
+        lazerGrupos: [['Térreo', ['Espaço jardim', 'Espaço gourmet', 'Brinquedoteca', 'Espaço bem-estar', 'Sala de reunião', 'Sala delivery']], ['2º pavimento', ['Piscina', 'Solarium', 'Fitness']]],
+        diferenciais: ['Apenas 10 residências, uma torre', 'Gardens duplex com jardim privativo', 'Terraço gourmet nas unidades', '4 a 5 vagas determinadas e box privativo para bicicletas', 'Jardineiras em todos os pavimentos', 'Estrutura que permite adaptar os espaços internos'],
+        creditos: [['Arquitetura', 'Perkins&Will'], ['Paisagismo', 'Cardim Paisagismo'], ['Interiores', 'Silvia Rosenthal e Andrea Barroso'], ['Realização', 'Paragon Realty'], ['Incorporação', 'Meta Incorporadora']],
+        plantas: [{ src: ME03 + 'planta-400.webp', nome: '400 m² · 4 suítes', meta: 'Planta tipo' }, { src: ME03 + 'planta-420.webp', nome: '420 m² · 4 suítes', meta: 'Planta tipo' }, { src: ME03 + 'planta-garden-1-inferior.webp', nome: '521 m² · 4 suítes', meta: 'Garden 1, pavimento inferior' }, { src: ME03 + 'planta-garden-1-superior.webp', nome: '521 m² · 4 suítes', meta: 'Garden 1, pavimento superior' }, { src: ME03 + 'planta-garden-2-inferior.webp', nome: '515 m² · 4 suítes', meta: 'Garden 2, pavimento inferior' }, { src: ME03 + 'planta-garden-2-superior.webp', nome: '515 m² · 4 suítes', meta: 'Garden 2, pavimento superior' }],
+        implantacao: [{ src: ME03 + 'implantacao.webp', nome: 'Implantação', meta: 'Térreo e 2º pavimento' }],
+        legal: 'Realização e incorporação: Meta Incorporadora; realização: Paragon Realty. SRL Empreendimentos e Participações Ltda.: incorporação registrada no 18º Oficial de Registro de Imóveis sob R.02, em 20/09/2022, na matrícula 272.401. Pela corretagem (apto.vc), lançamento em dezembro de 2024 e entrega prevista para maio de 2028. Confirme a disponibilidade com a equipe de vendas.',
+        torre: ME03 + 'fachada-torre.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_ME03,
+        fotos: [fotoME03('fachada', 'Fachada'), fotoME03('fachada-torre', 'A torre e as jardineiras', true), fotoME03('fachada-detalhe', 'Detalhe da fachada', true), fotoME03('piscina-fitness', 'Piscina e fitness'), fotoME03('espaco-gourmet', 'Espaço gourmet'), fotoME03('brinquedoteca', 'Brinquedoteca'), fotoME03('sala-de-reuniao', 'Sala de reunião'), fotoME03('living-400', 'Living do apartamento de 400 m²'), fotoME03('terraco-gourmet-400', 'Terraço gourmet do apartamento de 400 m²'), fotoME03('garden-1', 'Garden 1'), fotoME03('gourmet-garden-2', 'Gourmet do Garden 2')]
+      },
+      {
+        nome: 'Mawe Braz Leme',
+        cidade: 'São Paulo, capital', bairro: 'Santana',
+        resumo: '4 e 5 suítes · 250 a 790 m²',
+        tipo: 'Apartamento', status: 'Pronto, a confirmar',
+        texto: 'Na Avenida Braz Leme, 228 a 268, de frente para o Campo de Marte: um projeto de uso misto da Meta Incorporadora com a Costa Esmeralda, assinado pelo arquiteto Gui Mattos, num terreno de cerca de 7.150 m². São três torres residenciais com só 57 apartamentos, de 250 a 400 m² nos andares tipo, com 4 ou 5 suítes, hall social privativo e terraço gourmet integrável ao living, além de coberturas de 470 a 790 m² com piscina, solarium e terraço gourmet no piso superior e uma única unidade garden de 530 m² na Torre C. As torres se voltam para as vistas do Campo de Marte e da avenida e abrem espaço para um lazer de clube: piscina com raia de 40 m, deck molhado e solarium, quadras de tênis e de beach tennis, pista de cooper, fitness, spa e sauna, espaço bem-estar e yoga, salão de festas e gourmet com terraço, sala de jogos, brinquedoteca e playground. No embasamento, com fachada ativa e brises que se estendem por quase uma quadra, ficam 57 home offices com lobby, sala de reuniões e laundry próprios e acesso independente, e um mall com 9 lojas.',
+        area: ['Torre A: tipo de 250 m², 4 suítes (opção com 3 suítes e closet ampliado); coberturas de 470 e 520 m², 4 suítes', 'Torre B: tipo de 300 m², 4 suítes (opção com 3 suítes); cobertura de 580 m², 4 suítes', 'Torre C: tipo de 400 m², 5 suítes (opção com 4 suítes); cobertura de 790 m², 5 suítes; garden de 530 m², 5 suítes (unidade única)', 'Home offices de 50 m² (57 unidades) e 9 lojas no mall'],
+        tipologia: 'Apartamentos de 4 e 5 suítes, coberturas e garden',
+        vagas: 'Sob consulta',
+        torres: '3 torres residenciais, com home offices e mall no embasamento',
+        unidades: '57 apartamentos, 57 home offices e 9 lojas',
+        valores: 'Sob consulta',
+        endereco: 'Av. Braz Leme, 228 a 268 · Santana, São Paulo',
+        infra: { piscina: 'Piscina com raia de 40 m, deck molhado e solarium', academia: 'Fitness', festas: 'Salão de festas com terraço', gourmet: 'Espaço gourmet com terraço', kids: 'Brinquedoteca e playground', quadra: 'Quadra de tênis, quadra de beach tennis e pista de cooper', portaria: 'Lobby residencial com acesso próprio', coworking: 'Home offices com lobby, sala de reuniões e laundry' },
+        lazerGrupos: [['Residencial', ['Piscina com raia de 40 m', 'Deck molhado', 'Solarium', 'Fitness', 'Spa', 'Sauna', 'Espaço bem-estar', 'Sala de yoga', 'Quadra de tênis', 'Quadra de beach tennis', 'Pista de cooper', 'Salão de festas com terraço', 'Espaço gourmet com terraço', 'Sala de jogos', 'Brinquedoteca', 'Playground', 'Lobby', 'Bicicletário', 'Espaço delivery']], ['Home offices', ['Lobby', 'Home offices de 50 m²', 'Sala de reuniões', 'Laundry']], ['Mall', ['9 lojas com mix de conveniência para os moradores']]],
+        diferenciais: ['Só 57 apartamentos em 3 torres', 'Projeto de Gui Mattos', 'De frente para o Campo de Marte', 'Piscina com raia de 40 m e quadras de tênis e beach tennis', 'Coberturas com piscina e unidade garden de 530 m²', 'Uso misto: home offices com acesso independente e mall'],
+        creditos: [['Incorporação', 'Meta Incorporadora'], ['Desenvolvimento e realização', 'Meta Incorporadora e Costa Esmeralda'], ['Arquitetura', 'Gui Mattos'], ['Construção', 'Souza Lima Construtora, do mesmo grupo da Meta']],
+        plantas: [{ src: ME02 + 'planta-a-tipo-01.webp', nome: '250 m² · 4 suítes', meta: 'Torre A, tipo 01' }, { src: ME02 + 'planta-a-tipo-01-opcao.webp', nome: '250 m² · 3 suítes', meta: 'Torre A, tipo 01, opção com closet ampliado e banho sr. e sra.' }, { src: ME02 + 'planta-a-tipo-03.webp', nome: '250 m² · 4 suítes', meta: 'Torre A, tipo 03' }, { src: ME02 + 'planta-a-tipo-03-opcao.webp', nome: '250 m² · 3 suítes', meta: 'Torre A, tipo 03, opção' }, { src: ME02 + 'planta-a-cobertura-01-inferior.webp', nome: '470 m² · 4 suítes', meta: 'Torre A, cobertura 01, pavimento inferior' }, { src: ME02 + 'planta-a-cobertura-01-superior.webp', nome: '470 m² · piso superior', meta: 'Torre A, cobertura 01: piscina, solarium e terraço gourmet' }, { src: ME02 + 'planta-a-cobertura-03-inferior.webp', nome: '520 m² · 4 suítes', meta: 'Torre A, cobertura 03, pavimento inferior' }, { src: ME02 + 'planta-a-cobertura-03-superior.webp', nome: '520 m² · piso superior', meta: 'Torre A, cobertura 03: piscina, solarium e terraço gourmet' }, { src: ME02 + 'planta-b-tipo-01.webp', nome: '300 m² · 4 suítes', meta: 'Torre B, tipo 01' }, { src: ME02 + 'planta-b-tipo-01-opcao.webp', nome: '300 m² · 3 suítes', meta: 'Torre B, tipo 01, opção' }, { src: ME02 + 'planta-b-cobertura-inferior.webp', nome: '580 m² · 4 suítes', meta: 'Torre B, cobertura 01, pavimento inferior' }, { src: ME02 + 'planta-b-cobertura-superior.webp', nome: '580 m² · piso superior', meta: 'Torre B, cobertura 01: piscina, solarium e terraço gourmet' }, { src: ME02 + 'planta-c-tipo-01.webp', nome: '400 m² · 5 suítes', meta: 'Torre C, tipo 01' }, { src: ME02 + 'planta-c-tipo-01-opcao.webp', nome: '400 m² · 4 suítes', meta: 'Torre C, tipo 01, opção' }, { src: ME02 + 'planta-c-cobertura-inferior.webp', nome: '790 m² · 5 suítes', meta: 'Torre C, cobertura 01, pavimento inferior' }, { src: ME02 + 'planta-c-cobertura-superior.webp', nome: '790 m² · piso superior', meta: 'Torre C, cobertura 01: piscina, solarium e terraço gourmet' }, { src: ME02 + 'planta-c-garden-inferior.webp', nome: '530 m² · garden, 5 suítes', meta: 'Torre C, pavimento inferior, com terraço no térreo' }, { src: ME02 + 'planta-c-garden-superior.webp', nome: '530 m² · garden', meta: 'Torre C, pavimento superior' }, { src: ME02 + 'planta-home-office.webp', nome: '50 m² · home office', meta: 'Embasamento, acesso independente' }],
+        implantacao: [{ src: ME02 + 'implantacao.webp', nome: 'Implantação do lazer residencial', meta: 'Piscina com raia de 40 m, deck molhado, solarium, quadras de tênis e beach tennis, pista de cooper, spa, fitness, salões e playground' }],
+        legal: 'Costa Esmeralda Empreendimento Imobiliário SPE Ltda. Desenvolvimento e realização: Meta Incorporadora e Costa Esmeralda. Incorporação registrada no 8º Oficial de Registro de Imóveis sob R.04 em 09/09/2022, na matrícula 195.940. Imagens ilustrativas. Pela corretagem (apto.vc): lançamento em dezembro de 2022 e entrega prevista para agosto de 2026, já listado como pronto. Disponibilidade sob consulta.',
+        torre: ME02 + 'fachada-acesso-residencial.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_ME02,
+        fotos: [fotoME02('vista-geral', 'As três torres, de frente para o Campo de Marte'), fotoME02('fachada-acesso-residencial', 'Fachada do acesso residencial', true), fotoME02('acesso-residencial', 'Acesso residencial'), fotoME02('lobby-residencial', 'Lobby residencial', true), fotoME02('fachada-mall', 'Fachada do mall, pela Av. Braz Leme'), fotoME02('piscina-solarium', 'Piscina com raia de 40 m e solarium'), fotoME02('quadra-de-tenis', 'Quadra de tênis'), fotoME02('quadra-beach-tennis', 'Quadra de beach tennis'), fotoME02('fitness', 'Fitness'), fotoME02('spa', 'Spa'), fotoME02('bem-estar-yoga', 'Espaço bem-estar e yoga'), fotoME02('espaco-gourmet', 'Espaço gourmet'), fotoME02('sala-de-jogos', 'Sala de jogos'), fotoME02('playground-brinquedoteca', 'Playground e brinquedoteca'), fotoME02('living-torre-a', 'Living, Torre A, 250 m²'), fotoME02('living-torre-b', 'Living, Torre B, 300 m²'), fotoME02('living-torre-c', 'Living, Torre C, 400 m²'), fotoME02('suite-master-torre-c', 'Suíte master, Torre C'), fotoME02('lazer-cobertura-torre-c', 'Lazer da cobertura, Torre C, 790 m²'), fotoME02('fachada-garden', 'Fachada do garden, Torre C, 530 m²'), fotoME02('terraco-garden', 'Terraço do garden'), fotoME02('home-office', 'Home office'), fotoME02('lounge-home-offices', 'Lounge e sala de reuniões dos home offices')]
+      },
+      {
+        nome: 'The Club Jardim Guedala',
+        cidade: 'São Paulo, capital', bairro: 'Jardim Guedala',
+        resumo: 'Residences de 166 m² e penthouses de 284 m² · studios e offices',
+        tipo: 'Apartamento', status: 'Em obras',
+        texto: 'Complexo multiuso da Meta Incorporadora no Jardim Guedala, no Morumbi: uma torre de 42 andares e 133 m de altura com projeto de Gui Mattos, que reúne 120 residences de 166 m², 4 penthouses de 284 m² nos dois últimos andares, 60 studios, 90 offices e um mall de 6 lojas no térreo, com entradas independentes para cada uso. O lazer das residences ocupa o 10º pavimento, com vista da cidade e mais de 45 amenities em cerca de 3.300 m², entre piscina descoberta com raia de 25 m, piscina coberta climatizada, spa, saunas, arenas de pickleball, padel e beach tennis, fitness, gourmet e espaços para as crianças. Concierge da Meta, programa de serviços pay-per-use e café da manhã diário para as residences. Pela corretagem, lançado em agosto de 2025, com entrega prevista para março de 2029.',
+        area: ['Residences: 166 m² (120 unidades, do 11º ao 40º pavimento)', 'Penthouses: 284 m² (4 unidades, 41º e 42º pavimentos)', 'Studios: 26 a 65 m² (60 unidades, do 3º ao 8º pavimento)', 'Offices: 24 a 86 m² (90 unidades, do 4º ao 9º pavimento)', 'Mall: 6 espaços comerciais de 50 a 755 m²'],
+        tipologia: ['Residences e penthouses', 'Studios', 'Offices e lojas'],
+        vagas: 'Estacionamentos separados para residences, studios e mall',
+        torres: '1 torre de 2 subsolos e 43 pavimentos, com 133,28 m de altura',
+        unidades: '120 residences, 4 penthouses, 60 studios, 90 offices e 6 lojas',
+        valores: 'Sob consulta',
+        endereco: 'Rua Padre Eugênio Lopes, 70 · Jardim Guedala, São Paulo',
+        infra: { piscina: 'Piscina semiolímpica descoberta (25 m) e piscina coberta climatizada', academia: 'Fitness center, outdoor fitness, yoga studio e fight zone', festas: 'Gourmet, BBQ gourmet & coffee lounge e gourmet deck', gourmet: 'Gourmet com morning coffee e terraço coberto', kids: 'Brinquedoteca, kids club, playground e game lab', quadra: 'Arenas de pickleball, padel e beach tennis e quadra recreativa', portaria: 'Guarita blindada, clausura de segurança e concierge', coworking: 'Business lounge e meeting rooms para studios e offices' },
+        lazerGrupos: [['Residences · 10º pavimento', ['Piscina descoberta semiolímpica (25 m)', 'Deck molhado', 'Piscina infantil', 'Sky deck', 'Gourmet e morning coffee', 'BBQ gourmet & coffee lounge', 'Gourmet deck', 'Brinquedoteca', 'Kids club', 'Playground', 'Quadra recreativa', 'Jogos e sport bar', 'Arena de beach tennis', 'Bosque e redário', 'Pet square', 'Bromelia garden e horta', 'Boulevard']], ['Residences · 4º pavimento', ['Piscina coberta climatizada', 'Spa', 'Sauna seca', 'Sauna úmida', 'Sunset deck', 'Fitness center', 'Padel arena', 'Pickleball arena', 'Fight zone', 'Flex space', 'Yoga studio', 'Pet saloon', 'Car wash', 'Bike station']], ['Térreo', ['Lobby residences', 'Beauty center', 'Game lab & simulador', 'Minimarket', 'Espaço delivery', 'Espaço concierge', 'Mall']], ['Studios e offices', ['Business lounge', 'Meeting rooms', 'Fitness', 'Outdoor fitness', 'Laundry', 'Espaço delivery', 'Bike station', 'Boulevard']]],
+        diferenciais: ['Projeto de Gui Mattos, com 42 andares e 133 m de altura', 'Entradas independentes para residences, studios, offices e mall', 'Hall social privativo para cada residence', 'Concierge da Meta e programa de serviços pay-per-use (saúde e bem-estar, recreação infantil e gourmet)', 'Café da manhã básico diário para as residences', 'Áreas comuns entregues decoradas e mobiliadas', 'Lojas no térreo sob curadoria da Meta', 'Gerador para as áreas comuns e atendimento integral às residences', 'Guarita blindada, clausura e segurança 24h', 'Reaproveitamento de água de chuva e medição individual de água, luz e gás'],
+        creditos: [['Arquitetura', 'Gui Mattos'], ['Paisagismo', 'Embyá'], ['Interiores', 'Andrea Barroso'], ['Incorporação', 'Meta Incorporadora'], ['Realização', 'Meta Incorporadora e AVP Participações']],
+        plantas: [],
+        implantacao: [{ src: ME01 + 'implantacao-terreo.webp', nome: 'Térreo', meta: 'Lobby, mall, beauty center e acessos' }, { src: ME01 + 'implantacao-1-pavimento.webp', nome: '1º pavimento', meta: 'Mall e lobbies de studios e offices' }, { src: ME01 + 'implantacao-4-pavimento.webp', nome: '4º pavimento', meta: 'Offices, studios, fitness, arenas e spa' }, { src: ME01 + 'implantacao-10-pavimento.webp', nome: '10º pavimento', meta: 'Lazer das residences com vista da cidade' }],
+        legal: 'Pe. Eugênio Empreendimentos Imobiliários Ltda.; incorporação registrada no 18º Oficial de Registro de Imóveis, matrícula 285.646, R. 05 em 01/04/2025 (book impresso em abril de 2025). Terreno de 3.679,29 m². O book não traz as plantas das unidades. Pela corretagem (apto.vc e MySide), lançamento em agosto de 2025 e entrega prevista para março de 2029. Confirme a disponibilidade com a equipe de vendas.',
+        torre: ME01 + 'fachada-residences.webp', notaImagens: NOTA_PERSPECTIVA, regiao: REG_ME01,
+        fotos: [fotoME01('fachada-residences', 'Fachada das residences', true), fotoME01('fotomontagem', 'Fotomontagem com a vista da cidade'), fotoME01('fachada-studios-offices', 'Fachada de studios e offices', true), fotoME01('fachada-detalhe', 'Detalhe da fachada das residences'), fotoME01('entrada-residences', 'Entrada das residences'), fotoME01('lazer-10-pavimento', 'Lazer no 10º pavimento'), fotoME01('piscina-raia-25m', 'Piscina com raia de 25 m'), fotoME01('piscina-coberta', 'Piscina coberta climatizada'), fotoME01('pickleball', 'Pickleball arena'), fotoME01('padel', 'Padel arena'), fotoME01('beach-tennis', 'Beach tennis arena'), fotoME01('fitness', 'Fitness'), fotoME01('bbq-gourmet', 'BBQ gourmet & coffee lounge'), fotoME01('gourmet-deck', 'Gourmet deck'), fotoME01('quadra-recreativa', 'Quadra recreativa'), fotoME01('jogos-sport-bar', 'Jogos e sport bar'), fotoME01('brinquedoteca', 'Brinquedoteca'), fotoME01('beauty-center', 'Beauty center'), fotoME01('lobby-residences', 'Lobby das residences'), fotoME01('living-integrado', 'Living integrado da residence'), fotoME01('suite-master', 'Suíte master'), fotoME01('penthouse', 'Penthouse'), fotoME01('rooftop-privativo', 'Rooftop privativo da penthouse'), fotoME01('studio-pe-direito-duplo', 'Studio com pé-direito duplo'), fotoME01('fachada-offices-lojas', 'Fachada de offices e lojas'), fotoME01('office', 'Office')]
+      }
+    ],
     'Mitre': [
       /* (11/11/2026) os quatro books que ela mandou: Althea (out/2026), Casa Parque Ceramica (so imagem; ficha pela
          corretagem), Raizes Premium Campo Belo (2025) e, no fim da lista, Haus Mitre Campo Belo (abr/2021, entregue 2024) */
@@ -17554,7 +17652,9 @@
     // (18/11/2026) ela mandou em cor no branco; fundo tirado mantendo o vermelho da linha de baixo
     'WDS': { src: 'fotos/parcerias/wds.png', w: 370, h: 176 },
     // (18/11/2026) logo da Kallas (verde), sem fundo
-    'Kallas': { src: 'fotos/parcerias/kallas.png', w: 542, h: 183 }
+    'Kallas': { src: 'fotos/parcerias/kallas.png', w: 542, h: 183 },
+    // (19/11/2026) logo da Meta: letras escuras e o A amarelo, sem fundo
+    'Meta': { src: 'fotos/parcerias/meta.png', w: 578, h: 263 }
   };
 
   /* (06/11/2026) Por enquanto so aparece a parceria que ja tem material de verdade. Pedidos dela:
@@ -17571,7 +17671,8 @@
   // (17/11/2026) Even entra (so na lista da capital)
   // (18/11/2026) WDS entra (posta no fim da lista da capital)
   // (18/11/2026) Kallas entra (posta no fim da lista da capital)
-  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi', 'Cyrela', 'Trisul', 'One', 'EZTEC', 'Even', 'WDS', 'Kallas'];
+  // (19/11/2026) Meta entra (posta no fim da lista da capital)
+  var NO_AR = ['Vitacon', 'Living', 'Mitre', 'Lavvi', 'Cyrela', 'Trisul', 'One', 'EZTEC', 'Even', 'WDS', 'Kallas', 'Meta'];
   var filtrado = NO_AR.length > 0;
   // (13/11/2026) parceria no ar so em algumas cidades: a Cyrela tambem esta nas listas de Porto Alegre e do Rio,
   // mas os empreendimentos dela que temos sao todos da capital; nas outras cidades ela continua guardada
@@ -17820,7 +17921,9 @@
     'EZTEC': { fundacao: 1979, sede: 'SP', ufs: ['SP'], fonte: 'RI da EZTEC', texto: 'A EZTEC atua em incorporação, construção e engenharia desde 1979, quando foi fundada em São Paulo pela família Zarzur. Desenvolve empreendimentos residenciais e comerciais com foco na Região Metropolitana de São Paulo e tem ações no Novo Mercado da B3 desde 2007.' },
     'Even': { fundacao: 2002, sede: 'SP', ufs: ['SP'], fonte: 'RI da Even', texto: 'A Even Construtora e Incorporadora nasceu em 2002 da fusão da ABC Investimentos com a Terepins & Kalili. Já atuou no Rio de Janeiro, em Minas Gerais e no Rio Grande do Sul e hoje concentra as operações na cidade de São Paulo, com empreendimentos residenciais de alto padrão.' },
     'WDS': { nome: 'WDS', sede: 'SP', ufs: ['SP'], fonte: 'site da WDS', texto: 'A WDS Construtora e Incorporadora atua há mais de 30 anos no desenvolvimento imobiliário na cidade de São Paulo. Constrói e incorpora empreendimentos residenciais em bairros como Perdizes, Pinheiros, Brooklin, Bela Vista e Santana, com linhas como W.Stay e WDS Prime.' },
-    'Kallas': { fundacao: 1983, sede: 'SP', ufs: ['SP'], fonte: 'sites do Grupo Kallas e da Kazzas', texto: 'O Grupo Kallas atua em incorporação e construção no estado de São Paulo há mais de 40 anos, a partir de uma operação iniciada em 1983. A marca Kallas atende a média e a alta renda; a Kazzas, com a linha KZ, o segmento econômico, na capital, na Grande São Paulo e no litoral.' }
+    'Kallas': { fundacao: 1983, sede: 'SP', ufs: ['SP'], fonte: 'sites do Grupo Kallas e da Kazzas', texto: 'O Grupo Kallas atua em incorporação e construção no estado de São Paulo há mais de 40 anos, a partir de uma operação iniciada em 1983. A marca Kallas atende a média e a alta renda; a Kazzas, com a linha KZ, o segmento econômico, na capital, na Grande São Paulo e no litoral.' },
+    // (19/11/2026) Meta: fundacao pela Bloomberg Linea (2009, Alexandre Souza Lima); o resto pelos books
+    'Meta': { nome: 'Meta Incorporadora', fundacao: 2009, sede: 'SP', ufs: ['SP'], fonte: 'books da Meta e Bloomberg Línea', texto: 'A Meta Incorporadora é uma incorporadora boutique de São Paulo, fundada em 2009, dedicada a empreendimentos residenciais e comerciais de alto padrão, com arquitetura assinada e atenção ao design. As obras ficam a cargo da Souza Lima Construtora, do mesmo grupo, com mais de 25 anos de experiência em obras de altíssimo padrão na cidade.' }
   };
   var SIGLAS = { ac: 'AC', al: 'AL', ap: 'AP', am: 'AM', ba: 'BA', ce: 'CE', df: 'DF', es: 'ES', go: 'GO', ma: 'MA', mt: 'MT', ms: 'MS', mg: 'MG', pa: 'PA', pb: 'PB', pr: 'PR', pe: 'PE', pi: 'PI', rj: 'RJ', rn: 'RN', rs: 'RS', ro: 'RO', rr: 'RR', sc: 'SC', sp: 'SP', se: 'SE', to: 'TO' };
   function sobreDe(parceira, lista) {
