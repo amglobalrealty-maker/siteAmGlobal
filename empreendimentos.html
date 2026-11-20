@@ -3224,6 +3224,8 @@
     polos: 'Por perto: Parque Ibirapuera, Avenida Paulista, Shopping Metrô Santa Cruz, Unifesp, ESPM e os hospitais Santa Catarina e Oswaldo Cruz.',
     fonte: 'Fonte: material da Vitacon para o Vitacon Domingos de Morais, com dados da Demografia Médica do Brasil (CFM e FMUSP, 2023 e 2024), Siila, Terra e Google.'
   };
+  // (20/11/2026) a linha de fonte dos valores da Mitre, usada nas fichas da lista compacta (Naeem, Edition Moema...)
+  var TAB_MITRE = 'Tabelas Mitre de novembro/2026, valor total por unidade (preço e corretagem). Sujeitos a alteração sem aviso prévio e à disponibilidade.';
   var EMPREENDIMENTOS = {
     'Vitacon': [
       {
@@ -16944,8 +16946,7 @@
         unidades: ['Número de unidades não informado no book'],
         pavimentos: ['Lazer de uso exclusivo da Torre ML Selection: sky pool, festas gourmet, lobby, sports bar, fitness, playground, brinquedoteca, spa com sala de massagem, sauna, central delivery e pet place'],
         valores: [
-          'A partir de R$ 379.895',
-          'Studio de 24 m²: R$ 379.895',
+          'A partir de R$ 1.212.926',
           '85 m², 3 dorm., 1 vaga: R$ 1.212.926',
           '118 m², 3 suítes, 2 vagas: R$ 1.725.403',
           'Tabelas Mitre de novembro/2026, valor total por unidade (preço e corretagem). Sujeitos a alteração sem aviso prévio e à disponibilidade.'
@@ -18446,15 +18447,16 @@
         fotos: [fotoMEB('fachada', 'Fachada', true), fotoMEB('embasamento', 'Embasamento'), fotoMEB('regiao', 'A região'), fotoMEB('piscina', 'Piscina no 27º pavimento'), fotoMEB('sala-de-massagem', 'Sala de massagem'), fotoMEB('churrasqueira', 'Churrasqueira com forno de pizza'), fotoMEB('salao-de-festas', 'Salão de festas'), fotoMEB('lounge', 'Lounge no térreo'), fotoMEB('living-144', 'Living do apartamento de 144 m²'), fotoMEB('suite', 'Suíte')]
       }
     ].concat([
-      ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento'],
+      // (20/11/2026) 7o item = valores, das tabelas de novembro/2026 do Tabelao Parcerias Mitre (pasta TABELA de cada um)
+      ['Naeem Pinheiros', 'Pinheiros', '3 e 4 dormitórios', '189 a 249 m²', 'Lançamento', '', ['A partir de R$ 5.078.930', '189 m², 4 dorm., 3 vagas: R$ 5.078.930', '249 m², 4 suítes, 3 vagas: R$ 7.113.254', 'Duplex de 366 m², 4 vagas: R$ 13.650.000', TAB_MITRE]],
       ['Breve lançamento no Campo Belo', 'Campo Belo', '3 dormitórios', '85 m²', 'Breve lançamento'],
-      ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção'],
-      ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar'],
-      ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar'],
-      ['Raízes Alto Freguesia do Ó', 'Vila Primavera', 'Studios', '25 m²', 'Pronto para morar'],
-      ['Raízes Tucuruvi Jacarandá', 'Tucuruvi', '1 dormitório', '26 m²', 'Pronto para morar'],
+      ['Haus Mitre Edition Moema', 'Moema', '3 e 4 dormitórios', '114 e 141 m²', 'Em construção', '', ['A partir de R$ 2.042.462', '113 a 115 m², 3 dorm., 2 vagas: R$ 2.042.462', '141 e 142 m², 4 dorm., 2 vagas: R$ 2.557.173', TAB_MITRE]],
+      ['Haus Mitre Jardins Studios', 'Jardins', 'Studios e 1 dormitório', '20 a 47 m²', 'Pronto para morar', '', ['A partir de R$ 721.497', 'Luxury apartment de 20 a 27 m²: R$ 721.497', 'Luxury apartment de 47 a 55 m²: R$ 1.684.683', TAB_MITRE]],
+      ['ML Brooklin Edition', 'Brooklin', 'Studios', '23 e 24 m²', 'Pronto para morar', '', ['A partir de R$ 379.895', 'Studio de 24 m²: R$ 379.895', TAB_MITRE]],
+      ['Raízes Alto Freguesia do Ó', 'Vila Primavera', 'Studios', '25 m²', 'Pronto para morar', '', ['A partir de R$ 262.497', 'Studio de 26 a 28 m²: R$ 262.497', '85 m², 3 dorm., 1 vaga: R$ 866.136', '105 m², 3 suítes, 2 vagas: R$ 1.032.298', 'Garden de 111 m², 3 dorm., 1 vaga: R$ 1.095.112', 'Garden de 156 m², 3 suítes, 2 vagas: R$ 1.488.590', TAB_MITRE]],
+      ['Raízes Tucuruvi Jacarandá', 'Tucuruvi', '1 dormitório', '26 m²', 'Pronto para morar', '', ['A partir de R$ 304.500', 'Studio de 27 m²: R$ 304.500', TAB_MITRE]],
     ].map(function (x) {
-      return { nome: x[0], bairro: x[1], tipologia: x[2], area: x[3], status: x[4], cidade: x[5] || 'São Paulo, capital', valores: 'Sob consulta' };
+      return { nome: x[0], bairro: x[1], tipologia: x[2], area: x[3], status: x[4], cidade: x[5] || 'São Paulo, capital', valores: x[6] || 'Sob consulta' };
     })).concat([
       {
         nome: 'Haus Mitre Campo Belo',
@@ -18637,9 +18639,7 @@
         area: '23 a 184 m²',
         status: 'Pronto para morar',
         valores: [
-          'A partir de R$ 721.497',
-          'Luxury apartment de 20 a 27 m²: R$ 721.497',
-          'Luxury apartment de 47 a 55 m²: R$ 1.684.683',
+          'A partir de R$ 3.464.067',
           '132 m², 3 suítes, 2 vagas: R$ 3.464.067',
           'Tabelas Mitre de novembro/2026, valor total por unidade (preço e corretagem). Sujeitos a alteração sem aviso prévio e à disponibilidade.'
         ],
@@ -18947,7 +18947,7 @@
     if (!/^São Paulo/.test(cidade)) return 'Litoral e interior';
     if (/Bela Vista|Consolação|Liberdade|Cambuci|Higienópolis|^Centro|Brás|\bPari\b/.test(b)) return 'Centro';
     if (/Pinheiros|Perdizes|Pompeia|Pacaembu|Barra Funda|Lapa|Leopoldina|Madalena|Butantã|Morumbi|Guedala|Itaim|Jardim Europa|Jardins|Jardim Paulista|Vila Olímpia/.test(b)) return 'Zona Oeste';
-    if (/Freguesia do Ó|Santana|Tucuruvi|Jardim São Paulo|Pirituba|City América/.test(b)) return 'Zona Norte';
+    if (/Freguesia do Ó|Vila Primavera|Santana|Tucuruvi|Jardim São Paulo|Pirituba|City América/.test(b)) return 'Zona Norte';
     if (/Mooca|Tatuapé|Anália|Belém|Prudente|Alpina|Carrão|Penha|Cangaíba|Itaquera|José Bonifácio|Esperança|Guilhermina|Matilde|Jacuí/.test(b)) return 'Zona Leste';
     return 'Zona Sul';
   }
