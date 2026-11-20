@@ -537,6 +537,50 @@
     .sobre-numeros div:nth-child(n+3) { border-top: 1px solid var(--linha-leve); }
     .sobre-mapa svg { max-width: 300px; }
   }
+  /* (20/11/2026) a busca por valor e regiao, na pagina do estado, abaixo das construtoras; e o atalho na capa */
+  .capa-busca { display: inline-flex; align-items: center; gap: 14px; margin-top: 26px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--marfim); background: var(--onix); transition: background 0.4s var(--curva); }
+  .capa-busca svg { width: 20px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.3; }
+  .capa-busca:hover { background: var(--champagne-escuro); }
+  .capa-busca[hidden] { display: none; }
+  .busca { margin: 0 0 clamp(40px, 6vh, 72px); padding: clamp(24px, 3.4vw, 44px); background: rgba(216, 207, 192, 0.32); scroll-margin-top: 96px; }
+  .busca-cabeca { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 36ch); gap: 12px 40px; align-items: end; margin-bottom: 26px; }
+  .busca-cabeca .rotulo { margin-bottom: 12px; }
+  .busca-cabeca h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.04; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+  .busca-cabeca p { font-family: var(--serif-texto); font-size: 16.5px; line-height: 1.45; color: var(--texto-medio); margin: 0; }
+  .busca-conta, .busca-vazio, .busca-nota { max-width: none; }
+  .busca-grupo { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 10px 22px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--linha-escura); }
+  .busca-grupo > span { font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne-escuro); }
+  .busca-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .busca-chip { display: inline-flex; align-items: baseline; gap: 7px; padding: 9px 14px; font-family: var(--sans); font-size: 13px; color: var(--onix); background: var(--marfim); border: 1px solid var(--linha-escura); transition: background 0.3s var(--curva), color 0.3s var(--curva), border-color 0.3s var(--curva); }
+  .busca-chip small { font-size: 11px; color: var(--texto-fraco); font-variant-numeric: tabular-nums; }
+  .busca-chip:hover { border-color: var(--onix); }
+  .busca-chip[aria-pressed="true"] { background: var(--onix); color: var(--marfim); border-color: var(--onix); }
+  .busca-chip[aria-pressed="true"] small { color: var(--travertino); }
+  .busca-chip:disabled { opacity: 0.38; cursor: default; border-color: var(--linha-escura); }
+  .busca-chip:focus-visible, .busca-cartao:focus-visible, .busca-mais:focus-visible, .busca-limpar:focus-visible, .capa-busca:focus-visible { outline: 2px solid var(--champagne-escuro); outline-offset: 3px; }
+  .busca-conta { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; margin: 4px 0 22px; padding-top: 18px; border-top: 1px solid var(--linha-escura); font-family: var(--serif-texto); font-size: 17px; color: var(--texto-medio); }
+  .busca-conta b { font-weight: 700; color: var(--onix); }
+  .busca-limpar { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--champagne-escuro); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+  .busca-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px clamp(14px, 1.6vw, 24px); }
+  .busca-cartao { display: grid; gap: 5px; width: 100%; text-align: left; align-content: start; padding-bottom: 12px; border-bottom: 1px solid var(--linha-escura); }
+  .busca-foto { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--travertino); margin-bottom: 8px; }
+  .busca-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--curva); }
+  .busca-cartao:hover .busca-foto img { transform: scale(1.04); }
+  .busca-preco { font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: 0.02em; color: var(--champagne-escuro); font-variant-numeric: tabular-nums; }
+  .busca-preco.sem { font-weight: 400; color: var(--texto-fraco); }
+  .busca-nome { font-family: var(--serif-texto); font-weight: 600; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.12; }
+  .busca-meta { font-size: 12px; letter-spacing: 0.03em; color: var(--texto-medio); }
+  .busca-mais { display: block; margin: 32px auto 0; padding: 14px 26px; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--onix); transition: background 0.3s var(--curva), color 0.3s var(--curva); }
+  .busca-mais:hover { background: var(--onix); color: var(--marfim); }
+  .busca-vazio { font-family: var(--serif-texto); font-size: 17px; line-height: 1.45; color: var(--texto-medio); margin: 4px 0 0; padding-top: 18px; border-top: 1px solid var(--linha-escura); }
+  .busca-nota { font-size: 12px; line-height: 1.5; color: var(--texto-fraco); margin: 24px 0 0; }
+  @media (max-width: 1100px) { .busca-lista { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 900px) {
+    .busca-cabeca { grid-template-columns: 1fr; }
+    .busca-grupo { grid-template-columns: 1fr; }
+    .busca-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
+    .busca-chip { padding: 8px 12px; font-size: 12.5px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .nivel, .aberto { animation: none; }
@@ -570,6 +614,7 @@
     <h1>Empreendimentos</h1>
     <p class="capa-linha" id="capaLinha">Por país, estado e cidade: as parcerias com quem atuamos e os empreendimentos de cada uma.</p>
     <div class="capa-meta" id="capaMeta"></div>
+    <button type="button" class="capa-busca" id="capaBusca" hidden>Buscar por valor e região<svg viewBox="0 0 20 10" aria-hidden="true"><path d="M1 5h18M14 1l5 4-5 4"/></svg></button>
   </section>
 
   <section id="mapa" aria-live="polite">
@@ -18854,6 +18899,7 @@
         +     '<button type="button" class="faixa-seta prox" data-faixa="1" aria-label="Próximas construtoras"><svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h14M11 1l4 4-4 4"/></svg></button>'
         +   '</div>'
         + '</div>'
+        + '<section class="busca" id="busca" aria-label="Encontre pelo valor e pela região">' + buscaMiolo(e) + '</section>'
         + semParceria.map(function (c) { return '<div class="cidade"><div class="cidade-nome"><h3 class="notranslate">' + esc(c.nome) + '</h3><span>em breve</span></div><p class="em-breve">As parcerias de ' + esc(c.nome) + ' serão anunciadas em breve.</p></div>'; }).join('')
         + '</div>';
     }
@@ -18872,6 +18918,92 @@
                 }).join('') + '</ol>')
           + '</div>';
       }).join('') + '</div>';
+  }
+  /* ------------------------------------------- a busca por valor e regiao
+     (20/11/2026) Pedido dela: "um filtro de ticket medio pras pessoas conseguirem filtrar por valor,
+     pode colocar por regiao tambem". Na pagina do estado, abaixo das construtoras, olhando as fichas de
+     todas elas de uma vez. Valor = o "A partir de" de cada ficha (primeiro item de `valores`); com uma
+     faixa escolhida so entram as fichas com valor, sem faixa entram tambem as "Sob consulta" (no fim).
+     Regiao = pela cidade e, na capital, pelo bairro (subprefeituras; Itaim, Jardins e Vila Olimpia na
+     Zona Oeste, Bras e Pari no Centro). A lista so aparece depois da primeira escolha (sao 300+ fichas).
+     A escolha fica guardada em `busca` ao abrir uma ficha e voltar pela trilha. */
+  var FAIXAS = [
+    { id: 'ate500', nome: 'Até R$ 500 mil', curto: 'até R$ 500 mil', min: 0, max: 500000 },
+    { id: '500a1', nome: 'R$ 500 mil a 1 milhão', curto: 'de R$ 500 mil a 1 milhão', min: 500000, max: 1000000 },
+    { id: '1a2', nome: 'R$ 1 a 2 milhões', curto: 'de R$ 1 a 2 milhões', min: 1000000, max: 2000000 },
+    { id: '2a5', nome: 'R$ 2 a 5 milhões', curto: 'de R$ 2 a 5 milhões', min: 2000000, max: 5000000 },
+    { id: 'mais5', nome: 'Acima de R$ 5 milhões', curto: 'acima de R$ 5 milhões', min: 5000000, max: Infinity }
+  ];
+  var REGIOES = ['Zona Sul', 'Zona Oeste', 'Zona Norte', 'Zona Leste', 'Centro', 'Grande São Paulo e ABC', 'Litoral e interior'];
+  var busca = { faixa: null, regiao: null, quantos: 24 };
+  function precoDe(em) {
+    var v = Array.isArray(em.valores) ? em.valores[0] : em.valores;
+    var m = /A partir de R\$\s*([\d.]+)/.exec(String(v || ''));
+    return m ? Number(m[1].replace(/\./g, '')) : null;
+  }
+  function regiaoDe(em) {
+    var cidade = em.cidade || 'São Paulo, capital', b = em.bairro || '';
+    if (/Santo André|São Bernardo|São Caetano|Guarulhos|Osasco/.test(cidade)) return 'Grande São Paulo e ABC';
+    if (!/^São Paulo/.test(cidade)) return 'Litoral e interior';
+    if (/Bela Vista|Consolação|Liberdade|Cambuci|Higienópolis|^Centro|Brás|\bPari\b/.test(b)) return 'Centro';
+    if (/Pinheiros|Perdizes|Pompeia|Pacaembu|Barra Funda|Lapa|Leopoldina|Madalena|Butantã|Morumbi|Guedala|Itaim|Jardim Europa|Jardins|Jardim Paulista|Vila Olímpia/.test(b)) return 'Zona Oeste';
+    if (/Freguesia do Ó|Santana|Tucuruvi|Jardim São Paulo|Pirituba|City América/.test(b)) return 'Zona Norte';
+    if (/Mooca|Tatuapé|Anália|Belém|Prudente|Alpina|Carrão|Penha|Cangaíba|Itaquera|José Bonifácio|Esperança|Guilhermina|Matilde|Jacuí/.test(b)) return 'Zona Leste';
+    return 'Zona Sul';
+  }
+  function reais(n) { return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); }
+  function fichasDoEstado(e) {
+    var saida = [];
+    parceriasDoEstado(e).forEach(function (x) {
+      (EMPREENDIMENTOS[x.nome] || []).forEach(function (em, k) {
+        saida.push({ em: em, nome: x.nome, ci: x.ci, ni: x.ni, k: k, preco: precoDe(em), regiao: regiaoDe(em) });
+      });
+    });
+    return saida;
+  }
+  function naFaixa(f, id) { if (!id) return true; var fx = FAIXAS.filter(function (x) { return x.id === id; })[0]; return f.preco !== null && f.preco >= fx.min && f.preco < fx.max; }
+  function naRegiao(f, r) { return !r || f.regiao === r; }
+  function buscaMiolo(e) {
+    var todas = fichasDoEstado(e);
+    var comValor = todas.filter(function (f) { return f.preco !== null; }).length;
+    var chip = function (tipo, id, nome, n) {
+      var marcado = (busca[tipo] || '') === id;
+      return '<button type="button" class="busca-chip" data-busca-' + tipo + '="' + esc(id) + '" aria-pressed="' + (marcado ? 'true' : 'false') + '"' + (n === 0 && !marcado ? ' disabled' : '') + '>' + esc(nome) + (n != null ? '<small>' + n + '</small>' : '') + '</button>';
+    };
+    var conta = function (faixa, regiao) { return todas.filter(function (f) { return naFaixa(f, faixa) && naRegiao(f, regiao); }).length; };
+    var regioes = REGIOES.filter(function (r) { return todas.some(function (f) { return f.regiao === r; }); });
+    var html = '<div class="busca-cabeca"><div><span class="rotulo">Encontre pelo valor</span><h3>Quanto quer investir, e onde?</h3></div>'
+      + '<p>' + comValor + ' dos ' + todas.length + ' empreendimentos já têm valor publicado. Escolha uma faixa, uma região ou as duas.</p></div>'
+      + '<div class="busca-grupo"><span>Valor a partir de</span><div class="busca-chips">' + chip('faixa', '', 'Todos', null)
+      + FAIXAS.map(function (fx) { return chip('faixa', fx.id, fx.nome, conta(fx.id, busca.regiao)); }).join('') + '</div></div>'
+      + '<div class="busca-grupo"><span>Região</span><div class="busca-chips">' + chip('regiao', '', 'Todas', null)
+      + regioes.map(function (r) { return chip('regiao', r, r, conta(busca.faixa, r)); }).join('') + '</div></div>';
+    if (!busca.faixa && !busca.regiao) return html;
+    var achadas = todas.filter(function (f) { return naFaixa(f, busca.faixa) && naRegiao(f, busca.regiao); });
+    achadas.sort(function (a, b) {
+      if (a.preco === null || b.preco === null) return a.preco === null ? (b.preco === null ? a.em.nome.localeCompare(b.em.nome, 'pt-BR') : 1) : -1;
+      return a.preco - b.preco;
+    });
+    var fx = FAIXAS.filter(function (x) { return x.id === busca.faixa; })[0];
+    var frase = plural(achadas.length, 'empreendimento', 'empreendimentos') + (fx ? ' ' + fx.curto : '') + (busca.regiao ? ' · ' + busca.regiao : '');
+    if (!achadas.length) return html + '<p class="busca-vazio">Nenhum empreendimento nessa combinação. Tente outra faixa de valor ou outra região.</p>';
+    return html
+      + '<p class="busca-conta"><span><b>' + esc(frase) + '</b>, do menor valor para o maior</span><button type="button" class="busca-limpar">Limpar a busca</button></p>'
+      + '<ol class="busca-lista">' + achadas.slice(0, busca.quantos).map(function (f) {
+          var capa = fotosDe(f.em)[0];
+          return '<li><button type="button" class="busca-cartao" data-c="' + f.ci + '" data-n="' + f.ni + '" data-k="' + f.k + '">'
+            + '<span class="busca-foto">' + (capa ? '<img src="' + esc(capa.mini || capa.src) + '" alt="" loading="lazy">' : '') + '</span>'
+            + (f.preco !== null ? '<span class="busca-preco">A partir de ' + reais(f.preco) + '</span>' : '<span class="busca-preco sem">Valor sob consulta</span>')
+            + '<span class="busca-nome notranslate">' + esc(f.em.nome) + '</span>'
+            + '<span class="busca-meta"><span class="notranslate">' + esc(f.nome) + '</span>' + (f.em.bairro ? ' · <span class="notranslate">' + esc(f.em.bairro) + '</span>' : '') + '</span>'
+            + '</button></li>';
+        }).join('') + '</ol>'
+      + (achadas.length > busca.quantos ? '<button type="button" class="busca-mais">Mostrar mais ' + Math.min(24, achadas.length - busca.quantos) + ' de ' + (achadas.length - busca.quantos) + '</button>' : '')
+      + '<p class="busca-nota">Valores de tabela informados pelas construtoras, sujeitos a alteração e à disponibilidade. O detalhe de cada planta está na ficha.</p>';
+  }
+  function redesenharBusca() {
+    var el = $('busca'); if (!el || onde.e === null) return;
+    el.innerHTML = buscaMiolo(PAISES[onde.p].estados[onde.e]);
   }
   // o cartao de uma parceria no ar, dentro da cidade: so a logo para clicar, a contagem e o convite
   // (09/11/2026: as 4 fachadas sairam a pedido dela, para caberem varias construtoras lado a lado)
@@ -19190,6 +19322,12 @@
 
   $('nivel').addEventListener('click', function (ev) {
     var b;
+    // (20/11/2026) a busca por valor e regiao: tocar de novo no botao marcado desmarca
+    if ((b = ev.target.closest('[data-busca-faixa]'))) { var fa = b.getAttribute('data-busca-faixa'); busca.faixa = !fa || busca.faixa === fa ? null : fa; busca.quantos = 24; redesenharBusca(); return; }
+    if ((b = ev.target.closest('[data-busca-regiao]'))) { var re = b.getAttribute('data-busca-regiao'); busca.regiao = !re || busca.regiao === re ? null : re; busca.quantos = 24; redesenharBusca(); return; }
+    if ((b = ev.target.closest('.busca-mais'))) { busca.quantos += 24; redesenharBusca(); return; }
+    if ((b = ev.target.closest('.busca-limpar'))) { busca.faixa = null; busca.regiao = null; busca.quantos = 24; redesenharBusca(); return; }
+    if ((b = ev.target.closest('.busca-cartao'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = Number(b.getAttribute('data-k')); mostrar(true); return; }
     if ((b = ev.target.closest('.escolha[data-pais]'))) { onde = { p: Number(b.getAttribute('data-pais')), e: null, c: null, n: null, k: 0 }; var p = PAISES[onde.p]; if (p.estados.length === 1) onde.e = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.escolha[data-estado]'))) { onde.e = Number(b.getAttribute('data-estado')); onde.c = null; onde.n = null; onde.k = 0; mostrar(true); return; }
     if ((b = ev.target.closest('.nome, .vitrine-cartao[data-c]'))) { onde.c = Number(b.getAttribute('data-c')); onde.n = Number(b.getAttribute('data-n')); onde.k = 0; mostrar(true); return; }
@@ -19358,6 +19496,20 @@
     g.addEventListener('pointerleave', galeriaSozinha);
     galeriaSozinha();
   }
+
+  // (20/11/2026) o atalho da capa abre Sao Paulo direto na busca por valor e regiao
+  (function () {
+    var pi = PAISES.findIndex(function (p) { return p.estados.some(function (e) { return e.uf === 'SP'; }); });
+    if (!filtrado || pi < 0) return;
+    var ei = PAISES[pi].estados.findIndex(function (e) { return e.uf === 'SP'; });
+    if (!totalEstado(PAISES[pi].estados[ei])) return;
+    $('capaBusca').hidden = false;
+    $('capaBusca').addEventListener('click', function () {
+      onde = { p: pi, e: ei, c: null, n: null, k: 0 };
+      mostrar(false);
+      var el = $('busca'); if (el) el.scrollIntoView({ block: 'start', behavior: suave() });
+    });
+  })();
 
   // chegou com #brasil/sc/1/1 (pais/estado/cidade/parceira[/empreendimento]) ou o antigo #sc
   (function () {
